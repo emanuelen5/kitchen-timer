@@ -6,10 +6,9 @@ volatile static uint8_t count;
 
 void init_led_counter(void)
 {
-    count = 0;
-
     DDRC |= LED_MASK;
     PORTC &= ~LED_MASK;
+    reset_led_counter();
 }
 
 void update_leds()
