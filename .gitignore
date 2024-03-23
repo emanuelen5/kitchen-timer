@@ -3,3 +3,9 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+# Some local good-to-have files
+avrdude.conf
+avrdude.exe
+avrdude.pdb
+zadig-*.exe
