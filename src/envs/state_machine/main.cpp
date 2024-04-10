@@ -1,60 +1,92 @@
 #include <Arduino.h>
 #include "led-counter.h"
+#include "timer.h"
 
+typedef enum state
+{
+    IDLE,
+    RUNNING,
+    PAUSED,
+    RINGING,
+} state_t;
 
-enum states {
-    START,
-    LOOP,
-    END,
-} state;
+typedef enum event
+{
+    PRESS,
+    CW_ROTATION,
+    CCW_ROTATION,
+    DOUBLE_PRESS,
+    LONG_PRESS,
+    CW_PRESSED_ROTATION,
+    CCW_PRESSED_ROTATION,
+    TIMEOUT,
+    SECOND_TICK,
+} event_t;
 
-enum events {
-    START_LOOPING,
-    PRINT_HELLO,
-    STOP_LOOPING,
-};
+state_t state = IDLE;
+timer_t timer;
+void step_state(event_t event);
 
-void step_state(enum events event);
-
-void setup() {
-init_led_counter();
-
+void setup()
+{
+    reset_timer(&timer);
+    init_led_counter();
 }
 
-void loop() {
-    step_state(START_LOOPING);
-    step_state(PRINT_HELLO);
-    step_state(PRINT_HELLO);
-    step_state(STOP_LOOPING);
+void loop()
+{
+    step_state(PRESS);
+    step_state(PRESS);
+    step_state(PRESS);
+    step_state(PRESS);
 }
 
-
-void step_state(enum events event) {
-    switch(state) {
-    case START:
-        switch(event) {
-        case START_LOOPING:
-            state = LOOP;
+void step_state(event_t event)
+{
+    switch (state)
+    {
+    case IDLE:
+        switch (event)
+        {
+        case PRESS:
+            state = RUNNING;
             break;
-        default:
+        case CW_ROTATION:
+            change_timer(&timer, 1);
             break;
-        }       
-        break;
-    case LOOP:
-        switch(event) {
-        case PRINT_HELLO:
+        case CCW_ROTATION:
+            change_timer(&timer, -1);
             break;
-        case STOP_LOOPING:
-            state = END;
-            break;
-        default:
+        case LONG_PRESS:
+            reset_timer(&timer);
             break;
         }
         break;
-    case END:
-        state = START;
+    case RUNNING:
+        switch (event)
+        {
+        case PRESS:
+            state = PAUSED;
+            break;
+        case SECOND_TICK:
+            decrement_timer(&timer);
+            if (timer_is_finished(&timer))
+            {
+                state = RINGING;
+            }
+            break;
+        case LONG_PRESS:
+            state = IDLE;
+            reset_timer(&timer);
+            break;
+        }
+        break;
+    case PAUSED:
+        break;
+    case RINGING:
         break;
     }
+
     static uint8_t transition = 0;
     set_counter(state | (transition ? bit(2) : 0));
     transition = !transition;
