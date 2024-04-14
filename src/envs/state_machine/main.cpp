@@ -36,10 +36,13 @@ void setup()
 
 void loop()
 {
+    step_state(CW_ROTATION);
+    step_state(CW_ROTATION);
+    step_state(CW_ROTATION);
     step_state(PRESS);
-    step_state(PRESS);
-    step_state(PRESS);
-    step_state(PRESS);
+    step_state(SECOND_TICK);
+    step_state(SECOND_TICK);
+    step_state(SECOND_TICK);
 }
 
 void step_state(event_t event)
@@ -85,11 +88,48 @@ void step_state(event_t event)
     case PAUSED:
         break;
     case RINGING:
+        switch (event)
+        {
+        case LONG_PRESS:
+            /* code */
+            break;
+        
+        default:
+            uint8_t count = 0;
+            while(count <= 5)
+            {
+                digitalWrite(A0, HIGH);
+                digitalWrite(A1, HIGH);
+                digitalWrite(A2, HIGH);
+                delay(100);
+                digitalWrite(A0, LOW);
+                digitalWrite(A1, LOW);
+                digitalWrite(A2, LOW);
+                delay(100);
+                count++;
+            }
+            reset_timer(&timer);
+            state = IDLE;
+            break;
+        }
         break;
     }
 
+    if (state == IDLE)
+    {
+        set_counter(timer.original_time);
+        delay(1000);
+    }
+    if (state == RUNNING)
+    {
+        set_counter(timer.current_time);
+        delay(1000);
+    }
+
+/*
     static uint8_t transition = 0;
     set_counter(state | (transition ? bit(2) : 0));
     transition = !transition;
     delay(500);
+*/
 }
