@@ -1,9 +1,16 @@
-//this is just a test line
 #include <Arduino.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <util/delay.h>
 #include "led-counter.h"
 #include "timer.h"
 
-typedef enum state
+#define CLK_PIN 2
+#define SW_PIN 3
+#define DT_PIN 4
+
+
+typedef enum state      //QUESTION: are we using two names? state and state_t?
 {
     IDLE,
     RUNNING,
@@ -26,23 +33,34 @@ typedef enum event
 
 state_t state = IDLE;
 timer_t timer;
+
 void step_state(event_t event);
+void init_rotary_encoder(void);
+
+volatile unsigned long last_trigger = 0;
+ISR(INT0_vect)
+{
+    unsigned long t = millis();
+    if (t - last_trigger > 70)
+    {
+        if (PIND & bit(DT_PIN))
+            step_state(CW_ROTATION);
+        else
+            step_state(CCW_ROTATION);
+    }
+    last_trigger = t;
+}
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
+    init_rotary_encoder();
 }
 
 void loop()
 {
-    step_state(CW_ROTATION);
-    step_state(CW_ROTATION);
-    step_state(CW_ROTATION);
-    step_state(PRESS);
-    step_state(SECOND_TICK);
-    step_state(SECOND_TICK);
-    step_state(SECOND_TICK);
+    
 }
 
 void step_state(event_t event)
@@ -118,7 +136,6 @@ void step_state(event_t event)
     if (state == IDLE)
     {
         set_counter(timer.original_time);
-        delay(1000);
     }
     if (state == RUNNING)
     {
@@ -132,4 +149,17 @@ void step_state(event_t event)
     transition = !transition;
     delay(500);
 */
+}
+
+void init_rotary_encoder(void)
+{
+    DDRD &= 0;
+    PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
+
+    cli();
+    EIMSK = bit(INT0);                // Interrupt enable INT0
+    EICRA = bit(ISC01) & ~bit(ISC00); // falling interrupt on INT0
+    sei();
+
+    increment_counter();
 }
