@@ -4,38 +4,25 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-
-#define CLK_PIN 2
-#define SW_PIN 3
-#define DT_PIN 4
+#include "rotary-encoder.h"
 
 volatile unsigned long last_trigger = 0;
 
-ISR(INT0_vect)
+void cw_rotation(void)
 {
-    unsigned long t = millis();
-    if (t - last_trigger > 70)
-    {
-        if (PIND & bit(DT_PIN))
-            decrement_counter();
-        else
-            increment_counter();
-    }
-    last_trigger = t;
+    increment_counter();
+}
+
+void ccw_rotation(void)
+{
+    decrement_counter();
 }
 
 void setup()
 {
     init_led_counter();
 
-    DDRD &= 0;
-    PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
-
-    cli();
-    EIMSK = bit(INT0);                // Interrupt enable INT0
-    EICRA = bit(ISC01) & ~bit(ISC00); // falling interrupt on INT0
-    sei();
-
+    init_rotary_encoder();
     increment_counter();
 }
 

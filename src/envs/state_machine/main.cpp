@@ -4,11 +4,7 @@
 #include <util/delay.h>
 #include "led-counter.h"
 #include "timer.h"
-
-#define CLK_PIN PD2 //INT0
-#define DT_PIN PD3  //INT1
-#define SW_PIN PD4
-
+#include "rotary-encoder.h"
 
 typedef enum state      //QUESTION: are we using two names? state and state_t?
 {
@@ -37,35 +33,6 @@ timer_t timer;
 void step_state(event_t event);
 void init_rotary_encoder(void);
 
-volatile unsigned long last_trigger_INT0 = 0;
-ISR(INT0_vect)
-{
-    unsigned long t = millis();
-    if (t - last_trigger_INT0 > 70)
-    {
-        if (PIND & bit(CLK_PIN)) 
-            step_state(CW_ROTATION);
-        else
-            step_state(CCW_ROTATION);
-    }
-    last_trigger_INT0 = t;
-}
-
-volatile unsigned long last_trigger_INT1 = 0;
-ISR(INT1_vect)
-{
-    unsigned long t = millis();
-    if (t - last_trigger_INT1 > 70)
-    {
-        if (PIND & bit(DT_PIN)) 
-            step_state(CCW_ROTATION);
-        else
-            step_state(CW_ROTATION);
-    }
-    last_trigger_INT1 = t;
-}
-
-
 void setup()
 {
     reset_timer(&timer);
@@ -75,7 +42,6 @@ void setup()
 
 void loop()
 {
-    
 }
 
 void step_state(event_t event)
@@ -126,7 +92,7 @@ void step_state(event_t event)
         case LONG_PRESS:
             /* code */
             break;
-        
+
         default:
             uint8_t count = 0;
             while(count <= 5)
@@ -166,14 +132,12 @@ void step_state(event_t event)
 */
 }
 
-void init_rotary_encoder(void)
+void cw_rotation(void)
 {
-    DDRD &= 0;
-    PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
+    step_state(CW_ROTATION);
+}
 
-    cli();
-    EIMSK |= bit(INT0) | bit(INT1);                // Interrupt enable INT0 and INT1
-    EICRA |= bit(ISC11) | bit(ISC10) | bit(ISC01) | ~bit(ISC00); // rising interrupt on INT1 and falling interrupt on INT0
-    sei();
-
+void ccw_rotation(void)
+{
+    step_state(CCW_ROTATION);
 }
