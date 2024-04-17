@@ -5,9 +5,9 @@
 #include "led-counter.h"
 #include "timer.h"
 
-#define CLK_PIN 2
-#define SW_PIN 3
-#define DT_PIN 4
+#define CLK_PIN PD2 //INT0
+#define DT_PIN PD3  //INT1
+#define SW_PIN PD4
 
 
 typedef enum state      //QUESTION: are we using two names? state and state_t?
@@ -37,19 +37,34 @@ timer_t timer;
 void step_state(event_t event);
 void init_rotary_encoder(void);
 
-volatile unsigned long last_trigger = 0;
+volatile unsigned long last_trigger_INT0 = 0;
 ISR(INT0_vect)
 {
     unsigned long t = millis();
-    if (t - last_trigger > 70)
+    if (t - last_trigger_INT0 > 70)
     {
-        if (PIND & bit(DT_PIN))
+        if (PIND & bit(CLK_PIN)) 
             step_state(CW_ROTATION);
         else
             step_state(CCW_ROTATION);
     }
-    last_trigger = t;
+    last_trigger_INT0 = t;
 }
+
+volatile unsigned long last_trigger_INT1 = 0;
+ISR(INT1_vect)
+{
+    unsigned long t = millis();
+    if (t - last_trigger_INT1 > 70)
+    {
+        if (PIND & bit(DT_PIN)) 
+            step_state(CCW_ROTATION);
+        else
+            step_state(CW_ROTATION);
+    }
+    last_trigger_INT1 = t;
+}
+
 
 void setup()
 {
@@ -157,9 +172,8 @@ void init_rotary_encoder(void)
     PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
 
     cli();
-    EIMSK = bit(INT0);                // Interrupt enable INT0
-    EICRA = bit(ISC01) & ~bit(ISC00); // falling interrupt on INT0
+    EIMSK |= bit(INT0) | bit(INT1);                // Interrupt enable INT0 and INT1
+    EICRA |= bit(ISC11) | bit(ISC10) | bit(ISC01) | ~bit(ISC00); // rising interrupt on INT1 and falling interrupt on INT0
     sei();
 
-    increment_counter();
 }
