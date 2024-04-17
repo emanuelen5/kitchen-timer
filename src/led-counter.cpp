@@ -35,10 +35,3 @@ void increment_counter(void)
     count++;
     update_leds();
 }
-
-void set_counter(uint8_t counter){
-    count = counter;
-    update_leds();
-}
-
-
