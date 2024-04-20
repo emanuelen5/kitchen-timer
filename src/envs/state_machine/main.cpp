@@ -31,13 +31,12 @@ state_t state = IDLE;
 timer_t timer;
 
 void step_state(event_t event);
-void init_rotary_encoder(void);
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_rotary_encoder();
+    init_rotary_encoder( step_state, step_state, CW_ROTATION, CCW_ROTATION);
 }
 
 void loop()
