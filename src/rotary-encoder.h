@@ -6,9 +6,8 @@
 #define SW_PIN PD4
 
 //Funtion pointer declaration
-typedef void (*function_callback)(int);
+typedef void (*event_cb_t)(void);
 
-void init_rotary_encoder(function_callback cw_rot_ptr, function_callback ccw_rot_ptr, int cw_event, int ccw_event);
-
+void init_rotary_encoder(event_cb_t cw_rot_ptr, event_cb_t ccw_rot_ptr);
 
 #endif

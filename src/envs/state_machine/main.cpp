@@ -32,11 +32,21 @@ timer_t timer;
 
 void step_state(int event);
 
+void cw_rotation_cb(void)
+{
+    step_state(CW_ROTATION);
+}
+
+void ccw_rotation_cb(void)
+{
+    step_state(CCW_ROTATION);
+}
+
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_rotary_encoder(step_state, step_state, CW_ROTATION, CCW_ROTATION);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
 }
 
 void loop()
