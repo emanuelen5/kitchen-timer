@@ -6,7 +6,7 @@
 #include "timer.h"
 #include "rotary-encoder.h"
 
-typedef enum state      //QUESTION: are we using two names? state and state_t?
+typedef enum state
 {
     IDLE,
     RUNNING,
@@ -30,20 +30,20 @@ typedef enum event
 state_t state = IDLE;
 timer_t timer;
 
-void step_state(event_t event);
+void step_state(int event);
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_rotary_encoder( step_state, step_state, CW_ROTATION, CCW_ROTATION);
+    init_rotary_encoder(step_state, step_state, CW_ROTATION, CCW_ROTATION);
 }
 
 void loop()
 {
 }
 
-void step_state(event_t event)
+void step_state(int event)
 {
     switch (state)
     {
@@ -129,14 +129,4 @@ void step_state(event_t event)
     transition = !transition;
     delay(500);
 */
-}
-
-void cw_rotation(void)
-{
-    step_state(CW_ROTATION);
-}
-
-void ccw_rotation(void)
-{
-    step_state(CCW_ROTATION);
 }
