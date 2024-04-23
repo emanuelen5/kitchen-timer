@@ -9,9 +9,10 @@ static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
 
 
-struct Interrupt interruptQueue[QUEUE_SIZE];
-int front = 0;
-int rear = 0;
+typedef struct {
+    event_t data[QUEUE_SIZE];
+    int front, rear;
+} event_queue_t;
 
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
 {
@@ -76,8 +77,9 @@ void queuing_interrupt(int interrupt)
 
 void dequeuing_interrupt()
 {
-    // Check if there are pending interrupts in the queue
-    if (front != rear) {
+    if (event_queue_is_empty(&queue)) {
+        return;
+    }
         // Dequeue and process the next interrupt
         struct Interrupt currentInterrupt = interruptQueue[front];
         front = (front + 1) % QUEUE_SIZE;
