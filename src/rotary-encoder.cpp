@@ -77,8 +77,9 @@ void queuing_interrupt(int interrupt)
 
 void dequeuing_interrupt()
 {
-    // Check if there are pending interrupts in the queue
-    if (front != rear) {
+    if (event_queue_is_empty(&queue)) {
+        return;
+    }
         // Dequeue and process the next interrupt
         struct Interrupt currentInterrupt = interruptQueue[front];
         front = (front + 1) % QUEUE_SIZE;
