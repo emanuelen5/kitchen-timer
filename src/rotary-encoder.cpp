@@ -83,21 +83,16 @@ void dequeuing_interrupt()
         front = (front + 1) % QUEUE_SIZE;
 
         // Process the interrupt
-        processInterrupt(currentInterrupt);
-    }
-}
+        switch (currentInterrupt.type)
+        {
+            case CW_INTERRUPT:
+                cw_rotation();
+                break;
 
-void processInterrupt(struct Interrupt interrupt)
-{
-    switch (interrupt.type)
-    {
-        case CW_INTERRUPT:
-            cw_rotation();
-            break;
-
-        case CCW_INTERRUPT:
-            ccw_rotation();
-            break;
+            case CCW_INTERRUPT:
+                ccw_rotation();
+                break;
+        }
     }
 }
 

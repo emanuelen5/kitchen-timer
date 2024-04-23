@@ -18,7 +18,6 @@ struct Interrupt {
 
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb);
 void queuing_interrupt(int interrupt);
-void processInterrupt(struct Interrupt interrupt);
 void dequeuing_interrupt();
 
 #endif
