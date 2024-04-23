@@ -44,4 +44,6 @@ jobs:
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
       - name: Build PlatformIO Project
+        # Unfortunately we cannot test other than the native target without the
+        # target microcontroller connected
         run: pio test -e native
