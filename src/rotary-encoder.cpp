@@ -8,6 +8,11 @@
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
 
+
+struct Interrupt interruptQueue[QUEUE_SIZE];
+int front = 0;
+int rear = 0;
+
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
 {
     DDRD &= 0;
@@ -22,6 +27,7 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
     ccw_rotation = ccw_rotation_cb;
 }
 
+
 volatile unsigned long last_trigger_INT0 = 0;
 ISR(INT0_vect)
 {
@@ -29,9 +35,9 @@ ISR(INT0_vect)
     if (t - last_trigger_INT0 > 70)
     {
         if (PIND & bit(CLK_PIN))
-            cw_rotation();
+            queuing_interrupt(CW_INTERRUPT);
         else
-            ccw_rotation();
+            queuing_interrupt(CCW_INTERRUPT);
     }
     last_trigger_INT0 = t;
 }
@@ -43,9 +49,55 @@ ISR(INT1_vect)
     if (t - last_trigger_INT1 > 70)
     {
         if (PIND & bit(DT_PIN))
-            ccw_rotation();
+            queuing_interrupt(CCW_INTERRUPT);
         else
-            cw_rotation();
+            queuing_interrupt(CW_INTERRUPT);;
     }
     last_trigger_INT1 = t;
 }
+
+void queuing_interrupt(int interrupt)
+{
+    // Create a new interrupt
+    struct Interrupt newInterrupt;
+    newInterrupt.type = interrupt;
+
+    // Check if the queue is full
+    if ((rear + 1) % QUEUE_SIZE != front) {
+        // Add the interrupt to the queue
+        interruptQueue[rear] = newInterrupt;
+        rear = (rear + 1) % QUEUE_SIZE;
+    } else {
+        // Handle queue overflow (optional)
+    }
+}
+
+
+
+void dequeuing_interrupt()
+{
+    // Check if there are pending interrupts in the queue
+    if (front != rear) {
+        // Dequeue and process the next interrupt
+        struct Interrupt currentInterrupt = interruptQueue[front];
+        front = (front + 1) % QUEUE_SIZE;
+
+        // Process the interrupt
+        processInterrupt(currentInterrupt);
+    }
+}
+
+void processInterrupt(struct Interrupt interrupt)
+{
+    switch (interrupt.type)
+    {
+        case CW_INTERRUPT:
+            cw_rotation();
+            break;
+
+        case CCW_INTERRUPT:
+            ccw_rotation();
+            break;
+    }
+}
+

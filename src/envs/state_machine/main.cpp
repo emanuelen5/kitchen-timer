@@ -51,6 +51,7 @@ void setup()
 
 void loop()
 {
+    dequeuing_interrupt();
 }
 
 void step_state(int event)
