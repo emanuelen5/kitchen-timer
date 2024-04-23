@@ -31,6 +31,8 @@ state_t state = IDLE;
 timer_t timer;
 
 void step_state(int event);
+void cw_rotation_cb(void);
+void ccw_rotation_cb(void);
 
 void cw_rotation_cb(void)
 {
