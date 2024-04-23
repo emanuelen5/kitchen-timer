@@ -5,6 +5,7 @@
 #include "led-counter.h"
 #include "timer.h"
 #include "rotary-encoder.h"
+#include "event_queue.h"
 
 typedef enum state
 {
@@ -34,16 +35,6 @@ void step_state(int event);
 void cw_rotation_cb(void);
 void ccw_rotation_cb(void);
 
-void cw_rotation_cb(void)
-{
-    step_state(CW_ROTATION);
-}
-
-void ccw_rotation_cb(void)
-{
-    step_state(CCW_ROTATION);
-}
-
 void setup()
 {
     reset_timer(&timer);
@@ -53,7 +44,17 @@ void setup()
 
 void loop()
 {
-    dequeuing_interrupt();
+    dequeuing_event();
+}
+
+void cw_rotation_cb(void)
+{
+    step_state(CW_ROTATION);
+}
+
+void ccw_rotation_cb(void)
+{
+    step_state(CCW_ROTATION);
 }
 
 void step_state(int event)
@@ -135,11 +136,4 @@ void step_state(int event)
         set_counter(timer.current_time);
         delay(1000);
     }
-
-/*
-    static uint8_t transition = 0;
-    set_counter(state | (transition ? bit(2) : 0));
-    transition = !transition;
-    delay(500);
-*/
 }

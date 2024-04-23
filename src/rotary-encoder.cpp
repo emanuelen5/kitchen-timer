@@ -1,5 +1,6 @@
 #include <Arduino.h>
 #include "rotary-encoder.h"
+#include "event_queue.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -7,12 +8,6 @@
 
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
-
-
-typedef struct {
-    event_t data[QUEUE_SIZE];
-    int front, rear;
-} event_queue_t;
 
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
 {
@@ -36,9 +31,9 @@ ISR(INT0_vect)
     if (t - last_trigger_INT0 > 70)
     {
         if (PIND & bit(CLK_PIN))
-            queuing_interrupt(CW_INTERRUPT);
+            queuing_event(CW_INTERRUPT);
         else
-            queuing_interrupt(CCW_INTERRUPT);
+            queuing_event(CCW_INTERRUPT);
     }
     last_trigger_INT0 = t;
 }
@@ -50,51 +45,10 @@ ISR(INT1_vect)
     if (t - last_trigger_INT1 > 70)
     {
         if (PIND & bit(DT_PIN))
-            queuing_interrupt(CCW_INTERRUPT);
+            queuing_event(CCW_INTERRUPT);
         else
-            queuing_interrupt(CW_INTERRUPT);;
+            queuing_event(CW_INTERRUPT);;
     }
     last_trigger_INT1 = t;
-}
-
-void queuing_interrupt(int interrupt)
-{
-    // Create a new interrupt
-    struct Interrupt newInterrupt;
-    newInterrupt.type = interrupt;
-
-    // Check if the queue is full
-    if ((rear + 1) % QUEUE_SIZE != front) {
-        // Add the interrupt to the queue
-        interruptQueue[rear] = newInterrupt;
-        rear = (rear + 1) % QUEUE_SIZE;
-    } else {
-        // Handle queue overflow (optional)
-    }
-}
-
-
-
-void dequeuing_interrupt()
-{
-    if (event_queue_is_empty(&queue)) {
-        return;
-    }
-        // Dequeue and process the next interrupt
-        struct Interrupt currentInterrupt = interruptQueue[front];
-        front = (front + 1) % QUEUE_SIZE;
-
-        // Process the interrupt
-        switch (currentInterrupt.type)
-        {
-            case CW_INTERRUPT:
-                cw_rotation();
-                break;
-
-            case CCW_INTERRUPT:
-                ccw_rotation();
-                break;
-        }
-    }
 }
 
