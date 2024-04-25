@@ -22,7 +22,7 @@ void setup()
 {
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation, ccw_rotation);
+    init_rotary_encoder();
     increment_counter();
 }
 
