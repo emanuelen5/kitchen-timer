@@ -2,28 +2,30 @@
 
 event_queue_t eventQueue;
 
-static event_function handlingEvent;
+static eventHandlerFunction handlingEvent;
 
-void init_event_queue(event_function executingEvent)
+void init_event_queue(eventHandlerFunction eventFunction)
 {
-    handlingEvent = executingEvent;
+    handlingEvent = eventFunction;
 }
 
 void queuing_event(event_t event)
 {
-    // Check if the queue is full
-    if ((eventQueue.rear + 1) % QUEUE_SIZE != eventQueue.front) {
-        // Add the interrupt to the queue
+    if ((eventQueue.rear + 1) % QUEUE_SIZE != eventQueue.front)     //evaluates if queue is full
+    {
         eventQueue.data[eventQueue.rear] = event;
         eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
-    } else {
-        // Handle queue overflow (optional)
+    } 
+    else 
+    {
+        // Code for handling overflow
     }
 }
 
 void dequeuing_event()
 {
-    if (event_queue_is_empty(&eventQueue)) {
+    if (event_queue_is_empty(&eventQueue))
+    {
         return;
     }
     else

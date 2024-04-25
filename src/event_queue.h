@@ -1,7 +1,6 @@
 #ifndef EVENT_QUEUE_H
 #define EVENT_QUEUE_H
 
-
 #define QUEUE_SIZE 10
 
 typedef enum event
@@ -23,14 +22,11 @@ typedef struct {
     int rear = 0;
 } event_queue_t;
 
+typedef void (*eventHandlerFunction)(int);
 
-//Funtion pointer declaration
-typedef void (*event_function)(int);
-
-void init_event_queue(event_function executingEvent);
+void init_event_queue(eventHandlerFunction eventFunction);
 void queuing_event(event_t event);
 void dequeuing_event();
 bool event_queue_is_empty(event_queue_t *queue);
-
 
 #endif

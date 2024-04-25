@@ -5,25 +5,6 @@
 #include "rotary-encoder.h"
 #include "event_queue.h"
 
-//static event_cb_t cw_rotation;
-//static event_cb_t ccw_rotation;
-
-/*
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
-{
-    DDRD &= 0;
-    PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
-
-    cli();
-    EIMSK |= bit(INT0) | bit(INT1);                              // Interrupt enable INT0 and INT1
-    EICRA |= bit(ISC11) | bit(ISC10) | bit(ISC01) | ~bit(ISC00); // rising interrupt on INT1 and falling interrupt on INT0
-    sei();
-
-    cw_rotation = cw_rotation_cb;
-    ccw_rotation = ccw_rotation_cb;
-}
-*/
-
 void init_rotary_encoder()
 {
     DDRD &= 0;
