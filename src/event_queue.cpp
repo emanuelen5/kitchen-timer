@@ -1,6 +1,15 @@
 #include "event_queue.h"
 
-void queuing_event(int event)
+event_queue_t eventQueue;
+
+static event_function handlingEvent;
+
+void init_event_queue(event_function executingEvent)
+{
+    handlingEvent = executingEvent;
+}
+
+void queuing_event(event_t event)
 {
     // Check if the queue is full
     if ((eventQueue.rear + 1) % QUEUE_SIZE != eventQueue.front) {
@@ -19,18 +28,7 @@ void dequeuing_event()
     }
     else
     {
-        // Process the interrupt
-        switch (eventQueue.data[eventQueue.front])
-        {
-            case CW_INTERRUPT:
-                cw_rotation();
-                break;
-
-            case CCW_INTERRUPT:
-                ccw_rotation();
-                break;
-        }
-        //Move the front marker
+        handlingEvent(eventQueue.data[eventQueue.front]);
         eventQueue.front = (eventQueue.front + 1) % QUEUE_SIZE;
     }
 }

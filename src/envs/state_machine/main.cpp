@@ -15,31 +15,20 @@ typedef enum state
     RINGING,
 } state_t;
 
-typedef enum event
-{
-    PRESS,
-    CW_ROTATION,
-    CCW_ROTATION,
-    DOUBLE_PRESS,
-    LONG_PRESS,
-    CW_PRESSED_ROTATION,
-    CCW_PRESSED_ROTATION,
-    TIMEOUT,
-    SECOND_TICK,
-} event_t;
-
 state_t state = IDLE;
 timer_t timer;
 
 void step_state(int event);
-void cw_rotation_cb(void);
-void ccw_rotation_cb(void);
+//void cw_rotation_cb(void);
+//void ccw_rotation_cb(void);
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
+    init_event_queue(step_state);
+    //init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
+    init_rotary_encoder();
 }
 
 void loop()
@@ -47,6 +36,7 @@ void loop()
     dequeuing_event();
 }
 
+/*
 void cw_rotation_cb(void)
 {
     step_state(CW_ROTATION);
@@ -56,6 +46,7 @@ void ccw_rotation_cb(void)
 {
     step_state(CCW_ROTATION);
 }
+*/
 
 void step_state(int event)
 {
