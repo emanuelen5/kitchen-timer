@@ -14,8 +14,8 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
     PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
 
     cli();
-    EIMSK |= bit(INT0) | bit(INT1);                              // Interrupt enable INT0 and INT1
-    EICRA |= bit(ISC11) | bit(ISC10) | bit(ISC01) | ~bit(ISC00); // rising interrupt on INT1 and falling interrupt on INT0
+    EIMSK |= bit(INT0);                // Interrupt enable INT0
+    EICRA |= ~bit(ISC01) | bit(ISC00); // any change interrupt on INT0
     sei();
 
     cw_rotation = cw_rotation_cb;
@@ -28,24 +28,13 @@ ISR(INT0_vect)
     unsigned long t = millis();
     if (t - last_trigger_INT0 > 70)
     {
-        if (PIND & bit(CLK_PIN))
-            cw_rotation();
-        else
+        uint8_t bank = PIND; // Read all values in the same time instant
+        bool clk = bit_is_set(bank, CLK_PIN);
+        bool dt = bit_is_set(bank, DT_PIN);
+        if (clk == dt)
             ccw_rotation();
+        else
+            cw_rotation();
     }
     last_trigger_INT0 = t;
-}
-
-volatile unsigned long last_trigger_INT1 = 0;
-ISR(INT1_vect)
-{
-    unsigned long t = millis();
-    if (t - last_trigger_INT1 > 70)
-    {
-        if (PIND & bit(DT_PIN))
-            ccw_rotation();
-        else
-            cw_rotation();
-    }
-    last_trigger_INT1 = t;
 }
