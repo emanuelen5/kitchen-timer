@@ -10,4 +10,4 @@ typedef void (*event_cb_t)(void);
 
 void init_rotary_encoder(event_cb_t cw_rot_ptr, event_cb_t ccw_rot_ptr);
 
-#endif
+#endif // ROTARY_ENCODER_H
