@@ -28,3 +28,12 @@ The environments are located in the [`src/envs`](./src/envs/) folder.
 To be able to program the microcontroller, you need `avrdude`.
 
 * Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>.
+* Add it to you `PATH`.
+
+Then run
+
+```bash
+./program.sh <programmer> <environment>
+```
+
+to build and program your board with the selected environment.
