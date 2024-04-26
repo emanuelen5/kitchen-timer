@@ -16,3 +16,15 @@ The project is heavily inspired by [REST: Kitchen timer by mkdxdx [Hackaday.io]]
 Prototyping setup on the breadboard:
 
 ![Breadboard setup](./fritzing/schema_bb.svg)
+
+## Software
+
+The software is divided into several "environments", similar to "sketches" in Arduino. They are used for testing different aspects of the hardware individually, to make sure that the assembled hardware works as intended.
+
+The environments are located in the [`src/envs`](./src/envs/) folder.
+
+### Programming
+
+To be able to program the microcontroller, you need `avrdude`.
+
+* Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>.
