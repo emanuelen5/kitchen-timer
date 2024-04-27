@@ -5,6 +5,8 @@
 #define DT_PIN PD3  // INT1
 #define SW_PIN PD4
 
-void init_rotary_encoder();
+typedef void (*rotationHandlerFunction)(void);
+
+void init_rotary_encoder(rotationHandlerFunction cw_rotation_function, rotationHandlerFunction ccw_rotation_function);
 
 #endif

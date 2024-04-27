@@ -15,22 +15,35 @@ typedef enum state
     RINGING,
 } state_t;
 
+
 state_t state = IDLE;
 timer_t timer;
 
 void step_state(int event);
+void cw_event_queuing(void);
+void ccw_event_queuing(void);
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
     init_event_queue(step_state);
-    init_rotary_encoder();
+    init_rotary_encoder(cw_event_queuing, ccw_event_queuing);
 }
 
 void loop()
 {
     dequeuing_event();
+}
+
+void cw_event_queuing()
+{
+    queuing_event(CW_ROTATION);
+}
+
+void ccw_event_queuing()
+{
+    queuing_event(CCW_ROTATION);
 }
 
 void step_state(int event)
