@@ -11,20 +11,20 @@ void init_event_queue(eventHandlerFunction eventFunction)
 
 void queuing_event(event_t event)
 {
-    if (!event_queue_is_empty(&eventQueue, 1))     //evaluates if queue is full
+    if (event_queue_is_full(&eventQueue))
     {
-        eventQueue.data[eventQueue.rear] = event;
-        eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
+        // Code for handling overflow
     } 
     else 
     {
-        // Code for handling overflow
+        eventQueue.data[eventQueue.rear] = event;
+        eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
     }
 }
 
 void dequeuing_event()
 {
-    if (event_queue_is_empty(&eventQueue, 0))
+    if (event_queue_is_empty(&eventQueue))
     {
         return;
     }
@@ -35,7 +35,12 @@ void dequeuing_event()
     }
 }
 
-bool event_queue_is_empty(event_queue_t *queue, int extra_step)
+bool event_queue_is_empty(event_queue_t *queue)
 {
-    return queue -> front == (queue -> rear + extra_step) % QUEUE_SIZE;
+    return queue -> front == queue -> rear;
+}
+
+bool event_queue_is_full(event_queue_t *queue)
+{
+    return queue -> front == (queue -> rear + 1) % QUEUE_SIZE;
 }
