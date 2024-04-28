@@ -14,24 +14,20 @@ void init_event_queue(eventHandlerFunction eventFunction)
 
 void queue_event(uint8_t event)
 {
-    if (event_queue_is_full(queue))
+    if (event_queue_is_full(&eventQueue))
         return;  // TODO: Error handling
         
-    queue.data[queue.rear] = event;
-    queue.rear = (queue.rear + 1) % QUEUE_SIZE;
+    eventQueue.data[eventQueue.rear] = event;
+    eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
 }
 
 void dequeue_event()
 {
     if (event_queue_is_empty(&eventQueue))
-    {
         return;
-    }
-    else
-    {
-        handleEvent(eventQueue.data[eventQueue.front]);
-        eventQueue.front = (eventQueue.front + 1) % QUEUE_SIZE;
-    }
+        
+    handleEvent(eventQueue.data[eventQueue.front]);
+    eventQueue.front = (eventQueue.front + 1) % QUEUE_SIZE;
 }
 
 bool event_queue_is_empty(event_queue_t *queue)
