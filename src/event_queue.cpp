@@ -7,8 +7,9 @@ static eventHandlerFunction handlingEvent;
 
 void init_event_queue(eventHandlerFunction eventFunction)
 {
-    
     handlingEvent = eventFunction;
+    eventQueue.front = 0;
+    eventQueue.rear = 0;
 }
 
 void queuing_event(uint8_t event)
