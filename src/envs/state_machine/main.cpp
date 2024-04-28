@@ -15,6 +15,18 @@ typedef enum state
     RINGING,
 } state_t;
 
+typedef enum event
+{
+    PRESS,
+    CW_ROTATION,
+    CCW_ROTATION,
+    DOUBLE_PRESS,
+    LONG_PRESS,
+    CW_PRESSED_ROTATION,
+    CCW_PRESSED_ROTATION,
+    TIMEOUT,
+    SECOND_TICK,
+} event_t;
 
 state_t state = IDLE;
 timer_t timer;

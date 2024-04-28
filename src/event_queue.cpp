@@ -1,3 +1,4 @@
+
 #include "event_queue.h"
 
 event_queue_t eventQueue;
@@ -6,10 +7,11 @@ static eventHandlerFunction handlingEvent;
 
 void init_event_queue(eventHandlerFunction eventFunction)
 {
+    
     handlingEvent = eventFunction;
 }
 
-void queuing_event(event_t event)
+void queuing_event(uint8_t event)
 {
     if (event_queue_is_full(&eventQueue))
     {
