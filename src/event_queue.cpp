@@ -3,16 +3,16 @@
 
 event_queue_t eventQueue;
 
-static eventHandlerFunction handlingEvent;
+static eventHandlerFunction handleEvent;
 
 void init_event_queue(eventHandlerFunction eventFunction)
 {
-    handlingEvent = eventFunction;
+    handleEvent = eventFunction;
     eventQueue.front = 0;
     eventQueue.rear = 0;
 }
 
-void queuing_event(uint8_t event)
+void queue_event(uint8_t event)
 {
     if (event_queue_is_full(&eventQueue))
     {
@@ -25,7 +25,7 @@ void queuing_event(uint8_t event)
     }
 }
 
-void dequeuing_event()
+void dequeue_event()
 {
     if (event_queue_is_empty(&eventQueue))
     {
@@ -33,7 +33,7 @@ void dequeuing_event()
     }
     else
     {
-        handlingEvent(eventQueue.data[eventQueue.front]);
+        handleEvent(eventQueue.data[eventQueue.front]);
         eventQueue.front = (eventQueue.front + 1) % QUEUE_SIZE;
     }
 }

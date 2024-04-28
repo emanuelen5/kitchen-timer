@@ -4,8 +4,8 @@
 #include <util/delay.h>
 #include "rotary-encoder.h"
 
-rotationHandlerFunction cw_rotation_handling;
-rotationHandlerFunction ccw_rotation_handling;
+rotationHandlerFunction cw_handleRotation;
+rotationHandlerFunction ccw_handleRotation;
 
 void init_rotary_encoder(rotationHandlerFunction cw_rotation_function, rotationHandlerFunction ccw_rotation_function)
 {
@@ -17,8 +17,8 @@ void init_rotary_encoder(rotationHandlerFunction cw_rotation_function, rotationH
     EICRA |= bit(ISC11) | bit(ISC10) | bit(ISC01) | ~bit(ISC00); // rising interrupt on INT1 and falling interrupt on INT0
     sei();
 
-    cw_rotation_handling = cw_rotation_function;
-    ccw_rotation_handling = ccw_rotation_function;
+    cw_handleRotation = cw_rotation_function;
+    ccw_handleRotation = ccw_rotation_function;
 }
 
 volatile unsigned long last_trigger_INT0 = 0;
@@ -28,9 +28,9 @@ ISR(INT0_vect)
     if (t - last_trigger_INT0 > 70)
     {
         if (PIND & bit(CLK_PIN))
-            cw_rotation_handling();
+            cw_handleRotation();
         else
-            ccw_rotation_handling();
+            ccw_handleRotation();
     }
     last_trigger_INT0 = t;
 }
@@ -42,9 +42,9 @@ ISR(INT1_vect)
     if (t - last_trigger_INT1 > 70)
     {
         if (PIND & bit(DT_PIN))
-            cw_rotation_handling();
+            cw_handleRotation();
         else
-            ccw_rotation_handling();
+            ccw_handleRotation();
     }
     last_trigger_INT1 = t;
 }
