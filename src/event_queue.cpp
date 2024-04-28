@@ -14,15 +14,11 @@ void init_event_queue(eventHandlerFunction eventFunction)
 
 void queue_event(uint8_t event)
 {
-    if (event_queue_is_full(&eventQueue))
-    {
-        // Code for handling overflow
-    } 
-    else 
-    {
-        eventQueue.data[eventQueue.rear] = event;
-        eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
-    }
+    if (event_queue_is_full(queue))
+        return;  // TODO: Error handling
+        
+    queue.data[queue.rear] = event;
+    queue.rear = (queue.rear + 1) % QUEUE_SIZE;
 }
 
 void dequeue_event()
