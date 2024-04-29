@@ -40,13 +40,17 @@ void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_event_queue(&eventQueue /*, step_state*/);
+    init_queue(&eventQueue);
     init_rotary_encoder(cw_queue_event, ccw_queue_event);
 }
 
 void loop()
 {
-    step_state(dequeue_event(&eventQueue).value);
+    value_t dequeue_value = dequeue_event(&eventQueue);
+    if (dequeue_value.is_valid)
+    {
+        step_state(dequeue_value.value);
+    }
 }
 
 void cw_queue_event()
