@@ -13,9 +13,9 @@ typedef struct {
 
 typedef void (*eventHandlerFunction)(int);
 
-void init_event_queue(eventHandlerFunction eventFunction);
-void queue_event(uint8_t event);
-void dequeue_event();
+void init_event_queue(event_queue_t *queue, eventHandlerFunction eventFunction);
+void queue_event(event_queue_t *queue, uint8_t event);
+void dequeue_event(event_queue_t *queue);
 bool event_queue_is_empty(event_queue_t *queue);
 bool event_queue_is_full(event_queue_t *queue);
 

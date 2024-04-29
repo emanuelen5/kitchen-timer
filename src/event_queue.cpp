@@ -1,33 +1,33 @@
 
 #include "event_queue.h"
 
-event_queue_t eventQueue;
+
 
 static eventHandlerFunction handleEvent;
 
-void init_event_queue(eventHandlerFunction eventFunction)
+void init_event_queue(event_queue_t *queue, eventHandlerFunction eventFunction)
 {
     handleEvent = eventFunction;
-    eventQueue.front = 0;
-    eventQueue.rear = 0;
+    queue -> front = 0;
+    queue -> rear = 0;
 }
 
-void queue_event(uint8_t event)
+void queue_event(event_queue_t *queue, uint8_t event)
 {
-    if (event_queue_is_full(&eventQueue))
+    if (event_queue_is_full(queue))
         return;  // TODO: Error handling
         
-    eventQueue.data[eventQueue.rear] = event;
-    eventQueue.rear = (eventQueue.rear + 1) % QUEUE_SIZE;
+    queue -> data[queue -> rear] = event;
+    queue -> rear = (queue -> rear + 1) % QUEUE_SIZE;
 }
 
-void dequeue_event()
+void dequeue_event(event_queue_t *queue) 
 {
-    if (event_queue_is_empty(&eventQueue))
+    if (event_queue_is_empty(queue))
         return;
         
-    handleEvent(eventQueue.data[eventQueue.front]);
-    eventQueue.front = (eventQueue.front + 1) % QUEUE_SIZE;
+    handleEvent(queue ->data[queue -> front]);
+    queue -> front = (queue -> front + 1) % QUEUE_SIZE;
 }
 
 bool event_queue_is_empty(event_queue_t *queue)

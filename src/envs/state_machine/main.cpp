@@ -30,6 +30,7 @@ typedef enum event
 
 state_t state = IDLE;
 timer_t timer;
+event_queue_t eventQueue;
 
 void step_state(int event);
 void cw_queue_event(void);
@@ -39,23 +40,23 @@ void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_event_queue(step_state);
+    init_event_queue(&eventQueue, step_state);
     init_rotary_encoder(cw_queue_event, ccw_queue_event);
 }
 
 void loop()
 {
-    dequeue_event();
+    dequeue_event(&eventQueue);
 }
 
 void cw_queue_event()
 {
-    queue_event(CW_ROTATION);
+    queue_event(&eventQueue, CW_ROTATION);
 }
 
 void ccw_queue_event()
 {
-    queue_event(CCW_ROTATION);
+    queue_event(&eventQueue, CCW_ROTATION);
 }
 
 void step_state(int event)
