@@ -32,7 +32,7 @@ state_t state = IDLE;
 timer_t timer;
 event_queue_t eventQueue;
 
-void step_state(int event);
+void step_state(uint8_t event);
 void cw_queue_event(void);
 void ccw_queue_event(void);
 
@@ -40,13 +40,13 @@ void setup()
 {
     reset_timer(&timer);
     init_led_counter();
-    init_event_queue(&eventQueue, step_state);
+    init_event_queue(&eventQueue /*, step_state*/);
     init_rotary_encoder(cw_queue_event, ccw_queue_event);
 }
 
 void loop()
 {
-    dequeue_event(&eventQueue);
+    step_state(dequeue_event(&eventQueue).value);
 }
 
 void cw_queue_event()
@@ -59,7 +59,7 @@ void ccw_queue_event()
     queue_event(&eventQueue, CCW_ROTATION);
 }
 
-void step_state(int event)
+void step_state(uint8_t event)
 {
     switch (state)
     {

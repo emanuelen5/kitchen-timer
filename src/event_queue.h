@@ -11,11 +11,17 @@ typedef struct {
     int rear = 0;
 } event_queue_t;
 
+typedef struct
+{
+    uint8_t value;
+    bool is_valid;
+} value_t;
+
 typedef void (*eventHandlerFunction)(int);
 
-void init_event_queue(event_queue_t *queue, eventHandlerFunction eventFunction);
+void init_event_queue(event_queue_t *queue/*, eventHandlerFunction eventFunction*/);
 void queue_event(event_queue_t *queue, uint8_t event);
-void dequeue_event(event_queue_t *queue);
+value_t dequeue_event(event_queue_t *queue);
 bool event_queue_is_empty(event_queue_t *queue);
 bool event_queue_is_full(event_queue_t *queue);
 
