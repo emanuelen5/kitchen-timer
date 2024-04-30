@@ -1,8 +1,9 @@
 #include <Arduino.h>
+#include "led-counter.h"
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
-#include "led-counter.h"
 #include "rotary-encoder.h"
 
 volatile unsigned long last_trigger = 0;
