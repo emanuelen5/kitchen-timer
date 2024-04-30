@@ -32,7 +32,7 @@ state_t state = IDLE;
 timer_t timer;
 event_queue_t eventQueue;
 
-void step_state(uint8_t event);
+void step_state(event_t event);
 
 void cw_rotation_cb(void)
 {
@@ -57,11 +57,11 @@ void loop()
     value_t dequeue_value = dequeue_event(&eventQueue);
     if (dequeue_value.is_valid)
     {
-        step_state(dequeue_value.value);
+        step_state((event_t)dequeue_value.value);
     }
 }
 
-void step_state(uint8_t event)
+void step_state(event_t event)
 {
     switch (state)
     {
