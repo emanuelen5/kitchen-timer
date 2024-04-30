@@ -112,7 +112,7 @@ void step_state(uint8_t event)
 
         default:
             uint8_t count = 0;
-            while(count <= 5)
+            while (count <= 5)
             {
                 digitalWrite(A0, HIGH);
                 digitalWrite(A1, HIGH);
