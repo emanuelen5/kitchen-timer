@@ -5,6 +5,7 @@
 #include "led-counter.h"
 #include "timer.h"
 #include "rotary-encoder.h"
+#include "uint8-queue.h"
 
 typedef enum state
 {
@@ -29,31 +30,38 @@ typedef enum event
 
 state_t state = IDLE;
 timer_t timer;
+uint8_queue_t eventQueue;
 
-void step_state(int event);
+void step_state(event_t event);
 
 void cw_rotation_cb(void)
 {
-    step_state(CW_ROTATION);
+    add_to_queue(&eventQueue, CW_ROTATION);
 }
 
 void ccw_rotation_cb(void)
 {
-    step_state(CCW_ROTATION);
+    add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
 void setup()
 {
     reset_timer(&timer);
     init_led_counter();
+    init_queue(&eventQueue);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
 }
 
 void loop()
 {
+    dequeue_return_t event = dequeue(&eventQueue);
+    if (event.is_valid)
+    {
+        step_state((event_t)event.value);
+    }
 }
 
-void step_state(int event)
+void step_state(event_t event)
 {
     switch (state)
     {
@@ -104,7 +112,7 @@ void step_state(int event)
 
         default:
             uint8_t count = 0;
-            while(count <= 5)
+            while (count <= 5)
             {
                 digitalWrite(A0, HIGH);
                 digitalWrite(A1, HIGH);
@@ -132,11 +140,4 @@ void step_state(int event)
         set_counter(timer.current_time);
         delay(1000);
     }
-
-/*
-    static uint8_t transition = 0;
-    set_counter(state | (transition ? bit(2) : 0));
-    transition = !transition;
-    delay(500);
-*/
 }
