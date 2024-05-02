@@ -15,11 +15,11 @@ typedef struct
 {
     uint8_t value;
     bool is_valid;
-} value_t;
+} dequeue_return_t;
 
 void init_queue(uint8_queue_t *queue);
-void queue_event(uint8_queue_t *queue, uint8_t event);
-value_t dequeue_event(uint8_queue_t *queue);
+void add_to_queue(uint8_queue_t *queue, uint8_t value);
+dequeue_return_t dequeue(uint8_queue_t *queue);
 
 bool queue_is_empty(uint8_queue_t *queue);
 bool queue_is_full(uint8_queue_t *queue);

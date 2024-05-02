@@ -7,18 +7,18 @@ void init_queue(uint8_queue_t *queue)
     queue->rear = 0;
 }
 
-void queue_event(uint8_queue_t *queue, uint8_t event)
+void add_to_queue(uint8_queue_t *queue, uint8_t value)
 {
     if (queue_is_full(queue))
         return;  // TODO: Error handling
 
-    queue->data[queue->rear] = event;
+    queue->data[queue->rear] = value;
     queue->rear = (queue->rear + 1) % QUEUE_SIZE;
 }
 
-value_t dequeue_event(uint8_queue_t *queue)
+dequeue_return_t dequeue(uint8_queue_t *queue)
 {
-    value_t v = {0};
+    dequeue_return_t v = {0};
     if (queue_is_empty(queue))
     {
         v.is_valid = false;

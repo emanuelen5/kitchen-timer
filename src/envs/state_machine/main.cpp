@@ -36,12 +36,12 @@ void step_state(event_t event);
 
 void cw_rotation_cb(void)
 {
-    queue_event(&eventQueue, CW_ROTATION);
+    add_to_queue(&eventQueue, CW_ROTATION);
 }
 
 void ccw_rotation_cb(void)
 {
-    queue_event(&eventQueue, CCW_ROTATION);
+    add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
 void setup()
@@ -54,10 +54,10 @@ void setup()
 
 void loop()
 {
-    value_t dequeue_value = dequeue_event(&eventQueue);
-    if (dequeue_value.is_valid)
+    dequeue_return_t event = dequeue(&eventQueue);
+    if (event.is_valid)
     {
-        step_state((event_t)dequeue_value.value);
+        step_state((event_t)event.value);
     }
 }
 
