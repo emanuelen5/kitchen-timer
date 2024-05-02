@@ -1,5 +1,5 @@
-#ifndef EVENT_QUEUE_H
-#define EVENT_QUEUE_H
+#ifndef UINT8_QUEUE_H
+#define UINT8_QUEUE_H
 
 #include <stdint.h>
 
@@ -24,4 +24,4 @@ value_t dequeue_event(event_queue_t *queue);
 bool queue_is_empty(event_queue_t *queue);
 bool queue_is_full(event_queue_t *queue);
 
-#endif
+#endif //UINT8_QUEUE

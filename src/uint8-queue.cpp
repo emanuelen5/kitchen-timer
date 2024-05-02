@@ -1,5 +1,5 @@
 
-#include "event_queue.h"
+#include "uint8-queue.h"
 
 void init_queue(event_queue_t *queue)
 {

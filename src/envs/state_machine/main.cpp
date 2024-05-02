@@ -5,7 +5,7 @@
 #include "led-counter.h"
 #include "timer.h"
 #include "rotary-encoder.h"
-#include "event_queue.h"
+#include "uint8-queue.h"
 
 typedef enum state
 {
