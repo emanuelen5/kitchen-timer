@@ -30,7 +30,7 @@ typedef enum event
 
 state_t state = IDLE;
 timer_t timer;
-event_queue_t eventQueue;
+uint8_queue_t eventQueue;
 
 void step_state(event_t event);
 
