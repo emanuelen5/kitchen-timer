@@ -38,7 +38,7 @@ void change_original_time(timer_t *timer, int step)
 
 void reset_original_time(timer_t *timer)
 {
-    timer->original_time = 180;
+    timer->original_time = 0;
 }
 
 void increment_current_time(timer_t *timer)
