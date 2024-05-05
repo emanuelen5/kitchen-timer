@@ -5,6 +5,9 @@ typedef struct
     uint16_t original_time, current_time;
 } timer_t;
 
+typedef void (*callBack_t)(void);
+
+void init_timer(callBack_t second_tick_cb);
 void change_timer(timer_t *timer, int step);
 void reset_timer(timer_t *timer);
 void decrement_timer(timer_t *timer);

@@ -49,10 +49,18 @@ void button_press_cb(void)
     add_to_queue(&eventQueue, PRESS);
 }
 
+void second_tick(void)
+{
+    add_to_queue(&eventQueue, SECOND_TICK);
+}
+
 void setup()
 {
-    reset_timer(&timer);
     init_led_counter();
+
+    init_timer(second_tick);
+    reset_timer(&timer);
+    
     init_queue(&eventQueue);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
 }
