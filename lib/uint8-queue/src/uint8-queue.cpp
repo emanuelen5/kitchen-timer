@@ -1,6 +1,8 @@
 
 #include "uint8-queue.h"
 
+static const int internal_buffer_size = sizeof(((uint8_queue_t *){})->data);
+
 void init_queue(uint8_queue_t *queue)
 {
     queue->front = 0;
@@ -13,7 +15,7 @@ void add_to_queue(uint8_queue_t *queue, uint8_t value)
         return;  // TODO: Error handling
 
     queue->data[queue->rear] = value;
-    queue->rear = (queue->rear + 1) % QUEUE_SIZE;
+    queue->rear = (queue->rear + 1) % internal_buffer_size;
 }
 
 dequeue_return_t dequeue(uint8_queue_t *queue)
@@ -27,7 +29,7 @@ dequeue_return_t dequeue(uint8_queue_t *queue)
 
     v.value = queue->data[queue->front];
     v.is_valid = true;
-    queue->front = (queue->front + 1) % QUEUE_SIZE;
+    queue->front = (queue->front + 1) % internal_buffer_size;
     return v;
 }
 
@@ -38,5 +40,5 @@ bool queue_is_empty(uint8_queue_t *queue)
 
 bool queue_is_full(uint8_queue_t *queue)
 {
-    return queue->front == (queue->rear + 1) % QUEUE_SIZE;
+    return queue->front == (queue->rear + 1) % internal_buffer_size;
 }
