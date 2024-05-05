@@ -6,7 +6,7 @@
 #define QUEUE_SIZE 10
 
 typedef struct {
-    uint8_t data[QUEUE_SIZE];
+    uint8_t data[QUEUE_SIZE + 1];
     int front = 0;
     int rear = 0;
 } uint8_queue_t;
