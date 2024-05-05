@@ -89,7 +89,7 @@ void step_state(event_t event)
             change_original_time(&timer, -1);
             break;
         case LONG_PRESS:
-            reset_original_time(&timer);
+            reset_timer(&timer);
             break;
         }
         break;
@@ -108,7 +108,7 @@ void step_state(event_t event)
             break;
         case LONG_PRESS:
             state = IDLE;
-            reset_original_time(&timer);
+            reset_timer(&timer);
             break;
         }
         break;
@@ -125,17 +125,17 @@ void step_state(event_t event)
             uint8_t count = 0;
             while (count <= 5)
             {
-                digitalWrite(A0, HIGH);
-                digitalWrite(A1, HIGH);
-                digitalWrite(A2, HIGH);
-                delay(100);
                 digitalWrite(A0, LOW);
                 digitalWrite(A1, LOW);
                 digitalWrite(A2, LOW);
                 delay(100);
+                digitalWrite(A0, HIGH);
+                digitalWrite(A1, HIGH);
+                digitalWrite(A2, HIGH);
+                delay(100);
                 count++;
             }
-            reset_original_time(&timer);
+            reset_timer(&timer);
             state = IDLE;
             break;
         }

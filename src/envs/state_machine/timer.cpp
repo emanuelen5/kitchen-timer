@@ -17,7 +17,7 @@ void init_timer(timer_t* timer, callBack_t second_tick_cb)
     }
     TIMSK2 = bit(TOIE2);    // Enable Overflow Interrupt in Timer/Counter2 
 
-    reset_original_time(timer);
+    reset_timer(timer);
 
     second_tick = second_tick_cb;
 }
@@ -36,8 +36,9 @@ void change_original_time(timer_t *timer, int step)
     timer->original_time = new_time;
 }
 
-void reset_original_time(timer_t *timer)
+void reset_timer(timer_t *timer)
 {
+    timer->current_time = 0;
     timer->original_time = 0;
 }
 
