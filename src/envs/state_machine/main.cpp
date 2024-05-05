@@ -59,7 +59,7 @@ void setup()
     init_led_counter();
 
     init_timer(second_tick);
-    reset_timer(&timer);
+    reset_original_time(&timer);
     
     init_queue(&eventQueue);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
@@ -85,13 +85,13 @@ void step_state(event_t event)
             state = RUNNING;
             break;
         case CW_ROTATION:
-            change_timer(&timer, 1);
+            change_original_time(&timer, 1);
             break;
         case CCW_ROTATION:
-            change_timer(&timer, -1);
+            change_original_time(&timer, -1);
             break;
         case LONG_PRESS:
-            reset_timer(&timer);
+            reset_original_time(&timer);
             break;
         }
         break;
@@ -102,15 +102,15 @@ void step_state(event_t event)
             state = PAUSED;
             break;
         case SECOND_TICK:
-            decrement_timer(&timer);
-            if (timer_is_finished(&timer))
+            increment_current_time(&timer);
+            if (current_time_is_finished(&timer))
             {
                 state = RINGING;
             }
             break;
         case LONG_PRESS:
             state = IDLE;
-            reset_timer(&timer);
+            reset_original_time(&timer);
             break;
         }
         break;
@@ -137,7 +137,7 @@ void step_state(event_t event)
                 delay(100);
                 count++;
             }
-            reset_timer(&timer);
+            reset_original_time(&timer);
             state = IDLE;
             break;
         }
