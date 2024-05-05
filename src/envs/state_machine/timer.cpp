@@ -7,7 +7,7 @@
 
 callBack_t second_tick;
 
-void init_timer(callBack_t second_tick_cb)
+void init_timer(timer_t* timer, callBack_t second_tick_cb)
 {
     ASSR |= bit(AS2);       // Timer/Counter2 clocked from external crystal
     TCNT2 = 0;              // Reset Timer/Counter2´s start value
@@ -16,6 +16,8 @@ void init_timer(callBack_t second_tick_cb)
     {
     }
     TIMSK2 = bit(TOIE2);    // Enable Overflow Interrupt in Timer/Counter2 
+
+    reset_original_time(timer);
 
     second_tick = second_tick_cb;
 }
