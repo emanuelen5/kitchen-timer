@@ -80,6 +80,8 @@ void step_state(event_t event)
         case LONG_PRESS:
             reset_timer(&timer);
             break;
+        default:
+            break;
         }
         break;
     case RUNNING:
@@ -98,6 +100,8 @@ void step_state(event_t event)
         case LONG_PRESS:
             state = IDLE;
             reset_timer(&timer);
+            break;
+        default:
             break;
         }
         break;
