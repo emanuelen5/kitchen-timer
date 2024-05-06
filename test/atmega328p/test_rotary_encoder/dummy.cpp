@@ -1,8 +1,8 @@
 #include <unity.h>
+#include "unity_config.h"
 
 void setUp(void)
 {
-    // TODO: Set up the serial port
 }
 
 void tearDown(void)
