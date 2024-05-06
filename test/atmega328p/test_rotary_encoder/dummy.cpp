@@ -14,7 +14,7 @@ void test_circular_buffer_empty_after_init()
     TEST_ASSERT_TRUE(true);
 }
 
-int main(int argc, char **argv)
+int main()
 {
     UNITY_BEGIN();
 
