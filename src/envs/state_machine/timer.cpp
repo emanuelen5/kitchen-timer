@@ -9,12 +9,14 @@ callBack_t second_tick;
 void init_timer(timer_t* timer, callBack_t second_tick_cb)
 {
     ASSR |= bit(AS2);       // Timer/Counter2 clocked from external crystal
-    TCNT2 = 0;              // Reset Timer/Counter2´s start value
-    TCCR2B = bit(CS22);     // 32kHz / 128 prescaler -> Counter = 250Hz 
+    TCCR2A |= bit(WGM21);   // Set CTC mode on Timer/Counter2
+    TCCR2B |= bit(CS22);     // 32kHz / 128 prescaler -> Counter = 250Hz 
     while (ASSR & 0x1F)     // Wait for the registers to update
     {
     }
-    TIMSK2 = bit(TOIE2);    // Enable Overflow Interrupt in Timer/Counter2 
+    TIMSK2 |= bit(OCIE2A);    // Enable Output Compare Interrupt in Timer/Counter2 buffer A 
+    TCNT2 = 0;              // Reset Timer/Counter2´s start value
+    OCR2A = 250;             
 
     reset_timer(timer);
 
@@ -22,7 +24,7 @@ void init_timer(timer_t* timer, callBack_t second_tick_cb)
 }
 
 
-ISR(TIMER2_OVF_vect)
+ISR(TIMER2_COMPA_vect)
 {
     second_tick();
 }
