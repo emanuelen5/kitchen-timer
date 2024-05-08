@@ -3,6 +3,7 @@
 #define BAUD 9600
 #include <util/setbaud.h>
 #include "util.h"
+#include <util/delay.h>
 
 static void init_uart(void)
 {
@@ -33,6 +34,8 @@ static void transmit_char(char c)
 void unity_output_start()
 {
     init_uart();
+    // Tests start too quickly for platform IO to recognize
+    _delay_ms(1000);
 }
 
 void unity_output_char(char c)
