@@ -43,7 +43,8 @@ jobs:
           python-version: '3.9'
       - name: Install PlatformIO Core
         run: pip install --upgrade platformio
-      - name: Build PlatformIO Project
-        # Unfortunately we cannot test other than the native target without the
-        # target microcontroller connected
+      - name: Build target test code, without testing it
+        # We cannot run the target tests without the microcontroller connected
+        run: pio test --without-uploading --without-testing -e timer
+      - name: Run host/native tests
         run: pio test -e native
