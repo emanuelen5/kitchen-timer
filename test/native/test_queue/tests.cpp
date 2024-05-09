@@ -78,7 +78,7 @@ void test_values_are_returned_in_fifo_order()
     TEST_ASSERT_EQUAL(1, v.value);
 }
 
-int main(int argc, char **argv)
+int main()
 {
     UNITY_BEGIN();
 

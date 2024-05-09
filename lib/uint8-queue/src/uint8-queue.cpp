@@ -20,7 +20,7 @@ void add_to_queue(uint8_queue_t *queue, uint8_t value)
 
 dequeue_return_t dequeue(uint8_queue_t *queue)
 {
-    dequeue_return_t v = {0};
+    dequeue_return_t v = {0, false};
     if (queue_is_empty(queue))
     {
         v.is_valid = false;
