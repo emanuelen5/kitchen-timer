@@ -6,6 +6,7 @@
 #include "timer.h"
 #include "rotary-encoder.h"
 #include "uint8-queue.h"
+#include "UART.h"
 
 typedef enum state
 {
@@ -56,6 +57,7 @@ void second_tick(void)
 
 void setup()
 {
+    init_UART(9600);
     init_led_counter();
     init_timer(&timer, second_tick);
     
@@ -65,6 +67,7 @@ void setup()
 
 void loop()
 {
+    transmit_byte('u');
     dequeue_return_t event = dequeue(&eventQueue);
     if (event.is_valid)
     {
