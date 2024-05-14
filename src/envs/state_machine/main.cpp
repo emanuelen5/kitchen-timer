@@ -38,21 +38,25 @@ void step_state(event_t event);
 void cw_rotation_cb(void)
 {
     add_to_queue(&eventQueue, CW_ROTATION);
+    UART_print_string("up\n");
 }
 
 void ccw_rotation_cb(void)
 {
     add_to_queue(&eventQueue, CCW_ROTATION);
+    UART_print_string("down\n");
 }
 
 void button_press_cb(void)
 {
     add_to_queue(&eventQueue, PRESS);
+    UART_print_string("count down\n");
 }
 
 void second_tick(void)
 {
     add_to_queue(&eventQueue, SECOND_TICK);
+    UART_print_string("second passed\n");
 }
 
 void setup()
@@ -67,7 +71,6 @@ void setup()
 
 void loop()
 {
-    UART_print_string("Hello\n");
     dequeue_return_t event = dequeue(&eventQueue);
     if (event.is_valid)
     {
