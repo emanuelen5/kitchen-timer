@@ -1,8 +1,4 @@
 #include "UART.h"
-#define BAUD 9600               //QUESTION: why BAUD macro needs to be before the #include setbaud.h?
-#include <util/setbaud.h>
-
-
 
  void init_UART(void)           //QUESTION: shouldn´t we make the UART able to accept different baud rates?
 {
@@ -48,5 +44,96 @@ void receive_buffer_has_data(void)
     {
         transmit_byte(*str);
         str++;
+    }
+}
+
+void UART_print(const char *format, ...)
+{
+    va_list args;
+    va_start(args, format);
+
+    while (*format != '\0')
+    {
+        if (*format == '%')
+        {
+            format++;
+            switch (*format)
+            {
+                case 'd': {
+                    uint16_t num = va_arg(args, uint16_t);
+                    char num_str[12];
+                    int_to_string(num, num_str);
+                    UART_print_string(num_str);
+                    break;
+                }
+                case 'f': {
+                    double num = va_arg(args, double);
+                    //TODO
+                    break;
+                }
+                case 's': {
+                    const char *str = va_arg(args, const char *);
+                    UART_print_string(str);
+                    break;
+                }
+                default:
+                    UART_print_string("Unsupported format specifier");
+                    break;
+            }
+        } 
+        else
+        {
+            transmit_byte(*format);
+        }
+        format++;
+    }
+
+    va_end(args);
+}
+
+void int_to_string(uint16_t num, char *str)
+{
+    int i = 0;
+    bool is_negative = false;
+
+    if (num < 0)
+    {
+        is_negative = true;
+        num = -num;
+    }
+
+    do
+    {
+        str[i++] = num % 10 + '0';
+        num = num / 10;
+    } while (num != 0);
+
+    if (is_negative)
+    {
+        str[i++] = '-';
+    }
+    str[i] = '\0';
+
+    reverse_string(str);
+}
+
+void reverse_string(char *str) 
+{
+    int length = 0;
+    while (str[length] != '\0')
+    {
+        length++;
+    }
+
+    int start = 0;
+    int end = length -1;
+    while(start < end)
+    {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        
+        start++;
+        end--;
     }
 }

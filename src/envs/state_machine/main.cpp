@@ -53,7 +53,6 @@ void button_press_cb(void)
 void second_tick(void)
 {
     add_to_queue(&eventQueue, SECOND_TICK);
-    //UART_print_string("second passed\n");
 }
 
 void setup()
@@ -87,11 +86,11 @@ void step_state(event_t event)
             break;
         case CW_ROTATION:
             change_original_time(&timer, 1);
-            UART_print_string("up\n");
+            UART_print("%d\n", timer.original_time);
             break;
         case CCW_ROTATION:
             change_original_time(&timer, -1);
-            UART_print_string("down\n");
+            UART_print("%d\n", timer.original_time);
             break;
         case LONG_PRESS:
             reset_timer(&timer);
@@ -106,7 +105,7 @@ void step_state(event_t event)
             break;
         case SECOND_TICK:
             increment_current_time(&timer);
-            UART_print_string("count down\n");
+            UART_print("%d\n", timer.current_time);
             if (current_time_is_finished(&timer))
             {
                 state = RINGING;
@@ -128,7 +127,7 @@ void step_state(event_t event)
             break;
 
         default:
-            UART_print_string("Alarm goes off!!!\n");
+            UART_print("Alarm goes off!!!\n");
             uint8_t count = 0;
             while (count <= 5)
             {
