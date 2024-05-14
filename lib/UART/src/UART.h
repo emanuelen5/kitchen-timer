@@ -5,9 +5,9 @@
 #include <stdint.h>
 
  void init_UART(void);
- void transmit_byte(uint8_t data);
- uint8_t receive_byte(void);
  void UART_print_string(const char *str);
 
+//TODO: UART function to print combination of string and variables
+//TODO: UART function to receive strings (this might need an interrupt)
 
 #endif // UART_H

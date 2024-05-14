@@ -1,35 +1,44 @@
 #include "UART.h"
-
-#define BAUD 9600
+#define BAUD 9600               //QUESTION: why BAUD macro needs to be before the #include setbaud.h?
 #include <util/setbaud.h>
 
- void init_UART(void)
+
+
+ void init_UART(void)           //QUESTION: shouldn´t we make the UART able to accept different baud rates?
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
-    #if USE_2X
+
+    #if USE_2X                      //QUESTION: Are we using this part?
         UCSR0A |= (1 << U2X0);
     #else
         UCSR0A &= ~(1 << U2X0);
     #endif
 
-    // Enable receiver and transmitter
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);
-
-    // Set frame format: 8 data bits, 1 stop bit, no parity
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0);   // Enable receiver and transmitter
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // Set frame format: 8 data bits, 1 stop bit, no parity
 }
 
- void transmit_byte(uint8_t data)
+void transmit_buffer_is_ready(void)
 {
-    loop_until_bit_is_set(UCSR0A, UDRE0);   //Wait until transmit buffer is ready to be written on.
-    UDR0 = data;                            // Put data into buffer, sends the data
+    loop_until_bit_is_set(UCSR0A, UDRE0);
+}
+
+void transmit_byte(uint8_t data)
+{
+    transmit_buffer_is_ready();
+    UDR0 = data;
+}
+
+void receive_buffer_has_data(void)
+{
+    loop_until_bit_is_set(UCSR0A, RXC0);
 }
 
  uint8_t receive_byte(void)
 {
-    loop_until_bit_is_set(UCSR0A, RXC0);       //Wait until there is unread data in receive buffer
+    receive_buffer_has_data();
     return UDR0;
 }
 
