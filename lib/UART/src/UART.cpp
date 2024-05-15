@@ -27,18 +27,7 @@ void transmit_byte(uint8_t data)
     UDR0 = data;
 }
 
-void receive_buffer_has_data(void)
-{
-    loop_until_bit_is_set(UCSR0A, RXC0);
-}
-
- uint8_t receive_byte(void)
-{
-    receive_buffer_has_data();
-    return UDR0;
-}
-
- void UART_print_string(const char* str)
+void UART_print_string(const char* str)
 {
     while(*str != '\0')
     {
@@ -136,4 +125,40 @@ void reverse_string(char *str)
         start++;
         end--;
     }
+}
+
+void receive_buffer_has_data(void)
+{
+    loop_until_bit_is_set(UCSR0A, RXC0);
+}
+
+ uint8_t receive_byte(void)
+{
+    receive_buffer_has_data();
+    return UDR0;
+}
+
+#define READ_BUFFER_SIZE 255
+
+char* UART_read_string()
+{
+    static char buffer[READ_BUFFER_SIZE];
+    uint8_t i = 0;
+    char receivedChar;
+
+    while (i < (READ_BUFFER_SIZE - 1))
+    {
+        receivedChar = receive_byte();
+
+        if (receivedChar == '\n' || receivedChar == '\r' || receivedChar == '\0')
+        {
+            break;
+        }
+
+        buffer[i++] = receivedChar;
+    }
+
+    buffer[i] = '\0';
+
+    return buffer;
 }
