@@ -21,7 +21,8 @@ void init_timer2_to_1s_interrupt(void)
 
     TCNT2 = 0; // Reset the start value of timer2
 
-    TCCR2B = bit(CS22); // 32kHz / 128 prescaler = 1 second
+    TCCR2A = 0;                     // Clear the Arduino setting made in init()
+    TCCR2B = bit(CS22) | bit(CS20); // 32kHz / 128 prescaler = 1 second
 
     // Wait for the registers to update
     while (ASSR & 0x1F)
