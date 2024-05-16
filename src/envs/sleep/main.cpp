@@ -1,12 +1,11 @@
 #include "led-counter.h"
+#include "util.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 #include <avr/power.h>
 #include <util/delay.h>
-
-#define bit(v) (1 << (v))
 
 static const uint8_t power_save = bit(SM1) | bit(SM0);
 
