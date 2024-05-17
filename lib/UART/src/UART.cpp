@@ -1,12 +1,17 @@
 #include "UART.h"
+#define BAUD 9600
+#include <avr/io.h>
+#include <util/setbaud.h>
+#include <stdarg.h>
 
- void init_UART(void)           //QUESTION: shouldn´t we make the UART able to accept different baud rates?
+
+ void init_UART(void)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
 
-    #if USE_2X                      //QUESTION: Are we using this part?
+    #if USE_2X
         UCSR0A |= (1 << U2X0);
     #else
         UCSR0A &= ~(1 << U2X0);
@@ -36,7 +41,7 @@ void UART_print_string(const char* str)
     }
 }
 
-void UART_print(const char *format, ...)
+void UART_printf(const char *format, ...)
 {
     va_list args;
     va_start(args, format);
