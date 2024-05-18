@@ -1,11 +1,11 @@
 #include "UART.h"
 #define BAUD 9600
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include <util/setbaud.h>
 #include <stdarg.h>
 
-
- void init_UART(void)
+void init_UART(void)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -17,9 +17,34 @@
         UCSR0A &= ~(1 << U2X0);
     #endif
 
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0);   // Enable receiver and transmitter
+    cli();
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);   // Enable receiver, transmitter and receive interrupt
     UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // Set frame format: 8 data bits, 1 stop bit, no parity
+    sei();
 }
+
+#define RX_BUFFER_SIZE 64
+char rx_buffer[RX_BUFFER_SIZE];
+volatile uint8_t rx_index = 0;
+ISR(USART_RX_vect)
+{
+    char receivedChar = UDR0;
+    if (rx_index < RX_BUFFER_SIZE - 1)
+    {
+        rx_buffer[rx_index++] = receivedChar;
+        if (receivedChar == '\n' || receivedChar == '\r')
+        {
+            rx_buffer[rx_index] = '\0';
+            rx_index = 0;
+        }
+    }
+    else
+    {
+        rx_index = 0;
+    }
+}
+
+
 
 void transmit_buffer_is_ready(void)
 {

@@ -3,7 +3,6 @@
 
 #include <stdint.h>
 
-
 void init_UART(void);
 void UART_print_string(const char* str);
 void UART_printf(const char *format, ...);
