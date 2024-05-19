@@ -12,7 +12,10 @@ void init_queue(uint8_queue_t *queue)
 void add_to_queue(uint8_queue_t *queue, uint8_t value)
 {
     if (queue_is_full(queue))
-        return;  // TODO: Error handling
+    {
+        queue->has_overflowed = true;
+        return;
+    }
 
     queue->data[queue->rear] = value;
     queue->rear = (queue->rear + 1) % internal_buffer_size;
@@ -31,6 +34,13 @@ dequeue_return_t dequeue(uint8_queue_t *queue)
     v.is_valid = true;
     queue->front = (queue->front + 1) % internal_buffer_size;
     return v;
+}
+
+bool has_queue_overflowed(uint8_queue_t *queue)
+{
+    bool o = queue->has_overflowed;
+    queue->has_overflowed = false;
+    return o;
 }
 
 bool queue_is_empty(uint8_queue_t *queue)

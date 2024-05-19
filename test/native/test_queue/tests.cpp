@@ -5,7 +5,7 @@ uint8_queue_t q;
 
 void setUp(void)
 {
-    q = {0};
+    q = {{0}, 0, 0, false};
     init_queue(&q);
 }
 
@@ -78,6 +78,21 @@ void test_values_are_returned_in_fifo_order()
     TEST_ASSERT_EQUAL(1, v.value);
 }
 
+void test_when_adding_to_a_full_queue_the_overflow_flag_shall_be_set()
+{
+    make_queue_full(&q);
+    add_to_queue(&q, 0xff);
+    TEST_ASSERT_TRUE(has_queue_overflowed(&q));
+}
+
+void test_when_overflow_flag_has_been_read_it_shall_be_cleared()
+{
+    make_queue_full(&q);
+    add_to_queue(&q, 0xff);
+    has_queue_overflowed(&q);
+    TEST_ASSERT_FALSE(has_queue_overflowed(&q));
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -89,6 +104,8 @@ int main()
     RUN_TEST(test_empty_shall_return_invalid_dequeue);
     RUN_TEST(test_value_can_be_retrieved_from_queue);
     RUN_TEST(test_values_are_returned_in_fifo_order);
+    RUN_TEST(test_when_adding_to_a_full_queue_the_overflow_flag_shall_be_set);
+    RUN_TEST(test_when_overflow_flag_has_been_read_it_shall_be_cleared);
 
     UNITY_END();
 }
