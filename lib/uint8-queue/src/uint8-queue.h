@@ -6,10 +6,10 @@
 #define QUEUE_SIZE 10
 
 typedef struct {
-    uint8_t data[QUEUE_SIZE + 1];
-    int front;
-    int rear;
-    bool has_overflowed;
+    uint8_t data[QUEUE_SIZE + 1] = {0};
+    int front = 0;
+    int rear = 0;
+    bool has_overflowed = false;
 } uint8_queue_t;
 
 typedef struct

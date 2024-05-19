@@ -5,7 +5,7 @@ uint8_queue_t q;
 
 void setUp(void)
 {
-    q = {{0}, 0, 0, false};
+    q = {};
     init_queue(&q);
 }
 
@@ -15,7 +15,7 @@ void tearDown(void)
 
 void test_is_empty_after_init()
 {
-    uint8_queue_t q2;
+    uint8_queue_t q2 = {};
     init_queue(&q2);
     TEST_ASSERT_TRUE(queue_is_empty(&q2));
     TEST_ASSERT_FALSE(queue_is_full(&q));
