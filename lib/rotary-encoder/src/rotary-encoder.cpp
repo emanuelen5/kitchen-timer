@@ -31,9 +31,9 @@ volatile unsigned long last_trigger_INT0 = 0;
 ISR(INT0_vect)
 {
     unsigned long t = millis();
-    if (t - last_trigger_INT0 >= 2)      //The time window 2ms garanties
-                                         //that at least we get 1ms of window
-                                         //betwee the trigger and the stable state.
+    // A time window of 2 ms garantees that at least we get 1 ms of window
+    // between the trigger and the stable state.
+    if (t - last_trigger_INT0 >= 2)
     {
         uint8_t bank = PIND; // Read all values in the same time instant
         bool clk = bit_is_set(bank, CLK_PIN);
