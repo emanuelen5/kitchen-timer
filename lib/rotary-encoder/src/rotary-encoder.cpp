@@ -51,11 +51,14 @@ volatile unsigned long last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
     unsigned long t = millis();
-    if (t - last_trigger_PCINT0)
+    // A time window of 2 ms garantees that at least we get 1 ms of window
+    // between the trigger and the stable state.
+    if (t - last_trigger_PCINT0 >= 2)
     {
         if (bit_is_set(PIND, SW_PIN))
         {
             button_press();
         }
+        last_trigger_PCINT0 = t;
     }
 }
