@@ -63,12 +63,12 @@ void service_uart(void)
 
 
 
-void transmit_buffer_is_ready(void)
+static void transmit_buffer_is_ready(void)
 {
     loop_until_bit_is_set(UCSR0A, UDRE0);
 }
 
-void transmit_byte(uint8_t data)
+static void transmit_byte(uint8_t data)
 {
     transmit_buffer_is_ready();
     UDR0 = data;
@@ -127,7 +127,7 @@ void UART_printf(const char *format, ...)
     va_end(args);
 }
 
-void int_to_string(int16_t num, char *str)
+static void int_to_string(int16_t num, char *str)
 {
     int i = 0;
     bool is_negative = false;
@@ -153,7 +153,7 @@ void int_to_string(int16_t num, char *str)
     reverse_string(str);
 }
 
-void reverse_string(char *str) 
+static void  reverse_string(char *str) 
 {
     int length = 0;
     while (str[length] != '\0')
