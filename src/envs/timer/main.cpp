@@ -1,11 +1,16 @@
-#include <Arduino.h>
+#include "util.h"
+#include <util/delay.h>
+#include <avr/io.h>
 
-void setup() {
+int main()
+{
     DDRB |= bit(1);
     PORTB |= bit(1);
-}
 
-void loop() {
-    PORTB ^= bit(1);
-    delay(1000);
+    while (true)
+    {
+
+        PORTB ^= bit(1);
+        _delay_ms(1000);
+    }
 }
