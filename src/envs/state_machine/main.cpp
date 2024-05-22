@@ -43,6 +43,11 @@ void ccw_rotation_cb(void)
     add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
+void button_press_cb(void)
+{
+    add_to_queue(&eventQueue, PRESS);
+}
+
 void step_state(event_t event)
 {
     switch (state)
@@ -129,7 +134,7 @@ int main()
     reset_timer(&timer);
     init_led_counter();
     init_queue(&eventQueue);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
 
     while (true)
     {
