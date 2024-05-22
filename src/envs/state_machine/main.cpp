@@ -67,11 +67,14 @@ void setup()
 
 void loop()
 {
+    service_uart();
+    
     dequeue_return_t event = dequeue(&eventQueue);
     if (event.is_valid)
     {
         step_state((event_t)event.value);
     }
+
 }
 
 void step_state(event_t event)

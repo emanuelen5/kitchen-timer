@@ -4,6 +4,7 @@
 #include <avr/interrupt.h>
 #include <util/setbaud.h>
 #include <stdarg.h>
+#include "uint8-queue.h"
 
 void init_UART(void)
 {
@@ -23,16 +24,31 @@ void init_UART(void)
     sei();
 }
 
-#define RX_BUFFER_SIZE 64
-char rx_buffer[RX_BUFFER_SIZE];
-volatile uint8_t rx_index = 0;
+uint8_queue_t rx_queue;
+
 ISR(USART_RX_vect)
 {
     char receivedChar = UDR0;
+    add_to_queue(&rx_queue, (uint8_t)receivedChar);
+}
+
+#define RX_BUFFER_SIZE 64
+static char rx_buffer[RX_BUFFER_SIZE];
+static uint8_t rx_index = 0;
+
+void service_uart(void)
+{
+    if (queue_is_empty(&rx_queue))
+    {
+        return;
+    }
+
+    dequeue_return_t letter = dequeue(&rx_queue);
+    char character = letter.value;
     if (rx_index < RX_BUFFER_SIZE - 1)
     {
-        rx_buffer[rx_index++] = receivedChar;
-        if (receivedChar == '\n' || receivedChar == '\r')
+        rx_buffer[rx_index++] = character;
+        if (character == '\n' || character == '\r')
         {
             rx_buffer[rx_index] = '\0';
             rx_index = 0;
@@ -40,7 +56,8 @@ ISR(USART_RX_vect)
     }
     else
     {
-        rx_index = 0;
+        //ERROR: Buffer overflow
+        return;
     }
 }
 
@@ -86,7 +103,7 @@ void UART_printf(const char *format, ...)
                     break;
                 }
                 case 'f': {
-                    double num = va_arg(args, double);
+                    //double num = va_arg(args, double);
                     //TODO
                     break;
                 }
@@ -110,7 +127,7 @@ void UART_printf(const char *format, ...)
     va_end(args);
 }
 
-void int_to_string(uint16_t num, char *str)
+void int_to_string(int16_t num, char *str)
 {
     int i = 0;
     bool is_negative = false;
@@ -155,40 +172,4 @@ void reverse_string(char *str)
         start++;
         end--;
     }
-}
-
-void receive_buffer_has_data(void)
-{
-    loop_until_bit_is_set(UCSR0A, RXC0);
-}
-
- uint8_t receive_byte(void)
-{
-    receive_buffer_has_data();
-    return UDR0;
-}
-
-#define READ_BUFFER_SIZE 255
-
-char* UART_read_string()
-{
-    static char buffer[READ_BUFFER_SIZE];
-    uint8_t i = 0;
-    char receivedChar;
-
-    while (i < (READ_BUFFER_SIZE - 1))
-    {
-        receivedChar = receive_byte();
-
-        if (receivedChar == '\n' || receivedChar == '\r' || receivedChar == '\0')
-        {
-            break;
-        }
-
-        buffer[i++] = receivedChar;
-    }
-
-    buffer[i] = '\0';
-
-    return buffer;
 }
