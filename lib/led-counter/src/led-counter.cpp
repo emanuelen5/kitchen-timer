@@ -1,5 +1,5 @@
 #include "led-counter.h"
-#include "Arduino.h"
+#include <avr/io.h>
 
 volatile static uint8_t count;
 #define LED_MASK 0b111

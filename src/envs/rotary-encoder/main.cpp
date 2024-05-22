@@ -1,5 +1,5 @@
-#include <Arduino.h>
 #include "led-counter.h"
+#include "util.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -18,18 +18,20 @@ void ccw_rotation(void)
     decrement_counter();
 }
 
-void setup()
+int main()
 {
     init_led_counter();
 
     init_rotary_encoder(cw_rotation, ccw_rotation);
     increment_counter();
-}
 
-void loop()
-{
-    if ((PIND & bit(SW_PIN)) == 0)
+    while (true)
     {
-        reset_led_counter();
+        if ((PIND & bit(SW_PIN)) == 0)
+        {
+            reset_led_counter();
+        }
     }
+
+    return 0;
 }
