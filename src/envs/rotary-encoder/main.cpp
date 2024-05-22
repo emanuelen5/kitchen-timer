@@ -18,18 +18,19 @@ void ccw_rotation(void)
     decrement_counter();
 }
 
+void button_pushed(void)
+{
+    reset_led_counter();
+}
+
 void setup()
 {
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation, ccw_rotation);
+    init_rotary_encoder(cw_rotation, ccw_rotation, button_pushed);
     increment_counter();
 }
 
 void loop()
 {
-    if ((PIND & bit(SW_PIN)) == 0)
-    {
-        reset_led_counter();
-    }
 }

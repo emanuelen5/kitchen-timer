@@ -6,9 +6,10 @@
 #define QUEUE_SIZE 10
 
 typedef struct {
-    uint8_t data[QUEUE_SIZE + 1];
+    uint8_t data[QUEUE_SIZE + 1] = {0};
     int front = 0;
     int rear = 0;
+    bool has_overflowed = false;
 } uint8_queue_t;
 
 typedef struct
@@ -20,6 +21,7 @@ typedef struct
 void init_queue(uint8_queue_t *queue);
 void add_to_queue(uint8_queue_t *queue, uint8_t value);
 dequeue_return_t dequeue(uint8_queue_t *queue);
+bool has_queue_overflowed(uint8_queue_t *queue);
 
 bool queue_is_empty(uint8_queue_t *queue);
 bool queue_is_full(uint8_queue_t *queue);
