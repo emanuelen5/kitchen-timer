@@ -1,4 +1,5 @@
 #include "toneAC.h"
+#include <util/delay.h>
 
 #define SIXTEENTH_DURATION 60
 
@@ -47,6 +48,12 @@ struct Note
 void playTone(int pitch, int beats)
 {
     toneAC(pitch, 10, beats * SIXTEENTH_DURATION);
+}
+
+static void delay(unsigned long ms)
+{
+    for (uint16_t i = 0; i < ms; i++)
+        _delay_ms(1);
 }
 
 // Function to add a pause with specified duration
