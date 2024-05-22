@@ -43,23 +43,6 @@ void ccw_rotation_cb(void)
     add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
-int main()
-{
-    reset_timer(&timer);
-    init_led_counter();
-    init_queue(&eventQueue);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
-
-    while (true)
-    {
-        dequeue_return_t event = dequeue(&eventQueue);
-        if (event.is_valid)
-        {
-            step_state((event_t)event.value);
-        }
-    }
-}
-
 void step_state(event_t event)
 {
     switch (state)
@@ -138,5 +121,22 @@ void step_state(event_t event)
     {
         set_counter(timer.current_time);
         _delay_ms(1000);
+    }
+}
+
+int main()
+{
+    reset_timer(&timer);
+    init_led_counter();
+    init_queue(&eventQueue);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
+
+    while (true)
+    {
+        dequeue_return_t event = dequeue(&eventQueue);
+        if (event.is_valid)
+        {
+            step_state((event_t)event.value);
+        }
     }
 }
