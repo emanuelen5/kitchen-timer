@@ -7,6 +7,7 @@
 #include "rotary-encoder.h"
 #include "uint8-queue.h"
 #include "UART.h"
+#include "rtc.h"
 
 typedef enum state
 {
@@ -59,7 +60,7 @@ void setup()
 {
     init_UART();
     init_led_counter();
-    init_timer(&timer, second_tick);
+    init_timer2_to_1s_interrupt(second_tick);
     
     init_queue(&eventQueue);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
