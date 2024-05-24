@@ -19,6 +19,7 @@ void init_timer2_to_1s_interrupt(callback *on_second_cb)
 
     TCNT2 = 0; // Reset the start value of timer2
 
+    TCCR2A = 0;
     TCCR2B = bit(CS22) | bit(CS20); // 32kHz / 128 prescaler = 1 second
 
     // Wait for the registers to update

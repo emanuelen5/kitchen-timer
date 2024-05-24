@@ -67,16 +67,3 @@ ISR(PCINT2_vect)
         }
     }
 }
-
-volatile unsigned long last_trigger_PCINT0 = 0;
-ISR(PCINT2_vect)
-{
-    unsigned long t = millis();
-    if (t - last_trigger_PCINT0)
-    {
-        if (bit_is_set(PIND, SW_PIN))
-        {
-            button_press();
-        }
-    }
-}

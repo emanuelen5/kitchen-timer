@@ -162,6 +162,5 @@ void step_state(event_t event)
     if (state == RUNNING)
     {
         set_counter(timer.current_time);
-        delay(1000);
     }
 }

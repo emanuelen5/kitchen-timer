@@ -52,6 +52,7 @@ void service_uart(void)
         {
             rx_buffer[rx_index] = '\0';
             rx_index = 0;
+            UART_print_string(rx_buffer);
         }
     }
     else
@@ -81,6 +82,53 @@ void UART_print_string(const char* str)
         transmit_byte(*str);
         str++;
     }
+}
+
+static void  reverse_string(char *str) 
+{
+    int length = 0;
+    while (str[length] != '\0')
+    {
+        length++;
+    }
+
+    int start = 0;
+    int end = length -1;
+    while(start < end)
+    {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        
+        start++;
+        end--;
+    }
+}
+
+static void int_to_string(int16_t num, char *str)
+{
+    int i = 0;
+    bool is_negative = false;
+
+    if (num < 0)
+    {
+        is_negative = true;
+        num = -num;
+    }
+
+    do
+    {
+        str[i++] = num % 10 + '0';
+        num = num / 10;
+    } while (num != 0);
+
+    if (is_negative)
+    {
+        str[i++] = '-';
+    }
+    str[i] = '\0';
+
+    reverse_string(str);
 }
 
 void UART_printf(const char *format, ...)
@@ -125,51 +173,4 @@ void UART_printf(const char *format, ...)
     }
 
     va_end(args);
-}
-
-static void int_to_string(int16_t num, char *str)
-{
-    int i = 0;
-    bool is_negative = false;
-
-    if (num < 0)
-    {
-        is_negative = true;
-        num = -num;
-    }
-
-    do
-    {
-        str[i++] = num % 10 + '0';
-        num = num / 10;
-    } while (num != 0);
-
-    if (is_negative)
-    {
-        str[i++] = '-';
-    }
-    str[i] = '\0';
-
-    reverse_string(str);
-}
-
-static void  reverse_string(char *str) 
-{
-    int length = 0;
-    while (str[length] != '\0')
-    {
-        length++;
-    }
-
-    int start = 0;
-    int end = length -1;
-    while(start < end)
-    {
-        char temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-        
-        start++;
-        end--;
-    }
 }
