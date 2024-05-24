@@ -45,6 +45,6 @@ jobs:
         run: pip install --upgrade platformio
       - name: Build target test code, without testing it
         # We cannot run the target tests without the microcontroller connected
-        run: pio test --without-uploading --without-testing -e timer
+        run: pio test --without-uploading --without-testing -e rotary-encoder
       - name: Run host/native tests
         run: pio test -e native
