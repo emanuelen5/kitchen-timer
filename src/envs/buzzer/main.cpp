@@ -1,11 +1,7 @@
-#include <Arduino.h>
 #include "fur-elise.h"
 
-void setup()
+int main()
 {
     play_fur_elise();
-}
-
-void loop()
-{
+    return 0;
 }
