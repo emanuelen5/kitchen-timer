@@ -1,5 +1,6 @@
-#include <Arduino.h>
 #include "rotary-encoder.h"
+#include "millis.h"
+#include "util.h"
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
@@ -11,6 +12,7 @@ static event_cb_t button_press;
 
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t button_press_cb)
 {
+    init_millis();
     DDRD &= 0;
     PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
 

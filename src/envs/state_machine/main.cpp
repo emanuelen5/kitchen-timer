@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
@@ -47,23 +46,6 @@ void ccw_rotation_cb(void)
 void button_press_cb(void)
 {
     add_to_queue(&eventQueue, PRESS);
-}
-
-void setup()
-{
-    reset_timer(&timer);
-    init_led_counter();
-    init_queue(&eventQueue);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
-}
-
-void loop()
-{
-    dequeue_return_t event = dequeue(&eventQueue);
-    if (event.is_valid)
-    {
-        step_state((event_t)event.value);
-    }
 }
 
 void step_state(event_t event)
@@ -123,14 +105,10 @@ void step_state(event_t event)
             uint8_t count = 0;
             while (count <= 5)
             {
-                digitalWrite(A0, HIGH);
-                digitalWrite(A1, HIGH);
-                digitalWrite(A2, HIGH);
-                delay(100);
-                digitalWrite(A0, LOW);
-                digitalWrite(A1, LOW);
-                digitalWrite(A2, LOW);
-                delay(100);
+                set_counter(0b111);
+                _delay_ms(100);
+                set_counter(0b000);
+                _delay_ms(100);
                 count++;
             }
             reset_timer(&timer);
@@ -147,6 +125,23 @@ void step_state(event_t event)
     if (state == RUNNING)
     {
         set_counter(timer.current_time);
-        delay(1000);
+        _delay_ms(1000);
+    }
+}
+
+int main()
+{
+    reset_timer(&timer);
+    init_led_counter();
+    init_queue(&eventQueue);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
+
+    while (true)
+    {
+        dequeue_return_t event = dequeue(&eventQueue);
+        if (event.is_valid)
+        {
+            step_state((event_t)event.value);
+        }
     }
 }
