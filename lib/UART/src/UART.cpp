@@ -177,7 +177,7 @@ void UART_printf(const char* format, ...)
     va_end(args);
 }
 
-//______________________________________
+
 uint8_queue_t rx_queue;
 ISR(USART_RX_vect)
 {
@@ -214,4 +214,4 @@ void service_receive_UART(void)
         return;
     }
 }
-//______________________________________
+

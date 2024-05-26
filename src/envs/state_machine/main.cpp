@@ -150,6 +150,9 @@ int main()
 
     while (true)
     {
+        service_receive_UART();
+        service_transmit_UART();
+
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
