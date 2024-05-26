@@ -68,14 +68,14 @@ void setup()
 
 void loop()
 {
-    service_uart();
+    service_receive_UART();
+    service_transmit_UART();
     
     dequeue_return_t event = dequeue(&eventQueue);
     if (event.is_valid)
     {
         step_state((event_t)event.value);
     }
-
 }
 
 void step_state(event_t event)

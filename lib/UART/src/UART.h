@@ -4,8 +4,9 @@
 #include <stdint.h>
 
 void init_UART(void);
-void service_uart(void);
-void UART_print_string(const char* str);
+void service_receive_UART(void);
+void service_transmit_UART(void);
+
 void UART_printf(const char *format, ...);
 
 #endif // UART_H

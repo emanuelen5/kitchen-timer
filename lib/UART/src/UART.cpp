@@ -4,6 +4,7 @@
 #include <avr/interrupt.h>
 #include <util/setbaud.h>
 #include <stdarg.h>
+#include <util.h>
 #include "uint8-queue.h"
 
 void init_UART(void)
@@ -24,67 +25,70 @@ void init_UART(void)
     sei();
 }
 
-uint8_queue_t rx_queue;
+uint8_queue_t tx_queue;
+volatile const char* tx_string;
+volatile uint8_t tx_index;
 
-ISR(USART_RX_vect)
+void UART_enable_transmit_interrupt()
 {
-    char receivedChar = UDR0;
-    add_to_queue(&rx_queue, (uint8_t)receivedChar);
+    UCSR0B |= bit(UDRIE0);
 }
 
-#define RX_BUFFER_SIZE 64
-static char rx_buffer[RX_BUFFER_SIZE];
-static uint8_t rx_index = 0;
-
-void service_uart(void)
+void UART_desable_transmit_interrupt()
 {
-    if (queue_is_empty(&rx_queue))
-    {
-        return;
-    }
-
-    dequeue_return_t letter = dequeue(&rx_queue);
-    char character = letter.value;
-    if (rx_index < RX_BUFFER_SIZE - 1)
-    {
-        rx_buffer[rx_index++] = character;
-        if (character == '\n' || character == '\r')
-        {
-            rx_buffer[rx_index] = '\0';
-            rx_index = 0;
-            UART_print_string(rx_buffer);
-        }
-    }
-    else
-    {
-        //ERROR: Buffer overflow
-        return;
-    }
+    UCSR0B &= ~(1 << UDRIE0);
 }
 
-
-
-static void transmit_buffer_is_ready(void)
+void UART_print_char(const char c)
 {
-    loop_until_bit_is_set(UCSR0A, UDRE0);
-}
-
-static void transmit_byte(uint8_t data)
-{
-    transmit_buffer_is_ready();
-    UDR0 = data;
+    char tx_char = c;
+    add_to_queue(&tx_queue, (uint8_t)tx_char);
+    UART_enable_transmit_interrupt();
 }
 
 void UART_print_string(const char* str)
 {
-    while(*str != '\0')
+    tx_string = str;
+    tx_index = 0;
+}
+
+void service_transmit_UART(void)
+{
+    if (tx_string == nullptr)
     {
-        transmit_byte(*str);
-        str++;
+        return;
+    }
+
+    if (queue_is_full(&tx_queue))
+    {
+        //ERROR: Buffer overflow
+        return;
+    }
+    else
+    {
+        UART_print_char(tx_string[tx_index++]);
+
+        if(tx_string[tx_index] == '\0')
+        {
+            tx_index = 0;
+            tx_string = nullptr;
+            return;
+        }
     }
 }
 
-static void  reverse_string(char *str) 
+ISR(USART_UDRE_vect)
+{  
+    dequeue_return_t tx_letter = dequeue(&tx_queue);
+    UDR0 = tx_letter.value;
+
+    if(queue_is_empty(&tx_queue))
+    {
+        UART_desable_transmit_interrupt();
+    }
+}
+
+static void reverse_string(char *str) 
 {
     int length = 0;
     while (str[length] != '\0')
@@ -127,11 +131,10 @@ static void int_to_string(int16_t num, char *str)
         str[i++] = '-';
     }
     str[i] = '\0';
-
     reverse_string(str);
 }
 
-void UART_printf(const char *format, ...)
+void UART_printf(const char* format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -167,10 +170,48 @@ void UART_printf(const char *format, ...)
         } 
         else
         {
-            transmit_byte(*format);
+            UART_print_char(*format);
         }
         format++;
     }
-
     va_end(args);
 }
+
+//______________________________________
+uint8_queue_t rx_queue;
+ISR(USART_RX_vect)
+{
+    char receivedChar = UDR0;
+    add_to_queue(&rx_queue, (uint8_t)receivedChar);
+}
+
+#define RX_BUFFER_SIZE 64
+static char rx_buffer[RX_BUFFER_SIZE];
+static uint8_t rx_index = 0;
+
+void service_receive_UART(void)
+{
+    if (queue_is_empty(&rx_queue))
+    {
+        return;
+    }
+
+    dequeue_return_t rx_letter = dequeue(&rx_queue);
+    char character = rx_letter.value;
+    if (rx_index < RX_BUFFER_SIZE - 1)
+    {
+        rx_buffer[rx_index++] = character;
+        if (character == '\n' || character == '\r')
+        {
+            rx_buffer[rx_index] = '\0';
+            rx_index = 0;
+            UART_printf(rx_buffer);             //Debugging line
+        }
+    }
+    else
+    {
+        //ERROR: Buffer overflow
+        return;
+    }
+}
+//______________________________________
