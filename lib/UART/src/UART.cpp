@@ -110,11 +110,6 @@ void UART_printf(const char* format, ...)
                     UART_print_string(num_str);
                     break;
                 }
-                case 'f': {
-                    //double num = va_arg(args, double);
-                    //TODO
-                    break;
-                }
                 case 's': {
                     const char *str = va_arg(args, const char *);
                     UART_print_string(str);
