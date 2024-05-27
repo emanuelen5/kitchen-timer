@@ -13,11 +13,11 @@ void init_UART(void)
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
 
-    #if USE_2X
-        UCSR0A |= (1 << U2X0);
-    #else
-        UCSR0A &= ~(1 << U2X0);
-    #endif
+#if USE_2X
+    UCSR0A |= (1 << U2X0);
+#else
+    UCSR0A &= ~(1 << U2X0);
+#endif
 
     uint8_t sreg = SREG;
     cli();
@@ -80,7 +80,7 @@ void service_transmit_UART(void)
 }
 
 ISR(USART_UDRE_vect)
-{  
+{
     dequeue_return_t tx_letter = dequeue(&tx_queue);
     UDR0 = tx_letter.value;
 
@@ -90,7 +90,7 @@ ISR(USART_UDRE_vect)
     }
 }
 
-static void reverse_string(char *str) 
+static void reverse_string(char *str)
 {
     int length = 0;
     while (str[length] != '\0')
@@ -105,7 +105,7 @@ static void reverse_string(char *str)
         char temp = str[start];
         str[start] = str[end];
         str[end] = temp;
-        
+
         start++;
         end--;
     }
@@ -169,7 +169,7 @@ void UART_printf(const char* format, ...)
                     UART_print_string("Unsupported format specifier");
                     break;
             }
-        } 
+        }
         else
         {
             UART_print_char(*format);
