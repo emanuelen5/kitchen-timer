@@ -29,6 +29,7 @@ int main()
 
     init_rotary_encoder(cw_rotation, ccw_rotation, button_pushed);
     increment_counter();
+    sei();
 
     while (true)
     {
