@@ -6,6 +6,7 @@
 #include <stdarg.h>
 #include <util.h>
 #include "uint8-queue.h"
+#include "str-helper.h"
 
 void init_UART(void)
 {
@@ -90,52 +91,6 @@ ISR(USART_UDRE_vect)
     }
 }
 
-static void reverse_string(char *str)
-{
-    int length = 0;
-    while (str[length] != '\0')
-    {
-        length++;
-    }
-
-    int start = 0;
-    int end = length -1;
-    while(start < end)
-    {
-        char temp = str[start];
-        str[start] = str[end];
-        str[end] = temp;
-
-        start++;
-        end--;
-    }
-}
-
-static void int_to_string(int16_t num, char *str)
-{
-    int i = 0;
-    bool is_negative = false;
-
-    if (num < 0)
-    {
-        is_negative = true;
-        num = -num;
-    }
-
-    do
-    {
-        str[i++] = num % 10 + '0';
-        num = num / 10;
-    } while (num != 0);
-
-    if (is_negative)
-    {
-        str[i++] = '-';
-    }
-    str[i] = '\0';
-    reverse_string(str);
-}
-
 void UART_printf(const char* format, ...)
 {
     va_list args;
@@ -151,7 +106,7 @@ void UART_printf(const char* format, ...)
                 case 'd': {
                     uint16_t num = va_arg(args, uint16_t);
                     char num_str[12];
-                    int_to_string(num, num_str);
+                    write_int_into_string(num, num_str);
                     UART_print_string(num_str);
                     break;
                 }
