@@ -16,13 +16,14 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     DDRD &= 0;
     PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
 
+    uint8_t sreg = SREG;
     cli();
     EIMSK |= bit(INT0);                // Interrupt enable INT0
     EICRA |= ~bit(ISC01) | bit(ISC00); // any change interrupt on INT0
 
     PCICR |= bit(PCIE2);               // Enable Pin Change Interrupt for pin bank D
     PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
-    sei();
+    SREG = sreg;
 
     button_press = button_press_cb;
     cw_rotation = cw_rotation_cb;

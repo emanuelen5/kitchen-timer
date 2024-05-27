@@ -147,11 +147,11 @@ int main()
     init_led_counter();
     init_queue(&eventQueue);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
+    sei();
 
     while (true)
     {
         service_receive_UART();
-        service_transmit_UART();
 
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
