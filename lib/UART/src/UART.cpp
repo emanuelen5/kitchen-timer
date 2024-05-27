@@ -19,10 +19,12 @@ void init_UART(void)
         UCSR0A &= ~(1 << U2X0);
     #endif
 
+    uint8_t sreg = SREG;
     cli();
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);   // Enable receiver, transmitter and receive interrupt
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00); // Set frame format: 8 data bits, 1 stop bit, no parity
-    sei();
+    UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0); // Enable receiver, transmitter and receive interrupt
+    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);               // Set frame format: 8 data bits, 1 stop bit, no parity
+
+    SREG = sreg;
 }
 
 uint8_queue_t tx_queue;
