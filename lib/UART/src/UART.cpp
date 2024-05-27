@@ -14,15 +14,15 @@ void init_UART(void)
     UBRR0L = UBRRL_VALUE;
 
 #if USE_2X
-    UCSR0A |= (1 << U2X0);
+    UCSR0A |= bit(U2X0);
 #else
-    UCSR0A &= ~(1 << U2X0);
+    UCSR0A &= ~bit(U2X0);
 #endif
 
     uint8_t sreg = SREG;
     cli();
-    UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0); // Enable receiver, transmitter and receive interrupt
-    UCSR0C = (1 << UCSZ01) | (1 << UCSZ00);               // Set frame format: 8 data bits, 1 stop bit, no parity
+    UCSR0B = bit(RXEN0) | bit(TXEN0) | bit(UDRIE0) | bit(RXCIE0); // Enable rx/tx; and rx/tx interrupt
+    UCSR0C = bit(UCSZ01) | bit(UCSZ00);                           // Set frame format: 8 data bits, 1 stop bit, no parity
 
     SREG = sreg;
 }
@@ -38,7 +38,7 @@ void UART_enable_transmit_interrupt()
 
 void UART_desable_transmit_interrupt()
 {
-    UCSR0B &= ~(1 << UDRIE0);
+    UCSR0B &= ~bit(UDRIE0);
 }
 
 void UART_print_char(const char c)
