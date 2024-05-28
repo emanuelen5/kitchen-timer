@@ -1,6 +1,8 @@
+#include <avr/io.h>
+#include <avr/interrupt.h>
 #include "timer.h"
 
-void change_timer(timer_t *timer, int step)
+void change_original_timer(timer_t *timer, int step)
 {
     int32_t new_time = timer->original_time + step;
     new_time = new_time < 0 ? 0 : new_time;
@@ -10,10 +12,11 @@ void change_timer(timer_t *timer, int step)
 
 void reset_timer(timer_t *timer)
 {
-    timer->original_time = 180;
+    timer->current_time = 0;
+    timer->original_time = 0;
 }
 
-void decrement_timer(timer_t *timer)
+void increment_current_time(timer_t *timer)
 {
     timer->current_time++;
 }
