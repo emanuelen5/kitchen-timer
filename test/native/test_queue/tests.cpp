@@ -2,11 +2,13 @@
 #include "uint8-queue.h"
 
 uint8_queue_t q;
+static uint8_t const buffer_size = 5;
+uint8_t buffer[buffer_size];
 
 void setUp(void)
 {
     q = {};
-    init_queue(&q);
+    init_queue(&q, buffer, buffer_size);
 }
 
 void tearDown(void)
@@ -16,7 +18,7 @@ void tearDown(void)
 void test_is_empty_after_init()
 {
     uint8_queue_t q2 = {};
-    init_queue(&q2);
+    init_queue(&q2, buffer, buffer_size);
     TEST_ASSERT_TRUE(queue_is_empty(&q2));
     TEST_ASSERT_FALSE(queue_is_full(&q));
 }
@@ -36,7 +38,7 @@ void test_can_take_max_items()
         add_to_queue(&q, 0);
         queue_size++;
     }
-    TEST_ASSERT_EQUAL(QUEUE_SIZE, queue_size);
+    TEST_ASSERT_EQUAL(buffer_size - 1, queue_size);
 }
 
 void make_queue_full(uint8_queue_t *q)

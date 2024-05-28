@@ -32,6 +32,8 @@ typedef enum event
 state_t state = IDLE;
 timer_t timer;
 uint8_queue_t eventQueue;
+static const uint8_t queue_buffer_size = 8;
+uint8_t event_queue_buffer[queue_buffer_size];
 
 void step_state(event_t event);
 
@@ -145,7 +147,7 @@ int main()
     init_timer2_to_1s_interrupt(second_tick);
     reset_timer(&timer);
     init_led_counter();
-    init_queue(&eventQueue);
+    init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
     sei();
 
