@@ -8,6 +8,14 @@
 #include "uint8-queue.h"
 #include "str-helper.h"
 
+uint8_queue_t rx_queue = {};
+static const uint8_t rx_queue_size = 64;
+static uint8_t tx_queue_buffer[rx_queue_size];
+
+uint8_queue_t tx_queue = {};
+static const uint8_t tx_queue_size = 64;
+static uint8_t rx_queue_buffer[tx_queue_size];
+
 void init_UART(void)
 {
     //Set baud rate
@@ -25,10 +33,11 @@ void init_UART(void)
     UCSR0B = bit(RXEN0) | bit(TXEN0) | bit(RXCIE0); // Enable rx/tx; and rx/tx interrupt
     UCSR0C = bit(UCSZ01) | bit(UCSZ00);             // Set frame format: 8 data bits, 1 stop bit, no parity
 
+    init_queue(&tx_queue, tx_queue_buffer, tx_queue_size);
+    init_queue(&rx_queue, rx_queue_buffer, rx_queue_size);
+
     SREG = sreg;
 }
-
-uint8_queue_t tx_queue = {};
 
 static void inline enable_and_trigger_tx_interrupt(void)
 {
@@ -108,7 +117,6 @@ void UART_printf(const char* format, ...)
     va_end(args);
 }
 
-uint8_queue_t rx_queue = {};
 ISR(USART_RX_vect)
 {
     char receivedChar = UDR0;

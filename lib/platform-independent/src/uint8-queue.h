@@ -3,12 +3,11 @@
 
 #include <stdint.h>
 
-#define QUEUE_SIZE 10
-
 typedef struct {
-    uint8_t data[QUEUE_SIZE + 1] = {0};
-    int front = 0;
-    int rear = 0;
+    uint8_t *data = nullptr;
+    uint8_t size = 0;
+    uint8_t front = 0;
+    uint8_t rear = 0;
     bool has_overflowed = false;
 } uint8_queue_t;
 
@@ -18,7 +17,7 @@ typedef struct
     bool is_valid;
 } dequeue_return_t;
 
-void init_queue(uint8_queue_t *queue);
+void init_queue(uint8_queue_t *queue, uint8_t *buffer, uint8_t buffer_size);
 void add_to_queue(uint8_queue_t *queue, uint8_t value);
 dequeue_return_t dequeue(uint8_queue_t *queue);
 bool has_queue_overflowed(uint8_queue_t *queue);
