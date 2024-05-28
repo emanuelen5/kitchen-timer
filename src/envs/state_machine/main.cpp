@@ -66,11 +66,11 @@ void step_state(event_t event)
             state = RUNNING;
             break;
         case CW_ROTATION:
-            change_original_time(&timer, 1);
+            change_original_timer(&timer, 1);
             UART_printf("%d\n", timer.original_time);
             break;
         case CCW_ROTATION:
-            change_original_time(&timer, -1);
+            change_original_timer(&timer, -1);
             UART_printf("%d\n", timer.original_time);
             break;
         case LONG_PRESS:
@@ -89,7 +89,7 @@ void step_state(event_t event)
         case SECOND_TICK:
             increment_current_time(&timer);
             UART_printf("%d\n", timer.current_time);
-            if (current_time_is_finished(&timer))
+            if (timer_is_finished(&timer))
             {
                 state = RINGING;
             }
