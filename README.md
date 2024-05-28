@@ -17,6 +17,10 @@ Prototyping setup on the breadboard:
 
 ![Breadboard setup](./fritzing/schema_bb.svg)
 
+The the schematic:
+
+![Schematic](./fritzing/schema_schem.svg)
+
 ## Software
 
 The software is divided into several "environments", similar to "sketches" in Arduino. They are used for testing different aspects of the hardware individually, to make sure that the assembled hardware works as intended.
