@@ -1,3 +1,6 @@
+#ifndef LIB_TIMER_H
+#define LIB_TIMER_H
+
 #include "stdint.h"
 
 typedef struct
@@ -10,3 +13,5 @@ void reset_timer(timer_t *timer);
 void increment_current_time(timer_t *timer);
 bool timer_is_finished(timer_t *timer);
 uint16_t timer_get_seconds_left(timer_t *timer);
+
+#endif // LIB_TIMER_H

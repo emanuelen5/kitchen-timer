@@ -2,8 +2,9 @@
 #define LIB_STATE_MACHINE_H
 
 #include <stdint.h>
+#include "timer.h"
 
-typedef enum state
+typedef enum
 {
     IDLE,
     RUNNING,
@@ -11,7 +12,7 @@ typedef enum state
     RINGING,
 } state_t;
 
-typedef enum event
+typedef enum
 {
     PRESS,
     CW_ROTATION,
@@ -24,8 +25,15 @@ typedef enum event
     SECOND_TICK,
 } event_t;
 
-void step_state(event_t event);
-void init_state_machine(void);
-void service_state_machine(void);
+typedef struct
+{
+    state_t state;
+    timer_t timer;
+    uint16_t millis_of_last_transition;
+} state_machine_t;
+
+void step_state(state_machine_t *sm, event_t event);
+void init_state_machine(state_machine_t *sm);
+void service_state_machine(state_machine_t *sm);
 
 #endif // LIB_STATE_MACHINE_H
