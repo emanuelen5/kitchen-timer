@@ -1,5 +1,3 @@
-#include <avr/io.h>
-#include <avr/interrupt.h>
 #include "timer.h"
 
 void change_original_timer(timer_t *timer, int step)
