@@ -6,16 +6,16 @@
 #error The library can only handle a CPU frequency of 1MHz at the moment
 #endif
 
-static volatile unsigned long timer0_millis = 0;
+static volatile uint16_t timer0_millis = 0;
 
 ISR(TIMER0_COMPA_vect)
 {
     timer0_millis += 1;
 }
 
-unsigned long millis(void)
+uint16_t millis(void)
 {
-    unsigned long m;
+    uint16_t m;
     uint8_t oldSREG = SREG;
 
     // disable interrupts while we read timer0_millis or we might get an

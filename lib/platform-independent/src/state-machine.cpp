@@ -4,12 +4,12 @@
 
 static state_t state = IDLE;
 static timer_t timer = {};
-unsigned long time_of_last_state_transition = 0;
+uint16_t time_of_last_state_transition = 0;
 
 // These are provided by the program that includes the state machine
 void UART_printf(const char *f, ...);
 void set_counter(uint8_t v);
-unsigned long millis(void);
+uint16_t millis(void);
 
 void init_state_machine(void)
 {
@@ -23,7 +23,7 @@ void service_state_machine(void)
     {
     case RINGING:
     {
-        unsigned long time_in_state = millis() - time_of_last_state_transition;
+        uint16_t time_in_state = millis() - time_of_last_state_transition;
         if (time_in_state > 2000)
         {
             reset_timer(&timer);
