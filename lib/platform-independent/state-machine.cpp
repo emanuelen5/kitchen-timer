@@ -124,3 +124,13 @@ void step_state(state_machine_t *sm, event_t event)
         set_counter(sm->timer.current_time);
     }
 }
+
+uint16_t get_original_time(state_machine_t *sm)
+{
+    return sm->timer.original_time;
+}
+
+state_t get_state(state_machine_t *sm)
+{
+    return sm->state;
+}
