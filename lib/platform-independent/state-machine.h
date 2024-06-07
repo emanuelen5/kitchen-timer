@@ -32,6 +32,7 @@ typedef struct
     uint16_t millis_of_last_transition;
 } state_machine_t;
 
+void set_state(state_machine_t *sm, state_t new_state);
 void step_state(state_machine_t *sm, event_t event);
 void init_state_machine(state_machine_t *sm);
 void service_state_machine(state_machine_t *sm);

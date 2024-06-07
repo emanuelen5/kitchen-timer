@@ -9,12 +9,11 @@ uint16_t millis(void);
 
 void init_state_machine(state_machine_t *sm)
 {
-    sm->state = IDLE;
+    set_state(sm, IDLE);
     reset_timer(&sm->timer);
-    sm->millis_of_last_transition = millis();
 }
 
-static void set_state(state_machine_t *sm, state_t new_state)
+void set_state(state_machine_t *sm, state_t new_state)
 {
     sm->millis_of_last_transition = millis();
     sm->state = new_state;
@@ -27,7 +26,7 @@ void service_state_machine(state_machine_t *sm)
     case RINGING:
     {
         uint16_t time_in_state = millis() - sm->millis_of_last_transition;
-        if (time_in_state > 2000)
+        if (time_in_state >= 2000)
         {
             reset_timer(&sm->timer);
             set_counter(0b000);
