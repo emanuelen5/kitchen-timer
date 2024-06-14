@@ -1,6 +1,6 @@
 #include "str-helper.h"
 
-uint8_t uint16_string_length(uint16_t num)
+static uint8_t uint16_string_length(uint16_t num)
 {
     uint8_t length = 1; // Always at least one digit (even when zero)
     for (uint16_t num_remainder = num / 10; num_remainder != 0; length++)
