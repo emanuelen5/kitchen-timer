@@ -38,8 +38,6 @@ static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
 uint16_t time_of_last_state_transition = 0;
 
-void step_state(event_t event);
-
 void cw_rotation_cb(void)
 {
     add_to_queue(&eventQueue, CW_ROTATION);
@@ -55,7 +53,7 @@ void button_press_cb(void)
     add_to_queue(&eventQueue, PRESS);
 }
 
-void second_tick(void)
+void second_tick_cb(void)
 {
     add_to_queue(&eventQueue, SECOND_TICK);
 }
@@ -174,12 +172,12 @@ void step_state(event_t event)
 int main()
 {
     init_UART();
-    init_timer2_to_1s_interrupt(second_tick);
+    init_timer2_to_1s_interrupt(second_tick_cb);
     init_millis();
-    reset_timer(&timer);
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
+    reset_timer(&timer);
     sei();
 
     while (true)
