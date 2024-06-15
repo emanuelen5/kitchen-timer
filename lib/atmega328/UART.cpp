@@ -14,7 +14,7 @@ static uint8_t tx_queue_buffer[rx_queue_size];
 
 uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
-static uint8_t rx_queue_buffer[tx_queue_size];
+static uint8_t tx_queue_buffer[tx_queue_size];
 
 void init_UART(void)
 {
@@ -34,7 +34,7 @@ void init_UART(void)
     UCSR0C = bit(UCSZ01) | bit(UCSZ00);             // Set frame format: 8 data bits, 1 stop bit, no parity
 
     init_queue(&tx_queue, tx_queue_buffer, tx_queue_size);
-    init_queue(&rx_queue, rx_queue_buffer, rx_queue_size);
+    init_queue(&rx_queue, tx_queue_buffer, rx_queue_size);
 
     SREG = sreg;
 }
