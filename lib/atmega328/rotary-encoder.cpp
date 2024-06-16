@@ -9,8 +9,9 @@
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
 static event_cb_t button_press;
+static event_cb_t button_long_press;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t button_press_cb)
+void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t button_press_cb, event_cb_t button_long_press_cb)
 {
     init_millis();
     DDRD &= 0;
@@ -25,9 +26,10 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
     SREG = sreg;
 
-    button_press = button_press_cb;
     cw_rotation = cw_rotation_cb;
     ccw_rotation = ccw_rotation_cb;
+    button_press = button_press_cb;
+    button_long_press = button_long_press_cb;
 }
 
 static bool should_retrigger_after_sw_debounce(unsigned long *last_trigger)
@@ -60,13 +62,41 @@ ISR(INT0_vect)
 }
 
 unsigned long last_trigger_PCINT0 = 0;
+#define LONG_PRESS_DURATION 3000
+volatile bool button_pressed = false;
+volatile unsigned long button_press_started = 0;
 ISR(PCINT2_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
     {
         if (bit_is_set(PIND, SW_PIN))
         {
-            button_press();
+            if (!button_pressed)
+            {
+                button_pressed = true;
+                button_press_started =  millis();
+            }
+
         }
+        else
+        {
+            if(button_pressed)
+            {
+                if(millis() - button_press_started < LONG_PRESS_DURATION)
+                {
+                    button_press();
+                }
+                button_pressed = false;
+                button_press_started = 0;
+            }
+        }
+    }
+}
+
+void service_button_long_press()
+{
+    if(button_pressed && (millis() - button_press_started >= LONG_PRESS_DURATION))
+    {
+        button_long_press();
     }
 }

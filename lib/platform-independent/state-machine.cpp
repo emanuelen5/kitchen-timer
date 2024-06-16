@@ -92,8 +92,8 @@ void step_state(state_machine_t *sm, event_t event)
             }
             break;
         case LONG_PRESS:
-            set_state(sm, IDLE);
             reset_timer(&sm->timer);
+            set_state(sm, IDLE);
             break;
         default:
             break;
@@ -105,7 +105,7 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case LONG_PRESS:
-            /* code */
+            reset_timer(&sm->timer);
             break;
 
         default:

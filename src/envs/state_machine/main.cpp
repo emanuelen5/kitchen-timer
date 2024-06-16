@@ -32,6 +32,11 @@ void button_press_cb(void)
     add_to_queue(&eventQueue, PRESS);
 }
 
+void button_long_press_cb(void)
+{
+    add_to_queue(&eventQueue, LONG_PRESS);
+}
+
 void second_tick(void)
 {
     add_to_queue(&eventQueue, SECOND_TICK);
@@ -44,7 +49,7 @@ int main()
     init_millis();
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb, button_long_press_cb);
     init_state_machine(&sm);
     sei();
 
@@ -58,5 +63,6 @@ int main()
             step_state(&sm, (event_t)event.value);
         }
         service_state_machine(&sm);
+        service_button_long_press();
     }
 }
