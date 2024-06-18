@@ -69,7 +69,7 @@ ISR(PCINT2_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
     {
-        if (bit_is_clear(PIND, SW_PIN)) // it is logic high so this is a falling edge
+        if (bit_is_clear(PIND, SW_PIN))
         {
             if (!button_pressed)
             {
@@ -98,5 +98,6 @@ void service_button_long_press()
     if(button_pressed && (millis() - button_press_started >= LONG_PRESS_DURATION))
     {
         button_long_press();
+        button_press_started = 0;
     }
 }

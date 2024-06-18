@@ -56,6 +56,7 @@ int main()
     while (true)
     {
         service_receive_UART();
+        service_button_long_press();
 
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
@@ -63,6 +64,5 @@ int main()
             step_state(&sm, (event_t)event.value);
         }
         service_state_machine(&sm);
-        service_button_long_press();
     }
 }
