@@ -11,7 +11,7 @@ namespace state_machine
         uint16_t original_time, current_time;
     } timer_t;
 
-    void change_original_timer(timer_t *timer, int step);
+    void change_original_time(timer_t *timer, int step);
     void reset_timer(timer_t *timer);
     void increment_current_time(timer_t *timer);
     bool timer_is_finished(timer_t *timer);

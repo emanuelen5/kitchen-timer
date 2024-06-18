@@ -3,7 +3,7 @@
 namespace state_machine
 {
 
-    void change_original_timer(timer_t *timer, int step)
+    void change_original_time(timer_t *timer, int step)
     {
         int32_t new_time = timer->original_time + step;
         new_time = new_time < 0 ? 0 : new_time;

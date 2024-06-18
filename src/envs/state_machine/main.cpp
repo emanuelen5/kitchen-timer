@@ -37,7 +37,7 @@ void button_long_press_cb(void)
     add_to_queue(&eventQueue, LONG_PRESS);
 }
 
-void second_tick(void)
+void second_tick_cb(void)
 {
     add_to_queue(&eventQueue, SECOND_TICK);
 }
@@ -45,7 +45,7 @@ void second_tick(void)
 int main()
 {
     init_UART();
-    init_timer2_to_1s_interrupt(second_tick);
+    init_timer2_to_1s_interrupt(second_tick_cb);
     init_millis();
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
