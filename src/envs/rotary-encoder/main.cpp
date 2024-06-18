@@ -8,19 +8,24 @@
 
 volatile unsigned long last_trigger = 0;
 
-void cw_rotation(void)
+void cw_rotation_cb(void)
 {
     increment_counter();
 }
 
-void ccw_rotation(void)
+void ccw_rotation_cb(void)
 {
     decrement_counter();
 }
 
-void button_pushed(void)
+void single_button_press_cb(void)
 {
-    
+    reset_led_counter();
+}
+
+void double_button_press_cb(void)
+{
+    reset_led_counter();
 }
 
 void long_button_press_cb(void)
@@ -28,11 +33,12 @@ void long_button_press_cb(void)
     reset_led_counter();
 }
 
+
 int main()
 {
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation, ccw_rotation, button_pushed, long_button_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
     increment_counter();
     sei();
 
