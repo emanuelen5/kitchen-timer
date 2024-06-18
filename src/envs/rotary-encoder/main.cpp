@@ -20,6 +20,11 @@ void ccw_rotation(void)
 
 void button_pushed(void)
 {
+    
+}
+
+void button_long_press_cb(void)
+{
     reset_led_counter();
 }
 
@@ -27,7 +32,7 @@ int main()
 {
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation, ccw_rotation, button_pushed);
+    init_rotary_encoder(cw_rotation, ccw_rotation, button_pushed, button_long_press_cb);
     increment_counter();
     sei();
 
