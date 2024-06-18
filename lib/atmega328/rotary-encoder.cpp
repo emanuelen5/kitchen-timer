@@ -69,7 +69,7 @@ ISR(PCINT2_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
     {
-        if (bit_is_set(PIND, SW_PIN))
+        if (bit_is_clear(PIND, SW_PIN)) // it is logic high so this is a falling edge
         {
             if (!button_pressed)
             {
