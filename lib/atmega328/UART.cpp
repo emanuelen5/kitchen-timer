@@ -10,11 +10,11 @@
 
 uint8_queue_t rx_queue = {};
 static const uint8_t rx_queue_size = 64;
-static uint8_t tx_queue_buffer[rx_queue_size];
+static uint8_t rx_queue_buffer[rx_queue_size];
 
 uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
-static uint8_t rx_queue_buffer[tx_queue_size];
+static uint8_t tx_queue_buffer[tx_queue_size];
 
 void init_UART(void)
 {

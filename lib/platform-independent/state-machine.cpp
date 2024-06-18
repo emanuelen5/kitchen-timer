@@ -62,11 +62,11 @@ void step_state(state_machine_t *sm, event_t event)
             set_state(sm, RUNNING);
             break;
         case CW_ROTATION:
-            change_original_timer(&sm->timer, 1);
+            change_original_time(&sm->timer, 1);
             UART_printf("%d\n", sm->timer.original_time);
             break;
         case CCW_ROTATION:
-            change_original_timer(&sm->timer, -1);
+            change_original_time(&sm->timer, -1);
             UART_printf("%d\n", sm->timer.original_time);
             break;
         case LONG_PRESS:
