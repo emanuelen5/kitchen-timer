@@ -14,7 +14,7 @@ typedef enum
 
 typedef enum
 {
-    PRESS,
+    SINGLE_PRESS,
     CW_ROTATION,
     CCW_ROTATION,
     DOUBLE_PRESS,

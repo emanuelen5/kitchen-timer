@@ -29,12 +29,12 @@ void ccw_rotation_cb(void)
 
 void single_button_press_cb(void)
 {
-    add_to_queue(&eventQueue, PRESS);
+    add_to_queue(&eventQueue, SINGLE_PRESS);
 }
 
 void double_button_press_cb(void)
 {
-    add_to_queue(&eventQueue, LONG_PRESS); //temp
+    add_to_queue(&eventQueue, DOUBLE_PRESS);
 }
 
 void long_button_press_cb(void)

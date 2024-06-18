@@ -58,7 +58,7 @@ void step_state(state_machine_t *sm, event_t event)
     case IDLE:
         switch (event)
         {
-        case PRESS:
+        case SINGLE_PRESS:
             set_state(sm, RUNNING);
             break;
         case CW_ROTATION:
@@ -79,8 +79,13 @@ void step_state(state_machine_t *sm, event_t event)
     case RUNNING:
         switch (event)
         {
-        case PRESS:
+        case DOUBLE_PRESS:
             set_state(sm, PAUSED);
+            UART_printf("Pause\n");
+            break;
+        case LONG_PRESS:
+            reset_timer(&sm->timer);
+            set_state(sm, IDLE);
             break;
         case SECOND_TICK:
             increment_current_time(&sm->timer);
@@ -91,6 +96,16 @@ void step_state(state_machine_t *sm, event_t event)
                 UART_printf("Alarm goes off!!!\n");
             }
             break;
+        default:
+            break;
+        }
+        break;
+    case PAUSED:
+        switch (event)
+        {
+        case DOUBLE_PRESS:
+            set_state(sm, RUNNING);
+            break;
         case LONG_PRESS:
             reset_timer(&sm->timer);
             set_state(sm, IDLE);
@@ -99,15 +114,12 @@ void step_state(state_machine_t *sm, event_t event)
             break;
         }
         break;
-    case PAUSED:
-        break;
     case RINGING:
         switch (event)
         {
         case LONG_PRESS:
             reset_timer(&sm->timer);
             break;
-
         default:
             break;
         }
