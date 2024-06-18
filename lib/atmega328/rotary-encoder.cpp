@@ -8,10 +8,11 @@
 
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
-static event_cb_t button_press;
-static event_cb_t button_long_press;
+static event_cb_t single_button_press;
+static event_cb_t double_button_press;
+static event_cb_t long_button_press;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t button_press_cb, event_cb_t button_long_press_cb)
+void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t single_button_press_cb, event_cb_t double_button_press_cb, event_cb_t long_button_press_cb)
 {
     init_millis();
     DDRD &= 0;
@@ -28,8 +29,9 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
 
     cw_rotation = cw_rotation_cb;
     ccw_rotation = ccw_rotation_cb;
-    button_press = button_press_cb;
-    button_long_press = button_long_press_cb;
+    single_button_press = single_button_press_cb;
+    double_button_press = double_button_press_cb;
+    long_button_press = long_button_press_cb;
 }
 
 static bool should_retrigger_after_sw_debounce(unsigned long *last_trigger)
@@ -61,10 +63,12 @@ ISR(INT0_vect)
     }
 }
 
-unsigned long last_trigger_PCINT0 = 0;
 #define LONG_PRESS_DURATION 3000
+#define DOUBLE_PRESS_DURATION 500
 volatile bool button_pressed = false;
-volatile unsigned long button_press_started = 0;
+volatile unsigned long button_press_start = 0;
+volatile uint8_t button_press_count = 0;
+unsigned long last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
@@ -74,30 +78,48 @@ ISR(PCINT2_vect)
             if (!button_pressed)
             {
                 button_pressed = true;
-                button_press_started =  millis();
+                button_press_start =  millis();
+                button_press_count++;
             }
-
         }
         else
         {
             if(button_pressed)
             {
-                if(millis() - button_press_started < LONG_PRESS_DURATION)
-                {
-                    button_press();
-                }
                 button_pressed = false;
-                button_press_started = 0;
             }
         }
     }
 }
 
-void service_button_long_press()
+void reset_button_press()
 {
-    if(button_pressed && (millis() - button_press_started >= LONG_PRESS_DURATION))
+    button_press_count = 0;
+    button_press_start = 0;
+}
+
+unsigned long button_press_timer()
+{
+    return (millis() - button_press_start);
+}
+
+void service_button_press()
+{
+    if(!button_pressed && button_press_count == 1 && button_press_timer() > DOUBLE_PRESS_DURATION)
     {
-        button_long_press();
-        button_press_started = 0;
+        single_button_press();
+        reset_button_press();
+    }
+
+    if(!button_pressed && button_press_count == 2 && button_press_timer() <= DOUBLE_PRESS_DURATION)
+    {
+        double_button_press();
+        reset_button_press();
+    }
+
+    if(button_pressed && button_press_timer() >= LONG_PRESS_DURATION)
+    {
+        long_button_press();
+        reset_button_press();
     }
 }

@@ -27,12 +27,17 @@ void ccw_rotation_cb(void)
     add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
-void button_press_cb(void)
+void single_button_press_cb(void)
 {
     add_to_queue(&eventQueue, PRESS);
 }
 
-void button_long_press_cb(void)
+void double_button_press_cb(void)
+{
+    add_to_queue(&eventQueue, LONG_PRESS); //temp
+}
+
+void long_button_press_cb(void)
 {
     add_to_queue(&eventQueue, LONG_PRESS);
 }
@@ -49,14 +54,14 @@ int main()
     init_millis();
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button_press_cb, button_long_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
     init_state_machine(&sm);
     sei();
 
     while (true)
     {
         service_receive_UART();
-        service_button_long_press();
+        service_button_press();
 
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
