@@ -79,7 +79,7 @@ void step_state(state_machine_t *sm, event_t event)
     case RUNNING:
         switch (event)
         {
-        case DOUBLE_PRESS:
+        case SINGLE_PRESS:
             set_state(sm, PAUSED);
             UART_printf("Pause\n");
             break;
@@ -103,7 +103,7 @@ void step_state(state_machine_t *sm, event_t event)
     case PAUSED:
         switch (event)
         {
-        case DOUBLE_PRESS:
+        case SINGLE_PRESS:
             set_state(sm, RUNNING);
             break;
         case LONG_PRESS:
@@ -117,7 +117,7 @@ void step_state(state_machine_t *sm, event_t event)
     case RINGING:
         switch (event)
         {
-        case LONG_PRESS:
+        case SINGLE_PRESS:
             reset_timer(&sm->timer);
             break;
         default:
