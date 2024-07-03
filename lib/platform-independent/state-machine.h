@@ -2,37 +2,18 @@
 #define LIB_STATE_MACHINE_H
 
 #include <stdint.h>
+#include "state-machine-types.h"
 #include "timer.h"
 
-typedef enum
-{
-    IDLE,
-    RUNNING,
-    PAUSED,
-    RINGING,
-} state_t;
-
-typedef enum
-{
-    SINGLE_PRESS,
-    CW_ROTATION,
-    CCW_ROTATION,
-    DOUBLE_PRESS,
-    LONG_PRESS,
-    CW_PRESSED_ROTATION,
-    CCW_PRESSED_ROTATION,
-    TIMEOUT,
-    SECOND_TICK,
-} event_t;
+#define MAX_TIMERS 5
 
 typedef struct
 {
-    state_t state;
-    state_machine::timer_t timer;
-    uint16_t millis_of_last_transition;
+    state_machine::timer_t timers[MAX_TIMERS];
+    uint8_t current_timer_index;
+    uint8_t last_ringing_timer_index;
 } state_machine_t;
 
-void set_state(state_machine_t *sm, state_t new_state);
 void step_state(state_machine_t *sm, event_t event);
 void init_state_machine(state_machine_t *sm);
 void service_state_machine(state_machine_t *sm);

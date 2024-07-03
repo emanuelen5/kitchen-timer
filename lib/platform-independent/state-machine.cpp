@@ -9,28 +9,36 @@ uint16_t millis(void);
 
 void init_state_machine(state_machine_t *sm)
 {
-    set_state(sm, IDLE);
-    reset_timer(&sm->timer);
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+    {
+        set_state(&sm->timers[i], IDLE);
+        reset_timer(&sm->timers[i]);
+    }
+    sm->current_timer_index = 0;
+    sm->last_ringing_timer_index = 0;
 }
 
-void set_state(state_machine_t *sm, state_t new_state)
-{
-    sm->millis_of_last_transition = millis();
-    sm->state = new_state;
-}
 
 void service_state_machine(state_machine_t *sm)
 {
-    switch (sm->state)
+    state_machine::timer_t *current_timer = &sm->timers[sm->current_timer_index];
+
+    if(sm->timers[sm->last_ringing_timer_index].state == RINGING)
+    {
+        sm->current_timer_index = sm->last_ringing_timer_index;
+    }
+
+    switch (current_timer->state)
     {
     case RINGING:
     {
-        uint16_t time_in_state = millis() - sm->millis_of_last_transition;
+        UART_printf("T%d: Alarm goes off!!!\n", sm->current_timer_index);
+        uint16_t time_in_state = millis() - current_timer->millis_of_last_transition;
         if (time_in_state >= 2000)
         {
-            reset_timer(&sm->timer);
+            reset_timer(current_timer);
+            //TODO: At these point the clock needs to go to the next available timer.
             set_counter(0b000);
-            set_state(sm, IDLE);
         }
         else
         {
@@ -53,24 +61,26 @@ void service_state_machine(state_machine_t *sm)
 
 void step_state(state_machine_t *sm, event_t event)
 {
-    switch (sm->state)
+    state_machine::timer_t *current_timer = &sm->timers[sm->current_timer_index];
+
+    switch (current_timer->state)
     {
     case IDLE:
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, RUNNING);
+            set_state(current_timer, RUNNING);
             break;
         case CW_ROTATION:
-            change_original_time(&sm->timer, 1);
-            UART_printf("%d\n", sm->timer.original_time);
+            change_original_time(current_timer, 1);
+            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
             break;
         case CCW_ROTATION:
-            change_original_time(&sm->timer, -1);
-            UART_printf("%d\n", sm->timer.original_time);
+            change_original_time(current_timer, -1);
+            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
+            reset_timer(current_timer);
             break;
         default:
             break;
@@ -80,21 +90,28 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, PAUSED);
+            set_state(current_timer, PAUSED);
             UART_printf("Pause\n");
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
-            set_state(sm, IDLE);
+            reset_timer(current_timer);
+            set_state(current_timer, IDLE);
             break;
         case SECOND_TICK:
-            increment_current_time(&sm->timer);
-            UART_printf("%d\n", sm->timer.current_time);
-            if (timer_is_finished(&sm->timer))
+            for(uint8_t i = 0; i < MAX_TIMERS; i++)
             {
-                set_state(sm, RINGING);
-                UART_printf("Alarm goes off!!!\n");
+                state_machine::timer_t *timer = &sm->timers[i];
+                if(timer->state == RUNNING)
+                {
+                    increment_current_time(timer);
+                    if (timer_is_finished(timer))
+                    {
+                        set_state(timer, RINGING);
+                        sm->last_ringing_timer_index = i;
+                    }       
+                }
             }
+            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->current_time);
             break;
         default:
             break;
@@ -104,11 +121,11 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, RUNNING);
+            set_state(current_timer, RUNNING);
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
-            set_state(sm, IDLE);
+            reset_timer(current_timer);
+            set_state(current_timer, IDLE);
             break;
         default:
             break;
@@ -118,7 +135,7 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            reset_timer(&sm->timer);
+            reset_timer(current_timer);
             break;
         default:
             break;
@@ -126,22 +143,12 @@ void step_state(state_machine_t *sm, event_t event)
         break;
     }
 
-    if (sm->state == IDLE)
+    if (current_timer->state == IDLE)
     {
-        set_counter(sm->timer.original_time);
+        set_counter(current_timer->original_time);
     }
-    if (sm->state == RUNNING)
+    if (current_timer->state == RUNNING)
     {
-        set_counter(sm->timer.current_time);
+        set_counter(current_timer->current_time);
     }
-}
-
-uint16_t get_original_time(state_machine_t *sm)
-{
-    return sm->timer.original_time;
-}
-
-state_t get_state(state_machine_t *sm)
-{
-    return sm->state;
 }

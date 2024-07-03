@@ -1,4 +1,5 @@
 #include "timer.h"
+#include "millis.h"
 
 namespace state_machine
 {
@@ -13,6 +14,7 @@ namespace state_machine
 
     void reset_timer(timer_t *timer)
     {
+        timer->state = IDLE;
         timer->current_time = 0;
         timer->original_time = 0;
     }
@@ -25,6 +27,22 @@ namespace state_machine
     bool timer_is_finished(timer_t *timer)
     {
         return timer->current_time >= timer->original_time;
+    }
+
+    void set_state(timer_t *timer, state_t new_state)
+    {
+        timer->millis_of_last_transition = millis();
+        timer->state = new_state;
+    }
+
+    uint16_t get_original_time(timer_t *timer)
+    {
+        return timer->original_time;
+    }
+
+    state_t get_state(timer_t *timer)
+    {
+        return timer->state;
     }
 
 } // namespace state_machine
