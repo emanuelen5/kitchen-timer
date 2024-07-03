@@ -32,12 +32,10 @@ void service_state_machine(state_machine_t *sm)
     {
     case RINGING:
     {
-        UART_printf("T%d: Alarm goes off!!!\n", sm->current_timer_index);
         uint16_t time_in_state = millis() - current_timer->millis_of_last_transition;
         if (time_in_state >= 2000)
         {
             reset_timer(current_timer);
-            //TODO: At these point the clock needs to go to the next available timer.
             set_counter(0b000);
         }
         else
@@ -124,6 +122,7 @@ void step_state(state_machine_t *sm, event_t event)
                     {
                         set_state(timer, RINGING);
                         sm->last_ringing_timer_index = i;
+                        UART_printf("T%d: Alarm goes off!!!\n", sm->last_ringing_timer_index);
                     }
                     if(i == sm->current_timer_index)
                     {
