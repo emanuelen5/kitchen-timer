@@ -63,39 +63,55 @@ void step_state(state_machine_t *sm, event_t event)
 {
     state_machine::timer_t *current_timer = &sm->timers[sm->current_timer_index];
 
-    switch (current_timer->state)
+    switch(event)
     {
-    case IDLE:
-        switch (event)
-        {
         case SINGLE_PRESS:
-            set_state(current_timer, RUNNING);
+            switch (current_timer->state)
+            {
+                case IDLE:
+                    set_state(current_timer, RUNNING);
+                    break;
+                case RUNNING:
+                    set_state(current_timer, PAUSED);
+                    UART_printf("T%d: Pause\n", sm->current_timer_index);
+                    break;
+                case PAUSED:
+                    set_state(current_timer, RUNNING);
+                    break;
+                case RINGING:
+                    reset_timer(current_timer);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case DOUBLE_PRESS:
+            sm->current_timer_index = (sm->current_timer_index + 1) % MAX_TIMERS;
             break;
         case CW_ROTATION:
-            change_original_time(current_timer, 1);
-            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
+            switch (current_timer->state)
+            {
+                case IDLE:
+                    change_original_time(current_timer, 1);
+                    UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
+                    break;
+                default:
+                    break;
+            }
             break;
         case CCW_ROTATION:
-            change_original_time(current_timer, -1);
-            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
+            switch (current_timer->state)
+            {
+                case IDLE:
+                    change_original_time(current_timer, -1);
+                    UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->original_time);
+                    break;
+                default:
+                    break;
+            }
             break;
         case LONG_PRESS:
             reset_timer(current_timer);
-            break;
-        default:
-            break;
-        }
-        break;
-    case RUNNING:
-        switch (event)
-        {
-        case SINGLE_PRESS:
-            set_state(current_timer, PAUSED);
-            UART_printf("Pause\n");
-            break;
-        case LONG_PRESS:
-            reset_timer(current_timer);
-            set_state(current_timer, IDLE);
             break;
         case SECOND_TICK:
             for(uint8_t i = 0; i < MAX_TIMERS; i++)
@@ -104,43 +120,20 @@ void step_state(state_machine_t *sm, event_t event)
                 if(timer->state == RUNNING)
                 {
                     increment_current_time(timer);
-                    if (timer_is_finished(timer))
+                    if(timer_is_finished(timer))
                     {
                         set_state(timer, RINGING);
                         sm->last_ringing_timer_index = i;
-                    }       
+                    }
+                    if(i == sm->current_timer_index)
+                    {
+                        UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->current_time);
+                    }
                 }
             }
-            UART_printf("T%d: %d\n", sm->current_timer_index, current_timer->current_time);
             break;
         default:
             break;
-        }
-        break;
-    case PAUSED:
-        switch (event)
-        {
-        case SINGLE_PRESS:
-            set_state(current_timer, RUNNING);
-            break;
-        case LONG_PRESS:
-            reset_timer(current_timer);
-            set_state(current_timer, IDLE);
-            break;
-        default:
-            break;
-        }
-        break;
-    case RINGING:
-        switch (event)
-        {
-        case SINGLE_PRESS:
-            reset_timer(current_timer);
-            break;
-        default:
-            break;
-        }
-        break;
     }
 
     if (current_timer->state == IDLE)
