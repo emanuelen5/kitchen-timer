@@ -4,7 +4,7 @@ We're building a Kitchen timer!
 The project is heavily inspired by [REST: Kitchen timer by mkdxdx [Hackaday.io]](https://hackaday.io/project/194386-rest-kitchen-timer).
 
 ## Introduction:
-Our kitchen timer will be an iteration of [mkdxdx](https://hackaday.io/mkdxdx) project "REST: Kitchen timerREST: Kitchen timer". We will keep the "dail" (rotate-to-set) concept and the 16x16 led matrix but we want to do it with an ATmega328p and a custom PCB.
+Our kitchen timer will be an iteration of [mkdxdx](https://hackaday.io/mkdxdx) project "REST: Kitchen timerREST: Kitchen timer". We will keep the "dial" (rotate-to-set) concept and the 16x16 led matrix but we want to do it with an ATmega328p and a custom PCB.
 
 Among other features that we would like to add are:
 * The possibility to set up several timers (in case you need to keep track of more than one pot when cooking dinner)
