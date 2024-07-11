@@ -39,10 +39,10 @@ The environments are located in the [`src/envs`](./src/envs/) folder.
 
 ### Programming
 
-To be able to program the microcontroller, you need `avrdude`.
+To be able to program the microcontroller, you need `avrdude` and `pio` (the PlatformIO command line tool).
 
-* Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>.
-* Add it to your `PATH`.
+* Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>. Make sure to add it to your `PATH`.
+* `pio` can be downloaded from <https://pypi.org/project/platformio/> or installed using `pip` (the official Package Installer for Python)
 
 Then run
 
