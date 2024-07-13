@@ -66,7 +66,7 @@ ISR(INT0_vect)
     }
 }
 
-const uint16_t long_press_duration_ms = 3000;
+const uint16_t long_press_duration_ms = 2000;
 const uint16_t double_press_duration_ms = 500;
 uint16_t last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
