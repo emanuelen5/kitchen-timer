@@ -66,8 +66,8 @@ ISR(INT0_vect)
     }
 }
 
-#define LONG_PRESS_DURATION 3000
-#define DOUBLE_PRESS_DURATION 500
+const uint16_t long_press_duration_ms = 3000;
+const uint16_t double_press_duration_ms = 500;
 unsigned long last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
@@ -105,19 +105,19 @@ unsigned long button_press_timer()
 
 void service_button_press()
 {
-    if(!button.pressed_down && button.press_count == 1 && button_press_timer() > DOUBLE_PRESS_DURATION)
+    if(!button.pressed_down && button.press_count == 1 && button_press_timer() > double_press_duration_ms)
     {
         single_button_press();
         reset_button_press();
     }
 
-    if(!button.pressed_down && button.press_count == 2 && button_press_timer() <= DOUBLE_PRESS_DURATION)
+    if(!button.pressed_down && button.press_count == 2 && button_press_timer() <= double_press_duration_ms)
     {
         double_button_press();
         reset_button_press();
     }
 
-    if(button.pressed_down && button_press_timer() >= LONG_PRESS_DURATION)
+    if(button.pressed_down && button_press_timer() >= long_press_duration_ms)
     {
         long_button_press();
         reset_button_press();
