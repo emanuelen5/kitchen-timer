@@ -10,7 +10,7 @@
 struct button
 {
     bool pressed_down;
-    unsigned long press_start_time_ms;
+    uint16_t press_start_time_ms;
     uint8_t press_count;
 };
 

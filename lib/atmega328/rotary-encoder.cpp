@@ -37,9 +37,9 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     long_button_press = long_button_press_cb;
 }
 
-static bool should_retrigger_after_sw_debounce(unsigned long *last_trigger)
+static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
 {
-    unsigned long t = millis();
+    uint16_t t = millis();
     // A time window of 2 ms garantees that at least we get 1 ms of window
     // between the trigger and the stable state.
     if (t - *last_trigger >= 2)
@@ -51,7 +51,7 @@ static bool should_retrigger_after_sw_debounce(unsigned long *last_trigger)
     return false;
 }
 
-unsigned long last_trigger_INT0 = 0;
+uint16_t last_trigger_INT0 = 0;
 ISR(INT0_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_INT0))
@@ -68,7 +68,7 @@ ISR(INT0_vect)
 
 const uint16_t long_press_duration_ms = 3000;
 const uint16_t double_press_duration_ms = 500;
-unsigned long last_trigger_PCINT0 = 0;
+uint16_t last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
@@ -98,7 +98,7 @@ void reset_button_press()
     button.press_start_time_ms = 0;
 }
 
-unsigned long button_press_timer()
+uint16_t button_press_timer()
 {
     return (millis() - button.press_start_time_ms);
 }
