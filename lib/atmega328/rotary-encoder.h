@@ -1,9 +1,18 @@
 #ifndef ROTARY_ENCODER_H
 #define ROTARY_ENCODER_H
 
+#include <stdint.h>
+
 #define CLK_PIN PD2 // INT0
 #define DT_PIN PD3  // INT1
 #define SW_PIN PD4  //PCINT0
+
+struct button
+{
+    bool pressed_down;
+    unsigned long press_start_time_ms;
+    uint8_t press_count;
+};
 
 //Funtion pointer declaration
 typedef void (*event_cb_t)(void);

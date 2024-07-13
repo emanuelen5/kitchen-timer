@@ -12,6 +12,8 @@ static event_cb_t single_button_press;
 static event_cb_t double_button_press;
 static event_cb_t long_button_press;
 
+struct button button;
+
 void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t single_button_press_cb, event_cb_t double_button_press_cb, event_cb_t long_button_press_cb)
 {
     init_millis();
@@ -26,6 +28,7 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     PCICR |= bit(PCIE2);               // Enable Pin Change Interrupt for pin bank D
     PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
     SREG = sreg;
+    
 
     cw_rotation = cw_rotation_cb;
     ccw_rotation = ccw_rotation_cb;
@@ -65,9 +68,6 @@ ISR(INT0_vect)
 
 #define LONG_PRESS_DURATION 3000
 #define DOUBLE_PRESS_DURATION 500
-volatile bool button_pressed = false;
-volatile unsigned long button_press_start = 0;
-volatile uint8_t button_press_count = 0;
 unsigned long last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
@@ -75,18 +75,18 @@ ISR(PCINT2_vect)
     {
         if (bit_is_clear(PIND, SW_PIN))
         {
-            if (!button_pressed)
+            if (!button.pressed_down)
             {
-                button_pressed = true;
-                button_press_start =  millis();
-                button_press_count++;
+                button.pressed_down = true;
+                button.press_start_time_ms =  millis();
+                button.press_count++;
             }
         }
         else
         {
-            if(button_pressed)
+            if(button.pressed_down)
             {
-                button_pressed = false;
+                button.pressed_down = false;
             }
         }
     }
@@ -94,30 +94,30 @@ ISR(PCINT2_vect)
 
 void reset_button_press()
 {
-    button_press_count = 0;
-    button_press_start = 0;
+    button.press_count = 0;
+    button.press_start_time_ms = 0;
 }
 
 unsigned long button_press_timer()
 {
-    return (millis() - button_press_start);
+    return (millis() - button.press_start_time_ms);
 }
 
 void service_button_press()
 {
-    if(!button_pressed && button_press_count == 1 && button_press_timer() > DOUBLE_PRESS_DURATION)
+    if(!button.pressed_down && button.press_count == 1 && button_press_timer() > DOUBLE_PRESS_DURATION)
     {
         single_button_press();
         reset_button_press();
     }
 
-    if(!button_pressed && button_press_count == 2 && button_press_timer() <= DOUBLE_PRESS_DURATION)
+    if(!button.pressed_down && button.press_count == 2 && button_press_timer() <= DOUBLE_PRESS_DURATION)
     {
         double_button_press();
         reset_button_press();
     }
 
-    if(button_pressed && button_press_timer() >= LONG_PRESS_DURATION)
+    if(button.pressed_down && button_press_timer() >= LONG_PRESS_DURATION)
     {
         long_button_press();
         reset_button_press();
