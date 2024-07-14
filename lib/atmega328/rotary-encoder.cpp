@@ -100,24 +100,29 @@ uint16_t button_press_timer()
 
 void service_button_press()
 {
-    const bool button_pressed_ones = !button.pressed_down && button.press_count == 1 && button_press_timer() > double_press_duration_ms;
-    const bool button_pressed_twice = !button.pressed_down && button.press_count == 2 && button_press_timer() <= double_press_duration_ms;
-    const bool button_longpressed = button.pressed_down && button_press_timer() >= long_press_duration_ms;
-    if(button_pressed_ones)
+    const uint16_t button_timer = button_press_timer();
+
+    const bool button_pressed_ones = !button.pressed_down && button.press_count == 1 &&  button_timer > double_press_duration_ms;
+    const bool button_pressed_twice = !button.pressed_down && button.press_count == 2 && button_timer <= double_press_duration_ms;
+    const bool button_longpressed = button.pressed_down && button_timer >= long_press_duration_ms;
+    if(button_longpressed)
     {
-        single_button_press();
+        long_button_press();
         reset_button_press();
+        return;
     }
 
     if(button_pressed_twice)
     {
         double_button_press();
         reset_button_press();
+        return;
     }
 
-    if(button_longpressed)
+    if(button_pressed_ones)
     {
-        long_button_press();
+        single_button_press();
         reset_button_press();
+        return;
     }
 }
