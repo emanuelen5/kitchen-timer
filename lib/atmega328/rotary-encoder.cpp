@@ -51,7 +51,7 @@ static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
     return false;
 }
 
-uint16_t last_trigger_INT0 = 0;
+static uint16_t last_trigger_INT0 = 0;
 ISR(INT0_vect)
 {
     if (should_retrigger_after_sw_debounce(&last_trigger_INT0))
@@ -66,9 +66,9 @@ ISR(INT0_vect)
     }
 }
 
-const uint16_t long_press_duration_ms = 2000;
-const uint16_t double_press_duration_ms = 500;
-uint16_t last_trigger_PCINT0 = 0;
+static const uint16_t long_press_duration_ms = 2000;
+static const uint16_t double_press_duration_ms = 500;
+static uint16_t last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
 
