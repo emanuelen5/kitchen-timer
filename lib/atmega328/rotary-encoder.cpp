@@ -93,14 +93,14 @@ void reset_button_press()
     button.press_start_time_ms = 0;
 }
 
-uint16_t button_press_timer()
+uint16_t time_since_initial_button_press()
 {
     return (millis() - button.press_start_time_ms);
 }
 
 void service_button_press()
 {
-    const uint16_t button_timer = button_press_timer();
+    const uint16_t button_timer = time_since_initial_button_press();
 
     const bool button_pressed_ones = !button.pressed_down && button.press_count == 1 &&  button_timer > double_press_duration_ms;
     const bool button_pressed_twice = !button.pressed_down && button.press_count == 2 && button_timer <= double_press_duration_ms;
