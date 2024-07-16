@@ -15,6 +15,14 @@ public:
     static constexpr uint16_t double_press_timeout_ms = 500;
 
 private:
+    /*
+     *  t1          t2          t3
+     *   <--  i1 --> <--  i2 --> <--  i3 -->
+     *  |-----------|-----------|-----------|
+     *  ^ PRESS     ^ RELEASE   ^ PRESS     ^ RELEASE
+     */
+    uint16_t t[3];
+
     uint16_t last_press_time;
     uint8_t press_count;
     bool is_pressed;
