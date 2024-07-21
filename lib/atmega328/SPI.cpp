@@ -4,7 +4,7 @@
 #define DATA_PIN PB3
 
 
-void SPI_Init(uint8_t cs_pin) {
+void init_SPI(uint8_t cs_pin) {
     DDRB |= (1 << PB3) | (1 << PB5) | (1 << cs_pin); // Set MOSI, SCK, and CS as output
 
     SPCR = (1 << SPE); //Enable SPI
