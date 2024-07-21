@@ -1,70 +1,47 @@
-#include "max72xx.h"
-#include "util.h"
 #include <avr/io.h>
 #include <util/delay.h>
+#include "max72xx.h"
+#include "util.h"
+#include "SPI.h"
 
-#define PD_CLK PD5
-#define PD_CS PD6
-#define PD_DATA PD7
+#define CS_PIN PB2
 
-static void inline deactivate_cs(void);
-static void inline activate_cs(void);
-static void assert_clock(void);
-static void inline deassert_clock(void);
+void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
 
 void init_max72xx(void)
 {
-    PORTD &= ~(bit(PD_CLK) | bit(PD_DATA));
-    deactivate_cs();
-    DDRD |= bit(PD_CLK) | bit(PD_CS) | bit(PD_DATA);
+    init_SPI(CS_PIN);
+
+    max72xx_cmd_t no_decode_mode = {.reg = Max72XX_Decode_Mode, .data = 0x00};
+    max72xx_cmd_t max_brightness = {.reg = Max72XX_Intensity, .data = 0x0F};
+    max72xx_cmd_t eight_digits_scan_limit = {.reg = Max72XX_Scan_Limit, .data = 0x07};
+    max72xx_cmd_t normal_shutdown = {.reg = Max72XX_Shutdown, .data = 0x01};
+    max72xx_cmd_t display_test_off = {.reg = Max72XX_Display_Test, .data = 0x00};
+
+    max72xx_send_commands(&no_decode_mode, 1);
+    max72xx_send_commands(&max_brightness, 1);
+    max72xx_send_commands(&eight_digits_scan_limit, 1);
+    max72xx_send_commands(&normal_shutdown, 1);
+    max72xx_send_commands(&display_test_off, 1);
 }
 
-static void send_byte(uint8_t data)
+static void inline deactivate_cs(void)
 {
-    for (int8_t i = 7; i >= 0; i--)
-    {
-        bool bit_at_offset_i_is_set = bit(7) & data;
-        uint8_t b = PORTD & ~bit(PD_DATA);
-        PORTD = b | (bit_at_offset_i_is_set ? bit(PD_DATA) : 0);
-        _delay_us(1);
+    PORTD |= bit(CS_PIN);
+}
 
-        assert_clock();
-        _delay_us(1);
-
-        deassert_clock();
-        data <<= 1;
-    }
+static void inline activate_cs(void)
+{
+    PORTD &= ~bit(CS_PIN);
 }
 
 void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length)
 {
     activate_cs();
-
     for (uint8_t i = 0; i < length; i++)
     {
-        send_byte((uint8_t)cmds[i].reg);
-        send_byte(cmds[i].data);
+        SPI_transmit_byte((uint8_t)cmds[i].reg);
+        SPI_transmit_byte(cmds[i].data);
     }
-
     deactivate_cs();
-}
-
-static void inline deactivate_cs(void)
-{
-    PORTD |= bit(PD_CS);
-}
-
-static void inline activate_cs(void)
-{
-    PORTD &= ~bit(PD_CS);
-}
-
-static void assert_clock(void)
-{
-    PORTD |= bit(PD_CLK);
-}
-
-static void inline deassert_clock(void)
-{
-    PORTD &= ~bit(PD_CLK);
 }
