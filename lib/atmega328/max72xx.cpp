@@ -6,7 +6,7 @@
 
 #define CS_PIN PB2
 
-void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
+void max72xx_write_byte(uint8_t reg, uint8_t data);
 
 void init_max72xx(void)
 {
