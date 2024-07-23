@@ -12,5 +12,6 @@ typedef struct
     uint8_t active_state_machine_index;
 } application_t;
 
+void init_application(application_t *app);
 
 #endif // LIB_APPLICTION_H
