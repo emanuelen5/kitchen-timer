@@ -10,12 +10,13 @@
 #include "rtc.h"
 #include "millis.h"
 #include "util.h"
+#include "application.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
 
-state_machine_t sm;
+application_t app;
 
 void cw_rotation_cb(void)
 {
@@ -55,7 +56,7 @@ int main()
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
-    init_state_machine(&sm);
+    init_application(&app);
     sei();
 
     while (true)
@@ -66,8 +67,8 @@ int main()
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
-            step_state(&sm, (event_t)event.value);
+            step_application(&app, (event_t)event.value);
         }
-        service_state_machine(&sm);
+        service_state_machine(&app.state_machines[app.active_state_machine_index]);
     }
 }
