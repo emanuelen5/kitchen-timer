@@ -13,5 +13,6 @@ typedef struct
 } application_t;
 
 void init_application(application_t *app);
+void step_application(application_t *app, event_t event);
 
 #endif // LIB_APPLICTION_H
