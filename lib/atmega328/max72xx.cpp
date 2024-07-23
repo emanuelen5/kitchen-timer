@@ -33,7 +33,7 @@ static void inline activate_cs(void)
 void max72xx_write_byte(uint8_t reg, uint8_t data)
 {
     activate_cs();
-    SPI_transmit_byte(reg);
+    SPI_transmit_byte((max72xx_reg_t)reg);
     SPI_transmit_byte(data);
     deactivate_cs();
 }
