@@ -22,12 +22,12 @@ void init_max72xx(void)
 
 static void inline deactivate_cs(void)
 {
-    PORTD |= bit(CS_PIN);
+    PORTB |= bit(CS_PIN);
 }
 
 static void inline activate_cs(void)
 {
-    PORTD &= ~bit(CS_PIN);
+    PORTB &= ~bit(CS_PIN);
 }
 
 void max72xx_write_byte(uint8_t reg, uint8_t data)
