@@ -3,7 +3,6 @@
 void handle_second_tick(application_t *app, event_t event);
 void handle_sm_change(application_t *app, event_t event);
 
-
 void init_application(application_t *app)
 {
     app->active_state_machine_index = 0;
@@ -17,7 +16,6 @@ void step_application(application_t *app, event_t event)
 {
     handle_second_tick(app, event);
     handle_sm_change(app, event);
-    step_state(&app->state_machines[app->active_state_machine_index], event);
 }
 
 void handle_second_tick(application_t *app, event_t event)
