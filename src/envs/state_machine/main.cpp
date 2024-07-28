@@ -68,7 +68,6 @@ int main()
         if (event.is_valid)
         {
             step_application(&app, (event_t)event.value);
-            step_state(&app.state_machines[app.active_state_machine_index], (event_t)event.value);
         }
         
     }
