@@ -6,11 +6,11 @@ void handle_sm_change(application_t *app, event_t event);
 
 void init_application(application_t *app)
 {
+    app->active_state_machine_index = 0;
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
         init_state_machine(&app->state_machines[i]);
     }
-    app->active_state_machine_index = 0;
 }
 
 void step_application(application_t *app, event_t event)
