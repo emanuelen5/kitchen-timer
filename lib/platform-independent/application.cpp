@@ -27,7 +27,7 @@ void handle_second_tick(application_t *app, event_t event)
             if(get_state(&app->state_machines[i]) == RUNNING)
             {
                 increment_sm_current_timer(&app->state_machines[i]);
-                if (get_state(&app->state_machines[i]) == RINGING)
+                if(get_state(&app->state_machines[i]) == RINGING)
                 {
                     app->active_state_machine_index = i;
                 }
@@ -41,6 +41,9 @@ void handle_sm_change(application_t *app, event_t event)
     if(event == DOUBLE_PRESS)
     {
         app->active_state_machine_index++;
+        if(app->active_state_machine_index >= MAX_TIMERS)
+        {
+            app->active_state_machine_index = 0;
+        }
     }
 }
-
