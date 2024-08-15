@@ -63,12 +63,11 @@ int main()
     {
         service_receive_UART();
         service_button_press();
-        service_state_machine(&app.state_machines[app.active_state_machine_index]);
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
             step_application(&app, (event_t)event.value);
         }
-        
+        service_application(&app);
     }
 }

@@ -27,6 +27,12 @@ void step_application(application_t *app, event_t event)
 
 }
 
+void service_application(application_t *app)
+{
+    service_state_machine(&app->state_machines[app->active_state_machine_index]);
+}
+
+
 void handle_second_tick(application_t *app, event_t event)
 {
     if(event == SECOND_TICK)
