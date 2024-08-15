@@ -145,7 +145,7 @@ uint16_t get_original_time(state_machine_t *sm)
 
 uint16_t get_current_time(state_machine_t *sm)
 {
-    return sm->timer.current_time;
+    return timer_get_current_time(&sm->timer);
 }
 
 state_t get_state(state_machine_t *sm)
