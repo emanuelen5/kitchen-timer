@@ -1,6 +1,7 @@
 #include "application.h"
 #include "UART.h"
 
+static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_next_state_machine(application_t *app);
 
 void init_application(application_t *app)
@@ -17,6 +18,12 @@ void step_application(application_t *app, event_t event)
 static void select_next_state_machine(application_t *app)
 {
     app->active_state_machine_index++;
+}
+
+static void pass_event_to_all_state_machines(application_t *app, event_t event)
+{
+    for (int8_t i = 0; i < MAX_TIMERS; i++)
+        step_state(&app->state_machines[i], event);
 }
 
 {
