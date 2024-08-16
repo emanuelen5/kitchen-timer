@@ -51,15 +51,6 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-void increment_sm_current_timer(state_machine_t *sm)
-{
-    increment_current_time(&sm->timer);
-    if (timer_is_finished(&sm->timer))
-            {
-                set_state(sm, RINGING);
-            }
-}
-
 void step_state(state_machine_t *sm, event_t event)
 {
     switch (sm->state)
@@ -97,7 +88,14 @@ void step_state(state_machine_t *sm, event_t event)
             set_state(sm, IDLE);
             break;
         case SECOND_TICK:
+            increment_current_time(&sm->timer);
             UART_printf("%d\n", sm->timer.current_time);
+            if (timer_is_finished(&sm->timer))
+            {
+                set_state(sm, RINGING);
+                UART_printf("Alarm goes off!!!\n");
+            }
+            break;
         default:
             break;
         }
