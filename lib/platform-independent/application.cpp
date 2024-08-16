@@ -1,8 +1,7 @@
 #include "application.h"
 #include "UART.h"
 
-void handle_second_tick(application_t *app, event_t event);
-void handle_sm_change(application_t *app, event_t event);
+static void select_next_state_machine(application_t *app);
 
 void init_application(application_t *app)
 {
@@ -14,6 +13,12 @@ void init_application(application_t *app)
 }
 
 void step_application(application_t *app, event_t event)
+
+static void select_next_state_machine(application_t *app)
+{
+    app->active_state_machine_index++;
+}
+
 {
     state_machine_t *active_sm = &app->state_machines[app->active_state_machine_index];
 
