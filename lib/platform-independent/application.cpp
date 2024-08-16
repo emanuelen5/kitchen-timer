@@ -1,8 +1,10 @@
 #include "application.h"
+#include "led-counter.h"
 #include "UART.h"
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_next_state_machine(application_t *app);
+static void debug_display(application_t *app);
 
 void init_application(application_t *app)
 {
@@ -26,17 +28,18 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
         step_state(&app->state_machines[i], event);
 }
 
+static void debug_display(application_t *app)
 {
     state_machine_t *active_sm = &app->state_machines[app->active_state_machine_index];
 
-    handle_second_tick(app, event);
-    handle_sm_change(app, event);
-    if(event != SECOND_TICK || get_state(active_sm) == RUNNING)
+    if (get_state(active_sm) == IDLE)
     {
-        UART_printf("T%d: ", app->active_state_machine_index);
-        step_state(active_sm, event);
+        set_counter(get_original_time(active_sm));
     }
-
+    if (get_state(active_sm) == RUNNING)
+    {
+        set_counter(get_current_time(active_sm));
+    }
 }
 
 void service_application(application_t *app)
