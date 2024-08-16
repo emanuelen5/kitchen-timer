@@ -127,15 +127,6 @@ void step_state(state_machine_t *sm, event_t event)
         }
         break;
     }
-
-    if (sm->state == IDLE)
-    {
-        set_counter(sm->timer.original_time);
-    }
-    if (sm->state == RUNNING)
-    {
-        set_counter(sm->timer.current_time);
-    }
 }
 
 uint16_t get_original_time(state_machine_t *sm)
