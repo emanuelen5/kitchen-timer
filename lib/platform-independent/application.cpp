@@ -1,6 +1,8 @@
 #include "application.h"
-#include "led-counter.h"
-#include "UART.h"
+
+ // These are provided by the program that includes the state machine 
+ void UART_printf(const char *f, ...); 
+ void set_counter(uint8_t v); 
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_next_state_machine(application_t *app);
