@@ -21,10 +21,6 @@ void step_application(application_t *app, event_t event)
     if(event == DOUBLE_PRESS)
     {
         select_next_state_machine(app);
-        if(app->active_state_machine_index >= MAX_TIMERS)
-        {
-            app->active_state_machine_index = 0;
-        }
     }
 
     else if(event == SECOND_TICK)
@@ -43,6 +39,10 @@ void step_application(application_t *app, event_t event)
 static void select_next_state_machine(application_t *app)
 {
     app->active_state_machine_index++;
+    if(app->active_state_machine_index >= MAX_TIMERS)
+    {
+        app->active_state_machine_index = 0;
+    }
 }
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event)
