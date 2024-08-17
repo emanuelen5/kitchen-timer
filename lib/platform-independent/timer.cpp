@@ -27,4 +27,9 @@ namespace state_machine
         return timer->current_time >= timer->original_time;
     }
 
+    uint16_t timer_get_current_time(timer_t *timer)
+    {
+        return timer->current_time;
+    }
+
 } // namespace state_machine
