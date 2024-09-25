@@ -35,7 +35,7 @@ static void inline activate_cs(void)
 void max72xx_write_byte(uint8_t device, uint8_t reg, uint8_t data)
 {
     activate_cs();
-    for( uint8_t d = MAX72XX_NUM_DEVICES; d > 0; d--)
+    for( uint8_t d = 0; d < MAX72XX_NUM_DEVICES; d++)
     {
         if ( d == device)
         {
