@@ -1,28 +1,31 @@
-#include "max72xx.h"
+#include "max72xx_matrix.h"
 #include <util/delay.h>
-
-uint8_t pattern[8] = {
-        0b01111110, // Row 0
-        0b01000010, // Row 1
-        0b01011010, // Row 2
-        0b01011010, // Row 3
-        0b01011010, // Row 4
-        0b01000010, // Row 5
-        0b01111110, // Row 6
-        0b00000000  // Row 7
-    };
 
 int main()
 {
-    init_max72xx();
-    max72xx_clear();
+    matrix_init();
 
     while(true)
     {
-        for (uint8_t i = 0; i < 8; i++) {
-            max72xx_write_byte(Max72XX_Digit0 + i, pattern[i]);
+        for (uint8_t x = 0; x < 16; x++)
+        {
+            for (uint8_t y = 0; y < 8; y++ )
+            {
+                matrix_set_pixel(x, y, true);
+                matrix_update();
+                _delay_ms(50);
+            }
         }
-        _delay_ms(1000);
+
+        for (uint8_t x = 0; x < 16; x++)
+        {
+            for (uint8_t y = 0; y < 8; y++ )
+            {
+                matrix_set_pixel(x, y, false);
+                matrix_update();
+                _delay_ms(50);
+            }
+        }
     }
     return 0;
 }
