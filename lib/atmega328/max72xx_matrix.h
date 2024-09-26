@@ -8,7 +8,7 @@
 
 void matrix_init(void);
 void matrix_clear(void);
-void matrix_set_pixel(uint8_t x, uint8_t y, bool on);
+void matrix_set_pixel(uint8_t col, uint8_t row, bool on);
 void matrix_update(void);
 
 #endif // LIB_MAX72XX_MATRIX_H
