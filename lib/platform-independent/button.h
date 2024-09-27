@@ -9,9 +9,10 @@ public:
     Button(void (*single_press_handler)(),
            void (*double_press_handler)(),
            void (*long_press_handler)());
+
     void press();
     void release();
-    void service();
+    virtual void service();
 
     static constexpr uint16_t long_press_threshold_ms = 2000;
     static constexpr uint16_t double_press_timeout_ms = 500;

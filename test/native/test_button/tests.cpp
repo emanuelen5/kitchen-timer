@@ -49,7 +49,6 @@ uint16_t millis(void)
 void tearDown(void)
 {
     delete state;
-    delete btn;
 }
 
 void on_single_press()

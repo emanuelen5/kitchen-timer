@@ -52,10 +52,6 @@ void Button::release()
     }
 }
 
-/* Assumptions:
- * - must be called every ms;
- * - needs exclusive access (on AVR => `cli()` before being called)
- */
 void Button::service()
 {
     if (is_pressed)

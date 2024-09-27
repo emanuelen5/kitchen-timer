@@ -11,6 +11,7 @@
 #include "millis.h"
 #include "util.h"
 #include "application.h"
+#include "avr_button.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -50,7 +51,7 @@ void second_tick_cb(void)
 
 int main()
 {
-    Button button(&on_single_press, &on_double_press, &on_long_press);
+    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
     init_UART();
     init_timer2_to_1s_interrupt(second_tick_cb);
@@ -64,7 +65,7 @@ int main()
     while (true)
     {
         service_receive_UART();
-        service_button_press();
+        button.service();
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {

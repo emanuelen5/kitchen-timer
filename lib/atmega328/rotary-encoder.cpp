@@ -66,7 +66,6 @@ static const uint16_t double_press_duration_ms = 500;
 static uint16_t last_trigger_PCINT0 = 0;
 ISR(PCINT2_vect)
 {
-
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
     {
         if (bit_is_clear(PIND, SW_PIN))
@@ -78,14 +77,4 @@ ISR(PCINT2_vect)
             button->release();
         }
     }
-}
-
-void service_button_press()
-{
-    uint8_t oldSREG = SREG;
-
-    button->service();
-
-    cli();
-    SREG = oldSREG;
 }
