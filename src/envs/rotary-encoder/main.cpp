@@ -18,17 +18,17 @@ void ccw_rotation_cb(void)
     decrement_counter();
 }
 
-void single_button_press_cb(void)
+void Button::on_single_press(void)
 {
     reset_led_counter();
 }
 
-void double_button_press_cb(void)
+void Button::on_double_press(void)
 {
     reset_led_counter();
 }
 
-void long_button_press_cb(void)
+void Button::on_long_press(void)
 {
     reset_led_counter();
 }
@@ -38,7 +38,7 @@ int main()
 {
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
     increment_counter();
     sei();
 

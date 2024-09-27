@@ -10,6 +10,9 @@ Button::Button()
 
 void Button::press()
 {
+    if (is_pressed)
+        return;
+
     is_pressed = true;
     press_count++;
 

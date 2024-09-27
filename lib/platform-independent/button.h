@@ -19,6 +19,7 @@ private:
     uint8_t press_count;
     bool is_pressed;
 
+    // Must be implemented by user
     void on_single_press();
     void on_double_press();
     void on_long_press();

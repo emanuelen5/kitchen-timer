@@ -8,13 +8,10 @@
 
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
-static event_cb_t single_button_press;
-static event_cb_t double_button_press;
-static event_cb_t long_button_press;
 
-struct button button;
+static Button button;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, event_cb_t single_button_press_cb, event_cb_t double_button_press_cb, event_cb_t long_button_press_cb)
+void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
 {
     init_millis();
     DDRD &= 0;
@@ -28,13 +25,11 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     PCICR |= bit(PCIE2);               // Enable Pin Change Interrupt for pin bank D
     PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
     SREG = sreg;
-    
+
+    button = Button();
 
     cw_rotation = cw_rotation_cb;
     ccw_rotation = ccw_rotation_cb;
-    single_button_press = single_button_press_cb;
-    double_button_press = double_button_press_cb;
-    long_button_press = long_button_press_cb;
 }
 
 static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
@@ -74,58 +69,22 @@ ISR(PCINT2_vect)
 
     if (should_retrigger_after_sw_debounce(&last_trigger_PCINT0))
     {
-        const bool button_goes_from_released_to_pressed = bit_is_clear(PIND, SW_PIN) && !button.pressed_down;
-        const bool button_goes_from_pressed_to_released = !bit_is_clear(PIND, SW_PIN) && button.pressed_down;
-        if (button_goes_from_released_to_pressed)
+        if (bit_is_clear(PIND, SW_PIN))
         {
-            button.pressed_down = true;
-            button.press_start_time_ms = millis();
-            button.press_count++;
-        } else if (button_goes_from_pressed_to_released) {
-            button.pressed_down = false;
+            button.press();
+        }
+        else
+        {
+            button.release();
         }
     }
-}
-
-void reset_button_press()
-{
-    button.press_count = 0;
-    button.press_start_time_ms = 0;
-}
-
-uint16_t time_since_initial_button_press()
-{
-    return (millis() - button.press_start_time_ms);
 }
 
 void service_button_press()
 {
     uint8_t oldSREG = SREG;
 
-    const uint16_t button_timer = time_since_initial_button_press();
-    const bool button_pressed_ones = !button.pressed_down && button.press_count == 1 &&  button_timer > double_press_duration_ms;
-    const bool button_pressed_twice = !button.pressed_down && button.press_count == 2 && button_timer <= double_press_duration_ms;
-    const bool button_longpressed = button.pressed_down && button_timer >= long_press_duration_ms;
-    if(button_longpressed)
-    {
-        long_button_press();
-        reset_button_press();
-        return;
-    }
-
-    if(button_pressed_twice)
-    {
-        double_button_press();
-        reset_button_press();
-        return;
-    }
-
-    if(button_pressed_ones)
-    {
-        single_button_press();
-        reset_button_press();
-        return;
-    }
+    button.service();
 
     cli();
     SREG = oldSREG;

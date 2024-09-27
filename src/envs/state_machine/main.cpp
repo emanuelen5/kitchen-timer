@@ -28,17 +28,17 @@ void ccw_rotation_cb(void)
     add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
-void single_button_press_cb(void)
+void Button::on_single_press(void)
 {
     add_to_queue(&eventQueue, SINGLE_PRESS);
 }
 
-void double_button_press_cb(void)
+void Button::on_double_press(void)
 {
     add_to_queue(&eventQueue, DOUBLE_PRESS);
 }
 
-void long_button_press_cb(void)
+void Button::on_long_press(void)
 {
     add_to_queue(&eventQueue, LONG_PRESS);
 }
@@ -55,7 +55,7 @@ int main()
     init_millis();
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb);
     init_application(&app);
     sei();
 
