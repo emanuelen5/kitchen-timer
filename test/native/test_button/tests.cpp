@@ -1,6 +1,10 @@
 #include <unity.h>
 #include "button.h"
 
+void on_single_press(void);
+void on_double_press(void);
+void on_long_press(void);
+
 Button *btn;
 class TestState
 {
@@ -34,7 +38,7 @@ TestState *state;
 void setUp(void)
 {
     state = new TestState();
-    btn = new Button();
+    btn = new Button(&on_single_press, &on_double_press, &on_long_press);
 }
 
 uint16_t millis(void)
@@ -48,17 +52,17 @@ void tearDown(void)
     delete btn;
 }
 
-void Button::on_single_press()
+void on_single_press()
 {
     state->single_presses++;
 }
 
-void Button::on_double_press()
+void on_double_press()
 {
     state->double_presses++;
 }
 
-void Button::on_long_press()
+void on_long_press()
 {
     state->long_presses++;
 }

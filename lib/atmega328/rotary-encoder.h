@@ -11,7 +11,7 @@
 //Funtion pointer declaration
 typedef void (*event_cb_t)(void);
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb);
+void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, Button &button_);
 void service_button_press();
 
 #endif // ROTARY_ENCODER_H

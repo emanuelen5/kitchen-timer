@@ -9,9 +9,9 @@
 static event_cb_t cw_rotation;
 static event_cb_t ccw_rotation;
 
-static Button button;
+static Button *button = nullptr;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
+void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, Button &button_)
 {
     init_millis();
     DDRD &= 0;
@@ -26,7 +26,7 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb)
     PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
     SREG = sreg;
 
-    button = Button();
+    button = &button_;
 
     cw_rotation = cw_rotation_cb;
     ccw_rotation = ccw_rotation_cb;
@@ -71,11 +71,11 @@ ISR(PCINT2_vect)
     {
         if (bit_is_clear(PIND, SW_PIN))
         {
-            button.press();
+            button->press();
         }
         else
         {
-            button.release();
+            button->release();
         }
     }
 }
@@ -84,7 +84,7 @@ void service_button_press()
 {
     uint8_t oldSREG = SREG;
 
-    button.service();
+    button->service();
 
     cli();
     SREG = oldSREG;

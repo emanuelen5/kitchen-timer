@@ -6,7 +6,9 @@
 class Button
 {
 public:
-    Button();
+    Button(void (*single_press_handler)(),
+           void (*double_press_handler)(),
+           void (*long_press_handler)());
     void press();
     void release();
     void service();
@@ -19,10 +21,14 @@ private:
     uint8_t press_count;
     bool is_pressed;
 
-    // Must be implemented by user
-    void on_single_press();
-    void on_double_press();
-    void on_long_press();
+    // Callbacks provided by user
+    void (*on_single_press)();
+    void (*on_double_press)();
+    void (*on_long_press)();
+
+    void invoke_single_press(void);
+    void invoke_double_press(void);
+    void invoke_long_press(void);
 };
 
 #endif // LIB_BUTTON_H
