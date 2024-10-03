@@ -3,7 +3,7 @@
 
 #include "stdint.h"
 
-#define MAX72XX_NUM_DEVICES 2
+#define MAX72XX_NUM_DEVICES 4
 
 typedef enum
 {
