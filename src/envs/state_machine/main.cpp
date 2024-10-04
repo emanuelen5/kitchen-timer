@@ -19,14 +19,13 @@ uint8_t event_queue_buffer[queue_buffer_size];
 
 application_t app;
 
-void cw_rotation_cb(void)
+void rotation_cb(rotation_dir_t dir, bool held_down)
 {
-    add_to_queue(&eventQueue, CW_ROTATION);
-}
-
-void ccw_rotation_cb(void)
-{
-    add_to_queue(&eventQueue, CCW_ROTATION);
+    UNUSED held_down;
+    if (dir == cw)
+        add_to_queue(&eventQueue, CW_ROTATION);
+    else if (dir == ccw)
+        add_to_queue(&eventQueue, CCW_ROTATION);
 }
 
 void on_single_press(void)
@@ -58,7 +57,7 @@ int main()
     init_millis();
     init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button);
+    init_rotary_encoder(rotation_cb, button);
     init_application(&app);
     sei();
 

@@ -6,12 +6,11 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 
-static event_cb_t cw_rotation;
-static event_cb_t ccw_rotation;
+static rotation_cb_t rotation;
 
 static Button *button = nullptr;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, Button &button_)
+void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
 {
     init_millis();
     DDRD &= 0;
@@ -28,8 +27,7 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
 
     button = &button_;
 
-    cw_rotation = cw_rotation_cb;
-    ccw_rotation = ccw_rotation_cb;
+    rotation = rotation_cb;
 }
 
 static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
@@ -54,10 +52,8 @@ ISR(INT0_vect)
         uint8_t bank = PIND; // Read all values in the same time instant
         bool clk = bit_is_set(bank, CLK_PIN);
         bool dt = bit_is_set(bank, DT_PIN);
-        if (clk == dt)
-            ccw_rotation();
-        else
-            cw_rotation();
+        const rotation_dir_t dir = clk == dt ? ccw : cw;
+        rotation(dir, false);
     }
 }
 

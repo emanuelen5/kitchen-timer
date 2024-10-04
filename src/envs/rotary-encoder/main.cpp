@@ -9,14 +9,13 @@
 
 volatile unsigned long last_trigger = 0;
 
-void cw_rotation_cb(void)
+void rotation_cb(rotation_dir_t dir, bool held_down)
 {
-    increment_counter();
-}
-
-void ccw_rotation_cb(void)
-{
-    decrement_counter();
+    UNUSED held_down;
+    if (dir == cw)
+        increment_counter();
+    else if (dir == ccw)
+        decrement_counter();
 }
 
 void on_single_press(void)
@@ -40,7 +39,7 @@ int main()
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button);
+    init_rotary_encoder(rotation_cb, button);
     increment_counter();
     sei();
 
