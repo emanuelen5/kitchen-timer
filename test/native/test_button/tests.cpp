@@ -15,12 +15,12 @@ public:
     uint16_t time_ms;
     int single_presses, double_presses, long_presses;
 
-    void increment_time(uint16_t ms)
+    void increment_time(uint16_t ms, bool should_service = true)
     {
-        set_time(time_ms + ms);
+        set_time(time_ms + ms, should_service);
     }
 
-    void set_time(uint16_t ms)
+    void set_time(uint16_t ms, bool should_service = true)
     {
         TEST_ASSERT_TRUE_MESSAGE(ms > time_ms, "Cannot go back in time");
         while (time_ms < ms)
@@ -28,7 +28,8 @@ public:
             time_ms++;
             // We have to call the service routine every millisecond to
             // guarantee operation
-            btn->service();
+            if (should_service)
+                btn->service();
         }
     }
 };
@@ -101,14 +102,23 @@ void test_double_press(void)
     TEST_ASSERT_BUTTON_STATE(false, true, false);
 }
 
-void test_long_press(void)
+void test_long_press_is_registered_on_release(void)
 {
+    bool should_service = false;
     btn->press();
-    state->increment_time(Button::long_press_threshold_ms + 1);
+    state->increment_time(Button::long_press_threshold_ms + 1, should_service);
     TEST_ASSERT_BUTTON_STATE(false, false, false);
 
     btn->release();
 
+    TEST_ASSERT_BUTTON_STATE(false, false, 1);
+}
+
+void test_long_press_is_registered_before_release(void)
+{
+    bool should_service = true;
+    btn->press();
+    state->increment_time(Button::long_press_threshold_ms + 100, should_service);
     TEST_ASSERT_BUTTON_STATE(false, false, 1);
 }
 
@@ -145,7 +155,8 @@ int main()
 
     RUN_TEST(test_single_press);
     RUN_TEST(test_double_press);
-    RUN_TEST(test_long_press);
+    RUN_TEST(test_long_press_is_registered_before_release);
+    RUN_TEST(test_long_press_is_registered_on_release);
     RUN_TEST(test_single_press_too_slow_for_double);
     RUN_TEST(test_press_twice);
 

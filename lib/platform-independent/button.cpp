@@ -44,29 +44,29 @@ void Button::release()
     uint16_t now = millis();
     uint16_t press_duration = now - last_press_time;
 
-    if (press_duration > long_press_threshold_ms)
+    if (press_count == 1)
     {
-        invoke_long_press();
+        if (press_duration > long_press_threshold_ms)
+            invoke_long_press();
+        else if (press_duration > double_press_timeout_ms)
+            invoke_single_press();
     }
 }
 
 void Button::service()
 {
-    if (is_pressed)
-        return;
-
     uint16_t now = millis();
     uint16_t ms_since_press = now - last_press_time;
-    if (ms_since_press <= double_press_timeout_ms)
-        return;
 
-    if (press_count == 1)
+    if (press_count == 1 && is_pressed && ms_since_press > long_press_threshold_ms)
+    {
+        invoke_long_press();
+        return;
+    }
+
+    if (press_count == 1 && !is_pressed && ms_since_press > double_press_timeout_ms)
     {
         invoke_single_press();
-    }
-    else if (press_count == 2)
-    {
-        invoke_double_press();
     }
 }
 
