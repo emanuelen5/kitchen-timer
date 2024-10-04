@@ -53,7 +53,7 @@ ISR(INT0_vect)
         bool clk = bit_is_set(bank, CLK_PIN);
         bool dt = bit_is_set(bank, DT_PIN);
         const rotation_dir_t dir = clk == dt ? ccw : cw;
-        rotation(dir, false);
+        rotation(dir, button->get_is_pressed());
     }
 }
 
