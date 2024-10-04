@@ -10,7 +10,7 @@ class TestState
 {
 public:
     TestState()
-        : time_ms(0), single_presses(0), double_presses(0), long_presses(0){};
+        : time_ms(0), single_presses(0), double_presses(0), long_presses(0) {};
 
     uint16_t time_ms;
     int single_presses, double_presses, long_presses;

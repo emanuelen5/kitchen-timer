@@ -30,7 +30,6 @@ void Button::press()
     if (is_double_press)
     {
         invoke_double_press();
-        press_count = 0;
     }
 
     last_press_time = now;
@@ -48,7 +47,6 @@ void Button::release()
     if (press_duration > long_press_threshold_ms)
     {
         invoke_long_press();
-        press_count = 0;
     }
 }
 
@@ -65,29 +63,30 @@ void Button::service()
     if (press_count == 1)
     {
         invoke_single_press();
-        press_count = 0;
     }
     else if (press_count == 2)
     {
         invoke_double_press();
-        press_count = 0;
     }
 }
 
 void Button::invoke_single_press()
 {
+    press_count = 0;
     if (on_single_press)
         on_single_press();
 };
 
 void Button::invoke_double_press()
 {
+    press_count = 0;
     if (on_double_press)
         on_double_press();
 };
 
 void Button::invoke_long_press()
 {
+    press_count = 0;
     if (on_long_press)
         on_long_press();
 };
