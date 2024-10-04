@@ -114,6 +114,17 @@ void test_long_press_is_registered_on_release(void)
     TEST_ASSERT_BUTTON_STATE(false, false, 1);
 }
 
+void test_long_press_isnt_triggered_after_clearing_events(void)
+{
+    btn->press();
+    btn->cancel_pending_event();
+    state->increment_time(Button::long_press_threshold_ms + 1);
+
+    btn->release();
+
+    TEST_ASSERT_BUTTON_STATE(false, false, false);
+}
+
 void test_long_press_is_registered_before_release(void)
 {
     bool should_service = true;
@@ -157,6 +168,7 @@ int main()
     RUN_TEST(test_double_press);
     RUN_TEST(test_long_press_is_registered_before_release);
     RUN_TEST(test_long_press_is_registered_on_release);
+    RUN_TEST(test_long_press_isnt_triggered_after_clearing_events);
     RUN_TEST(test_single_press_too_slow_for_double);
     RUN_TEST(test_press_twice);
 

@@ -19,6 +19,12 @@ public:
         return is_pressed;
     }
 
+    // Used to cancel long-press
+    inline void cancel_pending_event()
+    {
+        press_count = 0;
+    };
+
     static constexpr uint16_t long_press_threshold_ms = 2000;
     static constexpr uint16_t double_press_timeout_ms = 500;
 
