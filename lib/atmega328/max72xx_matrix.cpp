@@ -60,3 +60,13 @@ void matrix_update(void) {
     }
 }
 
+void matrix_clear(void) {
+    for (uint8_t row = 0; row < ROW_COUNT; row++)
+    {
+        for (uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
+        {
+            matrix_buffer[device][row] = 0x00;
+        }
+    }
+    matrix_update();
+}
