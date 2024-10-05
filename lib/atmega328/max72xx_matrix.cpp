@@ -40,29 +40,23 @@ void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on)
     matrix_buffer[device_index][row_index] = row_value;
 }
 
-void matrix_set_pixel(uint8_t col, uint8_t row, bool on) {
-    if (col >= MATRIX_WIDTH || row >= MATRIX_HEIGHT) return;
-    
-    matrix_buffer[row][col] = on ? 1 : 0;
+static inline void matrix_update_all_for_row(uint8_t row)
+{
+    max72xx_cmd_t cmds[MAX72XX_NUM_DEVICES];
+
+    for (uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
+    {
+        cmds[device].reg = (max72xx_reg_t)(Max72XX_Digit0 + row);
+        cmds[device].data = matrix_buffer[device][row];
+    }
+
+    max72xx_send_commands(cmds, MAX72XX_NUM_DEVICES);
 }
 
 void matrix_update(void) {
-    for (uint8_t row = 0; row < MATRIX_HEIGHT; row++) {
-        for (uint8_t col_device = 0; col_device < 2; col_device++) { // Two columns of devices
-            uint8_t row_buffer = 0;
-            
-            for (uint8_t col = 0; col < 8; col++) {
-                uint8_t column_position = col + (col_device * 8);
-                if (matrix_buffer[row][column_position]) {
-                    row_buffer |= bit(col);
-                }
-            }
-            
-            uint8_t device = col_device + (row / 8) * 2;
-            uint8_t row_index = row % 8;
-            
-            max72xx_write_byte(device, Max72XX_Digit0 + row_index, row_buffer);
-        }
+    for (uint8_t row=0; row < ROW_COUNT; row++)
+    {
+        matrix_update_all_for_row(row);
     }
 }
 
