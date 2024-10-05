@@ -6,7 +6,8 @@
 
 #define CS_PIN PB2
 
-void max72xx_write_byte(uint8_t device, uint8_t reg, uint8_t data);
+void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
+void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 
 void init_max72xx(void)
 {
@@ -32,21 +33,14 @@ static void inline activate_cs(void)
     PORTB &= ~bit(CS_PIN);
 }
 
-void max72xx_write_byte(uint8_t device, uint8_t reg, uint8_t data)
+
+void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length)
 {
     activate_cs();
-    for( uint8_t d = 0; d < MAX72XX_NUM_DEVICES; d++)
+    for (uint8_t device = 0; device < length; device++)
     {
-        if ( d == device)
-        {
-            SPI_transmit_byte(reg);
-            SPI_transmit_byte(data);
-        }
-        else
-        {
-            SPI_transmit_byte(Max72XX_Command_Nop);
-            SPI_transmit_byte(0x00);
-        }
+        SPI_transmit_byte(cmds[device].reg);
+        SPI_transmit_byte(cmds[device].data);
     }
     deactivate_cs();
 }

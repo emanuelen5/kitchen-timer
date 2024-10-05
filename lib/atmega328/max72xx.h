@@ -30,8 +30,7 @@ typedef struct
 } max72xx_cmd_t;
 
 void init_max72xx(void);
-void max72xx_write_byte(uint8_t device, uint8_t reg, uint8_t data);
-void max72xx_clear(void);
+void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
 void max72xx_set_intensity(uint8_t intensity);
 void max72xx_shutdown(bool shutdown);
 void max72xx_display_test(bool test_mode);
