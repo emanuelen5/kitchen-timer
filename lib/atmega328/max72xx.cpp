@@ -12,15 +12,12 @@ void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 void init_max72xx(void)
 {
     init_SPI(CS_PIN);
-    for (uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
-    {
-        max72xx_write_byte(device, Max72XX_Shutdown, 0x01);     //normal shutdown
-        max72xx_write_byte(device, Max72XX_Scan_Limit, 0x07);   //8 digits scan limit
-        max72xx_write_byte(device, Max72XX_Decode_Mode, 0x00);  //disable decode mode
-        max72xx_write_byte(device, Max72XX_Intensity, 0x0F);    //brightness
-        max72xx_write_byte(device, Max72XX_Display_Test, 0x00); //disable_display_test
-    }
-    max72xx_clear();
+
+    max72xx_send_commands_to_all(Max72XX_Shutdown, 0x01);        // normal operation (exit shutdown mode)
+    max72xx_send_commands_to_all(Max72XX_Scan_Limit, 0x07);      // 8 digits scan limit
+    max72xx_send_commands_to_all(Max72XX_Decode_Mode, 0x00);     // disable decode mode
+    max72xx_send_commands_to_all(Max72XX_Intensity, 0x0F);       // set brightness
+    max72xx_send_commands_to_all(Max72XX_Display_Test, 0x00);    // disable display test
 }
 
 static void inline deactivate_cs(void)
@@ -45,39 +42,34 @@ void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length)
     deactivate_cs();
 }
 
-void max72xx_clear(void)
+void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data)
 {
-    for(uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
+    max72xx_cmd_t cmds[MAX72XX_NUM_DEVICES];
+    for (int i=0; i < MAX72XX_NUM_DEVICES; i++)
     {
-        for (uint8_t i = 0; i < 8; i++)
-        {
-            max72xx_write_byte(device, Max72XX_Digit0 + i, 0x00);
-        }
+        cmds[i].reg = reg;
+        cmds[i].data = data;
     }
+    max72xx_send_commands(cmds, MAX72XX_NUM_DEVICES);
+}
+
+void max72xx_clear(max72xx_reg_t row)
+{
+    max72xx_send_commands_to_all(row, 0x00);
 }
 
 void max72xx_set_intensity(uint8_t intensity)
 {
     if(intensity > 0x0F) intensity = 0x0F;
-
-    for (uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
-    {
-        max72xx_write_byte(device, Max72XX_Intensity, intensity);
-    }
+    max72xx_send_commands_to_all(Max72XX_Intensity, intensity);
 }
 
 void max72xx_shutdown(bool shutdown_mode)
 {
-    for(uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
-    {
-        max72xx_write_byte(device, Max72XX_Shutdown, shutdown_mode ? 0x00 : 0x01);
-    }
+    max72xx_send_commands_to_all(Max72XX_Shutdown, shutdown_mode ? 0x00 : 0x01);
 }
 
 void max72xx_display_test(bool test_mode)
 {
-    for(uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
-    {
-        max72xx_write_byte(device, Max72XX_Display_Test, test_mode ? 0x01 : 0x00);
-    }
+    max72xx_send_commands_to_all(Max72XX_Display_Test, test_mode ? 0x00 : 0x01);
 }
