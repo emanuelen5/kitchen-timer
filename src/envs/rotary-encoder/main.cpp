@@ -5,6 +5,7 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "rotary-encoder.h"
+#include "avr_button.h"
 
 volatile unsigned long last_trigger = 0;
 
@@ -18,17 +19,17 @@ void ccw_rotation_cb(void)
     decrement_counter();
 }
 
-void single_button_press_cb(void)
+void on_single_press(void)
 {
     reset_led_counter();
 }
 
-void double_button_press_cb(void)
+void on_double_press(void)
 {
     reset_led_counter();
 }
 
-void long_button_press_cb(void)
+void on_long_press(void)
 {
     reset_led_counter();
 }
@@ -36,9 +37,10 @@ void long_button_press_cb(void)
 
 int main()
 {
+    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
     init_led_counter();
 
-    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, single_button_press_cb, double_button_press_cb, long_button_press_cb);
+    init_rotary_encoder(cw_rotation_cb, ccw_rotation_cb, button);
     increment_counter();
     sei();
 
@@ -48,6 +50,7 @@ int main()
         {
             reset_led_counter();
         }
+        button.service();
     }
 
     return 0;
