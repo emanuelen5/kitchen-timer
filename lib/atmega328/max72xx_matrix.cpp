@@ -35,10 +35,19 @@ void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on)
 
     uint8_t row_value = matrix_buffer[device_index][row_index];
 
-    row_value &= ~bit(bit_offset);
-    row_value |= (is_on ? bit(bit_offset) : 0);
+    if(is_on)
+    {
+        row_value |= bit(bit_offset);
+    }
+    else
+    {
+        row_value &= ~bit(bit_offset);
+    }
+
     matrix_buffer[device_index][row_index] = row_value;
 }
+
+
 
 static inline void matrix_update_all_for_row(uint8_t row)
 {
