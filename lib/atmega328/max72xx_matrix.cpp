@@ -55,8 +55,9 @@ static inline void matrix_update_all_for_row(uint8_t row)
 
     for (uint8_t device = 0; device < MAX72XX_NUM_DEVICES; device++)
     {
-        cmds[device].reg = (max72xx_reg_t)(Max72XX_Digit0 + row);
-        cmds[device].data = matrix_buffer[device][row];
+        const uint8_t spi_buffer_index = MAX72XX_NUM_DEVICES - 1 - device; // We send the last one first since they are shifted in
+        cmds[spi_buffer_index].reg = (max72xx_reg_t)(Max72XX_Digit0 + row);
+        cmds[spi_buffer_index].data = matrix_buffer[device][row];
     }
 
     max72xx_send_commands(cmds, MAX72XX_NUM_DEVICES);
