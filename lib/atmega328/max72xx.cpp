@@ -53,11 +53,6 @@ void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data)
     max72xx_send_commands(cmds, MAX72XX_NUM_DEVICES);
 }
 
-void max72xx_clear(max72xx_reg_t row)
-{
-    max72xx_send_commands_to_all(row, 0x00);
-}
-
 void max72xx_set_intensity(uint8_t intensity)
 {
     if(intensity > 0x0F) intensity = 0x0F;
