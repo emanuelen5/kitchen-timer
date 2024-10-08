@@ -7,7 +7,8 @@
 void init_SPI(uint8_t cs_pin) {
     DDRB |= bit(PB3) | bit(PB5) | bit(cs_pin); // Set MOSI, SCK, and CS as output
 
-    SPCR = bit(SPE) | bit(MSTR) | bit(SPR1); //Enable SPI, Set as Master, Prescaler: Oscillator Frequency/64
+    SPCR = bit(SPE) | bit(MSTR) | bit(SPR1); //Enable SPI, Set as Master, Prescaler: Oscillator Frequency/16.
+    //TODO: Adjust the prescaler once we get the real PCB.
 
     PORTB |= bit(cs_pin); //start with slave pin not selected
 }
