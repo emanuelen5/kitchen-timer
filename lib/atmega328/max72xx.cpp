@@ -4,7 +4,7 @@
 #include "util.h"
 #include "SPI.h"
 
-#define CS_PIN PB2
+#define CS_PIN PB0
 
 void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
 void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
