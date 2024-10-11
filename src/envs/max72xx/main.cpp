@@ -5,14 +5,12 @@ int main()
 {
     matrix_init();
 
-    while(true)
+    while (true)
     {
-
-
 
         for (uint8_t x = 0; x < 16; x++)
         {
-            for (uint8_t y = 0; y < 16; y++ )
+            for (uint8_t y = 0; y < 16; y++)
             {
                 matrix_set_pixel(x, y, true);
                 matrix_update();
@@ -22,7 +20,7 @@ int main()
 
         for (uint8_t x = 0; x < 16; x++)
         {
-            for (uint8_t y = 0; y < 16; y++ )
+            for (uint8_t y = 0; y < 16; y++)
             {
                 matrix_set_pixel(x, y, false);
                 matrix_update();

@@ -22,8 +22,8 @@ void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, 
     EIMSK |= bit(INT0);                // Interrupt enable INT0
     EICRA |= ~bit(ISC01) | bit(ISC00); // any change interrupt on INT0
 
-    PCICR |= bit(PCIE2);               // Enable Pin Change Interrupt for pin bank D
-    PCMSK2 |= bit(SW_PIN);             // Set mask to look for SW_PIN
+    PCICR |= bit(PCIE2);   // Enable Pin Change Interrupt for pin bank D
+    PCMSK2 |= bit(SW_PIN); // Set mask to look for SW_PIN
     SREG = sreg;
 
     button = &button_;
