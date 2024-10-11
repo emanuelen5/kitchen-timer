@@ -1,17 +1,14 @@
 #include "SPI.h"
 #include "util.h"
 
-#define CLK_PIN PB5
-#define DATA_PIN PB3
-
-void init_SPI(uint8_t cs_pin)
+void init_SPI(void)
 {
-    DDRB |= bit(PB3) | bit(PB5) | bit(cs_pin); // Set MOSI, SCK, and CS as output
+    DDRB |= bit(DATA_PIN) | bit(CLK_PIN) | bit(CS_PIN);
 
     SPCR = bit(SPE) | bit(MSTR) | bit(SPR1); // Enable SPI, Set as Master, Prescaler: Oscillator Frequency/16.
     // TODO: Adjust the prescaler once we get the real PCB.
 
-    PORTB |= bit(cs_pin); // start with slave pin not selected
+    deactivate_cs();
 }
 
 void SPI_transmit_byte(uint8_t byte)
