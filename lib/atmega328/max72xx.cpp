@@ -21,12 +21,12 @@ void init_max72xx(void)
     max72xx_send_commands_to_all(Max72XX_Display_Test, 0x00);    // disable display test
 }
 
-static void inline deactivate_cs(void)
+void deactivate_cs(void)
 {
     PORTB |= bit(CS_PIN);
 }
 
-static void inline activate_cs(void)
+void activate_cs(void)
 {
     PORTB &= ~bit(CS_PIN);
 }

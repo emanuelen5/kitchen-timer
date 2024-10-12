@@ -43,5 +43,7 @@ void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 void max72xx_set_intensity(uint8_t intensity);
 void max72xx_shutdown(bool shutdown);
 void max72xx_display_test(bool test_mode);
+void deactivate_cs(void);
+void activate_cs(void);
 
 #endif // LIB_MAX72XX_H
