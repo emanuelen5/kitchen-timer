@@ -1,4 +1,5 @@
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include <util.h>
 
 static uint8_t matrix_buffer[MAX72XX_NUM_DEVICES][ROW_COUNT];
@@ -45,8 +46,6 @@ void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on)
 
     matrix_buffer[device_index][row_index] = row_value;
 }
-
-
 
 static inline void matrix_update_all_for_row(uint8_t row)
 {
