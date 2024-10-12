@@ -8,10 +8,16 @@
 #define DT_PIN PD3  // INT1
 #define SW_PIN PD4  // PCINT0
 
-// Funtion pointer declaration
-typedef void (*event_cb_t)(void);
+typedef enum
+{
+    ccw,
+    cw,
+} rotation_dir_t;
 
-void init_rotary_encoder(event_cb_t cw_rotation_cb, event_cb_t ccw_rotation_cb, Button &button_);
+//Funtion pointer declaration
+typedef void (*rotation_cb_t)(rotation_dir_t dir, bool held_down);
+
+void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_);
 void service_button_press();
 
 #endif // ROTARY_ENCODER_H
