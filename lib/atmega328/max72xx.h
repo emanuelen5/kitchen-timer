@@ -29,6 +29,14 @@ typedef struct
     uint8_t data;
 } max72xx_cmd_t;
 
+typedef struct {
+    max72xx_cmd_t *cmds;
+    uint8_t length;
+    uint8_t index;
+} SPI_context_t;
+
+extern SPI_context_t spi_cmds;
+
 void init_max72xx(void);
 void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
 void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);

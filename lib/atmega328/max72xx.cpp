@@ -1,12 +1,13 @@
+#include "SPI.h"
 #include "max72xx.h"
 #include <avr/io.h>
 #include <util/delay.h>
 #include "util.h"
-#include "SPI.h"
 
 #define CS_PIN PB2
 
-void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
+SPI_context_t spi_cmds;
+
 void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 
 void init_max72xx(void)
@@ -30,16 +31,12 @@ static void inline activate_cs(void)
     PORTB &= ~bit(CS_PIN);
 }
 
-
 void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length)
 {
+    spi_cmds = {cmds, length, 0}; //struct that is passed to the ISR(SPI_STC_vect)
+
     activate_cs();
-    for (uint8_t device = 0; device < length; device++)
-    {
-        SPI_transmit_byte(cmds[device].reg);
-        SPI_transmit_byte(cmds[device].data);
-    }
-    deactivate_cs();
+    SPI_transmit_byte(spi_cmds.cmds[spi_cmds.index/2].reg);
 }
 
 void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data)
