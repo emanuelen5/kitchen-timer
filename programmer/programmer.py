@@ -4,6 +4,15 @@ import sys
 from argparse import ArgumentParser
 from pathlib import Path
 
+from binary_protocol import (
+    Packet,
+    PacketTypes,
+    create_boot_message,
+    create_signature_message,
+    create_write_message,
+    packet_size,
+    start_byte,
+)
 from intel_hexfile import read_all_pagedata
 from serial import Serial, SerialException
 from serial.tools.list_ports import comports
@@ -25,7 +34,7 @@ def print_available_comports():
 
 def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
     try:
-        return Serial(portname, baudrate)
+        return Serial(portname, baudrate, timeout=0.5)
     except SerialException:
         print(
             f"ERROR: Failed to get a hold of the serial port {portname}.",
@@ -35,9 +44,28 @@ def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
         sys.exit(1)
 
 
+def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
+    s.reset_input_buffer()
+    s.write(create_signature_message())
+
+    data = s.read(packet_size(data_count=0))
+    print("data", data.hex())
+    p = Packet.from_bytes(data)
+    print("Packet", p)
+
+    errors = p.get_any_validation_errors()
+    assert not errors, f"Got validation errors for packet: {errors}"  # throw and retry
+    assert p.ptype is PacketTypes.ack  # throw and retry
+    assert (  # this is really bad
+        p.data == expected_signature
+    ), f"Signature doesn't match. Got {p.data}. Wanted {expected_signature}"
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("hexfile", type=Path)
+    parser.add_argument("--verbose", "-v", action="store_true")
+    parser.add_argument("--dry-run", "-n", action="store_true")
     pg_serial = parser.add_argument_group("Serial connection")
     pge_port = pg_serial.add_mutually_exclusive_group()
     pge_port.add_argument(
@@ -51,13 +79,18 @@ def main():
 
     pages = read_all_pagedata(args.hexfile)
 
-    print_stats(args, pages)
+    if args.dry_run or args.verbose:
+        print_stats(args, pages)
 
     if args.list_ports:
         print_available_comports()
         return
 
+    if args.dry_run:
+        sys.exit(0)
+
     serial = attempt_serial_connection(args.port, args.baudrate)
+    serial.write(b"asd")
 
 
 if __name__ == "__main__":
