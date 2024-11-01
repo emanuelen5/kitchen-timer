@@ -116,7 +116,13 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    setup_fuses(avr, (fuses_t){.lfuse = 0xff, .hfuse = 0xff, .efuse = 0xff});
+    setup_fuses(
+        avr,
+        (fuses_t){
+            .lfuse = 0x62,
+            .hfuse = 0xD0,
+            .efuse = 0xFF,
+        });
 
     snprintf(flash_data.avr_flash_path, sizeof(flash_data.avr_flash_path),
              "simduino_%s_flash.bin", mmcu);
