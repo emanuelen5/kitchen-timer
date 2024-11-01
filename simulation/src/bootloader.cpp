@@ -2,6 +2,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 extern "C"
 {
@@ -9,11 +10,9 @@ extern "C"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
-#include "sim_vcd_file.h"
 }
 
 uart_pty_t uart_pty;
-avr_vcd_t vcd_file;
 
 struct avr_flash
 {
