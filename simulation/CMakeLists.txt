@@ -9,9 +9,9 @@ init_git_submodule(simavr)
 set(SIMAVR_DIR "${CMAKE_SOURCE_DIR}/simavr")
 
 add_executable(
-    bootloader
+    simulator
 
-    ${CMAKE_SOURCE_DIR}/src/bootloader.cpp
+    ${CMAKE_SOURCE_DIR}/src/simulator.cpp
 
     ${SIMAVR_DIR}/simavr/sim/avr_acomp.c
     ${SIMAVR_DIR}/simavr/sim/avr_adc.c
@@ -49,7 +49,7 @@ add_executable(
 )
 
 target_include_directories(
-    bootloader PUBLIC
+    simulator PUBLIC
     PUBLIC ${CMAKE_SOURCE_DIR}/include
     PUBLIC ${SIMAVR_DIR}/simavr
     PUBLIC ${SIMAVR_DIR}/simavr/sim
@@ -57,9 +57,9 @@ target_include_directories(
     PUBLIC ${SIMAVR_DIR}/examples/parts
 )
 
-set_property(TARGET bootloader PROPERTY C_STANDARD 99)
+set_property(TARGET simulator PROPERTY C_STANDARD 99)
 
-add_git_version_definition(bootloader)
+add_git_version_definition(simulator)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g -Wall -Wextra -Wno-sign-compare")
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g -Wall -Wno-sign-compare")

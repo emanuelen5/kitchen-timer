@@ -19,7 +19,7 @@ make
 Run the simulator
 
 ```bash
-build/bootloader ../.pio/build/bootloader/firmware.hex
+build/simulator ../.pio/build/bootloader/firmware.hex
 ```
 
 ### Debug
