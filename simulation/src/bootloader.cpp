@@ -1,17 +1,10 @@
 #include <unistd.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
-#include <stdio.h>
-#include <libgen.h>
-
-#include <pthread.h>
 
 extern "C"
 {
-#include "sim_avr.h"
-#include "avr_ioport.h"
 #include "sim_elf.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
