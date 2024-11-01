@@ -13,7 +13,6 @@ extern "C"
 }
 
 uart_pty_t uart_pty;
-avr_t *avr = NULL;
 avr_vcd_t vcd_file;
 
 struct avr_flash
@@ -71,7 +70,7 @@ typedef struct fuses
     uint8_t lfuse, hfuse, efuse;
 } fuses_t;
 
-void setup_fuses(fuses_t fuses)
+void setup_fuses(avr_t *avr, fuses_t fuses)
 {
     avr->fuse[0] = fuses.lfuse;
     avr->fuse[1] = fuses.hfuse;
@@ -111,14 +110,14 @@ int main(int argc, char *argv[])
     }
     printf("%s bootloader 0x%05x: %d bytes\n", mmcu, boot_base, boot_size);
 
-    avr = avr_make_mcu_by_name(mmcu);
+    avr_t *avr = avr_make_mcu_by_name(mmcu);
     if (!avr)
     {
         fprintf(stderr, "%s: Error creating the AVR core\n", argv[0]);
         exit(1);
     }
 
-    setup_fuses((fuses_t){.lfuse = 0xff, .hfuse = 0xff, .efuse = 0xff});
+    setup_fuses(avr, (fuses_t){.lfuse = 0xff, .hfuse = 0xff, .efuse = 0xff});
 
     snprintf(flash_data.avr_flash_path, sizeof(flash_data.avr_flash_path),
              "simduino_%s_flash.bin", mmcu);
