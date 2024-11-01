@@ -76,6 +76,11 @@ void setup_fuses(avr_t *avr, fuses_t fuses)
     avr->fuse[2] = fuses.efuse;
 }
 
+bool endswith(const char *s, const char *suffix)
+{
+    return strcmp(s + strlen(s) - strlen(suffix), suffix) == 0;
+}
+
 int main(int argc, char *argv[])
 {
     struct avr_flash flash_data;
@@ -88,7 +93,7 @@ int main(int argc, char *argv[])
 
     for (int i = 1; i < argc; i++)
     {
-        if (!strcmp(argv[i] + strlen(argv[i]) - 4, ".hex"))
+        if (endswith(argv[i], ".hex"))
             strncpy(boot_path, argv[i], sizeof(boot_path));
         else if (!strcmp(argv[i], "-d"))
             debug++;
