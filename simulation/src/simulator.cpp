@@ -66,6 +66,16 @@ void avr_special_deinit(avr_t *avr, void *data)
     close(flash_data->avr_flash_fd);
 }
 
+void connect_hooks_to_dump_flash_to_file(avr_t *avr, struct avr_flash *flash_data)
+{
+    flash_data->avr_flash_path = std::string(avr->mmcu) + ".flash.bin";
+    flash_data->avr_flash_fd = 0;
+
+    avr->custom.init = avr_special_init;
+    avr->custom.deinit = avr_special_deinit;
+    avr->custom.data = flash_data;
+}
+
 typedef struct fuses
 {
     uint8_t lfuse, hfuse, efuse;
@@ -204,12 +214,8 @@ int main(int argc, char *argv[])
         });
 
     struct avr_flash flash_data;
-    flash_data.avr_flash_path = mmcu + ".flash.bin";
-    flash_data.avr_flash_fd = 0;
-    // register our own functions
-    avr->custom.init = avr_special_init;
-    avr->custom.deinit = avr_special_deinit;
-    avr->custom.data = &flash_data;
+    connect_hooks_to_dump_flash_to_file(avr, &flash_data);
+
     avr_init(avr);
     avr->frequency = freq;
 
