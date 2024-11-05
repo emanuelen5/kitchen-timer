@@ -152,6 +152,24 @@ parse_arguments(int argc, char *argv[])
     return args;
 }
 
+void fill_avr_flash_or_exit(avr_t *avr, std::string hex_file)
+{
+    uint32_t boot_base, boot_size;
+
+    uint8_t *boot = read_ihex_file(hex_file.c_str(), &boot_size, &boot_base);
+    if (!boot)
+    {
+        fprintf(stderr, "Unable to load %s\n", hex_file.c_str());
+        exit(1);
+    }
+    printf("%s bootloader 0x%05x: %d bytes\n", avr->mmcu, boot_base, boot_size);
+
+    memcpy(avr->flash + boot_base, boot, boot_size);
+    free(boot);
+
+    avr->pc = boot_base;
+}
+
 int main(int argc, char *argv[])
 {
     args_t args;
@@ -167,18 +185,8 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    struct avr_flash flash_data;
-    uint32_t boot_base, boot_size;
     std::string mmcu = "atmega328p";
     const uint32_t freq = 1000000;
-
-    uint8_t *boot = read_ihex_file(args.hex_file.c_str(), &boot_size, &boot_base);
-    if (!boot)
-    {
-        fprintf(stderr, "%s: Unable to load %s\n", argv[0], args.hex_file.c_str());
-        exit(1);
-    }
-    printf("%s bootloader 0x%05x: %d bytes\n", mmcu.c_str(), boot_base, boot_size);
 
     avr_t *avr = avr_make_mcu_by_name(mmcu.c_str());
     if (!avr)
@@ -195,6 +203,7 @@ int main(int argc, char *argv[])
             .efuse = 0xFF,
         });
 
+    struct avr_flash flash_data;
     flash_data.avr_flash_path = mmcu + ".flash.bin";
     flash_data.avr_flash_fd = 0;
     // register our own functions
@@ -204,9 +213,8 @@ int main(int argc, char *argv[])
     avr_init(avr);
     avr->frequency = freq;
 
-    memcpy(avr->flash + boot_base, boot, boot_size);
-    free(boot);
-    avr->pc = boot_base;
+    fill_avr_flash_or_exit(avr, args.hex_file);
+
     /* end of flash, remember we are writing /code/ */
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
