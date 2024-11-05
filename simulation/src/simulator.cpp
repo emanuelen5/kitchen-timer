@@ -17,8 +17,6 @@ extern "C"
 #include "uart_pty.h"
 }
 
-uart_pty_t uart_pty;
-
 struct avr_flash
 {
     std::string avr_flash_path;
@@ -66,7 +64,6 @@ void avr_special_deinit(avr_t *avr, void *data)
         perror(flash_data->avr_flash_path.c_str());
     }
     close(flash_data->avr_flash_fd);
-    uart_pty_stop(&uart_pty);
 }
 
 typedef struct fuses
@@ -222,6 +219,7 @@ int main(int argc, char *argv[])
         avr_gdb_init(avr);
     }
 
+    uart_pty_t uart_pty;
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
 
@@ -231,4 +229,5 @@ int main(int argc, char *argv[])
         if (state == cpu_Done || state == cpu_Crashed)
             break;
     }
+    uart_pty_stop(&uart_pty);
 }
