@@ -242,6 +242,11 @@ int main(int argc, char *argv[])
         int state = avr_run(avr);
         if (state == cpu_Done || state == cpu_Crashed)
             break;
+        if (avr->pc == 0)
+        {
+            printf("Bootloader finished. Exiting.\n");
+            break;
+        }
     }
     uart_pty_stop(&uart_pty);
 }
