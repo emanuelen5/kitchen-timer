@@ -9,19 +9,100 @@
 #include <iostream>
 #include <stdexcept>
 
+#include <GL/glut.h>
+#include "pthread.h"
+
 extern "C"
 {
+#include "avr_ioport.h"
 #include "sim_elf.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
 }
 
+#define UNUSED (void)
+
 struct avr_flash
 {
     std::string avr_flash_path;
     int avr_flash_fd;
 };
+
+volatile unsigned char key_g;
+uint8_t port_c_state = 0b00000000;
+const float pixel_size = 64;
+
+void display_callback(void) /* function called whenever redisplay needed */
+{
+    // OpenGL rendering goes here...
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Set up modelview matrix
+    glMatrixMode(GL_MODELVIEW); // Select modelview matrix
+    glLoadIdentity();           // Start with an identity matrix
+
+    const float pixel_size = 64;
+    float grid = pixel_size;
+    float size = grid * 0.8;
+    glBegin(GL_QUADS);
+    glColor3f(1, 0, 0);
+
+    for (int di = 0; di < 8; di++)
+    {
+        const char on = (port_c_state & (1 << di)) != 0;
+        if (on)
+        {
+            float x = (di)*grid;
+            float y = 0;
+            glVertex2f(x + size, y + size);
+            glVertex2f(x, y + size);
+            glVertex2f(x, y);
+            glVertex2f(x + size, y);
+        }
+    }
+
+    glEnd();
+    glutSwapBuffers();
+}
+
+void port_c_pin_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
+{
+    UNUSED param;
+    port_c_state = (port_c_state & ~(1 << irq->irq)) | (value << irq->irq);
+}
+
+void key_callback(unsigned char key, int x, int y)
+{
+    UNUSED x;
+    UNUSED y;
+
+    const char escape_key = 0x1f;
+
+    switch (key)
+    {
+    case 'q':
+    case escape_key:
+        exit(0);
+        break;
+    default:
+        key_g = key;
+        break;
+    }
+}
+
+void timer_callback(int i)
+{
+    UNUSED i;
+    static uint8_t old_port_state = 0b00000000;
+
+    glutTimerFunc(1000 / 64, timer_callback, 0);
+
+    const bool port_changed = old_port_state != port_c_state;
+    old_port_state = port_c_state;
+    if (port_changed)
+        glutPostRedisplay();
+}
 
 // avr special flash initalization
 // here: open and map a file to enable a persistent storage for the flash memory
@@ -180,6 +261,33 @@ void fill_avr_flash_or_exit(avr_t *avr, std::string hex_file)
     avr->pc = boot_base;
 }
 
+static void *
+avr_run_thread(void *avr_ptr)
+{
+    avr_t *avr = (avr_t *)avr_ptr;
+    int state = cpu_Running;
+
+    while (true)
+    {
+        if ((state == cpu_Done) || (state == cpu_Crashed))
+            break;
+
+        if (avr->pc == 0)
+        {
+            printf("Bootloader finished. Exiting.\n");
+            break;
+        }
+
+        if (key_g != 0)
+        {
+            printf("key pressed: %c\n", key_g);
+            key_g = 0;
+        }
+        state = avr_run(avr);
+    }
+    return NULL;
+}
+
 int main(int argc, char *argv[])
 {
     args_t args;
@@ -225,6 +333,13 @@ int main(int argc, char *argv[])
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
 
+    // connect all the pins on port B to our callback
+    for (int i = 0; i < 8; i++)
+        avr_irq_register_notify(
+            avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), i),
+            port_c_pin_changed_hook,
+            NULL);
+
     // even if not setup at startup, activate gdb if crashing
     avr->gdb_port = 1234;
     if (args.debug)
@@ -237,16 +352,31 @@ int main(int argc, char *argv[])
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
 
-    while (1)
-    {
-        int state = avr_run(avr);
-        if (state == cpu_Done || state == cpu_Crashed)
-            break;
-        if (avr->pc == 0)
-        {
-            printf("Bootloader finished. Exiting.\n");
-            break;
-        }
-    }
+    printf("Demo launching: 'LED' bar is PORTC\n"
+           "   Press 'q' to quit\n");
+
+    glutInit(&argc, argv);
+
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+    glutInitWindowSize(8 * pixel_size, 1 * pixel_size); /* width=400pixels height=500pixels */
+    glutCreateWindow("Glut");
+
+    // Set up projection matrix
+    glMatrixMode(GL_PROJECTION); // Select projection matrix
+    glLoadIdentity();            // Start with an identity matrix
+    glOrtho(0, 8 * pixel_size, 0, 1 * pixel_size, 0, 10);
+    glScalef(1, -1, 1);
+    glTranslatef(0, -1 * pixel_size, 0);
+
+    glutDisplayFunc(display_callback);
+    glutKeyboardFunc(key_callback);
+    glutTimerFunc(1000 / 24, timer_callback, 0);
+
+    // the AVR run on it's own thread. it even allows for debugging!
+    pthread_t run;
+    pthread_create(&run, NULL, avr_run_thread, (void *)avr);
+
+    glutMainLoop();
+
     uart_pty_stop(&uart_pty);
 }

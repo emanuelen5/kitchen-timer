@@ -57,6 +57,16 @@ target_include_directories(
     PUBLIC ${SIMAVR_DIR}/examples/parts
 )
 
+cmake_policy(SET CMP0072 NEW)
+find_package(OpenGL REQUIRED)
+find_package(GLUT REQUIRED)
+
+target_link_libraries(
+    simulator
+    pthread
+    ${OPENGL_LIBRARIES}
+    ${GLUT_LIBRARIES}
+)
 set_property(TARGET simulator PROPERTY C_STANDARD 99)
 
 add_git_version_definition(simulator)
