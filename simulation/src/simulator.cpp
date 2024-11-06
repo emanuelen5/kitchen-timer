@@ -285,6 +285,7 @@ avr_run_thread(void *avr_ptr)
         }
         state = avr_run(avr);
     }
+    avr_terminate(avr);
     return NULL;
 }
 
