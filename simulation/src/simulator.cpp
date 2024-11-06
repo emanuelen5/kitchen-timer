@@ -290,6 +290,30 @@ avr_run_thread(void *avr_ptr)
     return NULL;
 }
 
+void create_and_set_up_glut_window(void)
+{
+    printf("Demo launching: 'LED' bar is PORTC\n"
+           "   Press 'q' to quit\n");
+
+    int argc = 0;
+    glutInit(&argc, {});
+
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
+    glutInitWindowSize(8 * pixel_size, 1 * pixel_size); /* width=400pixels height=500pixels */
+    glutCreateWindow("LEDs");
+
+    // Set up projection matrix
+    glMatrixMode(GL_PROJECTION); // Select projection matrix
+    glLoadIdentity();            // Start with an identity matrix
+    glOrtho(0, 8 * pixel_size, 0, 1 * pixel_size, 0, 10);
+    glScalef(1, -1, 1);
+    glTranslatef(0, -1 * pixel_size, 0);
+
+    glutDisplayFunc(display_callback);
+    glutKeyboardFunc(key_callback);
+    glutTimerFunc(1000 / 24, timer_callback, 0);
+}
+
 int main(int argc, char *argv[])
 {
     args_t args;
@@ -353,25 +377,7 @@ int main(int argc, char *argv[])
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
 
-    printf("Demo launching: 'LED' bar is PORTC\n"
-           "   Press 'q' to quit\n");
-
-    glutInit(&argc, argv);
-
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glutInitWindowSize(8 * pixel_size, 1 * pixel_size); /* width=400pixels height=500pixels */
-    glutCreateWindow("Glut");
-
-    // Set up projection matrix
-    glMatrixMode(GL_PROJECTION); // Select projection matrix
-    glLoadIdentity();            // Start with an identity matrix
-    glOrtho(0, 8 * pixel_size, 0, 1 * pixel_size, 0, 10);
-    glScalef(1, -1, 1);
-    glTranslatef(0, -1 * pixel_size, 0);
-
-    glutDisplayFunc(display_callback);
-    glutKeyboardFunc(key_callback);
-    glutTimerFunc(1000 / 24, timer_callback, 0);
+    create_and_set_up_glut_window();
 
     // the AVR run on it's own thread. it even allows for debugging!
     pthread_t run;
