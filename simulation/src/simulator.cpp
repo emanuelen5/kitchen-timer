@@ -66,10 +66,11 @@ void display_callback(void) /* function called whenever redisplay needed */
     glutSwapBuffers();
 }
 
-void port_c_pin_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
+void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
 {
+    UNUSED irq;
     UNUSED param;
-    port_c_state = (port_c_state & ~(1 << irq->irq)) | (value << irq->irq);
+    port_c_state = value;
 }
 
 void key_callback(unsigned char key, int x, int y)
@@ -334,12 +335,11 @@ int main(int argc, char *argv[])
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
 
-    // connect all the pins on port B to our callback
-    for (int i = 0; i < 8; i++)
-        avr_irq_register_notify(
-            avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), i),
-            port_c_pin_changed_hook,
-            NULL);
+    // connect all the pins on port C to our callback
+    avr_irq_register_notify(
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), IOPORT_IRQ_PIN_ALL),
+        port_c_changed_hook,
+        NULL);
 
     // even if not setup at startup, activate gdb if crashing
     avr->gdb_port = 1234;
