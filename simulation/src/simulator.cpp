@@ -48,9 +48,9 @@ void display_callback(void) /* function called whenever redisplay needed */
     glBegin(GL_QUADS);
     glColor3f(1, 0, 0);
 
-    for (int di = 0; di < 8; di++)
+    for (int di = 0; di < 3; di++)
     {
-        const char on = (port_c_state & (1 << di)) != 0;
+        const char on = (port_c_state & (1 << di)) == 0;
         if (on)
         {
             float x = (di)*grid;
