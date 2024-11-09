@@ -39,14 +39,11 @@ void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
     port_c_state = value;
 }
 
-// avr special flash initalization
-// here: open and map a file to enable a persistent storage for the flash memory
 void avr_special_init(avr_t *avr, void *data)
 {
     struct avr_flash *flash_data = (struct avr_flash *)data;
 
     printf("%s\n", __func__);
-    // open the file
     flash_data->avr_flash_fd = open(flash_data->avr_flash_path.c_str(),
                                     O_RDWR | O_CREAT, 0644);
     if (flash_data->avr_flash_fd < 0)
@@ -54,7 +51,6 @@ void avr_special_init(avr_t *avr, void *data)
         perror(flash_data->avr_flash_path.c_str());
         exit(1);
     }
-    // resize and map the file
     (void)ftruncate(flash_data->avr_flash_fd, avr->flashend + 1);
     ssize_t r = read(flash_data->avr_flash_fd, avr->flash, avr->flashend + 1);
     if (r != avr->flashend + 1)
@@ -65,8 +61,6 @@ void avr_special_init(avr_t *avr, void *data)
     }
 }
 
-// avr special flash deinitalization
-// here: cleanup the persistent storage
 void avr_special_deinit(avr_t *avr, void *data)
 {
     struct avr_flash *flash_data = (struct avr_flash *)data;
@@ -271,17 +265,14 @@ int main(int argc, char *argv[])
 
     fill_avr_flash_or_exit(avr, args.hex_file);
 
-    /* end of flash, remember we are writing /code/ */
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
 
-    // connect all the pins on port C to our callback
     avr_irq_register_notify(
         avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), IOPORT_IRQ_PIN_ALL),
         port_c_changed_hook,
         NULL);
 
-    // even if not setup at startup, activate gdb if crashing
     avr->gdb_port = 1234;
     if (args.debug)
     {

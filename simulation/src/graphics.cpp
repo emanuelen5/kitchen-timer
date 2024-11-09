@@ -15,14 +15,12 @@ volatile unsigned char key_g;
 const char escape_key = 0x1f;
 const float pixel_size = 64;
 
-void display_callback(void) /* function called whenever redisplay needed */
+void display_callback(void)
 {
-    // OpenGL rendering goes here...
     glClear(GL_COLOR_BUFFER_BIT);
 
-    // Set up modelview matrix
-    glMatrixMode(GL_MODELVIEW); // Select modelview matrix
-    glLoadIdentity();           // Start with an identity matrix
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 
     const float pixel_size = 64;
     float grid = pixel_size;
@@ -112,12 +110,11 @@ void create_and_set_up_glut_window(void)
     glutInit(&argc, {});
 
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glutInitWindowSize(8 * pixel_size, 1 * pixel_size); /* width=400pixels height=500pixels */
+    glutInitWindowSize(8 * pixel_size, 1 * pixel_size);
     glutCreateWindow("LEDs");
 
-    // Set up projection matrix
-    glMatrixMode(GL_PROJECTION); // Select projection matrix
-    glLoadIdentity();            // Start with an identity matrix
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     glOrtho(0, 8 * pixel_size, 0, 1 * pixel_size, 0, 10);
     glScalef(1, -1, 1);
     glTranslatef(0, -1 * pixel_size, 0);
@@ -131,7 +128,8 @@ void simulate_with_graphics(avr_t *avr)
 {
     create_and_set_up_glut_window();
 
-    // the AVR run on it's own thread. it even allows for debugging!
+    // Graphics needs to be on the main thread, so we put the AVR in a separate
+    // one
     pthread_t run;
     pthread_create(&run, NULL, avr_run_thread, (void *)avr);
 
