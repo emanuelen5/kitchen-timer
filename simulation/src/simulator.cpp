@@ -12,10 +12,11 @@
 #include <GL/glut.h>
 #include "pthread.h"
 
+#include "graphics.h"
+
 extern "C"
 {
 #include "avr_ioport.h"
-#include "sim_elf.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
@@ -29,80 +30,13 @@ struct avr_flash
     int avr_flash_fd;
 };
 
-volatile unsigned char key_g;
 uint8_t port_c_state = 0b00000000;
-const float pixel_size = 64;
-
-void display_callback(void) /* function called whenever redisplay needed */
-{
-    // OpenGL rendering goes here...
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    // Set up modelview matrix
-    glMatrixMode(GL_MODELVIEW); // Select modelview matrix
-    glLoadIdentity();           // Start with an identity matrix
-
-    const float pixel_size = 64;
-    float grid = pixel_size;
-    float size = grid * 0.8;
-    glBegin(GL_QUADS);
-    glColor3f(1, 0, 0);
-
-    for (int di = 0; di < 3; di++)
-    {
-        const char on = (port_c_state & (1 << di)) == 0;
-        if (on)
-        {
-            float x = (di)*grid;
-            float y = 0;
-            glVertex2f(x + size, y + size);
-            glVertex2f(x, y + size);
-            glVertex2f(x, y);
-            glVertex2f(x + size, y);
-        }
-    }
-
-    glEnd();
-    glutSwapBuffers();
-}
 
 void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
 {
     UNUSED irq;
     UNUSED param;
     port_c_state = value;
-}
-
-void key_callback(unsigned char key, int x, int y)
-{
-    UNUSED x;
-    UNUSED y;
-
-    const char escape_key = 0x1f;
-
-    switch (key)
-    {
-    case 'q':
-    case escape_key:
-        exit(0);
-        break;
-    default:
-        key_g = key;
-        break;
-    }
-}
-
-void timer_callback(int i)
-{
-    UNUSED i;
-    static uint8_t old_port_state = 0b00000000;
-
-    glutTimerFunc(1000 / 64, timer_callback, 0);
-
-    const bool port_changed = old_port_state != port_c_state;
-    old_port_state = port_c_state;
-    if (port_changed)
-        glutPostRedisplay();
 }
 
 // avr special flash initalization
@@ -179,6 +113,7 @@ typedef struct args
 {
     bool debug;
     bool verbose;
+    bool interactive;
     std::string hex_file;
 } args_t;
 
@@ -200,18 +135,22 @@ parse_arguments(int argc, char *argv[])
     const struct option long_options[] = {
         {"help", no_argument, nullptr, 'h'},
         {"debug", no_argument, nullptr, 'd'},
+        {"interactive", no_argument, nullptr, 'i'},
         {"verbose", no_argument, nullptr, 'v'},
         {nullptr, 0, nullptr, 0}};
 
-    args_t args = {.debug = false, .verbose = false, .hex_file = ""};
+    args_t args = {.debug = false, .verbose = false, .interactive = false, .hex_file = ""};
 
     int opt;
-    while ((opt = getopt_long(argc, argv, "hdvp:", long_options, nullptr)) != -1)
+    while ((opt = getopt_long(argc, argv, "ihdvp:", long_options, nullptr)) != -1)
     {
         switch (opt)
         {
         case 'd':
             args.debug = true;
+            break;
+        case 'i':
+            args.interactive = true;
             break;
         case 'v':
             args.verbose = true;
@@ -262,56 +201,33 @@ void fill_avr_flash_or_exit(avr_t *avr, std::string hex_file)
     avr->pc = boot_base;
 }
 
-static void *
-avr_run_thread(void *avr_ptr)
+const char *exit_reason(avr_t *avr)
 {
-    avr_t *avr = (avr_t *)avr_ptr;
-    int state = cpu_Running;
+    if (avr->state == cpu_Done)
+        return "CPU done";
 
-    while (true)
-    {
-        if ((state == cpu_Done) || (state == cpu_Crashed))
-            break;
+    if (avr->state == cpu_Crashed)
+        return "CPU crashed";
 
-        if (avr->pc == 0)
-        {
-            printf("Bootloader finished. Exiting.\n");
-            break;
-        }
+    if (avr->pc == 0)
+        return "Bootloader finished";
 
-        if (key_g != 0)
-        {
-            printf("key pressed: %c\n", key_g);
-            key_g = 0;
-        }
-        state = avr_run(avr);
-    }
-    avr_terminate(avr);
-    return NULL;
+    return nullptr;
 }
 
-void create_and_set_up_glut_window(void)
+void run_instructions_until_exited_bootloader(avr_t *avr)
 {
-    printf("Demo launching: 'LED' bar is PORTC\n"
-           "   Press 'q' to quit\n");
+    while (true)
+    {
+        if (exit_reason(avr))
+        {
+            printf("Exiting: %s\n", exit_reason(avr));
+            break;
+        }
 
-    int argc = 0;
-    glutInit(&argc, {});
-
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE);
-    glutInitWindowSize(8 * pixel_size, 1 * pixel_size); /* width=400pixels height=500pixels */
-    glutCreateWindow("LEDs");
-
-    // Set up projection matrix
-    glMatrixMode(GL_PROJECTION); // Select projection matrix
-    glLoadIdentity();            // Start with an identity matrix
-    glOrtho(0, 8 * pixel_size, 0, 1 * pixel_size, 0, 10);
-    glScalef(1, -1, 1);
-    glTranslatef(0, -1 * pixel_size, 0);
-
-    glutDisplayFunc(display_callback);
-    glutKeyboardFunc(key_callback);
-    glutTimerFunc(1000 / 24, timer_callback, 0);
+        avr_run(avr);
+    };
+    avr_terminate(avr);
 }
 
 int main(int argc, char *argv[])
@@ -377,13 +293,14 @@ int main(int argc, char *argv[])
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
 
-    create_and_set_up_glut_window();
-
-    // the AVR run on it's own thread. it even allows for debugging!
-    pthread_t run;
-    pthread_create(&run, NULL, avr_run_thread, (void *)avr);
-
-    glutMainLoop();
+    if (args.interactive)
+    {
+        simulate_with_graphics(avr);
+    }
+    else
+    {
+        run_instructions_until_exited_bootloader(avr);
+    }
 
     uart_pty_stop(&uart_pty);
 }

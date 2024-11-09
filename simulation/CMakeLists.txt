@@ -12,6 +12,7 @@ add_executable(
     simulator
 
     ${CMAKE_SOURCE_DIR}/src/simulator.cpp
+    ${CMAKE_SOURCE_DIR}/src/graphics.cpp
 
     ${SIMAVR_DIR}/simavr/sim/avr_acomp.c
     ${SIMAVR_DIR}/simavr/sim/avr_adc.c
