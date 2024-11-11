@@ -5,13 +5,26 @@
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
 #include "led-counter.h"
+#include "millis.h"
+#include "util.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
 #endif
 
+static uint8_t sreg_last_state = 0;
+
+void prepare_self_program(void)
+{
+    sreg_last_state = SREG;
+    cli();
+    eeprom_busy_wait();
+}
+
 void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
 {
+    prepare_self_program();
+
     const uint16_t page_address = page_offset * SPM_PAGESIZE;
     boot_page_erase(page_address);
     boot_spm_busy_wait();
@@ -27,21 +40,12 @@ void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
 
     boot_page_write(page_address);
     boot_spm_busy_wait();
-}
 
-static uint8_t sreg_last_state = 0;
-
-void prepare_self_program(void)
-{
-    sreg_last_state = SREG;
-    cli();
-    eeprom_busy_wait();
+    SREG = sreg_last_state;
 }
 
 void finalize_self_program(void)
 {
-    SREG = sreg_last_state;
-
     // Re-enable RWW-section. We need this to be able to jump back
     // to the application after bootloading.
     boot_rww_enable();
@@ -69,17 +73,19 @@ void UART_send(uint8_t data)
 
 int UART_receive(uint8_t *data)
 {
-    uint16_t timeout_counter = 2000;
-    while (timeout_counter--)
+    uint16_t start_time = millis();
+    const uint16_t timeout_duration = 2000;
+    while (true)
     {
         if (UCSR0A & (1 << RXC0))
         {
             *data = UDR0;
             return 0; // Successful reception
         }
-        _delay_ms(1);
+
+        if ((uint16_t)(millis() - start_time) >= timeout_duration)
+            return timeout;
     }
-    return timeout;
 }
 
 typedef struct
@@ -111,7 +117,7 @@ void state_machine(void)
         STATE_DATA,
         STATE_CHECKSUM1,
         STATE_CHECKSUM2,
-    } state = STATE_START;
+    } state = STATE_WAIT_FOR_PROGRAMMER;
 
     enum
     {
@@ -139,25 +145,17 @@ void state_machine(void)
             if (UART_receive(&received_byte) == timeout)
                 return;
 
-            if (received_byte == START_BYTE)
-            {
-                calculated_checksum = 0;
-                state = STATE_COMMAND; // Start byte received, move to next state
-            }
-            else
+            if (received_byte != START_BYTE)
             {
                 state = STATE_START;
+                continue;
             }
-            break;
         case STATE_START:
             set_counter(state);
-            if (UART_receive(&received_byte) == timeout)
-                return;
-
             if (received_byte == START_BYTE)
             {
                 calculated_checksum = 0;
-                state = STATE_COMMAND; // Start byte received, move to next state
+                state = STATE_COMMAND;
             }
             break;
 
@@ -222,15 +220,29 @@ void state_machine(void)
     }
 }
 
+void use_bootloader_interrupt_vectors(void)
+{
+    MCUCR = bit(IVCE);
+    MCUCR = bit(IVSEL);
+}
+
+void use_application_interrupt_vectors(void)
+{
+    MCUCR = bit(IVCE);
+    MCUCR = 0; // Clear IVSEL
+}
+
 int main(void)
 {
+    use_bootloader_interrupt_vectors();
+    init_millis();
     init_led_counter();
     set_counter(0x7);
-
-    prepare_self_program();
+    sei();
 
     state_machine();
 
     finalize_self_program();
+    use_application_interrupt_vectors();
     jump_to_start_of_program_and_exit_bootloader();
 }
