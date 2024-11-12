@@ -243,6 +243,7 @@ int main(void)
     state_machine();
 
     finalize_self_program();
+    deinit_millis();
     use_application_interrupt_vectors();
     jump_to_start_of_program_and_exit_bootloader();
 }
