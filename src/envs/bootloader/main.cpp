@@ -222,14 +222,30 @@ void state_machine(void)
 
 void use_bootloader_interrupt_vectors(void)
 {
-    MCUCR = bit(IVCE);
-    MCUCR = bit(IVSEL);
+    asm volatile(
+        "ldi r16, %[ivce_bit]       \n\t"
+        "out %[mcucr], r16          \n\t"
+        "ldi r16, %[ivsel_bit]      \n\t"
+        "out %[mcucr], r16          \n\t"
+        :
+        : [ivce_bit] "M"(1 << IVCE),
+          [ivsel_bit] "M"(1 << IVSEL),
+          [mcucr] "I"(_SFR_IO_ADDR(MCUCR))
+        : "r16");
 }
 
 void use_application_interrupt_vectors(void)
 {
-    MCUCR = bit(IVCE);
-    MCUCR = 0; // Clear IVSEL
+    asm volatile(
+        "ldi r16, %[ivce_bit]       \n\t"
+        "out %[mcucr], r16          \n\t"
+        "ldi r16, %[ivsel_bit]      \n\t"
+        "out %[mcucr], r16          \n\t"
+        :
+        : [ivce_bit] "M"(1 << IVCE),
+          [ivsel_bit] "M"(0),
+          [mcucr] "I"(_SFR_IO_ADDR(MCUCR))
+        : "r16");
 }
 
 int main(void)
