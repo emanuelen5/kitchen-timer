@@ -95,6 +95,14 @@ enum
     START_BYTE = 0x03,
 };
 
+static int receive_and_checksum(uint8_t *byte, uint16_t *crc16)
+{
+    int status = UART_receive(byte);
+    if (status == ok)
+        *crc16 = _crc16_update(*crc16, *byte);
+    return status;
+}
+
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc16)
 {
     UART_send(byte);
@@ -116,124 +124,162 @@ void send_response(packet_t &packet)
     UART_send(packet.data.response.checksum & 0xff);
 }
 
-void state_machine(void)
+typedef enum
 {
-    enum
-    {
-        STATE_WAIT_FOR_PROGRAMMER,
-        STATE_START,
-        STATE_COMMAND,
-        STATE_LENGTH,
-        STATE_DATA,
-        STATE_CHECK_CHECKSUM,
-        STATE_RUN_COMMAND,
-        STATE_RETURN_STATUS,
-    } state = STATE_WAIT_FOR_PROGRAMMER;
+    STATE_WAIT_FOR_PROGRAMMER,
+    STATE_WAIT_FOR_START_BYTE,
+    STATE_START,
+    STATE_COMMAND,
+    STATE_LENGTH,
+    STATE_DATA,
+    STATE_CHECK_CHECKSUM,
+    STATE_RUN_COMMAND,
+    STATE_RETURN_STATUS,
+    STATE_EXIT,
+} state_t;
 
-    uint8_t received_byte;
+typedef struct
+{
+    state_t state;
+
     uint16_t calculated_checksum;
 
     packet_t packet = {};
     uint8_t data_index = 0;
+} state_machine_t;
 
-    while (1)
+void step_state_machine(state_machine_t &sm)
+{
+    uint8_t received_byte;
+
+    switch (sm.state)
     {
-        switch (state)
+    case STATE_WAIT_FOR_PROGRAMMER:
+        set_counter(sm.state);
+        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) == timeout)
         {
-        case STATE_WAIT_FOR_PROGRAMMER:
-            set_counter(state);
-            if (UART_receive(&received_byte) == timeout)
-                return;
-
-            if (received_byte != START_BYTE)
-            {
-                state = STATE_START;
-                continue;
-            }
-            break;
-
-        case STATE_START:
-            set_counter(state);
-            if (received_byte == START_BYTE)
-            {
-                calculated_checksum = 0;
-                calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-                state = STATE_COMMAND;
-            }
-            break;
-
-        case STATE_COMMAND:
-            set_counter(state);
-            if (UART_receive(&received_byte) != ok)
-                continue;
-
-            packet.command = (command_t)received_byte;
-            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-            if (packet.command == COMMAND_WRITE_PAGE)
-            {
-                state = STATE_DATA;
-            }
-            break;
-
-        case STATE_LENGTH:
-            set_counter(state);
-            if (UART_receive(&received_byte) != ok)
-                continue;
-
-            packet.data_length = received_byte + 2;
-            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-            state = STATE_DATA;
-            data_index = 0;
-            break;
-
-        case STATE_DATA:
-            if (UART_receive(&received_byte) != ok)
-                continue;
-
-            increment_counter();
-            packet.data.bytes[data_index++] = received_byte;
-            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-            if (data_index >= packet.data_length)
-            {
-                state = STATE_CHECK_CHECKSUM;
-            }
-            break;
-
-        case STATE_CHECK_CHECKSUM:
-            set_counter(state);
-            if (calculated_checksum != 0)
-            {
-                packet.data.response.status = nak;
-                state = STATE_RETURN_STATUS;
-                continue;
-            }
-            state = STATE_RUN_COMMAND;
-            break;
-
-        case STATE_RUN_COMMAND:
-            switch (packet.command)
-            {
-            case COMMAND_WRITE_PAGE:
-                write_page(packet.data.write.page_offset, packet.data.write.data);
-                packet.data.response.status = ok;
-                break;
-            case COMMAND_READ_SIGNATURE:
-                packet.data.response.status = ok;
-                read_signature(&packet.data.response.data[0]);
-                break;
-            default:
-                packet.data.response.status = nak;
-            }
-
-            state = STATE_RETURN_STATUS;
-            break;
-
-        case STATE_RETURN_STATUS:
-            packet.data_length = 1;
-            set_counter(state);
-            send_response(packet);
-            break;
+            sm.state = STATE_EXIT;
+            return;
         }
+
+        sm.state = (received_byte == START_BYTE) ? STATE_START : STATE_WAIT_FOR_START_BYTE;
+        break;
+
+    case STATE_WAIT_FOR_START_BYTE:
+        set_counter(sm.state);
+        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) != ok)
+            return;
+
+        sm.state = STATE_START;
+        break;
+
+    case STATE_START:
+        set_counter(sm.state);
+        if (received_byte == START_BYTE)
+        {
+            sm.calculated_checksum = 0;
+            sm.calculated_checksum = _crc16_update(sm.calculated_checksum, received_byte);
+            sm.state = STATE_COMMAND;
+        }
+        break;
+
+    case STATE_COMMAND:
+        set_counter(sm.state);
+        if (UART_receive(&received_byte) != ok)
+            return;
+
+        sm.packet.command = (command_t)received_byte;
+        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, received_byte);
+        if (sm.packet.command == COMMAND_WRITE_PAGE)
+        {
+            sm.state = STATE_DATA;
+        }
+        break;
+
+    case STATE_LENGTH:
+        set_counter(sm.state);
+        if (UART_receive(&received_byte) != ok)
+            return;
+
+        sm.packet.data_length = received_byte + 2;
+        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, received_byte);
+        sm.state = STATE_DATA;
+        sm.data_index = 0;
+        break;
+
+    case STATE_DATA:
+        if (UART_receive(&received_byte) != ok)
+            return;
+
+        increment_counter();
+        sm.packet.data.bytes[sm.data_index++] = received_byte;
+        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, received_byte);
+        if (sm.data_index >= sm.packet.data_length)
+        {
+            sm.state = STATE_CHECK_CHECKSUM;
+        }
+        break;
+
+    case STATE_CHECK_CHECKSUM:
+        set_counter(sm.state);
+        if (sm.calculated_checksum != 0)
+        {
+            sm.packet.data.response.status = nak;
+            sm.state = STATE_RETURN_STATUS;
+            return;
+        }
+        sm.state = STATE_RUN_COMMAND;
+        break;
+
+    case STATE_RUN_COMMAND:
+        switch (sm.packet.command)
+        {
+        case COMMAND_WRITE_PAGE:
+            write_page(sm.packet.data.write.page_offset, sm.packet.data.write.data);
+            sm.packet.data.response.status = ok;
+            break;
+        case COMMAND_READ_SIGNATURE:
+            sm.packet.data.response.status = ok;
+            read_signature(&sm.packet.data.response.data[0]);
+            break;
+        case COMMAND_BOOT:
+            sm.packet.data.response.status = ok;
+            break;
+        default:
+            sm.packet.data.response.status = nak;
+        }
+
+        sm.state = STATE_RETURN_STATUS;
+        break;
+
+    case STATE_RETURN_STATUS:
+        sm.packet.data_length = 1;
+        set_counter(sm.state);
+        send_response(sm.packet);
+
+        if (sm.packet.command == COMMAND_BOOT)
+        {
+            return;
+        }
+
+        sm.state = STATE_WAIT_FOR_START_BYTE;
+        break;
+
+    case STATE_EXIT:
+        break;
+    }
+}
+
+void run_state_machine(void)
+{
+    state_machine_t sm = {};
+    sm.data_index = 0;
+    sm.calculated_checksum = 0;
+    sm.state = STATE_WAIT_FOR_PROGRAMMER;
+
+    while (sm.state != STATE_EXIT)
+    {
+        step_state_machine(sm);
     }
 }
 
@@ -273,7 +319,7 @@ int main(void)
     set_counter(0x7);
     sei();
 
-    state_machine();
+    run_state_machine();
 
     finalize_self_program();
     deinit_millis();
