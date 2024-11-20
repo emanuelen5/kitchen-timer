@@ -1,0 +1,3 @@
+[submodule "simulation/simavr"]
+	path = simulation/simavr
+	url = https://github.com/emanuelen5/simavr.git

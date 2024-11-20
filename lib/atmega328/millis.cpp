@@ -41,3 +41,10 @@ void init_millis(void)
 
     SREG = sreg;
 }
+
+void deinit_millis(void)
+{
+    TCCR0A = 0;
+    TCCR0B = 0;
+    TIMSK0 = 0;
+}
