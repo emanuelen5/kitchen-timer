@@ -8,6 +8,7 @@ typedef enum
 {
     COMMAND_WRITE_PAGE,
     COMMAND_READ_SIGNATURE,
+    COMMAND_BOOT,
 } command_t;
 
 typedef struct
