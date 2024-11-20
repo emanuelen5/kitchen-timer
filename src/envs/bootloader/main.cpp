@@ -82,11 +82,14 @@ int UART_receive(uint8_t *data)
     }
 }
 
+typedef enum
+{
+    COMMAND_WRITE_PAGE
+} command_t;
+
 typedef struct
 {
-    uint8_t command;
-    uint8_t length;
-    uint16_t checksum;
+    command_t command;
     union
     {
         struct
@@ -111,15 +114,12 @@ void state_machine(void)
         STATE_DATA,
         STATE_CHECKSUM1,
         STATE_CHECKSUM2,
+        STATE_RUN_COMMAND,
     } state = STATE_WAIT_FOR_PROGRAMMER;
 
     enum
     {
-        COMMAND_WRITE_PAGE
-    };
-
-    enum
-    {
+        NUL_BYTE = 0x00,
         START_BYTE = 0x03,
     };
 
@@ -149,6 +149,7 @@ void state_machine(void)
             if (received_byte == START_BYTE)
             {
                 calculated_checksum = 0;
+                calculated_checksum = _crc16_update(calculated_checksum, received_byte);
                 state = STATE_COMMAND;
             }
             break;
@@ -158,7 +159,8 @@ void state_machine(void)
             if (UART_receive(&received_byte) != ok)
                 continue;
 
-            packet.command = received_byte;
+            packet.command = (command_t)received_byte;
+            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
             if (packet.command == COMMAND_WRITE_PAGE)
             {
                 state = STATE_DATA;
@@ -172,10 +174,10 @@ void state_machine(void)
 
             increment_counter();
             packet.data.write.data[data_index++] = received_byte;
-            if (data_index >= 128)
+            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
+            if (data_index >= SPM_PAGESIZE)
             {
                 state = STATE_CHECKSUM1;
-                packet.checksum = 0;
             }
             break;
 
@@ -185,30 +187,36 @@ void state_machine(void)
                 continue;
 
             state = STATE_CHECKSUM2;
-            packet.checksum = received_byte;
+            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
             break;
         case STATE_CHECKSUM2:
             set_counter(state);
             if (UART_receive(&received_byte) != ok)
                 continue;
 
-            packet.checksum |= (uint16_t)received_byte << 8;
+            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
 
-            if (calculated_checksum != packet.checksum)
+            if (calculated_checksum != 0)
             {
-                UART_send(timeout);
-                UART_send(~calculated_checksum); // Send checksum of the failure byte
+                UART_send(nak);
                 state = STATE_START;
                 continue;
             }
+            state = STATE_RUN_COMMAND;
 
-            if (packet.command == COMMAND_WRITE_PAGE)
+        case STATE_RUN_COMMAND:
+            switch (packet.command)
             {
+            case COMMAND_WRITE_PAGE:
                 write_page(packet.data.write.page_offset, program_data);
                 UART_send(ok);
-                UART_send(calculated_checksum); // Send checksum of the success byte
+                state = STATE_START;
+                break;
+            default:
+                UART_send(nak);
                 state = STATE_START;
             }
+
             break;
         }
     }
