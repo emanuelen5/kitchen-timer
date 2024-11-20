@@ -19,7 +19,7 @@
       "name": "(gdb) Attach",
       "type": "cppdbg",
       "request": "attach",
-      "program": "${workspaceFolder}/simulation/build/bootloader",
+      "program": "${workspaceFolder}/simulation/build/simulator",
       "MIMode": "gdb",
       "setupCommands": [
         {
@@ -38,7 +38,7 @@
       "name": "(gdb) Launch",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/simulation/build/bootloader",
+      "program": "${workspaceFolder}/simulation/build/simulator",
       "args": ["${workspaceFolder}/.pio/build/bootloader/firmware.hex"],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
