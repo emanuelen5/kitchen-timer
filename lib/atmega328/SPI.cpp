@@ -1,7 +1,6 @@
 #include "SPI.h"
-#include "util.h"
-
-void init_SPI(void)
+uint8_t message_length;
+void init_SPI(uint8_t bytes)
 {
     // The SS pin must be set as an output, otherwise the SPI HW block will
     // switch from Master to slave mode whenever SS is driven low. Source: SS
@@ -10,8 +9,7 @@ void init_SPI(void)
     DDRB |= bit(DATA_PIN) | bit(CLK_PIN) | bit(ss_pin) | bit(CS_PIN);
     deactivate_cs();
 
-    SPCR = bit(SPE) | bit(MSTR) | bit(SPR1); // Enable SPI, Set as Master, Prescaler: Oscillator Frequency/16.
-    // TODO: Adjust the prescaler once we get the real PCB.
+    message_length = bytes;
 }
 
 void SPI_transmit_byte(uint8_t byte)
