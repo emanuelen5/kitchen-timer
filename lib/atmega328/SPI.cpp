@@ -9,6 +9,16 @@ uint8_t message_length;
 uint8_t bytes_transfered_counter;
 
 
+static void inline deactivate_cs(void)
+{
+    PORTB |= bit(CS_PIN);
+}
+
+static void inline activate_cs(void)
+{
+    PORTB &= ~bit(CS_PIN);
+}
+
 void init_SPI(uint8_t bytes)
 {
     // The SS pin must be set as an output, otherwise the SPI HW block will
