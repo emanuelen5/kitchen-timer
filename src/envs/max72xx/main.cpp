@@ -14,7 +14,7 @@ int main()
             {
                 matrix_set_pixel(x, y, true);
                 matrix_update();
-                _delay_ms(1000);
+                _delay_ms(5);
             }
         }
 
@@ -24,7 +24,7 @@ int main()
             {
                 matrix_set_pixel(x, y, false);
                 matrix_update();
-                _delay_ms(1000);
+                _delay_ms(5);
             }
         }
     }
