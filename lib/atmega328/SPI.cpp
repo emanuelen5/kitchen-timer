@@ -1,10 +1,14 @@
 #include "SPI.h"
+#include <avr/interrupt.h>
 
 static uint8_queue_t SPI_queue = {};
 static const uint8_t SPI_queue_size = 9; //64 bytes (2 bytes x 8 rows per device x 4 devices)
 static uint8_t SPI_queue_buffer[SPI_queue_size];
 
 uint8_t message_length;
+uint8_t bytes_transfered_counter;
+
+
 void init_SPI(uint8_t bytes)
 {
     // The SS pin must be set as an output, otherwise the SPI HW block will
@@ -36,4 +40,38 @@ dequeue_return_t dequeue_from_SPI_queue(void)
     return return_value;
 }
 
+bool is_SPI_transfer_ongoing()
+{
+    return (PORTB & bit(CS_PIN)) == 0;
+}
+
+void start_SPI_transfer()
+{
+    while(is_SPI_transfer_ongoing())
+    {
+    }
+    
+    activate_cs();
+    dequeue_return_t transmition_starter = dequeue_from_SPI_queue();
+    bytes_transfered_counter = 0;
+    if(transmition_starter.is_valid)
+    {
+        SPI_transmit_byte(transmition_starter.value);
+    }
+}
+
+ISR(SPI_STC_vect)
+{
+    bytes_transfered_counter++;
+    if(bytes_transfered_counter < message_length)
+    {
+        dequeue_return_t result = dequeue_from_SPI_queue();
+        if(result.is_valid)
+        {
+            SPI_transmit_byte(result.value);
+        }
+    } else
+    {
+        deactivate_cs();
+    }
 }
