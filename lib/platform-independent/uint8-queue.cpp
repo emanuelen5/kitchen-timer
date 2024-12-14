@@ -7,6 +7,7 @@ void init_queue(uint8_queue_t *queue, uint8_t *buffer, uint8_t buffer_size)
     queue->size = buffer_size;
     queue->front = 0;
     queue->rear = 0;
+    queue->has_overflowed = false;
 }
 
 void add_to_queue(uint8_queue_t *queue, uint8_t value)

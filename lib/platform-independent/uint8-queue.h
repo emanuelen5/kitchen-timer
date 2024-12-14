@@ -4,11 +4,11 @@
 #include <stdint.h>
 
 typedef struct {
-    uint8_t *data = nullptr;
-    uint8_t size = 0;
-    uint8_t front = 0;
-    uint8_t rear = 0;
-    bool has_overflowed = false;
+    uint8_t *data;
+    uint8_t size ;
+    uint8_t front ;
+    uint8_t rear ;
+    bool has_overflowed;
 } uint8_queue_t;
 
 typedef struct

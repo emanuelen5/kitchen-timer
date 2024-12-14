@@ -1,7 +1,25 @@
 #include "SPI.h"
-#include "util.h"
+#include <avr/interrupt.h>
 
-void init_SPI(void)
+static uint8_queue_t SPI_queue = {};
+static const uint8_t SPI_queue_size = 9; //64 bytes (2 bytes x 8 rows per device x 4 devices)
+static uint8_t SPI_queue_buffer[SPI_queue_size];
+
+uint8_t message_length;
+uint8_t bytes_transfered_counter;
+
+
+static void inline deactivate_cs(void)
+{
+    PORTB |= bit(CS_PIN);
+}
+
+static void inline activate_cs(void)
+{
+    PORTB &= ~bit(CS_PIN);
+}
+
+void init_SPI(uint8_t bytes)
 {
     // The SS pin must be set as an output, otherwise the SPI HW block will
     // switch from Master to slave mode whenever SS is driven low. Source: SS
@@ -10,13 +28,69 @@ void init_SPI(void)
     DDRB |= bit(DATA_PIN) | bit(CLK_PIN) | bit(ss_pin) | bit(CS_PIN);
     deactivate_cs();
 
-    SPCR = bit(SPE) | bit(MSTR) | bit(SPR1); // Enable SPI, Set as Master, Prescaler: Oscillator Frequency/16.
-    // TODO: Adjust the prescaler once we get the real PCB.
+    // Enable SPI, Master, set clock rate (fosc/16)
+    SPCR |= (1 << SPE) | (1 << MSTR) | (1 << SPR1);
+    SPSR |= (1 << SPI2X);  // Double SPI speed if necessary (for 1 MHz)
+    
+    // Enable SPI interrupt
+    SPCR |= (1 << SPIE);
+
+    sei();
+    
+    message_length = bytes;
+    init_queue(&SPI_queue, SPI_queue_buffer, SPI_queue_size);
 }
 
 void SPI_transmit_byte(uint8_t byte)
 {
     SPDR = byte;
-    while (!(SPSR & bit(SPIF)))
-        ;
+}
+
+void add_to_SPI_queue(uint8_t value)
+{
+    cli();
+    add_to_queue(&SPI_queue, value);
+    sei();
+}
+
+dequeue_return_t dequeue_from_SPI_queue(void)
+{
+    dequeue_return_t return_value = dequeue(&SPI_queue);
+    return return_value;
+}
+
+bool is_SPI_transfer_ongoing()
+{
+    return (PORTB & bit(CS_PIN)) == 0;
+}
+
+void start_SPI_transfer()
+{
+    while(is_SPI_transfer_ongoing())
+    {
+    }
+    
+    activate_cs();
+    dequeue_return_t transmition_starter = dequeue_from_SPI_queue();
+    bytes_transfered_counter = 0;
+    if(transmition_starter.is_valid)
+    {
+        SPI_transmit_byte(transmition_starter.value);
+    }
+}
+
+ISR(SPI_STC_vect)
+{
+    bytes_transfered_counter++;
+    if(bytes_transfered_counter < message_length)
+    {
+        dequeue_return_t result = dequeue_from_SPI_queue();
+        if(result.is_valid)
+        {
+            SPI_transmit_byte(result.value);
+        }
+    } else
+    {
+        deactivate_cs();
+    }
 }

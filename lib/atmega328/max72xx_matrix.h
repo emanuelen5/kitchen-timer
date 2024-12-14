@@ -1,7 +1,7 @@
 #ifndef LIB_MAX72XX_MATRIX_H
 #define LIB_MAX72XX_MATRIX_H
 
-#include "max72xx.h"
+#include <avr/io.h>
 
 #define MATRIX_COL_WIDTH 16
 #define MATRIX_ROW_HEIGHT 16
