@@ -12,12 +12,13 @@ void increment_counter_cb(void)
 int main()
 {
     init_led_counter();
-    init_SPI(increment_counter_cb);
+    init_SPI(9);
     while (1)
     {
-        activate_cs();
-        SPI_transmit_byte(0xAA);
-        _delay_ms(10000);
+        add_to_SPI_queue(0xAA);
+        add_to_SPI_queue(0xAA);
+        start_SPI_transfer();
+        _delay_ms(1000);
     }
 
 
