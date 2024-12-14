@@ -18,18 +18,18 @@ void init_max72xx(void)
     max72xx_send_commands_to_all(Max72XX_Display_Test, 0x00); // disable display test
 }
 
-void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length)
+void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length) //adds the cmds 8 bytes array to SPI_queue and starts transmission
 {
     activate_cs();
     for (uint8_t device = 0; device < length; device++)
     {
-        SPI_transmit_byte(cmds[device].reg);
-        SPI_transmit_byte(cmds[device].data);
+        add_to_SPI_queue(cmds[device].reg);
+        add_to_SPI_queue(cmds[device].data);
     }
     deactivate_cs();
 }
 
-void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data)
+void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data) //Creates a "cmds" array of 8 bytes and adds to SPI_queue
 {
     max72xx_cmd_t cmds[MAX72XX_NUM_DEVICES];
     for (int i = 0; i < MAX72XX_NUM_DEVICES; i++)

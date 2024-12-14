@@ -1,4 +1,9 @@
 #include "SPI.h"
+
+static uint8_queue_t SPI_queue = {};
+static const uint8_t SPI_queue_size = 9; //64 bytes (2 bytes x 8 rows per device x 4 devices)
+static uint8_t SPI_queue_buffer[SPI_queue_size];
+
 uint8_t message_length;
 void init_SPI(uint8_t bytes)
 {
@@ -10,11 +15,25 @@ void init_SPI(uint8_t bytes)
     deactivate_cs();
 
     message_length = bytes;
+    init_queue(&SPI_queue, SPI_queue_buffer, SPI_queue_size);
 }
 
 void SPI_transmit_byte(uint8_t byte)
 {
     SPDR = byte;
-    while (!(SPSR & bit(SPIF)))
-        ;
+}
+
+void add_to_SPI_queue(uint8_t value)
+{
+    cli();
+    add_to_queue(&SPI_queue, value);
+    sei();
+}
+
+dequeue_return_t dequeue_from_SPI_queue(void)
+{
+    dequeue_return_t return_value = dequeue(&SPI_queue);
+    return return_value;
+}
+
 }
