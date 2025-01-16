@@ -34,7 +34,7 @@ graph LR;
 | BMS Module                        | 5V by USB    	| 5mA                 	| 1       	| 5mA                      	|
 | Microcontroller (ATmega328p)   	| 3.3V        	| 5mA                	| 1       	| 5mA                      	|
 | LED Matrix Drivers (MAX7219)   	| 5V          	| 20mA           	    | 4       	| 80mA                   	|
-| LED Matrix 8x8 (KWM-20882XUYB) 	| 5V         	| 320mA (at 25% LEDs)  	| 4       	|                        	|
+| LED Matrix 8x8 (KWM-20882XUYB) 	| 5V         	| 320mA (at 25% LEDs)  	| 4       	| 1280mA                   	|
 | Piezo Speaker                  	| 5V          	| 20mA              	| 1       	| 20mA                     	|
 | Rotary Encoder                 	| 3.3V or 5V   	| 1mA               	| 1       	| 1mA                    	|
 
@@ -42,20 +42,18 @@ graph LR;
 * LED Matrix: Assume 25% of LEDs, on average, will be on at the same time.
 * The UART debugger should only be powered when the USB is connected.
 
-Total Current Draw (1 + 0.15) = 1617mA
+Total Current Draw + 15% to compensate for loses in boost converter and regulator = 1594mA (~1600mA)
 
 ## Battery:
 ### Battery Requirements:
-* Can run for 4hrs at a "worst case scenario" consumption rate: Total Current Draw = 1617mA
+* Can run for 2hrs of at a "worst case scenario" (full current consumption of ~1600mA).
 * Light weight.
 
 ### Battery Design:
-We chose a LiPo battery. It provides 3.7V
-
+We want to use a one cell LiPo battery that provide 3200mAh at 3.7V. 
 
 [TODO]
-* [ ] Calculate capacity
-* [ ] Chose battery size
+* [ ] Find a battery that suits us.
 
 ## BMS Module:
 ### BMS Requirements:
