@@ -118,8 +118,9 @@ We did not have specific requirements for the speaker.
 The Piezo Speaker chosen work at 3.3V. We will be powering it directly from the GPIO pin of the MCU. [TODO] Maybe it would be a good idea to power it from the 3.3V Regulator.
 
 ## References:
-* <a id="1">[1]</a> "Lithium Battery Protection using DW01 and TC4056 Tested and Explained" [www.robojax.com](https://robojax.com/)
-* <a id="2">[2]</a> "TP4056-Power-Path-PCB" [GitHub TP4056-Power-Path-PCB](https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md)
+* <a id="1">[1]</a> [www.robojax.com "Lithium Battery Protection using DW01 and TC4056 Tested and Explained"](https://robojax.com/learn/arduino/?vid=robojax_DW01_with_4056_Protection)
+* <a id="2">[2]</a> [GitHub "TP4056-Power-Path-PCB"](https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md)
+* <a id="3">[3]</a> [Hackaday "Lithium-Ion Batteries Power Your Devboards Easily"] (https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/)
 
 
 ### Components links
