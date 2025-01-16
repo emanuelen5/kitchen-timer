@@ -83,6 +83,9 @@ graph LR;
         C --> D
         E --> A
 ```
+[TODO]
+* [ ] It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[[3]](#3)
+
 ## USB-C & UART Debugger
 [TODO]
 * [ ] Since the UART debugger will not be powered unless the USB-C is connected, use series resistors on UART lines between the MCU and the module to limit potential backfeed. Too high value resistors reduce chance of backfeed but degrade the signals. Too low values do the oposit. Start with 4.7k and test if current flow backwards.
@@ -92,6 +95,22 @@ graph LR;
 * Support a 26mA current draw for our battery powered device.
 ### Choice:
 We will use a BL9110 iC. 
+
+## Boost Converter to 5V
+[TODO]
+
+## Microcontroller (ATmega328p)
+### MCU Requirement
+We want to work with an AVR MCU.
+### MCU choice:
+We will use the ATmega328p in its surface mount version.
+
+## LED Matrix Drivers (MAX7219)
+[TODO]
+## LED Matrix 8x8 (KWM-20882XUYB)
+[TODO]
+## Rotary Encoder
+[TODO]
 ## Piezo Speaker
 ### Piezo Speaker Requirements
 We did not have specific requirements for the speaker.
