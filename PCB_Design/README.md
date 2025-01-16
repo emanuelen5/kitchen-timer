@@ -8,7 +8,7 @@ graph LR;
         A --> B;
         A <-->|UART| E;
     B[BMS<br> Module];
-        B --> C;
+        B <--> C;
         B --> D;
         B --> J;
     C[Battery];
