@@ -87,6 +87,11 @@ graph LR;
 [TODO]
 * [ ] Since the UART debugger will not be powered unless the USB-C is connected, use series resistors on UART lines between the MCU and the module to limit potential backfeed. Too high value resistors reduce chance of backfeed but degrade the signals. Too low values do the oposit. Start with 4.7k and test if current flow backwards.
 
+## 3.3V Regulator
+### Requirements
+* Support a 26mA current draw for our battery powered device.
+### Choice:
+We will use a BL9110 iC. 
 ## Piezo Speaker
 ### Piezo Speaker Requirements
 We did not have specific requirements for the speaker.
