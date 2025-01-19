@@ -2,7 +2,9 @@
 #define __BOOTLOADER_STATE_MACHINE_H__
 
 #include "stdint.h"
-#include "avr/boot.h"
+
+// #include "avr/boot.h"
+#define SPM_PAGESIZE 64
 
 static const uint8_t START_BYTE = 0x03;
 
@@ -18,6 +20,11 @@ enum
     resp_ok = 0x00,
     resp_timeout = 0x05,
     resp_nak = 0xaa,
+};
+
+enum
+{
+    resp_data_unknown_command = 0x01,
 };
 
 typedef struct

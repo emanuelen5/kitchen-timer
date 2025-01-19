@@ -58,7 +58,7 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     assert p.ptype is PacketTypes.ack  # throw and retry
     assert (  # this is really bad
         p.data == expected_signature
-    ), f"Signature doesn't match. Got {p.data}. Wanted {expected_signature}"
+    ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
 
 
 def main():
