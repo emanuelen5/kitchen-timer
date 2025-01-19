@@ -1,5 +1,6 @@
 #include "max72xx_matrix.h"
-#include <util.h>
+#include "util.h"
+#include "max72xx.h"
 
 static uint8_t matrix_buffer[MAX72XX_NUM_DEVICES][ROW_COUNT];
 
@@ -34,7 +35,6 @@ void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on)
     const uint8_t bit_offset = pixel_to_bit(x);
 
     uint8_t row_value = matrix_buffer[device_index][row_index];
-
     if (is_on)
         row_value |= bit(bit_offset);
     else
