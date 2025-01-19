@@ -48,8 +48,8 @@ void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
 void read_signature(uint8_t signature[3])
 {
     signature[0] = boot_signature_byte_get(0x00);
-    signature[1] = boot_signature_byte_get(0x00);
-    signature[2] = boot_signature_byte_get(0x00);
+    signature[1] = boot_signature_byte_get(0x01);
+    signature[2] = boot_signature_byte_get(0x02);
 }
 
 void finalize_self_program(void)
@@ -122,9 +122,6 @@ void send_response(packet_t &packet)
 void run_state_machine(void)
 {
     state_machine_t sm = {};
-    sm.data_index = 0;
-    sm.calculated_checksum = 0;
-    sm.state = STATE_WAIT_FOR_PROGRAMMER;
 
     while (sm.state != STATE_EXIT)
     {

@@ -10,7 +10,6 @@ void send_response(packet_t &packet);
 void reset_state_machine(state_machine_t &sm)
 {
     sm.calculated_checksum = 0;
-    sm.data_index = 0;
 }
 
 void step_state_machine(state_machine_t &sm)
@@ -21,6 +20,7 @@ void step_state_machine(state_machine_t &sm)
     {
     case STATE_INIT:
         reset_state_machine(sm);
+        sm.state = STATE_WAIT_FOR_PROGRAMMER;
         break;
     case STATE_WAIT_FOR_PROGRAMMER:
         set_counter(sm.state);
@@ -103,6 +103,7 @@ void step_state_machine(state_machine_t &sm)
             sm.packet.data.response.status = resp_ok;
             break;
         default:
+            sm.packet.data.response.data[0] = resp_data_unknown_command;
             sm.packet.data.response.status = resp_nak;
         }
 
