@@ -12,7 +12,7 @@
 [TODO]
 
 ## Power LED
-[TODO]
+* We added an LED to indicate that the device is powered.
 
 ## References:
 * <a id="1">[1]</a> [https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/]
