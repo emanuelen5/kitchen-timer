@@ -104,21 +104,6 @@ uint16_t send_and_checksum(uint8_t byte, uint16_t crc16)
     return _crc16_update(crc16, byte);
 }
 
-void send_response(packet_t &packet)
-{
-    uint16_t crc16 = 0;
-    crc16 = send_and_checksum(START_BYTE, crc16);
-    crc16 = send_and_checksum(packet.command, crc16);
-    crc16 = send_and_checksum(packet.data_length, crc16);
-    const uint8_t packet_length = 4;
-    for (uint8_t i = 0; i < packet_length; i++)
-    {
-        crc16 = send_and_checksum(packet.data.bytes[i], crc16);
-    }
-    UART_send(packet.data.response.checksum >> 8);
-    UART_send(packet.data.response.checksum & 0xff);
-}
-
 void run_state_machine(void)
 {
     state_machine_t sm = {};
