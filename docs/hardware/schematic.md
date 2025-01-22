@@ -9,7 +9,7 @@
 * We will use the DTR line of the UART module to trigger a quick reset of the MCU. [[1]]
 
 ## Bootloader upload pins
-[TODO]
+* This is a set of pins to connect a programmer.
 
 ## Power LED
 * We added an LED to indicate that the device is powered.
