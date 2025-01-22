@@ -14,5 +14,9 @@
 ## Power LED
 * We added an LED to indicate that the device is powered.
 
-## References:
+## UART Module
+* We are using the BTE17-06B module
+* This module has an overcurrent protection fusion that allows only 500mA.
+
+# References:
 * <a id="1">[1]</a> [https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/]
