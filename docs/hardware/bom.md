@@ -101,5 +101,5 @@ The Piezo Speaker chosen work at 3.3V. We will be powering it directly from the 
 | **Component source**             	| **DataSheet**                                                             |
 |--------------------------------   |----------------------------------------------------------------           |
 |[UART Module](https://es.aliexpress.com/item/1005004276046811.html?spm=a2g0o.order_list.order_list_main.39.6ba6194doVGuKx&gatewayAdapt=glo2esp)              | [DataSheet](https://cdn.sparkfun.com/assets/5/0/a/8/5/CH340DS1.PDF?utm_source=chatgpt.com)|
-| [BMS Module]()|
+| [BMS Module](https://www.electrokit.com/batteriladdare-lipo-microusb)| [DataSheet](https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf)
 | [3.3 Regulator BL9110](https://es.aliexpress.com/item/1005007818062260.html?spm=a2g0o.productlist.main.5.505a7247lMPtBR&algo_pvid=59f4b88c-3d65-44b9-a1ce-13e738d8a9ac&algo_exp_id=59f4b88c-3d65-44b9-a1ce-13e738d8a9ac-2&pdp_npi=4%40dis%21SEK%2113.32%2113.32%21%21%218.53%218.53%21%402101c80017369937047682191ebb1b%2112000042315586584%21sea%21SE%211637369410%21X&curPageLogUid=qvWmwPTLOjfG&utparam-url=scene%3Asearch%7Cquery_from%3A)    | [DataSheet](https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/1811151540_BL-Shanghai-Belling-BL9110-330BPEA_C169247.pdf) |
