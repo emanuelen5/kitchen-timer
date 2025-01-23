@@ -19,5 +19,12 @@
 * We are using the BTE17-06B module
 * This module has an overcurrent protection fusion that allows only 500mA.
 
+## BMS Module
+* Resistor R3 on the module is the charging current programming resistor. This resistor needs to be changed to an appropiate value for the battery used [TODO] (What value?) 
+
+## 3.3V Linear Regulator
+* We are using the AP2111 [[2]](#2)
+
+
 # References:
 * <a id="1">[1]</a> [https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/]
