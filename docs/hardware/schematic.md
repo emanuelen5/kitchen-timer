@@ -7,7 +7,7 @@
 * We are not adding a pull-up resistor because the RESET pin on the ATmega328p alrady has one.
 
 ## Bootloader auto-reset
-* We will use the DTR line of the UART module to trigger a quick reset of the MCU. [[1]]
+* We will use the DTR line of the UART module to trigger a quick reset of the MCU. [[1]](#1)
 
 ## Bootloader upload pins
 * This is a set of pins to connect a programmer.
@@ -27,4 +27,5 @@
 
 
 # References:
-* <a id="1">[1]</a> [https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/]
+* <a id="1">[1]</a> [rheingoldheavy.com - Arduino from Scratch Part 11 – ATMEGA328P DTR and RESET](https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/)
+* <a id="2">[2]</a> [Hackaday - Lithium-Ion Batteries Power Your Devboards Easily](https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/)
