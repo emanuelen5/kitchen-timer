@@ -3727,6 +3727,16 @@
 		)
 		(uuid "68fd889e-424a-431b-a5dc-712677afdf4d")
 	)
+	(text "BMS"
+		(exclude_from_sim no)
+		(at 40.64 56.134 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "98606a34-f281-4648-8a0b-2b085c058708")
+	)
 	(text "328 Reset pushbutton"
 		(exclude_from_sim no)
 		(at 242.57 50.038 0)
