@@ -27,6 +27,8 @@
 
 ## 3.3V Linear Regulator
 * We are using the AP2111 [[2]](#2)
+* The schematic has been taken from the datasheet (see "Typical Application", page 19)
+
 
 ## EMD protection
 [TODO](Do we need this? We will have a USB connection. maybe we do.)

@@ -2969,7 +2969,7 @@
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U4"
-				(at -6.096 7.366 0)
+				(at -6.096 10.414 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -2977,7 +2977,7 @@
 				)
 			)
 			(property "Value" "AP2111H-3.3"
-				(at 1.27 -6.858 0)
+				(at 1.27 -10.922 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -3013,8 +3013,8 @@
 			)
 			(symbol "AP2111H-3.3TRG1_0_1"
 				(rectangle
-					(start -7.62 5.715)
-					(end 7.62 -5.08)
+					(start -7.62 8.89)
+					(end 7.62 -8.89)
 					(stroke
 						(width 0.254)
 						(type default)
@@ -3026,7 +3026,7 @@
 			)
 			(symbol "AP2111H-3.3TRG1_1_1"
 				(pin power_in line
-					(at -10.16 3.81 0)
+					(at -10.16 6.35 0)
 					(length 2.54)
 					(name "VIN"
 						(effects
@@ -3062,7 +3062,7 @@
 					)
 				)
 				(pin input line
-					(at -10.16 -3.81 0)
+					(at -10.16 -6.35 0)
 					(length 2.54)
 					(name "VEN"
 						(effects
@@ -3080,7 +3080,7 @@
 					)
 				)
 				(pin power_out line
-					(at 10.16 2.54 180)
+					(at 10.16 0 180)
 					(length 2.54)
 					(name "VOUT"
 						(effects
@@ -3606,6 +3606,12 @@
 		)
 	)
 	(junction
+		(at 40.64 137.16)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "02f9f59c-91ba-4e50-a568-d9bc7db0e9d2")
+	)
+	(junction
 		(at 227.33 90.17)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3666,6 +3672,12 @@
 		(uuid "6202b12f-5196-442e-a887-139d830106a9")
 	)
 	(junction
+		(at 78.74 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "6654e1aa-4eaf-415f-a5b5-d1b85dc8f528")
+	)
+	(junction
 		(at 171.45 77.47)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3718,16 +3730,6 @@
 	(no_connect
 		(at 49.53 66.04)
 		(uuid "310cc8a7-c95e-4d57-830d-420bfc85ac37")
-	)
-	(wire
-		(pts
-			(xy 38.1 138.43) (xy 39.37 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "05be62d8-a5ed-4b71-a533-b5c104689bdb")
 	)
 	(wire
 		(pts
@@ -3891,6 +3893,16 @@
 	)
 	(wire
 		(pts
+			(xy 73.66 143.51) (xy 78.74 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4dcf6700-81d9-4da4-ac3f-4010d43404ad")
+	)
+	(wire
+		(pts
 			(xy 143.51 46.99) (xy 143.51 48.26)
 		)
 		(stroke
@@ -4031,7 +4043,7 @@
 	)
 	(wire
 		(pts
-			(xy 39.37 142.24) (xy 31.75 142.24)
+			(xy 53.34 143.51) (xy 45.72 143.51)
 		)
 		(stroke
 			(width 0)
@@ -4078,16 +4090,6 @@
 			(type default)
 		)
 		(uuid "73875302-2850-4bb8-9eac-7ffc904f4af0")
-	)
-	(wire
-		(pts
-			(xy 36.83 146.05) (xy 39.37 146.05)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "76fb0cac-f9cd-4b2c-aed4-24752fd432a0")
 	)
 	(wire
 		(pts
@@ -4271,16 +4273,6 @@
 	)
 	(wire
 		(pts
-			(xy 66.04 139.7) (xy 68.58 139.7)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9f976a83-0530-4ec3-92b0-090d42905d3b")
-	)
-	(wire
-		(pts
 			(xy 254 133.35) (xy 257.81 133.35)
 		)
 		(stroke
@@ -4408,6 +4400,16 @@
 			(type default)
 		)
 		(uuid "bd7c8a61-187b-40cb-a0a6-46608ae4260d")
+	)
+	(wire
+		(pts
+			(xy 40.64 137.16) (xy 53.34 137.16)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c23710ba-e886-4259-a9cf-9c2d0b1e4de7")
 	)
 	(wire
 		(pts
@@ -4551,16 +4553,6 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 138.43) (xy 33.02 138.43)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e89d577f-44ae-449d-92c3-5957143b0e94")
-	)
-	(wire
-		(pts
 			(xy 250.19 58.42) (xy 252.73 58.42)
 		)
 		(stroke
@@ -4571,13 +4563,13 @@
 	)
 	(wire
 		(pts
-			(xy 60.96 139.7) (xy 59.69 139.7)
+			(xy 52.07 149.86) (xy 53.34 149.86)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f24d0908-8085-46cd-ae75-66493c4f995d")
+		(uuid "f657a172-c6e6-4969-a3ef-6e882d94661d")
 	)
 	(wire
 		(pts
@@ -4631,7 +4623,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 142.24) (xy 31.75 143.51)
+			(xy 45.72 143.51) (xy 45.72 144.78)
 		)
 		(stroke
 			(width 0)
@@ -4669,6 +4661,16 @@
 		)
 		(uuid "4fa7e39c-2c39-466a-860f-a3a42075a0f3")
 	)
+	(text "Boost Converter to 5V"
+		(exclude_from_sim no)
+		(at 49.784 169.164 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+		)
+		(uuid "5dc7bf7f-ba3d-4f4d-b59b-e16dd29f4e04")
+	)
 	(text "Decoupling Caps 328"
 		(exclude_from_sim no)
 		(at 214.884 23.114 0)
@@ -4681,7 +4683,7 @@
 	)
 	(text "3.3V Regulator"
 		(exclude_from_sim no)
-		(at 49.53 129.032 0)
+		(at 57.658 127.762 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5273,16 +5275,16 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 31.75 138.43 0)
+		(at 52.07 149.86 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "13df4b55-4053-4e6e-b24e-c672bc3661fb")
-		(property "Reference" "#PWR019"
-			(at 31.75 142.24 0)
+		(uuid "19307f1e-fdc2-4ce8-91c4-df7362e73a43")
+		(property "Reference" "#PWR020"
+			(at 52.07 153.67 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5290,8 +5292,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "BAT-VCC"
-			(at 25.146 137.16 0)
+		(property "Value" "PP_VCC"
+			(at 51.816 145.796 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5299,7 +5301,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 31.75 138.43 0)
+			(at 52.07 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5308,7 +5310,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 31.75 138.43 0)
+			(at 52.07 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5317,7 +5319,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 31.75 138.43 0)
+			(at 52.07 149.86 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5326,12 +5328,12 @@
 			)
 		)
 		(pin "1"
-			(uuid "3ae0e7d8-f1cb-4e07-9541-6e929477188a")
+			(uuid "1a430d75-c589-4412-b508-33a8126f5f74")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(reference "#PWR019")
+					(reference "#PWR020")
 					(unit 1)
 				)
 			)
@@ -5680,6 +5682,75 @@
 		)
 	)
 	(symbol
+		(lib_id "Device:C_Small")
+		(at 78.74 146.05 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "34a6c22b-62a5-49ab-ae5a-5c732255a775")
+		(property "Reference" "C7"
+			(at 76.2 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "1uF"
+			(at 85.09 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 78.74 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 78.74 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 78.74 146.05 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "241898d5-3e10-43c9-b0b0-0526906cc63e")
+		)
+		(pin "2"
+			(uuid "0d763c86-0150-4054-b496-04f0f28cb3a6")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "power:+5V")
 		(at 201.93 124.46 0)
 		(unit 1)
@@ -6013,6 +6084,71 @@
 	)
 	(symbol
 		(lib_id "power:GND")
+		(at 78.74 148.59 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "51102a15-e462-4288-9a47-0cfcdd48b6cb")
+		(property "Reference" "#PWR026"
+			(at 78.74 154.94 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PP_GND"
+			(at 78.74 152.908 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 78.74 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 78.74 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 78.74 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d1dd62dc-0e1c-45ee-974e-8b3951190872")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
+					(reference "#PWR026")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
 		(at 214.63 39.37 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -6072,6 +6208,71 @@
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
 					(reference "#PWR04")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:GND")
+		(at 40.64 142.24 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5c5d83c6-dcb2-4332-b470-2650af784f6d")
+		(property "Reference" "#PWR025"
+			(at 40.64 148.59 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PP_GND"
+			(at 40.64 146.558 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 40.64 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.64 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
+			(at 40.64 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "1bb46005-57c3-47f8-a4fb-14c8bd8f1ab4")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -6586,7 +6787,7 @@
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:AP2111H-3.3TRG1")
-		(at 49.53 142.24 0)
+		(at 63.5 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6594,7 +6795,7 @@
 		(dnp no)
 		(uuid "7e3ff1e5-b924-4310-8c40-6de3aa2abed0")
 		(property "Reference" "U4"
-			(at 43.434 134.874 0)
+			(at 57.404 133.096 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6602,7 +6803,7 @@
 			)
 		)
 		(property "Value" "AP2111H-3.3"
-			(at 50.8 149.098 0)
+			(at 64.77 154.432 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6610,7 +6811,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 46.99 140.97 0)
+			(at 60.96 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6619,7 +6820,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 46.99 140.97 0)
+			(at 60.96 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6628,7 +6829,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 46.99 140.97 0)
+			(at 60.96 142.24 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7270,7 +7471,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 68.58 139.7 0)
+		(at 78.74 143.51 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -7279,7 +7480,7 @@
 		(fields_autoplaced yes)
 		(uuid "a3f1eda6-c2ba-421c-92ad-bb8b567da4b6")
 		(property "Reference" "#PWR015"
-			(at 68.58 143.51 0)
+			(at 78.74 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7288,7 +7489,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 68.58 134.62 0)
+			(at 78.74 138.43 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7296,7 +7497,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 68.58 139.7 0)
+			(at 78.74 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7305,7 +7506,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 68.58 139.7 0)
+			(at 78.74 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7314,7 +7515,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 68.58 139.7 0)
+			(at 78.74 143.51 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7615,141 +7816,6 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 35.56 138.43 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bffd354e-488f-49c7-95ea-726f436b6d6f")
-		(property "Reference" "C6"
-			(at 37.338 135.382 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1uF"
-			(at 37.592 132.842 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 35.56 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 35.56 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 35.56 138.43 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "dc202aab-c990-4a7e-92fe-4afc2c16765a")
-		)
-		(pin "2"
-			(uuid "a1a2f041-4498-4a69-b9b3-adab091f2a23")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(reference "C6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+3.3V")
-		(at 36.83 146.05 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c3972970-6cef-42b4-ad1f-c47c25d4e3f5")
-		(property "Reference" "#PWR020"
-			(at 36.83 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "BAT-VCC"
-			(at 36.83 148.082 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 36.83 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 36.83 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
-			(at 36.83 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "1adc2eb4-54b4-4840-9494-8740368d4a4b")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(reference "#PWR020")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:C_Small")
 		(at 220.98 35.56 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -7813,6 +7879,72 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
 					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "power:+3.3V")
+		(at 40.64 137.16 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c78b3bd4-96d0-44eb-b044-6074880dba6f")
+		(property "Reference" "#PWR019"
+			(at 40.64 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Value" "PP_VCC"
+			(at 34.036 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 40.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 40.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Power symbol creates a global label with name \"+3.3V\""
+			(at 40.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "78dcf7e7-d885-4aaa-beeb-9bd9e71fa98d")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
+					(reference "#PWR019")
 					(unit 1)
 				)
 			)
@@ -8057,15 +8189,15 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 63.5 139.7 90)
+		(at 40.64 139.7 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "dcdd54d5-984a-4c13-9a39-145295cd89e4")
-		(property "Reference" "C7"
-			(at 65.278 136.652 90)
+		(uuid "de71e467-bf41-44ee-bf78-3f0527cc637e")
+		(property "Reference" "C6"
+			(at 37.846 139.954 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8074,7 +8206,7 @@
 			)
 		)
 		(property "Value" "1uF"
-			(at 65.024 133.858 90)
+			(at 46.482 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8083,7 +8215,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 63.5 139.7 0)
+			(at 40.64 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8092,7 +8224,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 63.5 139.7 0)
+			(at 40.64 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8101,7 +8233,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 63.5 139.7 0)
+			(at 40.64 139.7 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8110,15 +8242,15 @@
 			)
 		)
 		(pin "1"
-			(uuid "b3d8961a-e100-4da1-a072-cb28c5a6241c")
+			(uuid "eaab4fa2-047a-407e-9d34-1fbda3cd8bb6")
 		)
 		(pin "2"
-			(uuid "1a2390c9-77d4-4817-91a8-745030d8dfdd")
+			(uuid "998b4c48-3104-4d89-b39d-7117f4dff833")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(reference "C7")
+					(reference "C6")
 					(unit 1)
 				)
 			)
@@ -8191,7 +8323,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 31.75 143.51 0)
+		(at 45.72 144.78 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -8199,7 +8331,7 @@
 		(dnp no)
 		(uuid "f3fabf2b-5235-48c7-9bf0-ca92a0c28334")
 		(property "Reference" "#PWR016"
-			(at 31.75 149.86 0)
+			(at 45.72 151.13 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8207,8 +8339,8 @@
 				(hide yes)
 			)
 		)
-		(property "Value" "BAT-GND"
-			(at 25.654 143.256 0)
+		(property "Value" "PP_GND"
+			(at 45.72 149.352 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8216,7 +8348,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 31.75 143.51 0)
+			(at 45.72 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8225,7 +8357,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 31.75 143.51 0)
+			(at 45.72 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -8234,7 +8366,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 31.75 143.51 0)
+			(at 45.72 144.78 0)
 			(effects
 				(font
 					(size 1.27 1.27)
