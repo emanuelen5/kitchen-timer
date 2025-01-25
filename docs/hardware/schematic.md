@@ -28,6 +28,8 @@
 ## 3.3V Linear Regulator
 * We are using the AP2111 [[2]](#2)
 
+## EMD protection
+[TODO](Do we need this? We will have a USB connection. maybe we do.)
 
 # References:
 * <a id="1">[1]</a> [rheingoldheavy.com - Arduino from Scratch Part 11 – ATMEGA328P DTR and RESET](https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/)
