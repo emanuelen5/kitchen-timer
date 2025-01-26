@@ -5,9 +5,12 @@
 	(uuid "7e6b048c-77b7-43e9-a140-0a1a414178b0")
 	(paper "A4")
 	(title_block
-		(title "Kitchen_Timer: LED Matrices Display")
+		(title "Kitchen_Timer - LED Matrices Display")
 		(date "2025-01-26")
 		(rev "v01")
+		(comment 2 "creativecommons.org/licences/4.0/")
+		(comment 3 "Licence: CC BY 4.0")
+		(comment 4 "Author: Nicolas Perozzi")
 	)
 	(lib_symbols
 		(symbol "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB"
@@ -3365,6 +3368,7 @@
 	)
 	(label "Mat1.DIG_0"
 		(at 71.12 49.53 0)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3485,6 +3489,7 @@
 	)
 	(label "Mat1.SEG_A"
 		(at 91.44 41.91 90)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3887,7 +3892,6 @@
 		(uuid "c9be232c-1788-4eec-933f-22e035662ea0")
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 99.06 180)
 		(unit 1)
@@ -3999,7 +4003,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 63.5 0)
 		(mirror y)
@@ -4112,7 +4115,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 99.06 0)
 		(mirror x)
@@ -4225,7 +4227,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 63.5 0)
 		(unit 1)

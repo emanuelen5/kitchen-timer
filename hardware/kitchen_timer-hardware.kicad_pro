@@ -394,6 +394,26 @@
     [
       "51b07aee-e177-4be7-b84e-75e5e68b78bc",
       "LED Matrices Display"
+    ],
+    [
+      "9aa7b7c0-c135-4683-8926-7ddf1682c201",
+      "Microcontroller"
+    ],
+    [
+      "b979c399-5795-4865-aa2c-ec3af0747c81",
+      "3.3V Regulator"
+    ],
+    [
+      "f7e640d9-c0d9-4c44-8592-f18e152ed7d5",
+      "USB-C & UART Debugger"
+    ],
+    [
+      "c0498d1d-9e32-48f1-b749-4feb6881e262",
+      "BMS"
+    ],
+    [
+      "8d96c6df-7eb2-480a-982a-3dd8886e54b6",
+      "5V Boost Converter"
     ]
   ],
   "text_variables": {}

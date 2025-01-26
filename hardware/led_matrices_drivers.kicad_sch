@@ -5,9 +5,12 @@
 	(uuid "0ebbef48-33bb-436d-be8a-670a01309f98")
 	(paper "A4")
 	(title_block
-		(title "Kitchen_Timer: LED Matrices Drivers")
+		(title "Kitchen_Timer - LED Matrices Drivers")
 		(date "2025-01-25")
 		(rev "v01")
+		(comment 2 "creativecommons.org/licences/4.0/")
+		(comment 3 "Licence: CC BY 4.0")
+		(comment 4 "Author: Nicolas Perozzi")
 	)
 	(lib_symbols
 		(symbol "Device:C_Small"
@@ -4849,7 +4852,7 @@
 				)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "9.53k"
 			(at 166.37 66.294 0)
 			(effects
 				(font
@@ -4916,7 +4919,7 @@
 				)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "9.53k"
 			(at 107.95 66.294 0)
 			(effects
 				(font
@@ -5118,7 +5121,7 @@
 				)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "9.53k"
 			(at 54.61 66.294 0)
 			(effects
 				(font
@@ -5321,7 +5324,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
+		(property "Value" "0.1uF"
 			(at 233.68 66.294 0)
 			(effects
 				(font
@@ -5525,7 +5528,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
+		(property "Value" "0.1uF"
 			(at 179.07 66.294 0)
 			(effects
 				(font
@@ -5594,7 +5597,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
+		(property "Value" "0.1uF"
 			(at 120.65 66.294 0)
 			(effects
 				(font
@@ -5663,7 +5666,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_Small"
+		(property "Value" "0.1uF"
 			(at 67.31 66.294 0)
 			(effects
 				(font
@@ -5731,7 +5734,7 @@
 				)
 			)
 		)
-		(property "Value" "R_Small"
+		(property "Value" "9.53k"
 			(at 220.98 66.294 0)
 			(effects
 				(font
