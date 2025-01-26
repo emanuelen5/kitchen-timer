@@ -224,7 +224,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "similar_labels": "warning",
       "simulation_model_issue": "ignore",
@@ -386,6 +386,10 @@
     [
       "8963deea-96bc-4401-b671-98fbe9ed9c6a",
       "Root"
+    ],
+    [
+      "452e0bb3-d328-4d26-8f2f-0fdd90f8dd22",
+      "LED Matrices Drivers"
     ]
   ],
   "text_variables": {}

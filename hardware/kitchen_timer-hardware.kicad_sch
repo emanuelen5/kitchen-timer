@@ -4291,6 +4291,16 @@
 		(at 109.22 30.48)
 		(uuid "310cc8a7-c95e-4d57-830d-420bfc85ac37")
 	)
+	(bus
+		(pts
+			(xy 162.56 157.48) (xy 163.83 157.48)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "019e1efd-b228-4602-9a45-b57f665a8d9d")
+	)
 	(wire
 		(pts
 			(xy 73.66 154.94) (xy 90.17 154.94)
@@ -4331,6 +4341,16 @@
 		)
 		(uuid "0cfc527a-4c0c-4640-8e9f-c38b8a1a78c3")
 	)
+	(bus
+		(pts
+			(xy 162.56 163.83) (xy 163.83 163.83)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "115fbcb4-127e-4504-8769-ca0d503fce76")
+	)
 	(wire
 		(pts
 			(xy 92.71 68.58) (xy 78.74 68.58)
@@ -4360,6 +4380,26 @@
 			(type default)
 		)
 		(uuid "1664b340-5ac1-4674-8b1c-559cae070d5f")
+	)
+	(bus
+		(pts
+			(xy 162.56 153.67) (xy 163.83 153.67)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1dc15626-29dc-499c-af10-e1e44bdd0757")
+	)
+	(bus
+		(pts
+			(xy 162.56 151.13) (xy 163.83 151.13)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1dd68826-1f01-474b-97ef-dc45aa839f17")
 	)
 	(wire
 		(pts
@@ -4610,6 +4650,16 @@
 			(type default)
 		)
 		(uuid "51e0903d-cd07-4bad-976f-2fee5af1e56a")
+	)
+	(bus
+		(pts
+			(xy 162.56 160.02) (xy 163.83 160.02)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5379fd12-29f1-4941-8be9-f702af168dc8")
 	)
 	(wire
 		(pts
@@ -4911,6 +4961,16 @@
 		)
 		(uuid "7b25612a-2b8d-44cc-a432-2097beb5922c")
 	)
+	(bus
+		(pts
+			(xy 162.56 170.18) (xy 163.83 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7bf473ea-1d1d-4d05-8726-eba39b675148")
+	)
 	(wire
 		(pts
 			(xy 90.17 154.94) (xy 99.06 154.94)
@@ -5091,6 +5151,16 @@
 		)
 		(uuid "9aa20ebf-2b7e-40d3-853a-4877405827ae")
 	)
+	(bus
+		(pts
+			(xy 162.56 166.37) (xy 163.83 166.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9b863c2a-535b-460c-b8cb-683bd5a6042e")
+	)
 	(wire
 		(pts
 			(xy 66.04 170.18) (xy 66.04 173.99)
@@ -5200,6 +5270,16 @@
 			(type default)
 		)
 		(uuid "a6ebda7b-6ecd-4919-8dbb-b5714dd1d5c1")
+	)
+	(bus
+		(pts
+			(xy 162.56 172.72) (xy 163.83 172.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a9abf02e-6ef7-44c7-8adc-4c395af6ba41")
 	)
 	(wire
 		(pts
@@ -10399,6 +10479,154 @@
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
 					(reference "#PWR016")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 129.54 149.86)
+		(size 33.02 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "452e0bb3-d328-4d26-8f2f-0fdd90f8dd22")
+		(property "Sheetname" "LED Matrices Drivers"
+			(at 129.54 149.1484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "led_matrices_drivers.kicad_sch"
+			(at 129.54 175.8446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "MOSI" input
+			(at 129.54 158.75 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "041f7bf9-009f-4e53-9e5f-479de076dbf1")
+		)
+		(pin "SCK" input
+			(at 129.54 161.29 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "7c86c6b9-aa2d-4f74-a685-26729e2546bc")
+		)
+		(pin "CS" input
+			(at 129.54 163.83 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "a7a2c3ba-5588-4e24-bd1e-41af2b696e7a")
+		)
+		(pin "Mat2_DIG" output
+			(at 162.56 160.02 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "be6b18c1-0978-4bcc-93a6-951ff7cee0c1")
+		)
+		(pin "Mat2_SEG" output
+			(at 162.56 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "be472da9-0444-4015-a1b2-6a4381aa12ba")
+		)
+		(pin "Mat1_SEG" output
+			(at 162.56 151.13 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "27b7cd0f-04e7-411f-b63c-99660dd74e00")
+		)
+		(pin "Mat1_DIG" output
+			(at 162.56 153.67 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "b9623f74-4ea7-49b7-9b50-a78bd29f4c66")
+		)
+		(pin "Mat3_SEG" output
+			(at 162.56 163.83 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "e66152e3-2628-4cbb-a387-7a62de24ea89")
+		)
+		(pin "Mat3_DIG" output
+			(at 162.56 166.37 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "81f16223-a219-4830-ab5c-cca24628d2c7")
+		)
+		(pin "Mat4_DIG" output
+			(at 162.56 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "d8ea2b7d-2f41-45d7-98cd-62d1189710fe")
+		)
+		(pin "Mat4_SEG" output
+			(at 162.56 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "030e2c6c-cc29-4aa6-a370-9df66ecec494")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
+					(page "2")
 				)
 			)
 		)
