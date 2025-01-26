@@ -29,6 +29,9 @@
 * We are using the AP2111 [[2]](#2)
 * The schematic has been taken from the datasheet (see "Typical Application", page 19)
 
+## 5V Boost Converter
+* We are using the TPS61200, Low Input Voltage Synchronous Boost Converter. [[4]](#4)
+* The schematic has been taken from the [Sparkfun module](https://cdn.sparkfun.com/datasheets/Prototyping/Li_Power_Boost_Converter.pdf) 
 
 ## EMD protection
 [TODO](Do we need this? We will have a USB connection. maybe we do.)
@@ -37,3 +40,4 @@
 * <a id="1">[1]</a> [rheingoldheavy.com - Arduino from Scratch Part 11 – ATMEGA328P DTR and RESET](https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/)
 * <a id="2">[2]</a> [Hackaday - Lithium-Ion Batteries Power Your Devboards Easily](https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/)
 * <a id="3">[3]</a> [GitHub "TP4056-Power-Path-PCB"](https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md)
+* <a id="4">[4]</a> [Sparkfun - LiPower Boost Converter](https://www.sparkfun.com/lipower-boost-converter.html)
