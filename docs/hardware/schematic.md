@@ -31,7 +31,11 @@
 
 ## 5V Boost Converter
 * We are using the TPS61200, Low Input Voltage Synchronous Boost Converter. [[4]](#4)
-* The schematic has been taken from the [Sparkfun module](https://cdn.sparkfun.com/datasheets/Prototyping/Li_Power_Boost_Converter.pdf) 
+* The schematic has been taken from the [Sparkfun module](https://cdn.sparkfun.com/datasheets/Prototyping/Li_Power_Boost_Converter.pdf)
+
+## LED Matrices Display
+* We are using 4 common-cathode LED matrices.
+
 
 ## EMD protection
 [TODO](Do we need this? We will have a USB connection. maybe we do.)

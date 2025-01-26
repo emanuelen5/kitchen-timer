@@ -103,3 +103,4 @@ The Piezo Speaker chosen work at 3.3V. We will be powering it directly from the 
 |[UART Module](https://es.aliexpress.com/item/1005004276046811.html?spm=a2g0o.order_list.order_list_main.39.6ba6194doVGuKx&gatewayAdapt=glo2esp)              | [DataSheet](https://cdn.sparkfun.com/assets/5/0/a/8/5/CH340DS1.PDF?utm_source=chatgpt.com)|
 | [BMS Module](https://www.electrokit.com/batteriladdare-lipo-microusb)| [DataSheet](https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf)
 | [3.3 Regulator AP2111H-3.3TRG1](https://www.digikey.se/en/products/detail/diodes-incorporated/AP2111H-3-3TRG1/4470743)    | [DataSheet](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/657/AP2111_Dec2012_DS.pdf) |
+|[Dot-Matrix LED 8x8 common-cathode yellow](https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul)|[DataSheet](https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf)|

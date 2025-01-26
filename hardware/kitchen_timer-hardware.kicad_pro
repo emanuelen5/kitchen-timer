@@ -390,6 +390,10 @@
     [
       "452e0bb3-d328-4d26-8f2f-0fdd90f8dd22",
       "LED Matrices Drivers"
+    ],
+    [
+      "51b07aee-e177-4be7-b84e-75e5e68b78bc",
+      "LED Matrices Display"
     ]
   ],
   "text_variables": {}

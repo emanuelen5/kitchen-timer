@@ -5,9 +5,9 @@
 	(uuid "0ebbef48-33bb-436d-be8a-670a01309f98")
 	(paper "A4")
 	(title_block
-		(title "Kitchen_Timer")
+		(title "Kitchen_Timer: LED Matrices Drivers")
 		(date "2025-01-25")
-		(rev "V01")
+		(rev "v01")
 	)
 	(lib_symbols
 		(symbol "Device:C_Small"
@@ -4752,76 +4752,76 @@
 			)
 		)
 		(pin "17"
-			(uuid "ae8bdd06-4d77-4ddb-bc96-c224aa6e9011")
+			(uuid "64f559ba-50cf-4b60-9809-800399c43c93")
 		)
 		(pin "15"
-			(uuid "f65f7794-e7b6-49a8-b6af-d30fd5bd37f5")
+			(uuid "3c195bf7-0e6e-4532-827a-c366f323f505")
 		)
 		(pin "14"
-			(uuid "08d6cbb1-2608-4a59-b462-0b02753e24c0")
+			(uuid "92e178a7-f411-4e16-b314-147032a2f207")
 		)
 		(pin "4"
-			(uuid "e97f9f31-c49b-4c66-aff0-5244cbd92306")
+			(uuid "1b413752-4254-4745-80d8-392953695ce7")
 		)
 		(pin "7"
-			(uuid "51709b98-68f0-4a24-b9f4-3517c02a137f")
+			(uuid "a9ea7128-9f59-45ab-9813-e0e6fa2ea65b")
 		)
 		(pin "2"
-			(uuid "9cd02cf9-00a1-4534-8573-68e3d11dadb3")
+			(uuid "c89242c3-f818-4ff9-be2a-8b33b0f8e15a")
 		)
 		(pin "6"
-			(uuid "d5bbac4a-55e5-437e-bc0a-df0ca0d383d9")
+			(uuid "263a3c9d-32e7-4c38-8f19-ffa588359508")
 		)
 		(pin "12"
-			(uuid "fca9cf2f-8cf1-4c33-9c19-16a8fb57c5ca")
+			(uuid "423c12b3-0a24-45e1-a023-e52bf9f3a4df")
 		)
 		(pin "19"
-			(uuid "081befab-3836-4e59-a3c2-2fd4b83b8e33")
+			(uuid "70b75ee1-a04d-45a8-a117-0e04e3cc721b")
 		)
 		(pin "24"
-			(uuid "a6b1d29b-3c94-40e5-a5d4-87599b684b66")
+			(uuid "b5a563f8-74c0-4242-aecc-861f3b631b43")
 		)
 		(pin "18"
-			(uuid "1feb3c16-76e9-489f-bbc0-091037494166")
+			(uuid "732205b2-c156-4543-995d-bdd7e29a479f")
 		)
 		(pin "9"
-			(uuid "cbc4796e-8ec6-4217-94e9-8cf47f035104")
+			(uuid "018a9467-eb8f-46eb-a5d0-d2fa039d8d72")
 		)
 		(pin "10"
-			(uuid "3bab2a2c-2c3f-48ab-bdbd-52eec4b6f82b")
+			(uuid "55a5131e-308c-49d3-85a8-e8ab6763a3ec")
 		)
 		(pin "16"
-			(uuid "7deb3447-a79a-435d-a256-79dbd1ff703d")
+			(uuid "0f64904e-4228-40a7-acf5-20c7c8e3291c")
 		)
 		(pin "11"
-			(uuid "6e244ec0-1aa7-4f9c-9acd-71643c2724bc")
+			(uuid "d31577e9-b125-431d-b13f-c53552e3828e")
 		)
 		(pin "23"
-			(uuid "114ff4ce-3dfb-4279-b5f0-d136509da58e")
+			(uuid "ab82596e-03ae-4792-a005-c42b7a050b37")
 		)
 		(pin "1"
-			(uuid "8ae60ad8-ea41-4555-9a16-26e448c5d8ad")
+			(uuid "cade2e5f-557d-4429-b870-da20e1ad4a6d")
 		)
 		(pin "8"
-			(uuid "bf5818a1-5066-45ab-9d48-fba23d702a6f")
+			(uuid "086a806e-3c77-4adb-a3fb-d264422ec392")
 		)
 		(pin "5"
-			(uuid "ebdfdcc4-7598-416c-8d2b-b39e79c71b98")
+			(uuid "f80d468b-ef53-4dbe-bd6c-9f144779995d")
 		)
 		(pin "21"
-			(uuid "2facc1e2-6afe-4603-9cf6-c84cfa3e0efa")
+			(uuid "92cb8591-997a-4360-a82f-71e393d83266")
 		)
 		(pin "20"
-			(uuid "4750f825-53db-47d9-88b5-50c0a819233c")
+			(uuid "57790672-72ef-485c-93f2-8d545a1b36e5")
 		)
 		(pin "22"
-			(uuid "b2851b90-9445-45e4-a5a7-ba6ba231e690")
+			(uuid "fb18ade3-57a9-4972-94e9-c49ff0b1c823")
 		)
 		(pin "3"
-			(uuid "5c0ac618-d976-429e-a9bb-91edaf1dab5c")
+			(uuid "0f94e26d-3cd6-405d-a6b5-e09676a4dc63")
 		)
 		(pin "13"
-			(uuid "fb414835-f5a6-4bbc-9942-1fa68a29325e")
+			(uuid "a43f24e9-92ed-46fd-bdff-933a2dee4a34")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -4849,7 +4849,7 @@
 				)
 			)
 		)
-		(property "Value" "9.53k"
+		(property "Value" "R_Small"
 			(at 166.37 66.294 0)
 			(effects
 				(font
@@ -4885,10 +4885,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "5c94ff1b-5d8e-4b50-b39e-219cd4c5fd56")
+			(uuid "05340036-b09d-46ff-967a-b5eb331d8445")
 		)
 		(pin "2"
-			(uuid "88362747-de21-4989-9792-830e35bc0951")
+			(uuid "cd0b4af7-bad3-420e-8440-9723c5197894")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -4916,7 +4916,7 @@
 				)
 			)
 		)
-		(property "Value" "9.53k"
+		(property "Value" "R_Small"
 			(at 107.95 66.294 0)
 			(effects
 				(font
@@ -4952,10 +4952,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "e7e75440-206c-4093-a517-e8c9d7517674")
+			(uuid "2df6ed15-443a-4839-9fde-b065eec35b93")
 		)
 		(pin "2"
-			(uuid "1934481c-5846-49fb-8ed6-85bc3638bc1d")
+			(uuid "5af72147-355e-43fb-92ff-4032c6fd1c70")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5021,76 +5021,76 @@
 			)
 		)
 		(pin "17"
-			(uuid "83358320-2360-4678-9762-fa955cdf4e40")
+			(uuid "e4964a7c-3741-4ea2-a1c6-a4d07bff2311")
 		)
 		(pin "15"
-			(uuid "7eb3fa22-b77c-4f10-98cd-e1266e4c6591")
+			(uuid "955aff0a-3110-493d-8954-e19ea0358b0e")
 		)
 		(pin "14"
-			(uuid "a5a50e17-2773-40be-b1b8-dfe5a574843e")
+			(uuid "15262357-d2ee-4803-addb-5e93abb5baf2")
 		)
 		(pin "4"
-			(uuid "fed41617-6a14-476e-bd00-16448e516eb9")
+			(uuid "e0121230-39f7-4f13-9fbc-8a0fbf7b19aa")
 		)
 		(pin "7"
-			(uuid "28ab03d1-83e1-4099-a3f8-78190278323b")
+			(uuid "5bb74541-c517-4b14-9c33-78089a49aa41")
 		)
 		(pin "2"
-			(uuid "0359a0f7-3b27-4fbe-b4bf-3261ab6870d0")
+			(uuid "767f09fa-5135-4055-91f9-a24ad5cc91d0")
 		)
 		(pin "6"
-			(uuid "62a5489a-7a25-4afd-8e10-a5f4d4b4517b")
+			(uuid "30ae7fb3-6330-4ca2-8f1d-e05163dc29a9")
 		)
 		(pin "12"
-			(uuid "6af78b76-e019-4150-8afa-0ed37183aadb")
+			(uuid "1cd0c7bc-c867-4aa5-b10f-bbe3cd8e36ed")
 		)
 		(pin "19"
-			(uuid "c5c9a57e-718c-4bab-8270-93679a429c25")
+			(uuid "0cb6cbd1-59bf-44e0-afba-704164c5c444")
 		)
 		(pin "24"
-			(uuid "ce56854d-7a97-4948-97e2-4c7191b48871")
+			(uuid "d31f14f3-5fb1-487b-9046-a74103b36bb4")
 		)
 		(pin "18"
-			(uuid "bf152ff1-62cd-421e-b546-9bce001fe320")
+			(uuid "9c6aebea-04ec-460e-ac95-6077b33d5421")
 		)
 		(pin "9"
-			(uuid "07b257ab-10ee-40e1-9817-ef2cf96fe203")
+			(uuid "65562858-974a-420b-b9cd-f652ac61092f")
 		)
 		(pin "10"
-			(uuid "a1121bf7-ad55-44d6-967b-ce131b5168fa")
+			(uuid "18e95ad2-64b3-406f-aa01-d3d54a36e6e4")
 		)
 		(pin "16"
-			(uuid "81cb1cc5-6485-465d-bc9b-5d0fd139fdbf")
+			(uuid "232d8234-e384-49e0-a3a9-2b5e8ea02ba6")
 		)
 		(pin "11"
-			(uuid "7f991133-57ef-433d-bc75-3b946d60ad5f")
+			(uuid "3ad40f87-e5b8-4a73-aab9-959006afc931")
 		)
 		(pin "23"
-			(uuid "964f0901-4ab5-4bb1-98de-416c09d701a1")
+			(uuid "6caf0c33-81ac-4b89-b57f-b5b56a39d6ea")
 		)
 		(pin "1"
-			(uuid "e32eec62-d9bb-432d-97f1-d86d78869fbb")
+			(uuid "4f6fd210-123e-482b-8428-9bba421593ec")
 		)
 		(pin "8"
-			(uuid "1d8b1f7e-51b9-4613-879f-f4aacbf97f75")
+			(uuid "13575dda-9c71-4d59-80b8-e020347750e7")
 		)
 		(pin "5"
-			(uuid "a0fdd817-368d-404f-a5a0-f0129edbc534")
+			(uuid "2cf7e2b5-cf88-426b-8af4-9192ee788ebc")
 		)
 		(pin "21"
-			(uuid "ab6136c1-c2d6-441a-a498-8e8d3e64f582")
+			(uuid "09117e25-3a55-4b0b-b128-408dde80ce81")
 		)
 		(pin "20"
-			(uuid "f67e7a5f-0186-4181-80d4-065107e47bb0")
+			(uuid "ae898805-cb94-463a-a253-298fccd35af2")
 		)
 		(pin "22"
-			(uuid "5dd870a7-1949-4402-a81b-51831f1fcbaf")
+			(uuid "781bd55a-9206-48ed-888a-4e620b2e8f86")
 		)
 		(pin "3"
-			(uuid "df83040f-9423-4fb6-9d78-900ee9aee6c7")
+			(uuid "851082a2-3974-4059-9c8a-197e65647c2c")
 		)
 		(pin "13"
-			(uuid "21db482d-87db-453d-966e-efcbe4104b18")
+			(uuid "f06a8d42-2a65-4b1f-923d-fc5682dbd5c8")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5118,7 +5118,7 @@
 				)
 			)
 		)
-		(property "Value" "9.53k"
+		(property "Value" "R_Small"
 			(at 54.61 66.294 0)
 			(effects
 				(font
@@ -5154,10 +5154,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "913be26b-96bb-45de-b986-a912d97fe34b")
+			(uuid "3d2c12b3-749d-480f-8ebb-41867bb900e0")
 		)
 		(pin "2"
-			(uuid "42d40cfe-91b0-4d7e-b44f-5cf72d464ef5")
+			(uuid "a4fee344-af67-4a85-bbf8-e177d14e75a7")
 		)
 		(instances
 			(project ""
@@ -5223,76 +5223,76 @@
 			)
 		)
 		(pin "17"
-			(uuid "b5d415e1-331b-49a0-be73-a45241320483")
+			(uuid "266595e8-2cd8-4698-9a0b-d05eb897fc7d")
 		)
 		(pin "15"
-			(uuid "15d826e6-991c-4f6c-9fca-a681e6884fa3")
+			(uuid "73e8c1a0-63e1-449b-bd30-637b9b5088d5")
 		)
 		(pin "14"
-			(uuid "bb488bcd-831a-4191-9b5f-2db4f4412db5")
+			(uuid "3e24a1ad-d3d0-458c-b0b5-52bada76b991")
 		)
 		(pin "4"
-			(uuid "e90f24c8-bc79-47b3-9d48-bbd577083036")
+			(uuid "ddd13725-3380-426f-8a50-198f4b78a0c3")
 		)
 		(pin "7"
-			(uuid "e90ca128-903d-4bfe-bf3b-ee064edee3f0")
+			(uuid "c58df28f-9ccd-4dd4-9f38-b8b802ccbc78")
 		)
 		(pin "2"
-			(uuid "466af987-3933-413d-be86-67d7660d86b5")
+			(uuid "31415465-5a04-4e9e-bc4e-d43b20aecec6")
 		)
 		(pin "6"
-			(uuid "467d61c1-bb5f-41ea-9885-cb6771c5cf91")
+			(uuid "403df294-ae22-4785-8690-b0204ab69d64")
 		)
 		(pin "12"
-			(uuid "4566607a-4891-4c6d-b49c-65c38859f1f6")
+			(uuid "e5a74697-7914-4e30-b4ed-c624385c9dd3")
 		)
 		(pin "19"
-			(uuid "c69ccec4-b238-4244-94e6-02cbd1fdf3b2")
+			(uuid "3e59bb32-4f18-446c-94f6-f311029130d6")
 		)
 		(pin "24"
-			(uuid "0d398830-1a9e-4ae4-a933-287aa808e9b0")
+			(uuid "c856ee6b-ee5e-44e4-9198-0dbb47669915")
 		)
 		(pin "18"
-			(uuid "d7c47430-6087-44cb-baf1-627331258123")
+			(uuid "b03a830b-1031-420a-9ada-b4daf0518fa4")
 		)
 		(pin "9"
-			(uuid "c3c215c3-371c-41ec-b1ec-6d11e2001eb9")
+			(uuid "f1c44c40-30e5-4099-9bb0-53179cdcb53a")
 		)
 		(pin "10"
-			(uuid "00bf8970-272f-45cc-88d2-a822d561c825")
+			(uuid "14f3201d-fa90-4bc3-8fdd-55b882c1ab1d")
 		)
 		(pin "16"
-			(uuid "710eef87-d99d-4e58-b130-bf83d6259811")
+			(uuid "1e3b0483-cd9c-4add-afab-5a6e5f17566f")
 		)
 		(pin "11"
-			(uuid "c128635c-ab90-4e8d-b3e0-4fea19d8c003")
+			(uuid "ccfac21b-64bc-478d-80f1-b0562a203ca7")
 		)
 		(pin "23"
-			(uuid "0db5b62a-6003-4bc9-86fa-594236f65b47")
+			(uuid "d2f0a837-f65b-4dad-9168-ce7c6cd864a8")
 		)
 		(pin "1"
-			(uuid "923e191e-f77a-4081-ab9e-d45bb973ef8f")
+			(uuid "72ae9db3-356c-4500-9eea-b93d0a0a45b2")
 		)
 		(pin "8"
-			(uuid "277655f8-176e-4b76-99b3-d23e219dd4cd")
+			(uuid "b767e150-1670-4230-8ece-d6308ad2a4a7")
 		)
 		(pin "5"
-			(uuid "3a7ac905-f39b-4650-9433-b05e502c3272")
+			(uuid "937db394-72c1-420b-b45e-efb45012814c")
 		)
 		(pin "21"
-			(uuid "082d842e-bf41-4182-86cf-2354509cc7a4")
+			(uuid "18b1d49e-78c3-4d13-b088-501428b017d4")
 		)
 		(pin "20"
-			(uuid "73ab9069-b292-4e0e-98f3-4630f812c41f")
+			(uuid "99908136-9405-43c8-9808-5f49094d0670")
 		)
 		(pin "22"
-			(uuid "075eb4f6-1b13-4880-a211-ca7129ee19b0")
+			(uuid "8f97d03a-4b98-4135-94b0-8002957ae499")
 		)
 		(pin "3"
-			(uuid "119ccb24-ed67-46bf-bbdf-bee4a2dd709c")
+			(uuid "03228e79-8cf9-494d-9dc2-6279bdf36d2b")
 		)
 		(pin "13"
-			(uuid "aa2adc2f-44ea-421a-a3a7-c38ed8c99e4b")
+			(uuid "a90a0818-c12a-4580-b4f6-3b1b8ad3d461")
 		)
 		(instances
 			(project ""
@@ -5321,7 +5321,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C_Small"
 			(at 233.68 66.294 0)
 			(effects
 				(font
@@ -5358,10 +5358,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "7d27b4fa-0e8e-4abe-a49a-65332c395477")
+			(uuid "9874fb19-4671-4c5d-b78c-8756e49b156d")
 		)
 		(pin "1"
-			(uuid "abc95eba-970f-40e1-9781-8a73aaec4202")
+			(uuid "fc5cba70-4bfc-4a19-8b9a-ce9bf55d8399")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5427,76 +5427,76 @@
 			)
 		)
 		(pin "17"
-			(uuid "7babfdbf-b6b1-449b-b3f3-5a976d67f1fe")
+			(uuid "2037cab4-9a7a-4fd9-841d-a1b406b897fe")
 		)
 		(pin "15"
-			(uuid "8f80113c-6bef-40b0-8dca-e3f697070458")
+			(uuid "2fb942b4-eb3e-4544-af76-f2bb12131601")
 		)
 		(pin "14"
-			(uuid "01e6a9b6-b57a-47a8-9f4c-a05e8156a323")
+			(uuid "c1286dbe-da33-4c87-bba3-b6bbcf053900")
 		)
 		(pin "4"
-			(uuid "a4f332a0-0474-41bb-b042-436e6cd95cb9")
+			(uuid "a652aace-95b8-440a-b88d-9da8105eb51d")
 		)
 		(pin "7"
-			(uuid "cf681211-2b85-4c95-9514-2b67e8484bc0")
+			(uuid "7fdf659a-733c-4e33-bacd-8f660accef53")
 		)
 		(pin "2"
-			(uuid "25e91220-e8e1-42d5-b85c-085517c47df2")
+			(uuid "8143b13c-0e75-4345-ae88-b22c8eaa045e")
 		)
 		(pin "6"
-			(uuid "5c377857-4e54-4979-9e48-e956160590f1")
+			(uuid "3d8eb77e-a06c-4adf-b0af-e6bbb60241c0")
 		)
 		(pin "12"
-			(uuid "e984c0a9-8b7b-4040-9a3c-f4e92cde6c2f")
+			(uuid "22dff291-b14e-46f8-a1aa-1371898ebccb")
 		)
 		(pin "19"
-			(uuid "8966d740-07d5-4261-9838-478fdc8b2a92")
+			(uuid "fbf40ee3-603b-4c6d-8460-d36c3f5e65b0")
 		)
 		(pin "24"
-			(uuid "6b8dafcb-3b77-4810-8f55-38657bc7e69c")
+			(uuid "6a1a01ae-9ffc-4316-a223-7dd0921af248")
 		)
 		(pin "18"
-			(uuid "b349dfa8-21b7-4d62-9be0-7d604270c163")
+			(uuid "d980baf6-62d7-45a1-855c-9032154928c9")
 		)
 		(pin "9"
-			(uuid "94703370-fa7f-447f-a6c3-eb3c61b13895")
+			(uuid "35e4c93d-a502-4b47-adff-aceeb0942b6a")
 		)
 		(pin "10"
-			(uuid "256a2df5-309d-4bc1-a607-fc5aa9262d0c")
+			(uuid "450bd11e-892c-4992-86ca-fb1a80e7531b")
 		)
 		(pin "16"
-			(uuid "a33e0924-93db-4e2d-b292-6274cdf1da60")
+			(uuid "edc5a4d9-6259-46c7-b04b-ff94bdd25299")
 		)
 		(pin "11"
-			(uuid "ebef88dd-56ad-445c-abc7-a60f7b8cec86")
+			(uuid "7b1dbc88-4605-4cde-ad1e-755337ee3094")
 		)
 		(pin "23"
-			(uuid "19f988b4-7b55-4e55-93c4-2758f3802fc7")
+			(uuid "3a3be062-d1de-4bd8-8bdb-f44d9cd0313e")
 		)
 		(pin "1"
-			(uuid "894150b9-ac7f-4ae9-ba74-42f025ae576c")
+			(uuid "efafb0a6-317f-4877-b5b1-355738264a8f")
 		)
 		(pin "8"
-			(uuid "06be6d43-f1dc-4cb1-b3ba-5a94bcc9b27d")
+			(uuid "5d6f6c37-5037-4ef2-90c3-d2c53b38d505")
 		)
 		(pin "5"
-			(uuid "bcaef428-59c5-442f-8ce5-65a1be2cb427")
+			(uuid "41f91c88-b60d-431e-8f7d-52903344b060")
 		)
 		(pin "21"
-			(uuid "862444a9-b7bc-45a9-b180-8d62a2f93fc4")
+			(uuid "c2e1ad1a-bcee-4d07-9da7-8a58742a3917")
 		)
 		(pin "20"
-			(uuid "fcdec5df-429a-467a-9b19-0500e6604594")
+			(uuid "7ec8786f-c882-407a-92f0-5d4087420c8b")
 		)
 		(pin "22"
-			(uuid "c9cab961-7df5-4cb8-9e68-7ee1bb453f0e")
+			(uuid "028ccae0-38e9-4ff9-8075-76fed7f51139")
 		)
 		(pin "3"
-			(uuid "9038e541-6d1f-46d9-9c04-5a1fb42139d3")
+			(uuid "86c9d0b3-9575-4ad5-959e-d7984f57f0ce")
 		)
 		(pin "13"
-			(uuid "ed6d67b9-5dce-49f4-874a-6b289705e013")
+			(uuid "a852805e-0d5f-414c-a50a-c159f4fb44cc")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5525,7 +5525,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C_Small"
 			(at 179.07 66.294 0)
 			(effects
 				(font
@@ -5562,10 +5562,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "98c2a1ca-9fbf-43d7-864a-df95a66cca2c")
+			(uuid "ca5f054f-40f5-4891-b8dc-cd09e335d4bf")
 		)
 		(pin "1"
-			(uuid "ff1fc89b-90c3-4d19-85f1-e40df3a05c26")
+			(uuid "cca2ef99-3231-4eb9-b0dd-d03f72c15409")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5594,7 +5594,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C_Small"
 			(at 120.65 66.294 0)
 			(effects
 				(font
@@ -5631,10 +5631,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "c6f30165-7b81-445f-8a10-b254a820b412")
+			(uuid "5a499924-d95d-43ed-90a2-ecc667f81f29")
 		)
 		(pin "1"
-			(uuid "1eb0e78a-1eb6-47f4-9a19-f0682a76445d")
+			(uuid "0bad9f80-d31f-4364-9417-8e7af858a5bd")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -5663,7 +5663,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF"
+		(property "Value" "C_Small"
 			(at 67.31 66.294 0)
 			(effects
 				(font
@@ -5700,10 +5700,10 @@
 			)
 		)
 		(pin "2"
-			(uuid "fe18abe7-82c1-41b4-bf9a-598414fd7b9c")
+			(uuid "823eb7ff-aa11-469e-923c-4adaf139e6a5")
 		)
 		(pin "1"
-			(uuid "208a0acb-37a4-45f2-a3b7-4c4525414f53")
+			(uuid "f5d00bfe-677e-4c41-b45f-50576146a5ad")
 		)
 		(instances
 			(project ""
@@ -5731,7 +5731,7 @@
 				)
 			)
 		)
-		(property "Value" "9.53k"
+		(property "Value" "R_Small"
 			(at 220.98 66.294 0)
 			(effects
 				(font
@@ -5767,10 +5767,10 @@
 			)
 		)
 		(pin "1"
-			(uuid "7b9a8b56-f67c-44ec-a87a-da9f0c8ada99")
+			(uuid "8e33739d-1e7d-4730-93e4-6d897315fe65")
 		)
 		(pin "2"
-			(uuid "59cd9590-4ede-4bcc-ab33-2c672721bb20")
+			(uuid "bd71be95-4715-48b0-a188-282bf792f6c7")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
