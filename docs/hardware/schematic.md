@@ -36,6 +36,10 @@
 ## LED Matrices Display
 * We are using 4 common-cathode LED matrices.
 
+## Piezo Speaker
+
+
+* For the future, there are different circuits that could be implemented [[5]](#5)
 
 ## EMD protection
 [TODO](Do we need this? We will have a USB connection. maybe we do.)
@@ -45,3 +49,5 @@
 * <a id="2">[2]</a> [Hackaday - Lithium-Ion Batteries Power Your Devboards Easily](https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/)
 * <a id="3">[3]</a> [GitHub "TP4056-Power-Path-PCB"](https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md)
 * <a id="4">[4]</a> [Sparkfun - LiPower Boost Converter](https://www.sparkfun.com/lipower-boost-converter.html)
+
+* <a id="5">[5]</a> [same sky - How to Increase the Audio Output of a Piezoelectric Transducer Buzzer](https://www.sameskydevices.com/blog/how-to-increase-the-audio-output-of-a-piezoelectric-transducer-buzzer)

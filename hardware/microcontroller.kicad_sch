@@ -1894,6 +1894,16 @@
 	)
 	(wire
 		(pts
+			(xy 153.67 68.58) (xy 156.21 68.58)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0c415ae9-bf06-4ffd-ac1e-0a24e22ad633")
+	)
+	(wire
+		(pts
 			(xy 153.67 78.74) (xy 162.56 78.74)
 		)
 		(stroke
@@ -2913,6 +2923,18 @@
 			(justify left)
 		)
 		(uuid "8351b47b-19b3-44bc-9c50-c7e1e4047ef6")
+	)
+	(hierarchical_label "SPEAKER"
+		(shape output)
+		(at 156.21 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f6ee45c7-3a2b-4d77-a53c-20c8d3059633")
 	)
 	(symbol
 		(lib_id "Switch:SW_Push_Open_Dual")

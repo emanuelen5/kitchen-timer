@@ -89,6 +89,7 @@ We will use the ATmega328p in its surface mount version.
 ### Piezo Speaker Requirements
 We did not have specific requirements for the speaker.
 ### Piezo Speaker Design
+
 The Piezo Speaker chosen work at 3.3V. We will be powering it directly from the GPIO pin of the MCU. [TODO] Maybe it would be a good idea to power it from the 3.3V Regulator.
 
 ## References:
@@ -104,3 +105,4 @@ The Piezo Speaker chosen work at 3.3V. We will be powering it directly from the 
 | [BMS Module](https://www.electrokit.com/batteriladdare-lipo-microusb)| [DataSheet](https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf)
 | [3.3 Regulator AP2111H-3.3TRG1](https://www.digikey.se/en/products/detail/diodes-incorporated/AP2111H-3-3TRG1/4470743)    | [DataSheet](https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/657/AP2111_Dec2012_DS.pdf) |
 |[Dot-Matrix LED 8x8 common-cathode yellow](https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul)|[DataSheet](https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf)|
+|[Active piezo buzzer](https://www.electrokit.com/summer-4-khz-miniatyr)||

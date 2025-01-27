@@ -414,6 +414,10 @@
     [
       "8d96c6df-7eb2-480a-982a-3dd8886e54b6",
       "5V Boost Converter"
+    ],
+    [
+      "cc0cdeb4-aa65-40c1-8591-40f3174b886f",
+      "Piezo Speaker"
     ]
   ],
   "text_variables": {}
