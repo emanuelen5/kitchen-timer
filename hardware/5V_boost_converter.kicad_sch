@@ -857,6 +857,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 107.95) (xy 176.53 107.95)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22f7e327-fa4f-4d0b-b9be-f69163193a0d")
+	)
+	(wire
+		(pts
 			(xy 166.37 85.09) (xy 166.37 86.36)
 		)
 		(stroke
@@ -1157,6 +1167,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 78.74) (xy 176.53 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "97ead3ee-7ebc-48d5-a118-1cf39fd1313f")
+	)
+	(wire
+		(pts
 			(xy 166.37 92.71) (xy 166.37 91.44)
 		)
 		(stroke
@@ -1335,9 +1355,9 @@
 		)
 		(uuid "52bb7e95-0a1c-4d9d-9cbc-4b57e3b05ebb")
 	)
-	(global_label "+5V"
+	(hierarchical_label "GND"
 		(shape output)
-		(at 175.26 78.74 0)
+		(at 176.53 107.95 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -1345,39 +1365,7 @@
 			)
 			(justify left)
 		)
-		(uuid "60b8902d-a9ca-40e5-ba43-eae23b693035")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.1157 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape output)
-		(at 175.26 107.95 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e6888b3a-7d50-43d8-8777-71e5c931244d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 182.1157 107.95 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
+		(uuid "0abac756-6998-4408-a568-d7e333fe5dea")
 	)
 	(hierarchical_label "PP_VCC"
 		(shape input)
@@ -1402,6 +1390,18 @@
 			(justify right)
 		)
 		(uuid "539b0b45-641e-44a8-a8a0-5c62c5ff7531")
+	)
+	(hierarchical_label "+5V"
+		(shape output)
+		(at 176.53 78.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6f8693b8-5bf3-4fba-a2a5-670e1af8061c")
 	)
 	(symbol
 		(lib_id "Device:C_Small")

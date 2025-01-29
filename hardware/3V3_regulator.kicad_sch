@@ -619,16 +619,6 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 69.85) (xy 133.35 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4d2c078d-1f98-440f-90c5-b6f2ff4314e7")
-	)
-	(wire
-		(pts
 			(xy 168.91 71.12) (xy 168.91 74.93)
 		)
 		(stroke
@@ -649,6 +639,16 @@
 	)
 	(wire
 		(pts
+			(xy 133.35 82.55) (xy 133.35 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "87e0ae90-df1f-4293-b8b0-1de158ff4902")
+	)
+	(wire
+		(pts
 			(xy 92.71 71.12) (xy 92.71 73.66)
 		)
 		(stroke
@@ -656,6 +656,16 @@
 			(type default)
 		)
 		(uuid "8baa60c8-1034-4980-bde0-8db8a3542978")
+	)
+	(wire
+		(pts
+			(xy 134.62 82.55) (xy 133.35 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9afb596d-8738-4b92-8203-7456d64daec8")
 	)
 	(wire
 		(pts
@@ -679,6 +689,16 @@
 	)
 	(wire
 		(pts
+			(xy 134.62 69.85) (xy 133.35 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "cac41288-de86-4d07-b167-973d24bc2649")
+	)
+	(wire
+		(pts
 			(xy 107.95 73.66) (xy 92.71 73.66)
 		)
 		(stroke
@@ -689,13 +709,13 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 78.74) (xy 133.35 82.55)
+			(xy 133.35 69.85) (xy 133.35 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ce068051-951b-417f-95db-0a00e869e6ce")
+		(uuid "ff6c64ab-6647-4cdb-95dc-f7ee9beb5120")
 	)
 	(text "Power LED"
 		(exclude_from_sim no)
@@ -761,50 +781,6 @@
 			)
 		)
 	)
-	(global_label "GND"
-		(shape output)
-		(at 133.35 82.55 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "986fd1b8-ded9-4be3-9990-bb7ea8a40a25")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 140.2057 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "+3.3V"
-		(shape output)
-		(at 133.35 69.85 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "fbfbf962-e54a-44d8-a1ed-1eb3f08852a7")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 142.02 69.85 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
 	(hierarchical_label "PP_GND"
 		(shape input)
 		(at 106.68 78.74 180)
@@ -817,6 +793,18 @@
 		)
 		(uuid "4a7466cb-3ebe-46c9-bca4-d03d1e11a675")
 	)
+	(hierarchical_label "GND"
+		(shape output)
+		(at 134.62 82.55 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "91221d03-dc51-40a1-89da-273a62dd755f")
+	)
 	(hierarchical_label "PP_VCC"
 		(shape input)
 		(at 92.71 71.12 180)
@@ -828,6 +816,18 @@
 			(justify right)
 		)
 		(uuid "af644a73-2122-4778-86ce-60e927a94ca5")
+	)
+	(hierarchical_label "+3.3V"
+		(shape output)
+		(at 134.62 69.85 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b301f223-a160-4377-becc-0a47470aa1cb")
 	)
 	(hierarchical_label "PP_VCC"
 		(shape input)

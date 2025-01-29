@@ -137,6 +137,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 173.99) (xy 123.19 173.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "24ad81ac-7b23-4e07-9e89-af3f14238211")
+	)
+	(wire
+		(pts
 			(xy 177.8 33.02) (xy 191.77 33.02)
 		)
 		(stroke
@@ -167,6 +177,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 170.18) (xy 123.19 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a617ff7-82b0-4707-b42d-564f0e6a98ad")
+	)
+	(wire
+		(pts
 			(xy 58.42 31.75) (xy 144.78 31.75)
 		)
 		(stroke
@@ -174,6 +194,16 @@
 			(type default)
 		)
 		(uuid "407de647-3a55-43e0-8e1a-095a31322c83")
+	)
+	(wire
+		(pts
+			(xy 120.65 135.89) (xy 123.19 135.89)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "40a02e4b-e8e1-472e-b431-56c5f9a52b81")
 	)
 	(wire
 		(pts
@@ -397,6 +427,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 132.08) (xy 123.19 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "bb63549e-5015-4188-8bda-e09e0644c684")
+	)
+	(wire
+		(pts
 			(xy 177.8 38.1) (xy 186.69 38.1)
 		)
 		(stroke
@@ -464,6 +504,94 @@
 			(type default)
 		)
 		(uuid "ff75bd25-eb9a-42f5-a109-12af300b8c06")
+	)
+	(global_label "+5V"
+		(shape output)
+		(at 123.19 170.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2147c91a-fce6-46b1-a495-903f93d2bb38")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 130.0457 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "+3.3V"
+		(shape output)
+		(at 123.19 132.08 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "71072293-57fd-410e-9e5a-093130cf53c8")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 131.86 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape output)
+		(at 123.19 135.89 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dda8145c-1a29-4216-a5e7-5e3deb0fe90d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 130.0457 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape output)
+		(at 123.19 173.99 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f5f7b40b-f219-4dda-83b3-443889d9bb6f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 130.0457 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
 	)
 	(sheet
 		(at 92.71 57.15)
@@ -849,6 +977,26 @@
 			)
 			(uuid "0bda8e23-1893-466a-8388-acc8117031ea")
 		)
+		(pin "GND" output
+			(at 120.65 173.99 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "05c368b2-5e51-4936-aae1-0307d8fb4664")
+		)
+		(pin "+5V" output
+			(at 120.65 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "405eae97-bcab-4b4a-9ffa-e235d59c07ac")
+		)
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
@@ -1044,6 +1192,26 @@
 				(justify left)
 			)
 			(uuid "96b598ea-ba8d-4e21-b570-5a2d9c202870")
+		)
+		(pin "+3.3V" output
+			(at 120.65 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "ae15f7d8-aa82-43da-b538-521ddc389621")
+		)
+		(pin "GND" output
+			(at 120.65 135.89 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "fbb158ac-f262-4bcf-93cd-78ac074930b1")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
