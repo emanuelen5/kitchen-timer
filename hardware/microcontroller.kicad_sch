@@ -1914,6 +1914,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 116.84) (xy 153.67 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "112e1ec6-11c0-4da3-8e07-7ef3e63f6821")
+	)
+	(wire
+		(pts
 			(xy 251.46 58.42) (xy 255.27 58.42)
 		)
 		(stroke
@@ -1931,16 +1941,6 @@
 			(type default)
 		)
 		(uuid "18953e7a-03cf-4f0c-96f0-b6ae7839f14a")
-	)
-	(wire
-		(pts
-			(xy 153.67 106.68) (xy 156.21 106.68)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "1be2b82d-e132-46dd-88a8-42e90b8c6087")
 	)
 	(wire
 		(pts
@@ -1991,6 +1991,16 @@
 			(type default)
 		)
 		(uuid "33756983-8738-429c-9c95-03aea74c559b")
+	)
+	(wire
+		(pts
+			(xy 156.21 106.68) (xy 153.67 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3459bde1-5a69-4685-bfb4-8b0835752deb")
 	)
 	(wire
 		(pts
@@ -2134,6 +2144,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 109.22) (xy 153.67 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "686ef387-cc78-46fd-9a84-a35431a65570")
+	)
+	(wire
+		(pts
 			(xy 162.56 76.2) (xy 166.37 76.2)
 		)
 		(stroke
@@ -2201,6 +2221,16 @@
 			(type default)
 		)
 		(uuid "7eae5b9a-28bd-4bd1-a4fa-e37b8ce1ab69")
+	)
+	(wire
+		(pts
+			(xy 156.21 114.3) (xy 153.67 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7fcb3b0e-719b-466d-8c23-e5b38a0545d8")
 	)
 	(wire
 		(pts
@@ -2374,6 +2404,16 @@
 	)
 	(wire
 		(pts
+			(xy 156.21 111.76) (xy 153.67 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b9e7cafb-d69e-428a-98c0-986b3eef40e2")
+	)
+	(wire
+		(pts
 			(xy 242.57 133.35) (xy 242.57 132.08)
 		)
 		(stroke
@@ -2401,16 +2441,6 @@
 			(type default)
 		)
 		(uuid "ca7d05eb-727d-473d-8032-edf22efa92de")
-	)
-	(wire
-		(pts
-			(xy 153.67 109.22) (xy 156.21 109.22)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ccaf5044-4368-4ea6-9f57-8cc5402c02a7")
 	)
 	(wire
 		(pts
@@ -2912,6 +2942,18 @@
 		)
 		(uuid "765f481c-f2b1-48a6-a0e1-ca3d80eb871f")
 	)
+	(hierarchical_label "ENCODER_CH_B"
+		(shape output)
+		(at 156.21 114.3 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "82055a62-2560-4b4f-b9b6-d07908122391")
+	)
 	(hierarchical_label "CS"
 		(shape output)
 		(at 156.21 63.5 0)
@@ -2923,6 +2965,30 @@
 			(justify left)
 		)
 		(uuid "8351b47b-19b3-44bc-9c50-c7e1e4047ef6")
+	)
+	(hierarchical_label "ENCODER_CH_A"
+		(shape output)
+		(at 156.21 111.76 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dc64baa2-54bb-4065-9376-34b6e09e8d1f")
+	)
+	(hierarchical_label "SW"
+		(shape output)
+		(at 156.21 116.84 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "dec325e0-3b70-4c6c-9510-100236483edb")
 	)
 	(hierarchical_label "SPEAKER"
 		(shape output)
