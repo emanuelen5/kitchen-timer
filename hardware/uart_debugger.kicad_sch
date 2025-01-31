@@ -1127,7 +1127,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://cdn.sparkfun.com/assets/5/0/a/8/5/CH340DS1.PDF?utm_source=chatgpt.com"
 			(at 146.05 80.01 0)
 			(effects
 				(font
@@ -1136,8 +1136,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "CH340E USB a TTL Module"
 			(at 146.05 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://es.aliexpress.com/item/1005004276046811.html?spm=a2g0o.order_list.order_list_main.39.6ba6194doVGuKx&gatewayAdapt=glo2esp"
+			(at 138.43 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "17,58kr"
+			(at 138.43 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "CH340E"
+			(at 138.43 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 138.43 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1243,6 +1279,42 @@
 				(hide yes)
 			)
 		)
+		(property "Package" "SOT-23-3"
+			(at 165.1 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "BAS70-G"
+			(at 165.1 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "1.09 kr"
+			(at 165.1 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Comchip-Technology/BAS70-G?qs=tw%252BuQ%2FB6PO1j2YRKFaqcxQ%3D%3D"
+			(at 165.1 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "5ef56381-e5a4-400d-bb91-ef655a81f480")
 		)
@@ -1276,7 +1348,7 @@
 				)
 			)
 		)
-		(property "Value" "NMOS"
+		(property "Value" "2SK3018-TP"
 			(at 157.48 78.74 90)
 			(effects
 				(font
@@ -1293,7 +1365,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
+		(property "Datasheet" "https://www.mouser.se/datasheet/2/258/2SK3018_SOT_323_-3364975.pdf"
 			(at 170.18 69.85 0)
 			(effects
 				(font
@@ -1302,7 +1374,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "N-MOSFET transistor, drain/source/gate"
+		(property "Description" "MOSFETs N-Channel MOSFET"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1331,6 +1403,42 @@
 		)
 		(property "Sim.Pins" "1=D 2=G 3=S"
 			(at 172.72 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Micro-Commercial-Components-MCC/2SK3018-TP?qs=MoCBKJu1Jj0hqZl4P%2F2qSQ%3D%3D"
+			(at 157.48 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "3,93 kr"
+			(at 157.48 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "2SK3018-TP"
+			(at 157.48 69.85 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOT-323-3"
+			(at 157.48 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1419,6 +1527,42 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
+			(at 172.72 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Comchip-Technology/BAS70-G?qs=tw%252BuQ%2FB6PO1j2YRKFaqcxQ%3D%3D"
+			(at 172.72 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "1.09 kr"
+			(at 172.72 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "BAS70-G"
+			(at 172.72 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOT-23-3"
 			(at 172.72 82.55 0)
 			(effects
 				(font
