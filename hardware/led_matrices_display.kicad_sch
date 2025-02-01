@@ -1074,6 +1074,247 @@
 				)
 			)
 		)
+		(symbol "kitchen_timer-symbols_lib:SS-108-TT-2"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at -8.12 12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "SS-108-TT-2"
+				(at -7.62 -12.7 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "SS-108-TT-2:SAMTEC_SS-108-TT-2"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "R"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "Samtec Inc."
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "SS-108-TT-2_0_0"
+				(rectangle
+					(start -7.62 -10.16)
+					(end 7.62 12.7)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -12.7 10.16 0)
+					(length 5.08)
+					(name "01"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "01"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 7.62 0)
+					(length 5.08)
+					(name "02"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "02"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 5.08 0)
+					(length 5.08)
+					(name "03"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "03"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 2.54 0)
+					(length 5.08)
+					(name "04"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "04"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 0 0)
+					(length 5.08)
+					(name "05"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "05"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -2.54 0)
+					(length 5.08)
+					(name "06"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "06"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -5.08 0)
+					(length 5.08)
+					(name "07"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "07"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -12.7 -7.62 0)
+					(length 5.08)
+					(name "08"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "08"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+		)
 	)
 	(bus_entry
 		(at 179.07 95.25)
@@ -3892,6 +4133,7 @@
 		(uuid "c9be232c-1788-4eec-933f-22e035662ea0")
 	)
 	(symbol
+		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 99.06 180)
 		(unit 1)
@@ -3927,7 +4169,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf"
 			(at 144.78 102.87 0)
 			(effects
 				(font
@@ -3936,8 +4178,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Punktmatris LED 8x8 20.32mm CC gul"
 			(at 144.78 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 135.89 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "KWM-2088CUYB"
+			(at 135.89 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "75,00 kr"
+			(at 135.89 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul"
+			(at 135.89 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4003,6 +4281,7 @@
 		)
 	)
 	(symbol
+		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 63.5 0)
 		(mirror y)
@@ -4039,7 +4318,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf"
 			(at 144.78 59.69 0)
 			(effects
 				(font
@@ -4048,8 +4327,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Punktmatris LED 8x8 20.32mm CC gul"
 			(at 144.78 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 135.89 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "KWM-2088CUYB"
+			(at 135.89 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "75,00 kr"
+			(at 135.89 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul"
+			(at 135.89 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4115,6 +4430,7 @@
 		)
 	)
 	(symbol
+		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 99.06 0)
 		(mirror x)
@@ -4151,7 +4467,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf"
 			(at 100.33 102.87 0)
 			(effects
 				(font
@@ -4160,8 +4476,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Punktmatris LED 8x8 20.32mm CC gul"
 			(at 100.33 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 109.22 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "KWM-2088CUYB"
+			(at 109.22 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "75,00 kr"
+			(at 109.22 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul"
+			(at 109.22 99.06 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4227,6 +4579,7 @@
 		)
 	)
 	(symbol
+		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 63.5 0)
 		(unit 1)
@@ -4262,7 +4615,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.electrokit.com/upload/product/41015/41015151/860datasheet.pdf"
 			(at 100.33 59.69 0)
 			(effects
 				(font
@@ -4271,8 +4624,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Punktmatris LED 8x8 20.32mm CC gul"
 			(at 100.33 59.69 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 109.22 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "KWM-2088CUYB"
+			(at 109.22 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "75,00 kr"
+			(at 109.22 63.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.electrokit.com/punktmatris-led-8x8-20.32mm-cc-gul"
+			(at 109.22 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4332,6 +4721,161 @@
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/51b07aee-e177-4be7-b84e-75e5e68b78bc"
 					(reference "U10")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "kitchen_timer-symbols_lib:SS-108-TT-2")
+		(at 43.18 158.75 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "e69717bf-7b21-475b-ba05-04050dc6b3f7")
+		(property "Reference" "J2"
+			(at 52.07 156.2099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "SS-108-TT-2"
+			(at 52.07 158.7499 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "kitchen_timer:SAMTEC_SS-108-TT-2"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" ""
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "R"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Samtec Inc."
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Samtec/SS-108-TT-2?qs=rU5fayqh%252BE1eQOsz7NCRKg%3D%3D"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "11,73 kr"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "SS-108-TT-2"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Through Hole"
+			(at 43.18 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "05"
+			(uuid "42cb1108-6fba-4602-a613-c7c6a1066128")
+		)
+		(pin "02"
+			(uuid "b7781d67-97a6-40bf-afe8-f97560ada8f8")
+		)
+		(pin "03"
+			(uuid "51d927f2-cdd0-47b3-a8c1-5ad6ee7ca2c0")
+		)
+		(pin "07"
+			(uuid "6f1dff66-6f47-4b2b-8376-329ebe65ed14")
+		)
+		(pin "08"
+			(uuid "10a69be8-dcec-446a-89f3-624c540fad45")
+		)
+		(pin "01"
+			(uuid "b0c6a8f3-efb4-4440-a847-e109cb4b68d3")
+		)
+		(pin "04"
+			(uuid "f296789f-b6b0-46dc-9fda-99f431a9397a")
+		)
+		(pin "06"
+			(uuid "83fe07db-d13b-4651-b4d7-e5a6726e180e")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/51b07aee-e177-4be7-b84e-75e5e68b78bc"
+					(reference "J2")
 					(unit 1)
 				)
 			)
