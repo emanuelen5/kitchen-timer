@@ -1729,7 +1729,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf"
 			(at 113.03 82.55 0)
 			(effects
 				(font
@@ -1738,8 +1738,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "TP4056 laddare med skyddskrets för Li-Ion- och LiPo-cell"
 			(at 113.03 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Module"
+			(at 113.03 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "TP4056"
+			(at 113.03 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "45 kr"
+			(at 113.03 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://www.electrokit.com/batteriladdare-lipo-microusb"
+			(at 113.03 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
