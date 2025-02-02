@@ -1243,7 +1243,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.mouser.se/datasheet/2/80/datasheet-BAS70-1160237.pdf"
 			(at 165.1 85.09 90)
 			(effects
 				(font
@@ -1499,7 +1499,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://www.mouser.se/datasheet/2/80/datasheet-BAS70-1160237.pdf"
 			(at 172.72 82.55 90)
 			(effects
 				(font

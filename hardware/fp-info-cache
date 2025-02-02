@@ -1,4 +1,4 @@
-24416125440683251
+24423079241547039
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -98595,12 +98595,40 @@ Varistor VF
 2
 2
 kitchen_timer
+FL26T2-32.000
+DT-26 32.768KHz-1
+Crystal or Oscillator
+0
+2
+2
+kitchen_timer
+HNB09A05
+HNB09A05-3
+Loudspeaker or Buzzer
+0
+2
+2
+kitchen_timer
+PEC11R4215FS0024
+PEC11R-4215F-S0024-1
+Undefined or Miscellaneous
+0
+7
+7
+kitchen_timer
 SAMTEC_SS-108-TT-2
 
 
 0
 8
 8
+kitchen_timer
+SMT_4.2X3.2_
+SMT(4.2x3.2)
+Switch
+0
+4
+4
 kitchen_timer
 TO_215F-S0024
 

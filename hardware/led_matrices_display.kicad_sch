@@ -4133,7 +4133,6 @@
 		(uuid "c9be232c-1788-4eec-933f-22e035662ea0")
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 99.06 180)
 		(unit 1)
@@ -4281,7 +4280,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 135.89 63.5 0)
 		(mirror y)
@@ -4430,7 +4428,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 99.06 0)
 		(mirror x)
@@ -4579,7 +4576,6 @@
 		)
 	)
 	(symbol
-		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 63.5 0)
 		(unit 1)
@@ -4764,7 +4760,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://suddendocs.samtec.com/catalog_english/ss.pdf"
 			(at 43.18 158.75 0)
 			(effects
 				(font
@@ -4773,7 +4769,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Headers & Wire Housings .100\" Single Row Screw Machine Socket Strip"
 			(at 43.18 158.75 0)
 			(effects
 				(font

@@ -1382,7 +1382,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://assets.nexperia.com/documents/data-sheet/PMEG4010CEH_PMEG4010CEJ.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809291616_Nexperia-PMEG4010CEJ-115_C50704.pdf"
 			(at 177.8 74.93 0)
 			(effects
 				(font
@@ -1391,7 +1391,43 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "40V, 1A very low Vf MEGA Schottky barrier rectifier, SOD-323F"
+		(property "Description" "40V 570mV@1A 1A SOD-323F Schottky Diodes ROHS"
+			(at 177.8 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Nexperia-PMEG4010CEJ115/C50704"
+			(at 177.8 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$0.0699"
+			(at 177.8 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "PMEG4010CEJ,115"
+			(at 177.8 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOD-323F"
 			(at 177.8 74.93 0)
 			(effects
 				(font
@@ -1519,7 +1555,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.infineon.com/dgdl/irlml6402pbf.pdf?fileId=5546d462533600a401535668d5c2263c"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810271032_Infineon-Technologies-IRLML6402TRPBF_C2593.pdf"
 			(at 173.99 93.98 0)
 			(effects
 				(font
@@ -1529,7 +1565,43 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "-3.7A Id, -20V Vds, 65mOhm Rds, P-Channel HEXFET Power MOSFET, SOT-23"
+		(property "Description" "20V 3.7A 1.3W 65mΩ@4.5V,3.7A 1.2V@250uA 1 Piece P-Channel SOT-23 MOSFETs ROHS"
+			(at 170.18 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/InfineonTechnologies-IRLML6402TRPBF/C2593"
+			(at 170.18 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$0.0906"
+			(at 170.18 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "IRLML6402TRPBF"
+			(at 170.18 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOT-23"
 			(at 170.18 88.9 0)
 			(effects
 				(font

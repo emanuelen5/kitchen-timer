@@ -408,174 +408,6 @@
 				)
 			)
 		)
-		(symbol "Device:Crystal"
-			(pin_numbers hide)
-			(pin_names
-				(offset 1.016) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "Y"
-				(at 0 3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Crystal"
-				(at 0 -3.81 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Two pin crystal"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "quartz ceramic resonator oscillator"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Crystal*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Crystal_0_1"
-				(rectangle
-					(start -1.143 2.54)
-					(end 1.143 -2.54)
-					(stroke
-						(width 0.3048)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.54 0) (xy -1.905 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.905 -1.27) (xy -1.905 1.27)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.905 -1.27) (xy 1.905 1.27)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 0) (xy 1.905 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Crystal_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 1.27)
-					(name "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 1.27)
-					(name "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
 		(symbol "Device:D_Small"
 			(pin_numbers hide)
 			(pin_names
@@ -1523,30 +1355,270 @@
 				)
 			)
 		)
-		(symbol "Switch:SW_Push_Open_Dual"
-			(pin_names
-				(offset 1.016) hide)
+		(symbol "kitchen_timer-symbols_lib:FL26T2-32.000"
+			(pin_names hide)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "Y"
+				(at 2.54 6.604 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Value" " FL26T2-32.000"
+				(at 3.556 -4.572 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+			)
+			(property "Footprint" "DT2632768KHz"
+				(at 8.89 -96.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205251416_HCI-FL26T2-32-000-NTLLLDTL_C3013591.pdf"
+				(at 8.89 -196.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" " 32kHz Plug-in crystal oscillator 12.5pF ±20ppm ±20ppm DT-26 Crystals ROHS"
+				(at 1.778 11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Height" ""
+				(at 8.89 -396.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Name" "HCI"
+				(at 8.89 -496.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Manufacturer_Part_Number" " FL26T2-32.000-NTLLLDTL"
+				(at 8.89 -596.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Part Number" ""
+				(at 8.89 -696.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Mouser Price/Stock" ""
+				(at 8.89 -796.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Arrow Part Number" ""
+				(at 8.89 -896.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Arrow Price/Stock" ""
+				(at 8.89 -996.19 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(symbol "FL26T2-32.000_1_1"
+				(polyline
+					(pts
+						(xy 3.048 0) (xy 2.54 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 3.048 2.54) (xy 3.048 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.112 0) (xy 7.62 0)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 7.112 2.54) (xy 7.112 -2.54)
+					)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start 4.064 3.556)
+					(end 6.096 -3.556)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at 10.16 0 180)
+					(length 2.54)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 0 0)
+					(length 2.54)
+					(name "CRYSTAL_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+		)
+		(symbol "kitchen_timer-symbols_lib:SKRPACE010"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "SW"
-				(at 0 3.81 0)
+				(at 5.334 4.318 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(property "Value" "SW_Push_Open_Dual"
-				(at 0 -7.62 0)
+			(property "Value" "SKRPACE010"
+				(at 5.334 -5.842 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 				)
 			)
-			(property "Footprint" ""
-				(at 0 5.08 0)
+			(property "Footprint" "SMT(4.2X3.2)"
+				(at 16.51 -94.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "http://www.alps.com/prod/info/E/HTML/Tact/SurfaceMount/SKRP/SKRPACE010.html"
+				(at 16.51 -194.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Description" "Tactile Switches 4.2x3.2x2.5mm 260gf"
+				(at 10.16 7.874 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -1554,177 +1626,71 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "~"
-				(at 0 5.08 0)
+			(property "Height" ""
+				(at 16.51 -394.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "Description" "Push button switch, normally closed, generic, four pins"
-				(at 0 0 0)
+			(property "Mouser Part Number" "688-SKRPACE010"
+				(at 16.51 -494.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(property "ki_keywords" "switch normally-closed pushbutton push-button"
-				(at 0 0 0)
+			(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Alps-Alpine/SKRPACE010?qs=dHDuPHwQO79W8iY66hDbLQ%3D%3D"
+				(at 16.51 -594.92 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
+					(justify left top)
 					(hide yes)
 				)
 			)
-			(symbol "SW_Push_Open_Dual_0_1"
-				(circle
-					(center -2.032 -5.08)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
+			(property "Manufacturer_Name" "ALPS Electric"
+				(at 16.51 -694.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
-					(fill
-						(type none)
-					)
+					(justify left top)
+					(hide yes)
 				)
-				(circle
-					(center -2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
+			)
+			(property "Manufacturer_Part_Number" "SKRPACE010"
+				(at 16.51 -794.92 0)
+				(effects
+					(font
+						(size 1.27 1.27)
 					)
-					(fill
-						(type none)
-					)
+					(justify left top)
+					(hide yes)
 				)
-				(polyline
-					(pts
-						(xy 0 -4.953) (xy 0 -5.461)
-					)
+			)
+			(symbol "SKRPACE010_1_1"
+				(rectangle
+					(start 5.08 2.54)
+					(end 15.24 -5.08)
 					(stroke
-						(width 0)
+						(width 0.254)
 						(type default)
 					)
 					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -3.937) (xy 0 -4.445)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -3.429) (xy 0 -2.921)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -2.413) (xy 0 -1.905)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.397) (xy 0 -0.889)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -0.635) (xy 0 1.143)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -5.715) (xy -2.54 -5.715)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 2.54 -0.635) (xy -2.54 -0.635)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 -5.08)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
+						(type background)
 					)
 				)
 				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
+					(at 0 0 0)
+					(length 5.08)
 					(name "1"
 						(effects
 							(font
@@ -1741,8 +1707,8 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
+					(at 20.32 0 180)
+					(length 5.08)
 					(name "2"
 						(effects
 							(font
@@ -1759,8 +1725,8 @@
 					)
 				)
 				(pin passive line
-					(at -5.08 -5.08 0)
-					(length 2.54)
+					(at 0 -2.54 0)
+					(length 5.08)
 					(name "3"
 						(effects
 							(font
@@ -1777,8 +1743,8 @@
 					)
 				)
 				(pin passive line
-					(at 5.08 -5.08 180)
-					(length 2.54)
+					(at 20.32 -2.54 180)
+					(length 5.08)
 					(name "4"
 						(effects
 							(font
@@ -1795,19 +1761,6 @@
 					)
 				)
 			)
-			(symbol "SW_Push_Open_Dual_1_1"
-				(rectangle
-					(start -3.175 1.905)
-					(end 3.175 -6.35)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
 		)
 	)
 	(junction
@@ -1821,18 +1774,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0dba6338-afdc-4179-81a4-e915cc18252e")
-	)
-	(junction
-		(at 181.61 80.01)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "19d378b3-8647-4875-ba92-e1586885ceec")
-	)
-	(junction
-		(at 166.37 83.82)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "383b0cd1-2cbf-40b0-831e-ebeac4ef5baf")
 	)
 	(junction
 		(at 242.57 137.16)
@@ -1853,16 +1794,22 @@
 		(uuid "62c05081-afe9-411f-b643-5f8b615a0936")
 	)
 	(junction
+		(at 187.96 80.01)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "64e4d79e-743c-4137-ae43-90f3ef8d682e")
+	)
+	(junction
 		(at 180.34 48.26)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "678a4f78-a7fb-4658-a1bb-5526a86b1df2")
 	)
 	(junction
-		(at 166.37 76.2)
+		(at 167.64 85.09)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "6a2a1c90-0ea9-4c96-9828-ff49c1ca457a")
+		(uuid "a35692b2-7d39-47f1-bd2c-d207b36c0853")
 	)
 	(junction
 		(at 180.34 40.64)
@@ -1871,13 +1818,19 @@
 		(uuid "afc326b8-3014-424a-8e68-c1eb245fb8da")
 	)
 	(junction
-		(at 240.03 101.6)
+		(at 167.64 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "f71d2d21-441e-492a-833e-c205ceaab39e")
+		(uuid "db7d9ed4-e1b8-4b29-adc2-e22489b12acd")
 	)
 	(junction
-		(at 229.87 101.6)
+		(at 245.11 101.6)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "e9c4444c-b227-4e87-9177-fb148bc22afe")
+	)
+	(junction
+		(at 224.79 101.6)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fe29888e-d154-4bf3-8642-cfc091af8ba4")
@@ -1914,6 +1867,16 @@
 	)
 	(wire
 		(pts
+			(xy 187.96 80.01) (xy 187.96 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "10ca596a-72b0-436f-9c3b-2c99871716e1")
+	)
+	(wire
+		(pts
 			(xy 156.21 116.84) (xy 153.67 116.84)
 		)
 		(stroke
@@ -1944,7 +1907,7 @@
 	)
 	(wire
 		(pts
-			(xy 227.33 101.6) (xy 229.87 101.6)
+			(xy 220.98 101.6) (xy 224.79 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1954,7 +1917,7 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 80.01) (xy 185.42 82.55)
+			(xy 191.77 80.01) (xy 191.77 82.55)
 		)
 		(stroke
 			(width 0)
@@ -1984,16 +1947,6 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 80.01) (xy 181.61 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "33756983-8738-429c-9c95-03aea74c559b")
-	)
-	(wire
-		(pts
 			(xy 156.21 106.68) (xy 153.67 106.68)
 		)
 		(stroke
@@ -2004,33 +1957,13 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 99.06) (xy 240.03 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3acb679f-aa16-4768-9a03-406b4b5158b0")
-	)
-	(wire
-		(pts
-			(xy 242.57 101.6) (xy 242.57 105.41)
+			(xy 250.19 101.6) (xy 250.19 105.41)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "3d4579e5-9f51-459b-8e80-b46059c74c67")
-	)
-	(wire
-		(pts
-			(xy 229.87 99.06) (xy 229.87 101.6)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3da2b83f-470a-4fb5-8ac0-5ac33a29202a")
 	)
 	(wire
 		(pts
@@ -2134,7 +2067,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 83.82) (xy 166.37 83.82)
+			(xy 162.56 85.09) (xy 167.64 85.09)
 		)
 		(stroke
 			(width 0)
@@ -2154,16 +2087,6 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 76.2) (xy 166.37 76.2)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "68c381cf-1777-415b-811a-fb4fca759863")
-	)
-	(wire
-		(pts
 			(xy 138.43 54.61) (xy 138.43 55.88)
 		)
 		(stroke
@@ -2174,7 +2097,7 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 80.01) (xy 181.61 80.01)
+			(xy 191.77 80.01) (xy 187.96 80.01)
 		)
 		(stroke
 			(width 0)
@@ -2264,16 +2187,6 @@
 	)
 	(wire
 		(pts
-			(xy 240.03 101.6) (xy 240.03 104.14)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "8997ebe5-9760-4f29-805c-a63c085da8f6")
-	)
-	(wire
-		(pts
 			(xy 251.46 55.88) (xy 255.27 55.88)
 		)
 		(stroke
@@ -2284,7 +2197,7 @@
 	)
 	(wire
 		(pts
-			(xy 181.61 83.82) (xy 177.8 83.82)
+			(xy 187.96 85.09) (xy 177.8 85.09)
 		)
 		(stroke
 			(width 0)
@@ -2294,7 +2207,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 76.2) (xy 162.56 78.74)
+			(xy 162.56 74.93) (xy 162.56 78.74)
 		)
 		(stroke
 			(width 0)
@@ -2321,16 +2234,6 @@
 			(type default)
 		)
 		(uuid "9a332067-f0ba-4856-9fdc-4046aa11cbb8")
-	)
-	(wire
-		(pts
-			(xy 181.61 76.2) (xy 181.61 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "9b8c9a46-c9e9-4191-a1c5-a3d7dd465352")
 	)
 	(wire
 		(pts
@@ -2371,6 +2274,16 @@
 			(type default)
 		)
 		(uuid "a8425c7a-f33c-46d4-98f4-57f83593256a")
+	)
+	(wire
+		(pts
+			(xy 187.96 74.93) (xy 187.96 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ac35a137-5241-4179-944e-a404b3be70b5")
 	)
 	(wire
 		(pts
@@ -2424,17 +2337,7 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 83.82) (xy 172.72 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c8a04088-75d7-4bdb-9640-43a8204ccbbe")
-	)
-	(wire
-		(pts
-			(xy 240.03 101.6) (xy 242.57 101.6)
+			(xy 245.11 101.6) (xy 250.19 101.6)
 		)
 		(stroke
 			(width 0)
@@ -2444,7 +2347,17 @@
 	)
 	(wire
 		(pts
-			(xy 177.8 76.2) (xy 181.61 76.2)
+			(xy 245.11 101.6) (xy 245.11 102.87)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d0a4a77a-7d04-495e-b198-5895d305fd13")
+	)
+	(wire
+		(pts
+			(xy 177.8 74.93) (xy 187.96 74.93)
 		)
 		(stroke
 			(width 0)
@@ -2454,7 +2367,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 81.28) (xy 162.56 83.82)
+			(xy 162.56 81.28) (xy 162.56 85.09)
 		)
 		(stroke
 			(width 0)
@@ -2474,6 +2387,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 74.93) (xy 172.72 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "df207a24-4d53-42fa-bd6e-6a6669dd0411")
+	)
+	(wire
+		(pts
 			(xy 250.19 133.35) (xy 250.19 132.08)
 		)
 		(stroke
@@ -2484,7 +2407,27 @@
 	)
 	(wire
 		(pts
-			(xy 229.87 101.6) (xy 229.87 104.14)
+			(xy 245.11 100.33) (xy 245.11 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e06353af-ab6b-4579-8bfc-ee250b2f6803")
+	)
+	(wire
+		(pts
+			(xy 224.79 100.33) (xy 224.79 101.6)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e0db675e-f07c-4f59-99e5-031ae7c40622")
+	)
+	(wire
+		(pts
+			(xy 224.79 101.6) (xy 224.79 102.87)
 		)
 		(stroke
 			(width 0)
@@ -2524,13 +2467,23 @@
 	)
 	(wire
 		(pts
-			(xy 166.37 76.2) (xy 172.72 76.2)
+			(xy 162.56 74.93) (xy 167.64 74.93)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f60dc650-021f-4596-8e9b-821df14ad02e")
+	)
+	(wire
+		(pts
+			(xy 167.64 85.09) (xy 172.72 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fe411d8f-c51b-498d-a10d-cc285c246874")
 	)
 	(text "Bootloader auto-reset"
 		(exclude_from_sim no)
@@ -2595,7 +2548,7 @@
 		(uuid "171590c3-a231-49ec-8bbd-0a9959e70e1d")
 	)
 	(label "RESET"
-		(at 227.33 101.6 180)
+		(at 220.98 101.6 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2728,7 +2681,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 242.57 105.41 0)
+		(at 250.19 105.41 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2738,7 +2691,7 @@
 		)
 		(uuid "6b2b3c0a-9d15-4f07-a321-473043db6ed6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 249.4257 105.41 0)
+			(at 257.0457 105.41 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2816,7 +2769,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 185.42 82.55 0)
+		(at 191.77 82.55 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2826,7 +2779,7 @@
 		)
 		(uuid "f1291798-d783-4605-9612-5e9a828fc4a2")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 192.2757 82.55 0)
+			(at 198.6257 82.55 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3003,24 +2956,55 @@
 		(uuid "f6ee45c7-3a2b-4d77-a53c-20c8d3059633")
 	)
 	(symbol
-		(lib_id "Switch:SW_Push_Open_Dual")
-		(at 234.95 99.06 0)
+		(lib_id "kitchen_timer-symbols_lib:FL26T2-32.000")
+		(at 167.64 85.09 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "072a0a35-adc8-4f9e-8d98-d00d4251c175")
-		(property "Reference" "SW1"
-			(at 233.68 95.504 0)
+		(fields_autoplaced yes)
+		(uuid "211a69ee-a602-414b-94b0-a2396d827c90")
+		(property "Reference" "Y2"
+			(at 172.72 78.7399 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify right)
 			)
 		)
-		(property "Value" "SW_Push_Open_Dual"
-			(at 228.854 106.68 0)
+		(property "Value" "Crystal-32kHz"
+			(at 172.72 81.2799 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "kitchen_timer:FL26T2-32.000"
+			(at 263.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2205251416_HCI-FL26T2-32-000-NTLLLDTL_C3013591.pdf"
+			(at 363.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "32kHz Plug-in crystal oscillator 12.5pF ±20ppm ±20ppm DT-26 Crystals ROHS"
+			(at 156.21 83.312 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3028,8 +3012,78 @@
 				(hide yes)
 			)
 		)
-		(property "Footprint" ""
-			(at 234.95 93.98 0)
+		(property "Height" ""
+			(at 563.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "HCI"
+			(at 663.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" " FL26T2-32.000-NTLLLDTL"
+			(at 763.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 863.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 963.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Part Number" ""
+			(at 1063.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Arrow Price/Stock" ""
+			(at 1163.83 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/parts/1st/Crystals_Oscillators_Resonators_7"
+			(at 167.64 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3037,8 +3091,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 234.95 93.98 0)
+		(property "Price/unit" " $0.2669"
+			(at 167.64 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3046,8 +3100,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Push button switch, normally closed, generic, four pins"
-			(at 234.95 99.06 0)
+		(property "Part Num" " FL26T2-32.000-NTLLLDTL"
+			(at 167.64 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" " DT-26"
+			(at 167.64 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3056,21 +3119,15 @@
 			)
 		)
 		(pin "2"
-			(uuid "11f7cc57-3a4d-4164-8b4a-dac3ddbe0652")
+			(uuid "81e73276-3eac-4826-8e70-c91a959ffe56")
 		)
-		(pin "1"
-			(uuid "4cd255e4-936a-4a3d-9acf-94e4733fc366")
-		)
-		(pin "4"
-			(uuid "8a2e2a2c-0ba0-495a-a298-97cedf78774c")
-		)
-		(pin "3"
-			(uuid "d4c9ffce-2145-4702-969b-6fcd515aecd3")
+		(pin ""
+			(uuid "1285c64f-ea7e-4cb3-8af0-349a089424d1")
 		)
 		(instances
-			(project "kitchen_timer-hardware"
+			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
-					(reference "SW1")
+					(reference "Y2")
 					(unit 1)
 				)
 			)
@@ -3158,75 +3215,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Crystal")
-		(at 166.37 80.01 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "2c89ae57-df8c-4170-ac66-75e61a44726b")
-		(property "Reference" "Y1"
-			(at 169.164 77.47 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Value" "Crystal"
-			(at 169.672 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(property "Footprint" ""
-			(at 166.37 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 166.37 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Two pin crystal"
-			(at 166.37 80.01 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "5eec804d-68d4-41d1-998a-d8efe90f4b42")
-		)
-		(pin "2"
-			(uuid "e4284311-e8e1-4144-9486-20f314b43f8a")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
-					(reference "Y1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 173.99 44.45 0)
 		(unit 1)
@@ -3298,7 +3286,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 175.26 83.82 90)
+		(at 175.26 85.09 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3306,7 +3294,7 @@
 		(dnp no)
 		(uuid "681201eb-d38b-453d-90a4-19effbea2a62")
 		(property "Reference" "C4"
-			(at 178.562 82.55 90)
+			(at 178.562 83.82 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3315,7 +3303,7 @@
 			)
 		)
 		(property "Value" "22pF"
-			(at 178.562 86.614 90)
+			(at 178.562 87.884 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3324,7 +3312,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 83.82 0)
+			(at 175.26 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3333,7 +3321,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 175.26 83.82 0)
+			(at 175.26 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3342,7 +3330,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 175.26 83.82 0)
+			(at 175.26 85.09 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3507,7 +3495,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2410010303_Microchip-Tech-ATMEGA328P-AU_C14877.pdf"
 			(at 138.43 93.98 0)
 			(effects
 				(font
@@ -3517,6 +3505,42 @@
 			)
 		)
 		(property "Description" "20MHz, 32kB Flash, 2kB SRAM, 1kB EEPROM, TQFP-32"
+			(at 138.43 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MicrochipTech-ATMEGA328PAU/C14877"
+			(at 138.43 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$2.2845"
+			(at 138.43 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "ATMEGA328P-AU"
+			(at 138.43 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "TQFP-32(7x7)"
 			(at 138.43 93.98 0)
 			(effects
 				(font
@@ -3788,7 +3812,7 @@
 	)
 	(symbol
 		(lib_id "Device:C_Small")
-		(at 175.26 76.2 90)
+		(at 175.26 74.93 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3796,7 +3820,7 @@
 		(dnp no)
 		(uuid "b0633927-da3e-4a82-8f10-b11062096682")
 		(property "Reference" "C3"
-			(at 178.816 74.93 90)
+			(at 178.816 73.66 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3805,7 +3829,7 @@
 			)
 		)
 		(property "Value" "22pF"
-			(at 177.292 72.898 90)
+			(at 177.292 71.628 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3814,7 +3838,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 175.26 76.2 0)
+			(at 175.26 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3823,7 +3847,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 175.26 76.2 0)
+			(at 175.26 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3832,7 +3856,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
-			(at 175.26 76.2 0)
+			(at 175.26 74.93 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3919,6 +3943,131 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
 					(reference "R2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "kitchen_timer-symbols_lib:SKRPACE010")
+		(at 224.79 100.33 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "c22277e5-308a-4ea0-afa2-c4be1af27efa")
+		(property "Reference" "SW2"
+			(at 231.902 96.266 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SKRPACE010"
+			(at 237.744 106.934 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "SMT(4.2X3.2)"
+			(at 241.3 195.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "http://www.alps.com/prod/info/E/HTML/Tact/SurfaceMount/SKRP/SKRPACE010.html"
+			(at 241.3 295.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "Tactile Switches 4.2x3.2x2.5mm 260gf"
+			(at 234.95 92.456 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" ""
+			(at 241.3 495.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" "688-SKRPACE010"
+			(at 241.3 595.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Alps-Alpine/SKRPACE010?qs=dHDuPHwQO79W8iY66hDbLQ%3D%3D"
+			(at 241.3 695.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" "ALPS Electric"
+			(at 241.3 795.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" "SKRPACE010"
+			(at 241.3 895.25 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7070ee81-7f05-4019-919c-caef1039ad4e")
+		)
+		(pin "3"
+			(uuid "d6e8bbb0-9ebf-4a3e-bb67-440a9bc08994")
+		)
+		(pin "1"
+			(uuid "2bfb0b27-b767-4130-aba7-3073c17979f0")
+		)
+		(pin "4"
+			(uuid "c567eadb-5c10-429f-a85f-4dc7f70674ab")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
+					(reference "SW2")
 					(unit 1)
 				)
 			)

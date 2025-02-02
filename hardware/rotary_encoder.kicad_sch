@@ -1007,7 +1007,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "PEC11R-4215F-S0024"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_BOURNS-PEC11R-4215F-S0024_C143790.pdf"
 			(at 98.806 69.85 0)
 			(effects
 				(font
@@ -1016,8 +1016,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "Plugin Rotary Encoders ROHS"
 			(at 123.19 73.66 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Bourns-PEC11R_4215FS0024/C143790"
+			(at 124.46 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$2.4720"
+			(at 124.46 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "PEC11R-4215F-S0024"
+			(at 124.46 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "Through_Hole"
+			(at 124.46 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)

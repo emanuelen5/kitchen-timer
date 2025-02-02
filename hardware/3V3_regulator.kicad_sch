@@ -1156,7 +1156,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-223"
 			(at 115.57 77.47 0)
 			(effects
 				(font
@@ -1165,7 +1165,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8560080384345341952"
 			(at 115.57 77.47 0)
 			(effects
 				(font
@@ -1174,8 +1174,44 @@
 				(hide yes)
 			)
 		)
-		(property "Description" ""
+		(property "Description" "65dB@(100Hz,1kHz) 600mA Fixed 3.3V Positive electrode 6V SOT-223 Voltage Regulators - Linear, Low Drop Out (LDO) Regulators ROHS"
 			(at 115.57 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/DiodesIncorporated-AP2111H_33TRG1/C155300"
+			(at 118.11 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" " $0.1080"
+			(at 118.11 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" " AP2111H-3.3TRG1"
+			(at 118.11 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOT-223"
+			(at 118.11 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)

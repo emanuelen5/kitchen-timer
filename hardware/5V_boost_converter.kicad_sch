@@ -2120,7 +2120,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "http://www.ti.com/lit/ds/symlink/tps61200.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809191830_Texas-Instruments-TPS61200DRCR_C140320.pdf"
 			(at 139.7 87.63 0)
 			(effects
 				(font
@@ -2129,7 +2129,43 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Low Input Voltage Synchronous Boost Converter With 1.3A Switches, Adjustable Output Voltage, 0.3-5.5V Input Voltage, VSON-10"
+		(property "Description" "Boost type Adjustable 1.8V~5.5V 300mV~5.5V 1.2A VSON-10-EP(3x3) DC-DC Converters ROHS"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/TexasInstruments-TPS61200DRCR/C140320"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$1.4430"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "TPS61200DRCR"
+			(at 139.7 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "VSON-10-EP(3x3)"
 			(at 139.7 87.63 0)
 			(effects
 				(font
