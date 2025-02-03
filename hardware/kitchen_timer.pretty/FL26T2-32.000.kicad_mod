@@ -258,7 +258,7 @@
 		(remove_unused_layers no)
 		(uuid "2dc6cce6-805b-4389-bb5e-374a823cd01a")
 	)
-	(model "C:/Users/npero/Downloads/LIB_DT-26_32.768KHz/DT-26_32.768KHz/3D/DT-26_32.768KHz.stp"
+	(model "${KIPRJMOD}/kitchen_timer.pretty/FL26T2-32.000.stp"
 		(offset
 			(xyz 0 0 0)
 		)

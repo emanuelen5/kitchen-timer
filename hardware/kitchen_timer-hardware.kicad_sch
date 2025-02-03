@@ -656,7 +656,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "10")
+					(page "7")
 				)
 			)
 		)
@@ -804,7 +804,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "2")
+					(page "9")
 				)
 			)
 		)
@@ -922,7 +922,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "3")
+					(page "10")
 				)
 			)
 		)
@@ -1000,7 +1000,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "8")
+					(page "5")
 				)
 			)
 		)
@@ -1138,7 +1138,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "4")
+					(page "6")
 				)
 			)
 		)
@@ -1216,7 +1216,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "5")
+					(page "4")
 				)
 			)
 		)
@@ -1294,7 +1294,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "7")
+					(page "3")
 				)
 			)
 		)
@@ -1342,7 +1342,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "9")
+					(page "8")
 				)
 			)
 		)
@@ -1430,7 +1430,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "6")
+					(page "2")
 				)
 			)
 		)

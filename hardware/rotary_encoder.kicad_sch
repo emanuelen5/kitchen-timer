@@ -998,7 +998,7 @@
 				)
 			)
 		)
-		(property "Footprint" "kitchen_timer:TO_215F-S0024"
+		(property "Footprint" "kitchen_timer:PEC11R4215FS0024"
 			(at 102.108 72.39 0)
 			(effects
 				(font

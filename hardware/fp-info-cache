@@ -1,4 +1,4 @@
-24423079241547039
+24421341748729438
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -98596,7 +98596,7 @@ Varistor VF
 2
 kitchen_timer
 FL26T2-32.000
-DT-26 32.768KHz-1
+FL26T2-32.000kHz
 Crystal or Oscillator
 0
 2
@@ -98629,10 +98629,3 @@ Switch
 0
 4
 4
-kitchen_timer
-TO_215F-S0024
-
-PEC11R-4215F-S0024 
-0
-5
-5

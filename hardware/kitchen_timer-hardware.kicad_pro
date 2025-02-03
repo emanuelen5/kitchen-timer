@@ -856,22 +856,6 @@
       "Root"
     ],
     [
-      "452e0bb3-d328-4d26-8f2f-0fdd90f8dd22",
-      "LED Matrices Drivers"
-    ],
-    [
-      "51b07aee-e177-4be7-b84e-75e5e68b78bc",
-      "LED Matrices Display"
-    ],
-    [
-      "9aa7b7c0-c135-4683-8926-7ddf1682c201",
-      "Microcontroller"
-    ],
-    [
-      "b979c399-5795-4865-aa2c-ec3af0747c81",
-      "3.3V Regulator"
-    ],
-    [
       "f7e640d9-c0d9-4c44-8592-f18e152ed7d5",
       "USB-C & UART Debugger"
     ],
@@ -880,16 +864,32 @@
       "BMS"
     ],
     [
+      "b979c399-5795-4865-aa2c-ec3af0747c81",
+      "3.3V Regulator"
+    ],
+    [
       "8d96c6df-7eb2-480a-982a-3dd8886e54b6",
       "5V Boost Converter"
+    ],
+    [
+      "9aa7b7c0-c135-4683-8926-7ddf1682c201",
+      "Microcontroller"
+    ],
+    [
+      "0bd8e23b-f1a8-43a7-9e7f-c29366033bda",
+      "Rotary Encoder"
     ],
     [
       "cc0cdeb4-aa65-40c1-8591-40f3174b886f",
       "Piezo Speaker"
     ],
     [
-      "0bd8e23b-f1a8-43a7-9e7f-c29366033bda",
-      "Rotary Encoder"
+      "452e0bb3-d328-4d26-8f2f-0fdd90f8dd22",
+      "LED Matrices Drivers"
+    ],
+    [
+      "51b07aee-e177-4be7-b84e-75e5e68b78bc",
+      "LED Matrices Display"
     ]
   ],
   "text_variables": {}

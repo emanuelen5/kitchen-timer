@@ -276,7 +276,7 @@
 		(solder_mask_margin 0.102)
 		(uuid "832ef972-04b1-43b5-9c90-bb0f38ae17f3")
 	)
-	(model "C:/Users/npero/Downloads/SS-108-TT-2/SS-108-TT-2.stp"
+	(model "${KIPRJMOD}/kitchen_timer.pretty/SS-108-TT-2.stp"
 		(offset
 			(xyz -8.9 0 0)
 		)
