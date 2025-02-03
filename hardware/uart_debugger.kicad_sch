@@ -13,42 +13,30 @@
 		(comment 4 "Author: Nicolas Perozzi")
 	)
 	(lib_symbols
-		(symbol "Device:D_Small"
-			(pin_numbers hide)
+		(symbol "D_Small_1"
 			(pin_names
-				(offset 0.254) hide)
+				(offset 0) hide)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "D"
-				(at -1.27 2.032 0)
+			(property "Reference" "D5"
+				(at 0 6.35 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "D_Small"
-				(at -3.81 -2.032 0)
+			(property "Value" "BAS70"
+				(at 0 3.81 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Footprint" ""
-				(at 0 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 90)
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+				(at 21.082 -0.254 90)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -56,8 +44,17 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Diode, small symbol"
-				(at 0 0 0)
+			(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2201131400_Yangzhou-Yangjie-Elec-Tech-BAS70_C968045.pdf"
+				(at 17.272 0.762 90)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "70V Independent Type 1V@15mA 70mA SOT-23(TO-236) Schottky Diodes ROHS"
+				(at 1.27 18.542 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -66,7 +63,7 @@
 				)
 			)
 			(property "Sim.Device" "D"
-				(at 0 0 0)
+				(at -7.874 4.572 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -75,7 +72,43 @@
 				)
 			)
 			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
+				(at 11.176 10.668 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Link" "https://jlcpcb.com/partdetail/Yangzhou_Yangjie_ElecTech-BAS70/C968045"
+				(at 3.81 21.082 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Price/unit" "$0.0189"
+				(at 0.254 11.43 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Part Num" "BAS70"
+				(at 30.734 11.938 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "SOT-23(TO-236)"
+				(at 1.524 14.986 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -101,7 +134,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "D_Small_0_1"
+			(symbol "D_Small_1_0_1"
 				(polyline
 					(pts
 						(xy -0.762 -1.016) (xy -0.762 1.016)
@@ -139,11 +172,11 @@
 					)
 				)
 			)
-			(symbol "D_Small_1_1"
+			(symbol "D_Small_1_1_1"
 				(pin passive line
-					(at -2.54 0 0)
+					(at 2.54 0 180)
 					(length 1.778)
-					(name "K"
+					(name "A"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -159,16 +192,16 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 0 180)
+					(at -2.54 0 0)
 					(length 1.778)
-					(name "A"
+					(name "K"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "2"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -179,32 +212,29 @@
 			)
 		)
 		(symbol "Simulation_SPICE:NMOS"
-			(pin_numbers hide)
 			(pin_names
 				(offset 0)
 			)
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "Q"
-				(at 5.08 1.27 0)
+			(property "Reference" "Q3"
+				(at 6.35 0 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Value" "NMOS"
-				(at 5.08 -1.27 0)
+			(property "Value" "JSM2302"
+				(at 8.89 0 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 				(at 5.08 2.54 0)
 				(effects
 					(font
@@ -213,7 +243,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-html-manual/manual.xhtml#cha_MOSFETs"
+			(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2308071512_JSMSEMI-JSM2302_C916403.pdf"
 				(at 0 -12.7 0)
 				(effects
 					(font
@@ -222,7 +252,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "N-MOSFET transistor, drain/source/gate"
+			(property "Description" "20V 6A 26mΩ@4.5V,6A 1.25W 1.2V@250uA 1 N-Channel SOT-23 MOSFETs ROHS"
 				(at 0 0 0)
 				(effects
 					(font
@@ -251,6 +281,42 @@
 			)
 			(property "Sim.Pins" "1=D 2=G 3=S"
 				(at 0 -15.24 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Link" "https://jlcpcb.com/partdetail/Jsmsemi-JSM2302/C916403"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Price/unit" "$0.0201"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Part Num" "JSM2302"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "SOT-23"
+				(at 0 0 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -435,10 +501,10 @@
 				)
 			)
 			(symbol "NMOS_1_1"
-				(pin passive line
-					(at 2.54 5.08 270)
+				(pin input line
+					(at -5.08 0 0)
 					(length 2.54)
-					(name "D"
+					(name "G"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -453,10 +519,10 @@
 						)
 					)
 				)
-				(pin input line
-					(at -5.08 0 0)
+				(pin passive line
+					(at 2.54 -5.08 90)
 					(length 2.54)
-					(name "G"
+					(name "S"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -472,9 +538,9 @@
 					)
 				)
 				(pin passive line
-					(at 2.54 -5.08 90)
+					(at 2.54 5.08 270)
 					(length 2.54)
-					(name "S"
+					(name "D"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1094,6 +1160,129 @@
 		(uuid "ededb1a6-0d4e-4171-9aba-ea7d125bbea1")
 	)
 	(symbol
+		(lib_name "D_Small_1")
+		(lib_id "Device:D_Small")
+		(at 165.1 85.09 0)
+		(mirror y)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "09cd3262-7926-4ad9-b60d-1e587d71e2d7")
+		(property "Reference" "D6"
+			(at 165.1 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BAS70"
+			(at 165.1 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 144.018 85.344 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2201131400_Yangzhou-Yangjie-Elec-Tech-BAS70_C968045.pdf"
+			(at 147.828 84.328 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "70V Independent Type 1V@15mA 70mA SOT-23(TO-236) Schottky Diodes ROHS"
+			(at 163.83 66.548 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Device" "D"
+			(at 172.974 80.518 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 153.924 74.422 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Yangzhou_Yangjie_ElecTech-BAS70/C968045"
+			(at 161.29 64.008 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" "$0.0189"
+			(at 164.846 73.66 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "BAS70"
+			(at 134.366 73.152 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SOT-23(TO-236)"
+			(at 163.576 70.104 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "048fc849-42fd-451d-94e6-36f010dc3859")
+		)
+		(pin "1"
+			(uuid "e28dabed-bf15-445d-be96-6fdc9afc17a1")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/f7e640d9-c0d9-4c44-8592-f18e152ed7d5"
+					(reference "D6")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "kitchen_timer-symbols_lib:UART_Module")
 		(at 138.43 86.36 0)
 		(unit 1)
@@ -1209,128 +1398,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Small")
-		(at 165.1 85.09 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "3ff40433-866e-4a02-a5a6-5ae6bcf7710e")
-		(property "Reference" "D4"
-			(at 165.1 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAS70"
-			(at 165.1 81.28 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 165.1 85.09 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.mouser.se/datasheet/2/80/datasheet-BAS70-1160237.pdf"
-			(at 165.1 85.09 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Diode, small symbol"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOT-23-3"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "BAS70-G"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "1.09 kr"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Comchip-Technology/BAS70-G?qs=tw%252BuQ%2FB6PO1j2YRKFaqcxQ%3D%3D"
-			(at 165.1 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "5ef56381-e5a4-400d-bb91-ef655a81f480")
-		)
-		(pin "1"
-			(uuid "0f926a8d-a07d-4959-9709-9c2c37714edf")
-		)
-		(instances
-			(project ""
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/f7e640d9-c0d9-4c44-8592-f18e152ed7d5"
-					(reference "D4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Simulation_SPICE:NMOS")
 		(at 157.48 69.85 90)
 		(mirror x)
@@ -1348,7 +1415,7 @@
 				)
 			)
 		)
-		(property "Value" "2SK3018-TP"
+		(property "Value" "JSM2302"
 			(at 157.48 78.74 90)
 			(effects
 				(font
@@ -1356,7 +1423,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
 			(at 154.94 74.93 0)
 			(effects
 				(font
@@ -1365,7 +1432,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.se/datasheet/2/258/2SK3018_SOT_323_-3364975.pdf"
+		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2308071512_JSMSEMI-JSM2302_C916403.pdf"
 			(at 170.18 69.85 0)
 			(effects
 				(font
@@ -1374,7 +1441,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "MOSFETs N-Channel MOSFET"
+		(property "Description" "20V 6A 26mΩ@4.5V,6A 1.25W 1.2V@250uA 1 N-Channel SOT-23 MOSFETs ROHS"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1410,7 +1477,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Micro-Commercial-Components-MCC/2SK3018-TP?qs=MoCBKJu1Jj0hqZl4P%2F2qSQ%3D%3D"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Jsmsemi-JSM2302/C916403"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1419,7 +1486,7 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "3,93 kr"
+		(property "Price/unit" "$0.0201"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1428,7 +1495,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "2SK3018-TP"
+		(property "Part Num" "JSM2302"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1437,7 +1504,7 @@
 				(hide yes)
 			)
 		)
-		(property "Package" "SOT-323-3"
+		(property "Package" "SOT-23"
 			(at 157.48 69.85 0)
 			(effects
 				(font
@@ -1465,6 +1532,7 @@
 		)
 	)
 	(symbol
+		(lib_name "D_Small_1")
 		(lib_id "Device:D_Small")
 		(at 172.72 82.55 0)
 		(mirror y)
@@ -1490,8 +1558,8 @@
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 172.72 82.55 90)
+		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
+			(at 151.638 82.804 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1499,8 +1567,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.mouser.se/datasheet/2/80/datasheet-BAS70-1160237.pdf"
-			(at 172.72 82.55 90)
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2201131400_Yangzhou-Yangjie-Elec-Tech-BAS70_C968045.pdf"
+			(at 155.448 81.788 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1508,8 +1576,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Diode, small symbol"
-			(at 172.72 82.55 0)
+		(property "Description" "70V Independent Type 1V@15mA 70mA SOT-23(TO-236) Schottky Diodes ROHS"
+			(at 171.45 64.008 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1518,7 +1586,7 @@
 			)
 		)
 		(property "Sim.Device" "D"
-			(at 172.72 82.55 0)
+			(at 180.594 77.978 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1527,7 +1595,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 172.72 82.55 0)
+			(at 161.544 71.882 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1535,8 +1603,8 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://www.mouser.se/ProductDetail/Comchip-Technology/BAS70-G?qs=tw%252BuQ%2FB6PO1j2YRKFaqcxQ%3D%3D"
-			(at 172.72 82.55 0)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Yangzhou_Yangjie_ElecTech-BAS70/C968045"
+			(at 168.91 61.468 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1544,8 +1612,8 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "1.09 kr"
-			(at 172.72 82.55 0)
+		(property "Price/unit" "$0.0189"
+			(at 172.466 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1553,8 +1621,8 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "BAS70-G"
-			(at 172.72 82.55 0)
+		(property "Part Num" "BAS70"
+			(at 141.986 70.612 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1562,8 +1630,8 @@
 				(hide yes)
 			)
 		)
-		(property "Package" "SOT-23-3"
-			(at 172.72 82.55 0)
+		(property "Package" "SOT-23(TO-236)"
+			(at 171.196 67.564 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1571,7 +1639,7 @@
 				(hide yes)
 			)
 		)
-		(pin "2"
+		(pin "3"
 			(uuid "ce2fae5a-fc26-4421-a33b-01b433f1462a")
 		)
 		(pin "1"

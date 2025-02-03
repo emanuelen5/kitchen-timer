@@ -3973,7 +3973,7 @@
 				)
 			)
 		)
-		(property "Footprint" "SMT(4.2X3.2)"
+		(property "Footprint" ""
 			(at 241.3 195.25 0)
 			(effects
 				(font

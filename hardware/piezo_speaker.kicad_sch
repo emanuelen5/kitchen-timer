@@ -743,7 +743,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "HNB09A05"
+		(property "Footprint" "kitchen_timer:HNB09A05"
 			(at 160.02 178.74 0)
 			(effects
 				(font
