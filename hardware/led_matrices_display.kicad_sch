@@ -4428,6 +4428,7 @@
 		)
 	)
 	(symbol
+		(lib_name "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(lib_id "kitchen_timer-symbols_lib:LED_Matrix_KWM-2088XUYB")
 		(at 109.22 99.06 0)
 		(mirror x)

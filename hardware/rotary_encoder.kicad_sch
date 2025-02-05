@@ -709,7 +709,7 @@
 			)
 		)
 	)
-	(global_label "+3.3V"
+	(global_label "+5V"
 		(shape input)
 		(at 101.6 68.58 180)
 		(fields_autoplaced yes)
@@ -721,7 +721,7 @@
 		)
 		(uuid "975bb99f-29ae-467a-bc58-c9a2f50ffa15")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 92.93 68.58 0)
+			(at 94.7443 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -775,7 +775,7 @@
 			)
 		)
 	)
-	(global_label "+3.3V"
+	(global_label "+5V"
 		(shape input)
 		(at 148.59 68.58 0)
 		(fields_autoplaced yes)
@@ -787,7 +787,7 @@
 		)
 		(uuid "e598aca9-1e39-4b05-a711-ab98f00c4bdb")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 157.26 68.58 0)
+			(at 155.4457 68.58 0)
 			(effects
 				(font
 					(size 1.27 1.27)

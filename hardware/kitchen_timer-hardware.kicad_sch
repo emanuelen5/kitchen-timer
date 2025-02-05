@@ -13,18 +13,6 @@
 		(comment 4 "Author: Nicolas Perozzi")
 	)
 	(lib_symbols)
-	(junction
-		(at 82.55 135.89)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "83fedae6-bbff-4712-b560-3881499db2af")
-	)
-	(junction
-		(at 83.82 133.35)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "f205dae3-747c-43f0-81a3-514ca2ab0105")
-	)
 	(bus
 		(pts
 			(xy 224.79 39.37) (xy 242.57 39.37)
@@ -64,16 +52,6 @@
 			(type default)
 		)
 		(uuid "05a77d86-07b7-4954-8461-950278b67586")
-	)
-	(wire
-		(pts
-			(xy 82.55 135.89) (xy 87.63 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "05edf462-49b7-4903-85c4-49dff3919767")
 	)
 	(wire
 		(pts
@@ -194,16 +172,6 @@
 			(type default)
 		)
 		(uuid "407de647-3a55-43e0-8e1a-095a31322c83")
-	)
-	(wire
-		(pts
-			(xy 120.65 135.89) (xy 123.19 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "40a02e4b-e8e1-472e-b431-56c5f9a52b81")
 	)
 	(wire
 		(pts
@@ -427,16 +395,6 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 132.08) (xy 123.19 132.08)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "bb63549e-5015-4188-8bda-e09e0644c684")
-	)
-	(wire
-		(pts
 			(xy 177.8 38.1) (xy 186.69 38.1)
 		)
 		(stroke
@@ -495,16 +453,6 @@
 		)
 		(uuid "fba44d28-c88f-41ba-b0d7-5ad8cab04933")
 	)
-	(wire
-		(pts
-			(xy 83.82 133.35) (xy 87.63 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ff75bd25-eb9a-42f5-a109-12af300b8c06")
-	)
 	(global_label "+5V"
 		(shape output)
 		(at 123.19 170.18 0)
@@ -518,50 +466,6 @@
 		(uuid "2147c91a-fce6-46b1-a495-903f93d2bb38")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 130.0457 170.18 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "+3.3V"
-		(shape output)
-		(at 123.19 132.08 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "71072293-57fd-410e-9e5a-093130cf53c8")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 131.86 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape output)
-		(at 123.19 135.89 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "dda8145c-1a29-4216-a5e7-5e3deb0fe90d")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 130.0457 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1139,84 +1043,6 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
 					(page "6")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 87.63 114.3)
-		(size 33.02 25.4)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "b979c399-5795-4865-aa2c-ec3af0747c81")
-		(property "Sheetname" "3.3V Regulator"
-			(at 87.63 113.5884 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "3V3_regulator.kicad_sch"
-			(at 87.63 140.2846 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(pin "PP_VCC" input
-			(at 87.63 133.35 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "0c3a3b41-8f85-4567-b8fe-80baa7d46d87")
-		)
-		(pin "PP_GND" input
-			(at 87.63 135.89 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "96b598ea-ba8d-4e21-b570-5a2d9c202870")
-		)
-		(pin "+3.3V" output
-			(at 120.65 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "ae15f7d8-aa82-43da-b538-521ddc389621")
-		)
-		(pin "GND" output
-			(at 120.65 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "fbb158ac-f262-4bcf-93cd-78ac074930b1")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
-					(page "4")
 				)
 			)
 		)

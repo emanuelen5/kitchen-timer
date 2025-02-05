@@ -939,7 +939,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 87.63) (xy 154.94 90.17)
+			(xy 154.94 87.63) (xy 154.94 91.44)
 		)
 		(stroke
 			(width 0)
@@ -1009,6 +1009,16 @@
 	)
 	(wire
 		(pts
+			(xy 157.48 63.5) (xy 157.48 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "93434549-4419-4046-8043-4029127312b1")
+	)
+	(wire
+		(pts
 			(xy 148.59 87.63) (xy 154.94 87.63)
 		)
 		(stroke
@@ -1029,7 +1039,7 @@
 	)
 	(wire
 		(pts
-			(xy 157.48 63.5) (xy 157.48 64.77)
+			(xy 167.64 63.5) (xy 157.48 63.5)
 		)
 		(stroke
 			(width 0)
@@ -1059,7 +1069,7 @@
 	)
 	(wire
 		(pts
-			(xy 154.94 90.17) (xy 156.21 90.17)
+			(xy 154.94 91.44) (xy 175.26 91.44)
 		)
 		(stroke
 			(width 0)
@@ -1078,24 +1088,24 @@
 		(uuid "04e8ecea-95cb-4dd9-ada3-efe4adfe8f9f")
 	)
 	(label "+5V-USB"
-		(at 156.21 90.17 0)
+		(at 175.26 91.44 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "49110a24-1a5a-42aa-a667-e11f153fb3bc")
 	)
 	(label "+5V-USB"
-		(at 157.48 63.5 0)
+		(at 167.64 63.5 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 		(uuid "9ca5622a-f477-4e04-87ea-f657b875d201")
 	)
