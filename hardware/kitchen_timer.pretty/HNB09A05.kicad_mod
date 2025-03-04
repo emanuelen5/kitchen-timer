@@ -279,7 +279,7 @@
 		(remove_unused_layers no)
 		(uuid "c0c02cd9-650c-4e0f-817f-c6b3a797a1be")
 	)
-	(model "${KIPRJMOD}/kitchen_timer.pretty/HNB09A05.stp"
+	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/HNB09A05.stp"
 		(offset
 			(xyz 0 0 0)
 		)

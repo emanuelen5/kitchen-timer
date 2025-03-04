@@ -133,6 +133,17 @@
 		(layer "F.SilkS")
 		(uuid "4c2948c0-6896-472a-8b5d-2abf15184a56")
 	)
+	(fp_rect
+		(start -13.208 -8.89)
+		(end 13.208 8.89)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill none)
+		(layer "F.CrtYd")
+		(uuid "8919792a-d05d-4695-a516-66119e180764")
+	)
 	(pad "1" smd rect
 		(at -11.684 -6.9)
 		(size 2 2)

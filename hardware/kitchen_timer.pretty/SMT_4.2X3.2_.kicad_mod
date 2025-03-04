@@ -191,7 +191,7 @@
 		(layers "F.Cu" "F.Paste" "F.Mask")
 		(uuid "4aaab500-98f8-4ffe-929e-3a60e6019eac")
 	)
-	(model "${KIPRJMOD}/kitchen_timer.pretty/SKRPACE010.stp"
+	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/SKRPACE010.stp"
 		(offset
 			(xyz 0 0 0)
 		)

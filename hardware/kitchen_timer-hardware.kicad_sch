@@ -1,7 +1,7 @@
 (kicad_sch
-	(version 20231120)
+	(version 20250114)
 	(generator "eeschema")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(uuid "8963deea-96bc-4401-b671-98fbe9ed9c6a")
 	(paper "A4")
 	(title_block
@@ -55,7 +55,7 @@
 	)
 	(wire
 		(pts
-			(xy 58.42 44.45) (xy 63.5 44.45)
+			(xy 58.42 44.45) (xy 74.93 44.45)
 		)
 		(stroke
 			(width 0)
@@ -115,7 +115,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 173.99) (xy 123.19 173.99)
+			(xy 177.8 116.84) (xy 180.34 116.84)
 		)
 		(stroke
 			(width 0)
@@ -135,17 +135,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 57.15) (xy 43.18 57.15)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ee1b371-559a-40e8-bc7d-4bbffb57739d")
-	)
-	(wire
-		(pts
-			(xy 78.74 133.35) (xy 83.82 133.35)
+			(xy 125.73 114.3) (xy 144.78 114.3)
 		)
 		(stroke
 			(width 0)
@@ -155,7 +145,7 @@
 	)
 	(wire
 		(pts
-			(xy 120.65 170.18) (xy 123.19 170.18)
+			(xy 177.8 113.03) (xy 180.34 113.03)
 		)
 		(stroke
 			(width 0)
@@ -195,27 +185,7 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 55.88) (xy 41.91 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "53ce8c54-0e06-4d43-baa1-d94b7b942a94")
-	)
-	(wire
-		(pts
-			(xy 83.82 133.35) (xy 83.82 171.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "5580696e-453c-4339-b846-348a93c6cf11")
-	)
-	(wire
-		(pts
-			(xy 43.18 133.35) (xy 45.72 133.35)
+			(xy 74.93 114.3) (xy 92.71 114.3)
 		)
 		(stroke
 			(width 0)
@@ -225,17 +195,7 @@
 	)
 	(wire
 		(pts
-			(xy 62.23 55.88) (xy 41.91 55.88)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "786d0ff9-b3cb-47b2-955a-5ae2ee014915")
-	)
-	(wire
-		(pts
-			(xy 58.42 46.99) (xy 62.23 46.99)
+			(xy 58.42 46.99) (xy 72.39 46.99)
 		)
 		(stroke
 			(width 0)
@@ -275,7 +235,7 @@
 	)
 	(wire
 		(pts
-			(xy 63.5 44.45) (xy 63.5 57.15)
+			(xy 74.93 44.45) (xy 74.93 114.3)
 		)
 		(stroke
 			(width 0)
@@ -295,7 +255,7 @@
 	)
 	(wire
 		(pts
-			(xy 78.74 135.89) (xy 82.55 135.89)
+			(xy 125.73 116.84) (xy 144.78 116.84)
 		)
 		(stroke
 			(width 0)
@@ -305,17 +265,7 @@
 	)
 	(wire
 		(pts
-			(xy 82.55 135.89) (xy 82.55 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "90aa5b0d-b728-4e26-bbfd-5ebcabd09e05")
-	)
-	(wire
-		(pts
-			(xy 62.23 55.88) (xy 62.23 46.99)
+			(xy 72.39 46.99) (xy 72.39 116.84)
 		)
 		(stroke
 			(width 0)
@@ -345,23 +295,13 @@
 	)
 	(wire
 		(pts
-			(xy 41.91 135.89) (xy 45.72 135.89)
+			(xy 72.39 116.84) (xy 92.71 116.84)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "a06da953-a0f6-4465-8b36-76799ad8b6ed")
-	)
-	(wire
-		(pts
-			(xy 83.82 171.45) (xy 87.63 171.45)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a26b1791-b6d1-48dc-a87d-2cd816f90b5b")
 	)
 	(wire
 		(pts
@@ -372,16 +312,6 @@
 			(type default)
 		)
 		(uuid "a56713e3-0341-4eef-8dfa-57609f688010")
-	)
-	(wire
-		(pts
-			(xy 82.55 173.99) (xy 87.63 173.99)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "a7f9e5a0-2dc3-474e-92e7-70ee86231b8b")
 	)
 	(wire
 		(pts
@@ -435,16 +365,6 @@
 	)
 	(wire
 		(pts
-			(xy 43.18 57.15) (xy 43.18 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f5e53359-b9e2-46be-bc44-63959155f833")
-	)
-	(wire
-		(pts
 			(xy 137.16 41.91) (xy 144.78 41.91)
 		)
 		(stroke
@@ -455,7 +375,7 @@
 	)
 	(global_label "+5V"
 		(shape output)
-		(at 123.19 170.18 0)
+		(at 180.34 113.03 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -465,7 +385,7 @@
 		)
 		(uuid "2147c91a-fce6-46b1-a495-903f93d2bb38")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 130.0457 170.18 0)
+			(at 187.1957 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -477,7 +397,7 @@
 	)
 	(global_label "GND"
 		(shape output)
-		(at 123.19 173.99 0)
+		(at 180.34 116.84 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -487,7 +407,7 @@
 		)
 		(uuid "f5f7b40b-f219-4dda-83b3-443889d9bb6f")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 130.0457 173.99 0)
+			(at 187.1957 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -500,6 +420,10 @@
 	(sheet
 		(at 92.71 57.15)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -529,33 +453,33 @@
 		)
 		(pin "CH_A" output
 			(at 125.73 62.23 0)
+			(uuid "9d9c125e-7d58-40a3-aab2-55fdaaeb565c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9d9c125e-7d58-40a3-aab2-55fdaaeb565c")
 		)
 		(pin "CH_B" output
 			(at 125.73 64.77 0)
+			(uuid "364cf4df-5955-4b86-b67a-9385bdb5e077")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "364cf4df-5955-4b86-b67a-9385bdb5e077")
 		)
 		(pin "SW" output
 			(at 125.73 69.85 0)
+			(uuid "6dc1a27f-4ce4-4278-aaf9-c7f30ce65112")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "6dc1a27f-4ce4-4278-aaf9-c7f30ce65112")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -568,6 +492,10 @@
 	(sheet
 		(at 191.77 25.4)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -597,113 +525,113 @@
 		)
 		(pin "MOSI" input
 			(at 191.77 27.94 180)
+			(uuid "041f7bf9-009f-4e53-9e5f-479de076dbf1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "041f7bf9-009f-4e53-9e5f-479de076dbf1")
 		)
 		(pin "SCK" input
 			(at 191.77 30.48 180)
+			(uuid "7c86c6b9-aa2d-4f74-a685-26729e2546bc")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "7c86c6b9-aa2d-4f74-a685-26729e2546bc")
 		)
 		(pin "CS" input
 			(at 191.77 33.02 180)
+			(uuid "a7a2c3ba-5588-4e24-bd1e-41af2b696e7a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "a7a2c3ba-5588-4e24-bd1e-41af2b696e7a")
 		)
 		(pin "Mat2_DIG" output
 			(at 224.79 35.56 0)
+			(uuid "be6b18c1-0978-4bcc-93a6-951ff7cee0c1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "be6b18c1-0978-4bcc-93a6-951ff7cee0c1")
 		)
 		(pin "Mat2_SEG" output
 			(at 224.79 33.02 0)
+			(uuid "be472da9-0444-4015-a1b2-6a4381aa12ba")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "be472da9-0444-4015-a1b2-6a4381aa12ba")
 		)
 		(pin "Mat1_SEG" output
 			(at 224.79 26.67 0)
+			(uuid "27b7cd0f-04e7-411f-b63c-99660dd74e00")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "27b7cd0f-04e7-411f-b63c-99660dd74e00")
 		)
 		(pin "Mat1_DIG" output
 			(at 224.79 29.21 0)
+			(uuid "b9623f74-4ea7-49b7-9b50-a78bd29f4c66")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "b9623f74-4ea7-49b7-9b50-a78bd29f4c66")
 		)
 		(pin "Mat3_SEG" output
 			(at 224.79 39.37 0)
+			(uuid "e66152e3-2628-4cbb-a387-7a62de24ea89")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "e66152e3-2628-4cbb-a387-7a62de24ea89")
 		)
 		(pin "Mat3_DIG" output
 			(at 224.79 41.91 0)
+			(uuid "81f16223-a219-4830-ab5c-cca24628d2c7")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "81f16223-a219-4830-ab5c-cca24628d2c7")
 		)
 		(pin "Mat4_DIG" output
 			(at 224.79 48.26 0)
+			(uuid "d8ea2b7d-2f41-45d7-98cd-62d1189710fe")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "d8ea2b7d-2f41-45d7-98cd-62d1189710fe")
 		)
 		(pin "Mat4_SEG" output
 			(at 224.79 45.72 0)
+			(uuid "030e2c6c-cc29-4aa6-a370-9df66ecec494")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "030e2c6c-cc29-4aa6-a370-9df66ecec494")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -716,6 +644,10 @@
 	(sheet
 		(at 242.57 25.4)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -745,83 +677,83 @@
 		)
 		(pin "Mat1_SEG" input
 			(at 242.57 26.67 180)
+			(uuid "25213a4b-c30e-4d58-9d8f-30e2ab50b05f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "25213a4b-c30e-4d58-9d8f-30e2ab50b05f")
 		)
 		(pin "Mat1_DIG" input
 			(at 242.57 29.21 180)
+			(uuid "759c611d-d41c-428f-aa94-95bdad2cb0cd")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "759c611d-d41c-428f-aa94-95bdad2cb0cd")
 		)
 		(pin "Mat2_SEG" input
 			(at 242.57 33.02 180)
+			(uuid "3e7f346d-eda6-4bcd-82c7-860b675a431c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "3e7f346d-eda6-4bcd-82c7-860b675a431c")
 		)
 		(pin "Mat4_SEG" input
 			(at 242.57 45.72 180)
+			(uuid "25a7c62a-eebb-48f3-a1b3-64d6e4722867")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "25a7c62a-eebb-48f3-a1b3-64d6e4722867")
 		)
 		(pin "Mat3_SEG" input
 			(at 242.57 39.37 180)
+			(uuid "0418dfa6-a2cc-49e1-8a63-3ff432321c7e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0418dfa6-a2cc-49e1-8a63-3ff432321c7e")
 		)
 		(pin "Mat2_DIG" input
 			(at 242.57 35.56 180)
+			(uuid "c9471c1a-224b-45b6-9a40-aa11df6fef4a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c9471c1a-224b-45b6-9a40-aa11df6fef4a")
 		)
 		(pin "Mat3_DIG" input
 			(at 242.57 41.91 180)
+			(uuid "c121f06d-356c-4a43-b62f-df40c9931df2")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "c121f06d-356c-4a43-b62f-df40c9931df2")
 		)
 		(pin "Mat4_DIG" input
 			(at 242.57 48.26 180)
+			(uuid "8b6181ee-3e78-466f-9053-e9491340d5e6")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "8b6181ee-3e78-466f-9053-e9491340d5e6")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -832,8 +764,12 @@
 		)
 	)
 	(sheet
-		(at 87.63 152.4)
+		(at 144.78 95.25)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -844,7 +780,7 @@
 		)
 		(uuid "8d96c6df-7eb2-480a-982a-3dd8886e54b6")
 		(property "Sheetname" "5V Boost Converter"
-			(at 87.63 151.6884 0)
+			(at 144.78 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -853,7 +789,7 @@
 			)
 		)
 		(property "Sheetfile" "5V_boost_converter.kicad_sch"
-			(at 87.63 178.3846 0)
+			(at 144.78 121.2346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -862,44 +798,44 @@
 			)
 		)
 		(pin "PP_VCC" input
-			(at 87.63 171.45 180)
+			(at 144.78 114.3 180)
+			(uuid "905b0c4a-6143-404c-bc2a-52e320923d92")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "905b0c4a-6143-404c-bc2a-52e320923d92")
 		)
 		(pin "PP_GND" input
-			(at 87.63 173.99 180)
+			(at 144.78 116.84 180)
+			(uuid "0bda8e23-1893-466a-8388-acc8117031ea")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "0bda8e23-1893-466a-8388-acc8117031ea")
 		)
 		(pin "GND" output
-			(at 120.65 173.99 0)
+			(at 177.8 116.84 0)
+			(uuid "05c368b2-5e51-4936-aae1-0307d8fb4664")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "05c368b2-5e51-4936-aae1-0307d8fb4664")
 		)
 		(pin "+5V" output
-			(at 120.65 170.18 0)
+			(at 177.8 113.03 0)
+			(uuid "405eae97-bcab-4b4a-9ffa-e235d59c07ac")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "405eae97-bcab-4b4a-9ffa-e235d59c07ac")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -912,6 +848,10 @@
 	(sheet
 		(at 144.78 25.4)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -941,103 +881,103 @@
 		)
 		(pin "DTR" input
 			(at 144.78 34.29 180)
+			(uuid "4cb317e5-7b15-4a94-84af-e785b7674fc8")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "4cb317e5-7b15-4a94-84af-e785b7674fc8")
 		)
 		(pin "MOSI" output
 			(at 177.8 27.94 0)
+			(uuid "bdec8be7-c6f9-4675-b6f4-82aefe04ecf0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "bdec8be7-c6f9-4675-b6f4-82aefe04ecf0")
 		)
 		(pin "SCK" output
 			(at 177.8 30.48 0)
+			(uuid "cee69414-c186-4532-b934-82a7445f9a9c")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "cee69414-c186-4532-b934-82a7445f9a9c")
 		)
 		(pin "CS" output
 			(at 177.8 33.02 0)
+			(uuid "85105fb9-4282-47c9-ac42-1a1e925117b4")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "85105fb9-4282-47c9-ac42-1a1e925117b4")
 		)
 		(pin "RXD" input
 			(at 144.78 29.21 180)
+			(uuid "b9be5527-3786-4cee-9d20-ee21e2c7afeb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b9be5527-3786-4cee-9d20-ee21e2c7afeb")
 		)
 		(pin "TXD" output
 			(at 144.78 31.75 180)
+			(uuid "b9976e3a-d79e-4689-960d-9af563c94efc")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "b9976e3a-d79e-4689-960d-9af563c94efc")
 		)
 		(pin "SPEAKER" output
 			(at 177.8 38.1 0)
+			(uuid "7c9d9e46-925e-41ea-a6f2-d6b20de1e800")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "7c9d9e46-925e-41ea-a6f2-d6b20de1e800")
 		)
 		(pin "ENCODER_CH_A" output
 			(at 144.78 41.91 180)
+			(uuid "e44f4ac1-fd10-43e1-a523-aac0ff9ae4a1")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "e44f4ac1-fd10-43e1-a523-aac0ff9ae4a1")
 		)
 		(pin "SW" output
 			(at 144.78 46.99 180)
+			(uuid "f361dd18-00df-426a-8c5d-440e24df5d16")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "f361dd18-00df-426a-8c5d-440e24df5d16")
 		)
 		(pin "ENCODER_CH_B" output
 			(at 144.78 44.45 180)
+			(uuid "799c6e4d-b7b9-4632-9c1b-325bb8234e86")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "799c6e4d-b7b9-4632-9c1b-325bb8234e86")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -1048,8 +988,12 @@
 		)
 	)
 	(sheet
-		(at 45.72 114.3)
+		(at 92.71 95.25)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -1060,7 +1004,7 @@
 		)
 		(uuid "c0498d1d-9e32-48f1-b749-4feb6881e262")
 		(property "Sheetname" "BMS"
-			(at 45.72 113.5884 0)
+			(at 92.71 94.5384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1069,7 +1013,7 @@
 			)
 		)
 		(property "Sheetfile" "power_management.kicad_sch"
-			(at 45.72 140.2846 0)
+			(at 92.71 121.2346 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1078,44 +1022,44 @@
 			)
 		)
 		(pin "GND-USB" input
-			(at 45.72 135.89 180)
+			(at 92.71 116.84 180)
+			(uuid "1c2ae2aa-3c72-4e8b-b49b-2051603b531a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "1c2ae2aa-3c72-4e8b-b49b-2051603b531a")
 		)
 		(pin "+5V-USB" input
-			(at 45.72 133.35 180)
+			(at 92.71 114.3 180)
+			(uuid "840f595d-ca1b-4f6a-b5ad-2ac9ad5adeb0")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "840f595d-ca1b-4f6a-b5ad-2ac9ad5adeb0")
 		)
 		(pin "PP_VCC" output
-			(at 78.74 133.35 0)
+			(at 125.73 114.3 0)
+			(uuid "bb117829-e2e2-4849-b385-6c98b5f4d899")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "bb117829-e2e2-4849-b385-6c98b5f4d899")
 		)
 		(pin "PP_GND" output
-			(at 78.74 135.89 0)
+			(at 125.73 116.84 0)
+			(uuid "44371611-64c9-47da-8118-57931c166bbb")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "44371611-64c9-47da-8118-57931c166bbb")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -1128,6 +1072,10 @@
 	(sheet
 		(at 191.77 58.42)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -1157,13 +1105,13 @@
 		)
 		(pin "SPEAKER" input
 			(at 191.77 71.12 180)
+			(uuid "9228fffd-b8f4-4dc4-9d68-03030a0a13d5")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left)
 			)
-			(uuid "9228fffd-b8f4-4dc4-9d68-03030a0a13d5")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -1176,6 +1124,10 @@
 	(sheet
 		(at 25.4 25.4)
 		(size 33.02 25.4)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -1205,53 +1157,53 @@
 		)
 		(pin "DTR" output
 			(at 58.42 34.29 0)
+			(uuid "1b3723c9-2c5e-4e9c-8fed-0a275977c644")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "1b3723c9-2c5e-4e9c-8fed-0a275977c644")
 		)
 		(pin "+5V-USB" output
 			(at 58.42 44.45 0)
+			(uuid "eb76a5f7-8065-4f10-b2b2-01b519cba95f")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "eb76a5f7-8065-4f10-b2b2-01b519cba95f")
 		)
 		(pin "GND-USB" output
 			(at 58.42 46.99 0)
+			(uuid "98a9adf8-bd7b-4d36-b9c1-470f90108238")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "98a9adf8-bd7b-4d36-b9c1-470f90108238")
 		)
 		(pin "TXD" output
 			(at 58.42 29.21 0)
+			(uuid "9fcd06e2-5840-4af6-a23d-b4be3e24189e")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9fcd06e2-5840-4af6-a23d-b4be3e24189e")
 		)
 		(pin "RXD" input
 			(at 58.42 31.75 0)
+			(uuid "9eb5c91d-3df8-40d4-bef4-36ca86387e9a")
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "9eb5c91d-3df8-40d4-bef4-36ca86387e9a")
 		)
 		(instances
 			(project "kitchen_timer-hardware"
@@ -1266,4 +1218,5 @@
 			(page "1")
 		)
 	)
+	(embedded_fonts no)
 )

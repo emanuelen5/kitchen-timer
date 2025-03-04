@@ -344,7 +344,7 @@
 		(remove_unused_layers no)
 		(uuid "5d4a6d2c-d15d-4dda-84ee-a4ae8cf252e0")
 	)
-	(model "${KIPRJMOD}/kitchen_timer.pretty/PEC11R-4215F-S0024.stp"
+	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/PEC11R-4215F-S0024.stp"
 		(offset
 			(xyz 2.5 -7.09 -0.0201)
 		)
