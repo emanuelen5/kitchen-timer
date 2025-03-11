@@ -54,7 +54,7 @@ The circuit schematic has been taken from the encoder´s datasheet.
 [TODO](Do we need this? We will have a USB connection. maybe we do.)
 
 # References:
-* <a id="1">[1]</a> [rheingoldheavy.com - Arduino from Scratch Part 11 – ATMEGA328P DTR and RESET](https://rheingoldheavy.com/arduino-from-scratch-part-11-atmega328p-dtr-and-reset/)
+* <a id="1">[1]</a> [rheingoldheavy.com - Arduino from Scratch Part 11 – ATMEGA328P DTR and RESET](https://rheingoldheavy.com/arduino-frogitm-scratch-part-11-atmega328p-dtr-and-reset/)
 * <a id="2">[2]</a> [Hackaday - Lithium-Ion Batteries Power Your Devboards Easily](https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/)
 * <a id="3">[3]</a> [GitHub "TP4056-Power-Path-PCB"](https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md)
 * <a id="4">[4]</a> [Sparkfun - LiPower Boost Converter](https://www.sparkfun.com/lipower-boost-converter.html)
