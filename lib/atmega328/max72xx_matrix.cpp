@@ -16,12 +16,12 @@ static inline uint8_t pixel_to_device_index(uint8_t x, uint8_t y)
 
 static inline uint8_t pixel_to_device_row(uint8_t y)
 {
-    return 7 - (y % 8);
+    return (y % 8);
 }
 
 static inline uint8_t pixel_to_bit(uint8_t x)
 {
-    return x % 8;
+    return 7 - (x % 8);
 }
 
 void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on)
