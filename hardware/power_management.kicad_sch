@@ -5,7 +5,7 @@
 	(uuid "e4e7376a-c73e-4269-bf30-042ce11a7e3d")
 	(paper "A4")
 	(title_block
-		(title "Kitchen_Timer - Power Management")
+		(title "Kitchen_Timer - ${SHEETNAME}")
 		(date "2025-01-26")
 		(rev "v01")
 		(comment 2 "creativecommons.org/licences/4.0/")
@@ -968,87 +968,202 @@
 			(embedded_fonts no)
 		)
 	)
+	(rectangle
+		(start 74.93 82.55)
+		(end 142.875 139.7)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 1647e6d4-770a-4c09-a3e3-77559a2b5c45)
+	)
+	(rectangle
+		(start 146.05 82.55)
+		(end 227.33 139.7)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 356f98f9-ab06-4d5b-957c-10b251feb741)
+	)
+	(rectangle
+		(start 177.165 154.305)
+		(end 283.845 164.465)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid f7374edf-dcbf-4d54-b4b6-56a651f436d1)
+	)
+	(text "${SHEETNAME}"
+		(exclude_from_sim no)
+		(at 15.24 21.336 0)
+		(effects
+			(font
+				(size 3.81 3.81)
+				(thickness 0.762)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "74a9657f-397d-4727-ad73-b8a9bb5b8041")
+	)
+	(text "BMS Module"
+		(exclude_from_sim no)
+		(at 107.188 91.186 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
+			)
+		)
+		(uuid "79a3b711-2420-4908-8a76-87c30aa509b1")
+	)
+	(text "[1] Elektrokit - TP4056 charger with protection circuit for Li-Ion and LiPo cells"
+		(exclude_from_sim no)
+		(at 179.07 157.988 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left top)
+			(href "https://www.electrokit.com/batteriladdare-lipo-microusb")
+		)
+		(uuid "95b185ad-129d-4a66-be5e-c7cdd4e211bb")
+	)
 	(text "Power Path"
 		(exclude_from_sim no)
-		(at 168.91 69.088 0)
+		(at 180.086 90.678 0)
 		(effects
 			(font
-				(size 1.27 1.27)
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
 			)
 		)
-		(uuid "14e032a5-6349-4ffe-8092-b7731bba1c26")
+		(uuid "9ed07d0b-d756-4a6b-9291-53d4514ff550")
 	)
-	(text "BMS"
+	(text "[2] Hackaday - Lithium-Ion Batteries Power Your Devboards Easily"
 		(exclude_from_sim no)
-		(at 114.3 70.104 0)
+		(at 179.07 160.528 0)
 		(effects
 			(font
 				(size 1.27 1.27)
+				(thickness 0.1588)
 			)
+			(justify left top)
+			(href "https://hackaday.com/2024/03/14/lithium-ion-batteries-power-your-devboards-easily/")
 		)
-		(uuid "a2d06a8f-42c7-444e-8b6e-f9f0d5b6dbe4")
+		(uuid "e3995dc2-ee75-4246-90bc-09acb4c414d8")
+	)
+	(text "Reference Circuit: GitHub \"TP4056-Power-Path-PCB\""
+		(exclude_from_sim no)
+		(at 148.336 135.636 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.1588)
+			)
+			(justify left top)
+			(href "https://github.com/DoImant/TP4056-Power-Path-PCB/blob/main/README.md")
+		)
+		(uuid "ff6306e3-9a9d-4f14-a37c-3db562601739")
+	)
+	(text_box "TODO:\n* The transistor could be sensitive to ESD. Should we add a didode in parallel?\n* It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[2]\n"
+		(exclude_from_sim no)
+		(at 16.764 97.79 0)
+		(size 52.832 50.546)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+			(color 194 0 0 1)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(color 194 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "1cf21a60-7138-4ca2-bd09-ef7e41cb63d2")
+	)
+	(text_box "BMS Moduel Description:\nThis module is based on the TP4056 and DW01 ICs. The TP4056 is standalone linear Li-lon battery charger. The DW01 is a \"one cell Li-ion battery protection\" IC, coupled with the FS8205A MOSFET driver provide battery protection. [1]\nFeatures:\n	* Max charging current is 1000 mA. It can be lowered by replacing resistor R3.\n	* Overvoltage protection: 4.3V\n	* Undervoltage protection: 2.4V\n	* Overcurrent protection: 3A	\nIMPORTANT:\n	* The resistor R3 needs to be changed to an appropiate value according to the table in the TP4056 datasheet [2]. The recommended charging current is commonly 0.5C.\n	* A problem with this module is that the load must be disconnected when the battery is being charged. To solve this, we can use the \"power path\" circuit.\n"
+		(exclude_from_sim no)
+		(at 15.24 28.575 0)
+		(size 266.065 44.45)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.1588)
+			)
+			(justify left top)
+		)
+		(uuid "8d0dda5c-2992-46c7-9371-ebabd2e02d1f")
 	)
 	(junction
-		(at 170.18 83.82)
+		(at 182.88 110.49)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "011d05b4-9d97-4a28-a487-d237aa444bd1")
 	)
 	(junction
-		(at 170.18 74.93)
+		(at 182.88 101.6)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7b141aed-e61e-4d47-ab8e-e6972ab5f929")
 	)
 	(junction
-		(at 132.08 88.9)
+		(at 128.27 119.38)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a71b8950-c36a-4d64-a481-d7a7c63c3961")
 	)
 	(junction
-		(at 158.75 83.82)
+		(at 171.45 110.49)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b3f8a0df-838c-458d-b370-5119a56b9ebe")
 	)
 	(junction
-		(at 185.42 91.44)
+		(at 198.12 118.11)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "ec1d4af0-b016-45f1-adfd-5de84685cc3c")
 	)
 	(no_connect
-		(at 123.19 80.01)
+		(at 119.38 110.49)
 		(uuid "51cce646-4030-4f3f-80da-356a4ab6fa7a")
 	)
 	(no_connect
-		(at 123.19 77.47)
+		(at 119.38 107.95)
 		(uuid "675c80fe-f24c-4677-9a84-4f6cb136bdf5")
 	)
 	(wire
 		(pts
-			(xy 186.69 81.28) (xy 187.96 81.28)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "04268a2d-13dc-496e-b550-7743a5c7799f")
-	)
-	(wire
-		(pts
-			(xy 153.67 72.39) (xy 153.67 74.93)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0ad7783d-8020-44e5-8de7-9e213aa81f8a")
-	)
-	(wire
-		(pts
-			(xy 185.42 91.44) (xy 186.69 91.44)
+			(xy 198.12 118.11) (xy 200.66 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1058,7 +1173,7 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 74.93) (xy 170.18 74.93)
+			(xy 166.37 101.6) (xy 182.88 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1068,7 +1183,7 @@
 	)
 	(wire
 		(pts
-			(xy 124.46 85.09) (xy 124.46 88.9)
+			(xy 120.65 115.57) (xy 120.65 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1078,7 +1193,7 @@
 	)
 	(wire
 		(pts
-			(xy 132.08 88.9) (xy 138.43 88.9)
+			(xy 128.27 119.38) (xy 134.62 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1088,7 +1203,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 74.93) (xy 100.33 77.47)
+			(xy 96.52 105.41) (xy 96.52 107.95)
 		)
 		(stroke
 			(width 0)
@@ -1098,7 +1213,7 @@
 	)
 	(wire
 		(pts
-			(xy 132.08 82.55) (xy 132.08 88.9)
+			(xy 128.27 113.03) (xy 128.27 119.38)
 		)
 		(stroke
 			(width 0)
@@ -1108,17 +1223,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 91.44) (xy 186.69 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "45404e8c-70c0-4ce1-bf7a-0fb27530b13c")
-	)
-	(wire
-		(pts
-			(xy 123.19 85.09) (xy 124.46 85.09)
+			(xy 119.38 115.57) (xy 120.65 115.57)
 		)
 		(stroke
 			(width 0)
@@ -1128,7 +1233,7 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 74.93) (xy 181.61 74.93)
+			(xy 198.12 101.6) (xy 194.31 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1138,7 +1243,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 82.55) (xy 99.06 82.55)
+			(xy 96.52 113.03) (xy 95.25 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1148,7 +1253,7 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 83.82) (xy 158.75 83.82)
+			(xy 166.37 110.49) (xy 171.45 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1158,7 +1263,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 83.82) (xy 170.18 83.82)
+			(xy 177.8 110.49) (xy 182.88 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1168,7 +1273,7 @@
 	)
 	(wire
 		(pts
-			(xy 175.26 91.44) (xy 185.42 91.44)
+			(xy 187.96 118.11) (xy 198.12 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1178,17 +1283,7 @@
 	)
 	(wire
 		(pts
-			(xy 153.67 83.82) (xy 153.67 86.36)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "85205d91-6ff2-4e13-8aa6-4a4e88f14e20")
-	)
-	(wire
-		(pts
-			(xy 100.33 77.47) (xy 102.87 77.47)
+			(xy 96.52 107.95) (xy 99.06 107.95)
 		)
 		(stroke
 			(width 0)
@@ -1198,7 +1293,7 @@
 	)
 	(wire
 		(pts
-			(xy 185.42 74.93) (xy 185.42 91.44)
+			(xy 198.12 101.6) (xy 198.12 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1208,17 +1303,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 81.28) (xy 186.69 83.82)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "94b14364-b301-40f3-894f-741d7a9a94b5")
-	)
-	(wire
-		(pts
-			(xy 158.75 83.82) (xy 160.02 83.82)
+			(xy 171.45 110.49) (xy 172.72 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1228,7 +1313,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 74.93) (xy 99.06 74.93)
+			(xy 96.52 105.41) (xy 95.25 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1238,7 +1323,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 82.55) (xy 132.08 82.55)
+			(xy 119.38 113.03) (xy 128.27 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1248,7 +1333,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 83.82) (xy 172.72 83.82)
+			(xy 185.42 110.49) (xy 200.66 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1258,7 +1343,7 @@
 	)
 	(wire
 		(pts
-			(xy 172.72 83.82) (xy 172.72 80.01)
+			(xy 185.42 110.49) (xy 185.42 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1268,7 +1353,7 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 80.01) (xy 158.75 83.82)
+			(xy 171.45 106.68) (xy 171.45 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1278,7 +1363,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 80.01) (xy 100.33 82.55)
+			(xy 96.52 110.49) (xy 96.52 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1288,7 +1373,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 74.93) (xy 173.99 74.93)
+			(xy 182.88 101.6) (xy 186.69 101.6)
 		)
 		(stroke
 			(width 0)
@@ -1298,7 +1383,7 @@
 	)
 	(wire
 		(pts
-			(xy 165.1 91.44) (xy 154.94 91.44)
+			(xy 177.8 118.11) (xy 167.64 118.11)
 		)
 		(stroke
 			(width 0)
@@ -1308,17 +1393,7 @@
 	)
 	(wire
 		(pts
-			(xy 186.69 93.98) (xy 187.96 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d9f8223c-a240-44ed-9da9-f2d38c723440")
-	)
-	(wire
-		(pts
-			(xy 172.72 80.01) (xy 158.75 80.01)
+			(xy 185.42 106.68) (xy 171.45 106.68)
 		)
 		(stroke
 			(width 0)
@@ -1328,7 +1403,7 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 74.93) (xy 170.18 83.82)
+			(xy 182.88 101.6) (xy 182.88 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1338,7 +1413,7 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 80.01) (xy 102.87 80.01)
+			(xy 96.52 110.49) (xy 99.06 110.49)
 		)
 		(stroke
 			(width 0)
@@ -1347,7 +1422,7 @@
 		(uuid "f582fdf5-2dbe-4b94-ac59-820f14df7c8e")
 	)
 	(label "BAT+"
-		(at 154.94 91.44 0)
+		(at 167.64 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1357,7 +1432,7 @@
 		(uuid "5c73d960-ee13-443e-8fad-e1d7823ece64")
 	)
 	(label "BAT+"
-		(at 138.43 88.9 180)
+		(at 134.62 119.38 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1368,7 +1443,7 @@
 	)
 	(hierarchical_label "GND-USB"
 		(shape input)
-		(at 153.67 86.36 180)
+		(at 166.37 110.49 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1379,7 +1454,7 @@
 	)
 	(hierarchical_label "PP_VCC"
 		(shape output)
-		(at 187.96 93.98 0)
+		(at 200.66 118.11 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1390,7 +1465,7 @@
 	)
 	(hierarchical_label "PP_GND"
 		(shape output)
-		(at 187.96 81.28 0)
+		(at 200.66 110.49 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1401,7 +1476,7 @@
 	)
 	(hierarchical_label "+5V-USB"
 		(shape input)
-		(at 153.67 72.39 180)
+		(at 166.37 101.6 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1412,7 +1487,7 @@
 	)
 	(hierarchical_label "+5V-USB"
 		(shape input)
-		(at 99.06 74.93 180)
+		(at 95.25 105.41 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1423,7 +1498,7 @@
 	)
 	(hierarchical_label "GND-USB"
 		(shape input)
-		(at 99.06 82.55 180)
+		(at 95.25 113.03 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1434,7 +1509,7 @@
 	)
 	(symbol
 		(lib_id "Diode:PMEG4010CEJ")
-		(at 177.8 74.93 180)
+		(at 190.5 101.6 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1442,7 +1517,7 @@
 		(dnp no)
 		(uuid "1ce40fe6-1a9c-4425-ab46-fce334bfef51")
 		(property "Reference" "D3"
-			(at 178.054 71.374 0)
+			(at 190.754 98.044 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1450,7 +1525,7 @@
 			)
 		)
 		(property "Value" "PMEG4010CEJ"
-			(at 178.054 77.724 0)
+			(at 190.754 104.394 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1458,7 +1533,7 @@
 			)
 		)
 		(property "Footprint" "Diode_SMD:D_SOD-323F"
-			(at 177.8 70.485 0)
+			(at 190.5 97.155 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1467,7 +1542,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809291616_Nexperia-PMEG4010CEJ-115_C50704.pdf"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1476,7 +1551,7 @@
 			)
 		)
 		(property "Description" "40V 570mV@1A 1A SOD-323F Schottky Diodes ROHS"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1485,7 +1560,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Nexperia-PMEG4010CEJ115/C50704"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1494,7 +1569,7 @@
 			)
 		)
 		(property "Price/unit" "$0.0699"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1503,7 +1578,7 @@
 			)
 		)
 		(property "Part Num" "PMEG4010CEJ,115"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1512,7 +1587,7 @@
 			)
 		)
 		(property "Package" "SOD-323F"
-			(at 177.8 74.93 0)
+			(at 190.5 101.6 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1537,7 +1612,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 162.56 83.82 90)
+		(at 175.26 110.49 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1545,7 +1620,7 @@
 		(dnp no)
 		(uuid "204c7338-90f6-48a7-b0d7-02c7210f5ecd")
 		(property "Reference" "R4"
-			(at 162.306 81.534 90)
+			(at 175.006 108.204 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1553,7 +1628,7 @@
 			)
 		)
 		(property "Value" "10k 0805"
-			(at 162.56 86.36 90)
+			(at 175.26 113.03 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1561,7 +1636,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1570,7 +1645,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8562006748401074176"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1579,7 +1654,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1588,7 +1663,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/18102-0805W8F1002T5E/C17414"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1597,7 +1672,7 @@
 			)
 		)
 		(property "Price/unit" "$0.0017"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1606,7 +1681,7 @@
 			)
 		)
 		(property "Part Num" "0805W8F1002T5E"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1615,7 +1690,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 162.56 83.82 0)
+			(at 175.26 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1640,7 +1715,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_FET:IRLML6402")
-		(at 170.18 88.9 90)
+		(at 182.88 115.57 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1649,7 +1724,7 @@
 		(dnp no)
 		(uuid "5f235852-ef91-4385-b1df-2f41f186be80")
 		(property "Reference" "Q1"
-			(at 174.244 87.376 90)
+			(at 186.944 114.046 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1657,7 +1732,7 @@
 			)
 		)
 		(property "Value" "IRLML6402"
-			(at 170.18 95.504 90)
+			(at 182.88 122.174 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1665,7 +1740,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 172.085 93.98 0)
+			(at 184.785 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1676,7 +1751,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1810271032_Infineon-Technologies-IRLML6402TRPBF_C2593.pdf"
-			(at 173.99 93.98 0)
+			(at 186.69 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1686,7 +1761,7 @@
 			)
 		)
 		(property "Description" "20V 3.7A 1.3W 65mΩ@4.5V,3.7A 1.2V@250uA 1 Piece P-Channel SOT-23 MOSFETs ROHS"
-			(at 170.18 88.9 0)
+			(at 182.88 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1695,7 +1770,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/InfineonTechnologies-IRLML6402TRPBF/C2593"
-			(at 170.18 88.9 0)
+			(at 182.88 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1704,7 +1779,7 @@
 			)
 		)
 		(property "Price/unit" "$0.0906"
-			(at 170.18 88.9 0)
+			(at 182.88 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1713,7 +1788,7 @@
 			)
 		)
 		(property "Part Num" "IRLML6402TRPBF"
-			(at 170.18 88.9 0)
+			(at 182.88 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1722,7 +1797,7 @@
 			)
 		)
 		(property "Package" "SOT-23"
-			(at 170.18 88.9 0)
+			(at 182.88 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1750,7 +1825,7 @@
 	)
 	(symbol
 		(lib_id "Device:Battery_Cell")
-		(at 127 88.9 270)
+		(at 123.19 119.38 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1758,7 +1833,7 @@
 		(dnp no)
 		(uuid "6c13161a-f5c0-437a-a1d3-d53a7378a542")
 		(property "Reference" "BT1"
-			(at 128.524 85.344 90)
+			(at 124.714 115.824 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1766,7 +1841,7 @@
 			)
 		)
 		(property "Value" "LiPo 3.7V 2000mAh"
-			(at 128.27 92.964 90)
+			(at 124.46 123.444 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1774,7 +1849,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 128.524 88.9 90)
+			(at 124.714 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1783,7 +1858,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 128.524 88.9 90)
+			(at 124.714 119.38 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1792,7 +1867,7 @@
 			)
 		)
 		(property "Description" "Single-cell battery"
-			(at 127 88.9 0)
+			(at 123.19 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1801,7 +1876,7 @@
 			)
 		)
 		(property "Supplier Link" ""
-			(at 127 88.9 0)
+			(at 123.19 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1810,7 +1885,7 @@
 			)
 		)
 		(property "Price/unit" ""
-			(at 127 88.9 0)
+			(at 123.19 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1819,7 +1894,7 @@
 			)
 		)
 		(property "Part Num" ""
-			(at 127 88.9 0)
+			(at 123.19 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1828,7 +1903,7 @@
 			)
 		)
 		(property "Package" ""
-			(at 127 88.9 0)
+			(at 123.19 119.38 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1853,7 +1928,7 @@
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:BMS_Module")
-		(at 113.03 81.28 0)
+		(at 109.22 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1861,7 +1936,7 @@
 		(dnp no)
 		(uuid "de20413c-0613-4ff7-bc2c-47088fea3b16")
 		(property "Reference" "U2"
-			(at 106.68 73.406 0)
+			(at 102.87 103.886 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1869,7 +1944,7 @@
 			)
 		)
 		(property "Value" "BMS Module"
-			(at 114.554 89.154 0)
+			(at 110.744 119.634 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1877,7 +1952,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 113.03 82.55 0)
+			(at 109.22 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1886,7 +1961,7 @@
 			)
 		)
 		(property "Datasheet" "https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf"
-			(at 113.03 82.55 0)
+			(at 109.22 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1895,7 +1970,7 @@
 			)
 		)
 		(property "Description" "TP4056 laddare med skyddskrets för Li-Ion- och LiPo-cell"
-			(at 113.03 82.55 0)
+			(at 109.22 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1904,7 +1979,7 @@
 			)
 		)
 		(property "Package" "Module"
-			(at 113.03 81.28 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1913,7 +1988,7 @@
 			)
 		)
 		(property "Part Num" "TP4056"
-			(at 113.03 81.28 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1922,7 +1997,7 @@
 			)
 		)
 		(property "Price/unit" "45 kr"
-			(at 113.03 81.28 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1931,7 +2006,7 @@
 			)
 		)
 		(property "Supplier Link" "https://www.electrokit.com/batteriladdare-lipo-microusb"
-			(at 113.03 81.28 0)
+			(at 109.22 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1962,6 +2037,48 @@
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/c0498d1d-9e32-48f1-b749-4feb6881e262"
 					(reference "U2")
 					(unit 1)
+				)
+			)
+		)
+	)
+	(sheet
+		(at 15.875 78.105)
+		(size 38.735 8.255)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "74562938-8133-477e-bd4c-29986ea7f376")
+		(property "Sheetname" "Battery Power Requirements"
+			(at 15.875 77.3934 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power_requirement_calc.kicad_sch"
+			(at 15.875 86.9446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/c0498d1d-9e32-48f1-b749-4feb6881e262"
+					(page "10")
 				)
 			)
 		)

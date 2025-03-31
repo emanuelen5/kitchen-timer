@@ -5,7 +5,7 @@
 	(uuid "0a7e7b5b-1dfc-4469-8e5b-f6d6518a4d31")
 	(paper "A4")
 	(title_block
-		(title "Kitchen_Timer - Piezo Speakr")
+		(title "Kitchen_Timer - ${SHEETNAME}")
 		(date "2025-01-26")
 		(rev "v01")
 		(comment 2 "creativecommons.org/licences/4.0/")
@@ -567,21 +567,102 @@
 			(embedded_fonts no)
 		)
 	)
+	(rectangle
+		(start 114.3 69.85)
+		(end 175.895 122.555)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid d5438ac4-ee6e-4c01-ac73-d73e8f8d8481)
+	)
+	(text "${SHEETNAME}"
+		(exclude_from_sim no)
+		(at 17.018 22.098 0)
+		(effects
+			(font
+				(size 3.81 3.81)
+				(thickness 0.762)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "25a5d3f2-ead3-40d9-b8f0-3e814204fa8c")
+	)
+	(text "Reference Circuit: Same Sky - How to Increase the Audio Output of a Piezoelectric Transducer Buzzer"
+		(exclude_from_sim no)
+		(at 18.796 54.61 0)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.2381)
+			)
+			(justify left)
+			(href "https://www.sameskydevices.com/blog/how-to-increase-the-audio-output-of-a-piezoelectric-transducer-buzzer")
+		)
+		(uuid "ad688d67-3e26-4610-920f-6bc0c31cfeaf")
+	)
+	(text_box "Circuit Description:\nWe are using an NPN bipolar junction transistor to drive the piezo speaker from  the 5V source.\n"
+		(exclude_from_sim no)
+		(at 18.415 31.75 0)
+		(size 266.065 18.415)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.1588)
+			)
+			(justify left top)
+		)
+		(uuid "4ac78e05-25e5-4bb4-a9c3-5b71772d4242")
+	)
+	(text_box "TODO:\n\n* There are different circuits that could be implemented.[Reference Circuit]"
+		(exclude_from_sim no)
+		(at 22.86 69.342 0)
+		(size 66.04 50.546)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+			(color 194 0 0 1)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(color 194 0 0 1)
+			)
+			(justify left top)
+		)
+		(uuid "4b32e02a-2b12-400b-9af1-ee108514ddc7")
+	)
 	(junction
-		(at 148.59 74.93)
+		(at 149.86 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2e6e2af1-4bd3-46bb-8430-6a01604b6d20")
 	)
 	(junction
-		(at 148.59 80.01)
+		(at 149.86 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "7c35d355-e08c-4295-bc38-a47f6fdb73f1")
 	)
 	(wire
 		(pts
-			(xy 148.59 78.74) (xy 148.59 80.01)
+			(xy 149.86 92.71) (xy 149.86 93.98)
 		)
 		(stroke
 			(width 0)
@@ -591,7 +672,7 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 93.98) (xy 148.59 99.06)
+			(xy 149.86 107.95) (xy 149.86 113.03)
 		)
 		(stroke
 			(width 0)
@@ -601,7 +682,7 @@
 	)
 	(wire
 		(pts
-			(xy 137.16 88.9) (xy 140.97 88.9)
+			(xy 138.43 102.87) (xy 142.24 102.87)
 		)
 		(stroke
 			(width 0)
@@ -611,7 +692,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 80.01) (xy 148.59 80.01)
+			(xy 143.51 93.98) (xy 149.86 93.98)
 		)
 		(stroke
 			(width 0)
@@ -621,7 +702,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 88.9) (xy 132.08 88.9)
+			(xy 129.54 102.87) (xy 133.35 102.87)
 		)
 		(stroke
 			(width 0)
@@ -631,7 +712,7 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 67.31) (xy 148.59 74.93)
+			(xy 149.86 81.28) (xy 149.86 88.9)
 		)
 		(stroke
 			(width 0)
@@ -641,7 +722,7 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 74.93) (xy 148.59 76.2)
+			(xy 149.86 88.9) (xy 149.86 90.17)
 		)
 		(stroke
 			(width 0)
@@ -651,7 +732,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 74.93) (xy 148.59 74.93)
+			(xy 143.51 88.9) (xy 149.86 88.9)
 		)
 		(stroke
 			(width 0)
@@ -661,7 +742,7 @@
 	)
 	(wire
 		(pts
-			(xy 148.59 80.01) (xy 148.59 83.82)
+			(xy 149.86 93.98) (xy 149.86 97.79)
 		)
 		(stroke
 			(width 0)
@@ -669,9 +750,9 @@
 		)
 		(uuid "fbfee65a-d82d-4f2a-81e4-2d37b40df7ec")
 	)
-	(global_label "+5V"
+	(global_label "${VCC}"
 		(shape input)
-		(at 148.59 67.31 180)
+		(at 149.86 81.28 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -681,7 +762,7 @@
 		)
 		(uuid "71a7db99-7ceb-4ed3-b419-16791e10fc49")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 141.7343 67.31 0)
+			(at 143.0043 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -693,7 +774,7 @@
 	)
 	(global_label "GND"
 		(shape input)
-		(at 148.59 99.06 180)
+		(at 149.86 113.03 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -703,7 +784,7 @@
 		)
 		(uuid "f6faadd9-b7a7-4238-a40f-53b178b9efa6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 141.7343 99.06 0)
+			(at 143.0043 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -715,7 +796,7 @@
 	)
 	(hierarchical_label "SPEAKER"
 		(shape input)
-		(at 128.27 88.9 180)
+		(at 129.54 102.87 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -726,7 +807,7 @@
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:HNB09A05")
-		(at 148.59 76.2 0)
+		(at 149.86 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -734,7 +815,7 @@
 		(dnp no)
 		(uuid "205bd12d-905a-4334-961a-17bb2bab4976")
 		(property "Reference" "LS2"
-			(at 148.844 71.628 0)
+			(at 150.114 85.598 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -743,7 +824,7 @@
 			)
 		)
 		(property "Value" "HNB09A05"
-			(at 152.654 84.836 0)
+			(at 153.924 98.806 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -752,7 +833,7 @@
 			)
 		)
 		(property "Footprint" "kitchen_timer:HNB09A05"
-			(at 160.02 178.74 0)
+			(at 161.29 192.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -762,7 +843,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811141138_Jiangsu-Huaneng-Elec-HNB09A05_C96493.pdf"
-			(at 160.02 278.74 0)
+			(at 161.29 292.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -772,7 +853,7 @@
 			)
 		)
 		(property "Description" "Buzzers Magnetic YES 3000+/-300Hz 5V 4 ~ 8V 9mm DIP RoHS"
-			(at 150.876 67.056 0)
+			(at 152.146 81.026 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -781,7 +862,7 @@
 			)
 		)
 		(property "Height" "5.7"
-			(at 160.02 478.74 0)
+			(at 161.29 492.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -791,7 +872,7 @@
 			)
 		)
 		(property "Manufacturer_Name" "Jiangsu Huaneng Elec"
-			(at 160.02 578.74 0)
+			(at 161.29 592.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -801,7 +882,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" "HNB09A05"
-			(at 160.02 678.74 0)
+			(at 161.29 692.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -811,7 +892,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 160.02 778.74 0)
+			(at 161.29 792.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -821,7 +902,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 160.02 878.74 0)
+			(at 161.29 892.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -831,7 +912,7 @@
 			)
 		)
 		(property "Arrow Part Number" ""
-			(at 160.02 978.74 0)
+			(at 161.29 992.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -841,7 +922,7 @@
 			)
 		)
 		(property "Arrow Price/Stock" ""
-			(at 160.02 1078.74 0)
+			(at 161.29 1092.71 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -851,7 +932,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Jiangsu_HuanengElec-HNB09A05/C96493"
-			(at 148.59 76.2 0)
+			(at 149.86 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -860,7 +941,7 @@
 			)
 		)
 		(property "Price/unit" "$0.2261"
-			(at 148.59 76.2 0)
+			(at 149.86 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -869,7 +950,7 @@
 			)
 		)
 		(property "Part Num" "HNB09A05"
-			(at 148.59 76.2 0)
+			(at 149.86 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -878,7 +959,7 @@
 			)
 		)
 		(property "Package" "Plugin,D=9mm"
-			(at 148.59 76.2 0)
+			(at 149.86 90.17 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -903,7 +984,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 134.62 88.9 90)
+		(at 135.89 102.87 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -911,7 +992,7 @@
 		(dnp no)
 		(uuid "7593e3f9-534c-456c-9ed0-0ee28ef5cceb")
 		(property "Reference" "R14"
-			(at 134.366 86.106 90)
+			(at 135.636 100.076 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -919,7 +1000,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 134.62 91.186 90)
+			(at 135.89 105.156 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -927,7 +1008,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 134.62 88.9 0)
+			(at 135.89 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -936,7 +1017,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 134.62 88.9 0)
+			(at 135.89 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -945,7 +1026,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 134.62 88.9 0)
+			(at 135.89 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -970,7 +1051,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_BJT:2N3904")
-		(at 146.05 88.9 0)
+		(at 147.32 102.87 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -979,7 +1060,7 @@
 		(fields_autoplaced yes)
 		(uuid "b69018aa-13fa-4ad2-aeec-2cd2e5d449c1")
 		(property "Reference" "Q2"
-			(at 151.13 87.6299 0)
+			(at 152.4 101.5999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -988,7 +1069,7 @@
 			)
 		)
 		(property "Value" "2N3904"
-			(at 151.13 90.1699 0)
+			(at 152.4 104.1399 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -997,7 +1078,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_THT:TO-92_Inline"
-			(at 151.13 90.805 0)
+			(at 152.4 104.775 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1008,7 +1089,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.onsemi.com/pub/Collateral/2N3903-D.PDF"
-			(at 146.05 88.9 0)
+			(at 147.32 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1018,7 +1099,7 @@
 			)
 		)
 		(property "Description" "0.2A Ic, 40V Vce, Small Signal NPN Transistor, TO-92"
-			(at 146.05 88.9 0)
+			(at 147.32 102.87 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1046,7 +1127,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 142.24 77.47 0)
+		(at 143.51 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1054,7 +1135,7 @@
 		(dnp no)
 		(uuid "bdba7899-df16-4d09-b61c-abd7e678bb99")
 		(property "Reference" "R13"
-			(at 136.652 77.47 0)
+			(at 137.922 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1063,7 +1144,7 @@
 			)
 		)
 		(property "Value" "1k"
-			(at 144.018 77.216 0)
+			(at 145.288 91.186 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1072,7 +1153,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 142.24 77.47 0)
+			(at 143.51 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1081,7 +1162,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 142.24 77.47 0)
+			(at 143.51 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1090,7 +1171,7 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 142.24 77.47 0)
+			(at 143.51 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
