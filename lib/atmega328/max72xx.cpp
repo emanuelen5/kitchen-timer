@@ -14,7 +14,7 @@ void init_max72xx(void)
     max72xx_send_commands_to_all(Max72XX_Shutdown, 0x01);     // normal operation (exit shutdown mode)
     max72xx_send_commands_to_all(Max72XX_Scan_Limit, 0x07);   // 8 digits scan limit
     max72xx_send_commands_to_all(Max72XX_Decode_Mode, 0x00);  // disable decode mode
-    max72xx_send_commands_to_all(Max72XX_Intensity, 0x01);    // set brightness
+    max72xx_send_commands_to_all(Max72XX_Intensity, 0x00);    // set brightness
     max72xx_send_commands_to_all(Max72XX_Display_Test, 0x00); // disable display test
 }
 
