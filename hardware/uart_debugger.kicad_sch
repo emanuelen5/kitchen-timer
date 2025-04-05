@@ -1125,23 +1125,13 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 102.87) (xy 149.86 102.87)
+			(xy 135.89 102.87) (xy 167.64 102.87)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "dfd35635-9519-43d9-aac2-0d299191ed93")
-	)
-	(wire
-		(pts
-			(xy 154.94 102.87) (xy 167.64 102.87)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e826a7d7-191c-431c-9e62-f1e05eab04ae")
 	)
 	(hierarchical_label "CH340_RXD"
 		(shape input)
@@ -1208,129 +1198,6 @@
 			(justify left)
 		)
 		(uuid "ededb1a6-0d4e-4171-9aba-ea7d125bbea1")
-	)
-	(symbol
-		(lib_name "D_Small_1")
-		(lib_id "Device:D_Small")
-		(at 152.4 102.87 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "09cd3262-7926-4ad9-b60d-1e587d71e2d7")
-		(property "Reference" "D6"
-			(at 152.4 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BAS70"
-			(at 152.4 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 131.318 103.124 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2201131400_Yangzhou-Yangjie-Elec-Tech-BAS70_C968045.pdf"
-			(at 135.128 102.108 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "70V Independent Type 1V@15mA 70mA SOT-23(TO-236) Schottky Diodes ROHS"
-			(at 151.13 84.328 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Device" "D"
-			(at 160.274 98.298 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 141.224 92.202 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/Yangzhou_Yangjie_ElecTech-BAS70/C968045"
-			(at 148.59 81.788 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0189"
-			(at 152.146 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "BAS70"
-			(at 121.666 90.932 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOT-23(TO-236)"
-			(at 150.876 87.884 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "3"
-			(uuid "048fc849-42fd-451d-94e6-36f010dc3859")
-		)
-		(pin "1"
-			(uuid "e28dabed-bf15-445d-be96-6fdc9afc17a1")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/f7e640d9-c0d9-4c44-8592-f18e152ed7d5"
-					(reference "D6")
-					(unit 1)
-				)
-			)
-		)
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:UART_Module")
