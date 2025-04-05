@@ -525,6 +525,12 @@
 		(uuid "208232bb-e38b-4664-8b7f-f4ce93152b26")
 	)
 	(junction
+		(at 148.59 72.39)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2a9ce8cf-2ad0-48d2-a3d0-49abcc5680db")
+	)
+	(junction
 		(at 168.91 99.06)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -578,13 +584,13 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 76.2) (xy 142.24 76.2)
+			(xy 148.59 72.39) (xy 148.59 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "307c1474-d698-4345-bd58-ac71b3a10fea")
+		(uuid "2b6de4a5-7abd-439d-82c8-f129dcb2dde8")
 	)
 	(wire
 		(pts
@@ -668,6 +674,26 @@
 	)
 	(wire
 		(pts
+			(xy 148.59 72.39) (xy 158.75 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b88b065d-8a75-4c0c-9df1-4e6cdb7e8a69")
+	)
+	(wire
+		(pts
+			(xy 148.59 78.74) (xy 148.59 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b95930e9-0c39-4b0b-aba9-86f898a7ac74")
+	)
+	(wire
+		(pts
 			(xy 114.3 88.9) (xy 114.3 87.63)
 		)
 		(stroke
@@ -675,6 +701,36 @@
 			(type default)
 		)
 		(uuid "c0f4f4cc-9af3-4393-9929-3c9eb5818b11")
+	)
+	(wire
+		(pts
+			(xy 142.24 64.77) (xy 142.24 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c3cd8773-ff2b-4a39-ab17-6b3e25c0c733")
+	)
+	(wire
+		(pts
+			(xy 142.24 64.77) (xy 148.59 64.77)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c6549ad8-7909-45a1-aef6-1c652e84be46")
+	)
+	(wire
+		(pts
+			(xy 148.59 69.85) (xy 148.59 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3aaeb72-1abb-4318-a07a-479de54df03a")
 	)
 	(wire
 		(pts
@@ -770,6 +826,28 @@
 			)
 		)
 	)
+	(global_label "GND"
+		(shape input)
+		(at 148.59 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "83467dfb-0fd2-44fc-a170-56b2d26d90e0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 155.4457 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "${VCC}"
 		(shape input)
 		(at 114.3 78.74 180)
@@ -860,14 +938,14 @@
 	)
 	(hierarchical_label "SW"
 		(shape output)
-		(at 143.51 76.2 0)
+		(at 158.75 72.39 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "4382884d-8ba5-4886-aede-40cacd92984f")
+		(uuid "42df10ad-e644-435f-b90e-2fdd022761c8")
 	)
 	(hierarchical_label "CH_A"
 		(shape output)
@@ -1216,6 +1294,76 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
+		(at 148.59 67.31 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5eac5aa3-0f43-47bf-8702-d946b47f810f")
+		(property "Reference" "R19"
+			(at 151.13 66.0399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10k"
+			(at 151.13 68.5799 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 148.59 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 148.59 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 148.59 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "475a4183-46b7-4441-b164-8312eca920f3")
+		)
+		(pin "2"
+			(uuid "a07b0f56-a426-47a6-987a-bdf04793eab1")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
+					(reference "R19")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
 		(at 114.3 85.09 0)
 		(mirror y)
 		(unit 1)
@@ -1351,6 +1499,76 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
 					(reference "R16")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C_Small")
+		(at 148.59 76.2 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a22309a2-65f5-44af-8f51-874b22ca052c")
+		(property "Reference" "C18"
+			(at 151.13 74.9362 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "10nF"
+			(at 151.13 77.4762 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" ""
+			(at 148.59 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 148.59 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 148.59 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "337cb240-e496-491c-ad7e-438558cd9e52")
+		)
+		(pin "2"
+			(uuid "223128ef-0c30-45e9-bc1a-18fcfa705c04")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
+					(reference "C18")
 					(unit 1)
 				)
 			)
