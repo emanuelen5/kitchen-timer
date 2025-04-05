@@ -23,9 +23,9 @@ Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](ht
 ### Engineering Requirements
 * Software Engineering requirements [TODO]
 * Mechanical Engineering requirements [TODO]
-* [PCB Engineering Requirements](PCB_Design\README.md)
+* PCB Engineering Requirements [TODO]
 
-### Hardware
+## Hardware
 
 * Atmega328P as microcontroller
 * Rotary encoder for setting the time
@@ -41,7 +41,7 @@ Prototyping setup on the breadboard:
 
 The the schematic:
 
-![Schematic](./fritzing/schema_schem.svg)
+![Schematic](hardware\kitchen_timer-hardware.kicad_pro)
 
 ## Software
 
@@ -63,3 +63,6 @@ Then run
 ```
 
 to build and program your board with the selected environment.
+
+## Mechanics:
+[TODO]
