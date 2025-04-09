@@ -726,9 +726,197 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Switch:SW_SPDT"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 0 5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_SPDT"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 -7.62 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Switch, single pole double throw"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch single-pole double-throw spdt ON-ON"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_SPDT_0_1"
+				(circle
+					(center -2.032 0)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.651 0.254) (xy 1.651 2.286)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 2.54)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 -2.54)
+					(radius 0.4572)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_SPDT_1_1"
+				(rectangle
+					(start -3.175 3.81)
+					(end 3.175 -3.81)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 2.54 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 -2.54 180)
+					(length 2.54)
+					(name "C"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(rectangle
-		(start 89.408 66.675)
+		(start 19.304 126.492)
+		(end 75.184 158.242)
+		(stroke
+			(width 0)
+			(type dash)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 4fd0fc94-47e2-40f4-847f-77a3c58bb87c)
+	)
+	(rectangle
+		(start 86.106 66.675)
 		(end 219.71 133.35)
 		(stroke
 			(width 0)
@@ -763,6 +951,18 @@
 			(justify left)
 		)
 		(uuid "2b9eeea2-70e5-4ab7-b2d1-205e73afdf76")
+	)
+	(text "Power Switch"
+		(exclude_from_sim no)
+		(at 45.974 132.588 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
+			)
+		)
+		(uuid "2f424fdb-42c8-4edc-adb7-ad07d94bd774")
 	)
 	(text "[1] Sparkfun - LiPower Boost Converter"
 		(exclude_from_sim no)
@@ -1000,6 +1200,10 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f0eaabfe-6c03-4ee7-8180-460bc1324295")
+	)
+	(no_connect
+		(at 49.53 152.4)
+		(uuid "a70a0a6a-7cbe-4af9-b850-27b2974fe987")
 	)
 	(wire
 		(pts
@@ -1333,6 +1537,16 @@
 	)
 	(wire
 		(pts
+			(xy 35.56 149.86) (xy 39.37 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "955e25ca-5f2b-427d-9d01-ea2a496b4466")
+	)
+	(wire
+		(pts
 			(xy 193.04 91.44) (xy 194.31 91.44)
 		)
 		(stroke
@@ -1370,6 +1584,16 @@
 			(type default)
 		)
 		(uuid "a7c68356-12e9-4e5a-a893-72d5b6de37cb")
+	)
+	(wire
+		(pts
+			(xy 49.53 147.32) (xy 50.8 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a7fb665e-21ea-42ae-a264-f88fd5abb623")
 	)
 	(wire
 		(pts
@@ -1463,6 +1687,16 @@
 	)
 	(wire
 		(pts
+			(xy 107.95 83.82) (xy 110.49 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e22ddc04-b3d6-4070-9992-7b1b4d5694b4")
+	)
+	(wire
+		(pts
 			(xy 124.46 102.87) (xy 124.46 106.68)
 		)
 		(stroke
@@ -1511,6 +1745,26 @@
 		)
 		(uuid "fa72dea4-7633-488f-ac01-0d353172d639")
 	)
+	(label "PP_VCC_after_switch"
+		(at 50.8 147.32 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0d1d4286-6028-4888-ac65-2ae7226d1403")
+	)
+	(label "PP_VCC_after_switch"
+		(at 107.95 83.82 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "b7122abd-5b7c-430f-b8b4-a87d3ad4a180")
+	)
 	(hierarchical_label "GND"
 		(shape output)
 		(at 194.31 120.65 0)
@@ -1521,17 +1775,6 @@
 			(justify left)
 		)
 		(uuid "0abac756-6998-4408-a568-d7e333fe5dea")
-	)
-	(hierarchical_label "PP_VCC"
-		(shape input)
-		(at 110.49 83.82 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "432b29b7-90a6-44d7-b42a-fdb5d9d77c5b")
 	)
 	(hierarchical_label "PP_GND"
 		(shape input)
@@ -1554,6 +1797,17 @@
 			(justify left)
 		)
 		(uuid "6f8693b8-5bf3-4fba-a2a5-670e1af8061c")
+	)
+	(hierarchical_label "PP_VCC"
+		(shape input)
+		(at 35.56 149.86 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ba5c0a8c-3cf2-4d89-b7b0-4ff4b87bcbde")
 	)
 	(symbol
 		(lib_id "Device:C_Small")
@@ -1994,6 +2248,113 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/8d96c6df-7eb2-480a-982a-3dd8886e54b6"
 					(reference "R8")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPDT")
+		(at 44.45 149.86 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "871f73dc-2a14-4225-a5d3-3e182b15c2de")
+		(property "Reference" "SW1"
+			(at 44.45 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SW_SPDT"
+			(at 44.45 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 44.45 157.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Switch, single pole double throw"
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/ShouHan-MSK12C02HB/C431541"
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Price/unit" ""
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" ""
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "eb574563-5763-412f-8cbc-e6f98fc01b00")
+		)
+		(pin "1"
+			(uuid "599f8655-34ad-40ef-b6db-989ed6520ecc")
+		)
+		(pin "2"
+			(uuid "b87035ac-4639-43d8-bf6d-3261660bed5f")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/8d96c6df-7eb2-480a-982a-3dd8886e54b6"
+					(reference "SW1")
 					(unit 1)
 				)
 			)
