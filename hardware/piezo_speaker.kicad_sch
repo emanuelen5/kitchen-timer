@@ -630,23 +630,13 @@
 		(at 149.86 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "2e6e2af1-4bd3-46bb-8430-6a01604b6d20")
+		(uuid "61e304af-067a-4f04-9983-3f32b956e7a1")
 	)
 	(junction
 		(at 149.86 93.98)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "7c35d355-e08c-4295-bc38-a47f6fdb73f1")
-	)
-	(wire
-		(pts
-			(xy 149.86 92.71) (xy 149.86 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "03284b9d-6ef8-4551-944b-47e3c5570538")
+		(uuid "7555b280-50eb-4ddf-8bc5-6739b5f65152")
 	)
 	(wire
 		(pts
@@ -660,6 +650,16 @@
 	)
 	(wire
 		(pts
+			(xy 143.51 88.9) (xy 149.86 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "269500f3-b791-4125-b02c-12bcb19a0b6b")
+	)
+	(wire
+		(pts
 			(xy 138.43 102.87) (xy 142.24 102.87)
 		)
 		(stroke
@@ -670,13 +670,23 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 93.98) (xy 149.86 93.98)
+			(xy 149.86 88.9) (xy 149.86 90.17)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "7ff4accf-0650-4cd8-a5a0-b2158bec06c1")
+		(uuid "55c96680-14c7-4ae0-873a-064f2e1583b7")
+	)
+	(wire
+		(pts
+			(xy 149.86 93.98) (xy 149.86 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8dbf8f1f-0389-44ca-954d-480fa373d700")
 	)
 	(wire
 		(pts
@@ -690,6 +700,16 @@
 	)
 	(wire
 		(pts
+			(xy 143.51 93.98) (xy 149.86 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "caec707d-38b9-4146-979f-905c3ab766bd")
+	)
+	(wire
+		(pts
 			(xy 149.86 81.28) (xy 149.86 88.9)
 		)
 		(stroke
@@ -700,27 +720,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 88.9) (xy 149.86 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e26bd2d9-b32e-4ec7-8f3c-e76b613a2a92")
-	)
-	(wire
-		(pts
-			(xy 143.51 88.9) (xy 149.86 88.9)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ecbf74b0-5337-46b6-a7d6-35b21bbc1637")
-	)
-	(wire
-		(pts
-			(xy 149.86 93.98) (xy 149.86 97.79)
+			(xy 149.86 92.71) (xy 149.86 93.98)
 		)
 		(stroke
 			(width 0)
@@ -801,7 +801,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "HNB09A05"
+		(property "Value" "PS1240P02CT3"
 			(at 153.924 98.806 0)
 			(effects
 				(font
@@ -810,7 +810,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "kitchen_timer:HNB09A05"
+		(property "Footprint" ""
 			(at 161.29 192.71 0)
 			(effects
 				(font
@@ -820,7 +820,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811141138_Jiangsu-Huaneng-Elec-HNB09A05_C96493.pdf"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8559368611917037568"
 			(at 161.29 292.71 0)
 			(effects
 				(font
@@ -830,7 +830,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Buzzers Magnetic YES 3000+/-300Hz 5V 4 ~ 8V 9mm DIP RoHS"
+		(property "Description" "Piezo Buzzers & Audio Indicators Round 12.2mmx3.5mm 4kHz Vin=3V"
 			(at 152.146 81.026 0)
 			(effects
 				(font
@@ -839,7 +839,7 @@
 				(hide yes)
 			)
 		)
-		(property "Height" "5.7"
+		(property "Height" ""
 			(at 161.29 492.71 0)
 			(effects
 				(font
@@ -849,7 +849,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" "Jiangsu Huaneng Elec"
+		(property "Manufacturer_Name" "TDK"
 			(at 161.29 592.71 0)
 			(effects
 				(font
@@ -859,7 +859,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Part_Number" "HNB09A05"
+		(property "Manufacturer_Part_Number" "PS1240P02CT3"
 			(at 161.29 692.71 0)
 			(effects
 				(font
@@ -909,7 +909,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/Jiangsu_HuanengElec-HNB09A05/C96493"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Tdk-PS1240P02CT3/C76873"
 			(at 149.86 90.17 0)
 			(effects
 				(font
@@ -918,7 +918,7 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$0.2261"
+		(property "Price/unit" " $0.2409"
 			(at 149.86 90.17 0)
 			(effects
 				(font
@@ -927,7 +927,7 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "HNB09A05"
+		(property "Part Num" "C76873"
 			(at 149.86 90.17 0)
 			(effects
 				(font
@@ -936,7 +936,7 @@
 				(hide yes)
 			)
 		)
-		(property "Package" "Plugin,D=9mm"
+		(property "Package" "Plugin,D=12.2mm"
 			(at 149.86 90.17 0)
 			(effects
 				(font
@@ -955,6 +955,73 @@
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
 					(reference "LS2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 143.51 91.44 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "29f25c0e-40d2-4887-94ea-750126c00974")
+		(property "Reference" "R20"
+			(at 140.716 91.694 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "1k"
+			(at 145.796 91.44 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor, small symbol"
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "afd45454-b1b1-4c86-80b8-40940c066899")
+		)
+		(pin "2"
+			(uuid "b184201a-397a-4c4d-a25c-40907f913cc0")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
+					(reference "R20")
 					(unit 1)
 				)
 			)
@@ -1098,75 +1165,6 @@
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
 					(reference "Q2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 143.51 91.44 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bdba7899-df16-4d09-b61c-abd7e678bb99")
-		(property "Reference" "R13"
-			(at 137.922 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1k"
-			(at 145.288 91.186 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" ""
-			(at 143.51 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 143.51 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Resistor, small symbol"
-			(at 143.51 91.44 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "73b136ac-34cc-4496-90e5-15db30c4b073")
-		)
-		(pin "2"
-			(uuid "45615694-d302-4873-a4ac-9add7e121269")
-		)
-		(instances
-			(project ""
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
-					(reference "R13")
 					(unit 1)
 				)
 			)
