@@ -626,28 +626,6 @@
 		)
 		(uuid "4ac78e05-25e5-4bb4-a9c3-5b71772d4242")
 	)
-	(text_box "TODO:\n\n* There are different circuits that could be implemented.[Reference Circuit]"
-		(exclude_from_sim no)
-		(at 22.86 69.342 0)
-		(size 66.04 50.546)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width 0)
-			(type solid)
-			(color 194 0 0 1)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.905 1.905)
-				(color 194 0 0 1)
-			)
-			(justify left top)
-		)
-		(uuid "4b32e02a-2b12-400b-9af1-ee108514ddc7")
-	)
 	(junction
 		(at 149.86 88.9)
 		(diameter 0)

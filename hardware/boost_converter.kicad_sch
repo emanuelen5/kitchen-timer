@@ -823,7 +823,7 @@
 		)
 		(uuid "83f7a0c5-b628-4abd-bcc6-efa1e0516e19")
 	)
-	(text_box "TODO:\n\n* Device Enable pin (EN pin): This pin could be used as an ON/OFF switch.\n* The thermal pad should be soldered and connected to PGND pin.\n* Power Save pin (PS pin): There is a \"Power Save Mode\" but I do not know how to it works.\n* Need help selecting the inductor since it determines the current rating. The inductor could be JLCPCB part # C668451. It is a 2.2uH inductor, recommended by the datasheet.\n\n"
+	(text_box "TODO:\n\n* Device Enable pin (EN pin): This pin could be used as an ON/OFF switch.\n* The thermal pad should be soldered and connected to PGND pin.\n* Power Save pin (PS pin): There is a \"Power Save Mode\" but I do not know how to it works. (we leave it out for now)\n* Need help selecting the inductor since it determines the current rating. The inductor could be JLCPCB part # C668451. It is a 2.2uH inductor, recommended by the datasheet. (no need to chose inductor since we are using the SparkFun module)\n\n\n"
 		(exclude_from_sim no)
 		(at 15.24 66.294 0)
 		(size 66.04 50.546)

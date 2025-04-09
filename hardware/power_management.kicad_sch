@@ -1080,7 +1080,7 @@
 		)
 		(uuid "ff6306e3-9a9d-4f14-a37c-3db562601739")
 	)
-	(text_box "TODO:\n* The transistor could be sensitive to ESD. Should we add a didode in parallel?\n* It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[2]\n"
+	(text_box "TODO:\n* It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[2] (We leave it out for now)\n"
 		(exclude_from_sim no)
 		(at 16.764 97.79 0)
 		(size 52.832 50.546)

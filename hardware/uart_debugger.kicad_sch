@@ -1007,7 +1007,7 @@
 		)
 		(uuid "726fa7bf-7f48-4472-bd2f-ffe9d9598212")
 	)
-	(text_box "TODO:\n* Why not just another diode instead of the N-ch MOSFET?\n* Bootloader auto reset circuit (in Microcontroller schematic) did not work when testing. The DTR is pulled low when programming which triggers the reset function on the reset pin in the MCU.\n    - The RST pin shows 5v\n    - The DTR pin shows 0V when programming\n    - tryied with the cap and the resistors\n    - It is possible to load a sketch but you need to reset manually."
+	(text_box "TODO:\n* Why not just another diode instead of the N-ch MOSFET? We just don´t know.\n* Bootloader auto reset circuit (in Microcontroller schematic) did not work when testing. The DTR is pulled low when programming which triggers the reset function on the reset pin in the MCU.\n    - The RST pin shows 5v\n    - The DTR pin shows 0V when programming\n    - tryied with the cap and the resistors\n    - It is possible to load a sketch but you need to reset manually."
 		(exclude_from_sim no)
 		(at 21.59 80.518 0)
 		(size 66.04 50.546)

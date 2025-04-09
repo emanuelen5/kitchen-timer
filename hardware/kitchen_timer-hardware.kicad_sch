@@ -26,7 +26,7 @@
 		)
 		(uuid "efbf41d7-f644-47bd-b68b-c7eb855ef87d")
 	)
-	(text_box "TODO:\n* Add the power switch on the PP_VCC net.\n* Where should we put test points if any?\n"
+	(text_box "TODO:\n* Add the power switch on the PP_VCC net. Yes\n* Where should we put test points if any?\n    * On the UART to the MCU\n    * To the SPI\n	* TO the Encoder\n	* on the PP_VCC and PP_GND\n	* after the Boost converter\n	* +5V-USB and GND_USB\n	* Battery\n\n    * \n"
 		(exclude_from_sim no)
 		(at 17.272 142.748 0)
 		(size 66.04 50.546)
