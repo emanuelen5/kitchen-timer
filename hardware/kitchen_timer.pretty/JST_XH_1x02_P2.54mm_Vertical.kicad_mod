@@ -1,0 +1,183 @@
+(footprint "JST_XH_1x02_P2.54mm_Vertical"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "JST XH series connector, B2B-XH-AM, with boss (http://www.jst-mfg.com/product/pdf/eng/eXH.pdf), generated with kicad-footprint-generator")
+	(tags "connector JST XH vertical boss")
+	(property "Reference" "REF**"
+		(at 1.778 -7.112 0)
+		(layer "F.SilkS")
+		(uuid "d6b35cab-34df-4cb9-95bd-e9339b65e303")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Value" "JST_XH_1x02_P2.54mm_Vertical"
+		(at -0.254 3.81 0)
+		(layer "F.Fab")
+		(uuid "45603410-4eaa-41b8-9803-3ba8cea4fc9d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at -1.524 -0.762 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "08b22706-9cc6-4957-a42c-31bff0bdd1c8")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at -1.524 -0.762 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "62864477-bdf1-4905-b27c-b4ce62846b00")
+		(effects
+			(font
+				(size 1.27 1.27)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -0.29 -6.26)
+		(end -0.29 -5.01)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "be82adcd-f2d1-4480-9d98-dcfbb5f98c1f")
+	)
+	(fp_line
+		(start 0 -5.6)
+		(end 0 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "3c8c5cfd-c8bf-438a-ba28-a0ab4e2a9b8a")
+	)
+	(fp_line
+		(start 0 -5.6)
+		(end 7.4 -5.6)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "76f481e8-6601-4526-a2f0-60e8df7a615b")
+	)
+	(fp_line
+		(start 0 0)
+		(end 7.4 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "55e6cbf1-8377-4b8b-ab7c-f3e4b7e39b8f")
+	)
+	(fp_line
+		(start 0.96 -6.26)
+		(end -0.29 -6.26)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "de5ad216-65eb-4be2-a20e-af518fc4efb5")
+	)
+	(fp_line
+		(start 7.4 -5.6)
+		(end 7.4 0)
+		(stroke
+			(width 0.12)
+			(type solid)
+		)
+		(layer "F.SilkS")
+		(uuid "311f5ac6-9d1d-4117-ab46-06b5aeec233b")
+	)
+	(fp_rect
+		(start 4.75 0)
+		(end 2.65 -0.7)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "7b7d63cb-2e0b-459c-86a8-a877706baccb")
+	)
+	(fp_rect
+		(start -0.29 -6.26)
+		(end 7.71 0.49)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "034fff45-0c99-4bcd-affd-edd33534515d")
+	)
+	(fp_text user "${REFERENCE}"
+		(at -0.274 1.938 0)
+		(layer "F.Fab")
+		(uuid "5f9e5764-fc49-41ed-96d9-024b32790c8a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole roundrect
+		(at 2.45 -2.3)
+		(size 1.7 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(roundrect_rratio 0.147059)
+		(uuid "37118e55-f1cd-481f-8ecc-740204e8529e")
+	)
+	(pad "2" thru_hole oval
+		(at 4.95 -2.3)
+		(size 1.7 2)
+		(drill 1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "9f42e93f-1dbd-4b28-bb80-556bc96bd00e")
+	)
+	(group ""
+		(uuid "7b54c99a-55c2-437c-806f-e736cd518e81")
+		(members "37118e55-f1cd-481f-8ecc-740204e8529e" "9f42e93f-1dbd-4b28-bb80-556bc96bd00e")
+	)
+	(embedded_fonts no)
+	(model "${KICAD9_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B2B-XH-AM_1x02_P2.50mm_Vertical.wrl"
+		(offset
+			(xyz -1.524 0.762 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz 0 0 0)
+		)
+	)
+)

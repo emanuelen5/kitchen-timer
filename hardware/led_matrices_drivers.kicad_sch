@@ -4713,25 +4713,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "MAX7219CWG+T"
-			(at 107.95 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$2.6325"
-			(at 107.95 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/10499-MAX7219CWGT/C9964"
+			(at 107.95 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 107.95 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "MAX7219CWG+T"
+			(at 107.95 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.6325"
 			(at 107.95 93.98 0)
 			(effects
 				(font
@@ -4882,25 +4891,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "CR0805F89531G"
-			(at 154.94 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" " $0.0022"
-			(at 154.94 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" ""
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "CR0805F89531G"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.0022"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4985,25 +5003,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "CR0805F89531G"
-			(at 95.25 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" " $0.0022"
-			(at 95.25 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" ""
+			(at 95.25 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 95.25 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "CR0805F89531G"
+			(at 95.25 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.0022"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5090,25 +5117,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "MAX7219CWG+T"
-			(at 229.87 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$2.6325"
-			(at 229.87 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/10499-MAX7219CWGT/C9964"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "MAX7219CWG+T"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.6325"
 			(at 229.87 93.98 0)
 			(effects
 				(font
@@ -5259,25 +5295,34 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" " $0.0022"
-			(at 34.29 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "CR0805F89531G"
-			(at 34.29 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "0805"
+			(at 34.29 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 34.29 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "CR0805F89531G"
+			(at 34.29 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.0022"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5364,25 +5409,34 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$2.6325"
-			(at 46.99 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "MAX7219CWG+T"
-			(at 46.99 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "SOIC-24-300mil"
+			(at 46.99 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 46.99 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "MAX7219CWG+T"
+			(at 46.99 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.6325"
 			(at 46.99 93.98 0)
 			(effects
 				(font
@@ -5535,25 +5589,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 232.41 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 232.41 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 232.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 232.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 232.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 232.41 64.77 0)
 			(effects
 				(font
@@ -5640,25 +5703,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "MAX7219CWG+T"
-			(at 167.64 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$2.6325"
-			(at 167.64 93.98 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/10499-MAX7219CWGT/C9964"
+			(at 167.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 167.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "MAX7219CWG+T"
+			(at 167.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.6325"
 			(at 167.64 93.98 0)
 			(effects
 				(font
@@ -5811,25 +5883,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 170.18 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 170.18 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5916,25 +5997,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 110.49 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 110.49 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 110.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 110.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 110.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 110.49 64.77 0)
 			(effects
 				(font
@@ -6021,25 +6111,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 49.53 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 49.53 64.77 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 49.53 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 49.53 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 49.53 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 49.53 64.77 0)
 			(effects
 				(font
@@ -6124,25 +6223,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "CR0805F89531G"
-			(at 217.17 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" " $0.0022"
-			(at 217.17 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" ""
+			(at 217.17 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 217.17 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "CR0805F89531G"
+			(at 217.17 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.0022"
 			(at 217.17 67.31 0)
 			(effects
 				(font

@@ -120,6 +120,148 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector_Generic:Conn_01x02"
+			(pin_names
+				(offset 1.016)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "J"
+				(at 0 2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "Conn_01x02"
+				(at 0 -5.08 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "connector"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Connector*:*_1x??_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Conn_01x02_1_1"
+				(rectangle
+					(start -1.27 1.27)
+					(end 1.27 -3.81)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(rectangle
+					(start -1.27 0.127)
+					(end 0 -0.127)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(rectangle
+					(start -1.27 -2.413)
+					(end 0 -2.667)
+					(stroke
+						(width 0.1524)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(pin passive line
+					(at -5.08 0 0)
+					(length 3.81)
+					(name "Pin_1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -5.08 -2.54 0)
+					(length 3.81)
+					(name "Pin_2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "Device:Battery_Cell"
 			(pin_numbers
 				(hide yes)
@@ -1237,16 +1379,10 @@
 		(uuid "011d05b4-9d97-4a28-a487-d237aa444bd1")
 	)
 	(junction
-		(at 121.92 113.03)
+		(at 119.38 115.57)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "379ea07e-3045-4a8f-bd82-841a9533b990")
-	)
-	(junction
-		(at 121.92 115.57)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "59ac7390-2132-4838-9890-09c3c95e8bb3")
+		(uuid "049b0578-2830-4f12-bc27-83a4ce3297ce")
 	)
 	(junction
 		(at 182.88 101.6)
@@ -1255,10 +1391,10 @@
 		(uuid "7b141aed-e61e-4d47-ab8e-e6972ab5f929")
 	)
 	(junction
-		(at 134.62 119.38)
+		(at 119.38 113.03)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "a71b8950-c36a-4d64-a481-d7a7c63c3961")
+		(uuid "9fe6206b-ee83-4f3d-ab9c-583f4ab05ef0")
 	)
 	(junction
 		(at 171.45 110.49)
@@ -1273,11 +1409,11 @@
 		(uuid "ec1d4af0-b016-45f1-adfd-5de84685cc3c")
 	)
 	(no_connect
-		(at 119.38 110.49)
+		(at 116.84 110.49)
 		(uuid "51cce646-4030-4f3f-80da-356a4ab6fa7a")
 	)
 	(no_connect
-		(at 119.38 107.95)
+		(at 116.84 107.95)
 		(uuid "675c80fe-f24c-4677-9a84-4f6cb136bdf5")
 	)
 	(wire
@@ -1302,27 +1438,7 @@
 	)
 	(wire
 		(pts
-			(xy 127 115.57) (xy 127 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "26dde34e-bb39-412f-bd6b-b2f2702803b4")
-	)
-	(wire
-		(pts
-			(xy 134.62 119.38) (xy 140.97 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2870227c-d2a6-4ce7-a317-b0880ee6d4d2")
-	)
-	(wire
-		(pts
-			(xy 96.52 105.41) (xy 96.52 107.95)
+			(xy 93.98 105.41) (xy 93.98 107.95)
 		)
 		(stroke
 			(width 0)
@@ -1332,27 +1448,7 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 113.03) (xy 134.62 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2ee043e2-bc04-4b44-9298-40f7bcf350da")
-	)
-	(wire
-		(pts
-			(xy 134.62 113.03) (xy 134.62 119.38)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3243e07c-3e64-48d1-9170-dfc65eda10de")
-	)
-	(wire
-		(pts
-			(xy 119.38 115.57) (xy 121.92 115.57)
+			(xy 116.84 115.57) (xy 119.38 115.57)
 		)
 		(stroke
 			(width 0)
@@ -1372,7 +1468,17 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 113.03) (xy 95.25 113.03)
+			(xy 111.76 128.27) (xy 116.84 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6141a5d6-38f1-48cf-8793-e16e36e3856d")
+	)
+	(wire
+		(pts
+			(xy 93.98 113.03) (xy 92.71 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1389,6 +1495,16 @@
 			(type default)
 		)
 		(uuid "727d08fd-dede-459b-8140-d16208b9cead")
+	)
+	(wire
+		(pts
+			(xy 119.38 113.03) (xy 128.27 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72919598-14d3-408a-9a27-9959deb54667")
 	)
 	(wire
 		(pts
@@ -1412,7 +1528,7 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 107.95) (xy 99.06 107.95)
+			(xy 93.98 107.95) (xy 96.52 107.95)
 		)
 		(stroke
 			(width 0)
@@ -1442,7 +1558,7 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 105.41) (xy 95.25 105.41)
+			(xy 93.98 105.41) (xy 92.71 105.41)
 		)
 		(stroke
 			(width 0)
@@ -1452,7 +1568,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 113.03) (xy 121.92 113.03)
+			(xy 116.84 113.03) (xy 119.38 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1492,7 +1608,7 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 110.49) (xy 96.52 113.03)
+			(xy 93.98 110.49) (xy 93.98 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1532,16 +1648,6 @@
 	)
 	(wire
 		(pts
-			(xy 121.92 115.57) (xy 127 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ead24cf2-2156-420d-a3d0-47c161b3d0ed")
-	)
-	(wire
-		(pts
 			(xy 182.88 101.6) (xy 182.88 110.49)
 		)
 		(stroke
@@ -1552,13 +1658,43 @@
 	)
 	(wire
 		(pts
-			(xy 96.52 110.49) (xy 99.06 110.49)
+			(xy 93.98 110.49) (xy 96.52 110.49)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "f582fdf5-2dbe-4b94-ac59-820f14df7c8e")
+	)
+	(wire
+		(pts
+			(xy 119.38 115.57) (xy 128.27 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fead2fca-827f-4a6e-89f6-fefcf26ed439")
+	)
+	(wire
+		(pts
+			(xy 99.06 128.27) (xy 104.14 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ff47637c-6c04-436d-bffd-8d83a459f3bd")
+	)
+	(label "BAT+"
+		(at 116.84 128.27 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "27875739-3f59-4a47-b7a8-2cd0b684dc09")
 	)
 	(label "BAT+"
 		(at 167.64 118.11 0)
@@ -1571,14 +1707,34 @@
 		(uuid "5c73d960-ee13-443e-8fad-e1d7823ece64")
 	)
 	(label "BAT+"
-		(at 140.97 119.38 180)
+		(at 123.19 113.03 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
-		(uuid "9da7ac9a-c4a6-4ceb-9630-210ee49ec8b0")
+		(uuid "a2da4a02-2d71-4a41-95a9-4c8ee2ab9271")
+	)
+	(label "BAT-"
+		(at 123.19 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "b2454456-8589-4b09-834b-fa250816d792")
+	)
+	(label "BAT-"
+		(at 99.06 128.27 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "ed5bf17d-e8f9-43ab-9668-f27ff027170c")
 	)
 	(hierarchical_label "GND-USB"
 		(shape input)
@@ -1626,7 +1782,7 @@
 	)
 	(hierarchical_label "+5V-USB"
 		(shape input)
-		(at 95.25 105.41 180)
+		(at 92.71 105.41 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1637,7 +1793,7 @@
 	)
 	(hierarchical_label "GND-USB"
 		(shape input)
-		(at 95.25 113.03 180)
+		(at 92.71 113.03 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1707,25 +1863,61 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$0.0699"
-			(at 190.5 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "PMEG4010CEJ,115"
-			(at 190.5 101.6 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "SOD-323F"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "PMEG4010CEJ,115"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0699"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "~"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Nexperia"
+			(at 190.5 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C50704"
 			(at 190.5 101.6 0)
 			(effects
 				(font
@@ -1774,7 +1966,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 175.26 110.49 0)
 			(effects
 				(font
@@ -1792,7 +1984,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor"
+		(property "Description" "10k resistor, 0805"
 			(at 175.26 110.49 0)
 			(effects
 				(font
@@ -1810,25 +2002,61 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$0.0017"
-			(at 175.26 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "0805W8F1002T5E"
-			(at 175.26 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "0805"
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "0805W8F1002T5E"
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0017"
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " UNI-ROYAL(Uniroyal Elec)"
+			(at 175.26 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17414"
 			(at 175.26 110.49 0)
 			(effects
 				(font
@@ -1917,25 +2145,61 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$0.0906"
-			(at 182.88 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "IRLML6402TRPBF"
-			(at 182.88 115.57 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "SOT-23"
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "IRLML6402TRPBF"
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0906"
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Infineon Technologies"
+			(at 182.88 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C2593"
 			(at 182.88 115.57 0)
 			(effects
 				(font
@@ -1964,7 +2228,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint_Small")
-		(at 121.92 113.03 0)
+		(at 119.38 113.03 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1972,7 +2236,7 @@
 		(dnp no)
 		(uuid "6424ad14-f332-41bb-a1dc-2a6364235417")
 		(property "Reference" "TP16"
-			(at 123.19 111.7599 0)
+			(at 117.602 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1981,7 +2245,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 121.666 109.474 0)
+			(at 119.126 109.474 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1991,7 +2255,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 127 113.03 0)
+			(at 124.46 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1999,8 +2263,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 127 113.03 0)
+		(property "Datasheet" "NA"
+			(at 124.46 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2008,8 +2272,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "test point"
-			(at 121.92 113.03 0)
+		(property "Description" "Test Point, 2.0mm"
+			(at 119.38 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 119.38 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2030,32 +2303,34 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Battery_Cell")
-		(at 129.54 119.38 270)
+		(lib_id "Connector_Generic:Conn_01x02")
+		(at 133.35 113.03 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "6c13161a-f5c0-437a-a1d3-d53a7378a542")
-		(property "Reference" "BT1"
-			(at 131.064 115.824 90)
+		(uuid "64b950cd-aa1a-4dd1-a6d1-63dda30eff35")
+		(property "Reference" "J3"
+			(at 132.334 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Value" "LiPo 3.7V 2000mAh"
-			(at 130.81 123.444 90)
+		(property "Value" "Conn_01x02"
+			(at 127.762 118.364 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(justify left)
 			)
 		)
-		(property "Footprint" ""
-			(at 131.064 119.38 90)
+		(property "Footprint" "kitchen_timer:JST_XH_1x02_P2.54mm_Vertical"
+			(at 133.35 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2064,7 +2339,146 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 131.064 119.38 90)
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "0.00"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "~"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "JST_XH_1x02_P2.54mm_Vertical"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "~"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "~"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "Nico Stash"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "~"
+			(at 133.35 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "c4d9fb32-bbff-4308-8a79-a5f2681aa136")
+		)
+		(pin "2"
+			(uuid "12e23b39-7fcd-4126-a155-8208783a7b2f")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/c0498d1d-9e32-48f1-b749-4feb6881e262"
+					(reference "J3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:Battery_Cell")
+		(at 106.68 128.27 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(dnp no)
+		(uuid "6c13161a-f5c0-437a-a1d3-d53a7378a542")
+		(property "Reference" "BT1"
+			(at 108.204 124.714 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "LiPo 3.7V 2000mAh"
+			(at 107.95 132.334 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 108.204 128.27 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 108.204 128.27 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2073,7 +2487,7 @@
 			)
 		)
 		(property "Description" "Single-cell battery"
-			(at 129.54 119.38 0)
+			(at 106.68 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2082,25 +2496,7 @@
 			)
 		)
 		(property "Supplier Link" ""
-			(at 129.54 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" ""
-			(at 129.54 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" ""
-			(at 129.54 119.38 0)
+			(at 106.68 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2109,7 +2505,61 @@
 			)
 		)
 		(property "Package" ""
-			(at 129.54 119.38 0)
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" ""
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" ""
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" ""
+			(at 106.68 128.27 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" ""
+			(at 106.68 128.27 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2134,7 +2584,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint_Small")
-		(at 121.92 115.57 0)
+		(at 119.38 115.57 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2142,7 +2592,7 @@
 		(dnp no)
 		(uuid "94edde74-d1f4-4b3a-8eff-483020452575")
 		(property "Reference" "TP17"
-			(at 123.19 114.2999 0)
+			(at 117.602 117.348 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2151,7 +2601,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 121.666 112.014 0)
+			(at 119.126 112.014 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2161,7 +2611,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 127 115.57 0)
+			(at 124.46 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2169,8 +2619,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
-			(at 127 115.57 0)
+		(property "Datasheet" "NA"
+			(at 124.46 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2178,8 +2628,17 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "test point"
-			(at 121.92 115.57 0)
+		(property "Description" "Test Point, 2.0mm"
+			(at 119.38 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
+			(at 119.38 115.57 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2201,7 +2660,7 @@
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:BMS_Module")
-		(at 109.22 111.76 0)
+		(at 106.68 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2209,7 +2668,7 @@
 		(dnp no)
 		(uuid "de20413c-0613-4ff7-bc2c-47088fea3b16")
 		(property "Reference" "U2"
-			(at 102.87 103.886 0)
+			(at 100.33 103.886 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2217,15 +2676,15 @@
 			)
 		)
 		(property "Value" "BMS Module"
-			(at 110.744 119.634 0)
+			(at 108.204 119.634 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" ""
-			(at 109.22 113.03 0)
+		(property "Footprint" "kitchen_timer:TP4056_BREAKOUT"
+			(at 106.68 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2234,7 +2693,7 @@
 			)
 		)
 		(property "Datasheet" "https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf"
-			(at 109.22 113.03 0)
+			(at 106.68 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2243,7 +2702,7 @@
 			)
 		)
 		(property "Description" "TP4056 laddare med skyddskrets för Li-Ion- och LiPo-cell"
-			(at 109.22 113.03 0)
+			(at 106.68 113.03 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2252,25 +2711,7 @@
 			)
 		)
 		(property "Package" "Module"
-			(at 109.22 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "TP4056"
-			(at 109.22 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "45 kr"
-			(at 109.22 111.76 0)
+			(at 106.68 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2279,7 +2720,61 @@
 			)
 		)
 		(property "Supplier Link" "https://www.electrokit.com/batteriladdare-lipo-microusb"
-			(at 109.22 111.76 0)
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "ELECTROKIT"
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "TP4056"
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "45 kr"
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "NA"
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Unknown"
+			(at 106.68 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "41018444"
+			(at 106.68 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)

@@ -1863,6 +1863,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 193.04 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ba39ddc6-179e-415b-bcce-d077c6c6f523")
 		)
@@ -1930,6 +1939,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 118.11 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "9be01401-9da9-4fdf-9c48-16691e7ba0ba")
 		)
@@ -1989,6 +2007,15 @@
 			)
 		)
 		(property "Description" "Inductor, small symbol"
+			(at 148.59 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 148.59 87.63 0)
 			(effects
 				(font
@@ -2075,25 +2102,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 170.18 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 170.18 110.49 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 170.18 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 170.18 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 170.18 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 170.18 110.49 0)
 			(effects
 				(font
@@ -2171,6 +2207,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 110.49 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b207e192-b688-4374-bb05-088c0098f23a")
 		)
@@ -2230,6 +2275,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 184.15 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 184.15 111.76 0)
 			(effects
 				(font
@@ -2315,25 +2369,16 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" ""
-			(at 44.45 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" ""
-			(at 44.45 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" ""
+			(at 44.45 149.86 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
 			(at 44.45 149.86 0)
 			(effects
 				(font
@@ -2404,6 +2449,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 184.15 101.6 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 184.15 101.6 0)
 			(effects
 				(font
@@ -2490,25 +2544,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 124.46 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 124.46 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 124.46 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 124.46 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 124.46 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 124.46 100.33 0)
 			(effects
 				(font
@@ -2576,6 +2639,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 118.11 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 118.11 100.33 0)
 			(effects
 				(font
@@ -2660,25 +2732,34 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$1.4430"
-			(at 148.59 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "TPS61200DRCR"
-			(at 148.59 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "VSON-10-EP(3x3)"
+			(at 148.59 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 148.59 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "TPS61200DRCR"
+			(at 148.59 100.33 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$1.4430"
 			(at 148.59 100.33 0)
 			(effects
 				(font

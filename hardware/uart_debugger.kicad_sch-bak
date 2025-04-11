@@ -821,7 +821,7 @@
 							)
 						)
 					)
-					(number "1"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -839,7 +839,7 @@
 							)
 						)
 					)
-					(number "2"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -857,7 +857,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -875,7 +875,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -893,7 +893,7 @@
 							)
 						)
 					)
-					(number "5"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -911,7 +911,7 @@
 							)
 						)
 					)
-					(number "6"
+					(number ""
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1194,7 +1194,7 @@
 				)
 			)
 		)
-		(property "Value" "CH340E UART Module"
+		(property "Value" "BTE17-06B UART Module"
 			(at 115.57 113.284 0)
 			(effects
 				(font
@@ -1203,7 +1203,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "kitchen_timer:CH340E_UART_BREAKOUT"
+		(property "Footprint" ""
 			(at 133.35 97.79 0)
 			(effects
 				(font
@@ -1221,7 +1221,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "USB to TTL Module"
+		(property "Description" "CH340E USB a TTL Module"
 			(at 133.35 97.79 0)
 			(effects
 				(font
@@ -1257,7 +1257,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "BTE17-06B (CH340E)"
+		(property "Manuf. Part #" "CH340E"
 			(at 125.73 104.14 0)
 			(effects
 				(font
@@ -1284,7 +1284,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Name" "Simple Robot Store"
+		(property "Manuf. Name" " Simple Robot Store"
 			(at 125.73 104.14 0)
 			(effects
 				(font
@@ -1302,22 +1302,22 @@
 				(hide yes)
 			)
 		)
-		(pin "4"
+		(pin ""
 			(uuid "5c479fca-c777-479b-8012-63636d330c9a")
 		)
-		(pin "5"
+		(pin ""
 			(uuid "667018f4-eef9-4788-9113-b65cb39eb3ef")
 		)
-		(pin "2"
+		(pin ""
 			(uuid "960e3c85-aaa9-4c0d-8138-bc87be8c709e")
 		)
-		(pin "6"
+		(pin ""
 			(uuid "4f5931f2-e9d8-40e9-ae70-e3092a5f3f5f")
 		)
-		(pin "1"
+		(pin ""
 			(uuid "c4cfe960-aa0b-4112-a547-3f971aa5cfef")
 		)
-		(pin "3"
+		(pin ""
 			(uuid "178aca42-51bc-42a3-9c63-e999febdc499")
 		)
 		(instances
@@ -1444,33 +1444,6 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "NA"
-			(at 144.78 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" "JSMSEMI"
-			(at 144.78 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" " C916403"
-			(at 144.78 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(pin "1"
 			(uuid "3e70a599-a80e-4703-8ed2-e1b95357b86a")
 		)
@@ -1508,7 +1481,7 @@
 				)
 			)
 		)
-		(property "Value" "BAS40"
+		(property "Value" "BAS70"
 			(at 160.02 96.52 0)
 			(effects
 				(font
@@ -1525,7 +1498,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8590224761860497408"
+		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2201131400_Yangzhou-Yangjie-Elec-Tech-BAS70_C968045.pdf"
 			(at 142.748 99.568 90)
 			(effects
 				(font
@@ -1534,7 +1507,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "40V Independent Type 200mA 1V@40mA SOT-23 Schottky Diodes ROHS"
+		(property "Description" "70V Independent Type 1V@15mA 70mA SOT-23(TO-236) Schottky Diodes ROHS"
 			(at 158.75 81.788 0)
 			(effects
 				(font
@@ -1552,7 +1525,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/78417-BAS40/C77289"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Yangzhou_Yangjie_ElecTech-BAS70/C968045"
 			(at 156.21 79.248 0)
 			(effects
 				(font
@@ -1561,7 +1534,7 @@
 				(hide yes)
 			)
 		)
-		(property "Package" "SOT-23"
+		(property "Package" "SOT-23(TO-236)"
 			(at 158.496 85.344 0)
 			(effects
 				(font
@@ -1579,7 +1552,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "BAS40"
+		(property "Manuf. Part #" "BAS70"
 			(at 160.02 100.33 0)
 			(effects
 				(font
@@ -1588,34 +1561,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0257"
-			(at 160.02 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "NA"
-			(at 160.02 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" "Jiangsu Changjing Electronics Technology Co., Ltd."
-			(at 160.02 100.33 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" " C77289"
+		(property "Supplier Unit Price" "$0.0189"
 			(at 160.02 100.33 0)
 			(effects
 				(font

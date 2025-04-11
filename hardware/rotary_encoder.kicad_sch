@@ -1034,6 +1034,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 168.91 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "3a36c129-80cb-4647-8fb4-7b96058bbfd1")
 		)
@@ -1096,6 +1105,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 168.91 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 168.91 102.87 0)
 			(effects
 				(font
@@ -1180,25 +1198,34 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$2.4720"
-			(at 140.97 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "PEC11R-4215F-S0024"
-			(at 140.97 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "Through_Hole"
+			(at 140.97 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 140.97 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "PEC11R-4215F-S0024"
+			(at 140.97 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.4720"
 			(at 140.97 90.17 0)
 			(effects
 				(font
@@ -1287,6 +1314,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 114.3 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "eb85945c-afa8-4a41-b0b1-c6bef32ac0cc")
 		)
@@ -1349,6 +1385,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 148.59 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 148.59 67.31 0)
 			(effects
 				(font
@@ -1428,6 +1473,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 114.3 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "b1b2c716-ab43-4db9-9d09-72dcf98eb3e4")
 		)
@@ -1491,6 +1545,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 114.3 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 114.3 93.98 0)
 			(effects
 				(font
@@ -1569,6 +1632,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 148.59 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "337cb240-e496-491c-ad7e-438558cd9e52")
 		)
@@ -1631,6 +1703,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 168.91 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 168.91 85.09 0)
 			(effects
 				(font

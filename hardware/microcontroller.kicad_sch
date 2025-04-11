@@ -3226,46 +3226,6 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer_Name" "HCI"
-			(at 738.76 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" " FL26T2-32.000-NTLLLDTL"
-			(at 838.76 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" ""
-			(at 938.76 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" ""
-			(at 1038.76 67.31 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
 		(property "Arrow Part Number" ""
 			(at 1138.76 67.31 0)
 			(effects
@@ -3295,25 +3255,43 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" " $0.2669"
-			(at 242.57 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" " FL26T2-32.000-NTLLLDTL"
-			(at 242.57 76.2 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" " DT-26"
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "HCI"
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" " FL26T2-32.000-NTLLLDTL"
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.2669"
 			(at 242.57 76.2 0)
 			(effects
 				(font
@@ -3383,6 +3361,15 @@
 			)
 		)
 		(property "Description" "Atmel 6-pin ISP connector"
+			(at 36.83 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 36.83 74.93 0)
 			(effects
 				(font
@@ -3479,25 +3466,34 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$0.0017"
-			(at 46.99 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "0805W8F1002T5E"
-			(at 46.99 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "0805"
+			(at 46.99 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 46.99 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "0805W8F1002T5E"
+			(at 46.99 118.11 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0017"
 			(at 46.99 118.11 0)
 			(effects
 				(font
@@ -3576,6 +3572,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 241.3 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "2"
 			(uuid "32cd54ee-1ed9-4842-a3ea-471c42ee5453")
 		)
@@ -3637,6 +3642,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 250.19 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 250.19 76.2 0)
 			(effects
 				(font
@@ -3723,25 +3737,34 @@
 				(hide yes)
 			)
 		)
-		(property "Part Num" "GRM21BR71H104KA01L"
-			(at 40.64 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Price/unit" "$0.0097"
-			(at 40.64 125.73 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+			(at 40.64 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 40.64 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "GRM21BR71H104KA01L"
+			(at 40.64 125.73 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0097"
 			(at 40.64 125.73 0)
 			(effects
 				(font
@@ -3829,26 +3852,35 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" "$2.2845"
-			(at 168.91 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "ATMEGA328P-AU"
-			(at 168.91 99.06 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "TQFP-32(7x7)"
 			(at 168.91 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 168.91 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "ATMEGA328P-AU"
+			(at 168.148 103.124 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$2.2845"
+			(at 168.402 92.964 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4015,7 +4047,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Device" "D"
+		(property "Sim.Pins" "1=K 2=A"
 			(at 50.8 118.11 0)
 			(effects
 				(font
@@ -4024,7 +4056,7 @@
 				(hide yes)
 			)
 		)
-		(property "Sim.Pins" "1=K 2=A"
+		(property "Supplier Name" ""
 			(at 50.8 118.11 0)
 			(effects
 				(font
@@ -4102,6 +4134,15 @@
 				(hide yes)
 			)
 		)
+		(property "Supplier Name" ""
+			(at 250.19 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
 		(pin "1"
 			(uuid "ef7b61b2-f9bb-4a57-931c-9ebd55895e34")
 		)
@@ -4163,6 +4204,15 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 34.29 130.81 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 34.29 130.81 0)
 			(effects
 				(font
@@ -4251,46 +4301,6 @@
 				(hide yes)
 			)
 		)
-		(property "Mouser Part Number" "688-SKRPACE010"
-			(at 104.14 563.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" "https://www.mouser.co.uk/ProductDetail/Alps-Alpine/SKRPACE010?qs=dHDuPHwQO79W8iY66hDbLQ%3D%3D"
-			(at 104.14 663.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" "ALPS Electric"
-			(at 104.14 763.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" "SKRPACE010"
-			(at 104.14 863.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Alpsalpine-SKRPACE010/C139797"
 			(at 120.65 68.58 0)
 			(effects
@@ -4300,25 +4310,43 @@
 				(hide yes)
 			)
 		)
-		(property "Price/unit" " $0.0573"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "SKRPACE010"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
 		(property "Package" "SMD"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "ALPS Electric"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "SKRPACE010"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 120.65 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" " $0.0573"
 			(at 120.65 68.58 0)
 			(effects
 				(font
@@ -4395,6 +4423,15 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor, small symbol"
+			(at 254 34.29 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" ""
 			(at 254 34.29 0)
 			(effects
 				(font

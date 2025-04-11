@@ -663,14 +663,14 @@
         },
         {
           "group_by": false,
-          "label": "Qty",
-          "name": "${QUANTITY}",
-          "show": true
+          "label": "Do Not Place",
+          "name": "${DNP}",
+          "show": false
         },
         {
           "group_by": false,
-          "label": "DNP",
-          "name": "${DNP}",
+          "label": "Exclude from BOM",
+          "name": "${EXCLUDE_FROM_BOM}",
           "show": false
         },
         {
@@ -683,12 +683,6 @@
           "group_by": false,
           "label": "Exclude from Simulation",
           "name": "${EXCLUDE_FROM_SIM}",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Sim.Device",
-          "name": "Sim.Device",
           "show": false
         },
         {
@@ -711,8 +705,8 @@
         },
         {
           "group_by": false,
-          "label": "Exclude from BOM",
-          "name": "${EXCLUDE_FROM_BOM}",
+          "label": "Qty",
+          "name": "${QUANTITY}",
           "show": false
         },
         {
@@ -725,42 +719,18 @@
           "group_by": false,
           "label": "Package",
           "name": "Package",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Part Num",
-          "name": "Part Num",
-          "show": true
+          "show": false
         },
         {
           "group_by": false,
           "label": "Supplier Link",
           "name": "Supplier Link",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "Price/unit",
-          "name": "Price/unit",
-          "show": true
-        },
-        {
-          "group_by": false,
-          "label": "PARTREV",
-          "name": "PARTREV",
           "show": false
         },
         {
           "group_by": false,
-          "label": "MANUFACTURER",
-          "name": "MANUFACTURER",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "STANDARD",
-          "name": "STANDARD",
+          "label": "Manuf. Name",
+          "name": "Manuf. Name",
           "show": false
         },
         {
@@ -777,38 +747,44 @@
         },
         {
           "group_by": false,
-          "label": "Mouser Price/Stock",
-          "name": "Mouser Price/Stock",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Manufacturer_Name",
-          "name": "Manufacturer_Name",
-          "show": false
-        },
-        {
-          "group_by": false,
-          "label": "Mouser Part Number",
-          "name": "Mouser Part Number",
-          "show": false
-        },
-        {
-          "group_by": false,
           "label": "Arrow Part Number",
           "name": "Arrow Part Number",
           "show": false
         },
         {
           "group_by": false,
-          "label": "Manufacturer_Part_Number",
-          "name": "Manufacturer_Part_Number",
+          "label": "Manuf. Part #",
+          "name": "Manuf. Part #",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Supplier Name",
+          "name": "Supplier Name",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Supplier Part #",
+          "name": "Supplier Part #",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Supplier Unit Price",
+          "name": "Supplier Unit Price",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Part Num",
+          "name": "Part Num",
           "show": false
         }
       ],
       "filter_string": "",
       "group_symbols": true,
-      "include_excluded_from_bom": false,
+      "include_excluded_from_bom": true,
       "name": "",
       "sort_asc": true,
       "sort_field": "Reference"
@@ -821,12 +797,7 @@
       "default_text_size": 50.0,
       "field_names": [
         {
-          "name": "Supplier Link",
-          "url": true,
-          "visible": false
-        },
-        {
-          "name": "Price/unit",
+          "name": "Supplier Unit Price",
           "url": false,
           "visible": false
         },
@@ -838,6 +809,31 @@
         {
           "name": "Package",
           "url": false,
+          "visible": false
+        },
+        {
+          "name": "Manuf. Name",
+          "url": false,
+          "visible": false
+        },
+        {
+          "name": "Manuf. Part #",
+          "url": false,
+          "visible": false
+        },
+        {
+          "name": "Supplier Name",
+          "url": false,
+          "visible": false
+        },
+        {
+          "name": "Supplier Part #",
+          "url": false,
+          "visible": false
+        },
+        {
+          "name": "Supplier Link",
+          "url": true,
           "visible": false
         }
       ],
