@@ -147,26 +147,21 @@
 			)
 		)
 	)
-	(pad "1" thru_hole roundrect
-		(at 2.45 -2.3)
-		(size 1.7 2)
+	(pad "1" thru_hole circle
+		(at 2.43 -2.3)
+		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
-		(roundrect_rratio 0.147059)
 		(uuid "37118e55-f1cd-481f-8ecc-740204e8529e")
 	)
-	(pad "2" thru_hole oval
-		(at 4.95 -2.3)
-		(size 1.7 2)
+	(pad "2" thru_hole circle
+		(at 4.97 -2.3)
+		(size 1.7 1.7)
 		(drill 1)
 		(layers "*.Cu" "*.Mask")
 		(remove_unused_layers no)
 		(uuid "9f42e93f-1dbd-4b28-bb80-556bc96bd00e")
-	)
-	(group ""
-		(uuid "7b54c99a-55c2-437c-806f-e736cd518e81")
-		(members "37118e55-f1cd-481f-8ecc-740204e8529e" "9f42e93f-1dbd-4b28-bb80-556bc96bd00e")
 	)
 	(embedded_fonts no)
 	(model "${KICAD9_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B2B-XH-AM_1x02_P2.50mm_Vertical.wrl"

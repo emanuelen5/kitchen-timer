@@ -1,4 +1,4 @@
-24754776976057064
+24754779645333078
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -99554,13 +99554,6 @@ Undefined or Miscellaneous
 7
 7
 kitchen_timer
-PH2-A Connector
-
-
-0
-2
-2
-kitchen_timer
 SAMTEC_SS-108-TT-2
 
 
@@ -99575,16 +99568,23 @@ Switch
 4
 4
 kitchen_timer
+SW_SSSS811101
+
+
+0
+7
+7
+kitchen_timer
+SparkFun_LiPower
+
+
+0
+0
+0
+kitchen_timer
 TP4056_BREAKOUT
 
 
 0
 6
 6
-kitchen_timer
-Untitled
-
-
-0
-0
-0
