@@ -4847,7 +4847,7 @@
 				)
 			)
 		)
-		(property "Value" "${/8963deea-96bc-4401-b671-98fbe9ed9c6a/452e0bb3-d328-4d26-8f2f-0fdd90f8dd22/3c3439c6-b163-4dac-a81d-52784dd77a56:VALUE}"
+		(property "Value" "62K"
 			(at 158.75 66.294 0)
 			(effects
 				(font
@@ -4855,7 +4855,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4864,7 +4864,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706640544813056"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4891,7 +4891,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" ""
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18471-0805W8F6202T5E/C17783"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4900,7 +4900,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "JLCPCB"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4909,7 +4909,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "CR0805F89531G"
+		(property "Manuf. Part #" "0805W8F6202T5E"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4918,7 +4918,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" " $0.0022"
+		(property "Supplier Unit Price" " $0.0019"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 154.94 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17783"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -4959,7 +4977,7 @@
 				)
 			)
 		)
-		(property "Value" "${/8963deea-96bc-4401-b671-98fbe9ed9c6a/452e0bb3-d328-4d26-8f2f-0fdd90f8dd22/3c3439c6-b163-4dac-a81d-52784dd77a56:VALUE}"
+		(property "Value" "62K"
 			(at 99.06 66.294 0)
 			(effects
 				(font
@@ -4967,7 +4985,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -4976,7 +4994,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706640544813056"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5003,7 +5021,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" ""
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18471-0805W8F6202T5E/C17783"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5012,7 +5030,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "JLCPCB"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5021,7 +5039,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "CR0805F89531G"
+		(property "Manuf. Part #" "0805W8F6202T5E"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5030,7 +5048,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" " $0.0022"
+		(property "Supplier Unit Price" " $0.0019"
+			(at 95.25 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 95.25 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17783"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5251,7 +5287,7 @@
 				)
 			)
 		)
-		(property "Value" "60K"
+		(property "Value" "62K"
 			(at 38.1 66.294 0)
 			(effects
 				(font
@@ -5259,7 +5295,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5268,7 +5304,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2304140030_LIZ-Elec-CR0805F89531G_C101913.pdf"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706640544813056"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5286,7 +5322,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" ""
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18471-0805W8F6202T5E/C17783"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5304,7 +5340,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "JLCPCB"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5313,7 +5349,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "CR0805F89531G"
+		(property "Manuf. Part #" "0805W8F6202T5E"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5322,7 +5358,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" " $0.0022"
+		(property "Supplier Unit Price" " $0.0019"
+			(at 34.29 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 34.29 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17783"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5544,7 +5598,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF 16V"
+		(property "Value" "100nF"
 			(at 233.68 66.294 0)
 			(effects
 				(font
@@ -5553,7 +5607,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 232.41 64.77 0)
 			(effects
 				(font
@@ -5571,7 +5625,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 232.41 64.77 0)
 			(effects
 				(font
@@ -5589,7 +5643,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 232.41 64.77 0)
 			(effects
 				(font
@@ -5616,7 +5670,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 232.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 232.41 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 232.41 64.77 0)
 			(effects
 				(font
@@ -5838,7 +5910,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF 16V"
+		(property "Value" "100nF"
 			(at 171.45 66.294 0)
 			(effects
 				(font
@@ -5847,7 +5919,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5865,7 +5937,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5883,7 +5955,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5910,7 +5982,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 170.18 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 170.18 64.77 0)
 			(effects
 				(font
@@ -5952,7 +6042,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF 16V"
+		(property "Value" "100nF"
 			(at 111.76 66.294 0)
 			(effects
 				(font
@@ -5961,7 +6051,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 110.49 64.77 0)
 			(effects
 				(font
@@ -5979,7 +6069,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 110.49 64.77 0)
 			(effects
 				(font
@@ -5997,7 +6087,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 110.49 64.77 0)
 			(effects
 				(font
@@ -6024,7 +6114,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 110.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 110.49 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 110.49 64.77 0)
 			(effects
 				(font
@@ -6066,7 +6174,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF 16V"
+		(property "Value" "100nF"
 			(at 50.8 66.294 0)
 			(effects
 				(font
@@ -6075,7 +6183,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 49.53 64.77 0)
 			(effects
 				(font
@@ -6093,7 +6201,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 49.53 64.77 0)
 			(effects
 				(font
@@ -6111,7 +6219,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 49.53 64.77 0)
 			(effects
 				(font
@@ -6138,7 +6246,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 49.53 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 49.53 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 49.53 64.77 0)
 			(effects
 				(font
@@ -6179,7 +6305,7 @@
 				)
 			)
 		)
-		(property "Value" "${/8963deea-96bc-4401-b671-98fbe9ed9c6a/452e0bb3-d328-4d26-8f2f-0fdd90f8dd22/3c3439c6-b163-4dac-a81d-52784dd77a56:VALUE}"
+		(property "Value" "62K"
 			(at 220.98 66.294 0)
 			(effects
 				(font
@@ -6187,7 +6313,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 217.17 67.31 0)
 			(effects
 				(font
@@ -6196,7 +6322,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706640544813056"
 			(at 217.17 67.31 0)
 			(effects
 				(font
@@ -6223,7 +6349,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" ""
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18471-0805W8F6202T5E/C17783"
 			(at 217.17 67.31 0)
 			(effects
 				(font
@@ -6232,7 +6358,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "JLCPCB"
 			(at 217.17 67.31 0)
 			(effects
 				(font
@@ -6241,7 +6367,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" "CR0805F89531G"
+		(property "Manuf. Part #" "0805W8F6202T5E"
 			(at 217.17 67.31 0)
 			(effects
 				(font
@@ -6250,7 +6376,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" " $0.0022"
+		(property "Supplier Unit Price" " $0.0019"
+			(at 217.17 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 217.17 67.31 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17783"
 			(at 217.17 67.31 0)
 			(effects
 				(font

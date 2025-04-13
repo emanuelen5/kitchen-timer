@@ -2254,7 +2254,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "~"
 			(at 194.31 133.35 0)
 			(effects
 				(font
@@ -2272,7 +2272,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "22uF Unpolarized capacitor"
 			(at 194.31 133.35 0)
 			(effects
 				(font
@@ -2281,7 +2281,61 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 194.31 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "~"
 			(at 194.31 133.35 0)
 			(effects
 				(font
@@ -2568,13 +2622,61 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "~"
 			(at 149.86 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manuf. Part #" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Link" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Unit Price" "~"
+			(at 149.86 114.3 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "1"
@@ -2610,7 +2712,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF 16V"
+		(property "Value" "100nF"
 			(at 182.118 139.7 0)
 			(effects
 				(font
@@ -2619,7 +2721,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 171.45 137.16 0)
 			(effects
 				(font
@@ -2637,7 +2739,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 171.45 137.16 0)
 			(effects
 				(font
@@ -2655,7 +2757,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 171.45 137.16 0)
 			(effects
 				(font
@@ -2682,7 +2784,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 171.45 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 171.45 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 171.45 137.16 0)
 			(effects
 				(font
@@ -2733,7 +2853,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "~"
 			(at 111.76 132.08 0)
 			(effects
 				(font
@@ -2751,7 +2871,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "10uF Unpolarized capacitor"
 			(at 111.76 132.08 0)
 			(effects
 				(font
@@ -2760,7 +2880,61 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 111.76 132.08 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "~"
 			(at 111.76 132.08 0)
 			(effects
 				(font
@@ -2954,7 +3128,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "0.1uF, 16V"
+		(property "Value" "100nF"
 			(at 136.398 129.54 0)
 			(effects
 				(font
@@ -2963,7 +3137,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder"
 			(at 125.73 127 0)
 			(effects
 				(font
@@ -2981,7 +3155,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Unpolarized capacitor, small symbol"
+		(property "Description" "100nF Unpolarized capacitor"
 			(at 125.73 127 0)
 			(effects
 				(font
@@ -2999,7 +3173,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082"
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/MurataElectronics-GRM21BR71H104KA01L/C77082 "
 			(at 125.73 127 0)
 			(effects
 				(font
@@ -3026,7 +3200,25 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0097"
+		(property "Supplier Unit Price" " $0.0099"
+			(at 125.73 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" " Murata Electronics"
+			(at 125.73 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C77082"
 			(at 125.73 127 0)
 			(effects
 				(font
@@ -3055,9 +3247,9 @@
 		(at 147.32 83.82 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "c3038295-d982-40d3-b89b-7bdc9c2519d9")
 		(property "Reference" "U4"
 			(at 139.954 76.454 0)

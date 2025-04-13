@@ -1329,15 +1329,15 @@
 		)
 		(uuid "ff6306e3-9a9d-4f14-a37c-3db562601739")
 	)
-	(text_box "TODO:\n* It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[2] (We leave it out for now)\n"
+	(text_box "For a version 2:\n* It would be possible to add a voltage devider and connected to the MCU to measure battery voltage.[2] (We leave it out for now)\n"
 		(exclude_from_sim no)
-		(at 16.764 97.79 0)
-		(size 52.832 50.546)
+		(at 13.716 173.99 0)
+		(size 107.442 21.336)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
 			(type solid)
-			(color 194 0 0 1)
+			(color 0 0 132 1)
 		)
 		(fill
 			(type none)
@@ -1345,7 +1345,7 @@
 		(effects
 			(font
 				(size 1.905 1.905)
-				(color 194 0 0 1)
+				(color 0 0 132 1)
 			)
 			(justify left top)
 		)
@@ -1836,7 +1836,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809291616_Nexperia-PMEG4010CEJ-115_C50704.pdf"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8586185406685851648"
 			(at 190.5 101.6 0)
 			(effects
 				(font
@@ -1890,7 +1890,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0699"
+		(property "Supplier Unit Price" " $0.0612"
 			(at 190.5 101.6 0)
 			(effects
 				(font
@@ -1958,7 +1958,7 @@
 				)
 			)
 		)
-		(property "Value" "10k 0805"
+		(property "Value" "10k"
 			(at 175.26 113.03 90)
 			(effects
 				(font
@@ -1984,7 +1984,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "10k resistor, 0805"
+		(property "Description" "Resistor, small symbol"
 			(at 175.26 110.49 0)
 			(effects
 				(font
@@ -2047,7 +2047,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Name" " UNI-ROYAL(Uniroyal Elec)"
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
 			(at 175.26 110.49 0)
 			(effects
 				(font
@@ -2172,7 +2172,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$0.0906"
+		(property "Supplier Unit Price" " $0.0795"
 			(at 182.88 115.57 0)
 			(effects
 				(font
@@ -2356,7 +2356,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "0.00"
+		(property "Supplier Unit Price" "~"
 			(at 133.35 113.03 0)
 			(effects
 				(font
@@ -2450,7 +2450,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board no)
-		(dnp no)
+		(dnp yes)
 		(uuid "6c13161a-f5c0-437a-a1d3-d53a7378a542")
 		(property "Reference" "BT1"
 			(at 108.204 124.714 90)
@@ -2468,7 +2468,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "~"
 			(at 108.204 128.27 90)
 			(effects
 				(font
@@ -2495,7 +2495,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" ""
+		(property "Supplier Link" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2504,7 +2504,7 @@
 				(hide yes)
 			)
 		)
-		(property "Package" ""
+		(property "Package" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2513,7 +2513,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" ""
+		(property "Supplier Name" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2522,7 +2522,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" ""
+		(property "Supplier Unit Price" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2540,7 +2540,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Name" ""
+		(property "Manuf. Name" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2549,7 +2549,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Part #" ""
+		(property "Manuf. Part #" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2558,7 +2558,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Part #" ""
+		(property "Supplier Part #" "~"
 			(at 106.68 128.27 0)
 			(effects
 				(font
@@ -2665,7 +2665,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "de20413c-0613-4ff7-bc2c-47088fea3b16")
 		(property "Reference" "U2"
 			(at 100.33 103.886 0)

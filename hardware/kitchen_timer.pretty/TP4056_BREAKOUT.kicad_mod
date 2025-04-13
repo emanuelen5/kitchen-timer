@@ -3,6 +3,7 @@
 	(generator "pcbnew")
 	(generator_version "9.0")
 	(layer "F.Cu")
+	(descr "BMS Module")
 	(property "Reference" "U1"
 		(at -11.176 9.652 0)
 		(layer "F.SilkS")
@@ -38,7 +39,7 @@
 			)
 		)
 	)
-	(property "Description" ""
+	(property "Description" "BMS Module"
 		(at 0 0 0)
 		(layer "F.Fab")
 		(hide yes)

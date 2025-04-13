@@ -665,25 +665,25 @@
           "group_by": false,
           "label": "Do Not Place",
           "name": "${DNP}",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Exclude from BOM",
           "name": "${EXCLUDE_FROM_BOM}",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Exclude from Board",
           "name": "${EXCLUDE_FROM_BOARD}",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Exclude from Simulation",
           "name": "${EXCLUDE_FROM_SIM}",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
@@ -719,19 +719,19 @@
           "group_by": false,
           "label": "Package",
           "name": "Package",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Supplier Link",
           "name": "Supplier Link",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Manuf. Name",
           "name": "Manuf. Name",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
@@ -755,25 +755,25 @@
           "group_by": false,
           "label": "Manuf. Part #",
           "name": "Manuf. Part #",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Supplier Name",
           "name": "Supplier Name",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Supplier Part #",
           "name": "Supplier Part #",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
           "label": "Supplier Unit Price",
           "name": "Supplier Unit Price",
-          "show": false
+          "show": true
         },
         {
           "group_by": false,
