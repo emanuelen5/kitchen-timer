@@ -4677,7 +4677,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
 			(at 106.68 92.71 0)
 			(effects
 				(font
@@ -4740,13 +4740,29 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$2.6325"
+		(property "Supplier Unit Price" " $3.0975"
 			(at 107.95 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Analog Devices Inc./Maxim Integrated"
+			(at 107.95 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part #" "C9964"
+			(at 107.95 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "17"
@@ -4873,7 +4889,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor, small symbol"
+		(property "Description" "62k, 0805"
 			(at 154.94 67.31 0)
 			(effects
 				(font
@@ -5003,7 +5019,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor, small symbol"
+		(property "Description" "62k, 0805"
 			(at 95.25 67.31 0)
 			(effects
 				(font
@@ -5117,7 +5133,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
 			(at 228.6 92.71 0)
 			(effects
 				(font
@@ -5180,13 +5196,29 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$2.6325"
+		(property "Supplier Unit Price" " $3.0975"
 			(at 229.87 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Analog Devices Inc./Maxim Integrated"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part #" "C9964"
+			(at 229.87 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "17"
@@ -5313,7 +5345,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor, small symbol"
+		(property "Description" "62k, 0805"
 			(at 34.29 67.31 0)
 			(effects
 				(font
@@ -5427,7 +5459,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
 			(at 45.72 92.71 0)
 			(effects
 				(font
@@ -5490,13 +5522,29 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$2.6325"
+		(property "Supplier Unit Price" " $3.0975"
 			(at 46.99 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Analog Devices Inc./Maxim Integrated"
+			(at 46.99 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part #" "C9964"
+			(at 46.99 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "17"
@@ -5739,7 +5787,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Package_SO:SOIC-24W_7.5x15.4mm_P1.27mm"
 			(at 166.37 92.71 0)
 			(effects
 				(font
@@ -5802,13 +5850,29 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "$2.6325"
+		(property "Supplier Unit Price" " $3.0975"
 			(at 167.64 93.98 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Analog Devices Inc./Maxim Integrated"
+			(at 167.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Supplier Part #" "C9964"
+			(at 167.64 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "17"
@@ -6331,7 +6395,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "Resistor, small symbol"
+		(property "Description" "62k, 0805"
 			(at 217.17 67.31 0)
 			(effects
 				(font

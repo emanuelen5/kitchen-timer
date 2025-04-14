@@ -3838,9 +3838,9 @@
 		(at 162.56 107.95 180)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "0f5b8943-99b2-4776-91a5-f99ad063657e")
 		(property "Reference" "U13"
 			(at 186.182 128.524 0)
@@ -3923,13 +3923,21 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "75,00 kr"
+		(property "Supplier Unit Price" " $7.0000"
 			(at 162.56 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Luckylight"
+			(at 162.56 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "06"
@@ -3995,9 +4003,9 @@
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "4a84fb75-410a-4f86-bab3-cba3a9597ac3")
 		(property "Reference" "U11"
 			(at 186.182 51.816 0)
@@ -4080,13 +4088,21 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "75,00 kr"
+		(property "Supplier Unit Price" " $7.0000"
 			(at 162.56 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Luckylight"
+			(at 162.56 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "12"
@@ -4152,9 +4168,9 @@
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "6cc95eb6-324e-4f95-ae8b-1e6d0b398248")
 		(property "Reference" "U12"
 			(at 112.522 128.524 0)
@@ -4237,13 +4253,21 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "75,00 kr"
+		(property "Supplier Unit Price" " $7.0000"
 			(at 135.89 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Luckylight"
+			(at 135.89 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "10"
@@ -4308,9 +4332,9 @@
 		(at 135.89 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "b729ce79-708c-46f5-b9db-37a586aba592")
 		(property "Reference" "U10"
 			(at 112.522 51.816 0)
@@ -4393,13 +4417,21 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" "75,00 kr"
+		(property "Supplier Unit Price" " $7.0000"
 			(at 135.89 72.39 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "Luckylight"
+			(at 135.89 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "08"

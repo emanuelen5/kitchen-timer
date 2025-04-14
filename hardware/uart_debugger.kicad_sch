@@ -1363,7 +1363,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_2308071512_JSMSEMI-JSM2302_C916403.pdf"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588907143248011264"
 			(at 132.08 87.63 0)
 			(effects
 				(font
