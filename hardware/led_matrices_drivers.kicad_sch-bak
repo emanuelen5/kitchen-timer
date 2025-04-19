@@ -1485,7 +1485,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "f7e553bc-181e-42ac-9a54-613a4f3fdbce")
+		(uuid "f8e4700f-80c7-4e35-87c0-feb8a175bb95")
 	)
 	(bus_entry
 		(at 138.43 99.06)
@@ -2077,23 +2077,13 @@
 	)
 	(bus
 		(pts
-			(xy 72.39 55.88) (xy 72.39 71.12)
+			(xy 72.39 71.12) (xy 72.39 73.66)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "4e4d4ee2-7125-4228-b71d-13814e1bac81")
-	)
-	(wire
-		(pts
-			(xy 69.85 73.66) (xy 57.15 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "51edd22f-a098-464c-9953-184e9ee9d613")
 	)
 	(bus
 		(pts
@@ -2255,6 +2245,16 @@
 		)
 		(uuid "6006a5cd-a330-49d9-bdf6-1f1953bbbe46")
 	)
+	(wire
+		(pts
+			(xy 69.85 73.66) (xy 57.15 73.66)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "617196e9-2246-4dfa-bc82-eb696366cef1")
+	)
 	(bus
 		(pts
 			(xy 193.04 83.82) (xy 193.04 86.36)
@@ -2264,16 +2264,6 @@
 			(type default)
 		)
 		(uuid "61c7dc7d-e5c2-49af-ade4-2ad611ef14a7")
-	)
-	(bus
-		(pts
-			(xy 72.39 71.12) (xy 72.39 73.66)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "621d69e9-b3e1-46bb-b707-9a49c5edf879")
 	)
 	(wire
 		(pts
@@ -2515,6 +2505,16 @@
 		)
 		(uuid "7c38506d-fcd8-43c2-91e7-bf8ccb764e65")
 	)
+	(bus
+		(pts
+			(xy 72.39 55.88) (xy 72.39 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7ced575e-a310-4335-a494-1274427f1aab")
+	)
 	(wire
 		(pts
 			(xy 154.94 109.22) (xy 154.94 127)
@@ -2567,7 +2567,7 @@
 	)
 	(bus
 		(pts
-			(xy 72.39 55.88) (xy 73.66 55.88)
+			(xy 73.66 55.88) (xy 72.39 55.88)
 		)
 		(stroke
 			(width 0)
@@ -3575,6 +3575,16 @@
 		)
 		(uuid "0cf0b954-0636-47e3-9091-885a12e2c1d4")
 	)
+	(label "${MAT1A}.SEG_A"
+		(at 57.15 73.66 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "0ffec76d-6d89-4ecf-9874-c500f02ef7f2")
+	)
 	(label "${MAT1B}.SEG_C"
 		(at 118.11 78.74 0)
 		(effects
@@ -3615,7 +3625,7 @@
 		)
 		(uuid "1a4ce40e-3e7d-46b7-bb11-31e8f14858c5")
 	)
-	(label "Mat1A{SEG}"
+	(label "${MAT1A}{SEG}"
 		(at 72.39 57.15 270)
 		(effects
 			(font
@@ -4105,16 +4115,6 @@
 		)
 		(uuid "b36d0d0d-9e72-4c5a-84db-22e94fb31d25")
 	)
-	(label "Mat1A.SEG_A"
-		(at 57.15 73.66 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "c1603c42-e5d8-4bbc-b394-7d8afa913c36")
-	)
 	(label "${MAT2A}.SEG_DP"
 		(at 177.8 91.44 0)
 		(effects
@@ -4595,7 +4595,7 @@
 		)
 		(uuid "b3b88590-04b8-4982-8bae-28c95e819620")
 	)
-	(hierarchical_label "Mat1A_SEG"
+	(hierarchical_label "${MAT1A}_SEG"
 		(shape output)
 		(at 73.66 55.88 0)
 		(effects
