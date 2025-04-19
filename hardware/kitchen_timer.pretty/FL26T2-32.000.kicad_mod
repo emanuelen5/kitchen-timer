@@ -1,12 +1,12 @@
 (footprint "FL26T2-32.000"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(descr "FL26T2-32.000kHz")
 	(tags "Crystal or Oscillator")
 	(property "Reference" "Y**"
-		(at 0 -0.35 0)
+		(at -0.508 -2.286 0)
 		(layer "F.SilkS")
 		(uuid "520c1811-d9c3-42d3-9685-8a624fed9ff4")
 		(effects
@@ -25,18 +25,6 @@
 			(font
 				(size 1.27 1.27)
 				(thickness 0.254)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 0 0 0)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "ffda7e74-3b79-405a-a89d-087a216dfd21")
-		(effects
-			(font
-				(size 1.27 1.27)
-				(thickness 0.15)
 			)
 		)
 	)
@@ -232,7 +220,7 @@
 		(uuid "60cc64d9-2f23-4a8a-bfe7-2c7830f969cc")
 	)
 	(fp_text user "${REFERENCE}"
-		(at 0 -0.35 0)
+		(at 0 3.048 0)
 		(layer "F.Fab")
 		(uuid "e97a1eb0-98b7-459b-812a-718c96e1390c")
 		(effects
@@ -258,6 +246,7 @@
 		(remove_unused_layers no)
 		(uuid "2dc6cce6-805b-4389-bb5e-374a823cd01a")
 	)
+	(embedded_fonts no)
 	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/FL26T2-32.000.stp"
 		(offset
 			(xyz 0 0 0)

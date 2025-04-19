@@ -1379,10 +1379,10 @@
 		(uuid "011d05b4-9d97-4a28-a487-d237aa444bd1")
 	)
 	(junction
-		(at 119.38 115.57)
+		(at 119.38 113.03)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "049b0578-2830-4f12-bc27-83a4ce3297ce")
+		(uuid "6a9d347d-fd09-43d4-9b91-43da260a2fda")
 	)
 	(junction
 		(at 182.88 101.6)
@@ -1391,16 +1391,16 @@
 		(uuid "7b141aed-e61e-4d47-ab8e-e6972ab5f929")
 	)
 	(junction
-		(at 119.38 113.03)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "9fe6206b-ee83-4f3d-ab9c-583f4ab05ef0")
-	)
-	(junction
 		(at 171.45 110.49)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "b3f8a0df-838c-458d-b370-5119a56b9ebe")
+	)
+	(junction
+		(at 119.38 115.57)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "ca84c223-38a5-4970-ac35-e53d8882929b")
 	)
 	(junction
 		(at 198.12 118.11)
@@ -1415,6 +1415,16 @@
 	(no_connect
 		(at 116.84 107.95)
 		(uuid "675c80fe-f24c-4677-9a84-4f6cb136bdf5")
+	)
+	(wire
+		(pts
+			(xy 119.38 115.57) (xy 128.27 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05759e04-145b-4d13-a069-c99283701a46")
 	)
 	(wire
 		(pts
@@ -1445,6 +1455,26 @@
 			(type default)
 		)
 		(uuid "2afb00e1-7af1-49ec-83e3-7cacd5ae3c35")
+	)
+	(wire
+		(pts
+			(xy 119.38 111.76) (xy 119.38 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "43e999f6-57fb-4ea8-af78-3647fa24dc31")
+	)
+	(wire
+		(pts
+			(xy 119.38 113.03) (xy 128.27 113.03)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4cd5975b-c2cd-465f-980b-4345170ef5fb")
 	)
 	(wire
 		(pts
@@ -1498,7 +1528,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 113.03) (xy 128.27 113.03)
+			(xy 116.84 113.03) (xy 119.38 113.03)
 		)
 		(stroke
 			(width 0)
@@ -1515,6 +1545,16 @@
 			(type default)
 		)
 		(uuid "75300bbf-5f37-477d-a447-34f5f48a9034")
+	)
+	(wire
+		(pts
+			(xy 119.38 115.57) (xy 119.38 116.84)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d2cb6dd-7090-484f-81c6-0dfe39b3525f")
 	)
 	(wire
 		(pts
@@ -1565,16 +1605,6 @@
 			(type default)
 		)
 		(uuid "ad9e7d3d-9fac-4ea5-941a-26759b4ab873")
-	)
-	(wire
-		(pts
-			(xy 116.84 113.03) (xy 119.38 113.03)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b21612fc-9db4-4c3a-96f1-ae86ca3daf91")
 	)
 	(wire
 		(pts
@@ -1665,16 +1695,6 @@
 			(type default)
 		)
 		(uuid "f582fdf5-2dbe-4b94-ac59-820f14df7c8e")
-	)
-	(wire
-		(pts
-			(xy 119.38 115.57) (xy 128.27 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fead2fca-827f-4a6e-89f6-fefcf26ed439")
 	)
 	(wire
 		(pts
@@ -2228,7 +2248,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint_Small")
-		(at 119.38 113.03 0)
+		(at 119.38 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2236,7 +2256,7 @@
 		(dnp no)
 		(uuid "6424ad14-f332-41bb-a1dc-2a6364235417")
 		(property "Reference" "TP16"
-			(at 117.602 111.76 0)
+			(at 117.602 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2245,7 +2265,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 119.126 109.474 0)
+			(at 119.126 108.204 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2255,7 +2275,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 124.46 113.03 0)
+			(at 124.46 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2264,7 +2284,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 124.46 113.03 0)
+			(at 124.46 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2273,7 +2293,7 @@
 			)
 		)
 		(property "Description" "Test Point, 2.0mm"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2282,7 +2302,7 @@
 			)
 		)
 		(property "Supplier Name" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2291,43 +2311,48 @@
 			)
 		)
 		(property "Manuf. Name" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Manuf. Part #" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Link" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Part #" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Unit Price" "~"
-			(at 119.38 113.03 0)
+			(at 119.38 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -2490,7 +2515,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board no)
-		(dnp yes)
+		(dnp no)
 		(uuid "6c13161a-f5c0-437a-a1d3-d53a7378a542")
 		(property "Reference" "BT1"
 			(at 108.204 124.714 90)
@@ -2624,7 +2649,7 @@
 	)
 	(symbol
 		(lib_id "Connector:TestPoint_Small")
-		(at 119.38 115.57 0)
+		(at 119.38 116.84 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2632,7 +2657,7 @@
 		(dnp no)
 		(uuid "94edde74-d1f4-4b3a-8eff-483020452575")
 		(property "Reference" "TP17"
-			(at 117.602 117.348 0)
+			(at 117.602 118.618 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2641,7 +2666,7 @@
 			)
 		)
 		(property "Value" "TestPoint"
-			(at 119.126 112.014 0)
+			(at 119.126 113.284 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2651,7 +2676,7 @@
 			)
 		)
 		(property "Footprint" "TestPoint:TestPoint_Pad_D2.0mm"
-			(at 124.46 115.57 0)
+			(at 124.46 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2660,7 +2685,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 124.46 115.57 0)
+			(at 124.46 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2669,7 +2694,7 @@
 			)
 		)
 		(property "Description" "Test Point, 2.0mm"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2678,7 +2703,7 @@
 			)
 		)
 		(property "Supplier Name" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2687,43 +2712,48 @@
 			)
 		)
 		(property "Manuf. Name" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Manuf. Part #" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Link" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Part #" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Unit Price" "~"
-			(at 119.38 115.57 0)
+			(at 119.38 116.84 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(pin "1"
@@ -2745,7 +2775,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "de20413c-0613-4ff7-bc2c-47088fea3b16")
 		(property "Reference" "U2"
 			(at 100.33 103.886 0)

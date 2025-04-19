@@ -929,6 +929,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(pin "2"
@@ -1279,6 +1280,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Manuf. Part #" "MMBT3904"
@@ -1287,6 +1289,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Package" "SOT-23"
@@ -1295,6 +1298,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Hongjiacheng-MMBT3904/C7420353"
@@ -1303,6 +1307,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Part #" " C7420353"
@@ -1311,6 +1316,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Unit Price" "$0.0077"
@@ -1319,6 +1325,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(pin "1"

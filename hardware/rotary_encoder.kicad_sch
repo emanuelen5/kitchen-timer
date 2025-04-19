@@ -1252,7 +1252,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp yes)
+		(dnp no)
 		(uuid "352deeba-4f51-4274-9af2-907cea964262")
 		(property "Reference" "U14"
 			(at 130.556 82.042 0)
@@ -1348,6 +1348,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Part #" "C143790"
@@ -1356,6 +1357,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(pin "C"

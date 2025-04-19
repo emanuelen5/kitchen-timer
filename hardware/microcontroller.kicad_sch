@@ -1382,25 +1382,25 @@
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "Y"
-				(at 2.54 6.604 0)
+			(property "Reference" "Y2"
+				(at 6.3501 -5.08 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
+					(justify right)
 				)
 			)
-			(property "Value" "FL26T2-32.000"
-				(at 3.556 -4.572 0)
+			(property "Value" "Crystal-32kHz"
+				(at 3.8101 -5.08 90)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
+					(justify right)
 				)
 			)
-			(property "Footprint" "DT2632768KHz"
+			(property "Footprint" "kitchen_timer:FL26T2-32.000"
 				(at 8.89 -96.19 0)
 				(effects
 					(font
@@ -1439,46 +1439,6 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer_Name" "HCI"
-				(at 8.89 -496.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" " FL26T2-32.000-NTLLLDTL"
-				(at 8.89 -596.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" ""
-				(at 8.89 -696.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" ""
-				(at 8.89 -796.19 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
 			(property "Arrow Part Number" ""
 				(at 8.89 -896.19 0)
 				(effects
@@ -1496,6 +1456,60 @@
 						(size 1.27 1.27)
 					)
 					(justify left top)
+					(hide yes)
+				)
+			)
+			(property "Supplier Link" "https://jlcpcb.com/parts/1st/Crystals_Oscillators_Resonators_7"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" " DT-26"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Name" "HCI"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Part #" " FL26T2-32.000-NTLLLDTL"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Name" "JLCPCB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Unit Price" " $0.2669"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 					(hide yes)
 				)
 			)
@@ -1587,7 +1601,7 @@
 							)
 						)
 					)
-					(number ""
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2052,6 +2066,58 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "fe29888e-d154-4bf3-8642-cfc091af8ba4")
+	)
+	(no_connect
+		(at 184.15 129.54)
+		(uuid "07adc696-676a-4879-a4b0-f911f518ddd1")
+	)
+	(no_connect
+		(at 184.15 99.06)
+		(uuid "2aa9eacc-6afd-42be-81ba-931af1384e61")
+	)
+	(no_connect
+		(at 184.15 71.12)
+		(uuid "2d12b369-059d-4877-b87e-e3f8603a89d3")
+	)
+	(no_connect
+		(at 153.67 76.2)
+		(uuid "4145292d-f748-4766-8604-fdc16cdcf646")
+	)
+	(no_connect
+		(at 184.15 127)
+		(uuid "44a37554-887c-4e26-9b77-561ffcc7edae")
+	)
+	(no_connect
+		(at 153.67 68.58)
+		(uuid "82f88424-18ac-4a03-86c1-9a04bc646ce1")
+	)
+	(no_connect
+		(at 153.67 73.66)
+		(uuid "93f1204f-973b-417b-a4f6-3fb4da06f4e9")
+	)
+	(no_connect
+		(at 184.15 91.44)
+		(uuid "9ab98902-285a-43fe-93ec-0ebc6a526596")
+	)
+	(no_connect
+		(at 184.15 104.14)
+		(uuid "b1d4fa2f-fbb7-44db-8b97-f6886d8466ac")
+	)
+	(no_connect
+		(at 184.15 101.6)
+		(uuid "b76754c5-350d-4517-af3a-2ff3fbf9450d")
+	)
+	(no_connect
+		(at 184.15 93.98)
+		(uuid "d64e371f-aac4-433d-978f-7f99fa7b3bf7")
+	)
+	(no_connect
+		(at 184.15 96.52)
+		(uuid "e39ec4ef-540e-421a-9fc8-1698a760563b")
+	)
+	(no_connect
+		(at 184.15 124.46)
+		(uuid "eded034d-5ea6-4b20-bc3c-4e8436f29d9e")
 	)
 	(wire
 		(pts
@@ -3164,7 +3230,7 @@
 		(at 242.57 76.2 90)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
@@ -3246,7 +3312,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Link" "https://jlcpcb.com/parts/1st/Crystals_Oscillators_Resonators_7"
+		(property "Supplier Link" "~"
 			(at 242.57 76.2 0)
 			(effects
 				(font
@@ -3264,7 +3330,7 @@
 				(hide yes)
 			)
 		)
-		(property "Manuf. Name" "HCI"
+		(property "Manuf. Name" "Multitech"
 			(at 242.57 76.2 0)
 			(effects
 				(font
@@ -3282,7 +3348,7 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Name" "JLCPCB"
+		(property "Supplier Name" "~"
 			(at 242.57 76.2 0)
 			(effects
 				(font
@@ -3291,19 +3357,27 @@
 				(hide yes)
 			)
 		)
-		(property "Supplier Unit Price" " $0.2669"
+		(property "Supplier Unit Price" "~"
 			(at 242.57 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
 			)
 		)
 		(pin "2"
 			(uuid "81e73276-3eac-4826-8e70-c91a959ffe56")
 		)
-		(pin ""
+		(pin "1"
 			(uuid "1285c64f-ea7e-4cb3-8af0-349a089424d1")
 		)
 		(instances
@@ -4041,7 +4115,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8586171945553838081"
+		(property "Datasheet" "https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf"
 			(at 168.91 99.06 0)
 			(effects
 				(font
@@ -4110,6 +4184,7 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Supplier Part #" "C14877"
@@ -4118,6 +4193,16 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 168.91 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "27"

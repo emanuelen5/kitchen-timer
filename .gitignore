@@ -5,6 +5,8 @@
 .vscode/ipch
 hardware/kitchen_timer-hardware-backups/
 hardware/*.bak
+hardware/fp-info-cache
+
 
 # Some local good-to-have files
 avrdude.conf
