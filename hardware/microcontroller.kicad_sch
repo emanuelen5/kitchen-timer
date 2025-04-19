@@ -414,176 +414,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:D_Small"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D"
-				(at -1.27 2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "D_Small"
-				(at -3.81 -2.032 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Diode, small symbol"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Device" "D"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Sim.Pins" "1=K 2=A"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "TO-???* *_Diode_* *SingleDiode* D_*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "D_Small_0_1"
-				(polyline
-					(pts
-						(xy -0.762 0) (xy 0.762 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -1.016) (xy -0.762 1.016)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.762 -1.016) (xy -0.762 0) (xy 0.762 1.016) (xy 0.762 -1.016)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "D_Small_1_1"
-				(pin passive line
-					(at -2.54 0 0)
-					(length 1.778)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 2.54 0 180)
-					(length 1.778)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:R_Small"
 			(pin_numbers
 				(hide yes)
@@ -1851,7 +1681,7 @@
 	)
 	(rectangle
 		(start 16.51 99.06)
-		(end 78.105 153.035)
+		(end 78.105 138.43)
 		(stroke
 			(width 0)
 			(type dash)
@@ -1887,7 +1717,7 @@
 	)
 	(text "The RESET pin on the ATmega328p alrady has a pull-up\nresistor.[1]"
 		(exclude_from_sim no)
-		(at 19.05 142.748 0)
+		(at 19.304 131.826 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1996,12 +1826,6 @@
 		(uuid "896d2e77-919f-4317-b25d-ef1752214235")
 	)
 	(junction
-		(at 46.99 121.92)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0840e9d3-ef2d-4131-848c-cb4d39a10dfb")
-	)
-	(junction
 		(at 168.91 59.69)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2012,12 +1836,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "39407ff5-a9b3-4035-98e7-02b6cb93f15d")
-	)
-	(junction
-		(at 34.29 125.73)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "587a5e2d-f299-42fe-9959-2bbc7018d7dc")
 	)
 	(junction
 		(at 247.65 38.1)
@@ -2036,12 +1854,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "afc326b8-3014-424a-8e68-c1eb245fb8da")
-	)
-	(junction
-		(at 46.99 114.3)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e602aeeb-8dff-4e55-8fa1-d4e3fe46f53b")
 	)
 	(junction
 		(at 100.33 69.85)
@@ -2118,16 +1930,6 @@
 	(no_connect
 		(at 184.15 124.46)
 		(uuid "eded034d-5ea6-4b20-bc3c-4e8436f29d9e")
-	)
-	(wire
-		(pts
-			(xy 46.99 121.92) (xy 50.8 121.92)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "05902a54-3fa7-4e04-a529-a7eec70ef32a")
 	)
 	(wire
 		(pts
@@ -2211,16 +2013,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 114.3) (xy 46.99 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "21a2bc67-e43b-4c6f-a5f0-07d63419d001")
-	)
-	(wire
-		(pts
 			(xy 254 36.83) (xy 254 38.1)
 		)
 		(stroke
@@ -2291,16 +2083,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 125.73) (xy 34.29 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3ee233b7-372b-4e30-aca0-e58bda334f8f")
-	)
-	(wire
-		(pts
 			(xy 171.45 60.96) (xy 171.45 59.69)
 		)
 		(stroke
@@ -2361,7 +2143,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 125.73) (xy 46.99 121.92)
+			(xy 46.99 120.65) (xy 46.99 125.73)
 		)
 		(stroke
 			(width 0)
@@ -2371,7 +2153,7 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 111.76) (xy 46.99 114.3)
+			(xy 46.99 111.76) (xy 46.99 115.57)
 		)
 		(stroke
 			(width 0)
@@ -2431,16 +2213,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 133.35) (xy 34.29 135.89)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7eae5b9a-28bd-4bd1-a4fa-e37b8ce1ab69")
-	)
-	(wire
-		(pts
 			(xy 262.89 76.2) (xy 252.73 76.2)
 		)
 		(stroke
@@ -2458,16 +2230,6 @@
 			(type default)
 		)
 		(uuid "7fcb3b0e-719b-466d-8c23-e5b38a0545d8")
-	)
-	(wire
-		(pts
-			(xy 50.8 114.3) (xy 50.8 115.57)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "801d5066-d958-41b7-8154-83d055dd27da")
 	)
 	(wire
 		(pts
@@ -2631,16 +2393,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 121.92) (xy 46.99 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "c584ba7e-d754-4021-8096-5988afa16042")
-	)
-	(wire
-		(pts
 			(xy 100.33 69.85) (xy 97.79 69.85)
 		)
 		(stroke
@@ -2671,16 +2423,6 @@
 	)
 	(wire
 		(pts
-			(xy 46.99 114.3) (xy 50.8 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dbc27a2f-7e83-4b15-a298-56ebb996b91e")
-	)
-	(wire
-		(pts
 			(xy 266.7 71.12) (xy 266.7 73.66)
 		)
 		(stroke
@@ -2688,16 +2430,6 @@
 			(type default)
 		)
 		(uuid "de3d4f3e-2b78-4cf8-a720-515b17d4f18b")
-	)
-	(wire
-		(pts
-			(xy 50.8 121.92) (xy 50.8 120.65)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "df9a3102-fabe-46e5-8b7e-db1a182d4d52")
 	)
 	(wire
 		(pts
@@ -2741,16 +2473,6 @@
 	)
 	(wire
 		(pts
-			(xy 34.29 125.73) (xy 38.1 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e3e5c2c9-697e-47f3-b1af-5fbf244b5ea7")
-	)
-	(wire
-		(pts
 			(xy 184.15 86.36) (xy 193.04 86.36)
 		)
 		(stroke
@@ -2761,7 +2483,7 @@
 	)
 	(wire
 		(pts
-			(xy 29.21 125.73) (xy 34.29 125.73)
+			(xy 29.21 125.73) (xy 38.1 125.73)
 		)
 		(stroke
 			(width 0)
@@ -3001,28 +2723,6 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "GND"
-		(shape input)
-		(at 34.29 135.89 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "a7d01e9f-fb67-46fe-bc8b-5e0bf784630f")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 41.1457 135.89 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 				(hide yes)
 			)
 		)
@@ -4311,147 +4011,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:D_Small")
-		(at 50.8 118.11 270)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "a76ab77c-f400-40b5-a5a4-c7dc8677500d")
-		(property "Reference" "D2"
-			(at 52.324 116.84 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "CD4148WSP"
-			(at 52.324 119.38 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Diode_SMD:D_0805_2012Metric"
-			(at 50.8 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588881953357905920"
-			(at 50.8 118.11 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Switching Diode, VF: 1.25V@100 mA, IF: 150mA"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Sim.Pins" "1=K 2=A"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Name" "JLCPCB"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" " LIZ Elec"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Part #" " CD4148WSP"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "0805"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/LizElec-CD4148WSP/C109001"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" "C109001"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Unit Price" " $0.0117"
-			(at 50.8 118.11 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "c35e594a-60a8-40a0-aaca-677c91427731")
-		)
-		(pin "1"
-			(uuid "af0f9406-5879-4d7e-aaaa-2c553c6919ce")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
-					(reference "D2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C_Small")
 		(at 250.19 66.04 90)
 		(unit 1)
@@ -4578,147 +4137,6 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
 					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 34.29 130.81 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "bcb25df5-bfc9-4785-8fc7-0d17a3430e2b")
-		(property "Reference" "R2"
-			(at 35.306 129.54 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "1k"
-			(at 35.306 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706499683172352"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "1k, 0805"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Name" "JLCPCB"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Part #" "0805W8F1001T5E"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "0805"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/18201-0805W8F1001T5E/C17513"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" "C17513"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Unit Price" "$0.0017"
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" ""
-			(at 34.29 130.81 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "7de104ab-7a93-4a8f-94ca-b2bd469b639e")
-		)
-		(pin "2"
-			(uuid "788f3075-73e0-4955-aadd-83fd69b1669c")
-		)
-		(instances
-			(project "kitchen_timer-hardware"
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
-					(reference "R2")
 					(unit 1)
 				)
 			)
