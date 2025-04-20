@@ -921,6 +921,6 @@
     "MAT_1B": "Matrix 1B",
     "MAT_2A": "Matrix 2A",
     "MAT_2B": "Matrix 2B",
-    "VCC": "+4V"
+    "VCC": "+5V"
   }
 }
