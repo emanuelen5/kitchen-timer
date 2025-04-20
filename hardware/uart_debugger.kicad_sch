@@ -1339,7 +1339,7 @@
 		(dnp no)
 		(uuid "52074900-4885-46cc-b3db-dcb61a3f39c1")
 		(property "Reference" "Q3"
-			(at 144.78 93.98 90)
+			(at 140.716 85.344 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1347,7 +1347,7 @@
 			)
 		)
 		(property "Value" "JSM2302"
-			(at 144.78 96.52 90)
+			(at 144.78 93.98 90)
 			(effects
 				(font
 					(size 1.27 1.27)

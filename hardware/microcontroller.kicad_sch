@@ -1761,14 +1761,14 @@
 				(pin passive line
 					(at 0 -2.54 0)
 					(length 5.08)
-					(name "3"
+					(name "2"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "3"
+					(number "2"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1779,14 +1779,14 @@
 				(pin passive line
 					(at 20.32 0 180)
 					(length 5.08)
-					(name "2"
+					(name "3"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "2"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -2061,6 +2061,12 @@
 		(uuid "0dba6338-afdc-4179-81a4-e915cc18252e")
 	)
 	(junction
+		(at 100.33 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "2e42f110-6054-497e-946b-f3424561536e")
+	)
+	(junction
 		(at 46.99 125.73)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2071,6 +2077,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "678a4f78-a7fb-4658-a1bb-5526a86b1df2")
+	)
+	(junction
+		(at 120.65 69.85)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a11777a6-1649-426b-9e9e-8df09cb7a206")
 	)
 	(junction
 		(at 262.89 71.12)
@@ -2085,12 +2097,6 @@
 		(uuid "afc326b8-3014-424a-8e68-c1eb245fb8da")
 	)
 	(junction
-		(at 100.33 69.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e9c4444c-b227-4e87-9177-fb148bc22afe")
-	)
-	(junction
 		(at 242.57 66.04)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2101,12 +2107,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "f8349d6f-4ce7-4765-b480-2aaf7a5c1443")
-	)
-	(junction
-		(at 120.65 69.85)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "fe29888e-d154-4bf3-8642-cfc091af8ba4")
 	)
 	(no_connect
 		(at 184.15 129.54)
@@ -2438,6 +2438,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 68.58) (xy 120.65 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "783ba91e-11a6-4e77-bacc-12cbec5cd5d7")
+	)
+	(wire
+		(pts
 			(xy 34.29 59.69) (xy 34.29 62.23)
 		)
 		(stroke
@@ -2455,6 +2465,16 @@
 			(type default)
 		)
 		(uuid "7d2bab8c-f75f-45d9-89cc-2a88aaf22603")
+	)
+	(wire
+		(pts
+			(xy 100.33 69.85) (xy 100.33 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7df75408-2e02-493f-8f36-8f50c3ea1f8e")
 	)
 	(wire
 		(pts
@@ -2488,6 +2508,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 69.85) (xy 120.65 71.12)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82c94aac-511d-4c1e-a768-34bee814b6ba")
+	)
+	(wire
+		(pts
 			(xy 241.3 31.75) (xy 241.3 30.48)
 		)
 		(stroke
@@ -2498,7 +2528,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 106.68) (xy 194.31 106.68)
+			(xy 184.15 106.68) (xy 193.04 106.68)
 		)
 		(stroke
 			(width 0)
@@ -2638,7 +2668,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 83.82) (xy 193.04 83.82)
+			(xy 184.15 83.82) (xy 194.31 83.82)
 		)
 		(stroke
 			(width 0)
@@ -2648,7 +2678,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 91.44) (xy 193.04 91.44)
+			(xy 184.15 91.44) (xy 196.85 91.44)
 		)
 		(stroke
 			(width 0)
@@ -2678,16 +2708,6 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 69.85) (xy 100.33 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "d0a4a77a-7d04-495e-b198-5895d305fd13")
-	)
-	(wire
-		(pts
 			(xy 266.7 71.12) (xy 266.7 73.66)
 		)
 		(stroke
@@ -2695,36 +2715,6 @@
 			(type default)
 		)
 		(uuid "de3d4f3e-2b78-4cf8-a720-515b17d4f18b")
-	)
-	(wire
-		(pts
-			(xy 100.33 68.58) (xy 100.33 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e06353af-ab6b-4579-8bfc-ee250b2f6803")
-	)
-	(wire
-		(pts
-			(xy 120.65 68.58) (xy 120.65 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e0db675e-f07c-4f59-99e5-031ae7c40622")
-	)
-	(wire
-		(pts
-			(xy 120.65 69.85) (xy 120.65 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e193501b-4c7c-461b-9948-d169dd85ed78")
 	)
 	(wire
 		(pts
@@ -2748,7 +2738,7 @@
 	)
 	(wire
 		(pts
-			(xy 184.15 86.36) (xy 193.04 86.36)
+			(xy 184.15 86.36) (xy 194.31 86.36)
 		)
 		(stroke
 			(width 0)
@@ -2766,6 +2756,16 @@
 		)
 		(uuid "f0dd71ba-6ab7-4bf7-bde0-3449b13919f2")
 	)
+	(wire
+		(pts
+			(xy 100.33 68.58) (xy 100.33 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f8160181-597e-47e2-968f-92b5424e20c2")
+	)
 	(label "MISO"
 		(at 193.04 78.74 180)
 		(effects
@@ -2777,7 +2777,7 @@
 		(uuid "07d6ff5e-5fe5-42fe-9ad5-25431353eb0f")
 	)
 	(label "TEST_LED"
-		(at 193.04 91.44 180)
+		(at 196.85 91.44 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2788,7 +2788,7 @@
 		(uuid "0ac095ff-059d-4bc5-95b4-4467a5f240a7")
 	)
 	(label "RESET"
-		(at 194.31 106.68 180)
+		(at 193.04 106.68 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2798,7 +2798,7 @@
 		(uuid "171590c3-a231-49ec-8bbd-0a9959e70e1d")
 	)
 	(label "XTAL2"
-		(at 193.04 86.36 180)
+		(at 194.31 86.36 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2850,7 +2850,7 @@
 		(uuid "8599df2d-55e6-4c9b-84b2-d81eb9f6a6c1")
 	)
 	(label "XTAL1"
-		(at 193.04 83.82 180)
+		(at 194.31 83.82 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3245,6 +3245,163 @@
 		(uuid "f6ee45c7-3a2b-4d77-a53c-20c8d3059633")
 	)
 	(symbol
+		(lib_id "kitchen_timer-symbols_lib:SKRPACE010")
+		(at 100.33 68.58 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "090b8fda-731d-4015-8def-1079f3ec3eb2")
+		(property "Reference" "SW1"
+			(at 107.188 64.77 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SKRPACE010"
+			(at 111.252 75.184 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "kitchen_timer:SW_SKRPACE010"
+			(at 116.84 163.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588899859952226304"
+			(at 116.84 263.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Description" "3.2mm 2.5mm Oval button 50mA Standing paste 4.2mm SPST 16V SMD Tactile Switches ROHS"
+			(at 110.49 60.706 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Height" ""
+			(at 116.84 463.5 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" ""
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "SMD"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "ALPSALPINE"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "SKRPACE010"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C139797"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/Alpsalpine-SKRPACE010/C139797"
+			(at 100.33 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "2bbb05ea-ebca-453a-9d8e-a6fe41ee8e09")
+		)
+		(pin "1"
+			(uuid "65c0d596-a6a9-42f7-97d3-ec875aae8526")
+		)
+		(pin "4"
+			(uuid "0813f048-a368-40e0-8789-9810d9366b4c")
+		)
+		(pin "2"
+			(uuid "ac721c27-1e35-4af2-921d-12c7fbc6ca56")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
+					(reference "SW1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:R_Small")
 		(at 248.92 116.84 0)
 		(unit 1)
@@ -3263,7 +3420,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "220R"
+		(property "Value" "1k"
 			(at 251.46 118.1099 0)
 			(effects
 				(font
@@ -3272,7 +3429,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 			(at 248.92 116.84 0)
 			(effects
 				(font
@@ -3281,7 +3438,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "~"
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706499683172352"
 			(at 248.92 116.84 0)
 			(effects
 				(font
@@ -3291,6 +3448,69 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "0805W8F1001T5E"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "0805"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18201-0805W8F1001T5E/C17513"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17513"
+			(at 248.92 116.84 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0017"
 			(at 248.92 116.84 0)
 			(effects
 				(font
@@ -3461,6 +3681,16 @@
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 242.57 76.2 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "2"
@@ -3641,7 +3871,7 @@
 		(dnp no)
 		(uuid "3f623567-930d-46e4-be84-f45bb6a67c39")
 		(property "Reference" "R3"
-			(at 43.434 119.126 0)
+			(at 44.45 118.364 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3649,7 +3879,7 @@
 			)
 		)
 		(property "Value" "10k"
-			(at 41.148 116.078 0)
+			(at 50.292 118.618 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4124,7 +4354,7 @@
 		(dnp no)
 		(uuid "68364b86-f8a0-475d-a19e-282adfda90b7")
 		(property "Reference" "C5"
-			(at 41.91 120.65 90)
+			(at 41.91 122.428 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4133,7 +4363,7 @@
 			)
 		)
 		(property "Value" "100nF"
-			(at 43.688 122.682 90)
+			(at 43.18 129.286 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4605,164 +4835,6 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
 					(reference "C3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "kitchen_timer-symbols_lib:SKRPACE010")
-		(at 120.65 68.58 0)
-		(mirror y)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "c22277e5-308a-4ea0-afa2-c4be1af27efa")
-		(property "Reference" "SW2"
-			(at 113.538 64.516 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "SKRPACE010"
-			(at 107.696 75.184 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "kitchen_timer:SW_SKRPACE010"
-			(at 104.14 163.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1811051610_ALPSALPINE-SKRPACE010_C139797.pdf"
-			(at 104.14 263.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Description" "3.2mm 2.5mm Oval button 50mA Standing paste 4.2mm SPST 16V SMD Tactile Switches ROHS"
-			(at 110.49 60.706 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Height" ""
-			(at 104.14 463.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "https://jlcpcb.com/partdetail/Alpsalpine-SKRPACE010/C139797"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "SMD"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" "ALPS Electric"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Part #" "SKRPACE010"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Name" "JLCPCB"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Unit Price" " $0.0638"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" ""
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" "C139797"
-			(at 120.65 68.58 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "7070ee81-7f05-4019-919c-caef1039ad4e")
-		)
-		(pin "3"
-			(uuid "d6e8bbb0-9ebf-4a3e-bb67-440a9bc08994")
-		)
-		(pin "1"
-			(uuid "2bfb0b27-b767-4130-aba7-3073c17979f0")
-		)
-		(pin "4"
-			(uuid "c567eadb-5c10-429f-a85f-4dc7f70674ab")
-		)
-		(instances
-			(project ""
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/9aa7b7c0-c135-4683-8926-7ddf1682c201"
-					(reference "SW2")
 					(unit 1)
 				)
 			)
