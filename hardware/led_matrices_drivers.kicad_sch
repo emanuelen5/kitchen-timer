@@ -1431,7 +1431,7 @@
 			(width 0)
 			(type default)
 		)
-		(uuid "e6e5f912-b1a2-4ed9-b94b-37ef2e9a043b")
+		(uuid "e5c8705c-ceed-4d16-8148-8a857e24dbca")
 	)
 	(bus_entry
 		(at 196.85 91.44)
@@ -1627,16 +1627,6 @@
 	)
 	(wire
 		(pts
-			(xy 57.15 93.98) (xy 73.66 93.98)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0b888330-0dd5-4e85-a6df-0de0b6729788")
-	)
-	(wire
-		(pts
 			(xy 57.15 91.44) (xy 69.85 91.44)
 		)
 		(stroke
@@ -1734,6 +1724,16 @@
 			(type default)
 		)
 		(uuid "15ad90b5-79b9-49d5-9e2e-d55b9480a795")
+	)
+	(bus
+		(pts
+			(xy 76.2 91.44) (xy 76.2 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "17c79e16-69b8-467e-8605-d9b46238e43b")
 	)
 	(wire
 		(pts
@@ -1954,16 +1954,6 @@
 			(type default)
 		)
 		(uuid "420f7a64-c046-4459-a5ce-dae496bc2a31")
-	)
-	(bus
-		(pts
-			(xy 76.2 59.69) (xy 76.2 91.44)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4278f57f-b0d9-4e06-a828-a4deded000a0")
 	)
 	(bus
 		(pts
@@ -2587,7 +2577,7 @@
 	)
 	(bus
 		(pts
-			(xy 76.2 91.44) (xy 76.2 93.98)
+			(xy 76.2 59.69) (xy 76.2 91.44)
 		)
 		(stroke
 			(width 0)
@@ -2954,6 +2944,16 @@
 			(type default)
 		)
 		(uuid "b69b1ca9-bd09-4eae-b8f2-34d2a8cf5286")
+	)
+	(wire
+		(pts
+			(xy 73.66 93.98) (xy 57.15 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ba4daff2-964a-4577-aeb6-f63befb36720")
 	)
 	(wire
 		(pts
@@ -3615,7 +3615,7 @@
 		)
 		(uuid "1a4ce40e-3e7d-46b7-bb11-31e8f14858c5")
 	)
-	(label "Mat1A{SEG}"
+	(label "${MAT1A}{SEG}"
 		(at 72.39 57.15 270)
 		(effects
 			(font
@@ -3675,16 +3675,6 @@
 		)
 		(uuid "3345183e-b0a9-4a5c-b2e3-02256efdd707")
 	)
-	(label "${MAT1A}.DIG_0"
-		(at 57.15 93.98 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "3374b4bc-297d-421a-8f59-2f64d4927061")
-	)
 	(label "${MAT1A}.DIG_2"
 		(at 57.15 99.06 0)
 		(effects
@@ -3714,6 +3704,16 @@
 			(justify left bottom)
 		)
 		(uuid "3a1bc7bc-9978-406e-9ed2-e7b6423ca3db")
+	)
+	(label "${MAT1A}.DIG_0"
+		(at 57.15 93.98 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "3a2b1e66-e09a-4c8c-8d07-15d8193e21b6")
 	)
 	(label "${MAT2A}.DIG_2"
 		(at 177.8 99.06 0)
@@ -4105,7 +4105,7 @@
 		)
 		(uuid "b36d0d0d-9e72-4c5a-84db-22e94fb31d25")
 	)
-	(label "Mat1A.SEG_A"
+	(label "${MAT1A}.SEG_A"
 		(at 57.15 73.66 0)
 		(effects
 			(font
@@ -4529,7 +4529,7 @@
 			)
 		)
 	)
-	(hierarchical_label "${MAT1B}_DIG"
+	(hierarchical_label "${MAT1B}{DIG}"
 		(shape output)
 		(at 139.7 59.69 0)
 		(effects
@@ -4540,7 +4540,7 @@
 		)
 		(uuid "21b0df20-8db8-4340-8a8e-8a4d8b667eb9")
 	)
-	(hierarchical_label "${MAT2A}_SEG"
+	(hierarchical_label "${MAT2A}{SEG}"
 		(shape output)
 		(at 194.31 55.88 0)
 		(effects
@@ -4551,7 +4551,7 @@
 		)
 		(uuid "2977a7ae-f9b5-4855-82ba-da8a5cf93b63")
 	)
-	(hierarchical_label "${MAT2B}_DIG"
+	(hierarchical_label "${MAT2B}{DIG}"
 		(shape output)
 		(at 261.62 59.69 0)
 		(effects
@@ -4562,7 +4562,7 @@
 		)
 		(uuid "67f42917-1fa0-4262-954f-6c58b57e878b")
 	)
-	(hierarchical_label "${MAT1A}_DIG"
+	(hierarchical_label "${MAT1A}{DIG}"
 		(shape output)
 		(at 77.47 59.69 0)
 		(effects
@@ -4573,7 +4573,7 @@
 		)
 		(uuid "7098cea0-8483-4b5f-8cea-3e40a306ffeb")
 	)
-	(hierarchical_label "${MAT1B}_SEG"
+	(hierarchical_label "${MAT1B}{SEG}"
 		(shape output)
 		(at 135.89 55.88 0)
 		(effects
@@ -4595,7 +4595,7 @@
 		)
 		(uuid "b3b88590-04b8-4982-8bae-28c95e819620")
 	)
-	(hierarchical_label "Mat1A_SEG"
+	(hierarchical_label "${MAT1A}{SEG}"
 		(shape output)
 		(at 73.66 55.88 0)
 		(effects
@@ -4617,7 +4617,7 @@
 		)
 		(uuid "cedd4ce1-9bc4-4f5e-bd42-38106b2859d5")
 	)
-	(hierarchical_label "${MAT2B}_SEG"
+	(hierarchical_label "${MAT2B}{SEG}"
 		(shape output)
 		(at 257.81 55.88 0)
 		(effects
@@ -4639,7 +4639,7 @@
 		)
 		(uuid "f4191c7e-7463-4218-8e48-eac496466e13")
 	)
-	(hierarchical_label "${MAT2A}_DIG"
+	(hierarchical_label "${MAT2A}{DIG}"
 		(shape output)
 		(at 198.12 59.69 0)
 		(effects

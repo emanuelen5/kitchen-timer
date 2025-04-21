@@ -566,188 +566,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Diode:PMEG4010CEJ"
-			(pin_names
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "D3"
-				(at -0.254 -3.556 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "PMEG4010CEJ"
-				(at -0.254 2.794 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Diode_SMD:D_SOD-323F"
-				(at 0 -4.445 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809291616_Nexperia-PMEG4010CEJ-115_C50704.pdf"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "40V 570mV@1A 1A SOD-323F Schottky Diodes ROHS"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Supplier Link" "https://jlcpcb.com/partdetail/Nexperia-PMEG4010CEJ115/C50704"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Price/unit" "$0.0699"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Part Num" "PMEG4010CEJ,115"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Package" "SOD-323F"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "forward voltage diode"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "D*SOD?323F*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "PMEG4010CEJ_0_1"
-				(polyline
-					(pts
-						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
-					)
-					(stroke
-						(width 0.2032)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 1.27 0) (xy -1.27 0)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "PMEG4010CEJ_1_1"
-				(pin passive line
-					(at -3.81 0 0)
-					(length 2.54)
-					(name "K"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 3.81 0 180)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Transistor_FET:IRLML6402"
 			(pin_names
 				(hide yes)
@@ -1046,7 +864,225 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "kitchen_timer-symbols_lib:BMS_Module"
+		(symbol "kitchen_timer-symbols_lib:PMEG4010CEJ"
+			(pin_names
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "D3"
+				(at -0.254 -3.556 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "PMEG4010CEJ"
+				(at -0.254 2.794 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "Diode_SMD:D_SOD-323F"
+				(at 0 -4.445 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8586185406685851648"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "40V 570mV@1A 1A SOD-323F Schottky Diodes ROHS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Link" "https://jlcpcb.com/partdetail/Nexperia-PMEG4010CEJ115/C50704"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "SOD-323F"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Name" "JLCPCB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Part #" "PMEG4010CEJ,115"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Unit Price" " $0.0612"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Part Num" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Name" "Nexperia"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part #" "C50704"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "forward voltage diode"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "D*SOD?323F*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PMEG4010CEJ_0_1"
+				(polyline
+					(pts
+						(xy -1.905 0.635) (xy -1.905 1.27) (xy -1.27 1.27) (xy -1.27 -1.27) (xy -0.635 -1.27) (xy -0.635 -0.635)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 1.27) (xy 1.27 -1.27) (xy -1.27 0) (xy 1.27 1.27)
+					)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.27 0) (xy -1.27 0)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "PMEG4010CEJ_1_1"
+				(pin passive line
+					(at -3.81 0 0)
+					(length 2.54)
+					(name "K"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 3.81 0 180)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "kitchen_timer-symbols_lib:TP4056 breakout"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
@@ -1055,18 +1091,19 @@
 				(effects
 					(font
 						(size 1.27 1.27)
+						(thickness 0.1588)
 					)
 				)
 			)
-			(property "Value" "BMS Module"
-				(at 6.096 -7.874 0)
+			(property "Value" "TP4056 breakout"
+				(at 0.508 -8.128 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" ""
+			(property "Footprint" "Project-kitchen_timer:TP4056_BREAKOUT"
 				(at 0 -1.27 0)
 				(effects
 					(font
@@ -1075,7 +1112,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" ""
+			(property "Datasheet" "https://dlnmh9ip6v2uc.cloudfront.net/datasheets/Prototyping/TP4056.pdf"
 				(at 0 -1.27 0)
 				(effects
 					(font
@@ -1084,7 +1121,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" ""
+			(property "Description" "TP4056 charger with protection for Li-Ion and LiPo cell"
 				(at 0 -1.27 0)
 				(effects
 					(font
@@ -1093,7 +1130,7 @@
 					(hide yes)
 				)
 			)
-			(symbol "BMS_Module_1_1"
+			(symbol "TP4056 breakout_1_1"
 				(rectangle
 					(start -7.62 6.35)
 					(end 7.62 -6.35)
@@ -1105,7 +1142,7 @@
 						(type background)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -10.16 3.81 0)
 					(length 2.54)
 					(name "IN+"
@@ -1123,7 +1160,7 @@
 						)
 					)
 				)
-				(pin power_in line
+				(pin passive line
 					(at -10.16 1.27 0)
 					(length 2.54)
 					(name "IN-"
@@ -1141,7 +1178,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 10.16 3.81 180)
 					(length 2.54)
 					(name "OUT+"
@@ -1151,7 +1188,7 @@
 							)
 						)
 					)
-					(number "5"
+					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1159,7 +1196,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 10.16 1.27 180)
 					(length 2.54)
 					(name "OUT-"
@@ -1177,7 +1214,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 10.16 -1.27 180)
 					(length 2.54)
 					(name "B+"
@@ -1187,7 +1224,7 @@
 							)
 						)
 					)
-					(number "3"
+					(number "4"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1195,7 +1232,7 @@
 						)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 10.16 -3.81 180)
 					(length 2.54)
 					(name "B-"
@@ -1205,7 +1242,7 @@
 							)
 						)
 					)
-					(number "4"
+					(number "5"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -1756,16 +1793,49 @@
 		)
 		(uuid "ed5bf17d-e8f9-43ab-9668-f27ff027170c")
 	)
-	(hierarchical_label "GND-USB"
+	(global_label "GND"
 		(shape input)
 		(at 166.37 110.49 180)
+		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "0b3ada51-1da9-4c8a-ac42-fd257f37a4e2")
+		(uuid "d831bc55-7f83-4da1-a3a2-4f36d3c14266")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 159.5143 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 92.71 113.03 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "ecc2c142-5d7c-4aef-9153-acc0d6566aa2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 85.8543 113.03 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
 	)
 	(hierarchical_label "PP_VCC"
 		(shape output)
@@ -1778,7 +1848,7 @@
 		)
 		(uuid "15655d0f-be17-4723-bd0a-0253d20b1361")
 	)
-	(hierarchical_label "PP_GND"
+	(hierarchical_label "GND"
 		(shape output)
 		(at 200.66 110.49 0)
 		(effects
@@ -1811,19 +1881,8 @@
 		)
 		(uuid "d533e088-6809-4291-89ba-10a0f8f1e09c")
 	)
-	(hierarchical_label "GND-USB"
-		(shape input)
-		(at 92.71 113.03 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "f193deb1-ae19-467a-b3e8-864f511f85c7")
-	)
 	(symbol
-		(lib_id "Diode:PMEG4010CEJ")
+		(lib_id "kitchen_timer-symbols_lib:PMEG4010CEJ")
 		(at 190.5 101.6 180)
 		(unit 1)
 		(exclude_from_sim no)
@@ -2769,24 +2828,25 @@
 		)
 	)
 	(symbol
-		(lib_id "kitchen_timer-symbols_lib:BMS_Module")
+		(lib_id "kitchen_timer-symbols_lib:TP4056 breakout")
 		(at 106.68 111.76 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "de20413c-0613-4ff7-bc2c-47088fea3b16")
 		(property "Reference" "U2"
-			(at 100.33 103.886 0)
+			(at 99.822 104.394 0)
 			(effects
 				(font
 					(size 1.27 1.27)
+					(thickness 0.1588)
 				)
 			)
 		)
-		(property "Value" "BMS Module"
-			(at 108.204 119.634 0)
+		(property "Value" "TP4056 breakout"
+			(at 107.188 119.888 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2811,7 +2871,7 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "TP4056 laddare med skyddskrets för Li-Ion- och LiPo-cell"
+		(property "Description" "TP4056 charger with protection for Li-Ion and LiPo cell"
 			(at 106.68 113.03 0)
 			(effects
 				(font

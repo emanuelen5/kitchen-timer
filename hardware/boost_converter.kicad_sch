@@ -607,26 +607,294 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Regulator_Switching:TPS61200DRC"
+		(symbol "Switch:SW_SPST"
+			(pin_names
+				(offset 0)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "SW"
+				(at 0 3.175 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "SW_SPST"
+				(at 0 -2.54 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Single Pole Single Throw (SPST) switch"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "switch lever"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "SW_SPST_0_0"
+				(circle
+					(center -2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -1.524 0.254) (xy 1.524 1.778)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(circle
+					(center 2.032 0)
+					(radius 0.508)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "SW_SPST_1_1"
+				(pin passive line
+					(at -5.08 0 0)
+					(length 2.54)
+					(name "A"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 5.08 0 180)
+					(length 2.54)
+					(name "B"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "kitchen_timer-symbols_lib:Sparkfun_LiPower-Boost_Converter"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at -10.16 8.89 0)
+				(at -8.128 6.096 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
+				)
+			)
+			(property "Value" "SparkFun_LiPower"
+				(at 0 -6.35 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" "kitchen_timer:SparkFun_LiPower"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "https://www.sparkfun.com/lipower-boost-converter.html"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Boost Converter, based on the TPS61200 ic"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "Sparkfun_LiPower-Boost_Converter_1_1"
+				(rectangle
+					(start -8.89 5.08)
+					(end 8.89 -5.08)
+					(stroke
+						(width 0)
+						(type solid)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin passive line
+					(at -11.43 1.27 0)
+					(length 2.54)
+					(name "VCC_IN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at -11.43 -1.27 0)
+					(length 2.54)
+					(name "GND-IN"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 11.43 1.27 180)
+					(length 2.54)
+					(name "VCC_OUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 11.43 -1.27 180)
+					(length 2.54)
+					(name "GND_OUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "4"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
+		(symbol "kitchen_timer-symbols_lib:TPS61200DRC"
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "U5"
+				(at -6.35 9.144 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
 				)
 			)
 			(property "Value" "TPS61200DRC"
-				(at -2.54 8.89 0)
+				(at 9.906 -11.684 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left)
 				)
 			)
 			(property "Footprint" "Package_SON:Texas_S-PVSON-N10_ThermalVias"
@@ -638,7 +906,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "http://www.ti.com/lit/ds/symlink/tps61200.pdf"
+			(property "Datasheet" "https://www.lcsc.com/datasheet/lcsc_datasheet_1809191830_Texas-Instruments-TPS61200DRCR_C140320.pdf"
 				(at 0 0 0)
 				(effects
 					(font
@@ -647,7 +915,70 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Low Input Voltage Synchronous Boost Converter With 1.3A Switches, Adjustable Output Voltage, 0.3-5.5V Input Voltage, VSON-10"
+			(property "Description" "Boost type Adjustable 1.8V~5.5V 300mV~5.5V 1.2A VSON-10-EP(3x3) DC-DC Converters ROHS"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Link" "https://jlcpcb.com/partdetail/TexasInstruments-TPS61200DRCR/C140320"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "VSON-10-EP(3x3)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Name" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Part #" "TPS61200DRCR"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Unit Price" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Name" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part #" "~"
 				(at 0 0 0)
 				(effects
 					(font
@@ -688,7 +1019,7 @@
 				)
 			)
 			(symbol "TPS61200DRC_1_1"
-				(pin power_in line
+				(pin input line
 					(at -10.16 5.08 0)
 					(length 2.54)
 					(name "VIN"
@@ -889,140 +1220,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "kitchen_timer-symbols_lib:Sparkfun_LiPower-Boost_Converter"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at -8.128 6.096 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SparkFun_LiPower"
-				(at 0 -6.35 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "kitchen_timer:SparkFun_LiPower"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.sparkfun.com/lipower-boost-converter.html"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Boost Converter, based on the TPS61200 ic"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Sparkfun_LiPower-Boost_Converter_1_1"
-				(rectangle
-					(start -8.89 5.08)
-					(end 8.89 -5.08)
-					(stroke
-						(width 0)
-						(type solid)
-					)
-					(fill
-						(type background)
-					)
-				)
-				(pin input line
-					(at -11.43 1.27 0)
-					(length 2.54)
-					(name "VCC_IN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -11.43 -1.27 0)
-					(length 2.54)
-					(name "GND-IN"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 11.43 1.27 180)
-					(length 2.54)
-					(name "VCC_OUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin output line
-					(at 11.43 -1.27 180)
-					(length 2.54)
-					(name "GND_OUT"
-						(effects
-							(font
-								(size 1.016 1.016)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 	)
 	(rectangle
 		(start 86.106 61.214)
@@ -1038,7 +1235,7 @@
 	)
 	(rectangle
 		(start 20.574 61.722)
-		(end 76.454 93.472)
+		(end 76.454 113.284)
 		(stroke
 			(width 0)
 			(type dash)
@@ -1149,7 +1346,7 @@
 	)
 	(text_box "An external power switch will be connected to these pins.\nPreferably single pole, single thrust switch."
 		(exclude_from_sim no)
-		(at 55.118 74.676 0)
+		(at 28.956 101.854 0)
 		(size 19.558 9.906)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -1231,22 +1428,10 @@
 		(uuid "fa33e1f6-cf11-4a50-b3fa-518397cd70e8")
 	)
 	(junction
-		(at 139.7 114.3)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "0db9df56-4627-4daa-89df-c6a7b896a050")
-	)
-	(junction
 		(at 133.35 124.46)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "0f1e7e10-0552-4546-bc51-bc42e35b015d")
-	)
-	(junction
-		(at 147.32 143.51)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "1b114343-1626-439b-a312-758d826fe6ae")
 	)
 	(junction
 		(at 152.4 143.51)
@@ -1285,10 +1470,10 @@
 		(uuid "50bbd43c-78d0-4a84-9289-22f041467445")
 	)
 	(junction
-		(at 149.86 143.51)
+		(at 137.16 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "5d97377a-eae9-4071-9cfd-cd76a2f1985b")
+		(uuid "66be1f7e-8ba7-45d3-97cc-bd0106d11212")
 	)
 	(junction
 		(at 111.76 114.3)
@@ -1301,6 +1486,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "79abd68a-294a-4100-8375-26a33c452f16")
+	)
+	(junction
+		(at 149.86 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "92803d8e-b658-4ab0-b80b-a50414f0a186")
 	)
 	(junction
 		(at 119.38 114.3)
@@ -1327,6 +1518,12 @@
 		(uuid "d67db9d6-13c9-4997-b60b-9f7e5aff9096")
 	)
 	(junction
+		(at 147.32 143.51)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d7af082c-8d38-4107-8781-c8adc0a21b7c")
+	)
+	(junction
 		(at 133.35 114.3)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1344,9 +1541,25 @@
 		(color 0 0 0 0)
 		(uuid "f0eaabfe-6c03-4ee7-8180-460bc1324295")
 	)
-	(no_connect
-		(at 35.56 83.82)
-		(uuid "7f3c7863-302d-43b9-97b5-b42b1b775db0")
+	(wire
+		(pts
+			(xy 147.32 143.51) (xy 149.86 143.51)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "001fd197-5c63-4cc9-b2e9-4d810b5a2a29")
+	)
+	(wire
+		(pts
+			(xy 44.45 87.63) (xy 53.34 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "07a487b9-5e6e-42ee-97b2-2b3c022e3346")
 	)
 	(wire
 		(pts
@@ -1360,16 +1573,6 @@
 	)
 	(wire
 		(pts
-			(xy 147.32 114.3) (xy 139.7 114.3)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "16f3390b-605b-43b1-a400-07caf89cb29b")
-	)
-	(wire
-		(pts
 			(xy 119.38 114.3) (xy 111.76 114.3)
 		)
 		(stroke
@@ -1380,7 +1583,7 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 147.32) (xy 195.58 147.32)
+			(xy 194.31 143.51) (xy 198.12 143.51)
 		)
 		(stroke
 			(width 0)
@@ -1430,7 +1633,7 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 77.47) (xy 29.21 77.47)
+			(xy 73.66 80.01) (xy 50.8 80.01)
 		)
 		(stroke
 			(width 0)
@@ -1450,16 +1653,6 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 143.51) (xy 147.32 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "344a438e-5ffb-45e7-9e70-0cfe38276cb0")
-	)
-	(wire
-		(pts
 			(xy 111.76 134.62) (xy 111.76 143.51)
 		)
 		(stroke
@@ -1470,7 +1663,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 80.01) (xy 29.21 80.01)
+			(xy 53.34 82.55) (xy 50.8 82.55)
 		)
 		(stroke
 			(width 0)
@@ -1490,13 +1683,13 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 143.51) (xy 111.76 148.59)
+			(xy 107.95 143.51) (xy 111.76 143.51)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "3fb6acff-b083-4908-816d-5aa3ac15a4a1")
+		(uuid "40fa3abb-2aaf-47bc-bff8-6b96a1ecb756")
 	)
 	(wire
 		(pts
@@ -1630,7 +1823,7 @@
 	)
 	(wire
 		(pts
-			(xy 139.7 114.3) (xy 139.7 121.92)
+			(xy 137.16 114.3) (xy 137.16 121.92)
 		)
 		(stroke
 			(width 0)
@@ -1640,7 +1833,17 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 114.3) (xy 139.7 114.3)
+			(xy 137.16 121.92) (xy 139.7 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "772bdd6f-a2b9-4e2a-a2c8-568bb9480ae4")
+	)
+	(wire
+		(pts
+			(xy 133.35 114.3) (xy 137.16 114.3)
 		)
 		(stroke
 			(width 0)
@@ -1740,7 +1943,7 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 118.11) (xy 195.58 118.11)
+			(xy 194.31 124.46) (xy 198.12 124.46)
 		)
 		(stroke
 			(width 0)
@@ -1790,23 +1993,23 @@
 	)
 	(wire
 		(pts
-			(xy 111.76 110.49) (xy 111.76 114.3)
+			(xy 53.34 87.63) (xy 53.34 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b2593c76-895c-4a34-a84d-bd343a017cd6")
+		(uuid "ae90e993-2e9c-4406-a1c1-7f2cef9a7388")
 	)
 	(wire
 		(pts
-			(xy 194.31 118.11) (xy 194.31 124.46)
+			(xy 137.16 114.3) (xy 147.32 114.3)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b7604faa-0b85-47ce-8272-f40601f5b519")
+		(uuid "b80ec995-90aa-41d5-bf7d-da07e3939e11")
 	)
 	(wire
 		(pts
@@ -1860,6 +2063,16 @@
 	)
 	(wire
 		(pts
+			(xy 31.75 87.63) (xy 34.29 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "dbbe8a22-cc76-4efa-b804-793d36b61379")
+	)
+	(wire
+		(pts
 			(xy 194.31 135.89) (xy 194.31 143.51)
 		)
 		(stroke
@@ -1870,7 +2083,7 @@
 	)
 	(wire
 		(pts
-			(xy 109.22 110.49) (xy 111.76 110.49)
+			(xy 91.44 114.3) (xy 111.76 114.3)
 		)
 		(stroke
 			(width 0)
@@ -1900,16 +2113,6 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 147.32) (xy 194.31 143.51)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "edf2d9be-fa51-4194-af8c-684d5cc9e2d4")
-	)
-	(wire
-		(pts
 			(xy 147.32 139.7) (xy 147.32 143.51)
 		)
 		(stroke
@@ -1929,12 +2132,12 @@
 		(uuid "fa72dea4-7633-488f-ac01-0d353172d639")
 	)
 	(label "PP_VCC_after_switch"
-		(at 109.22 110.49 180)
+		(at 91.44 114.3 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right bottom)
+			(justify left bottom)
 		)
 		(uuid "b7122abd-5b7c-430f-b8b4-a87d3ad4a180")
 	)
@@ -1949,7 +2152,7 @@
 		(uuid "d59ff1ca-bf22-4881-b7eb-a86ebf8c2dea")
 	)
 	(label "PP_VCC_after_switch"
-		(at 52.07 77.47 180)
+		(at 73.66 80.01 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1958,9 +2161,53 @@
 		)
 		(uuid "ef0cbbd4-9d2e-46ba-9599-c8e6d5b43d24")
 	)
+	(global_label "GND"
+		(shape input)
+		(at 107.95 143.51 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7e56dc7d-c771-4e9d-bf32-9fef2de0ca80")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 101.0943 143.51 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 130.81 85.09 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8de5682a-28d7-4770-8de5-256048566442")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 123.9543 85.09 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(hierarchical_label "GND"
 		(shape output)
-		(at 195.58 147.32 0)
+		(at 198.12 143.51 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1969,31 +2216,20 @@
 		)
 		(uuid "0abac756-6998-4408-a568-d7e333fe5dea")
 	)
-	(hierarchical_label "PP_GND"
+	(hierarchical_label "PP_VCC"
 		(shape input)
-		(at 130.81 85.09 180)
+		(at 31.75 87.63 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "10bec2c4-9adb-4df6-b613-e4f075329195")
-	)
-	(hierarchical_label "PP_GND"
-		(shape input)
-		(at 111.76 148.59 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "539b0b45-641e-44a8-a8a0-5c62c5ff7531")
+		(uuid "4d80b714-c6e0-48de-88e8-d0820816245c")
 	)
 	(hierarchical_label "${VCC}"
 		(shape output)
-		(at 195.58 118.11 0)
+		(at 198.12 124.46 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2012,17 +2248,6 @@
 			(justify left)
 		)
 		(uuid "c6bd792d-5bc1-4b32-8155-4c1ed698346f")
-	)
-	(hierarchical_label "PP_VCC"
-		(shape input)
-		(at 31.75 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "e40ea206-97d7-448b-b689-dd0c637af215")
 	)
 	(hierarchical_label "${VCC}"
 		(shape output)
@@ -2169,7 +2394,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Conn_01x02_Pin")
-		(at 24.13 77.47 0)
+		(at 45.72 80.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2177,7 +2402,7 @@
 		(dnp no)
 		(uuid "1bcbe781-38bb-4188-a452-2c4d8ecf625b")
 		(property "Reference" "J2"
-			(at 24.384 74.422 0)
+			(at 45.974 76.962 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2185,15 +2410,16 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 31.242 82.804 0)
+			(at 52.832 85.344 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
 			)
 		)
 		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2202,7 +2428,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2211,7 +2437,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2220,7 +2446,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2229,7 +2455,7 @@
 			)
 		)
 		(property "Part Num" ""
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2238,7 +2464,7 @@
 			)
 		)
 		(property "Package" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2247,7 +2473,7 @@
 			)
 		)
 		(property "Manuf. Name" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2256,7 +2482,7 @@
 			)
 		)
 		(property "Manuf. Part #" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2265,7 +2491,7 @@
 			)
 		)
 		(property "Supplier Name" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2274,7 +2500,7 @@
 			)
 		)
 		(property "Supplier Part #" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2283,7 +2509,7 @@
 			)
 		)
 		(property "Supplier Link" "~"
-			(at 24.13 77.47 0)
+			(at 45.72 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3100,6 +3326,146 @@
 		)
 	)
 	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 39.37 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom no)
+		(on_board no)
+		(dnp no)
+		(uuid "95d81c72-82e0-4888-b070-a8c838310c30")
+		(property "Reference" "SW3"
+			(at 39.37 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "~"
+			(at 39.37 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Single Pole Single Throw (SPST) switch"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "~"
+			(at 39.37 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "42b357b1-48ad-4b60-828c-af49d67a7672")
+		)
+		(pin "2"
+			(uuid "dcf733b9-52b3-48d3-8f31-f3d9b9f9d30d")
+		)
+		(instances
+			(project ""
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/8d96c6df-7eb2-480a-982a-3dd8886e54b6"
+					(reference "SW3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C_Small")
 		(at 125.73 127 180)
 		(unit 1)
@@ -3248,7 +3614,7 @@
 				)
 			)
 		)
-		(property "Value" "LiPower Module"
+		(property "Value" "SparkFun_LiPower"
 			(at 147.32 90.17 0)
 			(effects
 				(font
@@ -3265,7 +3631,7 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" "https://www.ti.com/cn/lit/gpn/tps61200"
+		(property "Datasheet" "https://www.sparkfun.com/lipower-boost-converter.html"
 			(at 147.32 83.82 0)
 			(effects
 				(font
@@ -3498,7 +3864,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Regulator_Switching:TPS61200DRC")
+		(lib_id "kitchen_timer-symbols_lib:TPS61200DRC")
 		(at 149.86 127 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -3604,6 +3970,15 @@
 			)
 		)
 		(property "Supplier Part #" "~"
+			(at 149.86 127 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
 			(at 149.86 127 0)
 			(effects
 				(font

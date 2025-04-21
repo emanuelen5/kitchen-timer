@@ -140,7 +140,7 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Transistor_BJT:2N3904"
+		(symbol "kitchen_timer-symbols_lib:2N3904"
 			(pin_names
 				(offset 0)
 				(hide yes)
@@ -188,15 +188,6 @@
 				)
 			)
 			(property "Description" "40V 200mW 100@10mA,1.0V 200mA NPN SOT-23 Bipolar (BJT) ROHS"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Part Num" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -260,6 +251,15 @@
 				)
 			)
 			(property "Supplier Unit Price" "$0.0077"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Part Num" ""
 				(at 0 0 0)
 				(effects
 					(font
@@ -405,29 +405,29 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "kitchen_timer-symbols_lib:HNB09A05"
+		(symbol "kitchen_timer-symbols_lib:PS1240P02CT3"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
-			(property "Reference" "LS"
-				(at -5.842 3.81 0)
+			(property "Reference" "LS2"
+				(at 0.254 4.572 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
+					(justify left)
 				)
 			)
-			(property "Value" "HNB09A05"
-				(at 0.762 -8.636 0)
+			(property "Value" "PS1240P02CT3"
+				(at 4.064 -8.636 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
-					(justify left top)
+					(justify left)
 				)
 			)
-			(property "Footprint" "HNB09A05"
+			(property "Footprint" "kitchen_timer:PS1240P02BT"
 				(at 11.43 -102.54 0)
 				(effects
 					(font
@@ -437,7 +437,7 @@
 					(hide yes)
 				)
 			)
-			(property "Datasheet" "https://datasheet.lcsc.com/szlcsc/Jiangsu-Huaneng-Elec-HNB09A05_C96493.pdf"
+			(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8559368611917037568"
 				(at 11.43 -202.54 0)
 				(effects
 					(font
@@ -447,7 +447,7 @@
 					(hide yes)
 				)
 			)
-			(property "Description" "Buzzers Magnetic YES 3000+/-300Hz 5V 4 ~ 8V 9mm DIP RoHS"
+			(property "Description" "Piezo Buzzers & Audio Indicators Round 12.2mmx3.5mm 4kHz Vin=3V"
 				(at 2.286 9.144 0)
 				(effects
 					(font
@@ -456,48 +456,8 @@
 					(hide yes)
 				)
 			)
-			(property "Height" "5.7"
+			(property "Height" ""
 				(at 11.43 -402.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Name" "Jiangsu Huaneng Elec"
-				(at 11.43 -502.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer_Part_Number" "HNB09A05"
-				(at 11.43 -602.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Part Number" ""
-				(at 11.43 -702.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left top)
-					(hide yes)
-				)
-			)
-			(property "Mouser Price/Stock" ""
-				(at 11.43 -802.54 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -526,7 +486,70 @@
 					(hide yes)
 				)
 			)
-			(symbol "HNB09A05_1_1"
+			(property "Supplier Link" "https://jlcpcb.com/partdetail/Tdk-PS1240P02CT3/C76873"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "Plugin,D=12.2mm"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Name" "TDK"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Manuf. Part #" "PS1240P02CT3"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Name" "JLCPCB"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Unit Price" " $0.2462"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part #" " C76873"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "PS1240P02CT3_1_1"
 				(polyline
 					(pts
 						(xy 5.08 1.27) (xy 5.08 -3.81)
@@ -856,11 +879,11 @@
 		(uuid "a3d69ef4-5b43-44cd-8969-d132c3575b42")
 	)
 	(symbol
-		(lib_id "kitchen_timer-symbols_lib:HNB09A05")
+		(lib_id "kitchen_timer-symbols_lib:PS1240P02CT3")
 		(at 149.86 90.17 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom no)
+		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(uuid "205bd12d-905a-4334-961a-17bb2bab4976")
@@ -1280,7 +1303,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Transistor_BJT:2N3904")
+		(lib_id "kitchen_timer-symbols_lib:2N3904")
 		(at 147.32 102.87 0)
 		(unit 1)
 		(exclude_from_sim no)

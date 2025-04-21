@@ -1474,7 +1474,7 @@
 					(hide yes)
 				)
 			)
-			(property "Supplier Link" "https://jlcpcb.com/parts/1st/Crystals_Oscillators_Resonators_7"
+			(property "Supplier Link" "~"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1492,7 +1492,7 @@
 					(hide yes)
 				)
 			)
-			(property "Manuf. Name" "HCI"
+			(property "Manuf. Name" "Multitech"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1510,7 +1510,7 @@
 					(hide yes)
 				)
 			)
-			(property "Supplier Name" "JLCPCB"
+			(property "Supplier Name" "~"
 				(at 0 0 0)
 				(effects
 					(font
@@ -1519,7 +1519,25 @@
 					(hide yes)
 				)
 			)
-			(property "Supplier Unit Price" " $0.2669"
+			(property "Supplier Unit Price" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Supplier Part #" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Part Num" ""
 				(at 0 0 0)
 				(effects
 					(font

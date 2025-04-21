@@ -3745,7 +3745,7 @@
 		)
 		(uuid "fd8dee31-754f-4a4c-abcc-ea5c83d39088")
 	)
-	(hierarchical_label "${MAT1B}_SEG"
+	(hierarchical_label "${MAT1B}{SEG}"
 		(shape input)
 		(at 220.98 54.61 0)
 		(effects
@@ -3756,7 +3756,7 @@
 		)
 		(uuid "5a211b3b-2dd5-4c26-a6a2-c2687215b731")
 	)
-	(hierarchical_label "${MAT1A}_SEG"
+	(hierarchical_label "${MAT1A}{SEG}"
 		(shape input)
 		(at 77.47 54.61 180)
 		(effects
@@ -3767,7 +3767,7 @@
 		)
 		(uuid "5f731cd0-30b9-49d0-887e-e39a874ad39a")
 	)
-	(hierarchical_label "${MAT2A}_DIG"
+	(hierarchical_label "${MAT2A}{DIG}"
 		(shape input)
 		(at 77.47 121.92 180)
 		(effects
@@ -3778,7 +3778,7 @@
 		)
 		(uuid "820e715c-2f54-46a4-a43c-7af0db9855be")
 	)
-	(hierarchical_label "${MAT2B}_DIG"
+	(hierarchical_label "${MAT2B}{DIG}"
 		(shape input)
 		(at 220.98 121.92 0)
 		(effects
@@ -3789,7 +3789,7 @@
 		)
 		(uuid "931841a8-e586-442f-82c4-d8f6dffc06c8")
 	)
-	(hierarchical_label "${MAT1A}_DIG"
+	(hierarchical_label "${MAT1A}{DIG}"
 		(shape input)
 		(at 77.47 58.42 180)
 		(effects
@@ -3800,7 +3800,7 @@
 		)
 		(uuid "b15f0c5b-bee9-4f1e-9e1e-32d21e088f10")
 	)
-	(hierarchical_label "${MAT2A}_SEG"
+	(hierarchical_label "${MAT2A}{SEG}"
 		(shape input)
 		(at 77.47 125.73 180)
 		(effects
@@ -3811,7 +3811,7 @@
 		)
 		(uuid "c2544e04-0aa7-48ac-8227-aaf1e3a4cfe5")
 	)
-	(hierarchical_label "${MAT2B}_SEG"
+	(hierarchical_label "${MAT2B}{SEG}"
 		(shape input)
 		(at 220.98 125.73 0)
 		(effects
@@ -3822,7 +3822,7 @@
 		)
 		(uuid "c549fa6b-e9c5-462e-9138-87ce16836840")
 	)
-	(hierarchical_label "${MAT1B}_DIG"
+	(hierarchical_label "${MAT1B}{DIG}"
 		(shape input)
 		(at 220.98 58.42 0)
 		(effects
@@ -3860,7 +3860,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project-kitchen_timer:KWM-20882CUYB"
+		(property "Footprint" "kitchen_timer:KWM-20882CUYB"
 			(at 171.45 111.76 0)
 			(effects
 				(font
@@ -4026,7 +4026,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project-kitchen_timer:KWM-20882CUYB"
+		(property "Footprint" "kitchen_timer:KWM-20882CUYB"
 			(at 171.45 68.58 0)
 			(effects
 				(font
@@ -4099,6 +4099,24 @@
 			)
 		)
 		(property "Manuf. Name" "Luckylight"
+			(at 162.56 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 162.56 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" ""
 			(at 162.56 72.39 0)
 			(effects
 				(font
@@ -4192,7 +4210,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project-kitchen_timer:KWM-20882CUYB"
+		(property "Footprint" "kitchen_timer:KWM-20882CUYB"
 			(at 127 111.76 0)
 			(effects
 				(font
@@ -4357,7 +4375,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Project-kitchen_timer:KWM-20882CUYB"
+		(property "Footprint" "kitchen_timer:KWM-20882CUYB"
 			(at 127 68.58 0)
 			(effects
 				(font
