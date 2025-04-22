@@ -15,3 +15,4 @@ avrdude.pdb
 zadig-*.exe
 hardware/#auto_saved_files#
 hardware/~kitchen_timer-hardware.kicad_sch.lck
+hardware/kitchen_timer-hardware.kicad_prl
