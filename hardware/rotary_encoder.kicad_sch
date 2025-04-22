@@ -2242,7 +2242,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "ac76d99f-0ef7-4f0b-8397-e71024c1759e")
 		(property "Reference" "U6"
 			(at 134.874 79.756 0)

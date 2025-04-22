@@ -885,7 +885,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "205bd12d-905a-4334-961a-17bb2bab4976")
 		(property "Reference" "LS1"
 			(at 150.114 85.598 0)
