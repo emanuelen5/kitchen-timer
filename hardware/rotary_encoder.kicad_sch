@@ -1086,7 +1086,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "19b61417-69b5-4855-9a5e-ec8dc13d779a")
-		(property "Reference" "R18"
+		(property "Reference" "R12"
 			(at 153.67 123.1899 0)
 			(effects
 				(font
@@ -1194,6 +1194,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 151.13 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 151.13 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 151.13 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 151.13 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "3a36c129-80cb-4647-8fb4-7b96058bbfd1")
 		)
@@ -1203,7 +1235,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "R18")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -1219,7 +1251,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "27f91353-a15c-4a0d-a85a-8404f0c7e9bc")
-		(property "Reference" "C17"
+		(property "Reference" "C12"
 			(at 153.67 132.0862 0)
 			(effects
 				(font
@@ -1327,6 +1359,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 151.13 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "d45c5349-a900-498c-afb8-c4a296b44a81")
 		)
@@ -1336,7 +1400,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "C17")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -1353,7 +1417,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "400429dc-27a0-401b-8cbf-fe35de64e48b")
-		(property "Reference" "C16"
+		(property "Reference" "C11"
 			(at 132.08 132.0862 0)
 			(effects
 				(font
@@ -1461,6 +1525,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 129.54 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 129.54 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 129.54 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 129.54 133.35 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "eb85945c-afa8-4a41-b0b1-c6bef32ac0cc")
 		)
@@ -1470,7 +1566,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "C16")
+					(reference "C11")
 					(unit 1)
 				)
 			)
@@ -1486,7 +1582,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5eac5aa3-0f43-47bf-8702-d946b47f810f")
-		(property "Reference" "R19"
+		(property "Reference" "R8"
 			(at 156.21 69.8499 0)
 			(effects
 				(font
@@ -1594,6 +1690,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 153.67 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 153.67 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 153.67 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 153.67 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "475a4183-46b7-4441-b164-8312eca920f3")
 		)
@@ -1603,7 +1731,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "R19")
+					(reference "R8")
 					(unit 1)
 				)
 			)
@@ -1620,7 +1748,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8a3078fe-5eed-4671-b539-5654bcc53992")
-		(property "Reference" "R15"
+		(property "Reference" "R9"
 			(at 132.08 114.2999 0)
 			(effects
 				(font
@@ -1728,6 +1856,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 129.54 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 129.54 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 129.54 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 129.54 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b1b2c716-ab43-4db9-9d09-72dcf98eb3e4")
 		)
@@ -1737,7 +1897,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "R15")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -1754,7 +1914,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8e89f6b8-69d6-460c-810a-56f62cae4222")
-		(property "Reference" "R16"
+		(property "Reference" "R11"
 			(at 132.08 123.1899 0)
 			(effects
 				(font
@@ -1862,6 +2022,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 129.54 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 129.54 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 129.54 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 129.54 124.46 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "a058b779-8e97-4dcf-a4a6-b7fa04802137")
 		)
@@ -1871,7 +2063,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "R16")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -1887,7 +2079,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a22309a2-65f5-44af-8f51-874b22ca052c")
-		(property "Reference" "C18"
+		(property "Reference" "C10"
 			(at 156.21 78.7462 0)
 			(effects
 				(font
@@ -1995,6 +2187,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 153.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 153.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 153.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 153.67 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "337cb240-e496-491c-ad7e-438558cd9e52")
 		)
@@ -2004,7 +2228,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "C18")
+					(reference "C10")
 					(unit 1)
 				)
 			)
@@ -2020,7 +2244,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "ac76d99f-0ef7-4f0b-8397-e71024c1759e")
-		(property "Reference" "U15"
+		(property "Reference" "U6"
 			(at 134.874 79.756 0)
 			(effects
 				(font
@@ -2147,6 +2371,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 140.97 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 140.97 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 140.97 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 140.97 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "f4b5baf9-86f1-4653-aeef-d3e4a3939c8d")
 		)
@@ -2171,7 +2427,7 @@
 		(instances
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "U15")
+					(reference "U6")
 					(unit 1)
 				)
 			)
@@ -2187,7 +2443,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ee5f5cd9-44c6-4667-94e8-768344360362")
-		(property "Reference" "R17"
+		(property "Reference" "R10"
 			(at 153.67 114.2999 0)
 			(effects
 				(font
@@ -2295,6 +2551,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 151.13 115.57 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "b607b950-69c3-4397-8501-aea90017b3e2")
 		)
@@ -2304,7 +2592,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/0bd8e23b-f1a8-43a7-9e7f-c29366033bda"
-					(reference "R17")
+					(reference "R10")
 					(unit 1)
 				)
 			)

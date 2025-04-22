@@ -887,7 +887,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "205bd12d-905a-4334-961a-17bb2bab4976")
-		(property "Reference" "LS2"
+		(property "Reference" "LS1"
 			(at 150.114 85.598 0)
 			(effects
 				(font
@@ -1027,6 +1027,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 149.86 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 149.86 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 149.86 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 149.86 90.17 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "0b5c903f-8aa7-44b6-a12d-55ec699ff10e")
 		)
@@ -1036,7 +1068,7 @@
 		(instances
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
-					(reference "LS2")
+					(reference "LS1")
 					(unit 1)
 				)
 			)
@@ -1051,7 +1083,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "29f25c0e-40d2-4887-94ea-750126c00974")
-		(property "Reference" "R20"
+		(property "Reference" "R13"
 			(at 140.716 91.694 90)
 			(effects
 				(font
@@ -1157,6 +1189,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 143.51 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "afd45454-b1b1-4c86-80b8-40940c066899")
 		)
@@ -1166,7 +1230,7 @@
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
-					(reference "R20")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -1287,6 +1351,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 135.89 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 135.89 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 135.89 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 135.89 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "50205806-6e71-4c40-b7fb-d2c3fccad6a4")
 		)
@@ -1312,7 +1408,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b69018aa-13fa-4ad2-aeec-2cd2e5d449c1")
-		(property "Reference" "Q2"
+		(property "Reference" "Q3"
 			(at 152.4 101.5999 0)
 			(effects
 				(font
@@ -1432,6 +1528,38 @@
 				(hide yes)
 			)
 		)
+		(property "Manufacturer_Name" ""
+			(at 147.32 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 147.32 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 147.32 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 147.32 102.87 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "1"
 			(uuid "be397f47-dbd5-4dbd-8dcc-ea384b8d0e25")
 		)
@@ -1444,7 +1572,7 @@
 		(instances
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/cc0cdeb4-aa65-40c1-8591-40f3174b886f"
-					(reference "Q2")
+					(reference "Q3")
 					(unit 1)
 				)
 			)
