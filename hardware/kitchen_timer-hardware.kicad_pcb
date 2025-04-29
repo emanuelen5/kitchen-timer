@@ -595,13 +595,13 @@
 	(footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "05070ac5-2a05-4d30-b356-5fbe6465cdd3")
-		(at 143.950125 80.831)
+		(at 139.256325 85.52975 180)
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED handsolder")
 		(property "Reference" "D3"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
-			(uuid "5be608f6-079f-4385-ba8b-5e183d345b97")
+			(uuid "ba2b4d9b-51b6-4c98-82ec-9e344260b31e")
 			(effects
 				(font
 					(size 1 1)
@@ -612,7 +612,7 @@
 		(property "Value" "Red test LED"
 			(at 0 1.43 0)
 			(layer "F.Fab")
-			(uuid "49a8c5fc-a4ae-46fc-8f39-07e5a8b2e5c9")
+			(uuid "f70e790c-d59c-43b2-8c34-4e34d7e7125e")
 			(effects
 				(font
 					(size 1 1)
@@ -621,11 +621,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588941076506030080"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "4d2de4c4-9b08-4ae4-afb9-c7fe57248c66")
+			(uuid "23c2e340-d1e2-423b-9931-adac6ea894c4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -634,11 +634,11 @@
 			)
 		)
 		(property "Description" "Light emitting diode, small symbol"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "cffe8285-066d-4acf-8c55-d337bfd63400")
+			(uuid "5bdfcbf1-70da-442e-bffb-f442303fb7f3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -647,7 +647,7 @@
 			)
 		)
 		(property "Sim.Pin" "1=K 2=A"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -660,7 +660,7 @@
 			)
 		)
 		(property "Manuf. Name" "XINGLIGHT"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -673,7 +673,7 @@
 			)
 		)
 		(property "Manuf. Part #" " XL-1608SURC-06"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -686,7 +686,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -699,7 +699,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -712,7 +712,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -725,7 +725,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -738,7 +738,7 @@
 			)
 		)
 		(property "Package" "0603_1608"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -751,7 +751,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Xinglight-XL_1608SURC06/C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -764,7 +764,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -777,7 +777,7 @@
 			)
 		)
 		(property "Supplier Part #" "C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -790,7 +790,7 @@
 			)
 		)
 		(property "Supplier Unit Price" " $0.0031"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -808,14 +808,14 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -1.66 -0.735)
-			(end -1.66 0.735)
+			(start 0.8 -0.735)
+			(end -1.66 -0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "fc80de70-b3ea-4e0f-b040-a5303150e124")
+			(uuid "39bda7d6-d163-418e-b9b4-192e68fa71a0")
 		)
 		(fp_line
 			(start -1.66 0.735)
@@ -828,44 +828,14 @@
 			(uuid "dd76afd0-21b5-408c-abdd-42471c899c19")
 		)
 		(fp_line
-			(start 0.8 -0.735)
-			(end -1.66 -0.735)
+			(start -1.66 -0.735)
+			(end -1.66 0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "39bda7d6-d163-418e-b9b4-192e68fa71a0")
-		)
-		(fp_line
-			(start -1.65 -0.73)
-			(end 1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "e2c0761b-a0da-4588-8c0f-5c26bf0f60c1")
-		)
-		(fp_line
-			(start -1.65 0.73)
-			(end -1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "7671d637-462e-4db2-88a8-a6b199679e86")
-		)
-		(fp_line
-			(start 1.65 -0.73)
-			(end 1.65 0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "c28005ce-cb29-4e6a-befe-d09c960be1f8")
+			(uuid "fc80de70-b3ea-4e0f-b040-a5303150e124")
 		)
 		(fp_line
 			(start 1.65 0.73)
@@ -878,34 +848,44 @@
 			(uuid "986e6a24-deb7-4c37-99a3-af77f91cdb0a")
 		)
 		(fp_line
-			(start -0.8 -0.1)
-			(end -0.8 0.4)
+			(start 1.65 -0.73)
+			(end 1.65 0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "3e31f107-e2aa-4756-9a1c-1d1980d8901f")
+			(layer "F.CrtYd")
+			(uuid "c28005ce-cb29-4e6a-befe-d09c960be1f8")
 		)
 		(fp_line
-			(start -0.8 0.4)
-			(end 0.8 0.4)
+			(start -1.65 0.73)
+			(end -1.65 -0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "64638497-019b-42f9-b93a-7670f90821bd")
+			(layer "F.CrtYd")
+			(uuid "7671d637-462e-4db2-88a8-a6b199679e86")
 		)
 		(fp_line
-			(start -0.5 -0.4)
-			(end -0.8 -0.1)
+			(start -1.65 -0.73)
+			(end 1.65 -0.73)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "e2c0761b-a0da-4588-8c0f-5c26bf0f60c1")
+		)
+		(fp_line
+			(start 0.8 0.4)
+			(end 0.8 -0.4)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "4c2085af-dd87-4c36-b4a9-0d8a3ad7c43d")
+			(uuid "32f59891-72b8-43a3-9cce-c5f4362a437c")
 		)
 		(fp_line
 			(start 0.8 -0.4)
@@ -918,14 +898,34 @@
 			(uuid "7375e3ef-e83e-4d7b-965f-858dc6c13772")
 		)
 		(fp_line
-			(start 0.8 0.4)
-			(end 0.8 -0.4)
+			(start -0.5 -0.4)
+			(end -0.8 -0.1)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "32f59891-72b8-43a3-9cce-c5f4362a437c")
+			(uuid "4c2085af-dd87-4c36-b4a9-0d8a3ad7c43d")
+		)
+		(fp_line
+			(start -0.8 0.4)
+			(end 0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "64638497-019b-42f9-b93a-7670f90821bd")
+		)
+		(fp_line
+			(start -0.8 -0.1)
+			(end -0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "3e31f107-e2aa-4756-9a1c-1d1980d8901f")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -939,7 +939,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.875 0)
+			(at -0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -949,7 +949,7 @@
 			(uuid "51957b2c-8532-435f-8938-4cc1c6d89f83")
 		)
 		(pad "2" smd roundrect
-			(at 0.875 0)
+			(at 0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -4973,13 +4973,13 @@
 	(footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "191da847-8866-4562-a51e-d72116def847")
-		(at 143.950125 84.006)
+		(at 139.256325 82.35475 180)
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED handsolder")
 		(property "Reference" "D4"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
-			(uuid "1a57ab50-c6a9-4062-8992-0da434eb5c33")
+			(uuid "c9ee30e4-e85f-4691-888a-5c56ccab68f8")
 			(effects
 				(font
 					(size 1 1)
@@ -4990,7 +4990,7 @@
 		(property "Value" "Red test LED"
 			(at 0 1.43 0)
 			(layer "F.Fab")
-			(uuid "5f3013a7-27de-44ee-adc8-e23569cd3229")
+			(uuid "275bb5a5-9c3f-4823-a6f7-5fcae12cb99d")
 			(effects
 				(font
 					(size 1 1)
@@ -4999,11 +4999,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588941076506030080"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "1a249ec4-2195-4726-a86e-619665e18d3d")
+			(uuid "d89dae3d-3d26-419b-bcc8-3703d56547b3")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5012,11 +5012,11 @@
 			)
 		)
 		(property "Description" "Light emitting diode, small symbol"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "334b5a89-7b80-45cc-94bd-048d113b44bc")
+			(uuid "84ded264-44e6-467d-b24a-05ee0790315b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5025,7 +5025,7 @@
 			)
 		)
 		(property "Sim.Pin" "1=K 2=A"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5038,7 +5038,7 @@
 			)
 		)
 		(property "Manuf. Name" "XINGLIGHT"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5051,7 +5051,7 @@
 			)
 		)
 		(property "Manuf. Part #" " XL-1608SURC-06"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5064,7 +5064,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5077,7 +5077,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5090,7 +5090,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5103,7 +5103,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5116,7 +5116,7 @@
 			)
 		)
 		(property "Package" "0603_1608"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5129,7 +5129,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Xinglight-XL_1608SURC06/C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5142,7 +5142,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5155,7 +5155,7 @@
 			)
 		)
 		(property "Supplier Part #" "C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5168,7 +5168,7 @@
 			)
 		)
 		(property "Supplier Unit Price" " $0.0031"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5181,7 +5181,7 @@
 			)
 		)
 		(property "Part Num" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -5199,14 +5199,14 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -1.66 -0.735)
-			(end -1.66 0.735)
+			(start 0.8 -0.735)
+			(end -1.66 -0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "33ebe4d6-4ac6-48f0-8317-7782f64bf844")
+			(uuid "441d834d-3076-4369-804d-36eb3042e36c")
 		)
 		(fp_line
 			(start -1.66 0.735)
@@ -5219,44 +5219,14 @@
 			(uuid "431b4e51-3a20-4a79-a5dd-5f1cd246713b")
 		)
 		(fp_line
-			(start 0.8 -0.735)
-			(end -1.66 -0.735)
+			(start -1.66 -0.735)
+			(end -1.66 0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "441d834d-3076-4369-804d-36eb3042e36c")
-		)
-		(fp_line
-			(start -1.65 -0.73)
-			(end 1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "d896231b-d4b3-44a9-9ca1-25baca2b9d41")
-		)
-		(fp_line
-			(start -1.65 0.73)
-			(end -1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "9b10e2a0-a5fc-4762-b23c-8758ae4ae1af")
-		)
-		(fp_line
-			(start 1.65 -0.73)
-			(end 1.65 0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "c68765b6-8db6-4a74-88b6-66d7d69ae606")
+			(uuid "33ebe4d6-4ac6-48f0-8317-7782f64bf844")
 		)
 		(fp_line
 			(start 1.65 0.73)
@@ -5269,34 +5239,44 @@
 			(uuid "38305a3c-989e-41e8-8824-a9a94c520f25")
 		)
 		(fp_line
-			(start -0.8 -0.1)
-			(end -0.8 0.4)
+			(start 1.65 -0.73)
+			(end 1.65 0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "23847b52-3c86-4946-8a25-c0ee9b83f50b")
+			(layer "F.CrtYd")
+			(uuid "c68765b6-8db6-4a74-88b6-66d7d69ae606")
 		)
 		(fp_line
-			(start -0.8 0.4)
-			(end 0.8 0.4)
+			(start -1.65 0.73)
+			(end -1.65 -0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "5ff686d9-5249-4e20-a959-14cd63339e7b")
+			(layer "F.CrtYd")
+			(uuid "9b10e2a0-a5fc-4762-b23c-8758ae4ae1af")
 		)
 		(fp_line
-			(start -0.5 -0.4)
-			(end -0.8 -0.1)
+			(start -1.65 -0.73)
+			(end 1.65 -0.73)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "d896231b-d4b3-44a9-9ca1-25baca2b9d41")
+		)
+		(fp_line
+			(start 0.8 0.4)
+			(end 0.8 -0.4)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "90c0d5d5-cf0d-473c-b68e-af4a48e76c80")
+			(uuid "f6b4121a-bc5c-4b56-b82a-d54d3a92f100")
 		)
 		(fp_line
 			(start 0.8 -0.4)
@@ -5309,14 +5289,34 @@
 			(uuid "eef05b81-26ca-41e3-a7c6-1951e31ab380")
 		)
 		(fp_line
-			(start 0.8 0.4)
-			(end 0.8 -0.4)
+			(start -0.5 -0.4)
+			(end -0.8 -0.1)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "f6b4121a-bc5c-4b56-b82a-d54d3a92f100")
+			(uuid "90c0d5d5-cf0d-473c-b68e-af4a48e76c80")
+		)
+		(fp_line
+			(start -0.8 0.4)
+			(end 0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "5ff686d9-5249-4e20-a959-14cd63339e7b")
+		)
+		(fp_line
+			(start -0.8 -0.1)
+			(end -0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "23847b52-3c86-4946-8a25-c0ee9b83f50b")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -5330,7 +5330,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.875 0)
+			(at -0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -5340,7 +5340,7 @@
 			(uuid "3faa9d01-d540-4af1-8172-809944bf232f")
 		)
 		(pad "2" smd roundrect
-			(at 0.875 0)
+			(at 0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -7904,13 +7904,13 @@
 	(footprint "kitchen_timer:PS1240P02BT"
 		(layer "F.Cu")
 		(uuid "2db22630-d097-4904-9696-3a9897ef40ff")
-		(at 173.7868 108.304745)
+		(at 174.9552 106.4876)
 		(descr "Passive Buzzer")
 		(tags "Loudspeaker or Buzzer")
 		(property "Reference" "LS1"
 			(at -0.206 -0.063 0)
 			(layer "F.SilkS")
-			(uuid "0fc82014-592a-450b-8a41-a0cba1a1eab3")
+			(uuid "1f9a6db6-8111-4fbc-a01b-94092ff16821")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7922,7 +7922,7 @@
 			(at -0.206 -0.063 0)
 			(layer "F.SilkS")
 			(hide yes)
-			(uuid "523939f8-8c0d-4c86-a05f-ff7c2cf8e862")
+			(uuid "9b5e28e0-6f10-41a3-a8ca-1baaa7581a3c")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7934,7 +7934,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2723ecdd-dbe6-498c-af83-07f8ffb9b709")
+			(uuid "0c46ed0a-118d-4afe-b53a-15ca90b7d385")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7946,7 +7946,7 @@
 			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "99006c6b-7072-4bbc-88b3-3c68dd274651")
+			(uuid "d1d8248f-a410-4093-bcb2-a3b868778ea0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -9716,7 +9716,7 @@
 	(footprint "kitchen_timer:MMBT3904 (SOT-23)"
 		(layer "F.Cu")
 		(uuid "40602775-9f8b-464c-a237-05b4797a764d")
-		(at 173.3493 99.804745)
+		(at 169.7736 99.3648)
 		(descr "SOT, 3 Pin (JEDEC TO-236 Var AB https://www.jedec.org/document_search?search_api_views_fulltext=TO-236), generated with kicad-footprint-generator ipc_gullwing_generator.py")
 		(tags "SOT TO_SOT_SMD")
 		(property "Reference" "Q3"
@@ -12801,13 +12801,13 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "5b8597d5-7a5a-4f94-bf86-ff94f7feabb3")
-		(at 139.761125 80.831 180)
+		(at 143.445325 85.52975)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R7"
 			(at 0 1.524 0)
 			(layer "F.SilkS")
-			(uuid "872c68d3-531b-4806-9219-f957de036398")
+			(uuid "4602a389-13ba-4414-bddb-259cd8271c06")
 			(effects
 				(font
 					(size 1 1)
@@ -12818,7 +12818,7 @@
 		(property "Value" "1k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
-			(uuid "a5b4d2ec-31c4-4264-8ed7-c90d1f03bea7")
+			(uuid "68e3a99f-e609-44bc-8bd8-5be831b93ab3")
 			(effects
 				(font
 					(size 1 1)
@@ -12827,11 +12827,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706499683172352"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "33d43db0-c1ba-4fb3-b392-2c189063e354")
+			(uuid "990b58c0-e5eb-44f8-872f-f42cb679b7b0")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12840,11 +12840,11 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "50a18112-46c5-4db2-bc5b-0df0acb501cf")
+			(uuid "f230aa8f-4404-45ea-b3c5-d4d9139d3141")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -12853,7 +12853,7 @@
 			)
 		)
 		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12866,7 +12866,7 @@
 			)
 		)
 		(property "Manuf. Part #" "0805W8F1001T5E"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12879,7 +12879,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12892,7 +12892,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/18201-0805W8F1001T5E/C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12905,7 +12905,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12918,7 +12918,7 @@
 			)
 		)
 		(property "Supplier Part #" "C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12931,7 +12931,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "$0.0017"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12944,7 +12944,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12957,7 +12957,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12970,7 +12970,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -12983,7 +12983,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13001,16 +13001,6 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -0.227064 0.735)
-			(end 0.227064 0.735)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "e6008774-f458-47cb-91dc-e9fc7238578b")
-		)
-		(fp_line
 			(start -0.227064 -0.735)
 			(end 0.227064 -0.735)
 			(stroke
@@ -13021,34 +13011,14 @@
 			(uuid "8c2b45da-7ea0-4c38-8cd6-e52416a9e3bf")
 		)
 		(fp_line
-			(start 1.85 0.95)
-			(end -1.85 0.95)
+			(start -0.227064 0.735)
+			(end 0.227064 0.735)
 			(stroke
-				(width 0.05)
+				(width 0.12)
 				(type solid)
 			)
-			(layer "F.CrtYd")
-			(uuid "f02fef61-e6ba-4ec2-94e9-a2f14e4dfcf8")
-		)
-		(fp_line
-			(start 1.85 -0.95)
-			(end 1.85 0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "c344def5-3898-4356-b0a1-63410b5f7d11")
-		)
-		(fp_line
-			(start -1.85 0.95)
-			(end -1.85 -0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "2eef4ff1-41e2-49c5-be57-85bdfde67bc7")
+			(layer "F.SilkS")
+			(uuid "e6008774-f458-47cb-91dc-e9fc7238578b")
 		)
 		(fp_line
 			(start -1.85 -0.95)
@@ -13061,24 +13031,44 @@
 			(uuid "55d69b6e-f0ed-48cf-8aad-f152b9adcb4c")
 		)
 		(fp_line
-			(start 1 0.625)
-			(end -1 0.625)
+			(start -1.85 0.95)
+			(end -1.85 -0.95)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "3d7a3605-402f-4efb-a008-c5919bc3a255")
+			(layer "F.CrtYd")
+			(uuid "2eef4ff1-41e2-49c5-be57-85bdfde67bc7")
 		)
 		(fp_line
-			(start 1 -0.625)
-			(end 1 0.625)
+			(start 1.85 -0.95)
+			(end 1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "c344def5-3898-4356-b0a1-63410b5f7d11")
+		)
+		(fp_line
+			(start 1.85 0.95)
+			(end -1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "f02fef61-e6ba-4ec2-94e9-a2f14e4dfcf8")
+		)
+		(fp_line
+			(start -1 -0.625)
+			(end 1 -0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "df9cc756-2bce-4460-88a7-4b48abcf82d0")
+			(uuid "7c87ae6f-4312-44e2-930f-803b1522fbb1")
 		)
 		(fp_line
 			(start -1 0.625)
@@ -13091,14 +13081,24 @@
 			(uuid "46a4daad-8718-41fb-8e4e-6ee220da1622")
 		)
 		(fp_line
-			(start -1 -0.625)
-			(end 1 -0.625)
+			(start 1 -0.625)
+			(end 1 0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "7c87ae6f-4312-44e2-930f-803b1522fbb1")
+			(uuid "df9cc756-2bce-4460-88a7-4b48abcf82d0")
+		)
+		(fp_line
+			(start 1 0.625)
+			(end -1 0.625)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "3d7a3605-402f-4efb-a008-c5919bc3a255")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -13112,7 +13112,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1 0 180)
+			(at -1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -13121,7 +13121,7 @@
 			(uuid "b3b43032-d614-4b52-af8c-1dd6b30fbfe8")
 		)
 		(pad "2" smd roundrect
-			(at 1 0 180)
+			(at 1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -13740,13 +13740,13 @@
 	(footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "64b95f4f-407e-4e4b-bbce-6ecfa4b991ec")
-		(at 143.950125 87.181)
+		(at 139.256325 79.17975 180)
 		(descr "LED SMD 0603 (1608 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: http://www.tortai-tech.com/upload/download/2011102023233369053.pdf), generated with kicad-footprint-generator")
 		(tags "LED handsolder")
 		(property "Reference" "D5"
 			(at 0 -1.43 0)
 			(layer "F.SilkS")
-			(uuid "e2a836c3-2cf8-45bd-965b-2d56ea7fc937")
+			(uuid "193f5dc5-a3a2-4733-a0b7-df8d97d420e8")
 			(effects
 				(font
 					(size 1 1)
@@ -13757,7 +13757,7 @@
 		(property "Value" "Red test LED"
 			(at 0 1.43 0)
 			(layer "F.Fab")
-			(uuid "e236cc96-cb6c-44ee-b1b1-d98138448786")
+			(uuid "6ad05c03-a000-442a-9323-a240824cef42")
 			(effects
 				(font
 					(size 1 1)
@@ -13766,11 +13766,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8588941076506030080"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e698ac60-9d6a-46e7-9c57-54f69561cbf2")
+			(uuid "afcdb6d3-dbc7-4caf-8aff-7401b0d401ff")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13779,11 +13779,11 @@
 			)
 		)
 		(property "Description" "Light emitting diode, small symbol"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "2a530bec-a4fb-438b-89ec-172baf5d3881")
+			(uuid "9b25af55-073c-4856-979c-ae4ed42fb0bd")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -13792,7 +13792,7 @@
 			)
 		)
 		(property "Sim.Pin" "1=K 2=A"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13805,7 +13805,7 @@
 			)
 		)
 		(property "Manuf. Name" "XINGLIGHT"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13818,7 +13818,7 @@
 			)
 		)
 		(property "Manuf. Part #" " XL-1608SURC-06"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13831,7 +13831,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13844,7 +13844,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13857,7 +13857,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13870,7 +13870,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13883,7 +13883,7 @@
 			)
 		)
 		(property "Package" "0603_1608"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13896,7 +13896,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/Xinglight-XL_1608SURC06/C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13909,7 +13909,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13922,7 +13922,7 @@
 			)
 		)
 		(property "Supplier Part #" "C965799"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13935,7 +13935,7 @@
 			)
 		)
 		(property "Supplier Unit Price" " $0.0031"
-			(at 0 0 0)
+			(at 0 0 180)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -13953,14 +13953,14 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -1.66 -0.735)
-			(end -1.66 0.735)
+			(start 0.8 -0.735)
+			(end -1.66 -0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "162bade1-de76-458d-925b-521fde287d50")
+			(uuid "014beda4-80db-49b9-86b4-e012f5215f48")
 		)
 		(fp_line
 			(start -1.66 0.735)
@@ -13973,44 +13973,14 @@
 			(uuid "f529c675-7d3a-4182-9a0b-34fdc8edf223")
 		)
 		(fp_line
-			(start 0.8 -0.735)
-			(end -1.66 -0.735)
+			(start -1.66 -0.735)
+			(end -1.66 0.735)
 			(stroke
 				(width 0.12)
 				(type solid)
 			)
 			(layer "F.SilkS")
-			(uuid "014beda4-80db-49b9-86b4-e012f5215f48")
-		)
-		(fp_line
-			(start -1.65 -0.73)
-			(end 1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "f5b3cd99-e41c-484c-9d4b-70ed6eea3339")
-		)
-		(fp_line
-			(start -1.65 0.73)
-			(end -1.65 -0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "8648dd5c-6ff4-46f5-953c-8231fe1f5cca")
-		)
-		(fp_line
-			(start 1.65 -0.73)
-			(end 1.65 0.73)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "a56bb1e3-d33b-48b3-94e3-6c6de60cc1ef")
+			(uuid "162bade1-de76-458d-925b-521fde287d50")
 		)
 		(fp_line
 			(start 1.65 0.73)
@@ -14023,34 +13993,44 @@
 			(uuid "cabb94ee-74cd-4736-a384-9282ad500577")
 		)
 		(fp_line
-			(start -0.8 -0.1)
-			(end -0.8 0.4)
+			(start 1.65 -0.73)
+			(end 1.65 0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "a7a61b3b-17e0-4df3-8dd2-dbf50b1d286e")
+			(layer "F.CrtYd")
+			(uuid "a56bb1e3-d33b-48b3-94e3-6c6de60cc1ef")
 		)
 		(fp_line
-			(start -0.8 0.4)
-			(end 0.8 0.4)
+			(start -1.65 0.73)
+			(end -1.65 -0.73)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "97ba37c0-31a2-44d1-8c34-50f4dfc0343c")
+			(layer "F.CrtYd")
+			(uuid "8648dd5c-6ff4-46f5-953c-8231fe1f5cca")
 		)
 		(fp_line
-			(start -0.5 -0.4)
-			(end -0.8 -0.1)
+			(start -1.65 -0.73)
+			(end 1.65 -0.73)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "f5b3cd99-e41c-484c-9d4b-70ed6eea3339")
+		)
+		(fp_line
+			(start 0.8 0.4)
+			(end 0.8 -0.4)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "eafaaed1-4ad1-4235-be9d-f21fe26a5e9e")
+			(uuid "3fb1ea29-8661-47b2-8cd2-91955b2032c2")
 		)
 		(fp_line
 			(start 0.8 -0.4)
@@ -14063,14 +14043,34 @@
 			(uuid "d3b68076-44db-4660-90d1-1b628fe8af10")
 		)
 		(fp_line
-			(start 0.8 0.4)
-			(end 0.8 -0.4)
+			(start -0.5 -0.4)
+			(end -0.8 -0.1)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "3fb1ea29-8661-47b2-8cd2-91955b2032c2")
+			(uuid "eafaaed1-4ad1-4235-be9d-f21fe26a5e9e")
+		)
+		(fp_line
+			(start -0.8 0.4)
+			(end 0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "97ba37c0-31a2-44d1-8c34-50f4dfc0343c")
+		)
+		(fp_line
+			(start -0.8 -0.1)
+			(end -0.8 0.4)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "a7a61b3b-17e0-4df3-8dd2-dbf50b1d286e")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -14084,7 +14084,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -0.875 0)
+			(at -0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -14094,7 +14094,7 @@
 			(uuid "28d26897-6ab1-4c49-9938-24a1c21c481f")
 		)
 		(pad "2" smd roundrect
-			(at 0.875 0)
+			(at 0.875 0 180)
 			(size 1.05 0.95)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.25)
@@ -14820,13 +14820,13 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "7bea3975-21fc-4e89-9993-092d7d594cea")
-		(at 139.761125 84.006 180)
+		(at 143.445325 82.35475)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R9"
 			(at 0 1.524 0)
 			(layer "F.SilkS")
-			(uuid "b50cc9df-7368-42b0-89e6-52f6189b25ca")
+			(uuid "993a8846-f56b-469b-aae3-bd5fe29f8a8e")
 			(effects
 				(font
 					(size 1 1)
@@ -14837,7 +14837,7 @@
 		(property "Value" "1k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
-			(uuid "8670ccfe-2e9e-4caa-89ea-ac4e9f3c8619")
+			(uuid "e543a555-452b-4c17-bbb3-f25198792afe")
 			(effects
 				(font
 					(size 1 1)
@@ -14846,11 +14846,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706499683172352"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "9763911a-c6e2-4b99-affb-3c0f60c812da")
+			(uuid "d46de9fb-2042-4b0e-b0f7-9b8215d8bcee")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14859,11 +14859,11 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "94136a4b-4f65-48dd-9246-c8329cca7b86")
+			(uuid "ea1cb3ca-ad2a-43bd-9759-16715a14f2bb")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -14872,7 +14872,7 @@
 			)
 		)
 		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14885,7 +14885,7 @@
 			)
 		)
 		(property "Manuf. Part #" "0805W8F1001T5E"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14898,7 +14898,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14911,7 +14911,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/18201-0805W8F1001T5E/C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14924,7 +14924,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14937,7 +14937,7 @@
 			)
 		)
 		(property "Supplier Part #" "C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14950,7 +14950,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "$0.0017"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14963,7 +14963,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14976,7 +14976,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -14989,7 +14989,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -15002,7 +15002,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -15020,16 +15020,6 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -0.227064 0.735)
-			(end 0.227064 0.735)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "998f063f-6ca2-4b8d-8bb0-82d8228df117")
-		)
-		(fp_line
 			(start -0.227064 -0.735)
 			(end 0.227064 -0.735)
 			(stroke
@@ -15040,34 +15030,14 @@
 			(uuid "ad5a0f0c-c3cf-41ad-9a48-c2850e91643a")
 		)
 		(fp_line
-			(start 1.85 0.95)
-			(end -1.85 0.95)
+			(start -0.227064 0.735)
+			(end 0.227064 0.735)
 			(stroke
-				(width 0.05)
+				(width 0.12)
 				(type solid)
 			)
-			(layer "F.CrtYd")
-			(uuid "29b8d693-4694-4484-88d7-97d6267af6d1")
-		)
-		(fp_line
-			(start 1.85 -0.95)
-			(end 1.85 0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "8d65e419-e4de-4385-af3f-282b6a6f8d84")
-		)
-		(fp_line
-			(start -1.85 0.95)
-			(end -1.85 -0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "54072419-ce4e-41bb-b2b5-21ff839942ca")
+			(layer "F.SilkS")
+			(uuid "998f063f-6ca2-4b8d-8bb0-82d8228df117")
 		)
 		(fp_line
 			(start -1.85 -0.95)
@@ -15080,24 +15050,44 @@
 			(uuid "0b05eab3-b4d9-46d6-83e7-c821abcf1b01")
 		)
 		(fp_line
-			(start 1 0.625)
-			(end -1 0.625)
+			(start -1.85 0.95)
+			(end -1.85 -0.95)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "5fec42cb-edd7-487b-a8a6-6a2fd0b3f92b")
+			(layer "F.CrtYd")
+			(uuid "54072419-ce4e-41bb-b2b5-21ff839942ca")
 		)
 		(fp_line
-			(start 1 -0.625)
-			(end 1 0.625)
+			(start 1.85 -0.95)
+			(end 1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "8d65e419-e4de-4385-af3f-282b6a6f8d84")
+		)
+		(fp_line
+			(start 1.85 0.95)
+			(end -1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "29b8d693-4694-4484-88d7-97d6267af6d1")
+		)
+		(fp_line
+			(start -1 -0.625)
+			(end 1 -0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "a96d2c66-cf07-4304-a32a-1fcb11def154")
+			(uuid "b5d1ee7c-757e-4f25-9166-bc40bd493270")
 		)
 		(fp_line
 			(start -1 0.625)
@@ -15110,14 +15100,24 @@
 			(uuid "f850531d-af75-4c9c-8555-be6e381459c5")
 		)
 		(fp_line
-			(start -1 -0.625)
-			(end 1 -0.625)
+			(start 1 -0.625)
+			(end 1 0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "b5d1ee7c-757e-4f25-9166-bc40bd493270")
+			(uuid "a96d2c66-cf07-4304-a32a-1fcb11def154")
+		)
+		(fp_line
+			(start 1 0.625)
+			(end -1 0.625)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "5fec42cb-edd7-487b-a8a6-6a2fd0b3f92b")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -15131,7 +15131,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1 0 180)
+			(at -1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -15140,7 +15140,7 @@
 			(uuid "25309ae2-f6e6-4ccb-8ebb-4d0f053b8153")
 		)
 		(pad "2" smd roundrect
-			(at 1 0 180)
+			(at 1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -20541,13 +20541,13 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "adeae816-8e39-46c5-b058-9d381c17256b")
-		(at 139.761125 87.181 180)
+		(at 143.445325 79.17975)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R10"
 			(at 0 1.524 0)
 			(layer "F.SilkS")
-			(uuid "c87e0278-431f-4174-a7b4-f067ecccd457")
+			(uuid "5fde6751-26cd-4a75-9fc4-bfef7ab5c76c")
 			(effects
 				(font
 					(size 1 1)
@@ -20558,7 +20558,7 @@
 		(property "Value" "1k"
 			(at 0 1.65 0)
 			(layer "F.Fab")
-			(uuid "602ff45d-8d98-4450-8bce-24bf7bae7530")
+			(uuid "e1a2ea2b-e5b8-43d2-a989-13f1544e7294")
 			(effects
 				(font
 					(size 1 1)
@@ -20567,11 +20567,11 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8579706499683172352"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "e2d72528-3c45-4727-b4ce-a88ee2eeffa4")
+			(uuid "b9c987ab-4d1d-48bc-9d54-34131b200fbe")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20580,11 +20580,11 @@
 			)
 		)
 		(property "Description" "Resistor, small symbol"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
-			(uuid "687bba85-6c7d-4f5f-bb86-d0e57013a329")
+			(uuid "ce2c6dcf-6437-495d-a14f-6cb645ce0285")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -20593,7 +20593,7 @@
 			)
 		)
 		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20606,7 +20606,7 @@
 			)
 		)
 		(property "Manuf. Part #" "0805W8F1001T5E"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20619,7 +20619,7 @@
 			)
 		)
 		(property "Package" "0805"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20632,7 +20632,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/18201-0805W8F1001T5E/C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20645,7 +20645,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20658,7 +20658,7 @@
 			)
 		)
 		(property "Supplier Part #" "C17513"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20671,7 +20671,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "$0.0017"
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20684,7 +20684,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20697,7 +20697,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20710,7 +20710,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20723,7 +20723,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 0 0 180)
+			(at 0 0 0)
 			(unlocked yes)
 			(layer "F.Fab")
 			(hide yes)
@@ -20741,16 +20741,6 @@
 		(sheetfile "microcontroller.kicad_sch")
 		(attr smd)
 		(fp_line
-			(start -0.227064 0.735)
-			(end 0.227064 0.735)
-			(stroke
-				(width 0.12)
-				(type solid)
-			)
-			(layer "F.SilkS")
-			(uuid "b9082a79-05f1-4e4f-9770-76838137516d")
-		)
-		(fp_line
 			(start -0.227064 -0.735)
 			(end 0.227064 -0.735)
 			(stroke
@@ -20761,34 +20751,14 @@
 			(uuid "85ddf91a-469f-4a7c-a095-1531c30ef094")
 		)
 		(fp_line
-			(start 1.85 0.95)
-			(end -1.85 0.95)
+			(start -0.227064 0.735)
+			(end 0.227064 0.735)
 			(stroke
-				(width 0.05)
+				(width 0.12)
 				(type solid)
 			)
-			(layer "F.CrtYd")
-			(uuid "cba863a2-18db-45ef-bea6-b73c9459114f")
-		)
-		(fp_line
-			(start 1.85 -0.95)
-			(end 1.85 0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "12fe81a5-ae09-4329-93e4-31afe92c06f8")
-		)
-		(fp_line
-			(start -1.85 0.95)
-			(end -1.85 -0.95)
-			(stroke
-				(width 0.05)
-				(type solid)
-			)
-			(layer "F.CrtYd")
-			(uuid "f4b75284-6f53-4a10-9a29-2a1a9ffbeca5")
+			(layer "F.SilkS")
+			(uuid "b9082a79-05f1-4e4f-9770-76838137516d")
 		)
 		(fp_line
 			(start -1.85 -0.95)
@@ -20801,24 +20771,44 @@
 			(uuid "5a1d6833-0e03-4d5e-b9ea-77bc974435c6")
 		)
 		(fp_line
-			(start 1 0.625)
-			(end -1 0.625)
+			(start -1.85 0.95)
+			(end -1.85 -0.95)
 			(stroke
-				(width 0.1)
+				(width 0.05)
 				(type solid)
 			)
-			(layer "F.Fab")
-			(uuid "411debe6-9cb1-4575-ac03-9448a7cf617c")
+			(layer "F.CrtYd")
+			(uuid "f4b75284-6f53-4a10-9a29-2a1a9ffbeca5")
 		)
 		(fp_line
-			(start 1 -0.625)
-			(end 1 0.625)
+			(start 1.85 -0.95)
+			(end 1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "12fe81a5-ae09-4329-93e4-31afe92c06f8")
+		)
+		(fp_line
+			(start 1.85 0.95)
+			(end -1.85 0.95)
+			(stroke
+				(width 0.05)
+				(type solid)
+			)
+			(layer "F.CrtYd")
+			(uuid "cba863a2-18db-45ef-bea6-b73c9459114f")
+		)
+		(fp_line
+			(start -1 -0.625)
+			(end 1 -0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "d6ed08f3-5534-4879-8d7b-9ec23ae3f7cb")
+			(uuid "e3d4370d-c635-46ee-993c-109d2cbd4693")
 		)
 		(fp_line
 			(start -1 0.625)
@@ -20831,14 +20821,24 @@
 			(uuid "24228a72-b27f-4f5e-a78f-fe2ff59b88e0")
 		)
 		(fp_line
-			(start -1 -0.625)
-			(end 1 -0.625)
+			(start 1 -0.625)
+			(end 1 0.625)
 			(stroke
 				(width 0.1)
 				(type solid)
 			)
 			(layer "F.Fab")
-			(uuid "e3d4370d-c635-46ee-993c-109d2cbd4693")
+			(uuid "d6ed08f3-5534-4879-8d7b-9ec23ae3f7cb")
+		)
+		(fp_line
+			(start 1 0.625)
+			(end -1 0.625)
+			(stroke
+				(width 0.1)
+				(type solid)
+			)
+			(layer "F.Fab")
+			(uuid "411debe6-9cb1-4575-ac03-9448a7cf617c")
 		)
 		(fp_text user "${REFERENCE}"
 			(at 0 0 0)
@@ -20852,7 +20852,7 @@
 			)
 		)
 		(pad "1" smd roundrect
-			(at -1 0 180)
+			(at -1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -20861,7 +20861,7 @@
 			(uuid "ba427330-657e-40fc-bf54-5eab8ea65930")
 		)
 		(pad "2" smd roundrect
-			(at 1 0 180)
+			(at 1 0)
 			(size 1.2 1.4)
 			(layers "F.Cu" "F.Mask" "F.Paste")
 			(roundrect_rratio 0.208333)
@@ -21478,7 +21478,7 @@
 	(footprint "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
 		(layer "F.Cu")
 		(uuid "b296da48-d3e3-414a-a600-e1e2d01b1679")
-		(at 177.2868 100.304745 -90)
+		(at 167.4368 103.5812 -90)
 		(descr "Resistor SMD 0805 (2012 Metric), square (rectangular) end terminal, IPC_7351 nominal with elongated pad for handsoldering. (Body size source: IPC-SM-782 page 72, https://www.pcb-3d.com/wordpress/wp-content/uploads/ipc-sm-782a_amendment_1_and_2.pdf), generated with kicad-footprint-generator")
 		(tags "resistor handsolder")
 		(property "Reference" "R16"
