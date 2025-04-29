@@ -586,142 +586,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Switch:SW_SPST"
-			(pin_names
-				(offset 0)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "SW"
-				(at 0 3.175 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "SW_SPST"
-				(at 0 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Single Pole Single Throw (SPST) switch"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "switch lever"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "SW_SPST_0_0"
-				(circle
-					(center -2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -1.524 0.254) (xy 1.524 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 2.032 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "SW_SPST_1_1"
-				(pin passive line
-					(at -5.08 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 5.08 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "kitchen_timer-symbols_lib:Sparkfun_LiPower-Boost_Converter"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -1214,7 +1078,7 @@
 	)
 	(rectangle
 		(start 20.574 61.722)
-		(end 76.454 113.284)
+		(end 76.454 94.234)
 		(stroke
 			(width 0)
 			(type dash)
@@ -1325,8 +1189,8 @@
 	)
 	(text_box "An external power switch will be connected to these pins.\nPreferably single pole, single thrust switch."
 		(exclude_from_sim no)
-		(at 28.956 101.854 0)
-		(size 19.558 9.906)
+		(at 23.876 87.884 0)
+		(size 49.784 9.906)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width -0.0001)
@@ -1529,16 +1393,6 @@
 			(type default)
 		)
 		(uuid "001fd197-5c63-4cc9-b2e9-4d810b5a2a29")
-	)
-	(wire
-		(pts
-			(xy 44.45 87.63) (xy 53.34 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "07a487b9-5e6e-42ee-97b2-2b3c022e3346")
 	)
 	(wire
 		(pts
@@ -1822,6 +1676,16 @@
 	)
 	(wire
 		(pts
+			(xy 43.18 82.55) (xy 43.18 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7e7d5fc2-a18a-409b-b2cc-2b70eef6b651")
+	)
+	(wire
+		(pts
 			(xy 171.45 127) (xy 171.45 134.62)
 		)
 		(stroke
@@ -1839,6 +1703,16 @@
 			(type default)
 		)
 		(uuid "8246be83-cae1-4d3d-9ff7-060a2599bf52")
+	)
+	(wire
+		(pts
+			(xy 43.18 85.09) (xy 71.12 85.09)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82c1cb19-4d9e-44f8-932e-820b2ad81d3f")
 	)
 	(wire
 		(pts
@@ -1942,16 +1816,6 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 80.01) (xy 73.66 80.01)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "ac703f30-e36a-4056-b0ae-80ad235283a1")
-	)
-	(wire
-		(pts
 			(xy 119.38 129.54) (xy 119.38 133.35)
 		)
 		(stroke
@@ -1962,13 +1826,13 @@
 	)
 	(wire
 		(pts
-			(xy 53.34 87.63) (xy 53.34 82.55)
+			(xy 39.37 80.01) (xy 43.18 80.01)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "ae90e993-2e9c-4406-a1c1-7f2cef9a7388")
+		(uuid "b4904ce2-ae31-4f1f-a874-29a7e53c6faa")
 	)
 	(wire
 		(pts
@@ -2032,16 +1896,6 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 87.63) (xy 34.29 87.63)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dbbe8a22-cc76-4efa-b804-793d36b61379")
-	)
-	(wire
-		(pts
 			(xy 194.31 135.89) (xy 194.31 143.51)
 		)
 		(stroke
@@ -2092,16 +1946,6 @@
 	)
 	(wire
 		(pts
-			(xy 52.07 82.55) (xy 53.34 82.55)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f3e7b9f1-1ea3-4365-93ab-b9359389fcae")
-	)
-	(wire
-		(pts
 			(xy 152.4 139.7) (xy 152.4 143.51)
 		)
 		(stroke
@@ -2131,7 +1975,7 @@
 		(uuid "d59ff1ca-bf22-4881-b7eb-a86ebf8c2dea")
 	)
 	(label "PP_VCC_after_switch"
-		(at 73.66 80.01 180)
+		(at 71.12 85.09 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2197,14 +2041,14 @@
 	)
 	(hierarchical_label "PP_VCC"
 		(shape input)
-		(at 31.75 87.63 180)
+		(at 39.37 80.01 180)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify right)
 		)
-		(uuid "4d80b714-c6e0-48de-88e8-d0820816245c")
+		(uuid "581811dd-32ae-44ea-98de-adc757787599")
 	)
 	(hierarchical_label "${VCC}"
 		(shape output)
@@ -2409,7 +2253,7 @@
 	)
 	(symbol
 		(lib_id "Connector_Generic:Conn_01x02")
-		(at 46.99 82.55 180)
+		(at 48.26 80.01 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -2417,7 +2261,7 @@
 		(dnp no)
 		(uuid "1bcbe781-38bb-4188-a452-2c4d8ecf625b")
 		(property "Reference" "J2"
-			(at 46.736 85.598 0)
+			(at 48.514 76.962 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2425,7 +2269,7 @@
 			)
 		)
 		(property "Value" "Conn_01x02_Pin"
-			(at 39.878 77.216 0)
+			(at 55.372 85.344 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2434,7 +2278,7 @@
 			)
 		)
 		(property "Footprint" "kitchen_timer:JST_XH_1x02_P2.54mm_Vertical"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2443,7 +2287,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2452,7 +2296,7 @@
 			)
 		)
 		(property "Description" "Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2461,7 +2305,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2470,7 +2314,7 @@
 			)
 		)
 		(property "Part Num" ""
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2479,7 +2323,7 @@
 			)
 		)
 		(property "Package" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2488,7 +2332,7 @@
 			)
 		)
 		(property "Manuf. Name" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2497,7 +2341,7 @@
 			)
 		)
 		(property "Manuf. Part #" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2506,7 +2350,7 @@
 			)
 		)
 		(property "Supplier Name" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2515,7 +2359,7 @@
 			)
 		)
 		(property "Supplier Part #" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2524,7 +2368,7 @@
 			)
 		)
 		(property "Supplier Link" "~"
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2533,7 +2377,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2542,7 +2386,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2551,7 +2395,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -2560,7 +2404,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 46.99 82.55 0)
+			(at 48.26 80.01 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3587,182 +3431,6 @@
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/8d96c6df-7eb2-480a-982a-3dd8886e54b6"
 					(reference "R3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Switch:SW_SPST")
-		(at 39.37 87.63 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom no)
-		(on_board no)
-		(dnp no)
-		(uuid "95d81c72-82e0-4888-b070-a8c838310c30")
-		(property "Reference" "SW1"
-			(at 39.37 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "~"
-			(at 39.37 83.82 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Footprint" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Single Pole Single Throw (SPST) switch"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Unit Price" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Part Num" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Name" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manuf. Part #" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Name" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Part #" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Supplier Link" "~"
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Name" ""
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer_Part_Number" ""
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Part Number" ""
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Mouser Price/Stock" ""
-			(at 39.37 87.63 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "42b357b1-48ad-4b60-828c-af49d67a7672")
-		)
-		(pin "2"
-			(uuid "dcf733b9-52b3-48d3-8f31-f3d9b9f9d30d")
-		)
-		(instances
-			(project ""
-				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/8d96c6df-7eb2-480a-982a-3dd8886e54b6"
-					(reference "SW1")
 					(unit 1)
 				)
 			)
