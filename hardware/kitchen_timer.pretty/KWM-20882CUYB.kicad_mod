@@ -1,7 +1,7 @@
 (footprint "KWM-20882CUYB"
-	(version 20240108)
+	(version 20241229)
 	(generator "pcbnew")
-	(generator_version "8.0")
+	(generator_version "9.0")
 	(layer "F.Cu")
 	(property "Reference" "REF**"
 		(at 7.62 -5.334 0)
@@ -21,18 +21,6 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
-			)
-		)
-	)
-	(property "Footprint" ""
-		(at 9 -7.6 0)
-		(layer "F.Fab")
-		(hide yes)
-		(uuid "c71d3091-7fff-48e2-8568-eaf0608fb62b")
-		(effects
-			(font
-				(size 1.27 1.27)
 				(thickness 0.15)
 			)
 		)
@@ -149,7 +137,7 @@
 			(width 0.2)
 			(type solid)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.SilkS")
 		(uuid "8a810f6a-6464-4428-8b22-1661b18062dd")
 	)
@@ -160,7 +148,7 @@
 			(width 0.05)
 			(type dash)
 		)
-		(fill none)
+		(fill no)
 		(layer "Cmts.User")
 		(uuid "8bd4d730-404f-48cc-a0df-395235353f24")
 	)
@@ -171,7 +159,7 @@
 			(width 0.05)
 			(type default)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.CrtYd")
 		(uuid "84f3322e-a75a-47a5-8d25-92f0fb76d4e8")
 	)
@@ -262,7 +250,7 @@
 			(width 0.2)
 			(type solid)
 		)
-		(fill none)
+		(fill no)
 		(layer "F.Fab")
 		(uuid "4609fc1b-6df6-49b9-b7fa-a88d31a3b563")
 	)
@@ -410,29 +398,8 @@
 		(solder_mask_margin 0.102)
 		(uuid "e56efd84-e702-46e9-8e00-ac65ff8d55f3")
 	)
-	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/SS-108-TT-2.stp"
-		(offset
-			(xyz 0 7.6 0)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz -90 0 0)
-		)
-	)
-	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/SS-108-TT-2.stp"
-		(offset
-			(xyz 0 -7.4 0)
-		)
-		(scale
-			(xyz 1 1 1)
-		)
-		(rotate
-			(xyz -90 0 0)
-		)
-	)
-	(model "${KICAD8_FOOTPRINT_DIR}/Project-kitchen_timer.pretty/8x8_dot_matrix.step"
+	(embedded_fonts no)
+	(model "${KIPRJMOD}/kitchen_timer.pretty/8x8_dot_matrix.step"
 		(offset
 			(xyz 0.01 0.05 0)
 		)

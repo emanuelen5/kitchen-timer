@@ -95,50 +95,6 @@
 		(layer "F.SilkS")
 		(uuid "d1fb5330-702e-497b-821a-2d24f8bebe0a")
 	)
-	(fp_circle
-		(center 2 -14.8)
-		(end 3 -14.8)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "451c9622-ce2d-4df7-b0bb-91ed03af2d5d")
-	)
-	(fp_circle
-		(center 2 -1.6)
-		(end 3 -1.6)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "44ce01c5-4883-4728-93d0-785b7d1adbc7")
-	)
-	(fp_circle
-		(center 13 -14.8)
-		(end 14 -14.8)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "61b59598-fec6-4ae7-afe3-50883fc459d0")
-	)
-	(fp_circle
-		(center 13 -1.6)
-		(end 14 -1.6)
-		(stroke
-			(width 0.05)
-			(type default)
-		)
-		(fill no)
-		(layer "Edge.Cuts")
-		(uuid "3a128359-e0ec-4e8e-a81d-1c2632c72621")
-	)
 	(fp_rect
 		(start 18.5 0.5)
 		(end -0.5 -16.9)
