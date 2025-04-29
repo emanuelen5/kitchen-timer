@@ -164,15 +164,15 @@
 		(uuid "9f42e93f-1dbd-4b28-bb80-556bc96bd00e")
 	)
 	(embedded_fonts no)
-	(model "${KICAD9_3DMODEL_DIR}/Connector_JST.3dshapes/JST_XH_B2B-XH-AM_1x02_P2.50mm_Vertical.wrl"
+	(model "${KIPRJMOD}/kitchen_timer.pretty/JST_XH_1x02_P2.50mm_Vertical.STEP"
 		(offset
-			(xyz -1.524 0.762 0)
+			(xyz 3.676 2.792 0)
 		)
 		(scale
 			(xyz 1 1 1)
 		)
 		(rotate
-			(xyz 0 0 0)
+			(xyz -90 -0 -0)
 		)
 	)
 )
