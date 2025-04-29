@@ -2886,6 +2886,7 @@
 		)
 		(embedded_fonts no)
 		(model "${KICAD9_3DMODEL_DIR}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_2x03_P2.54mm_Vertical.wrl"
+			(hide yes)
 			(offset
 				(xyz 0 0 0)
 			)
@@ -8139,7 +8140,7 @@
 		(path "/cc0cdeb4-aa65-40c1-8591-40f3174b886f/205bd12d-905a-4334-961a-17bb2bab4976")
 		(sheetname "/Piezo Speaker/")
 		(sheetfile "piezo_speaker.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_circle
 			(center -0.228 -6.861)
 			(end -0.228 -6.81091)
@@ -18526,7 +18527,7 @@
 		(path "/0bd8e23b-f1a8-43a7-9e7f-c29366033bda/ac76d99f-0ef7-4f0b-8397-e71024c1759e")
 		(sheetname "/Rotary Encoder/")
 		(sheetfile "rotary_encoder.kicad_sch")
-		(attr through_hole dnp)
+		(attr through_hole)
 		(fp_line
 			(start -3.75 0.3)
 			(end -3.75 4.4)
