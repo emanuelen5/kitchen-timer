@@ -114,7 +114,7 @@
 		(uuid "9ef41144-348e-43fb-9d5b-8a9d0341760f")
 	)
 	(embedded_fonts no)
-	(model "${KIPRJMOD}/kitchen_timer.pretty/PS1240P02CT3.stp"
+	(model "${KIPRJMOD}/kitchen_timer.pretty/PS1240P02CT3.step"
 		(offset
 			(xyz 0 0 3.99999994)
 		)
