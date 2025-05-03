@@ -4,7 +4,7 @@
 	(generator_version "9.0")
 	(layer "F.Cu")
 	(descr "BMS Module")
-	(property "Reference" "U1"
+	(property "Reference" "RDF**"
 		(at -11.176 9.652 0)
 		(layer "F.SilkS")
 		(hide yes)
@@ -12,7 +12,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -23,7 +23,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -51,7 +51,7 @@
 			)
 		)
 	)
-	(attr through_hole)
+	(attr smd)
 	(fp_line
 		(start -13 -8.6)
 		(end 13 -8.6)
@@ -141,7 +141,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 			(justify left bottom)
 		)

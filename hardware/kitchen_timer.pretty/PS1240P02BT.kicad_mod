@@ -77,6 +77,17 @@
 	)
 	(fp_circle
 		(center 0 0)
+		(end -3.048 -5.588)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "86e6c7ca-16bf-4155-95b2-0ce1b7cdfadc")
+	)
+	(fp_circle
+		(center 0 0)
 		(end 0 6.1)
 		(stroke
 			(width 0.254)

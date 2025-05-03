@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.195,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.2032
         }
       },
       "diff_pair_dimensions": [
@@ -68,7 +68,7 @@
         "connection_width": "error",
         "copper_edge_clearance": "error",
         "copper_sliver": "error",
-        "courtyards_overlap": "warning",
+        "courtyards_overlap": "ignore",
         "creepage": "error",
         "diff_pair_gap_out_of_range": "error",
         "diff_pair_uncoupled_length_too_long": "error",
@@ -190,7 +190,7 @@
       "track_widths": [
         0.0,
         0.254,
-        0.762
+        0.635
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {

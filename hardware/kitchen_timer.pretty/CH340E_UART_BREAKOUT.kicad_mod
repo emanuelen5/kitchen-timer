@@ -11,7 +11,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -23,7 +23,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -53,7 +53,7 @@
 			)
 		)
 	)
-	(attr through_hole)
+	(attr smd)
 	(fp_line
 		(start 0 -4.764)
 		(end 7.5716 -4.764)
@@ -114,7 +114,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -126,7 +126,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -138,7 +138,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -150,7 +150,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 			(justify right)
 		)
@@ -163,7 +163,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -175,7 +175,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -187,7 +187,7 @@
 		(effects
 			(font
 				(size 1 0.75)
-				(thickness 0.1)
+				(thickness 0.195072)
 			)
 		)
 	)
@@ -200,7 +200,7 @@
 		(effects
 			(font
 				(size 1 1)
-				(thickness 0.15)
+				(thickness 0.195072)
 			)
 		)
 	)
