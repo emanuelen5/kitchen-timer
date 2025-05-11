@@ -1121,7 +1121,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "SW"
 			(at 122.936 89.154 0)
 			(effects
 				(font
@@ -1278,7 +1278,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "GND"
 			(at 124.206 136.144 0)
 			(effects
 				(font
@@ -1435,7 +1435,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "GND"
 			(at 175.006 136.144 0)
 			(effects
 				(font
@@ -1592,7 +1592,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "TXD"
 			(at 61.976 48.514 0)
 			(effects
 				(font
@@ -1931,7 +1931,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "MOSI"
 			(at 173.736 47.244 0)
 			(effects
 				(font
@@ -2088,7 +2088,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "SCK"
 			(at 173.736 49.784 0)
 			(effects
 				(font
@@ -2591,7 +2591,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "+5V"
 			(at 175.006 132.334 0)
 			(effects
 				(font
@@ -2748,7 +2748,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "CH_B"
 			(at 122.936 84.074 0)
 			(effects
 				(font
@@ -3078,7 +3078,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "DTR"
 			(at 61.976 53.594 0)
 			(effects
 				(font
@@ -3235,7 +3235,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "CH_A"
 			(at 122.936 81.534 0)
 			(effects
 				(font
@@ -3565,7 +3565,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "PP_VCC"
 			(at 124.206 133.604 0)
 			(effects
 				(font
@@ -3895,7 +3895,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "RXD"
 			(at 61.976 51.054 0)
 			(effects
 				(font
@@ -4052,7 +4052,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "+5V-USB"
 			(at 55.626 63.754 0)
 			(effects
 				(font
@@ -4209,7 +4209,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "GND"
 			(at 55.626 66.294 0)
 			(effects
 				(font
@@ -4366,7 +4366,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "CS"
 			(at 173.736 52.324 0)
 			(effects
 				(font

@@ -2431,7 +2431,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "BAT+"
 			(at 119.126 108.204 0)
 			(effects
 				(font
@@ -2940,7 +2940,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint"
+		(property "Value" "BAT-"
 			(at 119.126 113.284 0)
 			(effects
 				(font
