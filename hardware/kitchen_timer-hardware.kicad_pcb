@@ -105,6 +105,7 @@
 			(psnegative no)
 			(psa4output no)
 			(plot_black_and_white yes)
+			(plotinvisibletext no)
 			(sketchpadsonfab no)
 			(plotpadnumbers no)
 			(hidednponfab no)
@@ -19441,6 +19442,7 @@
 		(property "Reference" "H7"
 			(at 0 -2.4936 0)
 			(layer "F.SilkS")
+			(hide yes)
 			(uuid "48dcb50a-0044-4c6d-8018-00d2f964fd0a")
 			(effects
 				(font
