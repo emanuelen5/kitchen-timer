@@ -2256,9 +2256,9 @@
 		(at 48.26 80.01 0)
 		(unit 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "1bcbe781-38bb-4188-a452-2c4d8ecf625b")
 		(property "Reference" "J2"
 			(at 48.514 76.962 0)
@@ -3611,7 +3611,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "c3038295-d982-40d3-b89b-7bdc9c2519d9")
 		(property "Reference" "U3"
 			(at 139.954 76.454 0)

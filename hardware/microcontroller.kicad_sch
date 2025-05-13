@@ -4038,7 +4038,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "211a69ee-a602-414b-94b0-a2396d827c90")
 		(property "Reference" "Y1"
@@ -4212,7 +4212,7 @@
 		(exclude_from_sim no)
 		(in_bom no)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(uuid "29ae6f92-d5e4-4655-bfb1-7e41c28771a6")
 		(property "Reference" "J3"
 			(at 31.242 62.738 0)
