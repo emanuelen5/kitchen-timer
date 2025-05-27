@@ -1,0 +1,1012 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "478e2552-482f-4b9c-b56a-e4466a6f9da1")
+	(paper "A4")
+	(title_block
+		(title "Kitchen Timer - ${SHEETNAME}")
+		(date "2025-03-15")
+		(rev "v01")
+		(comment 2 "creativecommons.org/licences/4.0/")
+		(comment 3 "Licence: CC BY 4.0")
+		(comment 4 "Author: Nicolas Perozzi")
+	)
+	(lib_symbols)
+	(text "${SHEETNAME}"
+		(exclude_from_sim no)
+		(at 16.256 21.336 0)
+		(effects
+			(font
+				(size 3.81 3.81)
+				(thickness 0.762)
+				(bold yes)
+			)
+			(justify left)
+		)
+		(uuid "60f23fac-deb2-4013-a622-872e13085529")
+	)
+	(text_box "Total Avg. Current Draw = 74.3 mA\nTotal Avg. Current Draw + 15% = 85.5 mA\nTotal Current Draw for 10hrs of operation = 855 mAh"
+		(exclude_from_sim no)
+		(at 18.796 125.476 0)
+		(size 95.885 12.065)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.2381)
+			)
+			(justify left top)
+		)
+		(uuid "49dd84ff-ce36-49b4-9d02-7acb252de80b")
+	)
+	(text_box "Calculation Description:\n\nWe sum the average current consumption of each component, apply the assumptions, and multiply for the number of hours under the assumption conditions.\n\nAssumptions:\n1) The device should run for 10hrs at the \"average current draw\".\n2) The 5V boost converter is 85% efficient.\n3) About the LED matrices:\n    a) 25% of LEDs in the matrices will be on simultaneously.\n    b) Vled = 2.5V so the LEDs current draw is 10mA per LED.\n    c) The scan limit is ⅛ (each LED is turned on one at a time in each row).\n    d) The duty cycle is ~50% (this determines the brightness).\n4) The UART debugger should only be powered when the USB is connected.\n\nCalculation:\n"
+		(exclude_from_sim no)
+		(at 17.78 29.21 0)
+		(size 102.87 57.15)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width -0.0001)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.905 1.905)
+				(thickness 0.2381)
+			)
+			(justify left top)
+		)
+		(uuid "9ab0292d-e59f-47db-b5a0-4ca3fd1b558e")
+	)
+	(table
+		(column_count 9)
+		(border
+			(external yes)
+			(header yes)
+			(stroke
+				(width 0.2)
+				(type solid)
+			)
+		)
+		(separators
+			(rows yes)
+			(cols yes)
+			(stroke
+				(width 0)
+				(type solid)
+			)
+		)
+		(column_widths 17.145 9.525 12.065 12.065 8.255 6.35 12.065 12.065 12.7)
+		(row_heights 8.255 5.715 5.08 3.81 3.175 3.81)
+		(cells
+			(table_cell "Component"
+				(exclude_from_sim no)
+				(at 19.05 90.678 0)
+				(size 17.145 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "4a25af72-6739-45d9-a938-0a6fd93dbdde")
+			)
+			(table_cell "Voltage (V)"
+				(exclude_from_sim no)
+				(at 36.195 90.678 0)
+				(size 9.525 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "bbbe3113-89a3-4659-be5c-b9d2ed736d08")
+			)
+			(table_cell "Avg Current Draw (mA)"
+				(exclude_from_sim no)
+				(at 45.72 90.678 0)
+				(size 12.065 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "a3848ad0-b9fa-4b02-9ae7-67ca5a6d958c")
+			)
+			(table_cell "Pick Current Draw (mA)"
+				(exclude_from_sim no)
+				(at 57.785 90.678 0)
+				(size 12.065 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "0ed1fbb3-b793-4d8d-8eaa-47ca1e16e47c")
+			)
+			(table_cell "Power Draw (mW)"
+				(exclude_from_sim no)
+				(at 69.85 90.678 0)
+				(size 8.255 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "60a2494a-d0a7-444b-a9ac-a671c43992ad")
+			)
+			(table_cell "Qty"
+				(exclude_from_sim no)
+				(at 78.105 90.678 0)
+				(size 6.35 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "b406be06-9f34-4ac5-9f50-d22dd5497960")
+			)
+			(table_cell "Total Avg Current Draw (mA)"
+				(exclude_from_sim no)
+				(at 84.455 90.678 0)
+				(size 12.065 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "f2f6165f-3722-4212-b3f8-72791270690c")
+			)
+			(table_cell "Total Pick Current (mA)"
+				(exclude_from_sim no)
+				(at 96.52 90.678 0)
+				(size 12.065 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "d42c9c9a-e9b0-4574-8b56-61e8fe12ba6d")
+			)
+			(table_cell "Total Power Draw (mW)"
+				(exclude_from_sim no)
+				(at 108.585 90.678 0)
+				(size 12.7 8.255)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "1b37dd95-fa79-46f5-b763-6e1928bd11e7")
+			)
+			(table_cell "MCU"
+				(exclude_from_sim no)
+				(at 19.05 98.933 0)
+				(size 17.145 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "8d284f9d-71ca-4a8d-9f18-3a7e8c4a0e44")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 36.195 98.933 0)
+				(size 9.525 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "e4496c65-ef2f-41c2-9706-2da469dce972")
+			)
+			(table_cell "0.3"
+				(exclude_from_sim no)
+				(at 45.72 98.933 0)
+				(size 12.065 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "04759237-921a-4d65-a958-1e68162a2d01")
+			)
+			(table_cell "0.5"
+				(exclude_from_sim no)
+				(at 57.785 98.933 0)
+				(size 12.065 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "9794e4e3-1329-4386-870a-f876f0a0e70e")
+			)
+			(table_cell "1.2"
+				(exclude_from_sim no)
+				(at 69.85 98.933 0)
+				(size 8.255 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "4400a7f3-015c-457f-bd9d-fbffde69ee04")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 78.105 98.933 0)
+				(size 6.35 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "0f087944-4a27-48f5-97ca-e225974aea0a")
+			)
+			(table_cell "0.3"
+				(exclude_from_sim no)
+				(at 84.455 98.933 0)
+				(size 12.065 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "04364e23-5c7f-4361-bacd-63fb52148f63")
+			)
+			(table_cell "0.5"
+				(exclude_from_sim no)
+				(at 96.52 98.933 0)
+				(size 12.065 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "c4a15082-a263-4f6a-8cb9-3924d84f8fcc")
+			)
+			(table_cell "1.2"
+				(exclude_from_sim no)
+				(at 108.585 98.933 0)
+				(size 12.7 5.715)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "dd28df82-2916-4817-8dd8-8469dab713aa")
+			)
+			(table_cell "Max7219"
+				(exclude_from_sim no)
+				(at 19.05 104.648 0)
+				(size 17.145 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "a97ac846-2d67-4dd0-9d27-51fd0bd1da4c")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 36.195 104.648 0)
+				(size 9.525 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "6768ac57-d6b8-4587-9d82-0b73b70a85d7")
+			)
+			(table_cell "8"
+				(exclude_from_sim no)
+				(at 45.72 104.648 0)
+				(size 12.065 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "8dd0e96a-a9f8-48c8-9e3d-e26cb8f68e00")
+			)
+			(table_cell "8"
+				(exclude_from_sim no)
+				(at 57.785 104.648 0)
+				(size 12.065 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "4552ab01-83b8-425d-823f-390ecc9b2cdd")
+			)
+			(table_cell "32"
+				(exclude_from_sim no)
+				(at 69.85 104.648 0)
+				(size 8.255 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "4ed3a0da-1a7f-4795-a705-fd2fa66720a6")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 78.105 104.648 0)
+				(size 6.35 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "0278a26b-8e78-440a-b2a1-6d3a66a006bf")
+			)
+			(table_cell "32"
+				(exclude_from_sim no)
+				(at 84.455 104.648 0)
+				(size 12.065 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "8c0de92e-41ec-4fbe-93fd-739de1be7478")
+			)
+			(table_cell "32"
+				(exclude_from_sim no)
+				(at 96.52 104.648 0)
+				(size 12.065 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "79921f91-d5b6-4b3f-899e-478a03452e0c")
+			)
+			(table_cell "128"
+				(exclude_from_sim no)
+				(at 108.585 104.648 0)
+				(size 12.7 5.08)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "36d8f404-6af1-4b5b-a089-1c18a566da65")
+			)
+			(table_cell "LED Matrix"
+				(exclude_from_sim no)
+				(at 19.05 109.728 0)
+				(size 17.145 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "7dcb65c1-cf90-426a-bfea-7cd6269aabac")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 36.195 109.728 0)
+				(size 9.525 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "3961e862-c998-4fa0-b86a-58acc1485217")
+			)
+			(table_cell "10"
+				(exclude_from_sim no)
+				(at 45.72 109.728 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "d90da65a-84c3-4803-9f21-2b914521eb7b")
+			)
+			(table_cell "310"
+				(exclude_from_sim no)
+				(at 57.785 109.728 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "f37ff8c8-0112-4d81-abc0-ee1197afd070")
+			)
+			(table_cell "40"
+				(exclude_from_sim no)
+				(at 69.85 109.728 0)
+				(size 8.255 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "3e89b976-5413-4345-9c9b-fd46e563f671")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 78.105 109.728 0)
+				(size 6.35 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "e65601b8-f3f5-4f70-b823-94cab98dd797")
+			)
+			(table_cell "40"
+				(exclude_from_sim no)
+				(at 84.455 109.728 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "96701197-a65e-41fe-aa2a-53aeccb3e4cd")
+			)
+			(table_cell "1240"
+				(exclude_from_sim no)
+				(at 96.52 109.728 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "8f72b345-1056-4eca-974f-1ff7c8e66062")
+			)
+			(table_cell "160"
+				(exclude_from_sim no)
+				(at 108.585 109.728 0)
+				(size 12.7 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "9e4985b7-e6f2-4879-b238-8016a1b3123a")
+			)
+			(table_cell "Piezo Speaker"
+				(exclude_from_sim no)
+				(at 19.05 113.538 0)
+				(size 17.145 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "4e3a671e-a92b-4b43-8343-9af91f0675c0")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 36.195 113.538 0)
+				(size 9.525 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "546c8791-da21-4cf7-9418-a5b2996f47b6")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 45.72 113.538 0)
+				(size 12.065 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "985468f1-dede-40b9-9fdc-6c7f27d1cfc7")
+			)
+			(table_cell "5"
+				(exclude_from_sim no)
+				(at 57.785 113.538 0)
+				(size 12.065 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "ca48c958-8911-48e2-9483-9bd16de1f090")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 69.85 113.538 0)
+				(size 8.255 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "3d071fcf-5633-4e9a-9b86-870bb31f09dd")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 78.105 113.538 0)
+				(size 6.35 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "bd439e84-79fe-468f-b284-59c52d1a77fb")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 84.455 113.538 0)
+				(size 12.065 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "1ae842a4-71ec-4bea-b0ad-48c5b3194d20")
+			)
+			(table_cell "5"
+				(exclude_from_sim no)
+				(at 96.52 113.538 0)
+				(size 12.065 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "813a2f07-e184-4aae-934d-b221d32aa3e1")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 108.585 113.538 0)
+				(size 12.7 3.175)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "469aa206-c860-456a-bdb2-76f681ea5ba3")
+			)
+			(table_cell "Rotary Encoder"
+				(exclude_from_sim no)
+				(at 19.05 116.713 0)
+				(size 17.145 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "15cb728e-8b69-4489-a2f3-f894a767627e")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 36.195 116.713 0)
+				(size 9.525 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "33777926-135b-4a71-8d54-a3412533e99d")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 45.72 116.713 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "f1ec82c3-a839-45a0-a5cd-9e15a1235d6c")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 57.785 116.713 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "b2c29c01-36ea-4c96-87f6-9982501bc6bf")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 69.85 116.713 0)
+				(size 8.255 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "b12b7f01-b889-4b3a-809f-e60e4336bdd1")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 78.105 116.713 0)
+				(size 6.35 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "fb0a1ffc-2a6f-4f32-baf2-796f75840c7a")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 84.455 116.713 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "c320c6f1-7bc1-4c34-b17e-10955bb2d01d")
+			)
+			(table_cell "1"
+				(exclude_from_sim no)
+				(at 96.52 116.713 0)
+				(size 12.065 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "7207ea2c-87ad-4b9a-8294-bb41659f3b97")
+			)
+			(table_cell "4"
+				(exclude_from_sim no)
+				(at 108.585 116.713 0)
+				(size 12.7 3.81)
+				(margins 0.9525 0.9525 0.9525 0.9525)
+				(span 1 1)
+				(fill
+					(type none)
+				)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left top)
+				)
+				(uuid "2653ca8c-207e-4881-a707-abdc1015cb2b")
+			)
+		)
+	)
+)

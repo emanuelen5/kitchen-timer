@@ -1,0 +1,182 @@
+(footprint "SparkFun_LiPower"
+	(version 20241229)
+	(generator "pcbnew")
+	(generator_version "9.0")
+	(layer "F.Cu")
+	(descr "Boost Converter Module")
+	(property "Reference" "REF**"
+		(at -11.43 -7.366 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "73ceab17-c1e6-4a7c-a8c5-6d541eb26c5b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+		)
+	)
+	(property "Value" "SparkFun_LiPower"
+		(at 0 8.128 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "c70b680a-db9e-4cbc-ae1c-9ef888eab080")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 18.034 -21.042 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "83c01099-d589-43dd-9d92-b4ab3744de16")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 18.034 -21.042 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "7b9f2ac5-979c-422d-87b2-7b3a44e44460")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr smd)
+	(fp_rect
+		(start -13.55 -6.6)
+		(end 13.55 6.6)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.SilkS")
+		(uuid "4b6dfa68-0347-45ba-afb6-4df4c05b86f5")
+	)
+	(fp_rect
+		(start -14.05 -7.1)
+		(end 14.05 7.1)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill no)
+		(layer "F.CrtYd")
+		(uuid "dfc2afc7-38fc-44df-9e1e-4bc5d5f49fb6")
+	)
+	(fp_text user "GND-OUT"
+		(at -10.414 -1.27 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "006e5d36-7b85-49b1-8dba-9518d0b8b92d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+			(justify left)
+		)
+	)
+	(fp_text user "GND-IN"
+		(at 3.302 -1.27 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "009e8ec2-cd45-428a-bc71-49865923088b")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+			(justify left)
+		)
+	)
+	(fp_text user "VCC-IN"
+		(at 3.302 1.27 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "172ef06e-84b8-49fc-9883-7128ab36ddad")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+			(justify left)
+		)
+	)
+	(fp_text user "VCC-OUT"
+		(at -10.414 1.27 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "31915e93-a055-4e40-84b2-44ef2e3e41e0")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+			(justify left)
+		)
+	)
+	(fp_text user "LiPower"
+		(at -0.762 5.842 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "3e3b122e-c020-4ac4-9191-2b3992241f89")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 10.16 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "54fc5d61-fe19-4fa9-b318-281af598c67d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.195072)
+			)
+		)
+	)
+	(pad "1" smd circle
+		(at 1.75 1.27 90)
+		(size 2 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "726a1f5d-e14e-4292-9694-11f5f6f3afcf")
+	)
+	(pad "2" smd circle
+		(at 1.75 -1.27 90)
+		(size 2 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "9cd4a30f-ca4d-46f5-b240-bdc81363aa32")
+	)
+	(pad "3" smd circle
+		(at -12.05 1.27 90)
+		(size 2 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "8f9e197f-e7a4-4cc4-a91e-82f76417ef23")
+	)
+	(pad "4" smd circle
+		(at -12.05 -1.27 90)
+		(size 2 2)
+		(layers "F.Cu" "F.Mask" "F.Paste")
+		(uuid "c5764365-ba19-4dfd-b08c-fa6c26b4486b")
+	)
+	(embedded_fonts no)
+)

@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "kitchen_timer")(type "KiCad")(uri "${KIPRJMOD}/kitchen_timer.pretty")(options "")(descr ""))
+)
