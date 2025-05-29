@@ -18,7 +18,7 @@ The "Timer view" displays:
 The left-most column of LEDs is reserved for indicating how many timers are currently running. For example, if there are 5 LEDs on, that means that there are 5 timers running. The Active Timer is identified in the Timers Indicator as the blinking LED.
 
 ### Bars View
-The Bars View shows the status of each timer about the other as a horizontal bar diagram. In the same way as in the Timer View, the left-most column is the Timers Indicator, and the blinking LED is the Active Timer.
+The Bars View shows the status of each timer in relationsip to the others as a horizontal bar diagram. In the same way as in the Timer View, the left-most column is the Timers Indicator, and the blinking LED is the Active Timer.
 
 <img src="image-1.png" alt="alt text" style="width:300px; height:auto;" />
 
