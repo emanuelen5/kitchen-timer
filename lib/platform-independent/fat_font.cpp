@@ -59,7 +59,7 @@ static const uint8_t font_table[10][FATFONT_HEIGHT] = {
         0b011110
     },
     {
-        0b001110,
+        0b011110,
         0b110011,
         0b110000,
         0b111110,
