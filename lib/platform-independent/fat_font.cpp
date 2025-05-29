@@ -1,4 +1,5 @@
-#include "fatfont.h"
+
+#include "fat_font.h"
 
 // Each byte in the characters uses the 6 least significant bits.
 
@@ -95,8 +96,11 @@ static const uint8_t font_table[10][FATFONT_HEIGHT] = {
     }
 };
 
-const uint8_t* get_char(char c) {
-if (c >= '0' && c <= '9') {
+const uint8_t* get_char(char c)
+{
+    if (c >= '0' && c <= '9')
+    {
         return font_table[c - '0'];
     };
+    return 0;
 }
