@@ -1,5 +1,5 @@
-#ifndef FATFONT_H
-#define FATFONT_H
+#ifndef FAT_FONT_H
+#define FAT_FONT_H
 
 #include <stdint.h>
 
@@ -8,4 +8,4 @@
 
 const uint8_t* get_char(char c);
 
-#endif // FATFONT_H
+#endif // FAT_FONT_H
