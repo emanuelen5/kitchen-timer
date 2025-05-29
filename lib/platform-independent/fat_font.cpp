@@ -1,4 +1,4 @@
-
+#include <stdint.h>
 #include "fat_font.h"
 
 // Each byte in the characters uses the 6 least significant bits.
@@ -102,5 +102,5 @@ const uint8_t* get_char(char c)
     {
         return font_table[c - '0'];
     };
-    return 0;
+    return nullptr;
 }
