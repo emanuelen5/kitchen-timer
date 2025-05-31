@@ -1,3 +1,4 @@
+#include "config.h"
 #include "render.h"
 #include "fat_font.h"
 #include "max72xx_matrix.h"
@@ -6,19 +7,52 @@
 #define DIGITS_X_OFFSET 2
 #define TOP_Y_OFFSET 0
 #define BOTTOM_Y_OFFSET 8
+#define ACTIVE_INDICATOR_BLINKING_RATE 500
+#define PAUSED_TIMER_BLINKING_RATE 500
+#define TIMERS_INDICATOR_COLUMN 0
+#define FONT_WIDTH 6
+#define FONT_HEIGHT 7
 
 static uint16_t last_rendered_time;
 static state_t last_rendered_state;
 static uint32_t last_pause_blink_time = 0;
 
-static void draw_timers_indicator(const state_machine_t timers[], uint8_t num_timers, uint8_t active_timer_index, uint32_t current_millis)
+static void draw_timers_indicator(const state_machine_t timers[], uint8_t num_timers, uint8_t active_timer_index)
 {
-    //TODO
+    for (uint8_t i = 0; i < num_timers && i < MAX_TIMERS; i++)
+    {
+        bool is_idle = timers[i].state == IDLE;
+        bool is_running = timers[i].state == RUNNING;
+        bool is_paused = timers[i].state == PAUSED;
+        bool is_ringing = timers[i].state == RINGING;
+        bool is_active = (i == active_timer_index);
+
+        bool show_led = is_idle || is_running || is_paused || is_ringing;
+
+        if (is_active) {
+            if ((millis() / ACTIVE_INDICATOR_BLINKING_RATE) % 2 == 0) {
+                show_led = true;  // blink at 1 Hz
+            } else {
+                show_led = false;
+            }
+        }
+        matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, show_led);
+    }
+
 }
 
 static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
 {
-    //TODO
+    const uint8_t* ptr_digit = get_char('0' + digit);
+    
+    for (uint8_t row = 0; row < FONT_HEIGHT; row++)
+    {
+        for (uint8_t col = 0; col < FONT_WIDTH; col++)
+        {
+            bool is_on = ptr_digit[row] & (1 << (5 - col));  // 6-bit wide
+            matrix_set_pixel(x_offset + col, y_offset + row, is_on);
+        }
+    }
 }
 
 static void draw_active_timer(uint16_t current_time)
@@ -53,7 +87,7 @@ static void draw_active_timer(uint16_t current_time)
 static bool is_pause_blink_time_on()
 {
     uint16_t millis_now = millis();
-    bool pause_blink = (millis_now - last_pause_blink_time) >= 500;
+    bool pause_blink = (millis_now - last_pause_blink_time) >= PAUSED_TIMER_BLINKING_RATE;
     last_pause_blink_time = millis_now;
     return pause_blink;
 }

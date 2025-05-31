@@ -10,6 +10,6 @@
 #include <stdint.h>
 #include "state-machine.h"
 
-void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t active_index, uint32_t millis_now);
+void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t active_timer_index);
 
 #endif // RENDER_H
