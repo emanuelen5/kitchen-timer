@@ -1,8 +1,4 @@
-#include "config.h"
 #include "render.h"
-#include "fat_font.h"
-#include "max72xx_matrix.h"
-#include "millis.h"
 
 #define DIGITS_X_OFFSET 2
 #define TOP_Y_OFFSET 0
@@ -16,6 +12,13 @@
 static uint16_t last_rendered_time;
 static state_t last_rendered_state;
 static uint32_t last_pause_blink_time = 0;
+
+uint16_t millis(void);
+
+void init_render()
+{
+    matrix_init();
+}
 
 static void draw_timers_indicator(const state_machine_t timers[], uint8_t num_timers, uint8_t active_timer_index)
 {
@@ -43,7 +46,7 @@ static void draw_timers_indicator(const state_machine_t timers[], uint8_t num_ti
 
 static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
 {
-    const uint8_t* ptr_digit = get_char('0' + digit);
+    const uint8_t* ptr_digit = get_char(digit);
     
     for (uint8_t row = 0; row < FONT_HEIGHT; row++)
     {
@@ -108,11 +111,14 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
     matrix_clear();
 
     draw_timers_indicator(timers, timer_count, active_timer_index);
-    if(active_timer_state != PAUSED && pause_blink_is_on)
+    if(active_timer_state != PAUSED || pause_blink_is_on)
     {
         draw_active_timer(current_time);
     }
 
     matrix_update();
+
+    last_rendered_time = current_time;
+    last_rendered_state = active_timer_state;
 
 }
