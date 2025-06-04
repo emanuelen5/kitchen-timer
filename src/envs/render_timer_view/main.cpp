@@ -1,9 +1,13 @@
+#include <avr/io.h>
 #include <avr/interrupt.h>
-#include "render.h"
+
+#include "util.h"
 #include "rtc.h"
 #include "uint8-queue.h"
+#include "UART.h"
+
+#include "render.h"
 #include "led-counter.h"
-#include "millis.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -18,19 +22,20 @@ void second_tick_cb(void)
 
 int main()
 {
+    init_led_counter();
+    init_UART();
+
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
+    init_timer2_to_1s_interrupt(&second_tick_cb);
     init_state_machine(&sm);
     init_render();
-    init_led_counter();
-    init_millis();
-    init_timer2_to_1s_interrupt(second_tick_cb);
 
+    sei();
+    
     sm.timer.original_time = 70; //Test with 1 minute and 10 secs
     step_state(&sm, SINGLE_PRESS); //To move into RUNNING state
 
-    sei();
-
-    while(true)
+    for (;;)
     {
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
