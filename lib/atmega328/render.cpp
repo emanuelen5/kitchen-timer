@@ -11,13 +11,14 @@
 
 static uint16_t last_rendered_time;
 static state_t last_rendered_state;
-static uint32_t last_pause_blink_time = 0;
+//static uint32_t last_pause_blink_time = 0;
 
-uint16_t millis(void);
+//uint16_t millis(void);
 
 void init_render()
 {
     matrix_init();
+    init_millis();
 }
 
 static void draw_timers_indicator(const state_machine_t timers[], uint8_t num_timers, uint8_t active_timer_index)
@@ -87,23 +88,23 @@ static void draw_active_timer(uint16_t current_time)
 
 }
 
-static bool is_pause_blink_time_on()
+/* static bool is_pause_blink_time_on()
 {
     uint16_t millis_now = millis();
     bool pause_blink = (millis_now - last_pause_blink_time) >= PAUSED_TIMER_BLINKING_RATE;
     last_pause_blink_time = millis_now;
     return pause_blink;
 }
-
+ */
 void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t active_timer_index)
 {
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;
     state_t active_timer_state = active_timer->state;
 
-    bool pause_blink_is_on = is_pause_blink_time_on();
+    //bool pause_blink_is_on = is_pause_blink_time_on();
 
-    if (current_time == last_rendered_time && active_timer_state == last_rendered_state && pause_blink_is_on)
+    if (current_time == last_rendered_time && active_timer_state == last_rendered_state)
     {
         return;
     }
@@ -111,7 +112,7 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
     matrix_clear();
 
     draw_timers_indicator(timers, timer_count, active_timer_index);
-    if(active_timer_state != PAUSED || pause_blink_is_on)
+    if(active_timer_state != PAUSED )
     {
         draw_active_timer(current_time);
     }
@@ -120,5 +121,4 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
 
     last_rendered_time = current_time;
     last_rendered_state = active_timer_state;
-
 }
