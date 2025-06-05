@@ -65,7 +65,7 @@ void matrix_update(void)
     }
 }
 
-void matrix_clear(void)
+void matrix_buffer_clear(void)
 {
     for (uint8_t row = 0; row < ROW_COUNT; row++)
     {
@@ -74,5 +74,10 @@ void matrix_clear(void)
             matrix_buffer[device][row] = 0x00;
         }
     }
+}
+
+void matrix_clear(void)
+{
+    matrix_buffer_clear();
     matrix_update();
 }
