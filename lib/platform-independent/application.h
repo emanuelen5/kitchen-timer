@@ -2,9 +2,8 @@
 #define LIB_APPLICTION_H
 
 #include <stdint.h>
+#include "config.h"
 #include "state-machine.h"
-
-#define MAX_TIMERS 5
 
 typedef struct 
 {

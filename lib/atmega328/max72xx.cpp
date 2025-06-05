@@ -1,6 +1,5 @@
 #include "max72xx.h"
 #include <avr/io.h>
-#include <util/delay.h>
 #include "util.h"
 #include "SPI.h"
 

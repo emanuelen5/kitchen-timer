@@ -10,7 +10,9 @@ static volatile uint16_t timer0_millis = 0;
 
 ISR(TIMER0_COMPA_vect)
 {
+    cli();          //We disable interrupts during this ISR cause it was causing issues with the SPI communication for the display.
     timer0_millis += 1;
+    sei();
 }
 
 uint16_t millis(void)
@@ -34,8 +36,8 @@ void init_millis(void)
     uint8_t sreg = SREG;
     cli();
 
-    TCCR0A = bit(WGM01); // CTC mode (count up to OCR0A)
-    TCCR0B = bit(CS01);  // clk_IO / 8 prescaler
+    TCCR0A = bit(WGM01); // CTC mode with no OC0A pin toggle
+    TCCR0B = bit(CS01); // prescaler = 8
     OCR0A = timer0_ticks_in_a_ms - 1;
     TIMSK0 = bit(OCIE0A); // Timer compare interrupt
 
