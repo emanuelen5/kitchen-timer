@@ -12,6 +12,7 @@
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
+bool is_paused = false;
 
 state_machine_t sm;
 
@@ -32,19 +33,34 @@ int main()
 
     sei();
     
-    sm.timer.original_time = 70; //Test with 1 minute and 10 secs
+    sm.timer.original_time = 10; //Test with 1 minute and 10 secs
     step_state(&sm, SINGLE_PRESS); //To move into RUNNING state
 
-    for (;;)
+    while (true)
     {
+        uint16_t millis_now = millis();
+
+        if(!is_paused && millis_now >= 3001)
+        {
+            step_state(&sm, SINGLE_PRESS); // Simulate PAUSE
+            is_paused = true;
+        }
+
+        if(is_paused && millis_now >= 7001)
+        {
+            step_state(&sm, SINGLE_PRESS);
+            is_paused = false;
+        }
+
+
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
             step_state(&sm, (event_t)event.value);
-            increment_counter();
+            //increment_counter();
         }
         service_state_machine(&sm);
-        render_timer_view(&sm, 1, 0);
+        render_timer_view(&sm, 5, 0);
     }
 
     return 0;
