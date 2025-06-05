@@ -10,6 +10,7 @@
 void matrix_init(void);
 void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on);
 void matrix_update(void);
+void matrix_buffer_clear(void);
 void matrix_clear(void);
 
 #endif // LIB_MAX72XX_MATRIX_H
