@@ -4,7 +4,7 @@
 #define TOP_Y_OFFSET 0
 #define BOTTOM_Y_OFFSET 8
 #define ACTIVE_INDICATOR_BLINK_RATE 200
-#define PAUSED_TIMER_BLINKING_RATE 500
+#define PAUSED_TIMER_BLINK_RATE 500
 #define TIMERS_INDICATOR_COLUMN 0
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
@@ -12,6 +12,7 @@
 static uint16_t last_rendered_time;
 static state_t last_rendered_state;
 static bool last_active_timer_indicator_blink_is_on;
+static bool last_paused_timer_blink_is_on;
 
 void init_render()
 {
@@ -97,21 +98,33 @@ static void draw_active_timer(uint16_t current_time)
 
 }
 
-/* static bool is_pause_blink_time_on()
+static bool is_paused_timer_blink_on()
 {
+    static bool is_on = true;
     uint16_t millis_now = millis();
-    bool pause_blink = (millis_now - last_pause_blink_time) >= PAUSED_TIMER_BLINKING_RATE;
-    last_pause_blink_time = millis_now;
-    return pause_blink;
+    static uint16_t last_paused_timer_blink_time;
+
+    if ((millis_now - last_paused_timer_blink_time) >= PAUSED_TIMER_BLINK_RATE) {
+        last_paused_timer_blink_time = millis_now;
+        is_on = !is_on;  // toggle blinking
+    }
+
+    return is_on;
 }
- */
+
+
+
 void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t active_timer_index)
 {
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;
     state_t active_timer_state = active_timer->state;
 
+
+    
+    bool current_paused_timer_blink_is_on = is_paused_timer_blink_on();
     bool current_active_timer_indicator_blink_is_on = is_active_timer_indicator_blink_on();
+
     if (current_time == last_rendered_time && active_timer_state == last_rendered_state && current_active_timer_indicator_blink_is_on == last_active_timer_indicator_blink_is_on && current_paused_timer_blink_is_on == last_paused_timer_blink_is_on)
     {
         return;
@@ -119,8 +132,8 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
 
     matrix_buffer_clear();
 
-    draw_timers_indicator(timers, timer_count, active_timer_index);
-    if(active_timer_state != PAUSED )
+    draw_timers_indicator(timers, timer_count, active_timer_index, current_active_timer_indicator_blink_is_on);
+    if(active_timer_state != PAUSED || current_paused_timer_blink_is_on)
     {
         draw_active_timer(current_time);
     }
@@ -130,4 +143,5 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
     last_rendered_time = current_time;
     last_rendered_state = active_timer_state;
     last_active_timer_indicator_blink_is_on = current_active_timer_indicator_blink_is_on;
+    last_paused_timer_blink_is_on = current_paused_timer_blink_is_on;
 }
