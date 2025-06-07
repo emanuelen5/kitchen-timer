@@ -58,12 +58,6 @@ jump_to_start_of_program_and_exit_bootloader(void)
     asm("jmp 0");
 }
 
-enum
-{
-    ok = 0x00,
-    timeout = 0x05,
-};
-
 void UART_send(uint8_t data)
 {
     while (!(UCSR0A & (1 << UDRE0)))
