@@ -6,12 +6,16 @@
 #include <util/crc16.h>
 #include "led-counter.h"
 #include "millis.h"
+#define BAUD 9600
+#include <util/setbaud.h>
 
 #include "bootloader_sm.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
 #endif
+
+#define bit(x) (1 << (x))
 
 static uint8_t sreg_last_state = 0;
 
@@ -66,6 +70,22 @@ jump_to_start_of_program_and_exit_bootloader(void)
     asm("jmp 0");
 }
 
+static void init_UART(void)
+{
+    // Set baud rate
+    UBRR0H = UBRRH_VALUE;
+    UBRR0L = UBRRL_VALUE;
+
+#if USE_2X
+    UCSR0A |= bit(U2X0);
+#else
+    UCSR0A &= ~bit(U2X0);
+#endif
+
+    UCSR0B = bit(RXEN0) | bit(TXEN0);   // Enable rx/tx; and rx/tx interrupt
+    UCSR0C = bit(UCSZ01) | bit(UCSZ00); // Set frame format: 8 data bits, 1 stop bit, no parity
+}
+
 void UART_send(uint8_t data)
 {
     while (!(UCSR0A & (1 << UDRE0)))
@@ -93,8 +113,10 @@ static int UART_receive(uint8_t *data)
 int receive_and_checksum(uint8_t *byte, uint16_t *crc16)
 {
     int status = UART_receive(byte);
+    set_counter(0x7);
     if (status == resp_ok)
         *crc16 = _crc16_update(*crc16, *byte);
+    set_counter(0x0);
     return status;
 }
 
@@ -147,6 +169,7 @@ int main(void)
     use_bootloader_interrupt_vectors();
     init_millis();
     init_led_counter();
+    init_UART();
     set_counter(0x7);
     sei();
 

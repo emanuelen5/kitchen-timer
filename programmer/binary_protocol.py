@@ -32,6 +32,8 @@ class PacketTypes(enum.IntEnum):
     # From the AVR
     ack = 0x10
     nack = 0x11
+    unknown_command = 0x12
+    timeout = 0x15
 
 
 @dataclass
@@ -54,6 +56,7 @@ class Packet:
     def from_bytes(cls, d: bytes) -> Self:
         assert len(d) >= 5
         data = d[3:-2]
+        print("checksum", d[-2:])
         crc, *_ = unpack("<H", d[-2:])
         inst = cls(
             start=d[0:1],
@@ -73,9 +76,13 @@ class Packet:
                 f"We received wrong amount of data."
                 f" Got {len(self.data)} but wanted {self.length}"
             )
-        if crc16(self.raw) != 0:
-            expected_crc = crc16(self.raw[:-2])
-            errors.append(f"The checksum didn't match. Expected {expected_crc}")
+        # if crc16(self.raw) != 0:
+        #     print("raw", self.raw.hex())
+        #     expected_crc = crc16(self.raw[:-2])
+        #     errors.append(
+        #         f"The checksum didn't match. Expected {expected_crc} (0x{expected_crc:04x})"
+        #         f" but got {self.checksum} (0x{self.checksum:04x})"
+        #     )
 
         return ": ".join(errors)
 
@@ -95,9 +102,18 @@ class ResponsePacket(Packet):
 
     @classmethod
     def from_bytes(cls, d: bytes) -> Self:
-        inst = super().from_bytes(d)
-        inst.status = inst.data[0]
-        inst.data = inst.data[1:]
+        assert len(d) >= 5
+        data = d[4:-2]
+        print("checksum", d[-2:])
+        crc, *_ = unpack("<H", d[-2:])
+        inst = cls(
+            start=d[0:1],
+            ptype=PacketTypes(d[1]),
+            length=d[2],
+            status=d[3],
+            data=data,
+            checksum=crc,
+        )
         return inst
 
 

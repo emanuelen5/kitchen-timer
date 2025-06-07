@@ -48,14 +48,14 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     s.reset_input_buffer()
     s.write(create_signature_message())
 
-    data = s.read(packet_size(data_count=0))
+    data = s.read(packet_size(data_count=4))
     print("data", data.hex())
-    p = Packet.from_bytes(data)
+    p = ResponsePacket.from_bytes(data)
     print("Packet", p)
 
     errors = p.get_any_validation_errors()
     assert not errors, f"Got validation errors for packet: {errors}"  # throw and retry
-    assert p.ptype is PacketTypes.ack  # throw and retry
+    assert p.status == PacketTypes.ack
     assert (  # this is really bad
         p.data == expected_signature
     ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
@@ -77,7 +77,7 @@ def main():
         help="The serial port name to connect to",
     )
     pge_port.add_argument("--port", help="The serial port name to connect to")
-    pg_serial.add_argument("--baudrate", default=125000)
+    pg_serial.add_argument("--baudrate", default=9600)
     args = parser.parse_args()
 
     pages = read_all_pagedata(args.hexfile)
@@ -94,19 +94,7 @@ def main():
 
     serial = attempt_serial_connection(args.port, args.baudrate)
 
-    serial.write(create_signature_message())
-    data = serial.read(response_data_size)
-    packet = ResponsePacket.from_bytes(data)
-    errors = packet.get_any_validation_errors()
-    if errors:
-        print(f"ERROR: {errors}", file=sys.stderr)
-        sys.exit(1)
-
-    if packet.status != 0:
-        print(
-            f"ERROR: The device returned an error code {packet.status}", file=sys.stderr
-        )
-        sys.exit(1)
+    check_signature(serial, expected_signature=b"\x1e\x95\x0f")
 
     for page in pages:
         serial.write(create_write_message(page.offset, page.data))

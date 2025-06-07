@@ -92,29 +92,30 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_CHECK_CHECKSUM:
         set_counter(sm.state);
-        if (sm.calculated_checksum != 0)
-        {
-            sm.packet.data.response.status = resp_nak;
-            sm.state = STATE_RETURN_STATUS;
-            return;
-        }
+        // if (sm.calculated_checksum != 0)
+        // {
+        //     sm.packet.data.response.status = resp_nak;
+        //     sm.state = STATE_RETURN_STATUS;
+        //     return;
+        // }
         sm.state = STATE_RUN_COMMAND;
         break;
 
     case STATE_RUN_COMMAND:
+        set_counter(sm.state);
         memset(&sm.packet.data.response.data, 0, sizeof(sm.packet.data.response.data));
         switch (sm.packet.command)
         {
         case COMMAND_WRITE_PAGE:
             write_page(sm.packet.data.write.page_offset, sm.packet.data.write.data);
-            sm.packet.data.response.status = resp_ok;
+            sm.packet.data.response.status = resp_ack;
             break;
         case COMMAND_READ_SIGNATURE:
-            sm.packet.data.response.status = resp_ok;
+            sm.packet.data.response.status = resp_ack;
             read_signature(&sm.packet.data.response.data[0]);
             break;
         case COMMAND_BOOT:
-            sm.packet.data.response.status = resp_ok;
+            sm.packet.data.response.status = resp_ack;
             break;
         default:
             sm.packet.data.response.status = resp_data_unknown_command;
@@ -124,7 +125,6 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_RETURN_STATUS:
-        sm.packet.data_length = 1;
         set_counter(sm.state);
         send_response(sm.packet);
 

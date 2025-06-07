@@ -18,9 +18,10 @@ typedef enum
 enum
 {
     resp_ok = 0x00,
-    resp_data_unknown_command = 0x01,
-    resp_timeout = 0x05,
-    resp_nak = 0xaa,
+    resp_ack = 0x10,
+    resp_nak = 0x11,
+    resp_data_unknown_command = 0x12,
+    resp_timeout = 0x15,
 };
 
 typedef struct
