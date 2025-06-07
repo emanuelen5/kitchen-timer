@@ -6,7 +6,7 @@
 #include <util/crc16.h>
 #include "led-counter.h"
 #include "millis.h"
-#include "util.h"
+#include "binary_protocol.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
@@ -44,6 +44,13 @@ void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
     SREG = sreg_last_state;
 }
 
+void read_signature(uint8_t signature[3])
+{
+    signature[0] = boot_signature_byte_get(0x00);
+    signature[1] = boot_signature_byte_get(0x00);
+    signature[2] = boot_signature_byte_get(0x00);
+}
+
 void finalize_self_program(void)
 {
     // Re-enable RWW-section. We need this to be able to jump back
@@ -65,7 +72,7 @@ void UART_send(uint8_t data)
     UDR0 = data;
 }
 
-int UART_receive(uint8_t *data)
+static int UART_receive(uint8_t *data)
 {
     uint16_t start_time = millis();
     const uint16_t timeout_duration = 2000;
@@ -82,27 +89,32 @@ int UART_receive(uint8_t *data)
     }
 }
 
-typedef enum
+enum
 {
-    COMMAND_WRITE_PAGE
-} command_t;
+    NUL_BYTE = 0x00,
+    START_BYTE = 0x03,
+};
 
-typedef struct
+uint16_t send_and_checksum(uint8_t byte, uint16_t crc16)
 {
-    command_t command;
-    union
+    UART_send(byte);
+    return _crc16_update(crc16, byte);
+}
+
+void send_response(packet_t &packet)
+{
+    uint16_t crc16 = 0;
+    crc16 = send_and_checksum(START_BYTE, crc16);
+    crc16 = send_and_checksum(packet.command, crc16);
+    crc16 = send_and_checksum(packet.data_length, crc16);
+    const uint8_t packet_length = 4;
+    for (uint8_t i = 0; i < packet_length; i++)
     {
-        struct
-        {
-            uint16_t page_offset;
-        } read;
-        struct
-        {
-            uint16_t page_offset;
-            uint8_t data[SPM_PAGESIZE];
-        } write;
-    } data;
-} packet_t;
+        crc16 = send_and_checksum(packet.data.bytes[i], crc16);
+    }
+    UART_send(packet.data.response.checksum >> 8);
+    UART_send(packet.data.response.checksum & 0xff);
+}
 
 void state_machine(void)
 {
@@ -111,24 +123,18 @@ void state_machine(void)
         STATE_WAIT_FOR_PROGRAMMER,
         STATE_START,
         STATE_COMMAND,
+        STATE_LENGTH,
         STATE_DATA,
-        STATE_CHECKSUM1,
-        STATE_CHECKSUM2,
+        STATE_CHECK_CHECKSUM,
         STATE_RUN_COMMAND,
+        STATE_RETURN_STATUS,
     } state = STATE_WAIT_FOR_PROGRAMMER;
-
-    enum
-    {
-        NUL_BYTE = 0x00,
-        START_BYTE = 0x03,
-    };
 
     uint8_t received_byte;
     uint16_t calculated_checksum;
 
-    packet_t packet;
+    packet_t packet = {};
     uint8_t data_index = 0;
-    uint8_t program_data[SPM_PAGESIZE] = {0};
 
     while (1)
     {
@@ -144,6 +150,8 @@ void state_machine(void)
                 state = STATE_START;
                 continue;
             }
+            break;
+
         case STATE_START:
             set_counter(state);
             if (received_byte == START_BYTE)
@@ -165,6 +173,16 @@ void state_machine(void)
             {
                 state = STATE_DATA;
             }
+            break;
+
+        case STATE_LENGTH:
+            set_counter(state);
+            if (UART_receive(&received_byte) != ok)
+                continue;
+
+            packet.data_length = received_byte + 2;
+            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
+            state = STATE_DATA;
             data_index = 0;
             break;
 
@@ -173,50 +191,47 @@ void state_machine(void)
                 continue;
 
             increment_counter();
-            packet.data.write.data[data_index++] = received_byte;
+            packet.data.bytes[data_index++] = received_byte;
             calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-            if (data_index >= SPM_PAGESIZE)
+            if (data_index >= packet.data_length)
             {
-                state = STATE_CHECKSUM1;
+                state = STATE_CHECK_CHECKSUM;
             }
             break;
 
-        case STATE_CHECKSUM1:
+        case STATE_CHECK_CHECKSUM:
             set_counter(state);
-            if (UART_receive(&received_byte) != ok)
-                continue;
-
-            state = STATE_CHECKSUM2;
-            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-            break;
-        case STATE_CHECKSUM2:
-            set_counter(state);
-            if (UART_receive(&received_byte) != ok)
-                continue;
-
-            calculated_checksum = _crc16_update(calculated_checksum, received_byte);
-
             if (calculated_checksum != 0)
             {
-                UART_send(nak);
-                state = STATE_START;
+                packet.data.response.status = nak;
+                state = STATE_RETURN_STATUS;
                 continue;
             }
             state = STATE_RUN_COMMAND;
+            break;
 
         case STATE_RUN_COMMAND:
             switch (packet.command)
             {
             case COMMAND_WRITE_PAGE:
-                write_page(packet.data.write.page_offset, program_data);
-                UART_send(ok);
-                state = STATE_START;
+                write_page(packet.data.write.page_offset, packet.data.write.data);
+                packet.data.response.status = ok;
+                break;
+            case COMMAND_READ_SIGNATURE:
+                packet.data.response.status = ok;
+                read_signature(&packet.data.response.data[0]);
                 break;
             default:
-                UART_send(nak);
-                state = STATE_START;
+                packet.data.response.status = nak;
             }
 
+            state = STATE_RETURN_STATUS;
+            break;
+
+        case STATE_RETURN_STATUS:
+            packet.data_length = 1;
+            set_counter(state);
+            send_response(packet);
             break;
         }
     }
