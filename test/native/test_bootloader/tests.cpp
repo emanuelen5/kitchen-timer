@@ -3,6 +3,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <vector>
+#include <stdexcept>
 
 #include "bootloader_sm.h"
 #include "state.h"
@@ -18,6 +19,35 @@ struct
 
     std::vector<uint8_t> sent_data;
 } test_state;
+
+class ResponseBreakdown
+{
+public:
+    ResponseBreakdown(const std::vector<uint8_t> &data)
+    {
+        if (data.size() < 9)
+            throw std::runtime_error("Data too short to parse response");
+
+        start_byte = data[0];
+        command = data[1];
+        length = data[2];
+        status = data[3];
+
+        this->data.resize(length);
+        for (size_t i = 0; i < this->data.size(); ++i)
+        {
+            this->data[i] = data[i + 4];
+        }
+        checksum = data[length + 3] << 8 | data[length + 4];
+    }
+
+    uint8_t start_byte;
+    uint8_t command;
+    uint8_t length;
+    uint8_t status;
+    std::vector<uint8_t> data;
+    uint16_t checksum;
+};
 
 void set_counter(uint8_t count)
 {
@@ -159,10 +189,14 @@ void test_write_page(void)
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_WAIT_FOR_START_BYTE);
 
     TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
-    const uint8_t length = 4;
-    const uint8_t chksum = 7;
-    uint8_t arr[] = {START_BYTE, COMMAND_WRITE_PAGE, length, resp_ok, 0x00, 0x00, 0x00, 0x00, chksum};
-    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(COMMAND_WRITE_PAGE, response.command, "Command");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.length, "Length");
+    TEST_ASSERT_EQUAL_MESSAGE(resp_ok, response.status, "Status");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.data.size(), "Data size");
+    uint8_t arr[] = {0x00, 0x00, 0x00, 0x00};
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, response.data.data(), 4);
 }
 
 void test_read_signature(void)
@@ -196,10 +230,14 @@ void test_read_signature(void)
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_WAIT_FOR_START_BYTE);
 
     TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
-    const uint8_t length = 4;
-    const uint8_t chksum = 8;
-    uint8_t arr[] = {START_BYTE, COMMAND_READ_SIGNATURE, length, resp_ok, 0x00, 0x00, 0x00, 0x00, chksum};
-    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(COMMAND_READ_SIGNATURE, response.command, "Command");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.length, "Length");
+    TEST_ASSERT_EQUAL_MESSAGE(resp_ok, response.status, "Status");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.data.size(), "Data size");
+    uint8_t arr[] = {0x00, 0x00, 0x00, 0x00};
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, response.data.data(), 4);
 }
 
 void test_boot(void)
@@ -234,10 +272,14 @@ void test_boot(void)
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_EXIT);
 
     TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
-    const uint8_t length = 4;
-    const uint8_t chksum = 9;
-    uint8_t arr[] = {START_BYTE, COMMAND_BOOT, length, resp_ok, 0x00, 0x00, 0x00, 0x00, chksum};
-    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(COMMAND_BOOT, response.command, "Command");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.length, "Length");
+    TEST_ASSERT_EQUAL_MESSAGE(resp_ok, response.status, "Status");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.data.size(), "Data size");
+    uint8_t arr[] = {0x00, 0x00, 0x00, 0x00};
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, response.data.data(), 4);
 }
 
 void test_invalid_command(void)
@@ -254,14 +296,18 @@ void test_invalid_command(void)
     send_to_microcontroller_and_update_its_state_machine(0);
     step_state_machine(sm); // STATE_RUN_COMMAND
     step_state_machine(sm); // STATE_RETURN_STATUS
-    step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE or EXIT
+    step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE
 
     // Should send a NAK or error response
     TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
-    const uint8_t length = 4;
-    const uint8_t chksum = (uint8_t)(START_BYTE + INVALID_COMMAND + length) + resp_data_unknown_command;
-    uint8_t arr[] = {START_BYTE, INVALID_COMMAND, length, resp_data_unknown_command, 0x00, 0x00, 0x00, 0x00, chksum};
-    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(INVALID_COMMAND, response.command, "Command");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.length, "Length");
+    TEST_ASSERT_EQUAL_MESSAGE(resp_data_unknown_command, response.status, "Status");
+    TEST_ASSERT_EQUAL_MESSAGE(4, response.data.size(), "Data size");
+    uint8_t arr[] = {0x00, 0x00, 0x00, 0x00};
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, response.data.data(), 4);
 }
 
 void test_checksum_error(void)
@@ -282,7 +328,9 @@ void test_checksum_error(void)
     step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE
 
     TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
-    TEST_ASSERT_EQUAL_UINT8(resp_nak, test_state.sent_data[3]);
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(resp_nak, response.status, "Status");
 }
 
 void test_timeout_in_data_state(void)
