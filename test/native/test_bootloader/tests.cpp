@@ -240,6 +240,67 @@ void test_boot(void)
     TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
 }
 
+void test_invalid_command(void)
+{
+    sm.state = STATE_COMMAND;
+    const uint8_t INVALID_COMMAND = 0xFF;
+    send_to_microcontroller_and_update_its_state_machine(INVALID_COMMAND);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_LENGTH);
+    send_to_microcontroller_and_update_its_state_machine(0);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+
+    // make the total checksum 0, otherwise the microcontroller will NAK
+    send_to_microcontroller_and_update_its_state_machine((uint8_t)-INVALID_COMMAND);
+    send_to_microcontroller_and_update_its_state_machine(0);
+    step_state_machine(sm); // STATE_RUN_COMMAND
+    step_state_machine(sm); // STATE_RETURN_STATUS
+    step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE or EXIT
+
+    // Should send a NAK or error response
+    TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
+    const uint8_t length = 4;
+    const uint8_t chksum = (uint8_t)(START_BYTE + INVALID_COMMAND + length) + resp_data_unknown_command;
+    uint8_t arr[] = {START_BYTE, INVALID_COMMAND, length, resp_data_unknown_command, 0x00, 0x00, 0x00, 0x00, chksum};
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, test_state.sent_data.data(), 9);
+}
+
+void test_checksum_error(void)
+{
+    sm.state = STATE_COMMAND;
+    send_to_microcontroller_and_update_its_state_machine(COMMAND_WRITE_PAGE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_LENGTH);
+    send_to_microcontroller_and_update_its_state_machine(SPM_PAGESIZE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+    for (int i = 0; i < SPM_PAGESIZE; i++)
+        send_to_microcontroller_and_update_its_state_machine(0x01);
+
+    // Do NOT make checksum zero, so it should fail
+    send_to_microcontroller_and_update_its_state_machine(0);
+    step_state_machine(sm);
+    step_state_machine(sm); // STATE_RUN_COMMAND
+    step_state_machine(sm); // STATE_RETURN_STATUS
+    step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE
+
+    TEST_ASSERT_EQUAL(9, test_state.sent_data.size());
+    TEST_ASSERT_EQUAL_UINT8(resp_nak, test_state.sent_data[3]);
+}
+
+void test_timeout_in_data_state(void)
+{
+    sm.state = STATE_COMMAND;
+    send_to_microcontroller_and_update_its_state_machine(COMMAND_WRITE_PAGE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_LENGTH);
+    send_to_microcontroller_and_update_its_state_machine(SPM_PAGESIZE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+
+    // Simulate timeout
+    set_receive_and_checksum_return_value(0, resp_timeout);
+    step_state_machine(sm);
+
+    // Keep waiting for data
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -251,6 +312,9 @@ int main()
     RUN_TEST(test_write_page);
     RUN_TEST(test_read_signature);
     RUN_TEST(test_boot);
+    RUN_TEST(test_invalid_command);
+    RUN_TEST(test_checksum_error);
+    RUN_TEST(test_timeout_in_data_state);
 
     UNITY_END();
 }
