@@ -89,10 +89,7 @@ class Packet:
         )
 
 
-def packet(ptype: PacketTypes, data: bytes = None) -> bytes:
-    if data is None:
-        data = b""
-
+def packet(ptype: PacketTypes, data: bytes = b"") -> bytes:
     payload = start_byte + bytes([ptype, len(data)]) + bytes(data)
     checksum = crc16(payload)
 
