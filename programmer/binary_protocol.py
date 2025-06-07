@@ -103,7 +103,7 @@ class ResponsePacket(Packet):
     @classmethod
     def from_bytes(cls, d: bytes) -> Self:
         assert len(d) >= 5
-        data = d[4:-2]
+        data = d[3:-2]
         print("checksum", d[-2:])
         crc, *_ = unpack("<H", d[-2:])
         inst = cls(

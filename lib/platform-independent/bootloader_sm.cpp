@@ -3,7 +3,7 @@
 
 void set_counter(uint8_t);
 void increment_counter(void);
-int receive_and_checksum(uint8_t *byte, uint16_t *crc);
+int UART_receive(uint8_t *data);
 void write_page(const uint8_t page_offset, const uint8_t *program_buffer);
 void read_signature(uint8_t signature[3]);
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc);
@@ -40,7 +40,7 @@ void step_state_machine(state_machine_t &sm)
         break;
     case STATE_WAIT_FOR_PROGRAMMER:
         set_counter(sm.state);
-        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) == resp_timeout)
+        if (UART_receive(&received_byte) == resp_timeout)
         {
             sm.state = STATE_EXIT;
             return;
@@ -51,7 +51,7 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_WAIT_FOR_START_BYTE:
         set_counter(sm.state);
-        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) != resp_ok)
+        if (UART_receive(&received_byte) != resp_ok)
         {
             reset_state_machine(sm);
             return;
@@ -62,7 +62,7 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_COMMAND:
         set_counter(sm.state);
-        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) != resp_ok)
+        if (UART_receive(&received_byte) != resp_ok)
             return;
 
         sm.packet.command = (command_t)received_byte;
@@ -71,7 +71,7 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_LENGTH:
         set_counter(sm.state);
-        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) != resp_ok)
+        if (UART_receive(&received_byte) != resp_ok)
             return;
 
         sm.packet.data_length = (received_byte + 2);
@@ -79,7 +79,7 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_DATA:
-        if (receive_and_checksum(&received_byte, &sm.calculated_checksum) != resp_ok)
+        if (UART_receive(&received_byte) != resp_ok)
             return;
 
         increment_counter();

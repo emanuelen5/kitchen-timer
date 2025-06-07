@@ -93,7 +93,7 @@ void UART_send(uint8_t data)
     UDR0 = data;
 }
 
-static int UART_receive(uint8_t *data)
+int UART_receive(uint8_t *data)
 {
     uint16_t start_time = millis();
     const uint16_t timeout_duration = 2000;
@@ -108,16 +108,6 @@ static int UART_receive(uint8_t *data)
         if ((uint16_t)(millis() - start_time) >= timeout_duration)
             return resp_timeout;
     }
-}
-
-int receive_and_checksum(uint8_t *byte, uint16_t *crc16)
-{
-    int status = UART_receive(byte);
-    set_counter(0x7);
-    if (status == resp_ok)
-        *crc16 = _crc16_update(*crc16, *byte);
-    set_counter(0x0);
-    return status;
 }
 
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc16)
