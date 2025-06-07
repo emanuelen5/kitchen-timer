@@ -7,11 +7,11 @@ from pathlib import Path
 from binary_protocol import (
     Packet,
     PacketTypes,
+    ResponsePacket,
     create_boot_message,
     create_signature_message,
     create_write_message,
     packet_size,
-    start_byte,
 )
 from intel_hexfile import read_all_pagedata
 from serial import Serial, SerialException
@@ -61,6 +61,9 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
 
 
+response_data_size = 9
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("hexfile", type=Path)
@@ -90,7 +93,58 @@ def main():
         sys.exit(0)
 
     serial = attempt_serial_connection(args.port, args.baudrate)
-    serial.write(b"asd")
+
+    serial.write(create_signature_message())
+    data = serial.read(response_data_size)
+    packet = ResponsePacket.from_bytes(data)
+    errors = packet.get_any_validation_errors()
+    if errors:
+        print(f"ERROR: {errors}", file=sys.stderr)
+        sys.exit(1)
+
+    if packet.status != 0:
+        print(
+            f"ERROR: The device returned an error code {packet.status}", file=sys.stderr
+        )
+        sys.exit(1)
+
+    for page in pages:
+        serial.write(create_write_message(page.offset, page.data))
+        data = serial.read(response_data_size)
+        packet = ResponsePacket.from_bytes(data)
+        errors = packet.get_any_validation_errors()
+        if errors:
+            print(f"ERROR (page {page.offset}): {errors}", file=sys.stderr)
+            sys.exit(1)
+
+        if packet.status != 0:
+            print(
+                f"ERROR (page {page.offset}):"
+                f" The device returned an error code {packet.status}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+
+        if args.verbose:
+            print(f"Page {page.offset} written successfully.")
+
+    serial.write(create_boot_message())
+    data = serial.read(response_data_size)
+    packet = ResponsePacket.from_bytes(data)
+    errors = packet.get_any_validation_errors()
+    if errors:
+        print(f"ERROR: {errors}", file=sys.stderr)
+        sys.exit(1)
+    if packet.status != 0:
+        print(
+            f"ERROR: The device returned an error code {packet.status}", file=sys.stderr
+        )
+        sys.exit(1)
+
+    if args.verbose:
+        print(
+            "Boot command sent successfully. Device should now be running the new firmware."
+        )
 
 
 if __name__ == "__main__":

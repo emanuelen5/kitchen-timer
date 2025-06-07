@@ -89,6 +89,18 @@ class Packet:
         )
 
 
+@dataclass
+class ResponsePacket(Packet):
+    status: int
+
+    @classmethod
+    def from_bytes(cls, d: bytes) -> Self:
+        inst = super().from_bytes(d)
+        inst.status = inst.data[0]
+        inst.data = inst.data[1:]
+        return inst
+
+
 def packet(ptype: PacketTypes, data: bytes = b"") -> bytes:
     payload = start_byte + bytes([ptype, len(data)]) + bytes(data)
     checksum = crc16(payload)
