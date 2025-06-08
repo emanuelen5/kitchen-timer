@@ -20,7 +20,6 @@ static uint8_t sreg_last_state = 0;
 
 void prepare_self_program(void)
 {
-    sreg_last_state = SREG;
     cli();
     eeprom_busy_wait();
 }
@@ -54,7 +53,6 @@ void read_signature(uint8_t signature[3])
     signature[0] = boot_signature_byte_get(0x00);
     signature[1] = boot_signature_byte_get(0x02);
     signature[2] = boot_signature_byte_get(0x04);
-    SREG = sreg_last_state;
 }
 
 void finalize_self_program(void)
@@ -136,45 +134,14 @@ void run_state_machine(void)
     }
 }
 
-void use_bootloader_interrupt_vectors(void)
-{
-    asm volatile(
-        "ldi r16, %[ivce_bit]       \n\t"
-        "out %[mcucr], r16          \n\t"
-        "ldi r16, %[ivsel_bit]      \n\t"
-        "out %[mcucr], r16          \n\t"
-        :
-        : [ivce_bit] "M"(1 << IVCE),
-          [ivsel_bit] "M"(1 << IVSEL),
-          [mcucr] "I"(_SFR_IO_ADDR(MCUCR))
-        : "r16");
-}
-
-void use_application_interrupt_vectors(void)
-{
-    asm volatile(
-        "ldi r16, %[ivce_bit]       \n\t"
-        "out %[mcucr], r16          \n\t"
-        "ldi r16, %[ivsel_bit]      \n\t"
-        "out %[mcucr], r16          \n\t"
-        :
-        : [ivce_bit] "M"(1 << IVCE),
-          [ivsel_bit] "M"(0),
-          [mcucr] "I"(_SFR_IO_ADDR(MCUCR))
-        : "r16");
-}
-
 int main(void)
 {
-    use_bootloader_interrupt_vectors();
     init_led_counter();
     init_UART();
     set_counter(0x7);
-    sei();
 
     run_state_machine();
 
     finalize_self_program();
-    use_application_interrupt_vectors();
     jump_to_start_of_program_and_exit_bootloader();
 }
