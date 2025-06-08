@@ -41,15 +41,19 @@ typedef struct
             uint8_t data[SPM_PAGESIZE];
             uint16_t checksum;
         } write;
-        struct
-        {
-            uint8_t status;
-            uint8_t data[3];
-            uint16_t checksum;
-        } response;
         uint8_t bytes[SPM_PAGESIZE + 2 + 2];
     } data;
-} packet_t;
+} rx_packet_t;
+
+typedef struct
+{
+    struct
+    {
+        uint8_t status;
+        uint8_t data[4];
+    } generic;
+    uint8_t bytes[5];
+} response_t;
 
 typedef enum
 {
@@ -60,6 +64,7 @@ typedef enum
     STATE_LENGTH,
     STATE_DATA,
     STATE_CHECK_CHECKSUM,
+    STATE_WRONG_CHECKSUM,
     STATE_RUN_COMMAND,
     STATE_RETURN_STATUS,
     STATE_EXIT,
@@ -70,8 +75,10 @@ typedef struct
     state_t state;
 
     uint16_t calculated_checksum;
+    uint16_t incoming_checksum;
 
-    packet_t packet = {};
+    rx_packet_t packet = {};
+    response_t response = {};
     uint8_t data_index = 0;
 } state_machine_t;
 
