@@ -42,7 +42,7 @@ void step_state_machine(state_machine_t &sm)
         break;
     case STATE_WAIT_FOR_PROGRAMMER:
         set_counter(sm.state);
-        if (UART_receive_with_timeout(&received_byte) == resp_timeout)
+        if (UART_receive_with_timeout(&received_byte))
         {
             sm.state = STATE_EXIT;
             return;

@@ -101,6 +101,7 @@ uint8_t UART_receive(void)
 
 int UART_receive_with_timeout(uint8_t *data)
 {
+    const uint8_t timeout = 1;
     uint16_t retries = UINT16_MAX; // approximately 2 seconds
     while (true)
     {
@@ -111,7 +112,7 @@ int UART_receive_with_timeout(uint8_t *data)
         }
 
         if (retries == 0)
-            return resp_timeout;
+            return timeout;
 
         retries--;
     }

@@ -33,7 +33,6 @@ class PacketTypes(enum.IntEnum):
     ack = 0x10
     nack = 0x11
     unknown_command = 0x12
-    timeout = 0x15
 
 
 @dataclass
