@@ -67,12 +67,35 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
 response_data_size = packet_size(data_count=4 + checksum_size)
 
 
+def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
+    new_pages = [p for p in pages]
+
+    def new_empty_page(offset: int) -> PageData:
+        return PageData(offset, bytes([0xFF] * page_size))
+
+    page_offsets = {p.offset for p in pages}
+    for offset in page_offsets:
+        closest_erase_page = offset // 2 * 2
+        if closest_erase_page not in page_offsets:
+            new_pages.append(new_empty_page(closest_erase_page))
+
+    return sorted(pages, key=lambda p: p.offset)
+
+
+verbose = False
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("hexfile", type=Path)
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--dry-run", "-n", action="store_true")
-    parser.add_argument("--dump", type=Path, help="Dump the raw data to a file")
+    parser.add_argument("--boot", action="store_true", help="Boot the device on finish")
+    parser.add_argument(
+        "--dump",
+        type=Path,
+        help="Dump the raw data to a file. Do not write to the device.",
+    )
     parser.add_argument(
         "--dump-start", type=int, default=0, help="Start offset for the dump"
     )
@@ -93,9 +116,12 @@ def main():
     pg_serial.add_argument("--baudrate", default=9600)
     args = parser.parse_args()
 
+    global verbose
+    verbose = args.verbose
+
     pages = read_all_pagedata(args.hexfile)
 
-    if args.dry_run or args.verbose:
+    if args.dry_run or verbose:
         print_stats(args, pages)
 
     if args.list_ports:
@@ -139,7 +165,45 @@ def main():
         print(f"Dumped data to {args.dump}")
         sys.exit(0)
 
-    for page in pages:
+    input_page_offsets = {p.offset for p in pages}
+    pages = add_empty_pages_to_trigger_erase(pages)
+    if verbose:
+        inserted_pages = {p.offset for p in pages if p.offset not in input_page_offsets}
+        print(
+            f"Added {len(inserted_pages)} empty pages to trigger erase"
+            f" : {inserted_pages}"
+        )
+
+    if not args.dump:
+        write_pages(serial, pages)
+
+    if not args.dump or args.boot:
+        boot_device(serial)
+
+
+def boot_device(serial: Serial):
+    serial.write(create_boot_message())
+    data = serial.read(response_data_size)
+    packet = Packet.from_bytes(data)
+    errors = packet.get_any_validation_errors()
+    if errors:
+        print(f"ERROR: {errors}", file=sys.stderr)
+        sys.exit(1)
+    if packet.ptype != PacketTypes.ack:
+        print(
+            f"ERROR: The device returned an error code {packet.ptype!r}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    if verbose:
+        print(
+            "Boot command sent successfully. Device should now be running the new firmware."
+        )
+
+
+def write_pages(serial: Serial, write_pages: list[PageData]):
+    for page in write_pages:
         serial.write(create_write_message(page.offset, page.data))
         data = serial.read(response_data_size)
         packet = Packet.from_bytes(data)
@@ -156,27 +220,8 @@ def main():
             )
             sys.exit(1)
 
-        if args.verbose:
+        if verbose:
             print(f"Page {page.offset} written successfully.")
-
-    serial.write(create_boot_message())
-    data = serial.read(response_data_size)
-    packet = Packet.from_bytes(data)
-    errors = packet.get_any_validation_errors()
-    if errors:
-        print(f"ERROR: {errors}", file=sys.stderr)
-        sys.exit(1)
-    if packet.ptype != PacketTypes.ack:
-        print(
-            f"ERROR: The device returned an error code {packet.ptype!r}",
-            file=sys.stderr,
-        )
-        sys.exit(1)
-
-    if args.verbose:
-        print(
-            "Boot command sent successfully. Device should now be running the new firmware."
-        )
 
 
 if __name__ == "__main__":
