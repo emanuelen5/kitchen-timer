@@ -92,7 +92,14 @@ void UART_send(uint8_t data)
     UDR0 = data;
 }
 
-int UART_receive(uint8_t *data)
+uint8_t UART_receive(void)
+{
+    while (!(UCSR0A & (1 << RXC0)))
+        ;
+    return UDR0;
+}
+
+int UART_receive_with_timeout(uint8_t *data)
 {
     uint16_t retries = UINT16_MAX; // approximately 2 seconds
     while (true)

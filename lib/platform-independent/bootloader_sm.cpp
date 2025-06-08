@@ -4,7 +4,8 @@
 
 void set_counter(uint8_t);
 void increment_counter(void);
-int UART_receive(uint8_t *data);
+int UART_receive_with_timeout(uint8_t *data);
+uint8_t UART_receive(void);
 void write_page(const uint8_t page_offset, const uint8_t *program_buffer);
 void read_signature(uint8_t signature[3]);
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc);
@@ -41,7 +42,7 @@ void step_state_machine(state_machine_t &sm)
         break;
     case STATE_WAIT_FOR_PROGRAMMER:
         set_counter(sm.state);
-        if (UART_receive(&received_byte) == resp_timeout)
+        if (UART_receive_with_timeout(&received_byte) == resp_timeout)
         {
             sm.state = STATE_EXIT;
             return;
@@ -52,44 +53,34 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_WAIT_FOR_START_BYTE:
         set_counter(sm.state);
-        if (UART_receive(&received_byte) != resp_ok)
-        {
-            reset_state_machine(sm);
-            return;
-        }
-
+        received_byte = UART_receive();
         sm.state = STATE_COMMAND;
         break;
 
     case STATE_COMMAND:
         set_counter(sm.state);
-        if (UART_receive(&received_byte) != resp_ok)
-            return;
-
+        received_byte = UART_receive();
         sm.packet.command = (command_t)received_byte;
         sm.state = STATE_LENGTH;
         break;
 
     case STATE_LENGTH:
         set_counter(sm.state);
-        if (UART_receive(&received_byte) != resp_ok)
-            return;
-
+        received_byte = UART_receive();
         sm.data_index = 0;
-        sm.packet.data_length = received_byte + 2;
+        sm.packet.data_length = received_byte + 2; // we treat the checksum identically as data
         sm.state = STATE_DATA;
         break;
 
     case STATE_DATA:
         set_counter(sm.state);
-        if (UART_receive(&received_byte) != resp_ok)
-            return;
-
+        received_byte = UART_receive();
         increment_counter();
         sm.packet.data.bytes[sm.data_index++] = received_byte;
         if (sm.data_index >= sm.packet.data_length)
         {
             sm.state = STATE_CHECK_CHECKSUM;
+            sm.state = STATE_RUN_COMMAND;
         }
         break;
 
