@@ -21,8 +21,8 @@ void send_response(response_t &packet)
     crc16 = send_and_checksum(packet.generic.data[1], crc16);
     crc16 = send_and_checksum(packet.generic.data[2], crc16);
     crc16 = send_and_checksum(packet.generic.data[3], crc16);
-    UART_send(crc16 >> 8);
     UART_send(crc16 & 0xff);
+    UART_send(crc16 >> 8);
 }
 
 void reset_state_machine(state_machine_t &sm)
@@ -111,21 +111,25 @@ void step_state_machine(state_machine_t &sm)
     case STATE_WRONG_CHECKSUM:
         set_counter(sm.state);
         sm.response.generic.status = resp_nak;
-        sm.response.generic.data[0] = sm.incoming_checksum >> 8;
-        sm.response.generic.data[1] = sm.incoming_checksum & 0xff;
-        sm.response.generic.data[2] = sm.calculated_checksum >> 8;
-        sm.response.generic.data[3] = sm.calculated_checksum & 0xff;
+        sm.response.generic.data[0] = sm.incoming_checksum & 0xff;
+        sm.response.generic.data[1] = sm.incoming_checksum >> 8;
+        sm.response.generic.data[2] = sm.calculated_checksum & 0xff;
+        sm.response.generic.data[3] = sm.calculated_checksum >> 8;
         sm.state = STATE_RETURN_STATUS;
         break;
 
     case STATE_RUN_COMMAND:
         set_counter(sm.state);
-        memset(&sm.response.bytes, 0, sizeof(sm.response.bytes));
+        memset(sm.response.bytes, 0, sizeof(sm.response.bytes));
         switch (sm.packet.command)
         {
         case COMMAND_WRITE_PAGE:
             write_page(sm.packet.data.write.page_offset, sm.packet.data.write.data);
             sm.response.generic.status = resp_ack;
+            sm.response.generic.data[0] = sm.packet.data.write.page_offset & 0xff;
+            sm.response.generic.data[1] = sm.packet.data.write.page_offset >> 8;
+            sm.response.generic.data[2] = 0;
+            sm.response.generic.data[3] = 0;
             break;
         case COMMAND_READ_SIGNATURE:
             sm.response.generic.status = resp_ack;

@@ -74,13 +74,12 @@ class Packet:
                 f"We received wrong amount of data."
                 f" Got {len(self.data)} but wanted {self.length}"
             )
-        # if crc16(self.raw) != 0:
-        #     print("raw", self.raw.hex())
-        #     expected_crc = crc16(self.raw[:-2])
-        #     errors.append(
-        #         f"The checksum didn't match. Expected {expected_crc} (0x{expected_crc:04x})"
-        #         f" but got {self.checksum} (0x{self.checksum:04x})"
-        #     )
+        if crc16(self.raw) != 0:
+            expected_crc = crc16(self.raw[:-2])
+            errors.append(
+                f"The checksum didn't match. Expected {expected_crc} (0x{expected_crc:04x})"
+                f" but got {self.checksum} (0x{self.checksum:04x})"
+            )
 
         return ": ".join(errors)
 
