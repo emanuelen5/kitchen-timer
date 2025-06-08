@@ -7,7 +7,6 @@ from pathlib import Path
 from binary_protocol import (
     Packet,
     PacketTypes,
-    ResponsePacket,
     create_boot_message,
     create_signature_message,
     create_write_message,
@@ -50,12 +49,12 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
 
     data = s.read(packet_size(data_count=4))
     print("data", data.hex())
-    p = ResponsePacket.from_bytes(data)
+    p = Packet.from_bytes(data)
     print("Packet", p)
 
     errors = p.get_any_validation_errors()
     assert not errors, f"Got validation errors for packet: {errors}"  # throw and retry
-    assert p.status == PacketTypes.ack
+    assert p.ptype == PacketTypes.ack, f"Expected ACK packet, got {p.ptype}"
     assert (  # this is really bad
         p.data == expected_signature
     ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
