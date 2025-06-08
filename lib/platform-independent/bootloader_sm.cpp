@@ -68,7 +68,7 @@ void step_state_machine(state_machine_t &sm)
         set_counter(sm.state);
         received_byte = UART_receive();
         sm.data_index = 0;
-        sm.packet.data_length = received_byte + 2; // we treat the checksum identically as data
+        sm.packet.data_length = received_byte;
         sm.state = STATE_DATA;
         break;
 
@@ -77,10 +77,9 @@ void step_state_machine(state_machine_t &sm)
         received_byte = UART_receive();
         increment_counter();
         sm.packet.data.bytes[sm.data_index++] = received_byte;
-        if (sm.data_index >= sm.packet.data_length)
+        if (sm.data_index >= sm.packet.data_length + 2)
         {
             sm.state = STATE_CHECK_CHECKSUM;
-            sm.state = STATE_RUN_COMMAND;
         }
         break;
 
@@ -91,11 +90,11 @@ void step_state_machine(state_machine_t &sm)
         sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.command);
         sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.data_length);
         sm.incoming_checksum = 0;
-        for (uint8_t i = 0; i < sm.packet.data_length; i++)
+        for (uint8_t i = 0; i < sm.packet.data_length + 2; i++)
         {
             sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.data.bytes[i]);
             // Save the response checksum
-            if (i == sm.packet.data_length - 2)
+            if (i == sm.packet.data_length)
             {
                 sm.incoming_checksum = sm.calculated_checksum;
             }
