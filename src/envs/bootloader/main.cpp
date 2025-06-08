@@ -50,9 +50,11 @@ void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
 
 void read_signature(uint8_t signature[3])
 {
+    prepare_self_program();
     signature[0] = boot_signature_byte_get(0x00);
-    signature[1] = boot_signature_byte_get(0x01);
-    signature[2] = boot_signature_byte_get(0x02);
+    signature[1] = boot_signature_byte_get(0x02);
+    signature[2] = boot_signature_byte_get(0x04);
+    SREG = sreg_last_state;
 }
 
 void finalize_self_program(void)

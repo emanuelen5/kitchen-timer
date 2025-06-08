@@ -56,7 +56,7 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     assert not errors, f"Got validation errors for packet: {errors}"  # throw and retry
     assert p.ptype == PacketTypes.ack, f"Expected ACK packet, got {p.ptype}"
     assert (  # this is really bad
-        p.data == expected_signature
+        p.data[:3] == expected_signature
     ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
 
 
@@ -98,16 +98,16 @@ def main():
     for page in pages:
         serial.write(create_write_message(page.offset, page.data))
         data = serial.read(response_data_size)
-        packet = ResponsePacket.from_bytes(data)
+        packet = Packet.from_bytes(data)
         errors = packet.get_any_validation_errors()
         if errors:
             print(f"ERROR (page {page.offset}): {errors}", file=sys.stderr)
             sys.exit(1)
 
-        if packet.status != 0:
+        if packet.ptype != PacketTypes.ack:
             print(
                 f"ERROR (page {page.offset}):"
-                f" The device returned an error code {packet.status}",
+                f" The device returned an error code {packet.ptype}",
                 file=sys.stderr,
             )
             sys.exit(1)
@@ -117,14 +117,14 @@ def main():
 
     serial.write(create_boot_message())
     data = serial.read(response_data_size)
-    packet = ResponsePacket.from_bytes(data)
+    packet = Packet.from_bytes(data)
     errors = packet.get_any_validation_errors()
     if errors:
         print(f"ERROR: {errors}", file=sys.stderr)
         sys.exit(1)
-    if packet.status != 0:
+    if packet.ptype != PacketTypes.ack:
         print(
-            f"ERROR: The device returned an error code {packet.status}", file=sys.stderr
+            f"ERROR: The device returned an error code {packet.ptype}", file=sys.stderr
         )
         sys.exit(1)
 

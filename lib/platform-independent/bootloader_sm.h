@@ -10,8 +10,9 @@ static const uint8_t START_BYTE = 0x03;
 
 typedef enum
 {
-    COMMAND_WRITE_PAGE,
     COMMAND_READ_SIGNATURE,
+    COMMAND_VERSION,
+    COMMAND_WRITE_PAGE,
     COMMAND_BOOT,
 } command_t;
 
