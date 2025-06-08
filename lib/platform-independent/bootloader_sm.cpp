@@ -169,7 +169,7 @@ void step_state_machine(state_machine_t &sm)
     case STATE_READ_PAGE:
         set_counter(sm.state);
         send_page_response(sm.packet.data.read.page_offset, sm.packet.data.write.data);
-        sm.state = STATE_RETURN_STATUS;
+        sm.state = STATE_WAIT_FOR_START_BYTE;
         break;
 
     case STATE_RETURN_STATUS:

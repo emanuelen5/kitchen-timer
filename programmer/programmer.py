@@ -114,7 +114,6 @@ def main():
         for page_offset in range(
             args.dump_start // page_size, (args.dump_end + page_size - 1) // page_size
         ):
-            serial.reset_input_buffer()
             serial.write(create_read_message(page_offset))
             data = serial.read(packet_size(data_count=page_size + checksum_size))
             print("data", data.hex())
