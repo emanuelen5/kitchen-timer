@@ -24,7 +24,7 @@ void prepare_self_program(void)
     eeprom_busy_wait();
 }
 
-void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
+void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
 {
     prepare_self_program();
 
@@ -43,6 +43,19 @@ void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
 
     boot_page_write(page_address);
     boot_spm_busy_wait();
+
+    SREG = sreg_last_state;
+}
+
+void read_page(const uint16_t page_offset, uint8_t *program_buffer)
+{
+    prepare_self_program();
+
+    const uint16_t page_address = page_offset * SPM_PAGESIZE;
+    for (uint16_t byte_offset = 0; byte_offset < SPM_PAGESIZE; byte_offset++)
+    {
+        program_buffer[byte_offset] = pgm_read_byte(page_address + byte_offset);
+    }
 
     SREG = sreg_last_state;
 }

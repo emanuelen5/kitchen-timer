@@ -36,3 +36,11 @@ def read_all_pagedata(filename: Path) -> list[PageData]:
     ih = IntelHex()
     ih.loadhex(filename)
     return get_all_pagedata(ih)
+
+
+def write_all_pagedata(filename: Path, pagedata: list[PageData]) -> None:
+    ih = IntelHex()
+    for page in pagedata:
+        for i in range(page_size):
+            ih[page.offset * page_size + i] = page.data[i]
+    ih.write_hex_file(filename)

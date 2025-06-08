@@ -6,7 +6,8 @@ void set_counter(uint8_t);
 void increment_counter(void);
 int UART_receive_with_timeout(uint8_t *data);
 uint8_t UART_receive(void);
-void write_page(const uint8_t page_offset, const uint8_t *program_buffer);
+void write_page(const uint16_t page_offset, const uint8_t *program_buffer);
+void read_page(const uint16_t page_offset, uint8_t *program_buffer);
 void read_signature(uint8_t signature[3]);
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc);
 void UART_send(uint8_t data);
@@ -21,6 +22,23 @@ void send_response(response_t &packet)
     crc16 = send_and_checksum(packet.generic.data[1], crc16);
     crc16 = send_and_checksum(packet.generic.data[2], crc16);
     crc16 = send_and_checksum(packet.generic.data[3], crc16);
+    UART_send(crc16 & 0xff);
+    UART_send(crc16 >> 8);
+}
+
+void send_page_response(uint16_t page_offset, uint8_t *data)
+{
+    read_page(page_offset, data);
+    uint16_t crc16 = 0xffff;
+    crc16 = send_and_checksum(START_BYTE, crc16);
+    crc16 = send_and_checksum(resp_ack, crc16);
+    crc16 = send_and_checksum(2 + SPM_PAGESIZE, crc16);
+    crc16 = send_and_checksum(page_offset & 0xff, crc16);
+    crc16 = send_and_checksum(page_offset >> 8, crc16);
+    for (uint8_t i = 0; i < SPM_PAGESIZE; i++)
+    {
+        crc16 = send_and_checksum(data[i], crc16);
+    }
     UART_send(crc16 & 0xff);
     UART_send(crc16 >> 8);
 }
@@ -134,6 +152,10 @@ void step_state_machine(state_machine_t &sm)
             sm.response.generic.status = resp_ack;
             read_signature(&sm.response.generic.data[0]);
             break;
+        case COMMAND_READ_PAGE:
+            sm.state = STATE_READ_PAGE;
+            return;
+            break;
         case COMMAND_BOOT:
             sm.response.generic.status = resp_ack;
             break;
@@ -141,6 +163,12 @@ void step_state_machine(state_machine_t &sm)
             sm.response.generic.status = resp_data_unknown_command;
         }
 
+        sm.state = STATE_RETURN_STATUS;
+        break;
+
+    case STATE_READ_PAGE:
+        set_counter(sm.state);
+        send_page_response(sm.packet.data.read.page_offset, sm.packet.data.write.data);
         sm.state = STATE_RETURN_STATUS;
         break;
 

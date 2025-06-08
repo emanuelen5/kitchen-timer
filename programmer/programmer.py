@@ -3,16 +3,20 @@
 import sys
 from argparse import ArgumentParser
 from pathlib import Path
+from struct import unpack
 
 from binary_protocol import (
     Packet,
     PacketTypes,
+    checksum_size,
     create_boot_message,
+    create_read_message,
     create_signature_message,
     create_write_message,
     packet_size,
+    page_size,
 )
-from intel_hexfile import read_all_pagedata
+from intel_hexfile import PageData, read_all_pagedata, write_all_pagedata
 from serial import Serial, SerialException
 from serial.tools.list_ports import comports
 
@@ -60,7 +64,7 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
 
 
-response_data_size = 9
+response_data_size = packet_size(data_count=4 + checksum_size)
 
 
 def main():
@@ -68,6 +72,16 @@ def main():
     parser.add_argument("hexfile", type=Path)
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--dry-run", "-n", action="store_true")
+    parser.add_argument("--dump", type=Path, help="Dump the raw data to a file")
+    parser.add_argument(
+        "--dump-start", type=int, default=0, help="Start offset for the dump"
+    )
+    parser.add_argument(
+        "--dump-end",
+        type=int,
+        default=32 * 1024,
+        help="End offset for the dump (exclusive)",
+    )
     pg_serial = parser.add_argument_group("Serial connection")
     pge_port = pg_serial.add_mutually_exclusive_group()
     pge_port.add_argument(
@@ -94,6 +108,37 @@ def main():
     serial = attempt_serial_connection(args.port, args.baudrate)
 
     check_signature(serial, expected_signature=b"\x1e\x95\x0f")
+
+    if args.dump:
+        read_pages = []
+        for page_offset in range(
+            args.dump_start // page_size, (args.dump_end + page_size - 1) // page_size
+        ):
+            serial.reset_input_buffer()
+            serial.write(create_read_message(page_offset))
+            data = serial.read(packet_size(data_count=page_size + checksum_size))
+            print("data", data.hex())
+            packet = Packet.from_bytes(data)
+            print("Packet", packet)
+            errors = packet.get_any_validation_errors()
+            if errors:
+                print(f"ERROR (page {page_offset}): {errors}", file=sys.stderr)
+                sys.exit(1)
+            if packet.ptype != PacketTypes.ack:
+                print(
+                    f"ERROR (page {page_offset}):"
+                    f" The device returned an error code {packet.ptype!r}",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+            assert unpack("<H", packet.data[:2]) == (page_offset,), (
+                f"Expected page offset {page_offset}, got {unpack('<H', packet.data[:2])}"
+            )
+            read_pages.append(PageData(page_offset, packet.data[2:]))
+
+        write_all_pagedata(args.dump, read_pages)
+        print(f"Dumped data to {args.dump}")
+        sys.exit(0)
 
     for page in pages:
         serial.write(create_write_message(page.offset, page.data))

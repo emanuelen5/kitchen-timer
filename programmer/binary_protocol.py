@@ -29,6 +29,7 @@ class PacketTypes(enum.IntEnum):
     version = 0x01
     write = 0x02
     boot = 0x03
+    read = 0x04
     # From the AVR
     ack = 0x10
     nack = 0x11
@@ -81,7 +82,7 @@ class Packet:
                 f" but got {self.checksum} (0x{self.checksum:04x})"
             )
 
-        return ": ".join(errors)
+        return "".join("\n  - " + e for e in errors)
 
     @property
     def raw(self) -> bytes:
@@ -112,5 +113,13 @@ def create_write_message(page: int, data: bytes) -> bytes:
     return packet(PacketTypes.write, pack("<H", page) + data)
 
 
+def create_read_message(page: int) -> bytes:
+    return packet(PacketTypes.read, pack("<H", page))
+
+
 def packet_size(data_count: int) -> int:
     return 3 + data_count + 2
+
+
+page_size = 64
+checksum_size = 2

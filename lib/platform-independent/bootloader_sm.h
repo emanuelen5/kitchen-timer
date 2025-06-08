@@ -10,10 +10,12 @@ static const uint8_t START_BYTE = 0x03;
 
 typedef enum
 {
-    COMMAND_READ_SIGNATURE,
-    COMMAND_VERSION,
-    COMMAND_WRITE_PAGE,
-    COMMAND_BOOT,
+    // They must be the same as in programmer.py
+    COMMAND_READ_SIGNATURE = 0,
+    COMMAND_VERSION = 1,
+    COMMAND_WRITE_PAGE = 2,
+    COMMAND_BOOT = 3,
+    COMMAND_READ_PAGE = 4,
 } command_t;
 
 enum
@@ -66,6 +68,7 @@ typedef enum
     STATE_WRONG_CHECKSUM,
     STATE_RUN_COMMAND,
     STATE_RETURN_STATUS,
+    STATE_READ_PAGE,
     STATE_EXIT,
 } state_t;
 
