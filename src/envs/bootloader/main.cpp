@@ -5,7 +5,6 @@
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
 #include "led-counter.h"
-#include "millis.h"
 #define BAUD 9600
 #include <util/setbaud.h>
 
@@ -95,8 +94,7 @@ void UART_send(uint8_t data)
 
 int UART_receive(uint8_t *data)
 {
-    uint16_t start_time = millis();
-    const uint16_t timeout_duration = 2000;
+    uint16_t retries = UINT16_MAX; // approximately 2 seconds
     while (true)
     {
         if (UCSR0A & (1 << RXC0))
@@ -105,8 +103,10 @@ int UART_receive(uint8_t *data)
             return 0; // Successful reception
         }
 
-        if ((uint16_t)(millis() - start_time) >= timeout_duration)
+        if (retries == 0)
             return resp_timeout;
+
+        retries--;
     }
 }
 
@@ -157,7 +157,6 @@ void use_application_interrupt_vectors(void)
 int main(void)
 {
     use_bootloader_interrupt_vectors();
-    init_millis();
     init_led_counter();
     init_UART();
     set_counter(0x7);
@@ -166,7 +165,6 @@ int main(void)
     run_state_machine();
 
     finalize_self_program();
-    deinit_millis();
     use_application_interrupt_vectors();
     jump_to_start_of_program_and_exit_bootloader();
 }
