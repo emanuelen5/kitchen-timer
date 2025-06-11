@@ -54,6 +54,10 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     s.write(create_signature_message())
 
     data = s.read(packet_size(data_count=4))
+    if not data:
+        print("ERROR(signature): No data received from the device.", file=sys.stderr)
+        sys.exit(1)
+
     if verbose:
         print("data", data.hex())
     p = Packet.from_bytes(data)
@@ -110,11 +114,14 @@ def read_and_dump_pages(s: Serial, path: Path, start: int, end: int):
     for page_offset in range(start // page_size, (end + page_size - 1) // page_size):
         s.write(create_read_message(page_offset))
         data = s.read(packet_size(data_count=page_size + checksum_size))
-        if verbose:
-            print("data", data.hex())
+        if not data:
+            print("ERROR (read): No data received from the device.", file=sys.stderr)
+            sys.exit(1)
+
         packet = Packet.from_bytes(data)
         if verbose:
-            print("Packet", packet)
+            print("Read response", packet)
+
         errors = packet.get_any_validation_errors()
         if errors:
             print(f"ERROR (page {page_offset}): {errors}", file=sys.stderr)
@@ -140,7 +147,14 @@ def write_pages(serial: Serial, pages: list[PageData]):
     for page in pages:
         serial.write(create_write_message(page.offset, page.data))
         data = serial.read(response_data_size)
+        if not data:
+            print("ERROR (write): No data received from the device.", file=sys.stderr)
+            sys.exit(1)
+
         packet = Packet.from_bytes(data)
+        if verbose:
+            print("Write response", packet)
+
         errors = packet.get_any_validation_errors()
         if errors:
             print(f"ERROR (page {page.offset}): {errors}", file=sys.stderr)
@@ -161,6 +175,10 @@ def write_pages(serial: Serial, pages: list[PageData]):
 def boot_device(serial: Serial):
     serial.write(create_boot_message())
     data = serial.read(response_data_size)
+    if not data:
+        print("ERROR (boot): No data received from the device.", file=sys.stderr)
+        sys.exit(1)
+
     packet = Packet.from_bytes(data)
     errors = packet.get_any_validation_errors()
     if errors:
@@ -187,15 +205,16 @@ def main():
     parser.add_argument("--verbose", "-v", action="store_true")
     parser.add_argument("--dry-run", "-n", action="store_true")
     parser.add_argument("--boot", action="store_true", help="Boot the device on finish")
-    parser.add_argument(
+    pg_read = parser.add_argument_group("Reading flash memory")
+    pg_read.add_argument(
         "--dump",
         type=Path,
         help="Dump the raw data to a file. Do not write to the device.",
     )
-    parser.add_argument(
+    pg_read.add_argument(
         "--dump-start", type=int, default=0, help="Start offset for the dump"
     )
-    parser.add_argument(
+    pg_read.add_argument(
         "--dump-end",
         type=int,
         default=32 * 1024,
