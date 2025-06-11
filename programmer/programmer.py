@@ -65,8 +65,7 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
         )
         sys.exit(1)
 
-    if verbose:
-        print(f"Signature check successful. Got {actual_signature}.")
+    print(f"Signature check successful. Got {actual_signature.hex()}.")
 
 
 response_data_size = packet_size(data_count=4 + checksum_size)
@@ -126,7 +125,7 @@ def exchange_packets(
         sys.exit(1)
 
     if verbose:
-        print(f"{phase.capitalize()} successful: {r_packet}")
+        print(f"SUCCESS ({phase}): {r_packet}")
 
     return r_packet
 
@@ -232,23 +231,28 @@ def main():
     if args.list_ports:
         print_available_comports()
 
+    pages = []
+    if args.hexfile:
+        pages = create_pagedata(args.hexfile)
+
+        will_write = pages and not args.dry_run
+        if args.verbose and not will_write:
+            print_stats(args.hexfile, pages)
+
+    if not args.port:
+        parser.error("No serial port specified.")
+
     serial = attempt_serial_connection(args.port, args.baudrate)
 
     check_signature(serial, expected_signature=b"\x1e\x95\x0f")
 
-    if args.hexfile:
-        pages = create_pagedata(args.hexfile)
-
-        if args.dry_run or args.verbose:
-            print_stats(args.hexfile, pages)
-
-        if not args.dry_run:
-            write_pages(serial, pages)
+    if pages and not args.dry_run:
+        write_pages(serial, pages)
 
     if args.dump:
         read_and_dump_pages(serial, args.dump, args.dump_start, args.dump_end)
 
-    if not args.dump or args.boot:
+    if args.hexfile or args.boot:
         boot_device(serial)
 
 
