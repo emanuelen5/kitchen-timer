@@ -93,6 +93,28 @@ class Packet:
             + pack("<H", self.checksum)
         )
 
+    def __str__(self) -> str:
+        packet_type_str = f"{self.ptype.name} ({self.ptype.value})"
+        match self.ptype:
+            case PacketTypes.signature:
+                return f"Packet(type={packet_type_str}, data={self.data.hex()})"
+            case PacketTypes.version:
+                return f"Packet(type={packet_type_str}, data={self.data.hex()})"
+            case PacketTypes.write:
+                return f"Packet(type={packet_type_str}, page={unpack('<H', self.data[:2])[0]}, data={self.data[2:].hex()})"
+            case PacketTypes.boot:
+                return f"Packet(type={packet_type_str})"
+            case PacketTypes.read:
+                return f"Packet(type={packet_type_str}, page={unpack('<H', self.data[:2])[0]})"
+            case PacketTypes.ack:
+                return f"Packet(type={packet_type_str})"
+            case PacketTypes.nack:
+                return f"Packet(type={packet_type_str})"
+            case PacketTypes.unknown_command:
+                return f"Packet(type={packet_type_str})"
+            case _:
+                return f"Packet(type={packet_type_str}, data={self.data.hex()})"
+
 
 def packet(ptype: PacketTypes, data: bytes = b"") -> bytes:
     payload = start_byte + bytes([ptype, len(data)]) + bytes(data)
