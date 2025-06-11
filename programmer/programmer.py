@@ -72,6 +72,7 @@ response_data_size = packet_size(data_count=4 + checksum_size)
 
 
 def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
+    """Only pages on even offsets trigger an erase operation!"""
     new_pages = [p for p in pages]
 
     def new_empty_page(offset: int) -> PageData:
