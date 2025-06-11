@@ -51,25 +51,22 @@ def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
 
 def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     s.reset_input_buffer()
-    s.write(create_signature_message())
-
-    data = s.read(packet_size(data_count=4))
-    if not data:
-        print("ERROR(signature): No data received from the device.", file=sys.stderr)
+    packet = exchange_packets(
+        s,
+        create_signature_message(),
+        packet_size(data_count=4),
+        "signature",
+    )
+    actual_signature = packet.data[:3]
+    if actual_signature != expected_signature:
+        print(
+            f"Signature doesn't match. Got {packet.data!r}. Wanted {expected_signature!r}",
+            file=sys.stderr,
+        )
         sys.exit(1)
 
     if verbose:
-        print("data", data.hex())
-    p = Packet.from_bytes(data)
-    if verbose:
-        print("Packet", p)
-
-    errors = p.get_any_validation_errors()
-    assert not errors, f"Got validation errors for packet: {errors}"  # throw and retry
-    assert p.ptype == PacketTypes.ack, f"Expected ACK packet, got {p.ptype!r}"
-    assert (  # this is really bad
-        p.data[:3] == expected_signature
-    ), f"Signature doesn't match. Got {p.data!r}. Wanted {expected_signature!r}"
+        print(f"Signature check successful. Got {actual_signature}.")
 
 
 response_data_size = packet_size(data_count=4 + checksum_size)
@@ -94,6 +91,46 @@ def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
 verbose = False
 
 
+def exchange_packets(
+    s: Serial, w_packet: bytes, expected_read_length: int, phase: str
+) -> Packet:
+    write_length = s.write(w_packet)
+    if verbose:
+        print(f"-> {write_length} bytes: {w_packet.hex()}")
+    if write_length != len(w_packet):
+        print(
+            f"ERROR ({phase}): Wrote {write_length} bytes, expected"
+            f" {len(w_packet)} bytes.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    data = s.read(expected_read_length)
+    if not data and expected_read_length > 0:
+        print(f"ERROR ({phase}): No data received from the device.", file=sys.stderr)
+        sys.exit(1)
+    if verbose:
+        print(f"<- {len(data)} bytes: {data.hex()}")
+
+    r_packet = Packet.from_bytes(data)
+    errors = r_packet.get_any_validation_errors()
+    if errors:
+        print(f"ERROR ({phase}): {errors}", file=sys.stderr)
+        sys.exit(1)
+
+    if r_packet.ptype != PacketTypes.ack:
+        print(
+            f"ERROR ({phase}): The device returned an error packet {r_packet.ptype!r}",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    if verbose:
+        print(f"{phase.capitalize()} successful: {r_packet}")
+
+    return r_packet
+
+
 def create_pagedata(hexfile: Path) -> list[PageData]:
     pages = read_all_pagedata(hexfile)
 
@@ -112,29 +149,15 @@ def create_pagedata(hexfile: Path) -> list[PageData]:
 def read_and_dump_pages(s: Serial, path: Path, start: int, end: int):
     read_pages = []
     for page_offset in range(start // page_size, (end + page_size - 1) // page_size):
-        s.write(create_read_message(page_offset))
-        data = s.read(packet_size(data_count=page_size + checksum_size))
-        if not data:
-            print("ERROR (read): No data received from the device.", file=sys.stderr)
-            sys.exit(1)
-
-        packet = Packet.from_bytes(data)
-        if verbose:
-            print("Read response", packet)
-
-        errors = packet.get_any_validation_errors()
-        if errors:
-            print(f"ERROR (page {page_offset}): {errors}", file=sys.stderr)
-            sys.exit(1)
-        if packet.ptype != PacketTypes.ack:
-            print(
-                f"ERROR (page {page_offset}):"
-                f" The device returned an error code {packet.ptype!r}",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-        assert unpack("<H", packet.data[:2]) == (page_offset,), (
-            f"Expected page offset {page_offset}, got {unpack('<H', packet.data[:2])}"
+        packet = exchange_packets(
+            s,
+            create_read_message(page_offset),
+            packet_size(data_count=page_size + checksum_size),
+            "read",
+        )
+        (actual_offset,) = unpack("<H", packet.data[:2])
+        assert actual_offset == page_offset, (
+            f"Expected page offset {page_offset}, got {actual_offset}"
         )
         read_pages.append(PageData(page_offset, packet.data[2:]))
 
@@ -145,51 +168,23 @@ def read_and_dump_pages(s: Serial, path: Path, start: int, end: int):
 
 def write_pages(serial: Serial, pages: list[PageData]):
     for page in pages:
-        serial.write(create_write_message(page.offset, page.data))
-        data = serial.read(response_data_size)
-        if not data:
-            print("ERROR (write): No data received from the device.", file=sys.stderr)
-            sys.exit(1)
-
-        packet = Packet.from_bytes(data)
-        if verbose:
-            print("Write response", packet)
-
-        errors = packet.get_any_validation_errors()
-        if errors:
-            print(f"ERROR (page {page.offset}): {errors}", file=sys.stderr)
-            sys.exit(1)
-
-        if packet.ptype != PacketTypes.ack:
-            print(
-                f"ERROR (page {page.offset}):"
-                f" The device returned an error code {packet.ptype!r}",
-                file=sys.stderr,
-            )
-            sys.exit(1)
-
+        exchange_packets(
+            serial,
+            create_write_message(page.offset, page.data),
+            response_data_size,
+            "write",
+        )
         if verbose:
             print(f"Page {page.offset} written successfully.")
 
 
 def boot_device(serial: Serial):
-    serial.write(create_boot_message())
-    data = serial.read(response_data_size)
-    if not data:
-        print("ERROR (boot): No data received from the device.", file=sys.stderr)
-        sys.exit(1)
-
-    packet = Packet.from_bytes(data)
-    errors = packet.get_any_validation_errors()
-    if errors:
-        print(f"ERROR: {errors}", file=sys.stderr)
-        sys.exit(1)
-    if packet.ptype != PacketTypes.ack:
-        print(
-            f"ERROR: The device returned an error code {packet.ptype!r}",
-            file=sys.stderr,
-        )
-        sys.exit(1)
+    exchange_packets(
+        serial,
+        create_boot_message(),
+        response_data_size,
+        "boot",
+    )
 
     if verbose:
         print(
