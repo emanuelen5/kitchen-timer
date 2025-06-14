@@ -107,15 +107,9 @@ void step_state_machine(state_machine_t &sm)
         sm.calculated_checksum = checksum(sm.calculated_checksum, START_BYTE);
         sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.command);
         sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.data_length);
-        sm.incoming_checksum = 0;
         for (uint8_t i = 0; i < sm.packet.data_length + 2; i++)
         {
             sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.data.bytes[i]);
-            // Save the response checksum
-            if (i == sm.packet.data_length)
-            {
-                sm.incoming_checksum = sm.calculated_checksum;
-            }
         }
         if (sm.calculated_checksum != 0)
         {
@@ -128,8 +122,8 @@ void step_state_machine(state_machine_t &sm)
     case STATE_WRONG_CHECKSUM:
         set_counter(sm.state);
         sm.response.generic.status = resp_nak;
-        sm.response.generic.data[0] = sm.incoming_checksum & 0xff;
-        sm.response.generic.data[1] = sm.incoming_checksum >> 8;
+        sm.response.generic.data[0] = 0;
+        sm.response.generic.data[1] = 0;
         sm.response.generic.data[2] = sm.calculated_checksum & 0xff;
         sm.response.generic.data[3] = sm.calculated_checksum >> 8;
         sm.state = STATE_RETURN_STATUS;
