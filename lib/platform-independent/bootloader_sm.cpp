@@ -9,7 +9,7 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer);
 void read_page(const uint16_t page_offset, uint8_t *program_buffer);
 void read_signature(uint8_t signature[3]);
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc);
-uint16_t checksum(uint8_t byte, uint16_t crc);
+uint16_t checksum(uint16_t crc, uint8_t byte);
 void UART_send(uint8_t data);
 
 void send_response(response_t &packet)

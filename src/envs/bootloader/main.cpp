@@ -133,7 +133,7 @@ int UART_receive_with_timeout(uint8_t *data)
     }
 }
 
-uint16_t checksum(uint8_t byte, uint16_t crc16)
+uint16_t checksum(uint16_t crc16, uint8_t byte)
 {
     return _crc16_update(crc16, byte);
 }

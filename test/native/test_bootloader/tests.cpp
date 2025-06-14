@@ -153,7 +153,7 @@ int UART_receive_with_timeout(uint8_t *data)
     return 0; // Successful reception
 }
 
-uint16_t checksum(uint8_t byte, uint16_t crc)
+uint16_t checksum(uint16_t crc, uint8_t byte)
 {
     return dummy_checksum(crc, byte);
 }
