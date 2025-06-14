@@ -194,9 +194,7 @@ def boot_device(serial: Serial):
     )
 
     if verbose:
-        print(
-            "Boot command sent successfully. Device should now be running the new firmware."
-        )
+        print("Boot command sent successfully.")
 
 
 def main():
@@ -263,6 +261,10 @@ def main():
 
     if args.hexfile or args.boot:
         boot_device(serial)
+
+    programmed_firmware = args.hexfile and not args.dry_run
+    if programmed_firmware:
+        print("Device is now running the new firmware.")
 
 
 if __name__ == "__main__":
