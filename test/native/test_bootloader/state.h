@@ -18,10 +18,14 @@ inline const char *state_to_str(state_t state)
         return "STATE_DATA";
     case STATE_CHECK_CHECKSUM:
         return "STATE_CHECK_CHECKSUM";
+    case STATE_WRONG_CHECKSUM:
+        return "STATE_WRONG_CHECKSUM";
     case STATE_RUN_COMMAND:
         return "STATE_RUN_COMMAND";
     case STATE_RETURN_STATUS:
         return "STATE_RETURN_STATUS";
+    case STATE_READ_PAGE:
+        return "STATE_READ_PAGE";
     case STATE_EXIT:
         return "STATE_EXIT";
     default:

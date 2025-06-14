@@ -8,12 +8,19 @@
 #include "bootloader_sm.h"
 #include "state.h"
 
+enum
+{
+    resp_ok = 0,
+    resp_timeout = 1,
+};
+
 // Test doubles
 struct
 {
     struct
     {
         uint8_t received_byte;
+        bool received_byte_set;
         int status;
     } receive_and_checksum;
 
@@ -59,20 +66,29 @@ uint16_t dummy_checksum(uint16_t crc, int8_t byte)
     return crc + byte;
 }
 
-int receive_and_checksum(uint8_t *byte, uint16_t *crc)
+uint8_t UART_receive(void)
 {
-    *byte = test_state.receive_and_checksum.received_byte;
-    *crc = dummy_checksum(*crc, *byte);
-    return test_state.receive_and_checksum.status;
+    if (!test_state.receive_and_checksum.received_byte_set)
+        TEST_FAIL_MESSAGE("UART_receive called but no byte was set for reception");
+
+    test_state.receive_and_checksum.received_byte_set = false;
+    return test_state.receive_and_checksum.received_byte;
 }
 
 void set_receive_and_checksum_return_value(uint8_t received_byte, int status)
 {
+    test_state.receive_and_checksum.received_byte_set = true;
     test_state.receive_and_checksum.received_byte = received_byte;
     test_state.receive_and_checksum.status = status;
 }
 
-void write_page(const uint8_t page_offset, const uint8_t *program_buffer)
+void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
+{
+    (void)page_offset;
+    (void)program_buffer;
+}
+
+void read_page(const uint16_t page_offset, uint8_t *program_buffer)
 {
     (void)page_offset;
     (void)program_buffer;
@@ -91,6 +107,24 @@ uint8_t *read_signature(unsigned char *)
 void UART_send(uint8_t data)
 {
     test_state.sent_data.push_back(data);
+}
+
+int UART_receive_with_timeout(uint8_t *data)
+{
+    if (test_state.receive_and_checksum.status)
+        return resp_timeout;
+
+    if (!test_state.receive_and_checksum.received_byte_set)
+        TEST_FAIL_MESSAGE("UART_receive_with_timeout called but no byte was set for reception");
+
+    test_state.receive_and_checksum.received_byte_set = false;
+    *data = test_state.receive_and_checksum.received_byte;
+    return 0; // Successful reception
+}
+
+uint16_t checksum(uint8_t byte, uint16_t crc)
+{
+    return dummy_checksum(crc, byte);
 }
 
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc)
@@ -171,7 +205,7 @@ void test_write_page(void)
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
 
     // make the total checksum 0, otherwise the microcontroller will NAK
-    send_to_microcontroller_and_update_its_state_machine(-2 * SPM_PAGESIZE - COMMAND_WRITE_PAGE);
+    send_to_microcontroller_and_update_its_state_machine((uint8_t)(-2 * SPM_PAGESIZE - COMMAND_WRITE_PAGE));
     TEST_ASSERT_EQUAL(0, sm.calculated_checksum);
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
 
