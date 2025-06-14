@@ -228,7 +228,7 @@ def main():
         help="The serial port name to connect to",
     )
     pge_port.add_argument("--port", help="The serial port name to connect to")
-    pg_serial.add_argument("--baudrate", default=9600)
+    pg_serial.add_argument("--baudrate", default=62500, type=int)
     args = parser.parse_args()
 
     global verbose

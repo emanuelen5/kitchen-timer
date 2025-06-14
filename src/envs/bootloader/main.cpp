@@ -5,7 +5,7 @@
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
 #include "led-counter.h"
-#define BAUD 9600
+#define BAUD 62500
 #include <util/setbaud.h>
 
 #include "bootloader_sm.h"
