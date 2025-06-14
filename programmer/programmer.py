@@ -69,7 +69,7 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
     print(f"Signature check successful. Got {actual_signature.hex()}.")
 
 
-response_data_size = packet_size(data_count=4 + checksum_size)
+response_data_size = packet_size(data_count=4)
 
 
 def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
@@ -108,6 +108,13 @@ def exchange_packets(
     data = s.read(expected_read_length)
     if not data and expected_read_length > 0:
         print(f"ERROR ({phase}): No data received from the device.", file=sys.stderr)
+        sys.exit(1)
+    elif len(data) < expected_read_length:
+        print(
+            f"ERROR ({phase}): Expected {expected_read_length} bytes, got"
+            f" {len(data)} bytes.",
+            file=sys.stderr,
+        )
         sys.exit(1)
     if verbose:
         print(f"<- {len(data)} bytes: {data.hex()}")
