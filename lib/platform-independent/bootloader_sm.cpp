@@ -91,9 +91,8 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_DATA:
-        set_counter(sm.state);
         received_byte = UART_receive();
-        increment_counter();
+        set_counter(received_byte);
         sm.packet.data.bytes[sm.data_index++] = received_byte;
         if (sm.data_index >= sm.packet.data_length + 2)
         {
