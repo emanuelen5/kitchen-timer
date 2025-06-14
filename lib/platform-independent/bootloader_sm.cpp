@@ -1,6 +1,5 @@
 #include "bootloader_sm.h"
 #include "string.h"
-#include "util/crc16.h"
 
 void set_counter(uint8_t);
 void increment_counter(void);
@@ -10,6 +9,7 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer);
 void read_page(const uint16_t page_offset, uint8_t *program_buffer);
 void read_signature(uint8_t signature[3]);
 uint16_t send_and_checksum(uint8_t byte, uint16_t crc);
+uint16_t checksum(uint8_t byte, uint16_t crc);
 void UART_send(uint8_t data);
 
 void send_response(response_t &packet)
@@ -104,13 +104,13 @@ void step_state_machine(state_machine_t &sm)
     case STATE_CHECK_CHECKSUM:
         set_counter(sm.state);
         sm.calculated_checksum = 0xffff;
-        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, START_BYTE);
-        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.command);
-        sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.data_length);
+        sm.calculated_checksum = checksum(sm.calculated_checksum, START_BYTE);
+        sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.command);
+        sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.data_length);
         sm.incoming_checksum = 0;
         for (uint8_t i = 0; i < sm.packet.data_length + 2; i++)
         {
-            sm.calculated_checksum = _crc16_update(sm.calculated_checksum, sm.packet.data.bytes[i]);
+            sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.data.bytes[i]);
             // Save the response checksum
             if (i == sm.packet.data_length)
             {
