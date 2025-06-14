@@ -25,6 +25,20 @@ struct
     } receive_and_checksum;
 
     std::vector<uint8_t> sent_data;
+
+    struct
+    {
+        int call_count = 0;
+        uint16_t page_offset = 0;
+        uint8_t data[SPM_PAGESIZE] = {0};
+    } read_page;
+
+    struct
+    {
+        int call_count = 0;
+        uint16_t page_offset = 0;
+        uint8_t data[SPM_PAGESIZE] = {0};
+    } write_page;
 } test_state;
 
 class ResponseBreakdown
@@ -84,14 +98,16 @@ void set_receive_and_checksum_return_value(uint8_t received_byte, int status)
 
 void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
 {
-    (void)page_offset;
-    (void)program_buffer;
+    test_state.write_page.call_count++;
+    test_state.write_page.page_offset = page_offset;
+    memcpy(test_state.write_page.data, program_buffer, SPM_PAGESIZE);
 }
 
 void read_page(const uint16_t page_offset, uint8_t *program_buffer)
 {
-    (void)page_offset;
-    (void)program_buffer;
+    test_state.read_page.call_count++;
+    test_state.read_page.page_offset = page_offset;
+    memcpy(program_buffer, test_state.read_page.data, SPM_PAGESIZE);
 }
 
 void increment_counter()
@@ -231,6 +247,47 @@ void test_write_page(void)
     TEST_ASSERT_EQUAL_MESSAGE(4, response.data.size(), "Data size");
     uint8_t arr[] = {0x00, 0x00, 0x00, 0x00};
     TEST_ASSERT_EQUAL_UINT8_ARRAY(arr, response.data.data(), 4);
+}
+
+void test_read_page(void)
+{
+    sm.state = STATE_COMMAND;
+    send_to_microcontroller_and_update_its_state_machine(COMMAND_READ_PAGE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_LENGTH);
+    send_to_microcontroller_and_update_its_state_machine(SPM_PAGESIZE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+
+    const uint16_t page_offset = 0x1234;
+    send_to_microcontroller_and_update_its_state_machine(page_offset & 0xff);
+    send_to_microcontroller_and_update_its_state_machine(page_offset >> 8);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+
+    // make the total checksum 0, otherwise the microcontroller will NAK
+    send_to_microcontroller_and_update_its_state_machine((uint8_t)(-COMMAND_READ_PAGE - SPM_PAGESIZE - (page_offset & 0xff) - (page_offset >> 8)));
+    TEST_ASSERT_EQUAL(0, sm.calculated_checksum);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_DATA);
+
+    send_to_microcontroller_and_update_its_state_machine(0);
+    TEST_ASSERT_EQUAL(0, sm.calculated_checksum);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_CHECK_CHECKSUM);
+
+    step_state_machine(sm);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_RUN_COMMAND);
+
+    step_state_machine(sm);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_READ_PAGE);
+
+    step_state_machine(sm); // STATE_WAIT_FOR_START_BYTE
+
+    TEST_ASSERT_EQUAL(5 + SPM_PAGESIZE, test_state.sent_data.size());
+
+    ResponseBreakdown response(test_state.sent_data);
+    TEST_ASSERT_EQUAL_MESSAGE(COMMAND_READ_PAGE, response.command, "Command");
+    TEST_ASSERT_EQUAL_MESSAGE(SPM_PAGESIZE + 2 + 5, response.length, "Length");
+    TEST_ASSERT_EQUAL_MESSAGE(resp_ok, response.status, "Status");
+    TEST_ASSERT_EQUAL_MESSAGE(SPM_PAGESIZE, response.data.size(), "Data size");
+
+    // TODO: Check the data
 }
 
 void test_read_signature(void)
@@ -392,6 +449,7 @@ int main()
     RUN_TEST(test_wait_for_programmer_wants_command_if_there_was_start_byte);
     RUN_TEST(test_wait_for_programmer_times_out);
     RUN_TEST(test_write_page);
+    RUN_TEST(test_read_page);
     RUN_TEST(test_read_signature);
     RUN_TEST(test_boot);
     RUN_TEST(test_invalid_command);
