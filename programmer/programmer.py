@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import time
 from argparse import ArgumentParser
 from pathlib import Path
 from struct import unpack
@@ -243,6 +244,7 @@ def main():
         parser.error("No serial port specified.")
 
     serial = attempt_serial_connection(args.port, args.baudrate)
+    time.sleep(0.1)  # Allow some time for the device to reset
 
     check_signature(serial, expected_signature=b"\x1e\x95\x0f")
 
