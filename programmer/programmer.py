@@ -161,7 +161,7 @@ def create_pagedata(hexfile: Path) -> list[PageData]:
 
 def read_and_dump_pages(s: Serial, path: Path, start: int, end: int):
     read_pages = []
-    for page_offset in range(start // page_size, (end + page_size - 1) // page_size):
+    for page_offset in range(start // page_size, (end + page_size) // page_size):
         packet = exchange_packets(
             s,
             create_read_message(page_offset),
