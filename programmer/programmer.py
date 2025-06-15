@@ -278,7 +278,6 @@ def main():
         total=1 + dump_size + write_size + (1 if will_boot else 0)
     )
 
-    print(f"{dump_size=}, {write_size=}, {will_boot=}")
     global progress_cb
 
     progress_cb = pbar.update
