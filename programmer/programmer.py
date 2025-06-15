@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import math
 import sys
 import time
 from argparse import ArgumentParser
@@ -20,6 +21,8 @@ from binary_protocol import (
 from intel_hexfile import PageData, read_all_pagedata, write_all_pagedata
 from serial import Serial, SerialException
 from serial.tools.list_ports import comports
+from tqdm import tqdm
+from tqdm.contrib import DummyTqdmFile
 
 
 def print_stats(hexfile, pages: list[PageData]):
@@ -89,12 +92,14 @@ def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
 
 
 verbose = False
+progress_cb = lambda p: None
 
 
 def exchange_packets(
     s: Serial, w_packet: bytes, expected_read_length: int, phase: str
 ) -> Packet:
     write_length = s.write(w_packet)
+    progress_cb(0.5)
     if verbose:
         print(f"-> {write_length} bytes: {w_packet.hex()}")
     if write_length != len(w_packet):
@@ -135,6 +140,7 @@ def exchange_packets(
     if verbose:
         print(f"SUCCESS ({phase}): {r_packet}")
 
+    progress_cb(0.5)
     return r_packet
 
 
@@ -197,6 +203,16 @@ def boot_device(serial: Serial):
         print("Boot command sent successfully.")
 
 
+def tqdm_with_print_monkeypatch(total: int) -> tqdm:
+    """Create a tqdm progress bar that redirects all print statements to it.
+    This makes sure that the progress bar is updated correctly and not broken
+    in half by print statements."""
+    std_out_and_std_err = sys.stdout, sys.stderr
+    sys.stdout, sys.stderr = map(DummyTqdmFile, std_out_and_std_err)
+    pbar = tqdm(total=total, file=std_out_and_std_err[0], dynamic_ncols=True)
+    return pbar
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument(
@@ -237,6 +253,7 @@ def main():
     if args.list_ports:
         print_available_comports()
 
+    will_write = False
     pages = []
     if args.hexfile:
         pages = create_pagedata(args.hexfile)
@@ -248,6 +265,20 @@ def main():
     if not args.port:
         parser.error("No serial port specified.")
 
+    dump_size = (
+        math.ceil((args.dump_end - args.dump_start + 1) / page_size) if args.dump else 0
+    )
+    write_size = len(pages) if will_write else 0
+    will_boot = args.hexfile or args.boot
+
+    pbar = tqdm_with_print_monkeypatch(
+        total=1 + dump_size + write_size + (1 if will_boot else 0)
+    )
+
+    print(f"{dump_size=}, {write_size=}, {will_boot=}")
+    global progress_cb
+
+    progress_cb = pbar.update
     serial = attempt_serial_connection(args.port, args.baudrate)
     time.sleep(0.1)  # Allow some time for the device to reset
 
@@ -257,14 +288,21 @@ def main():
         write_pages(serial, pages)
 
     if args.dump:
-        read_and_dump_pages(serial, args.dump, args.dump_start, args.dump_end)
+        read_and_dump_pages(
+            serial,
+            args.dump,
+            args.dump_start,
+            args.dump_end,
+        )
 
-    if args.hexfile or args.boot:
+    if will_boot:
         boot_device(serial)
 
     programmed_firmware = args.hexfile and not args.dry_run
     if programmed_firmware:
         print("Device is now running the new firmware.")
+
+    pbar.close()
 
 
 if __name__ == "__main__":
