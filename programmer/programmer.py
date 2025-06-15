@@ -228,11 +228,14 @@ def main():
         help="Dump the raw data to a file. Do not write to the device.",
     )
     pg_read.add_argument(
-        "--dump-start", type=int, default=0, help="Start offset for the dump"
+        "--dump-start",
+        type=lambda x: int(x, 0),
+        default=0,
+        help="Start offset for the dump",
     )
     pg_read.add_argument(
         "--dump-end",
-        type=int,
+        type=lambda x: int(x, 0),
         default=32 * 1024,
         help="End offset for the dump (exclusive)",
     )
