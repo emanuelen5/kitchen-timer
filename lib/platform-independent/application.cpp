@@ -10,12 +10,9 @@ static void debug_display(application_t *app);
 
 void init_application(application_t *app)
 {
+    init_state_machine(&app->state_machines[0]);
     app->active_state_machine_index = 0;
-
-    for (int8_t i = 0; i < MAX_TIMERS; i++)
-    {
-        init_state_machine(&app->state_machines[i]);
-    }
+    app->initialized_state_machines = 0;
 }
 
 void step_application(application_t *app, event_t event)
@@ -40,10 +37,15 @@ void step_application(application_t *app, event_t event)
 
 static void select_next_state_machine(application_t *app)
 {
-    app->active_state_machine_index++;
-    if(app->active_state_machine_index >= MAX_TIMERS)
+    if(app->initialized_state_machines <= MAX_TIMERS)
     {
-        app->active_state_machine_index = 0;
+        uint8_t new_state_machine_index = app->initialized_state_machines + 1;
+        init_state_machine(&app->state_machines[new_state_machine_index]);
+        app->active_state_machine_index++;
+    }
+    else
+    {
+        //TODO: Blink a few times the whole Timer Indicator to show that no more timers can be created.
     }
 }
 
