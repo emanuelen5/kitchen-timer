@@ -4,7 +4,6 @@
 
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <util/delay.h>
 
 static rotation_cb_t rotation;
 
