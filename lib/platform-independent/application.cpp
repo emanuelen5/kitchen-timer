@@ -6,7 +6,6 @@
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_next_state_machine(application_t *app);
-static void debug_display(application_t *app);
 
 void init_application(application_t *app)
 {
@@ -52,21 +51,10 @@ static void select_next_state_machine(application_t *app)
 static void pass_event_to_all_state_machines(application_t *app, event_t event)
 {
     for (int8_t i = 0; i < MAX_TIMERS; i++)
+    {
         step_state(&app->state_machines[i], event);
-}
-
-static void debug_display(application_t *app)
-{
-    state_machine_t *active_sm = &app->state_machines[app->active_state_machine_index];
-
-    if (get_state(active_sm) == IDLE)
-    {
-        set_counter(get_original_time(active_sm));
     }
-    if (get_state(active_sm) == RUNNING)
-    {
-        set_counter(get_current_time(active_sm));
-    }
+
 }
 
 void service_application(application_t *app)
