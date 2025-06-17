@@ -31,7 +31,6 @@ void step_application(application_t *app, event_t event)
         step_state(&app->state_machines[app->active_state_machine_index], event);
     }
 
-    debug_display(app);
 }
 
 static void select_next_state_machine(application_t *app)
