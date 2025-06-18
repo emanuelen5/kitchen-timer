@@ -27,7 +27,9 @@ A table indicating what happens in each state when each event happens.
 
 | | Rot CW/CCW | SINGLE PRESS | DOUBLE PRESS | LONG PRESS | PRESS Rot. CW/CCW | SECOND_TICK | TIMEOUT |
 | - | - | - | - | - | - | - | -  |
-| IDLE | up/down original_time | RUN | New Timer | Reset original_time | Change View | NA | NA |
-| RUN | NA | PAUSE | New Timer | IDLE | Change View | down current_time | RING <br> Ringing Timer becomes the Active Timer. |
-| PAUSE | NA | RUN | New Timer | IDLE | Change View | NA | NA |
+| IDLE | up/down original_time | RUN | New Timer | Reset original_time | Next/Prev Timer | NA | NA |
+| RUN | Change View | PAUSE | New Timer | IDLE | Next/Prev Timer | down current_time | RING <br> Ringing Timer becomes the Active Timer. |
+| PAUSE | Change View | RUN | New Timer | IDLE | Next/Prev Timer | NA | NA |
 | RING  | NA | IDLE | NA | IDLE | NA | NA | After 20 secs, switch to IDLE |
+
+*If there are no more space for timers, the Timer Indicator should blink a few timer to show that the amount of timer reached a limit.
