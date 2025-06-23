@@ -41,9 +41,11 @@ static void make_new_state_machine(application_t *app)
         uint8_t new_state_machine_index = app->num_initialized_state_machines - 1;
         init_state_machine(&app->state_machines[new_state_machine_index]);   
         app->active_state_machine_index = new_state_machine_index;
+        UART_printf("Num_Timers: %d\n", app->num_initialized_state_machines);
     }
     else
     {
+        UART_printf("No more timers available.");
         //TODO: Blink a few times the whole Timer Indicator to show that no more timers can be created.
     }
 }
