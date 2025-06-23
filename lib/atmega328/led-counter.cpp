@@ -14,7 +14,7 @@ void init_led_counter(void)
 void update_leds()
 {
     uint8_t zeroed_port = (PORTC & ~LED_MASK);
-    uint8_t masked_count = (LED_MASK & ~count); // LEDs are active low
+    uint8_t masked_count = (LED_MASK & count);
     PORTC = zeroed_port | masked_count;
 }
 
