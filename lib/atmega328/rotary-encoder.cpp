@@ -14,7 +14,7 @@ void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
 {
     init_millis();
     DDRD &= 0;
-    PORTD |= bit(SW_PIN) | bit(CLK_PIN) | bit(DT_PIN);
+    PORTD |= bit(SW_PIN) | bit(CH_A_PIN) | bit(CH_B_PIN);
 
     uint8_t sreg = SREG;
     cli();
@@ -50,8 +50,8 @@ ISR(INT0_vect)
     if (should_retrigger_after_sw_debounce(&last_trigger_INT0))
     {
         uint8_t bank = PIND; // Read all values in the same time instant
-        bool clk = bit_is_set(bank, CLK_PIN);
-        bool dt = bit_is_set(bank, DT_PIN);
+        bool clk = bit_is_set(bank, CH_A_PIN);
+        bool dt = bit_is_set(bank, CH_B_PIN);
         const rotation_dir_t dir = clk == dt ? ccw : cw;
 
         rotation(dir, button->get_is_pressed());
