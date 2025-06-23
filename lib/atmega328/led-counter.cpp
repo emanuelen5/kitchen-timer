@@ -1,5 +1,6 @@
 #include "led-counter.h"
 #include <avr/io.h>
+#include "util.h"
 
 volatile static uint8_t count;
 #define LED_MASK 0b111
@@ -14,7 +15,9 @@ void init_led_counter(void)
 void update_leds()
 {
     uint8_t zeroed_port = (PORTC & ~LED_MASK);
-    uint8_t masked_count = (LED_MASK & ~count); // LEDs are active low
+    // The diodes are placed upside down, so here we invert the bits
+    uint8_t mapped_count = ((count & bit(0)) << 2) | (count & bit(1)) | ((count & bit(2)) >> 2);
+    uint8_t masked_count = (LED_MASK & mapped_count);
     PORTC = zeroed_port | masked_count;
 }
 
