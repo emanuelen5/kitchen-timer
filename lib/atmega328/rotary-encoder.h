@@ -4,8 +4,8 @@
 #include <stdint.h>
 #include <button.h>
 
-#define CLK_PIN PD2 // INT0
-#define DT_PIN PD3  // INT1
+#define CH_A_PIN PD2 // INT0
+#define CH_B_PIN PD3  // INT1
 #define SW_PIN PD4  // PCINT0
 
 typedef enum
