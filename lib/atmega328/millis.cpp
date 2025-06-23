@@ -36,8 +36,8 @@ void init_millis(void)
     uint8_t sreg = SREG;
     cli();
 
-    TCCR0A = bit(WGM01); // CTC mode with no OC0A pin toggle
-    TCCR0B = bit(CS01); // prescaler = 8
+    TCCR0A = bit(WGM01); // CTC mode (count up to OCR0A)
+    TCCR0B = bit(CS01); // clk_IO / 8 prescaler
     OCR0A = timer0_ticks_in_a_ms - 1;
     TIMSK0 = bit(OCIE0A); // Timer compare interrupt
 
