@@ -12,7 +12,6 @@ int main()
     {
         for(uint8_t number = 0; number < 10; number++)
         {
-            matrix_clear();
             draw_digit(number, 2, 8);
             matrix_update();
             _delay_ms(1000);
