@@ -30,13 +30,11 @@ void init_SPI(uint8_t bytes)
 
     // Enable SPI, Master, set clock rate (fosc/16)
     SPCR |= (1 << SPE) | (1 << MSTR) | (1 << SPR1);
-    SPSR |= (1 << SPI2X);  // Double SPI speed if necessary (for 1 MHz)
-    
+    SPSR |= (1 << SPI2X); // Double SPI speed if necessary (for 1 MHz)
+
     // Enable SPI interrupt
     SPCR |= (1 << SPIE);
 
-    sei();
-    
     message_length = bytes;
     init_queue(&SPI_queue, SPI_queue_buffer, SPI_queue_size);
 }
