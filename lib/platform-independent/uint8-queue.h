@@ -4,11 +4,11 @@
 #include <stdint.h>
 
 typedef struct {
-    uint8_t *data;
-    uint8_t size ;
-    uint8_t front ;
-    uint8_t rear ;
-    bool has_overflowed;
+    volatile uint8_t *data;
+    volatile uint8_t size;
+    volatile uint8_t front;
+    volatile uint8_t rear;
+    volatile bool has_overflowed;
 } uint8_queue_t;
 
 typedef struct
