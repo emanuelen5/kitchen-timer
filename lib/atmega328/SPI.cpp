@@ -2,8 +2,8 @@
 #include <avr/interrupt.h>
 
 static uint8_queue_t SPI_queue = {};
-static const uint8_t SPI_queue_size = 9; //64 bytes (2 bytes x 8 rows per device x 4 devices)
-static uint8_t SPI_queue_buffer[SPI_queue_size];
+static const uint8_t SPI_queue_size = 9; // 64 bytes (2 bytes x 8 rows per device x 4 devices)
+static uint8_t SPI_queue_buffer[SPI_queue_size + 1];
 
 uint8_t message_length;
 uint8_t bytes_transfered_counter;
