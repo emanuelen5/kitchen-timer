@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include "SPI.h"
 #include <util/delay.h>
+#include <avr/interrupt.h>
 #include "led-counter.h"
 
 
@@ -13,6 +14,8 @@ int main()
 {
     init_led_counter();
     init_SPI(9);
+    sei();
+
     while (1)
     {
         add_to_SPI_queue(0xAA);
