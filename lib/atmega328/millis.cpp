@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "util/atomic.h"
 #include "util.h"
 
 #if F_CPU != 1000000UL
@@ -10,21 +11,19 @@ static volatile uint16_t timer0_millis = 0;
 
 ISR(TIMER0_COMPA_vect)
 {
-    cli();          //We disable interrupts during this ISR cause it was causing issues with the SPI communication for the display.
     timer0_millis += 1;
-    sei();
 }
 
 uint16_t millis(void)
 {
     uint16_t m;
-    uint8_t oldSREG = SREG;
 
     // disable interrupts while we read timer0_millis or we might get an
     // inconsistent value (e.g. in the middle of a write to timer0_millis)
-    cli();
-    m = timer0_millis;
-    SREG = oldSREG;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        m = timer0_millis;
+    }
 
     return m;
 }
@@ -33,15 +32,13 @@ void init_millis(void)
 {
     const uint8_t timer0_ticks_in_a_ms = 125;
 
-    uint8_t sreg = SREG;
-    cli();
-
-    TCCR0A = bit(WGM01); // CTC mode (count up to OCR0A)
-    TCCR0B = bit(CS01); // clk_IO / 8 prescaler
-    OCR0A = timer0_ticks_in_a_ms - 1;
-    TIMSK0 = bit(OCIE0A); // Timer compare interrupt
-
-    SREG = sreg;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        TCCR0A = bit(WGM01); // CTC mode (count up to OCR0A)
+        TCCR0B = bit(CS01);  // clk_IO / 8 prescaler
+        OCR0A = timer0_ticks_in_a_ms - 1;
+        TIMSK0 = bit(OCIE0A); // Timer compare interrupt
+    }
 }
 
 void deinit_millis(void)
