@@ -2,6 +2,7 @@
 #define BAUD 9600
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <util/atomic.h>
 #include <util/setbaud.h>
 #include <stdarg.h>
 #include <util.h>
@@ -18,7 +19,7 @@ static uint8_t tx_queue_buffer[tx_queue_size];
 
 void init_UART(void)
 {
-    //Set baud rate
+    // Set baud rate
     UBRR0H = UBRRH_VALUE;
     UBRR0L = UBRRL_VALUE;
 
@@ -54,7 +55,10 @@ void UART_print_char(const char c)
     while (queue_is_full(&tx_queue))
         ;
 
-    add_to_queue(&tx_queue, (uint8_t)c);
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        add_to_queue(&tx_queue, (uint8_t)c);
+    }
     enable_and_trigger_tx_interrupt();
 }
 
@@ -79,7 +83,7 @@ ISR(USART_UDRE_vect)
     UDR0 = tx_letter.value;
 }
 
-void UART_printf(const char* format, ...)
+void UART_printf(const char *format, ...)
 {
     va_list args;
     va_start(args, format);
@@ -91,21 +95,23 @@ void UART_printf(const char* format, ...)
             format++;
             switch (*format)
             {
-                case 'd': {
-                    uint16_t num = va_arg(args, uint16_t);
-                    char num_str[12];
-                    write_int_into_string(num, num_str);
-                    UART_print_string(num_str);
-                    break;
-                }
-                case 's': {
-                    const char *str = va_arg(args, const char *);
-                    UART_print_string(str);
-                    break;
-                }
-                default:
-                    UART_print_string("Unsupported format specifier");
-                    break;
+            case 'd':
+            {
+                uint16_t num = va_arg(args, uint16_t);
+                char num_str[12];
+                write_int_into_string(num, num_str);
+                UART_print_string(num_str);
+                break;
+            }
+            case 's':
+            {
+                const char *str = va_arg(args, const char *);
+                UART_print_string(str);
+                break;
+            }
+            default:
+                UART_print_string("Unsupported format specifier");
+                break;
             }
         }
         else
@@ -132,7 +138,11 @@ void service_receive_UART(void)
     if (queue_is_empty(&rx_queue))
         return;
 
-    dequeue_return_t entry = dequeue(&rx_queue);
+    dequeue_return_t entry;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        entry = dequeue(&rx_queue);
+    }
     char c = entry.value;
 
     if (rx_index >= RX_BUFFER_SIZE - 1)
@@ -149,4 +159,3 @@ void service_receive_UART(void)
         UART_printf(rx_buffer);
     }
 }
-
