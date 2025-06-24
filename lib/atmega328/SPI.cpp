@@ -1,5 +1,6 @@
 #include "SPI.h"
 #include <avr/interrupt.h>
+#include "util/atomic.h"
 
 static uint8_queue_t SPI_queue = {};
 static const uint8_t SPI_queue_size = 9; // 64 bytes (2 bytes x 8 rows per device x 4 devices)
@@ -7,7 +8,6 @@ static uint8_t SPI_queue_buffer[SPI_queue_size + 1];
 
 uint8_t message_length;
 uint8_t bytes_transfered_counter;
-
 
 static void inline deactivate_cs(void)
 {
@@ -48,32 +48,32 @@ void SPI_transmit_byte(uint8_t byte)
 
 void add_to_SPI_queue(uint8_t value)
 {
-    cli();
-    add_to_queue(&SPI_queue, value);
-    sei();
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        add_to_queue(&SPI_queue, value);
+    }
 }
 
-dequeue_return_t dequeue_from_SPI_queue(void)
-{
-    dequeue_return_t return_value = dequeue(&SPI_queue);
-    return return_value;
-}
-
-bool is_SPI_transfer_ongoing()
+static bool is_SPI_transfer_ongoing()
 {
     return (PORTB & bit(CS_PIN)) == 0;
 }
 
 void start_SPI_transfer()
 {
-    while(is_SPI_transfer_ongoing())
+    while (is_SPI_transfer_ongoing())
     {
     }
-    
+
     activate_cs();
-    dequeue_return_t transmition_starter = dequeue_from_SPI_queue();
+    dequeue_return_t transmition_starter;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        transmition_starter = dequeue(&SPI_queue);
+    }
+
     bytes_transfered_counter = 0;
-    if(transmition_starter.is_valid)
+    if (transmition_starter.is_valid)
     {
         SPI_transmit_byte(transmition_starter.value);
     }
@@ -82,14 +82,15 @@ void start_SPI_transfer()
 ISR(SPI_STC_vect)
 {
     bytes_transfered_counter++;
-    if(bytes_transfered_counter < message_length)
+    if (bytes_transfered_counter < message_length)
     {
-        dequeue_return_t result = dequeue_from_SPI_queue();
-        if(result.is_valid)
+        dequeue_return_t result = dequeue(&SPI_queue);
+        if (result.is_valid)
         {
             SPI_transmit_byte(result.value);
         }
-    } else
+    }
+    else
     {
         deactivate_cs();
     }
