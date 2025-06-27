@@ -9,8 +9,6 @@ void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 
 void init_max72xx(void)
 {
-    init_SPI(MAX72XX_NUM_DEVICES * 2);
-
     max72xx_send_commands_to_all(Max72XX_Shutdown, 0x01);     // normal operation (exit shutdown mode)
     max72xx_send_commands_to_all(Max72XX_Scan_Limit, 0x07);   // 8 digits scan limit
     max72xx_send_commands_to_all(Max72XX_Decode_Mode, 0x00);  // disable decode mode

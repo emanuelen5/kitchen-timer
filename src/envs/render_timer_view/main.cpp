@@ -1,12 +1,17 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include "led-counter.h"
+#include "util/atomic.h"
+#include "millis.h"
 
 #include "util.h"
 #include "rtc.h"
 #include "uint8-queue.h"
 #include "UART.h"
 
+#include "max72xx_matrix.h"
+#include "max72xx.h"
+#include "SPI.h"
 #include "render.h"
 #include "application.h"
 
@@ -28,9 +33,26 @@ static void sleep(void)
     _delay_ms(100);
 }
 
+void service()
+{
+    dequeue_return_t event;
+    ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+    {
+        event = dequeue(&eventQueue);
+    }
+
+    if (event.is_valid)
+    {
+        step_application(&app, (event_t)event.value);
+    }
+    service_application(&app);
+    render_timer_view(&app.state_machines[0], 5, 0);
+}
+
 int main()
 {
     init_led_counter();
+    init_millis();
     set_counter(0);
     sleep();
     init_UART();
@@ -45,42 +67,56 @@ int main()
     init_application(&app);
     set_counter(4);
     sleep();
-    init_render();
+    init_SPI(MAX72XX_NUM_DEVICES * 2);
     set_counter(5);
-    sleep();
-
-    app.state_machines[0].timer.original_time = 10; // Test with 1 minute and 10 secs
-    step_application(&app, SINGLE_PRESS);           // To move into RUNNING state
-    set_counter(6);
-    sleep();
 
     sei();
+    set_counter(6);
+    init_max72xx();
+    set_counter(7);
+    sleep();
 
     while (true)
     {
-        // uint16_t millis_now = millis();
-        increment_counter();
+        app.state_machines[0].timer.original_time = 10; // Test with 1 minute and 10 secs
+        step_application(&app, SINGLE_PRESS);           // To move into RUNNING state
+        set_counter(8);
         sleep();
 
-        // if (!is_paused && millis_now >= 3000)
-        // {
-        //     step_application(&app, SINGLE_PRESS); // Simulate PAUSE
-        //     is_paused = true;
-        // }
+        uint16_t start = millis();
 
-        // if (is_paused && millis_now >= 7000)
-        // {
-        //     step_application(&app, SINGLE_PRESS);
-        //     is_paused = false;
-        // }
-
-        dequeue_return_t event = dequeue(&eventQueue);
-        if (event.is_valid)
+        while (millis() - start < 3000)
         {
-            step_application(&app, (event_t)event.value);
+            service();
         }
-        service_application(&app);
-        render_timer_view(&app.state_machines[0], 5, 0);
+        set_counter(1);
+        sleep();
+
+        start = millis();
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+            add_to_queue(&eventQueue, SINGLE_PRESS);
+        }
+        set_counter(2);
+        sleep();
+
+        while (millis() - start < 3000)
+        {
+            service();
+        }
+
+        start = millis();
+        ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
+        {
+            add_to_queue(&eventQueue, SINGLE_PRESS);
+        }
+        set_counter(2);
+        sleep();
+
+        while (millis() - start < 3000)
+        {
+            service();
+        }
     }
 
     return 0;
