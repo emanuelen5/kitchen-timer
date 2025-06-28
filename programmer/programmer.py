@@ -54,7 +54,6 @@ def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
 
 
 def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
-    s.reset_input_buffer()
     packet = exchange_packets(
         s,
         create_signature_message(),
