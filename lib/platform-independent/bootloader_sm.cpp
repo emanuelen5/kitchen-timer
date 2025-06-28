@@ -129,8 +129,10 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_RUN_COMMAND:
+    {
         set_counter(sm.state);
         memset(sm.response.bytes, 0, sizeof(sm.response.bytes));
+        state_t next_state = STATE_RETURN_STATUS;
         switch (sm.packet.command)
         {
         case COMMAND_WRITE_PAGE:
@@ -146,8 +148,7 @@ void step_state_machine(state_machine_t &sm)
             read_signature(&sm.response.generic.data[0]);
             break;
         case COMMAND_READ_PAGE:
-            sm.state = STATE_READ_PAGE;
-            return;
+            next_state = STATE_READ_PAGE;
             break;
         case COMMAND_BOOT:
             sm.response.generic.status = resp_ack;
@@ -156,8 +157,9 @@ void step_state_machine(state_machine_t &sm)
             sm.response.generic.status = resp_data_unknown_command;
         }
 
-        sm.state = STATE_RETURN_STATUS;
+        sm.state = next_state;
         break;
+    }
 
     case STATE_READ_PAGE:
         set_counter(sm.state);

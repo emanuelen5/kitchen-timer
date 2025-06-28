@@ -54,7 +54,6 @@ def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
 
 
 def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
-    s.reset_input_buffer()
     packet = exchange_packets(
         s,
         create_signature_message(),
@@ -272,7 +271,7 @@ def main():
         math.ceil((args.dump_end - args.dump_start + 1) / page_size) if args.dump else 0
     )
     write_size = len(pages) if will_write else 0
-    will_boot = args.hexfile or args.boot
+    will_boot = (args.hexfile or args.boot) and not args.dry_run
 
     pbar = tqdm_with_print_monkeypatch(
         total=1 + dump_size + write_size + (1 if will_boot else 0)
