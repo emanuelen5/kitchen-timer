@@ -271,7 +271,7 @@ def main():
         math.ceil((args.dump_end - args.dump_start + 1) / page_size) if args.dump else 0
     )
     write_size = len(pages) if will_write else 0
-    will_boot = args.hexfile or args.boot
+    will_boot = (args.hexfile or args.boot) and not args.dry_run
 
     pbar = tqdm_with_print_monkeypatch(
         total=1 + dump_size + write_size + (1 if will_boot else 0)
