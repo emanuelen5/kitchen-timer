@@ -1,17 +1,17 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <util/delay.h>
-#include "state-machine.h"
-#include "led-counter.h"
-#include "timer.h"
-#include "rotary-encoder.h"
-#include "uint8-queue.h"
-#include "UART.h"
-#include "rtc.h"
 #include "millis.h"
 #include "util.h"
-#include "application.h"
+#include "rtc.h"
+#include "uint8-queue.h"
+#include "rotary-encoder.h"
 #include "avr_button.h"
+
+#include "application.h"
+
+#include "UART.h"
+#include "led-counter.h"
+
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -49,17 +49,16 @@ void second_tick_cb(void)
 }
 
 int main()
-{
-    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
-
+{    
     init_UART();
     init_timer2_to_1s_interrupt(second_tick_cb);
     init_millis();
-    init_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
+ 
+    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
     init_rotary_encoder(rotation_cb, button);
-    init_application(&app);
 
+    init_application(&app);
     sei();
 
     while (true)

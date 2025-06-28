@@ -4,11 +4,12 @@
 #include <stdint.h>
 #include "state-machine.h"
 
-#define MAX_TIMERS 5
+#define MAX_TIMERS 3
 
 typedef struct 
 {
     state_machine_t state_machines[MAX_TIMERS];
+    uint8_t num_initialized_state_machines;
     uint8_t active_state_machine_index;
 } application_t;
 
