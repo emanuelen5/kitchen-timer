@@ -147,9 +147,7 @@ void run_state_machine(void)
 
 int main(void)
 {
-    init_led_counter();
     init_UART();
-    set_counter(0x7);
 
     run_state_machine();
 
