@@ -16,8 +16,6 @@
 
 #define bit(x) (1 << (x))
 
-static uint8_t sreg_last_state = 0;
-
 void prepare_self_program(void)
 {
     cli();
@@ -45,8 +43,6 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
 
     boot_page_write(page_address);
     boot_spm_busy_wait();
-
-    SREG = sreg_last_state;
 }
 
 void read_page(const uint16_t page_offset, uint8_t *program_buffer)
@@ -58,8 +54,6 @@ void read_page(const uint16_t page_offset, uint8_t *program_buffer)
     {
         program_buffer[byte_offset] = pgm_read_byte(page_address + byte_offset);
     }
-
-    SREG = sreg_last_state;
 }
 
 void read_signature(uint8_t signature[3])
@@ -75,7 +69,6 @@ void finalize_self_program(void)
     // Re-enable RWW-section. We need this to be able to jump back
     // to the application after bootloading.
     boot_rww_enable();
-    SREG = sreg_last_state;
 }
 
 static inline void
