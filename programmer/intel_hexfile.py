@@ -3,7 +3,7 @@ from pathlib import Path
 
 from intelhex import IntelHex
 
-page_size = 64
+page_size = 128
 empty_byte = b"\xff"
 
 
@@ -17,7 +17,7 @@ class PageData:
 
 
 def address_to_page(addr: int) -> int:
-    return addr >> 6
+    return addr >> 7
 
 
 def get_data_for_page(ih: IntelHex, page: int) -> bytes:

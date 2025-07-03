@@ -20,9 +20,9 @@ def test_build_boot_packet():
 
 
 def test_build_write_packet():
-    assert b"\x03\x02B\xaa\x00" + bytes(page_size) + b"c#" == create_write_message(
-        page=0xAA, data=bytes(page_size)
-    )
+    assert b"\x03\x02\x82\xaa\x00" + bytes(
+        page_size
+    ) + b"z\xa3" == create_write_message(page=0xAA, data=bytes(page_size))
 
 
 def test_crc16():

@@ -2,9 +2,7 @@
 #define __BOOTLOADER_STATE_MACHINE_H__
 
 #include "stdint.h"
-
-// #include "avr/boot.h"
-#define SPM_PAGESIZE 64
+#define SPM_PAGESIZE 128
 
 static const uint8_t START_BYTE = 0x03;
 
