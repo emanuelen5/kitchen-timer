@@ -27,9 +27,7 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
     prepare_self_program();
 
     const uint16_t page_address = page_offset * SPM_PAGESIZE;
-    // 2 pages are erased at once
-    if (page_offset == 0)
-        boot_page_erase(page_address);
+    boot_page_erase(page_address);
     boot_spm_busy_wait();
 
     const uint8_t word_size = 2;
