@@ -1,14 +1,11 @@
-#include <avr/io.h>
-#include <util/delay.h>
+#include "bootloader_sm.h"
+
 #include <avr/boot.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
-#include "led-counter.h"
 #define BAUD 62500
 #include <util/setbaud.h>
-
-#include "bootloader_sm.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
