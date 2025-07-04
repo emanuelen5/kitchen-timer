@@ -74,22 +74,6 @@ def check_signature(s: Serial, expected_signature: bytes = b"\x1e\x95\x0f"):
 response_data_size = packet_size(data_count=4)
 
 
-def add_empty_pages_to_trigger_erase(pages: list[PageData]) -> list[PageData]:
-    """Only pages on even offsets trigger an erase operation!"""
-    new_pages = [p for p in pages]
-
-    def new_empty_page(offset: int) -> PageData:
-        return PageData(offset, bytes([0xFF] * page_size))
-
-    page_offsets = {p.offset for p in pages}
-    for offset in page_offsets:
-        closest_erase_page = offset // 2 * 2
-        if closest_erase_page not in page_offsets:
-            new_pages.append(new_empty_page(closest_erase_page))
-
-    return sorted(pages, key=lambda p: p.offset)
-
-
 verbose = False
 progress_cb = lambda p: None
 
@@ -147,7 +131,6 @@ def create_pagedata(hexfile: Path) -> list[PageData]:
     pages = read_all_pagedata(hexfile)
 
     input_page_offsets = {p.offset for p in pages}
-    pages = add_empty_pages_to_trigger_erase(pages)
     if verbose:
         inserted_pages = {p.offset for p in pages if p.offset not in input_page_offsets}
         print(
