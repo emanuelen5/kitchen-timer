@@ -3,33 +3,42 @@
 namespace state_machine
 {
 
-    void change_original_time(timer_t *timer, int step)
+    Timer::Timer() : original_time(0), current_time(0)
     {
-        int32_t new_time = timer->original_time + step;
+    }
+
+    void Timer::increment_target_time(int step)
+    {
+        int32_t new_time = this->original_time + step;
         new_time = new_time < 0 ? 0 : new_time;
         new_time = new_time > 0xFFFF ? 0xFFFF : new_time;
-        timer->original_time = new_time;
+        this->original_time = new_time;
     }
 
-    void reset_timer(timer_t *timer)
+    void Timer::reset()
     {
-        timer->current_time = 0;
-        timer->original_time = 0;
+        this->current_time = 0;
+        this->original_time = 0;
     }
 
-    void increment_current_time(timer_t *timer)
+    void Timer::increment_current_time()
     {
-        timer->current_time++;
+        this->current_time++;
     }
 
-    bool timer_is_finished(timer_t *timer)
+    bool Timer::is_expired()
     {
-        return timer->current_time >= timer->original_time;
+        return this->current_time >= this->original_time;
     }
 
-    uint16_t timer_get_current_time(timer_t *timer)
+    uint16_t Timer::get_current_time()
     {
-        return timer->current_time;
+        return this->current_time;
+    }
+
+    uint16_t Timer::get_target_time()
+    {
+        return this->original_time;
     }
 
 } // namespace state_machine

@@ -30,7 +30,7 @@ class KitchenTimerStateMachine
 private:
     state_t state;
     uint16_t millis_of_last_transition;
-    state_machine::timer_t timer;
+    state_machine::Timer timer;
 
     void set_state(state_t new_state);
 
@@ -38,7 +38,7 @@ public:
     void init();
     void service();
     void handle_event(event_t event);
-    uint16_t get_original_time();
+    uint16_t get_target_time();
     uint16_t get_current_time();
     state_t get_state();
 };

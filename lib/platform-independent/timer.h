@@ -6,16 +6,21 @@
 namespace state_machine
 {
 
-    typedef struct
+    class Timer
     {
-        uint16_t original_time, current_time;
-    } timer_t;
+    private:
+        uint16_t original_time;
+        uint16_t current_time;
 
-    void change_original_time(timer_t *timer, int step);
-    void reset_timer(timer_t *timer);
-    void increment_current_time(timer_t *timer);
-    bool timer_is_finished(timer_t *timer);
-    uint16_t timer_get_current_time(timer_t *timer);
+    public:
+        Timer();
+        void increment_target_time(int step);
+        void reset();
+        void increment_current_time();
+        bool is_expired();
+        uint16_t get_current_time();
+        uint16_t get_target_time();
+    };
 
 } // namespace state_machine
 

@@ -59,7 +59,7 @@ static void debug_display(application_t *app)
 
     if (active_sm.get_state() == IDLE)
     {
-        set_counter(active_sm.get_original_time());
+        set_counter(active_sm.get_target_time());
     }
     if (active_sm.get_state() == RUNNING)
     {

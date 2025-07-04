@@ -10,7 +10,7 @@ uint16_t millis(void);
 void KitchenTimerStateMachine::init()
 {
     this->set_state(IDLE);
-    reset_timer(&this->timer);
+    this->timer.reset();
 }
 
 void KitchenTimerStateMachine::set_state(state_t new_state)
@@ -27,7 +27,7 @@ void KitchenTimerStateMachine::service()
         uint16_t time_in_state = millis() - this->millis_of_last_transition;
         if (time_in_state >= 2000)
         {
-            reset_timer(&this->timer);
+            this->timer.reset();
             set_counter(0b000);
             this->set_state(IDLE);
         }
@@ -61,15 +61,15 @@ void KitchenTimerStateMachine::handle_event(event_t event)
             this->set_state(RUNNING);
             break;
         case CW_ROTATION:
-            change_original_time(&this->timer, 1);
-            UART_printf("%d\n", this->timer.original_time);
+            this->timer.increment_target_time(1);
+            UART_printf("%d\n", this->get_target_time());
             break;
         case CCW_ROTATION:
-            change_original_time(&this->timer, -1);
-            UART_printf("%d\n", this->timer.original_time);
+            this->timer.increment_target_time(-1);
+            UART_printf("%d\n", this->get_target_time());
             break;
         case LONG_PRESS:
-            reset_timer(&this->timer);
+            this->timer.reset();
             break;
         default:
             break;
@@ -83,13 +83,13 @@ void KitchenTimerStateMachine::handle_event(event_t event)
             UART_printf("Pause\n");
             break;
         case LONG_PRESS:
-            reset_timer(&this->timer);
+            this->timer.reset();
             this->set_state(IDLE);
             break;
         case SECOND_TICK:
-            increment_current_time(&this->timer);
-            UART_printf("%d\n", this->timer.current_time);
-            if (timer_is_finished(&this->timer))
+            this->timer.increment_current_time();
+            UART_printf("%d\n", this->get_current_time());
+            if (this->timer.is_expired())
             {
                 this->set_state(RINGING);
                 UART_printf("Alarm goes off!!!\n");
@@ -106,7 +106,7 @@ void KitchenTimerStateMachine::handle_event(event_t event)
             this->set_state(RUNNING);
             break;
         case LONG_PRESS:
-            reset_timer(&this->timer);
+            this->timer.reset();
             this->set_state(IDLE);
             break;
         default:
@@ -117,7 +117,7 @@ void KitchenTimerStateMachine::handle_event(event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            reset_timer(&this->timer);
+            this->timer.reset();
             break;
         default:
             break;
@@ -126,14 +126,14 @@ void KitchenTimerStateMachine::handle_event(event_t event)
     }
 }
 
-uint16_t KitchenTimerStateMachine::get_original_time()
+uint16_t KitchenTimerStateMachine::get_target_time()
 {
-    return this->timer.original_time;
+    return this->timer.get_target_time();
 }
 
 uint16_t KitchenTimerStateMachine::get_current_time()
 {
-    return timer_get_current_time(&this->timer);
+    return this->timer.get_current_time();
 }
 
 state_t KitchenTimerStateMachine::get_state()
