@@ -41,6 +41,34 @@ def print_available_comports():
         print(f"  - {p.device} ({p.hwid})")
 
 
+def find_comports_matching_vid_pid(vid_pid) -> list:
+    matching_ports = []
+    for port in comports():
+        if vid_pid in port.hwid:
+            matching_ports.append(port)
+    return matching_ports
+
+
+def auto_detect_port_or_exit() -> str:
+    vid_pid = "1A86:7523"
+    matching_ports = find_comports_matching_vid_pid(vid_pid)
+
+    if len(matching_ports) == 0:
+        print(f"No matching serial ports found with VID:PID={vid_pid}")
+        print_available_comports()
+        sys.exit(1)
+    elif len(matching_ports) != 1:
+        print(f"Found {len(matching_ports)} matching serial ports:")
+        for port in matching_ports:
+            print(f"  - {port.device} ({port.hwid})")
+        print("Please specify which port to use with --port")
+        sys.exit(1)
+
+    port = matching_ports[0]
+    print(f"Auto-detected serial port: {port.device} ({port.hwid})")
+    return port.device
+
+
 def attempt_serial_connection(portname: str, baudrate: int) -> Serial:
     try:
         return Serial(portname, baudrate, timeout=0.5)
@@ -252,9 +280,6 @@ def main():
     global verbose
     verbose = args.verbose
 
-    if args.list_ports:
-        print_available_comports()
-
     will_write = False
     pages = []
     if args.hexfile:
@@ -265,7 +290,10 @@ def main():
             print_stats(args.hexfile, pages)
 
     if not args.port:
-        parser.error("No serial port specified.")
+        args.port = auto_detect_port_or_exit()
+
+    if args.list_ports:
+        print_available_comports()
 
     dump_size = (
         math.ceil((args.dump_end - args.dump_start + 1) / page_size) if args.dump else 0
