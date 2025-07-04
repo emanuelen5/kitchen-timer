@@ -7,30 +7,29 @@ void UART_printf(const char *f, ...);
 void set_counter(uint8_t v);
 uint16_t millis(void);
 
-void init_state_machine(state_machine_t *sm)
+void KitchenTimerStateMachine::init()
 {
-    set_state(sm, IDLE);
-    reset_timer(&sm->timer);
+    this->set_state(IDLE);
+    reset_timer(&this->timer);
 }
 
-void set_state(state_machine_t *sm, state_t new_state)
+void KitchenTimerStateMachine::set_state(state_t new_state)
 {
-    sm->millis_of_last_transition = millis();
-    sm->state = new_state;
+    this->state = new_state;
 }
 
-void service_state_machine(state_machine_t *sm)
+void KitchenTimerStateMachine::service()
 {
-    switch (sm->state)
+    switch (this->state)
     {
     case RINGING:
     {
-        uint16_t time_in_state = millis() - sm->millis_of_last_transition;
+        uint16_t time_in_state = millis() - this->millis_of_last_transition;
         if (time_in_state >= 2000)
         {
-            reset_timer(&sm->timer);
+            reset_timer(&this->timer);
             set_counter(0b000);
-            set_state(sm, IDLE);
+            this->set_state(IDLE);
         }
         else
         {
@@ -51,26 +50,26 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-void step_state(state_machine_t *sm, event_t event)
+void KitchenTimerStateMachine::handle_event(event_t event)
 {
-    switch (sm->state)
+    switch (this->state)
     {
     case IDLE:
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, RUNNING);
+            this->set_state(RUNNING);
             break;
         case CW_ROTATION:
-            change_original_time(&sm->timer, 1);
-            UART_printf("%d\n", sm->timer.original_time);
+            change_original_time(&this->timer, 1);
+            UART_printf("%d\n", this->timer.original_time);
             break;
         case CCW_ROTATION:
-            change_original_time(&sm->timer, -1);
-            UART_printf("%d\n", sm->timer.original_time);
+            change_original_time(&this->timer, -1);
+            UART_printf("%d\n", this->timer.original_time);
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
+            reset_timer(&this->timer);
             break;
         default:
             break;
@@ -80,19 +79,19 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, PAUSED);
+            this->set_state(PAUSED);
             UART_printf("Pause\n");
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
-            set_state(sm, IDLE);
+            reset_timer(&this->timer);
+            this->set_state(IDLE);
             break;
         case SECOND_TICK:
-            increment_current_time(&sm->timer);
-            UART_printf("%d\n", sm->timer.current_time);
-            if (timer_is_finished(&sm->timer))
+            increment_current_time(&this->timer);
+            UART_printf("%d\n", this->timer.current_time);
+            if (timer_is_finished(&this->timer))
             {
-                set_state(sm, RINGING);
+                this->set_state(RINGING);
                 UART_printf("Alarm goes off!!!\n");
             }
             break;
@@ -104,11 +103,11 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, RUNNING);
+            this->set_state(RUNNING);
             break;
         case LONG_PRESS:
-            reset_timer(&sm->timer);
-            set_state(sm, IDLE);
+            reset_timer(&this->timer);
+            this->set_state(IDLE);
             break;
         default:
             break;
@@ -118,7 +117,7 @@ void step_state(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            reset_timer(&sm->timer);
+            reset_timer(&this->timer);
             break;
         default:
             break;
@@ -127,17 +126,17 @@ void step_state(state_machine_t *sm, event_t event)
     }
 }
 
-uint16_t get_original_time(state_machine_t *sm)
+uint16_t KitchenTimerStateMachine::get_original_time()
 {
-    return sm->timer.original_time;
+    return this->timer.original_time;
 }
 
-uint16_t get_current_time(state_machine_t *sm)
+uint16_t KitchenTimerStateMachine::get_current_time()
 {
-    return timer_get_current_time(&sm->timer);
+    return timer_get_current_time(&this->timer);
 }
 
-state_t get_state(state_machine_t *sm)
+state_t KitchenTimerStateMachine::get_state()
 {
-    return sm->state;
+    return this->state;
 }

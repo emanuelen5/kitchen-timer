@@ -25,19 +25,22 @@ typedef enum
     SECOND_TICK,
 } event_t;
 
-typedef struct
+class KitchenTimerStateMachine
 {
+private:
     state_t state;
-    state_machine::timer_t timer;
     uint16_t millis_of_last_transition;
-} state_machine_t;
+    state_machine::timer_t timer;
 
-void set_state(state_machine_t *sm, state_t new_state);
-void step_state(state_machine_t *sm, event_t event);
-void init_state_machine(state_machine_t *sm);
-void service_state_machine(state_machine_t *sm);
-uint16_t get_original_time(state_machine_t *sm);
-uint16_t get_current_time(state_machine_t *sm);
-state_t get_state(state_machine_t *sm);
+    void set_state(state_t new_state);
+
+public:
+    void init();
+    void service();
+    void handle_event(event_t event);
+    uint16_t get_original_time();
+    uint16_t get_current_time();
+    state_t get_state();
+};
 
 #endif // LIB_STATE_MACHINE_H
