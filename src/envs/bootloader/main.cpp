@@ -59,7 +59,7 @@ void read_signature(uint8_t signature[3])
     signature[2] = boot_signature_byte_get(0x04);
 }
 
-void finalize_self_program(void)
+static void finalize_self_program(void)
 {
     // Re-enable RWW-section. We need this to be able to jump back
     // to the application after bootloading.
