@@ -14,7 +14,7 @@ void init_application(application_t *app)
 
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
-        app->state_machines[i].init();
+        app->state_machines[i].reset();
     }
 }
 

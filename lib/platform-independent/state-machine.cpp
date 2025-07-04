@@ -7,7 +7,7 @@ void UART_printf(const char *f, ...);
 void set_counter(uint8_t v);
 uint16_t millis(void);
 
-void KitchenTimerStateMachine::init()
+void KitchenTimerStateMachine::reset()
 {
     this->set_state(IDLE);
     this->timer.reset();
@@ -15,6 +15,7 @@ void KitchenTimerStateMachine::init()
 
 void KitchenTimerStateMachine::set_state(state_t new_state)
 {
+    this->millis_of_last_transition = millis();
     this->state = new_state;
 }
 

@@ -35,7 +35,7 @@ private:
     void set_state(state_t new_state);
 
 public:
-    void init();
+    void reset();
     void service();
     void handle_event(event_t event);
     uint16_t get_target_time();
