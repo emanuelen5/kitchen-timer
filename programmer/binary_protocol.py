@@ -143,5 +143,5 @@ def packet_size(data_count: int) -> int:
     return 3 + data_count + 2
 
 
-page_size = 64
+page_size = 128
 checksum_size = 2

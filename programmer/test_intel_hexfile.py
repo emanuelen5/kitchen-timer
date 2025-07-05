@@ -13,8 +13,8 @@ from programmer.intel_hexfile import (
 
 def test_first_page():
     assert address_to_page(0) == 0
-    assert address_to_page(63) == 0
-    assert address_to_page(64) == 1
+    assert address_to_page(127) == 0
+    assert address_to_page(128) == 1
 
 
 def test_get_data_for_page():

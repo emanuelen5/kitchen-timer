@@ -1,8 +1,6 @@
 #include "bootloader_sm.h"
 #include "string.h"
 
-void set_counter(uint8_t);
-void increment_counter(void);
 int UART_receive_with_timeout(uint8_t *data);
 uint8_t UART_receive(void);
 void write_page(const uint16_t page_offset, const uint8_t *program_buffer);
@@ -59,7 +57,6 @@ void step_state_machine(state_machine_t &sm)
         sm.state = STATE_WAIT_FOR_PROGRAMMER;
         break;
     case STATE_WAIT_FOR_PROGRAMMER:
-        set_counter(sm.state);
         if (UART_receive_with_timeout(&received_byte))
         {
             sm.state = STATE_EXIT;
@@ -70,20 +67,17 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_WAIT_FOR_START_BYTE:
-        set_counter(sm.state);
         received_byte = UART_receive();
         sm.state = STATE_COMMAND;
         break;
 
     case STATE_COMMAND:
-        set_counter(sm.state);
         received_byte = UART_receive();
         sm.packet.command = (command_t)received_byte;
         sm.state = STATE_LENGTH;
         break;
 
     case STATE_LENGTH:
-        set_counter(sm.state);
         received_byte = UART_receive();
         sm.data_index = 0;
         sm.packet.data_length = received_byte;
@@ -92,7 +86,6 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_DATA:
         received_byte = UART_receive();
-        set_counter(received_byte);
         sm.packet.data.bytes[sm.data_index++] = received_byte;
         if (sm.data_index >= sm.packet.data_length + 2)
         {
@@ -101,7 +94,6 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_CHECK_CHECKSUM:
-        set_counter(sm.state);
         sm.calculated_checksum = 0xffff;
         sm.calculated_checksum = checksum(sm.calculated_checksum, START_BYTE);
         sm.calculated_checksum = checksum(sm.calculated_checksum, sm.packet.command);
@@ -119,7 +111,6 @@ void step_state_machine(state_machine_t &sm)
         break;
 
     case STATE_WRONG_CHECKSUM:
-        set_counter(sm.state);
         sm.response.generic.status = resp_nak;
         sm.response.generic.data[0] = 0;
         sm.response.generic.data[1] = 0;
@@ -130,7 +121,6 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_RUN_COMMAND:
     {
-        set_counter(sm.state);
         memset(sm.response.bytes, 0, sizeof(sm.response.bytes));
         state_t next_state = STATE_RETURN_STATUS;
         switch (sm.packet.command)
@@ -162,13 +152,11 @@ void step_state_machine(state_machine_t &sm)
     }
 
     case STATE_READ_PAGE:
-        set_counter(sm.state);
         send_page_response(sm.packet.data.read.page_offset, sm.packet.data.write.data);
         sm.state = STATE_WAIT_FOR_START_BYTE;
         break;
 
     case STATE_RETURN_STATUS:
-        set_counter(sm.state);
         send_response(sm.response);
 
         sm.state = sm.packet.command == COMMAND_BOOT ? STATE_EXIT : STATE_WAIT_FOR_START_BYTE;

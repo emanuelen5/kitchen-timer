@@ -1,22 +1,17 @@
-#include <avr/io.h>
-#include <util/delay.h>
+#include "bootloader_sm.h"
+
 #include <avr/boot.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
-#include "led-counter.h"
 #define BAUD 62500
 #include <util/setbaud.h>
-
-#include "bootloader_sm.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
 #endif
 
 #define bit(x) (1 << (x))
-
-static uint8_t sreg_last_state = 0;
 
 void prepare_self_program(void)
 {
@@ -29,9 +24,7 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
     prepare_self_program();
 
     const uint16_t page_address = page_offset * SPM_PAGESIZE;
-    // 2 pages are erased at once
-    if (page_offset == 0)
-        boot_page_erase(page_address);
+    boot_page_erase(page_address);
     boot_spm_busy_wait();
 
     const uint8_t word_size = 2;
@@ -45,8 +38,6 @@ void write_page(const uint16_t page_offset, const uint8_t *program_buffer)
 
     boot_page_write(page_address);
     boot_spm_busy_wait();
-
-    SREG = sreg_last_state;
 }
 
 void read_page(const uint16_t page_offset, uint8_t *program_buffer)
@@ -58,8 +49,6 @@ void read_page(const uint16_t page_offset, uint8_t *program_buffer)
     {
         program_buffer[byte_offset] = pgm_read_byte(page_address + byte_offset);
     }
-
-    SREG = sreg_last_state;
 }
 
 void read_signature(uint8_t signature[3])
@@ -70,12 +59,11 @@ void read_signature(uint8_t signature[3])
     signature[2] = boot_signature_byte_get(0x04);
 }
 
-void finalize_self_program(void)
+static void finalize_self_program(void)
 {
     // Re-enable RWW-section. We need this to be able to jump back
     // to the application after bootloading.
     boot_rww_enable();
-    SREG = sreg_last_state;
 }
 
 static inline void
@@ -156,9 +144,7 @@ void run_state_machine(void)
 
 int main(void)
 {
-    init_led_counter();
     init_UART();
-    set_counter(0x7);
 
     run_state_machine();
 
