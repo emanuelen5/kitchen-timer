@@ -1,7 +1,6 @@
 #include "bootloader_sm.h"
 #include "string.h"
 
-void increment_counter(void);
 int UART_receive_with_timeout(uint8_t *data);
 uint8_t UART_receive(void);
 void write_page(const uint16_t page_offset, const uint8_t *program_buffer);

@@ -1,14 +1,11 @@
-#include <avr/io.h>
-#include <util/delay.h>
+#include "bootloader_sm.h"
+
 #include <avr/boot.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
-#include "led-counter.h"
 #define BAUD 62500
 #include <util/setbaud.h>
-
-#include "bootloader_sm.h"
 
 #if F_CPU != 1000000UL
 #error The library can only handle a CPU frequency of 1MHz at the moment
@@ -62,7 +59,7 @@ void read_signature(uint8_t signature[3])
     signature[2] = boot_signature_byte_get(0x04);
 }
 
-void finalize_self_program(void)
+static void finalize_self_program(void)
 {
     // Re-enable RWW-section. We need this to be able to jump back
     // to the application after bootloading.
