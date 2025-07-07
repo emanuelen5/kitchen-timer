@@ -24,12 +24,25 @@ void UART_printf(char const *fmt, ...)
     va_end(args);
 }
 
-state_machine_t sm;
+class TestTimer : public Timer
+{
+public:
+    uint16_t original_time;
+};
+
+class TestStateMachine : public KitchenTimerStateMachine
+{
+public:
+    state_t state;
+    TestTimer timer;
+};
+
+TestStateMachine sm;
 
 void setUp(void)
 {
     current_millis = 0;
-    init_state_machine(&sm);
+    sm.reset();
 }
 
 void tearDown(void)
@@ -38,65 +51,65 @@ void tearDown(void)
 
 void test_initialize_as_idle(void)
 {
-    TEST_ASSERT_EQUAL(get_state(&sm), IDLE);
-    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+    TEST_ASSERT_EQUAL(sm.get_state(), IDLE);
+    TEST_ASSERT_EQUAL(sm.get_target_time(), 0);
 }
 
 void test_when_in_idle_increment_timer_on_cw_rotation(void)
 {
-    step_state(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(get_original_time(&sm), 1);
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(sm.get_target_time(), 1);
 }
 
 void test_when_in_idle_decrement_timer_on_ccw_rotation(void)
 {
     sm.timer.original_time = 1;
-    step_state(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(sm.get_target_time(), 0);
 }
 
 void test_when_in_idle_timer_doesnt_overflow(void)
 {
     sm.timer.original_time = 0xffff;
-    step_state(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(get_original_time(&sm), 0xffff);
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(sm.get_target_time(), 0xffff);
 }
 
 void test_when_in_idle_timer_doesnt_underflow(void)
 {
-    step_state(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(sm.get_target_time(), 0);
 }
 
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
-    set_state(&sm, RUNNING);
+    sm.state = RUNNING;
     sm.timer.original_time = 10;
 
     int actual_seconds = 0;
     while (true)
     {
-        step_state(&sm, SECOND_TICK);
+        sm.handle_event(SECOND_TICK);
         actual_seconds++;
-        if (get_state(&sm) != RUNNING)
+        if (sm.get_state() != RUNNING)
             break;
     }
     TEST_ASSERT_EQUAL(10, actual_seconds);
-    TEST_ASSERT_EQUAL(get_state(&sm), RINGING);
+    TEST_ASSERT_EQUAL(sm.get_state(), RINGING);
 }
 
 void test_ringing_exits_after_2000ms(void)
 {
-    set_state(&sm, RINGING);
-    service_state_machine(&sm);
+    sm.state = RINGING;
+    sm.service();
 
     current_millis = 0;
     while (true)
     {
         current_millis++;
-        service_state_machine(&sm);
+        sm.service();
 
-        if (get_state(&sm) != RINGING)
+        if (sm.get_state() != RINGING)
             break;
         bool panic = current_millis == 0;
         if (panic)

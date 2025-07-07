@@ -3,20 +3,20 @@
 
 #include "stdint.h"
 
-namespace state_machine
+class Timer
 {
+private:
+    uint16_t original_time;
+    uint16_t current_time;
 
-    typedef struct
-    {
-        uint16_t original_time, current_time;
-    } timer_t;
-
-    void change_original_time(timer_t *timer, int step);
-    void reset_timer(timer_t *timer);
-    void increment_current_time(timer_t *timer);
-    bool timer_is_finished(timer_t *timer);
-    uint16_t timer_get_current_time(timer_t *timer);
-
-} // namespace state_machine
+public:
+    Timer();
+    void increment_target_time(int step);
+    void reset();
+    void increment_current_time();
+    bool is_expired();
+    uint16_t get_current_time();
+    uint16_t get_target_time();
+};
 
 #endif // LIB_TIMER_H
