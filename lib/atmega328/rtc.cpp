@@ -9,7 +9,6 @@ static callback *a_second_has_passed = &do_nothing;
 ISR(TIMER2_OVF_vect)
 {
     a_second_has_passed();
-    sei();      //NOTE: We don´t know why but this is needed. Otherwise the program crashes.
 }
 
 void init_timer2_to_1s_interrupt(callback *on_second_cb)
