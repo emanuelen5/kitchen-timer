@@ -10,9 +10,7 @@ static volatile uint16_t timer0_millis = 0;
 
 ISR(TIMER0_COMPA_vect)
 {
-    cli();          //We disable interrupts during this ISR cause it was causing issues with the SPI communication for the display.
     timer0_millis += 1;
-    sei();
 }
 
 uint16_t millis(void)
