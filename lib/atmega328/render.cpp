@@ -71,7 +71,7 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
 
 static void draw_active_timer(uint16_t current_time)
 {
-    //Split the current_time from seconds to MM and SS or HH and MM.
+    
     uint8_t top_value, bottom_value;
     if (current_time >= 3600) {
         top_value = current_time / 3600;
@@ -81,7 +81,7 @@ static void draw_active_timer(uint16_t current_time)
         bottom_value = current_time % 60;
     }
 
-    //Add leading zeros if necessary
+
     char top_digits[2], bottom_digits[2];
     top_digits[0] = '0' + (top_value / 10);
     top_digits[1] = '0' + (top_value % 10);
@@ -89,7 +89,7 @@ static void draw_active_timer(uint16_t current_time)
     bottom_digits[0] = '0' + (bottom_value / 10);
     bottom_digits[1] = '0' + (bottom_value % 10);
 
-    //Draw each digit
+    
     draw_digit(top_digits[0], DIGITS_X_OFFSET, TOP_Y_OFFSET);
     draw_digit(top_digits[1], DIGITS_X_OFFSET + 7, TOP_Y_OFFSET);
 
