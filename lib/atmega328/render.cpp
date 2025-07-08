@@ -91,10 +91,10 @@ static void draw_active_timer(uint16_t current_time)
 
     //Draw each digit
     draw_digit(top_digits[0], DIGITS_X_OFFSET, TOP_Y_OFFSET);
-    draw_digit(top_digits[1], DIGITS_X_OFFSET + 8, TOP_Y_OFFSET);
+    draw_digit(top_digits[1], DIGITS_X_OFFSET + 7, TOP_Y_OFFSET);
 
     draw_digit(bottom_digits[0], DIGITS_X_OFFSET, BOTTOM_Y_OFFSET);
-    draw_digit(bottom_digits[1], DIGITS_X_OFFSET + 8, BOTTOM_Y_OFFSET);
+    draw_digit(bottom_digits[1], DIGITS_X_OFFSET + 7, BOTTOM_Y_OFFSET);
 
 }
 
