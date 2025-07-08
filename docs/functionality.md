@@ -7,8 +7,9 @@ The Kitchen Timer can run multiple countdown timers simultaneously, but only one
 The "Timer view" displays:
 * Active Timer
 * Timers Indicator
+* Hour Indicator
 
-<img src="image.png" alt="alt text" style="width:300px; height:auto;" />
+<img src="image-2.png" alt="alt text" style="width:300px; height:auto;" />
 
 #### Active Timer
 *  The 2 top digits represent the minutes, and the 2 lower digits represent the seconds.
@@ -16,6 +17,10 @@ The "Timer view" displays:
 
 #### Timers Indicator
 The left-most column of LEDs is reserved for indicating how many timers are currently running. For example, if there are 5 LEDs on, that means that there are 5 timers running. The Active Timer is identified in the Timers Indicator as the blinking LED.
+
+#### Hour Indicator
+In the case that the amount of time being counted is over 60 minutes, the top pair of digits becomes hours and the bottom pair minutes.
+To indicate that this is the case, the Hours Indicator lights up.
 
 ### Bars View
 The Bars View shows the status of each timer in relationsip to the others as a horizontal bar diagram. In the same way as in the Timer View, the left-most column is the Timers Indicator, and the blinking LED is the Active Timer.
