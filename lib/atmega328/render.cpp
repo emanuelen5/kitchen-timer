@@ -1,8 +1,7 @@
 #include "render.h"
 
 #define DIGITS_X_OFFSET 2
-#define TOP_Y_OFFSET 0
-#define BOTTOM_Y_OFFSET 8
+#define DIGITS_Y_OFFSET 0
 #define ACTIVE_INDICATOR_BLINK_RATE 200
 #define PAUSED_TIMER_BLINK_RATE 500
 #define TIMERS_INDICATOR_COLUMN 0
@@ -69,7 +68,7 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
     }
 }
 
-static void draw_active_timer(uint16_t current_time)
+static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y_offset)
 {
     
     uint8_t top_value, bottom_value;
@@ -90,11 +89,11 @@ static void draw_active_timer(uint16_t current_time)
     bottom_digits[1] = '0' + (bottom_value % 10);
 
     
-    draw_digit(top_digits[0], DIGITS_X_OFFSET, TOP_Y_OFFSET);
-    draw_digit(top_digits[1], DIGITS_X_OFFSET + 7, TOP_Y_OFFSET);
+    draw_digit(top_digits[0], x_offset, y_offset);
+    draw_digit(top_digits[1], x_offset + 7, y_offset);
 
-    draw_digit(bottom_digits[0], DIGITS_X_OFFSET, BOTTOM_Y_OFFSET);
-    draw_digit(bottom_digits[1], DIGITS_X_OFFSET + 7, BOTTOM_Y_OFFSET);
+    draw_digit(bottom_digits[0], x_offset, y_offset + 8);
+    draw_digit(bottom_digits[1], x_offset + 7, y_offset + 8);
 
 }
 
@@ -113,15 +112,12 @@ static bool is_paused_timer_blink_on()
 }
 
 
-
 void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t active_timer_index)
 {
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;
     state_t active_timer_state = active_timer->state;
 
-
-    
     bool current_paused_timer_blink_is_on = is_paused_timer_blink_on();
     bool current_active_timer_indicator_blink_is_on = is_active_timer_indicator_blink_on();
 
@@ -135,7 +131,7 @@ void render_timer_view(state_machine_t* timers, uint8_t timer_count, uint8_t act
     draw_timers_indicator(timers, timer_count, active_timer_index, current_active_timer_indicator_blink_is_on);
     if(active_timer_state != PAUSED || current_paused_timer_blink_is_on)
     {
-        draw_active_timer(current_time);
+        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET);
     }
 
     matrix_update();
