@@ -121,7 +121,7 @@ static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_ind
     }
 }
 
-void render_timer_view(state_machine_t* timers, uint8_t active_timer_index)
+void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index)
 {
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;

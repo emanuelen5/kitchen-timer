@@ -9,9 +9,7 @@
 #include "millis.h"
 
 void init_render();
-//void render_active_timer_view(state_machine_t* active_timer);
+void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index);
 //void render_bars_view();
-
-void render_timer_view(state_machine_t* timers, uint8_t active_timer_index);
 
 #endif // RENDER_H

@@ -57,7 +57,7 @@ int main()
             step_application(&app, (event_t)event.value);
         }
         service_application(&app);
-        render_timer_view(&app.state_machines[0], 0);
+        render_active_timer_view(&app.state_machines[0], 0);
     }
 
     return 0;
