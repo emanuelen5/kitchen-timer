@@ -101,7 +101,7 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
+/* static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
     uint16_t ms = millis();
@@ -119,6 +119,22 @@ static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_ind
     {
         draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, true);
     }
+} */
+
+static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
+{
+    static uint16_t last_blink_time;
+    static bool blink_state = true;
+    uint16_t ms = millis();
+
+    if ((ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    {
+        last_blink_time = ms;
+        blink_state = !blink_state;
+    }
+
+    state_machine_t* active_timer = &timers[active_timer_index];
+    return (active_timer->state != PAUSED) || blink_state;
 }
 
 void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index)
@@ -128,7 +144,9 @@ void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_inde
 
     matrix_buffer_clear();
     draw_timers_indicator(timers);
-    draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
-    blink_paused_timer(timers, active_timer_index);
+    if (should_draw_paused_timer(timers, active_timer_index))
+    {
+        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+    }
     matrix_update();
 }
