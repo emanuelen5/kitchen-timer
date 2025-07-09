@@ -29,8 +29,8 @@ void blink_active_timer_indicator(uint8_t active_timer_index)
     static uint16_t last_blink_time;
     uint16_t ms = millis();
     static bool blink_state = true;
-
-    if ( (ms - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE)
+    const bool should_toggle_active_timer_indicator = (ms - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE;
+    if (should_toggle_active_timer_indicator)
     {
         last_blink_time = ms;
         blink_state = !blink_state;
@@ -99,7 +99,8 @@ static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_ind
     static uint16_t last_blink_time;
     uint16_t ms = millis();
     static bool blink_state = true;
-    if ( (ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    const bool should_toggle_paused_timer = (ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE;
+    if (should_toggle_paused_timer)
     {
         last_blink_time = ms;
         blink_state = !blink_state;
