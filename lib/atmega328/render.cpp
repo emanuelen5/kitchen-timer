@@ -1,5 +1,11 @@
+#include <stdint.h>
 #include "render.h"
 #include "util.h"
+#include "config.h"
+#include "fat_font.h"
+#include "max72xx_matrix.h"
+#include "millis.h"
+
 
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
