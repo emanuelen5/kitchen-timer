@@ -1,4 +1,5 @@
 #include "render.h"
+#include "util.h"
 
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
@@ -58,7 +59,7 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clea
             bool is_on = false;
             if(!clear_digit)
             {
-                is_on = ptr_digit[row] & (1 << (5 - col));  // 6-bit wide
+                is_on = ptr_digit[row] & bit(FONT_WIDTH - 1 - col);  // 6-bit wide
             }
             matrix_set_pixel(x_offset + col, y_offset + row, is_on);
         }
