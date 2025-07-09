@@ -27,12 +27,12 @@ static void draw_timers_indicator(const state_machine_t timers[])
 void blink_active_timer_indicator(uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
-    uint16_t millis_now = millis();
+    uint16_t ms = millis();
     static bool blink_state = true;
 
-    if ( (millis_now - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE)
+    if ( (ms - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE)
     {
-        last_blink_time = millis_now;
+        last_blink_time = ms;
         blink_state = !blink_state;
     }
 
@@ -97,11 +97,11 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
-    uint16_t millis_now = millis();
+    uint16_t ms = millis();
     static bool blink_state = true;
-    if ( (millis_now - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    if ( (ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
     {
-        last_blink_time = millis_now;
+        last_blink_time = ms;
         blink_state = !blink_state;
     }
 
