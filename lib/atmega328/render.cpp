@@ -8,9 +8,6 @@
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
 
-static uint16_t last_rendered_time;
-static state_t last_rendered_state;
-
 void init_render()
 {
     matrix_init();
@@ -33,7 +30,7 @@ static void draw_timers_indicator(const state_machine_t timers[])
 
 }
 
-static void blink_active_timer_indicator(uint8_t active_timer_index)
+void blink_active_timer_indicator(uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
     uint16_t millis_now = millis();
@@ -53,6 +50,7 @@ static void blink_active_timer_indicator(uint8_t active_timer_index)
             matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, blink_state);
         }        
     }
+    matrix_update();
 }
 
 static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
@@ -115,9 +113,9 @@ static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_ind
 
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;
-    if(active_timer->state == PAUSED)
+    if(active_timer->state == PAUSED && blink_state)
     {
-        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, blink_state);
+        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, true);
     }
 }
 
@@ -125,15 +123,10 @@ void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_inde
 {
     state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t current_time = active_timer->timer.current_time;
-    state_t active_timer_state = active_timer->state;
 
     matrix_buffer_clear();
     draw_timers_indicator(timers);
-    blink_active_timer_indicator(active_timer_index);
     draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     blink_paused_timer(timers, active_timer_index);
     matrix_update();
-
-    last_rendered_time = current_time;
-    last_rendered_state = active_timer_state;
 }
