@@ -1,10 +1,5 @@
 #include "render.h"
 
-#define DIGITS_X_OFFSET 2
-#define DIGITS_Y_OFFSET 0
-#define ACTIVE_TIMER_INDICATOR_BLINK_RATE 100
-#define PAUSED_TIMER_BLINK_RATE 500
-#define TIMERS_INDICATOR_COLUMN 0
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
 
@@ -13,7 +8,6 @@ void init_render()
     matrix_init();
     init_millis();
 }
-
 
 static void draw_timers_indicator(const state_machine_t timers[])
 {
