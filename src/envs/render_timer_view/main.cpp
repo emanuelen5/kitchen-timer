@@ -56,8 +56,8 @@ int main()
         {
             step_application(&app, (event_t)event.value);
         }
-        service_application(&app);
         render_active_timer_view(&app.state_machines[0], 0);
+        service_application(&app);
         blink_active_timer_indicator(0);
     }
 
