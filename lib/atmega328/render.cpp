@@ -2,7 +2,7 @@
 
 #define DIGITS_X_OFFSET 2
 #define DIGITS_Y_OFFSET 0
-#define ACTIVE_TIMER_INDICATOR_BLINK_RATE 200
+#define ACTIVE_TIMER_INDICATOR_BLINK_RATE 100
 #define PAUSED_TIMER_BLINK_RATE 500
 #define TIMERS_INDICATOR_COLUMN 0
 #define FONT_WIDTH 6
@@ -10,7 +10,6 @@
 
 static uint16_t last_rendered_time;
 static state_t last_rendered_state;
-static bool last_paused_timer_blink_is_on;
 
 void init_render()
 {
@@ -56,7 +55,7 @@ static void blink_active_timer_indicator(uint8_t active_timer_index)
     }
 }
 
-static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
+static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
 {
     const uint8_t* ptr_digit = get_char(digit);
     
@@ -64,13 +63,17 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset)
     {
         for (uint8_t col = 0; col < FONT_WIDTH; col++)
         {
-            bool is_on = ptr_digit[row] & (1 << (5 - col));  // 6-bit wide
+            bool is_on = false;
+            if(!clear_digit)
+            {
+                is_on = ptr_digit[row] & (1 << (5 - col));  // 6-bit wide
+            }
             matrix_set_pixel(x_offset + col, y_offset + row, is_on);
         }
     }
 }
 
-static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y_offset)
+static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y_offset, bool clear_active_timer)
 {
     
     uint8_t top_value, bottom_value;
@@ -91,28 +94,32 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
     bottom_digits[1] = '0' + (bottom_value % 10);
 
     
-    draw_digit(top_digits[0], x_offset, y_offset);
-    draw_digit(top_digits[1], x_offset + 7, y_offset);
+    draw_digit(top_digits[0], x_offset, y_offset, clear_active_timer);
+    draw_digit(top_digits[1], x_offset + 7, y_offset, clear_active_timer);
 
-    draw_digit(bottom_digits[0], x_offset, y_offset + 8);
-    draw_digit(bottom_digits[1], x_offset + 7, y_offset + 8);
+    draw_digit(bottom_digits[0], x_offset, y_offset + 8, clear_active_timer);
+    draw_digit(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
 
 }
 
-static bool is_paused_timer_blink_on()
+static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
 {
-    static bool is_on = true;
+    static uint16_t last_blink_time;
     uint16_t millis_now = millis();
-    static uint16_t last_paused_timer_blink_time;
-
-    if ((millis_now - last_paused_timer_blink_time) >= PAUSED_TIMER_BLINK_RATE) {
-        last_paused_timer_blink_time = millis_now;
-        is_on = !is_on;  // toggle blinking
+    static bool blink_state = true;
+    if ( (millis_now - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    {
+        last_blink_time = millis_now;
+        blink_state = !blink_state;
     }
 
-    return is_on;
+    state_machine_t* active_timer = &timers[active_timer_index];
+    uint16_t current_time = active_timer->timer.current_time;
+    if(active_timer->state == PAUSED)
+    {
+        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, blink_state);
+    }
 }
-
 
 void render_timer_view(state_machine_t* timers, uint8_t active_timer_index)
 {
@@ -120,23 +127,13 @@ void render_timer_view(state_machine_t* timers, uint8_t active_timer_index)
     uint16_t current_time = active_timer->timer.current_time;
     state_t active_timer_state = active_timer->state;
 
-    bool current_paused_timer_blink_is_on = is_paused_timer_blink_on();
-
-    if (current_time == last_rendered_time && active_timer_state == last_rendered_state && current_paused_timer_blink_is_on == last_paused_timer_blink_is_on)
-    {
-        return;
-    }
-
     matrix_buffer_clear();
     draw_timers_indicator(timers);
     blink_active_timer_indicator(active_timer_index);
-    if(active_timer_state != PAUSED || current_paused_timer_blink_is_on)
-    {
-        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET);
-    }
+    draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+    blink_paused_timer(timers, active_timer_index);
     matrix_update();
 
     last_rendered_time = current_time;
     last_rendered_state = active_timer_state;
-    last_paused_timer_blink_is_on = current_paused_timer_blink_is_on;
 }
