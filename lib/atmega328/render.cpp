@@ -31,7 +31,7 @@ static void draw_timers_indicator(const state_machine_t timers[])
 
 }
 
-void blink_active_timer_indicator(uint8_t active_timer_index)
+void draw_active_timer_indicator(uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
     uint16_t ms = millis();

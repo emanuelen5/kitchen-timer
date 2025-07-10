@@ -58,7 +58,7 @@ int main()
         }
         render_active_timer_view(&app.state_machines[0], 0);
         service_application(&app);
-        blink_active_timer_indicator(0);
+        draw_active_timer_indicator(0);
     }
 
     return 0;
