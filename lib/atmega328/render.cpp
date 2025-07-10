@@ -101,26 +101,6 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-/* static void blink_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
-{
-    static uint16_t last_blink_time;
-    uint16_t ms = millis();
-    static bool blink_state = true;
-    const bool should_toggle_paused_timer = (ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE;
-    if (should_toggle_paused_timer)
-    {
-        last_blink_time = ms;
-        blink_state = !blink_state;
-    }
-
-    state_machine_t* active_timer = &timers[active_timer_index];
-    uint16_t current_time = active_timer->timer.current_time;
-    if(active_timer->state == PAUSED && blink_state)
-    {
-        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, true);
-    }
-} */
-
 static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
