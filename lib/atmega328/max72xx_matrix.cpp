@@ -7,7 +7,6 @@ static uint8_t matrix_buffer[MAX72XX_NUM_DEVICES][ROW_COUNT];
 void matrix_init(void)
 {
     init_max72xx();
-    matrix_clear();
 }
 
 static inline uint8_t pixel_to_device_index(uint8_t x, uint8_t y)
@@ -65,7 +64,7 @@ void matrix_update(void)
     }
 }
 
-void matrix_clear(void)
+void matrix_buffer_clear(void)
 {
     for (uint8_t row = 0; row < ROW_COUNT; row++)
     {
@@ -74,5 +73,5 @@ void matrix_clear(void)
             matrix_buffer[device][row] = 0x00;
         }
     }
-    matrix_update();
 }
+
