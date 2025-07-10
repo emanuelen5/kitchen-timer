@@ -73,12 +73,12 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clea
 
 static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y_offset, bool clear_active_timer)
 {
-    
+    const bool show_as_hh_mm = current_time >= 3600;
     uint8_t top_value, bottom_value;
-    if (current_time >= 3600) {
+    if (show_as_hh_mm) {
         top_value = current_time / 3600;
         bottom_value = (current_time / 60) % 60;
-    } else {
+    } else { // mm_ss
         top_value = current_time / 60;
         bottom_value = current_time % 60;
     }
