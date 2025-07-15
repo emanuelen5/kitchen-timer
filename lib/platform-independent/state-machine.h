@@ -7,6 +7,7 @@
 typedef enum
 {
     IDLE,
+    SET_TIME,
     RUNNING,
     PAUSED,
     RINGING,
