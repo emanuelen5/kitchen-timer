@@ -68,7 +68,7 @@ int main()
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
-            step_application(&app, (event_t)event.value);
+            application_handle_event(&app, (event_t)event.value);
         }
         service_application(&app);
     }

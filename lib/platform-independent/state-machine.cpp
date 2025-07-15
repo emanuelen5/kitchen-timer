@@ -76,6 +76,10 @@ void step_state(state_machine_t *sm, event_t event)
             break;
         }
         break;
+    
+    case SET_TIME:
+        break;
+        
     case RUNNING:
         switch (event)
         {
