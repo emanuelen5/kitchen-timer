@@ -27,7 +27,7 @@ void application_handle_event(application_t *app, event_t event)
             switch(app->active_sm->state)
             {
                 case SET_TIME:
-                    //TODO: up original_time
+                    step_state(app->active_sm, event);
                     break;
                 default:
                     //TODO: Change View()
@@ -39,10 +39,10 @@ void application_handle_event(application_t *app, event_t event)
             switch(app->active_sm->state)
             {
                 case SET_TIME:
-                    //TODO: down original_time
+                    step_state(app->active_sm, event);
                     break;
                 default:
-                    //TODO: Change View
+                    //TODO: Change View()
                     break;
             }
             break;
@@ -52,18 +52,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case DOUBLE_PRESS:
-            switch (app->active_sm->state)
-            {
-            case IDLE:
-                //Do nothing
-                break;
-            case SET_TIME:
-                //Do nothing
-                break;
-            default:
-                //Make active the upper-most IDLE timer
-                break;
-            }
+            //TODO: Make active the upper-most IDLE timer
             break;
         
         case LONG_PRESS:
@@ -85,9 +74,11 @@ void application_handle_event(application_t *app, event_t event)
         case CCW_PRESSED_ROTATION:
             //TODO: Select_prev_state_machine();
             break;
+
         case SECOND_TICK:
             pass_event_to_all_state_machines(app, event);
             break;
+            
         case TIMEOUT:
             //TODO: Make active the Timer that sent the TIMEOUT
         default:
