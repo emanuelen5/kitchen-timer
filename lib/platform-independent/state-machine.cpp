@@ -58,26 +58,37 @@ void step_state(state_machine_t *sm, event_t event)
     case IDLE:
         switch (event)
         {
-        case SINGLE_PRESS:
-            set_state(sm, RUNNING);
-            break;
-        case CW_ROTATION:
-            change_original_time(&sm->timer, 1);
-            UART_printf("%d\n", sm->timer.original_time);
-            break;
-        case CCW_ROTATION:
-            change_original_time(&sm->timer, -1);
-            UART_printf("%d\n", sm->timer.original_time);
-            break;
-        case LONG_PRESS:
-            reset_timer(&sm->timer);
-            break;
-        default:
-            break;
+            case SINGLE_PRESS:
+                set_state(sm, SET_TIME);
+                break;
+            case LONG_PRESS:
+                //Does nothing
+                break;
+            default:
+                break;
         }
         break;
     
     case SET_TIME:
+        switch (event)
+        {
+            case SINGLE_PRESS:
+                set_state(sm, RUNNING);
+                break;
+            case CW_ROTATION:
+                change_original_time(&sm->timer, 1);
+                UART_printf("%d\n", sm->timer.original_time);
+                break;
+            case CCW_ROTATION:
+                change_original_time(&sm->timer, -1);
+                UART_printf("%d\n", sm->timer.original_time);
+                break;
+            case LONG_PRESS:
+                reset_timer(&sm->timer);
+                break;
+            default:
+                break;
+        }
         break;
         
     case RUNNING:
@@ -123,6 +134,10 @@ void step_state(state_machine_t *sm, event_t event)
         {
         case SINGLE_PRESS:
             reset_timer(&sm->timer);
+            break;
+        case LONG_PRESS:
+            reset_timer(&sm->timer);
+            set_state(sm, IDLE);
             break;
         default:
             break;
