@@ -50,7 +50,6 @@ void draw_active_timer_indicator(uint8_t active_timer_index)
             matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, blink_state);
         }        
     }
-    matrix_update();
 }
 
 static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
@@ -127,5 +126,6 @@ void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_inde
     {
         draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
+    draw_active_timer_indicator(active_timer_index);
     matrix_update();
 }
