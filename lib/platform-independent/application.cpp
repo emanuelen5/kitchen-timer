@@ -16,7 +16,6 @@ void init_application(application_t *app)
     {
         init_state_machine(app->state_machines[i]);
     }
-    app->sm_count = 1;
     app->current_active_sm = 0;
 }
 
