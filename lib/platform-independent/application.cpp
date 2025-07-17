@@ -7,6 +7,7 @@
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_state_machine(application_t *app, event_t event);
 static void change_view(application_t *app, event_t event);
+static void open_new_timer(application_t* app);
 //static void debug_display(application_t *app);
 
 void init_application(application_t *app)
@@ -52,7 +53,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case DOUBLE_PRESS:
-            //TODO: Make active the upper-most IDLE timer
+            open_new_timer(app);
             break;
         
         case LONG_PRESS:
@@ -161,5 +162,21 @@ static void change_view(application_t *app, event_t event)
         
         default:
             break;
+    }
+}
+
+static void open_new_timer(application_t* app)
+{
+    bool new_timer_found = false;
+    for(int i = 0; i < MAX_TIMERS; i++)
+    {
+        if(app->state_machines[i]->state == IDLE)
+        {
+            app->current_active_sm = i;
+        }
+    }
+    if (new_timer_found)
+    {
+        //blink all timers indicators three times.
     }
 }
