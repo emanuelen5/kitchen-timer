@@ -5,7 +5,7 @@
  void set_counter(uint8_t v); 
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
-static void select_next_state_machine(application_t *app);
+static void select_state_machine(application_t *app, event_t event);
 static void change_view(application_t *app, event_t event);
 //static void debug_display(application_t *app);
 
@@ -17,7 +17,7 @@ void init_application(application_t *app)
         init_state_machine(app->state_machines[i]);
     }
     app->sm_count = 1;
-    app->active_sm_index = 0;
+    app->current_active_sm = 0;
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -69,11 +69,11 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case CW_PRESSED_ROTATION:
-            select_next_state_machine(app);
+            select_state_machine(app, event);
             break;
 
         case CCW_PRESSED_ROTATION:
-            //TODO: Select_prev_state_machine();
+            select_state_machine(app, event);
             break;
 
         case SECOND_TICK:
@@ -87,12 +87,34 @@ void application_handle_event(application_t *app, event_t event)
     }
 }
 
-static void select_next_state_machine(application_t *app)
+void service_application(application_t *app)
 {
-    app->active_sm_index++;
-    if(app->active_sm_index >= MAX_TIMERS)
+    service_state_machine(app->state_machines[app->current_active_sm]);
+}
+
+static void select_state_machine(application_t *app, event_t event)
+{
+    const uint8_t first_sm = 0;
+    const uint8_t last_sm = MAX_TIMERS - 1;
+
+    switch(event)
     {
-        app->active_sm_index = 0;
+        case CW_PRESSED_ROTATION:
+            if(app->current_active_sm < last_sm)
+            {
+                app->current_active_sm++;
+            }
+            break;
+
+        case CCW_PRESSED_ROTATION:
+            if(app->current_active_sm > first_sm)
+            {
+                app->current_active_sm--;
+            }
+            break;
+
+        default:
+            break;
     }
 }
 
@@ -104,7 +126,7 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
 
 /* static void debug_display(application_t *app)
 {
-    state_machine_t *active_sm = app->state_machines[app->active_sm_index];
+    state_machine_t *active_sm = app->state_machines[app->current_active_sm];
 
     if (get_state(active_sm) == IDLE)
     {
@@ -116,10 +138,6 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
     }
 } */
 
-void service_application(application_t *app)
-{
-    service_state_machine(app->state_machines[app->active_sm_index]);
-}
 
 static void change_view(application_t *app, event_t event)
 {
