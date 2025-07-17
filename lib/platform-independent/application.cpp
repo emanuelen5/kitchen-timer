@@ -28,7 +28,7 @@ void application_handle_event(application_t *app, event_t event)
             switch(app->active_sm->state)
             {
                 case SET_TIME:
-                    step_state(app->active_sm, event);
+                    state_machine_handle_event(app->active_sm, event);
                     break;
                 default:
                     change_view(app, event);
@@ -40,7 +40,7 @@ void application_handle_event(application_t *app, event_t event)
             switch(app->active_sm->state)
             {
                 case SET_TIME:
-                    step_state(app->active_sm, event);
+                    state_machine_handle_event(app->active_sm, event);
                     break;
                 default:
                     change_view(app, event);
@@ -49,7 +49,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case SINGLE_PRESS:
-            step_state(app->active_sm, event);
+            state_machine_handle_event(app->active_sm, event);
             break;
 
         case DOUBLE_PRESS:
@@ -63,7 +63,7 @@ void application_handle_event(application_t *app, event_t event)
                     //Do nothing
                     break;
                 default:
-                    step_state(app->active_sm, event);
+                    state_machine_handle_event(app->active_sm, event);
                     break;
             }
             break;
@@ -99,7 +99,7 @@ static void select_next_state_machine(application_t *app)
 static void pass_event_to_all_state_machines(application_t *app, event_t event)
 {
     for (int8_t i = 0; i < MAX_TIMERS; i++)
-        step_state(app->state_machines[i], event);
+        state_machine_handle_event(app->state_machines[i], event);
 }
 
 /* static void debug_display(application_t *app)

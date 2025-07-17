@@ -34,7 +34,7 @@ typedef struct
 } state_machine_t;
 
 void set_state(state_machine_t *sm, state_t new_state);
-void step_state(state_machine_t *sm, event_t event);
+void state_machine_handle_event(state_machine_t *sm, event_t event);
 void init_state_machine(state_machine_t *sm);
 void service_state_machine(state_machine_t *sm);
 uint16_t get_original_time(state_machine_t *sm);
