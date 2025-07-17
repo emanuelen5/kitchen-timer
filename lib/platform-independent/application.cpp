@@ -1,5 +1,4 @@
 #include "application.h"
-#include "millis.h"
 
  // These are provided by the program that includes the state machine 
  void UART_printf(const char *f, ...); 
@@ -11,8 +10,6 @@ static void debug_display(application_t *app);
 
 void init_application(application_t *app)
 {
-    init_millis();
-    
     app->active_state_machine_index = 0;
 
     for (int8_t i = 0; i < MAX_TIMERS; i++)

@@ -13,6 +13,7 @@
 void init_render()
 {
     matrix_init();
+    init_millis();
 }
 
 static void draw_timers_indicator(const state_machine_t timers[])
