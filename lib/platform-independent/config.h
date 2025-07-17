@@ -2,6 +2,7 @@
 #define CONFIG_H
 
 #define MAX_TIMERS 16
+#define APPLICATION_VIEWS_COUNT 2   //TODO: This might change when we add a menu
 
 //Active_Timer_View configs
 #define TIMERS_INDICATOR_COLUMN 0
