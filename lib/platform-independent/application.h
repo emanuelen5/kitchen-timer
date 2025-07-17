@@ -5,6 +5,7 @@
 #include "state-machine.h"
 
 #define MAX_TIMERS 5       //TODO: This goes in config.h
+#define APPLICATION_VIEWS_COUNT 2   //TODO: Move to config.h. This might change when we add a menu
 
 typedef enum {
     ACTIVE_TIMER_VIEW,

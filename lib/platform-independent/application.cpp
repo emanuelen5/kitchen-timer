@@ -6,6 +6,7 @@
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_next_state_machine(application_t *app);
+static void change_view(application_t *app, event_t event);
 //static void debug_display(application_t *app);
 
 void init_application(application_t *app)
@@ -30,7 +31,7 @@ void application_handle_event(application_t *app, event_t event)
                     step_state(app->active_sm, event);
                     break;
                 default:
-                    //TODO: Change View()
+                    change_view(app, event);
                     break;
             }
             break;
@@ -42,7 +43,7 @@ void application_handle_event(application_t *app, event_t event)
                     step_state(app->active_sm, event);
                     break;
                 default:
-                    //TODO: Change View()
+                    change_view(app, event);
                     break;
             }
             break;
@@ -118,4 +119,30 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
 void service_application(application_t *app)
 {
     service_state_machine(app->state_machines[app->active_sm_index]);
+}
+
+static void change_view(application_t *app, event_t event)
+{
+    uint8_t first_view = 0;
+    uint8_t last_view = APPLICATION_VIEWS_COUNT - 1;
+
+    switch (event)
+    {
+        case CW_ROTATION:
+            if(app->current_view < last_view)
+            {
+                app->current_view = (application_view)(app->current_view + 1);
+            }
+            break;
+
+        case CCW_ROTATION:
+            if(app->current_view > first_view)
+            {
+                app->current_view = (application_view)(app->current_view - 1);
+            }
+            break;
+        
+        default:
+            break;
+    }
 }
