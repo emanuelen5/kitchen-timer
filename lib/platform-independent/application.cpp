@@ -123,8 +123,8 @@ void service_application(application_t *app)
 
 static void change_view(application_t *app, event_t event)
 {
-    uint8_t first_view = 0;
-    uint8_t last_view = APPLICATION_VIEWS_COUNT - 1;
+    const uint8_t first_view = 0;
+    const uint8_t last_view = APPLICATION_VIEWS_COUNT - 1;
 
     switch (event)
     {
