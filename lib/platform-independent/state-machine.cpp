@@ -51,7 +51,7 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-void step_state(state_machine_t *sm, event_t event)
+void state_machine_handle_event(state_machine_t *sm, event_t event)
 {
     switch (sm->state)
     {
