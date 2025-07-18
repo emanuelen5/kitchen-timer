@@ -100,7 +100,7 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
+static bool should_draw_paused_timer(state_machine_t* sm)
 {
     static uint16_t last_blink_time;
     static bool blink_state = true;
@@ -112,37 +112,35 @@ static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_tim
         blink_state = !blink_state;
     }
 
-    state_machine_t* active_timer = &timers[active_timer_index];
-    return (active_timer->state != PAUSED) || blink_state;
+    return (sm->state != PAUSED) || blink_state;
 }
 
-void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index)
+void render_active_timer_view(state_machine_t* active_sm, uint8_t active_timer_index)
 {
-    state_machine_t* active_timer = &timers[active_timer_index];
     uint16_t time_to_display;
 
-    switch(timers->state)
+    switch(active_sm->state)
     {
         case IDLE:
             time_to_display = 0;
             break;
 
         case SET_TIME:
-            time_to_display = active_timer->timer.original_time;
+            time_to_display = active_sm->timer.original_time;
             break;
 
         case RINGING:
-            time_to_display = active_timer->timer.target_time;
+            time_to_display = active_sm->timer.target_time;
             break;
         
         default:
-            time_to_display = active_timer->timer.current_time;
+            time_to_display = active_sm->timer.current_time;
             break;
     }
 
     matrix_buffer_clear();
-    draw_timers_indicator(timers);
-    if (should_draw_paused_timer(timers, active_timer_index))
+    draw_timers_indicator(active_sm);
+    if (should_draw_paused_timer(active_sm))
     {
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }

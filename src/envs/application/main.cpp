@@ -63,8 +63,6 @@ int main()
     
     while (true)
     {
-        
-
         service_receive_UART();
         button.service();
         dequeue_return_t event = dequeue(&eventQueue);
@@ -73,7 +71,7 @@ int main()
             application_handle_event(&app, (event_t)event.value);
         }
         service_application(&app);
-        render_active_timer_view(app.state_machines[0], 0);
+        render_active_timer_view(app.active_sm, app.current_active_sm);
         service_application(&app);
     }
 
