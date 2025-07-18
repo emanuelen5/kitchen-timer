@@ -8,7 +8,7 @@ namespace state_machine
 
     typedef struct
     {
-        uint16_t original_time, current_time;
+        uint16_t original_time, current_time, target_time;
     } timer_t;
 
     void change_original_time(timer_t *timer, int step);

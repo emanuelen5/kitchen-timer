@@ -119,13 +119,32 @@ static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_tim
 void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index)
 {
     state_machine_t* active_timer = &timers[active_timer_index];
-    uint16_t current_time = active_timer->timer.current_time;
+    uint16_t time_to_display;
+
+    switch(timers->state)
+    {
+        case IDLE:
+            time_to_display = 0;
+            break;
+
+        case SET_TIME:
+            time_to_display = active_timer->timer.original_time;
+            break;
+
+        case RINGING:
+            time_to_display = active_timer->timer.target_time;
+            break;
+        
+        default:
+            time_to_display = active_timer->timer.current_time;
+            break;
+    }
 
     matrix_buffer_clear();
     draw_timers_indicator(timers);
     if (should_draw_paused_timer(timers, active_timer_index))
     {
-        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+        draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
     draw_active_timer_indicator(active_timer_index);
     matrix_update();

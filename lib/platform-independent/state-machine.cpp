@@ -9,6 +9,7 @@ uint16_t millis(void);
 
 void init_state_machine(state_machine_t *sm)
 {
+    sm->prev_state = IDLE;
     set_state(sm, IDLE);
     reset_timer(&sm->timer);
 }
@@ -16,6 +17,7 @@ void init_state_machine(state_machine_t *sm)
 void set_state(state_machine_t *sm, state_t new_state)
 {
     sm->millis_of_last_transition = millis();
+    sm->prev_state = sm->state;
     sm->state = new_state;
 }
 
@@ -74,6 +76,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         {
             case SINGLE_PRESS:
                 set_state(sm, RUNNING);
+                sm->timer.target_time = sm->timer.original_time;
                 break;
             case CW_ROTATION:
                 change_original_time(&sm->timer, 1);

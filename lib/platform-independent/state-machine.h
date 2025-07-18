@@ -29,6 +29,7 @@ typedef enum
 typedef struct
 {
     state_t state;
+    state_t prev_state;
     state_machine::timer_t timer;
     uint16_t millis_of_last_transition;
 } state_machine_t;
