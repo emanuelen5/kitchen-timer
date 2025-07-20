@@ -76,7 +76,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         {
             case SINGLE_PRESS:
                 set_state(sm, RUNNING);
-                sm->timer.target_time = sm->timer.original_time;
+                state_machine::set_target_time(&sm->timer);
                 break;
             case CW_ROTATION:
                 change_original_time(&sm->timer, 1);
@@ -103,7 +103,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             set_state(sm, IDLE);
             break;
         case SECOND_TICK:
-            increment_current_time(&sm->timer);
+            decrement_current_time(&sm->timer);
             if (timer_is_finished(&sm->timer))
             {
                 set_state(sm, RINGING);
