@@ -54,9 +54,11 @@ int main()
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
     init_UART();
-    init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_timer2_to_1s_interrupt(&second_tick_cb);
+    init_millis();
     init_led_counter();
+    init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
+    init_rotary_encoder(rotation_cb, button);
     init_application(&app);
     init_render();
     sei();
@@ -72,7 +74,6 @@ int main()
         }
         service_application(&app);
         render_active_timer_view(app.active_sm, app.current_active_sm);
-        service_application(&app);
     }
 
     return 0;

@@ -80,11 +80,9 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
             case CW_ROTATION:
                 change_original_time(&sm->timer, 1);
-                UART_printf("%d\n", sm->timer.original_time);
                 break;
             case CCW_ROTATION:
                 change_original_time(&sm->timer, -1);
-                UART_printf("%d\n", sm->timer.original_time);
                 break;
             case LONG_PRESS:
                 reset_timer(&sm->timer);
@@ -99,7 +97,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         {
         case SINGLE_PRESS:
             set_state(sm, PAUSED);
-            UART_printf("Pause\n");
             break;
         case LONG_PRESS:
             reset_timer(&sm->timer);
@@ -107,7 +104,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
         case SECOND_TICK:
             increment_current_time(&sm->timer);
-            UART_printf("%d\n", sm->timer.current_time);
             if (timer_is_finished(&sm->timer))
             {
                 set_state(sm, RINGING);
