@@ -15,9 +15,10 @@ void init_application(application_t *app)
     app->current_view = ACTIVE_TIMER_VIEW;
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
-        init_state_machine(app->state_machines[i]);
+        init_state_machine(&app->state_machines[i]);
     }
     app->current_active_sm = 0;
+    app->active_sm = &app->state_machines[app->current_active_sm];
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -89,7 +90,7 @@ void application_handle_event(application_t *app, event_t event)
 
 void service_application(application_t *app)
 {
-    service_state_machine(app->state_machines[app->current_active_sm]);
+    service_state_machine(&app->state_machines[app->current_active_sm]);
 }
 
 static void select_state_machine(application_t *app, event_t event)
@@ -121,7 +122,7 @@ static void select_state_machine(application_t *app, event_t event)
 static void pass_event_to_all_state_machines(application_t *app, event_t event)
 {
     for (int8_t i = 0; i < MAX_TIMERS; i++)
-        state_machine_handle_event(app->state_machines[i], event);
+        state_machine_handle_event(&app->state_machines[i], event);
 }
 
 /* static void debug_display(application_t *app)
@@ -170,9 +171,11 @@ static void open_new_timer(application_t* app)
     bool new_timer_found = false;
     for(int i = 0; i < MAX_TIMERS; i++)
     {
-        if(app->state_machines[i]->state == IDLE)
+        if(app->state_machines[i].state == IDLE)
         {
             app->current_active_sm = i;
+            new_timer_found = true;
+            return;
         }
     }
     if (new_timer_found)
