@@ -8,6 +8,8 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_state_machine(application_t *app, event_t event);
 static void change_view(application_t *app, event_t event);
 static void open_new_timer(application_t* app);
+static void print_state(state_t state);
+static void print_event(event_t event);
 //static void debug_display(application_t *app);
 
 void init_application(application_t *app)
@@ -23,6 +25,12 @@ void init_application(application_t *app)
 
 void application_handle_event(application_t *app, event_t event)
 {
+    UART_printf("Handling event: ");
+    print_event(event);
+    UART_printf(" | Active SM state: ");
+    print_state(app->active_sm->state);
+    UART_printf("Active Timer: %d", app->current_active_sm);
+    UART_printf("\n");
     switch(event)
     {
         case CW_ROTATION:
@@ -125,21 +133,6 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
         state_machine_handle_event(&app->state_machines[i], event);
 }
 
-/* static void debug_display(application_t *app)
-{
-    state_machine_t *active_sm = app->state_machines[app->current_active_sm];
-
-    if (get_state(active_sm) == IDLE)
-    {
-        set_counter(get_original_time(active_sm));
-    }
-    if (get_state(active_sm) == RUNNING)
-    {
-        set_counter(get_current_time(active_sm));
-    }
-} */
-
-
 static void change_view(application_t *app, event_t event)
 {
     const uint8_t first_view = 0;
@@ -181,5 +174,64 @@ static void open_new_timer(application_t* app)
     if (new_timer_found)
     {
         //blink all timers indicators three times.
+    }
+}
+
+static void print_state(state_t state)
+{
+    switch (state)
+    {
+        case IDLE:
+            UART_printf("IDLE");
+            break;
+        case SET_TIME:
+            UART_printf("SET_TIME");
+            break;
+        case RUNNING:
+            UART_printf("RUNNING");
+            break;
+        case PAUSED:
+            UART_printf("PAUSED");
+            break;
+        case RINGING:
+            UART_printf("RINGING");
+            break;
+        default:
+            UART_printf("UNKNOWN STATE");
+            break;
+    }
+}
+
+static void print_event(event_t event)
+{
+    switch(event)
+    {
+        case SINGLE_PRESS:
+            UART_printf("SINGLE_PRESS");
+            break;
+        case CW_ROTATION:
+            UART_printf("CW_ROTATION");
+            break;
+        case CCW_ROTATION:
+            UART_printf("CCW_ROTATION");
+            break;
+        case DOUBLE_PRESS:
+            UART_printf("DOUBLE_PRESS");
+            break;
+        case LONG_PRESS:
+            UART_printf("LONG_PRESS");
+            break;
+        case CW_PRESSED_ROTATION:
+            UART_printf("CW_PRESSED_ROTATION");
+            break;
+        case CCW_PRESSED_ROTATION:
+            UART_printf("CCW_PRESSED_ROTATION");
+            break;
+        case TIMEOUT:
+            UART_printf("TIMEOUT");
+            break;
+        case SECOND_TICK:
+            UART_printf("SECOND_TICK");
+            break;
     }
 }
