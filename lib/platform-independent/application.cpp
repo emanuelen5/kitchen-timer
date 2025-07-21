@@ -20,24 +20,25 @@ void init_application(application_t *app)
         init_state_machine(&app->state_machines[i]);
     }
     app->current_active_sm = 0;
-    app->active_sm = &app->state_machines[app->current_active_sm];
 }
 
 void application_handle_event(application_t *app, event_t event)
 {
+    state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
+
     UART_printf("Handling event: ");
     print_event(event);
     UART_printf(" | Active SM state: ");
-    print_state(app->active_sm->state);
-    UART_printf("Active Timer: %d", app->current_active_sm);
+    print_state(active_sm->state);
+    UART_printf(" | Active Timer: %d", app->current_active_sm);
     UART_printf("\n");
     switch(event)
     {
         case CW_ROTATION:
-            switch(app->active_sm->state)
+            switch(active_sm->state)
             {
                 case SET_TIME:
-                    state_machine_handle_event(app->active_sm, event);
+                    state_machine_handle_event(active_sm, event);
                     break;
                 default:
                     change_view(app, event);
@@ -46,10 +47,10 @@ void application_handle_event(application_t *app, event_t event)
             break;
             
         case CCW_ROTATION:
-            switch(app->active_sm->state)
+            switch(active_sm->state)
             {
                 case SET_TIME:
-                    state_machine_handle_event(app->active_sm, event);
+                    state_machine_handle_event(active_sm, event);
                     break;
                 default:
                     change_view(app, event);
@@ -58,7 +59,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case SINGLE_PRESS:
-            state_machine_handle_event(app->active_sm, event);
+            state_machine_handle_event(active_sm, event);
             break;
 
         case DOUBLE_PRESS:
@@ -66,13 +67,13 @@ void application_handle_event(application_t *app, event_t event)
             break;
         
         case LONG_PRESS:
-            switch(app->active_sm->state)
+            switch(active_sm->state)
             {
                 case IDLE:
                     //Do nothing
                     break;
                 default:
-                    state_machine_handle_event(app->active_sm, event);
+                    state_machine_handle_event(active_sm, event);
                     break;
             }
             break;

@@ -16,19 +16,20 @@ void init_render()
     init_millis();
 }
 
-static void draw_timers_indicator(const state_machine_t timers[])
+static void draw_timers_indicator(state_machine_t* sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool is_running = timers[i].state == RUNNING;
-        bool is_paused = timers[i].state == PAUSED;
-        bool is_ringing = timers[i].state == RINGING;
+        bool show_led = false;
+        bool is_set_time = sm[i]->state == SET_TIME;
+        bool is_running = sm[i]->state == RUNNING;
+        bool is_paused = sm[i]->state == PAUSED;
+        bool is_ringing = sm[i]->state == RINGING;
 
-        bool show_led = is_running || is_paused || is_ringing;
+        show_led = is_set_time || is_running || is_paused || is_ringing;
 
         matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, show_led);
     }
-
 }
 
 void draw_active_timer_indicator(uint8_t active_timer_index)
@@ -115,9 +116,10 @@ static bool should_draw_paused_timer(state_machine_t* sm)
     return (sm->state != PAUSED) || blink_state;
 }
 
-void render_active_timer_view(state_machine_t* active_sm, uint8_t active_timer_index)
+void render_active_timer_view(state_machine_t* state_machines, uint8_t active_timer_index)
 {
     uint16_t time_to_display;
+    state_machine_t* active_sm = &state_machines[active_timer_index];
 
     switch(active_sm->state)
     {
@@ -139,7 +141,7 @@ void render_active_timer_view(state_machine_t* active_sm, uint8_t active_timer_i
     }
 
     matrix_buffer_clear();
-    draw_timers_indicator(active_sm);
+    draw_timers_indicator(&state_machines);
     if (should_draw_paused_timer(active_sm))
     {
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);

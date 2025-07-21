@@ -73,7 +73,7 @@ int main()
             application_handle_event(&app, (event_t)event.value);
         }
         service_application(&app);
-        render_active_timer_view(app.active_sm, app.current_active_sm);
+        render_active_timer_view(app.state_machines, app.current_active_sm);
     }
 
     return 0;
