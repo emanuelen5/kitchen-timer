@@ -15,7 +15,7 @@
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
-bool is_paused = false;
+
 
 application_t app;
 
