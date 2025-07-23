@@ -1,6 +1,7 @@
 #include "state-machine.h"
 #include "timer.h"
 #include "util.h"
+#include "config.h"
 
 // These are provided by the program that includes the state machine
 void UART_printf(const char *f, ...);
@@ -27,8 +28,8 @@ void service_state_machine(state_machine_t *sm)
     {
     case RINGING:
     {
-        uint16_t time_in_state = millis() - sm->millis_of_last_transition;
-        if (time_in_state >= 2000)
+        uint16_t time_in_ringing_state = millis() - sm->millis_of_last_transition;
+        if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
             reset_timer(&sm->timer);
             set_counter(0b000);
@@ -36,7 +37,7 @@ void service_state_machine(state_machine_t *sm)
         }
         else
         {
-            bool is_in_odd_128ms_period = time_in_state & bit(7);
+            bool is_in_odd_128ms_period = time_in_ringing_state & bit(7);
             if (is_in_odd_128ms_period)
             {
                 set_counter(0b111);
