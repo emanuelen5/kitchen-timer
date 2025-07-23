@@ -5,6 +5,7 @@
 #include "fat_font.h"
 #include "max72xx_matrix.h"
 #include "millis.h"
+#include "UART.h"
 
 
 #define FONT_WIDTH 6
@@ -16,15 +17,15 @@ void init_render()
     init_millis();
 }
 
-static void draw_timers_indicator(state_machine_t* sm[])
+static void draw_timers_indicator(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
         bool show_led = false;
-        bool is_set_time = sm[i]->state == SET_TIME;
-        bool is_running = sm[i]->state == RUNNING;
-        bool is_paused = sm[i]->state == PAUSED;
-        bool is_ringing = sm[i]->state == RINGING;
+        bool is_set_time = sm[i].state == SET_TIME;
+        bool is_running = sm[i].state == RUNNING;
+        bool is_paused = sm[i].state == PAUSED;
+        bool is_ringing = sm[i].state == RINGING;
 
         show_led = is_set_time || is_running || is_paused || is_ringing;
 
@@ -141,7 +142,7 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
     }
 
     matrix_buffer_clear();
-    draw_timers_indicator(&state_machines);
+    draw_timers_indicator(state_machines);
     if (should_draw_paused_timer(active_sm))
     {
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);

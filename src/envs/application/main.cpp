@@ -17,7 +17,6 @@ static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
 bool is_paused = false;
 
-state_machine_t sm;
 application_t app;
 
 void rotation_cb(rotation_dir_t dir, bool held_down)
