@@ -110,16 +110,24 @@ static void select_state_machine(application_t *app, event_t event)
     switch(event)
     {
         case CW_PRESSED_ROTATION:
-            if(app->current_active_sm < last_sm)
+            for (uint8_t i = app->current_active_sm + 1; i <= last_sm; i++)
             {
-                app->current_active_sm++;
+                if (app->state_machines[i].state != IDLE)
+                {
+                    app->current_active_sm = i;
+                    break;
+                }
             }
             break;
 
         case CCW_PRESSED_ROTATION:
-            if(app->current_active_sm > first_sm)
+            for (int8_t i = app->current_active_sm - 1; i >= first_sm; i--)
             {
-                app->current_active_sm--;
+                if (app->state_machines[i].state != IDLE)
+                {
+                    app->current_active_sm = i;
+                    break;
+                }
             }
             break;
 
