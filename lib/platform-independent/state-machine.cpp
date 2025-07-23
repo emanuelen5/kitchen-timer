@@ -107,7 +107,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             if (timer_is_finished(&sm->timer))
             {
                 set_state(sm, RINGING);
-                UART_printf("Alarm goes off!!!\n");
             }
             break;
         default:

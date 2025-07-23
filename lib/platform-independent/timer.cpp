@@ -27,7 +27,7 @@ namespace state_machine
 
     bool timer_is_finished(timer_t *timer)
     {
-        return timer->current_time >= timer->target_time;
+        return timer->current_time == 0;
     }
 
     uint16_t timer_get_current_time(timer_t *timer)
