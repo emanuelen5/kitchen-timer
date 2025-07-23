@@ -21,11 +21,28 @@ application_t app;
 
 void rotation_cb(rotation_dir_t dir, bool held_down)
 {
-    UNUSED held_down;
-    if (dir == cw)
-        add_to_queue(&eventQueue, CW_ROTATION);
-    else if (dir == ccw)
-        add_to_queue(&eventQueue, CCW_ROTATION);
+    if (held_down)
+    {
+        if(dir == cw)
+        {
+            add_to_queue(&eventQueue, CW_PRESSED_ROTATION);
+        }
+        else if (dir == ccw)
+        {
+            add_to_queue(&eventQueue, CCW_PRESSED_ROTATION);
+        }
+    }
+    else
+    {
+        if (dir == cw)
+        {
+            add_to_queue(&eventQueue, CW_ROTATION);
+        }
+        else if (dir == ccw)
+        {
+            add_to_queue(&eventQueue, CCW_ROTATION);
+        }
+    }
 }
 
 void on_single_press(void)
