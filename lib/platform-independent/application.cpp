@@ -26,12 +26,12 @@ void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-    UART_printf("Handling event: ");
+/*     UART_printf("Handling event: ");
     print_event(event);
     UART_printf(" | Active SM state: ");
     print_state(active_sm->state);
     UART_printf(" | Active Timer: %d", app->current_active_sm);
-    UART_printf("\n");
+    UART_printf("\n"); */
     switch(event)
     {
         case CW_ROTATION:
@@ -194,7 +194,7 @@ static void open_new_timer(application_t* app)
     }
 }
 
-static void print_state(state_t state)
+[[maybe_unused]] static void print_state(state_t state)
 {
     switch (state)
     {
@@ -219,7 +219,7 @@ static void print_state(state_t state)
     }
 }
 
-static void print_event(event_t event)
+[[maybe_unused]] static void print_event(event_t event)
 {
     switch(event)
     {
