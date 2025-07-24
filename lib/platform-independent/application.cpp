@@ -99,7 +99,15 @@ void application_handle_event(application_t *app, event_t event)
 
 void service_application(application_t *app)
 {
-    service_state_machine(&app->state_machines[app->current_active_sm]);
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+    {
+        bool is_ringing = app->state_machines[i].state == RINGING;
+        if(is_ringing)
+        {
+            app->current_active_sm = i;
+        }
+        service_state_machine(&app->state_machines[i]);
+    }
 }
 
 static void select_state_machine(application_t *app, event_t event)
