@@ -3,7 +3,7 @@
 
 #define MAX_TIMERS 16
 #define APPLICATION_VIEWS_COUNT 2   //TODO: This might change when we add a menu
-#define RINGING_TIMEOUT 10000
+#define RINGING_TIMEOUT 30000
 
 //Active_Timer_View configs
 #define TIMERS_INDICATOR_COLUMN 0

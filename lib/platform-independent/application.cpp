@@ -99,12 +99,14 @@ void application_handle_event(application_t *app, event_t event)
 
 void service_application(application_t *app)
 {
+    bool existing_ringing_timer = false;
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
         bool is_ringing = app->state_machines[i].state == RINGING;
-        if(is_ringing)
+        if(is_ringing && !existing_ringing_timer)
         {
             app->current_active_sm = i;
+            existing_ringing_timer = true;
         }
         service_state_machine(&app->state_machines[i]);
     }
