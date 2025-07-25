@@ -33,6 +33,15 @@ static void draw_timers_indicator(state_machine_t sm[])
     }
 }
 
+static void draw_ringing_indicator(state_machine_t sm[])
+{
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+    {
+        bool is_ringing = sm[i].state == RINGING;
+        matrix_set_pixel(RINGING_INDICATOR_COLUMN, i, is_ringing);
+    } 
+}
+
 void draw_active_timer_indicator(uint8_t active_timer_index)
 {
     static uint16_t last_blink_time;
@@ -144,7 +153,7 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
 
     matrix_buffer_clear();
     draw_timers_indicator(state_machines);
-
+    draw_ringing_indicator(state_machines);
     bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
     if (should_blink_timer_numbers)
     {
