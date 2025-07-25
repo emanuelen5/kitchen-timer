@@ -102,25 +102,26 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-static bool should_draw_paused_timer(state_machine_t* sm)
+static bool get_blink_state()
 {
-    static uint16_t last_blink_time;
-    static bool blink_state = true;
+    static uint16_t last_blink_time = 0;
+    static bool blink_is_on = true;
     uint16_t ms = millis();
 
-    if ((ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    if ((ms - last_blink_time) >= TIMER_NUMBERS_BLINKING_RATE)
     {
         last_blink_time = ms;
-        blink_state = !blink_state;
+        blink_is_on = !blink_is_on;
     }
 
-    return (sm->state != PAUSED) || blink_state;
+    return blink_is_on;
 }
 
 void render_active_timer_view(state_machine_t* state_machines, uint8_t active_timer_index)
 {
     uint16_t time_to_display;
     state_machine_t* active_sm = &state_machines[active_timer_index];
+    bool blink = get_blink_state();
 
     switch(active_sm->state)
     {
@@ -143,7 +144,15 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
 
     matrix_buffer_clear();
     draw_timers_indicator(state_machines);
-    if (should_draw_paused_timer(active_sm))
+
+    bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
+    if (should_blink_timer_numbers)
+    {
+        if(blink)
+        {
+            draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+        }
+    } else
     {
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
