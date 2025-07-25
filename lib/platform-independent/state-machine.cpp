@@ -133,6 +133,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         {
         case SINGLE_PRESS:
             reset_timer(&sm->timer);
+            set_state(sm, IDLE);
             break;
         case LONG_PRESS:
             reset_timer(&sm->timer);
