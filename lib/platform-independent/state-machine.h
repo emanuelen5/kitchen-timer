@@ -22,7 +22,6 @@ typedef enum
     LONG_PRESS,
     CW_PRESSED_ROTATION,
     CCW_PRESSED_ROTATION,
-    TIMEOUT,
     SECOND_TICK,
 } event_t;
 

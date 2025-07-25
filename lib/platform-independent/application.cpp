@@ -89,9 +89,6 @@ void application_handle_event(application_t *app, event_t event)
         case SECOND_TICK:
             pass_event_to_all_state_machines(app, event);
             break;
-            
-        case TIMEOUT:
-            //TODO: Make active the Timer that sent the TIMEOUT
         default:
             break;
     }
@@ -245,9 +242,6 @@ static void open_new_timer(application_t* app)
             break;
         case CCW_PRESSED_ROTATION:
             UART_printf("CCW_PRESSED_ROTATION");
-            break;
-        case TIMEOUT:
-            UART_printf("TIMEOUT");
             break;
         case SECOND_TICK:
             UART_printf("SECOND_TICK");
