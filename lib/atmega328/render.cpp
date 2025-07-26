@@ -17,6 +17,19 @@ void init_render()
     init_millis();
 }
 
+static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
+{
+    uint16_t ms = millis();
+
+    if ((ms - state->last_blink_time) >= blink_rate)
+    {
+        state->last_blink_time = ms;
+        state->blink_is_on = !state->blink_is_on;
+    }
+
+    return state->blink_is_on;
+}
+
 static void draw_timers_indicator(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
@@ -42,25 +55,17 @@ static void draw_ringing_indicator(state_machine_t sm[])
     } 
 }
 
+static blink_state_t active_timer_blink = {0, true};
 void draw_active_timer_indicator(uint8_t active_timer_index)
 {
-    static uint16_t last_blink_time;
-    uint16_t ms = millis();
-    static bool blink_state = true;
-    const bool should_toggle_active_timer_indicator = (ms - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE;
-    if (should_toggle_active_timer_indicator)
-    {
-        last_blink_time = ms;
-        blink_state = !blink_state;
-    }
+    bool blink_state = get_blink_state(&active_timer_blink, ACTIVE_TIMER_INDICATOR_BLINK_RATE);
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool is_active_timer = (i == active_timer_index);
-        if( is_active_timer)
+        if (i == active_timer_index)
         {
             matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, blink_state);
-        }        
+        }
     }
 }
 
@@ -111,26 +116,12 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-static bool get_blink_state()
-{
-    static uint16_t last_blink_time = 0;
-    static bool blink_is_on = true;
-    uint16_t ms = millis();
-
-    if ((ms - last_blink_time) >= TIMER_NUMBERS_BLINKING_RATE)
-    {
-        last_blink_time = ms;
-        blink_is_on = !blink_is_on;
-    }
-
-    return blink_is_on;
-}
-
+static blink_state_t timer_digits_blink = {0, true};
 void render_active_timer_view(state_machine_t* state_machines, uint8_t active_timer_index)
 {
     uint16_t time_to_display;
     state_machine_t* active_sm = &state_machines[active_timer_index];
-    bool blink = get_blink_state();
+    bool blink = get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
 
     switch(active_sm->state)
     {
