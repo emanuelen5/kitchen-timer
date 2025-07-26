@@ -34,13 +34,12 @@ static void draw_timers_indicator(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool show_led = false;
         bool is_set_time = sm[i].state == SET_TIME;
         bool is_running = sm[i].state == RUNNING;
         bool is_paused = sm[i].state == PAUSED;
         bool is_ringing = sm[i].state == RINGING;
 
-        show_led = is_set_time || is_running || is_paused || is_ringing;
+        bool show_led = is_set_time || is_running || is_paused || is_ringing;
 
         matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, show_led);
     }
