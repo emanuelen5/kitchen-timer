@@ -159,14 +159,14 @@ static void change_view(application_t *app, event_t event)
         case CW_ROTATION:
             if(app->current_view < last_view)
             {
-                app->current_view = (application_view)(app->current_view + 1);
+                app->current_view = (application_view_t)(app->current_view + 1);
             }
             break;
 
         case CCW_ROTATION:
             if(app->current_view > first_view)
             {
-                app->current_view = (application_view)(app->current_view - 1);
+                app->current_view = (application_view_t)(app->current_view - 1);
             }
             break;
         
