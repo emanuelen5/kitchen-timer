@@ -33,7 +33,7 @@ int main()
     init_render();
     sei();
     
-    app.state_machines[0]->timer.original_time = 10; //Test with 1 minute and 10 secs
+    app.state_machines[0].timer.original_time = 10; //Test with 1 minute and 10 secs
     application_handle_event(&app, SINGLE_PRESS); //To move into RUNNING state
 
     while (true)
@@ -58,7 +58,7 @@ int main()
         {
             application_handle_event(&app, (event_t)event.value);
         }
-        render_active_timer_view(app.state_machines[0], 0);
+        render_active_timer_view(&app.state_machines[0], 0);
         service_application(&app);
     }
 
