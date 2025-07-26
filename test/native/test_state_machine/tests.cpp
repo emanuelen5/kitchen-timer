@@ -44,27 +44,27 @@ void test_initialize_as_idle(void)
 
 void test_when_in_idle_increment_timer_on_cw_rotation(void)
 {
-    step_state(&sm, CW_ROTATION);
+    state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 1);
 }
 
 void test_when_in_idle_decrement_timer_on_ccw_rotation(void)
 {
     sm.timer.original_time = 1;
-    step_state(&sm, CCW_ROTATION);
+    state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
 void test_when_in_idle_timer_doesnt_overflow(void)
 {
     sm.timer.original_time = 0xffff;
-    step_state(&sm, CW_ROTATION);
+    state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0xffff);
 }
 
 void test_when_in_idle_timer_doesnt_underflow(void)
 {
-    step_state(&sm, CCW_ROTATION);
+    state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
@@ -76,7 +76,7 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     int actual_seconds = 0;
     while (true)
     {
-        step_state(&sm, SECOND_TICK);
+        state_machine_handle_event(&sm, SECOND_TICK);
         actual_seconds++;
         if (get_state(&sm) != RUNNING)
             break;
