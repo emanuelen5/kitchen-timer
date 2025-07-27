@@ -15,7 +15,6 @@ typedef struct
     application_view_t current_view;
     state_machine_t state_machines[MAX_TIMERS];
     uint8_t current_active_sm;
-    
 } application_t;
 
 void init_application(application_t* app);

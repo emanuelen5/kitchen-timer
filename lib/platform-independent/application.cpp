@@ -5,12 +5,12 @@
  void set_counter(uint8_t v); 
 
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
-static void select_state_machine(application_t *app, event_t event);
+static void select_previous_state_machine(application_t *app);
+static void select_next_state_machine(application_t *app);
 static void change_view(application_t *app, event_t event);
 static void open_new_timer(application_t* app);
 static void print_state(state_t state);
 static void print_event(event_t event);
-//static void debug_display(application_t *app);
 
 void init_application(application_t *app)
 {
@@ -26,7 +26,7 @@ void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-/*     UART_printf("Handling event: ");
+/*  UART_printf("Handling event: ");
     print_event(event);
     UART_printf(" | Active SM state: ");
     print_state(active_sm->state);
@@ -79,11 +79,11 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case CW_PRESSED_ROTATION:
-            select_state_machine(app, event);
+            select_next_state_machine(app);
             break;
 
         case CCW_PRESSED_ROTATION:
-            select_state_machine(app, event);
+            select_previous_state_machine(app);
             break;
 
         case SECOND_TICK:
@@ -109,37 +109,29 @@ void service_application(application_t *app)
     }
 }
 
-static void select_state_machine(application_t *app, event_t event)
+static void select_previous_state_machine(application_t *app)
 {
     const uint8_t first_sm = 0;
-    const uint8_t last_sm = MAX_TIMERS - 1;
-
-    switch(event)
+    for (int8_t i = app->current_active_sm - 1; i >= first_sm; i--)
     {
-        case CW_PRESSED_ROTATION:
-            for (uint8_t i = app->current_active_sm + 1; i <= last_sm; i++)
-            {
-                if (app->state_machines[i].state != IDLE)
-                {
-                    app->current_active_sm = i;
-                    break;
-                }
-            }
+        if (app->state_machines[i].state != IDLE)
+        {
+            app->current_active_sm = i;
             break;
+        }
+    }
+}
 
-        case CCW_PRESSED_ROTATION:
-            for (int8_t i = app->current_active_sm - 1; i >= first_sm; i--)
-            {
-                if (app->state_machines[i].state != IDLE)
-                {
-                    app->current_active_sm = i;
-                    break;
-                }
-            }
+static void select_next_state_machine(application_t *app)
+{
+    const uint8_t last_sm = MAX_TIMERS - 1;
+    for (uint8_t i = app->current_active_sm + 1; i <= last_sm; i++)
+    {
+        if (app->state_machines[i].state != IDLE)
+        {
+            app->current_active_sm = i;
             break;
-
-        default:
-            break;
+        }
     }
 }
 
