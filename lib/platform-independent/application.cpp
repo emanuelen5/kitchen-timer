@@ -7,7 +7,8 @@
 static void pass_event_to_all_state_machines(application_t *app, event_t event);
 static void select_previous_state_machine(application_t *app);
 static void select_next_state_machine(application_t *app);
-static void change_view(application_t *app, event_t event);
+static void change_to_previous_view(application_t *app);
+static void change_to_next_view(application_t *app);
 static void open_new_timer(application_t* app);
 static void print_state(state_t state);
 static void print_event(event_t event);
@@ -37,7 +38,7 @@ void application_handle_event(application_t *app, event_t event)
                     state_machine_handle_event(active_sm, event);
                     break;
                 default:
-                    change_view(app, event);
+                    change_to_next_view(app);
                     break;
             }
             break;
@@ -49,7 +50,7 @@ void application_handle_event(application_t *app, event_t event)
                     state_machine_handle_event(active_sm, event);
                     break;
                 default:
-                    change_view(app, event);
+                    change_to_previous_view(app);
                     break;
             }
             break;
@@ -137,29 +138,21 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
         state_machine_handle_event(&app->state_machines[i], event);
 }
 
-static void change_view(application_t *app, event_t event)
+static void change_to_previous_view(application_t *app)
 {
     const uint8_t first_view = 0;
-    const uint8_t last_view = VIEW_COUNT - 1;
-
-    switch (event)
+    if(app->current_view > first_view)
     {
-        case CW_ROTATION:
-            if(app->current_view < last_view)
-            {
-                app->current_view = (application_view_t)(app->current_view + 1);
-            }
-            break;
+        app->current_view = (application_view_t)(app->current_view - 1);
+    }
+}
 
-        case CCW_ROTATION:
-            if(app->current_view > first_view)
-            {
-                app->current_view = (application_view_t)(app->current_view - 1);
-            }
-            break;
-        
-        default:
-            break;
+static void change_to_next_view(application_t *app)
+{
+    const uint8_t last_view = VIEW_COUNT - 1;
+    if(app->current_view < last_view)
+    {
+        app->current_view = (application_view_t)(app->current_view + 1);
     }
 }
 
