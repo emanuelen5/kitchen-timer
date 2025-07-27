@@ -9,7 +9,7 @@ static void select_previous_state_machine(application_t *app);
 static void select_next_state_machine(application_t *app);
 static void change_to_previous_view(application_t *app);
 static void change_to_next_view(application_t *app);
-static void open_new_timer(application_t* app);
+static void try_to_new_timer(application_t* app);
 static void print_state(state_t state);
 static void print_event(event_t event);
 
@@ -60,7 +60,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case DOUBLE_PRESS:
-            open_new_timer(app);
+            try_to_new_timer(app);
             break;
         
         case LONG_PRESS:
@@ -156,7 +156,7 @@ static void change_to_next_view(application_t *app)
     }
 }
 
-static void open_new_timer(application_t* app)
+static void try_to_new_timer(application_t* app)
 {
     bool new_timer_found = false;
     for(int i = 0; i < MAX_TIMERS; i++)
