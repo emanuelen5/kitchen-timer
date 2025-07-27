@@ -121,7 +121,7 @@ int main()
     RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
-    RUN_TEST(test_ringing_exits_after_2000ms);
+    RUN_TEST(test_ringing_exits_after_10000ms);
 
     UNITY_END();
 }
