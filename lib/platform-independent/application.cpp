@@ -23,71 +23,53 @@ void init_application(application_t *app)
     app->current_active_sm = 0;
 }
 
-
-
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-    switch(event)
+    if (event == CW_ROTATION)
     {
-        case CW_ROTATION:
-            switch(active_sm->state)
-            {
-                case SET_TIME:
-                    state_machine_handle_event(active_sm, event);
-                    break;
-                default:
-                    change_to_next_view(app);
-                    break;
-            }
-            break;
-            
-        case CCW_ROTATION:
-            switch(active_sm->state)
-            {
-                case SET_TIME:
-                    state_machine_handle_event(active_sm, event);
-                    break;
-                default:
-                    change_to_previous_view(app);
-                    break;
-            }
-            break;
-
-        case SINGLE_PRESS:
+        if (active_sm->state == SET_TIME)
+        {
             state_machine_handle_event(active_sm, event);
-            break;
+        } else
+        {
+            change_to_next_view(app);
+        }
 
-        case DOUBLE_PRESS:
-            try_to_open_new_timer(app);
-            break;
-        
-        case LONG_PRESS:
-            switch(active_sm->state)
-            {
-                case IDLE:
-                    //Do nothing
-                    break;
-                default:
-                    state_machine_handle_event(active_sm, event);
-                    break;
-            }
-            break;
+    } else if (event == CCW_ROTATION)
+    {
+        if (active_sm->state == SET_TIME)
+        {
+            state_machine_handle_event(active_sm, event);
+        } else
+        {
+            change_to_previous_view(app);
+        }
 
-        case CW_PRESSED_ROTATION:
-            select_next_state_machine(app);
-            break;
+    } else if (event == DOUBLE_PRESS)
+    {
+        try_to_open_new_timer(app);
 
-        case CCW_PRESSED_ROTATION:
-            select_previous_state_machine(app);
-            break;
+    } else if (event == LONG_PRESS && active_sm->state != IDLE)
+    {
+        state_machine_handle_event(active_sm, event);
 
-        case SECOND_TICK:
-            pass_event_to_all_state_machines(app, event);
-            break;
-        default:
-            break;
+    } else if (event == CW_PRESSED_ROTATION)
+    {
+        select_next_state_machine(app);
+
+    } else if (event == CCW_PRESSED_ROTATION)
+    {
+        select_previous_state_machine(app);
+
+    } else if (event == SECOND_TICK) 
+    {
+        pass_event_to_all_state_machines(app, event);
+
+    } else if (event == SINGLE_PRESS || event == LONG_PRESS)
+    {
+        state_machine_handle_event(active_sm, event);
     }
 }
 
