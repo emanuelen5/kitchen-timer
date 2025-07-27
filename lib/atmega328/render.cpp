@@ -133,7 +133,8 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
             break;
 
         case RINGING:
-            time_to_display = active_sm->timer.target_time;
+            
+            time_to_display = get_original_time(&active_sm->timer);
             break;
         
         default:

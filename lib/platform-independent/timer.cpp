@@ -17,6 +17,11 @@ namespace state_machine
         timer->original_time = 0;
     }
 
+    void set_current_time(timer_t *timer)
+    {
+        timer->current_time = timer->original_time;
+    }
+
     void decrement_current_time(timer_t *timer)
     {
         if (timer->current_time > 0)
@@ -35,10 +40,9 @@ namespace state_machine
         return timer->current_time;
     }
 
-    void set_target_time(timer_t * timer)
+    uint16_t get_original_time(timer_t * timer)
     {
-        timer->target_time = timer->original_time;
-        timer->current_time = timer->target_time;
+        return timer->original_time;
     }
 
 } // namespace state_machine
