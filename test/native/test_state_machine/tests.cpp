@@ -42,28 +42,32 @@ void test_initialize_as_idle(void)
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
-void test_when_in_idle_increment_timer_on_cw_rotation(void)
+void test_when_in_set_time_increment_timer_on_cw_rotation(void)
 {
+    set_state(&sm, SET_TIME);
     state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 1);
 }
 
-void test_when_in_idle_decrement_timer_on_ccw_rotation(void)
+void test_when_in_set_time_decrement_timer_on_ccw_rotation(void)
 {
+    set_state(&sm, SET_TIME);
     sm.timer.original_time = 1;
     state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
-void test_when_in_idle_timer_doesnt_overflow(void)
+void test_when_in_set_time_timer_doesnt_overflow(void)
 {
+    set_state(&sm,SET_TIME);
     sm.timer.original_time = 0xffff;
     state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0xffff);
 }
 
-void test_when_in_idle_timer_doesnt_underflow(void)
+void test_when_in_set_time_timer_doesnt_underflow(void)
 {
+    set_state(&sm,SET_TIME);
     state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
