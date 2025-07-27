@@ -74,9 +74,10 @@ void test_when_in_set_time_timer_doesnt_underflow(void)
 
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
-    set_state(&sm, RUNNING);
     sm.timer.original_time = 10;
-
+    set_current_time(&sm->timer);
+    set_state(&sm, RUNNING);
+    
     int actual_seconds = 0;
     while (true)
     {
