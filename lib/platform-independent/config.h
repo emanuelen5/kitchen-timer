@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 #define MAX_TIMERS 16
-#define RINGING_TIMEOUT 2000
+#define RINGING_TIMEOUT 10000
 
 //Active_Timer_View configs
 #define TIMERS_INDICATOR_COLUMN 0

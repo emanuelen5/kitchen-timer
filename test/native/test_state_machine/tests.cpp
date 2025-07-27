@@ -90,7 +90,7 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     TEST_ASSERT_EQUAL(get_state(&sm), RINGING);
 }
 
-void test_ringing_exits_after_2000ms(void)
+void test_ringing_exits_after_10000ms(void)
 {
     set_state(&sm, RINGING);
     service_state_machine(&sm);
@@ -108,7 +108,7 @@ void test_ringing_exits_after_2000ms(void)
             TEST_FAIL_MESSAGE("The state RINGING was never left");
     }
 
-    TEST_ASSERT_EQUAL(2000, current_millis);
+    TEST_ASSERT_EQUAL(10000, current_millis);
 }
 
 int main()
