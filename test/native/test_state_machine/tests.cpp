@@ -115,10 +115,10 @@ int main()
     UNITY_BEGIN();
 
     RUN_TEST(test_initialize_as_idle);
-    RUN_TEST(test_when_in_idle_increment_timer_on_cw_rotation);
-    RUN_TEST(test_when_in_idle_decrement_timer_on_ccw_rotation);
-    RUN_TEST(test_when_in_idle_timer_doesnt_overflow);
-    RUN_TEST(test_when_in_idle_timer_doesnt_underflow);
+    RUN_TEST(test_when_in_set_time_increment_timer_on_cw_rotation);
+    RUN_TEST(test_when_in_set_time_decrement_timer_on_ccw_rotation);
+    RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
+    RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_2000ms);
 
