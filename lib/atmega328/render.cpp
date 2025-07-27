@@ -5,8 +5,6 @@
 #include "fat_font.h"
 #include "max72xx_matrix.h"
 #include "millis.h"
-#include "UART.h"
-
 
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
