@@ -2,7 +2,6 @@
 #define CONFIG_H
 
 #define MAX_TIMERS 16
-#define APPLICATION_VIEWS_COUNT 2   //TODO: This might change when we add a menu
 #define RINGING_TIMEOUT 2000
 
 //Active_Timer_View configs

@@ -7,7 +7,8 @@
 
 typedef enum {
     ACTIVE_TIMER_VIEW,
-    BARS_VIEW
+    BARS_VIEW,
+    VIEW_COUNT
 } application_view_t;
 
 typedef struct 

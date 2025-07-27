@@ -22,16 +22,12 @@ void init_application(application_t *app)
     app->current_active_sm = 0;
 }
 
+
+
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-/*  UART_printf("Handling event: ");
-    print_event(event);
-    UART_printf(" | Active SM state: ");
-    print_state(active_sm->state);
-    UART_printf(" | Active Timer: %d", app->current_active_sm);
-    UART_printf("\n"); */
     switch(event)
     {
         case CW_ROTATION:
@@ -144,7 +140,7 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
 static void change_view(application_t *app, event_t event)
 {
     const uint8_t first_view = 0;
-    const uint8_t last_view = APPLICATION_VIEWS_COUNT - 1;
+    const uint8_t last_view = VIEW_COUNT - 1;
 
     switch (event)
     {
