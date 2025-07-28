@@ -17,7 +17,7 @@ namespace state_machine
         timer->original_time = 0;
     }
 
-    void set_current_time(timer_t *timer)
+    void copy_original_to_current_time(timer_t *timer)
     {
         timer->current_time = timer->original_time;
     }

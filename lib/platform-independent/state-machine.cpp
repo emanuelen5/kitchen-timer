@@ -76,7 +76,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
             case SINGLE_PRESS:
-                set_current_time(&sm->timer);
+                copy_original_to_current_time(&sm->timer);
                 set_state(sm, RUNNING);
                 break;
             case CW_ROTATION:
