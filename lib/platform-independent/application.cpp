@@ -27,34 +27,15 @@ void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-    if (event == CW_ROTATION)
+    if(event == CW_ROTATION && active_sm->state != SET_TIME)
     {
-        if (active_sm->state == SET_TIME)
-        {
-            state_machine_handle_event(active_sm, event);
-        } else
-        {
-            change_to_next_view(app);
-        }
-
-    } else if (event == CCW_ROTATION)
+        change_to_next_view(app);
+    } else if (event == CCW_ROTATION && active_sm->state != SET_TIME)
     {
-        if (active_sm->state == SET_TIME)
-        {
-            state_machine_handle_event(active_sm, event);
-        } else
-        {
-            change_to_previous_view(app);
-        }
-
+        change_to_previous_view(app);
     } else if (event == DOUBLE_PRESS)
     {
         try_to_open_new_timer(app);
-
-    } else if (event == LONG_PRESS && active_sm->state != IDLE)
-    {
-        state_machine_handle_event(active_sm, event);
-
     } else if (event == CW_PRESSED_ROTATION)
     {
         select_next_state_machine(app);
@@ -66,8 +47,8 @@ void application_handle_event(application_t *app, event_t event)
     } else if (event == SECOND_TICK) 
     {
         pass_event_to_all_state_machines(app, event);
-
-    } else if (event == SINGLE_PRESS || event == LONG_PRESS)
+    }
+    else
     {
         state_machine_handle_event(active_sm, event);
     }
