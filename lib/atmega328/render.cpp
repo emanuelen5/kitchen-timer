@@ -6,7 +6,6 @@
 #include "max72xx_matrix.h"
 #include "millis.h"
 
-
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
 
@@ -16,40 +15,54 @@ void init_render()
     init_millis();
 }
 
-static void draw_timers_indicator(const state_machine_t timers[])
+static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
+{
+    uint16_t ms = millis();
+
+    if ((ms - state->last_blink_time) >= blink_rate)
+    {
+        state->last_blink_time = ms;
+        state->blink_is_on = !state->blink_is_on;
+    }
+
+    return state->blink_is_on;
+}
+
+static void draw_timers_indicator(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool is_running = timers[i].state == RUNNING;
-        bool is_paused = timers[i].state == PAUSED;
-        bool is_ringing = timers[i].state == RINGING;
+        bool is_set_time = sm[i].state == SET_TIME;
+        bool is_running = sm[i].state == RUNNING;
+        bool is_paused = sm[i].state == PAUSED;
+        bool is_ringing = sm[i].state == RINGING;
 
-        bool show_led = is_running || is_paused || is_ringing;
+        bool show_led = is_set_time || is_running || is_paused || is_ringing;
 
         matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, show_led);
     }
-
 }
 
+static void draw_ringing_indicator(state_machine_t sm[])
+{
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+    {
+        bool is_ringing = sm[i].state == RINGING;
+        matrix_set_pixel(RINGING_INDICATOR_COLUMN, i, is_ringing);
+    } 
+}
+
+static blink_state_t active_timer_blink = {0, true};
 void draw_active_timer_indicator(uint8_t active_timer_index)
 {
-    static uint16_t last_blink_time;
-    uint16_t ms = millis();
-    static bool blink_state = true;
-    const bool should_toggle_active_timer_indicator = (ms - last_blink_time) >= ACTIVE_TIMER_INDICATOR_BLINK_RATE;
-    if (should_toggle_active_timer_indicator)
-    {
-        last_blink_time = ms;
-        blink_state = !blink_state;
-    }
+    bool blink_state = get_blink_state(&active_timer_blink, ACTIVE_TIMER_INDICATOR_BLINK_RATE);
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool is_active_timer = (i == active_timer_index);
-        if( is_active_timer)
+        if (i == active_timer_index)
         {
             matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, blink_state);
-        }        
+        }
     }
 }
 
@@ -100,32 +113,46 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 }
 
-static bool should_draw_paused_timer(state_machine_t* timers, uint8_t active_timer_index)
+static blink_state_t timer_digits_blink = {0, true};
+void render_active_timer_view(state_machine_t* state_machines, uint8_t active_timer_index)
 {
-    static uint16_t last_blink_time;
-    static bool blink_state = true;
-    uint16_t ms = millis();
+    uint16_t time_to_display;
+    state_machine_t* active_sm = &state_machines[active_timer_index];
+    bool blink = get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
 
-    if ((ms - last_blink_time) >= PAUSED_TIMER_BLINK_RATE)
+    switch(active_sm->state)
     {
-        last_blink_time = ms;
-        blink_state = !blink_state;
+        case IDLE:
+            time_to_display = 0;
+            break;
+
+        case SET_TIME:
+            time_to_display = active_sm->timer.original_time;
+            break;
+
+        case RINGING:
+            
+            time_to_display = get_original_time(&active_sm->timer);
+            break;
+        
+        default:
+            time_to_display = active_sm->timer.current_time;
+            break;
     }
 
-    state_machine_t* active_timer = &timers[active_timer_index];
-    return (active_timer->state != PAUSED) || blink_state;
-}
-
-void render_active_timer_view(state_machine_t* timers, uint8_t active_timer_index)
-{
-    state_machine_t* active_timer = &timers[active_timer_index];
-    uint16_t current_time = active_timer->timer.current_time;
-
     matrix_buffer_clear();
-    draw_timers_indicator(timers);
-    if (should_draw_paused_timer(timers, active_timer_index))
+    draw_timers_indicator(state_machines);
+    draw_ringing_indicator(state_machines);
+    bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
+    if (should_blink_timer_numbers)
     {
-        draw_active_timer(current_time, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+        if(blink)
+        {
+            draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
+        }
+    } else
+    {
+        draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
     draw_active_timer_indicator(active_timer_index);
     matrix_update();

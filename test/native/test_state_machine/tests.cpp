@@ -42,41 +42,46 @@ void test_initialize_as_idle(void)
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
-void test_when_in_idle_increment_timer_on_cw_rotation(void)
+void test_when_in_set_time_increment_timer_on_cw_rotation(void)
 {
-    step_state(&sm, CW_ROTATION);
+    set_state(&sm, SET_TIME);
+    state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 1);
 }
 
-void test_when_in_idle_decrement_timer_on_ccw_rotation(void)
+void test_when_in_set_time_decrement_timer_on_ccw_rotation(void)
 {
+    set_state(&sm, SET_TIME);
     sm.timer.original_time = 1;
-    step_state(&sm, CCW_ROTATION);
+    state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
-void test_when_in_idle_timer_doesnt_overflow(void)
+void test_when_in_set_time_timer_doesnt_overflow(void)
 {
+    set_state(&sm,SET_TIME);
     sm.timer.original_time = 0xffff;
-    step_state(&sm, CW_ROTATION);
+    state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0xffff);
 }
 
-void test_when_in_idle_timer_doesnt_underflow(void)
+void test_when_in_set_time_timer_doesnt_underflow(void)
 {
-    step_state(&sm, CCW_ROTATION);
+    set_state(&sm,SET_TIME);
+    state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
 }
 
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
-    set_state(&sm, RUNNING);
     sm.timer.original_time = 10;
+    copy_original_to_current_time(&sm.timer);
+    set_state(&sm, RUNNING);
 
     int actual_seconds = 0;
     while (true)
     {
-        step_state(&sm, SECOND_TICK);
+        state_machine_handle_event(&sm, SECOND_TICK);
         actual_seconds++;
         if (get_state(&sm) != RUNNING)
             break;
@@ -85,7 +90,7 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     TEST_ASSERT_EQUAL(get_state(&sm), RINGING);
 }
 
-void test_ringing_exits_after_2000ms(void)
+void test_ringing_exits_after_10000ms(void)
 {
     set_state(&sm, RINGING);
     service_state_machine(&sm);
@@ -103,7 +108,7 @@ void test_ringing_exits_after_2000ms(void)
             TEST_FAIL_MESSAGE("The state RINGING was never left");
     }
 
-    TEST_ASSERT_EQUAL(2000, current_millis);
+    TEST_ASSERT_EQUAL(10000, current_millis);
 }
 
 int main()
@@ -111,12 +116,12 @@ int main()
     UNITY_BEGIN();
 
     RUN_TEST(test_initialize_as_idle);
-    RUN_TEST(test_when_in_idle_increment_timer_on_cw_rotation);
-    RUN_TEST(test_when_in_idle_decrement_timer_on_ccw_rotation);
-    RUN_TEST(test_when_in_idle_timer_doesnt_overflow);
-    RUN_TEST(test_when_in_idle_timer_doesnt_underflow);
+    RUN_TEST(test_when_in_set_time_increment_timer_on_cw_rotation);
+    RUN_TEST(test_when_in_set_time_decrement_timer_on_ccw_rotation);
+    RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
+    RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
-    RUN_TEST(test_ringing_exits_after_2000ms);
+    RUN_TEST(test_ringing_exits_after_10000ms);
 
     UNITY_END();
 }

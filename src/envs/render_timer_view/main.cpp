@@ -34,7 +34,7 @@ int main()
     sei();
     
     app.state_machines[0].timer.original_time = 10; //Test with 1 minute and 10 secs
-    step_application(&app, SINGLE_PRESS); //To move into RUNNING state
+    application_handle_event(&app, SINGLE_PRESS); //To move into RUNNING state
 
     while (true)
     {
@@ -42,13 +42,13 @@ int main()
 
         if(!is_paused && millis_now >= 3000)
         {
-            step_application(&app, SINGLE_PRESS); // Simulate PAUSE
+            application_handle_event(&app, SINGLE_PRESS); // Simulate PAUSE
             is_paused = true;
         }
 
         if(is_paused && millis_now >= 7000)
         {
-            step_application(&app, SINGLE_PRESS);
+            application_handle_event(&app, SINGLE_PRESS);
             is_paused = false;
         }
 
@@ -56,7 +56,7 @@ int main()
         dequeue_return_t event = dequeue(&eventQueue);
         if (event.is_valid)
         {
-            step_application(&app, (event_t)event.value);
+            application_handle_event(&app, (event_t)event.value);
         }
         render_active_timer_view(&app.state_machines[0], 0);
         service_application(&app);

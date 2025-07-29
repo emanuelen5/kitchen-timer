@@ -7,6 +7,7 @@
 typedef enum
 {
     IDLE,
+    SET_TIME,
     RUNNING,
     PAUSED,
     RINGING,
@@ -21,19 +22,19 @@ typedef enum
     LONG_PRESS,
     CW_PRESSED_ROTATION,
     CCW_PRESSED_ROTATION,
-    TIMEOUT,
     SECOND_TICK,
 } event_t;
 
 typedef struct
 {
     state_t state;
+    state_t prev_state;
     state_machine::timer_t timer;
     uint16_t millis_of_last_transition;
 } state_machine_t;
 
 void set_state(state_machine_t *sm, state_t new_state);
-void step_state(state_machine_t *sm, event_t event);
+void state_machine_handle_event(state_machine_t *sm, event_t event);
 void init_state_machine(state_machine_t *sm);
 void service_state_machine(state_machine_t *sm);
 uint16_t get_original_time(state_machine_t *sm);
