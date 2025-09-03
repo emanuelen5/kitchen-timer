@@ -83,8 +83,8 @@ int main()
     {
         service_receive_UART();
         button.service();
-        dequeue_return_t event = dequeue(&eventQueue);
-        if (event.is_valid)
+        dequeue_return_t event;
+        while ((event = dequeue(&eventQueue)).is_valid)
         {
             application_handle_event(&app, (event_t)event.value);
         }
