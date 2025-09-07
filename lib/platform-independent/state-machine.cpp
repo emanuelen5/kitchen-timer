@@ -59,6 +59,36 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
+#define ENCODER_ROTATION_INTERVAL_BUFFER_SIZE 3
+static uint16_t interval_buffer[ENCODER_ROTATION_INTERVAL_BUFFER_SIZE];
+static uint8_t interval_index = 0;
+static uint32_t last_encoder_time = 0;
+const uint8_t fast_encoder_step_threshold = 30;
+const uint8_t fast_step = 5;
+static void handle_encoder_rotation(state_machine_t *sm, event_t event)
+{
+    uint32_t now = millis();
+    uint32_t interval = now - last_encoder_time;
+    last_encoder_time = now;
+
+    interval_buffer[interval_index] = interval;
+    interval_index = (interval_index + 1 ) % ENCODER_ROTATION_INTERVAL_BUFFER_SIZE;
+
+    uint32_t sum = 0;
+    for (uint8_t i = 0; i < ENCODER_ROTATION_INTERVAL_BUFFER_SIZE; ++i)
+    {
+        sum += interval_buffer[i];
+    }
+    uint32_t average_interval = sum / ENCODER_ROTATION_INTERVAL_BUFFER_SIZE;
+    UART_printf("%d\n", average_interval);
+
+    int step_size = (average_interval < fast_encoder_step_threshold) ? fast_step : 1;
+
+    if (event == CCW_ROTATION) step_size *= (-1);
+
+    change_original_time(&sm->timer, step_size);
+}
+
 void state_machine_handle_event(state_machine_t *sm, event_t event)
 {
     switch (sm->state)
@@ -88,11 +118,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
 
             case CW_ROTATION:
-                change_original_time(&sm->timer, 1);
+                handle_encoder_rotation(sm, event);
                 break;
 
             case CCW_ROTATION:
-                change_original_time(&sm->timer, -1);
+                handle_encoder_rotation(sm, event);
                 break;
 
             case LONG_PRESS:
