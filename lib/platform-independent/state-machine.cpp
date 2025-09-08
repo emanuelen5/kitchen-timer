@@ -59,8 +59,8 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-#define ENCODER_ROTATION_INTERVAL_BUFFER_SIZE 3
-static uint16_t interval_buffer[ENCODER_ROTATION_INTERVAL_BUFFER_SIZE];
+const uint8_t encoder_rotation_interval_buffer_size = 2; 
+static uint16_t interval_buffer[encoder_rotation_interval_buffer_size];
 static uint8_t interval_index = 0;
 static uint32_t last_encoder_time = 0;
 const uint8_t fast_encoder_step_threshold = 30;
@@ -72,15 +72,14 @@ static void handle_encoder_rotation(state_machine_t *sm, event_t event)
     last_encoder_time = now;
 
     interval_buffer[interval_index] = interval;
-    interval_index = (interval_index + 1 ) % ENCODER_ROTATION_INTERVAL_BUFFER_SIZE;
+    interval_index = (interval_index + 1 ) % encoder_rotation_interval_buffer_size;
 
     uint32_t sum = 0;
-    for (uint8_t i = 0; i < ENCODER_ROTATION_INTERVAL_BUFFER_SIZE; ++i)
+    for (uint8_t i = 0; i < encoder_rotation_interval_buffer_size; ++i)
     {
         sum += interval_buffer[i];
     }
-    uint32_t average_interval = sum / ENCODER_ROTATION_INTERVAL_BUFFER_SIZE;
-    UART_printf("%d\n", average_interval);
+    uint32_t average_interval = sum / encoder_rotation_interval_buffer_size;
 
     int step_size = (average_interval < fast_encoder_step_threshold) ? fast_step : 1;
 
