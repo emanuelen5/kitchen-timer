@@ -15,7 +15,7 @@ typedef enum
 } rotation_dir_t;
 
 //Funtion pointer declaration
-typedef void (*rotation_cb_t)(rotation_dir_t dir, bool held_down);
+typedef void (*rotation_cb_t)(rotation_dir_t dir, bool is_fast_step, bool held_down);
 
 void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_);
 void service_button_press();

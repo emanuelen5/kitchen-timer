@@ -71,7 +71,7 @@ ISR(INT1_vect)
         bool ch_a = bit_is_set(bank, CH_A_PIN);
         const rotation_dir_t dir = ch_a ? cw : ccw;
 
-        rotation(dir, button->get_is_pressed());
+        rotation(dir, is_fast_step(), button->get_is_pressed());
         button->cancel_pending_event();
     }
 }
