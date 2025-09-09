@@ -59,35 +59,33 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-const uint8_t encoder_rotation_interval_buffer_size = 4; 
-uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
-uint8_t timestamp_index = 0;
-const uint8_t fast_encoder_step_threshold = 30;
 const uint16_t fast_step_size = 5;
-bool is_fast_step = false;
 static void handle_encoder_rotation(state_machine_t *sm, event_t event)
 {
-    timestamp_buffer[timestamp_index] = millis();
-    timestamp_index = (timestamp_index + 1 ) % encoder_rotation_interval_buffer_size;
+    int16_t step_size = 0;
+    int16_t base_step = (sm->timer.original_time > 3600) ? 60 : 1;
 
-    uint8_t oldest_index = timestamp_index;
-    uint8_t newest_index = (timestamp_index + encoder_rotation_interval_buffer_size - 1) % encoder_rotation_interval_buffer_size;
-    uint32_t total_time = timestamp_buffer[newest_index] - timestamp_buffer[oldest_index];
-    uint32_t average_interval = total_time >> 2;
-
-    is_fast_step = (average_interval < fast_encoder_step_threshold) ? true : false;
-
-    int16_t step_size = 1;
-    if (sm->timer.original_time > 3600)
-    {   
-        step_size = is_fast_step ? (60 * fast_step_size) : 60;
-    }
-    else
+    switch (event)
     {
-        step_size = is_fast_step ? fast_step_size : 1;
-    }
+        case CW_ROTATION:
+            step_size = base_step;
+            break;
 
-    if (event == CCW_ROTATION) step_size *= (-1);
+        case CCW_ROTATION:
+            step_size = -base_step;
+            break;
+
+        case CW_ROTATION_FAST:
+            step_size = base_step * fast_step_size;
+            break;
+
+        case CCW_ROTATION_FAST:
+            step_size = -base_step * fast_step_size;
+            break;
+
+        default:
+            return;
+    }
 
     change_original_time(&sm->timer, step_size);
 }

@@ -43,6 +43,25 @@ static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
     return false;
 }
 
+
+const uint8_t encoder_rotation_interval_buffer_size = 4; 
+uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
+uint8_t timestamp_index = 0;
+const uint8_t fast_encoder_step_threshold = 30;
+static bool is_fast_step()
+{
+    timestamp_buffer[timestamp_index] = millis();
+    timestamp_index = (timestamp_index + 1 ) % encoder_rotation_interval_buffer_size;
+
+    uint8_t oldest_index = timestamp_index;
+    uint8_t newest_index = (timestamp_index + encoder_rotation_interval_buffer_size - 1) % encoder_rotation_interval_buffer_size;
+    uint32_t total_time = timestamp_buffer[newest_index] - timestamp_buffer[oldest_index];
+    uint32_t average_interval = total_time >> 2;
+
+    return (average_interval < fast_encoder_step_threshold) ? true : false;
+}
+
+
 static uint16_t last_trigger_INT1 = 0;
 ISR(INT1_vect)
 {
