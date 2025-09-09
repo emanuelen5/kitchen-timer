@@ -109,7 +109,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
         }
         break;
-    
     case SET_TIME:
         switch (event)
         {
@@ -123,6 +122,14 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
 
             case CCW_ROTATION:
+                handle_encoder_rotation(sm, event);
+                break;
+
+            case CW_ROTATION_FAST:
+                handle_encoder_rotation(sm, event);
+                break;
+
+            case CCW_ROTATION_FAST:
                 handle_encoder_rotation(sm, event);
                 break;
 
