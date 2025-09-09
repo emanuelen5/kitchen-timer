@@ -141,29 +141,27 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
         }
         break;
-        
     case RUNNING:
         switch (event)
         {
-        case SINGLE_PRESS:
-            set_state(sm, PAUSED);
-            break;
+            case SINGLE_PRESS:
+                set_state(sm, PAUSED);
+                break;
 
-        case LONG_PRESS:
-            reset_state_machine(sm);
-            break;
+            case LONG_PRESS:
+                reset_state_machine(sm);
+                break;
 
-        case SECOND_TICK:
-            decrement_current_time(&sm->timer);
-            if (timer_is_finished(&sm->timer))
-            {
-                set_state(sm, RINGING);
-            }
-            break;
+            case SECOND_TICK:
+                decrement_current_time(&sm->timer);
+                if (timer_is_finished(&sm->timer))
+                {
+                    set_state(sm, RINGING);
+                }
+                break;
 
-        default:
-            break;
-
+            default:
+                break;
         }
         break;
     case PAUSED:
@@ -195,7 +193,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 
         default:
             break;
-            
         }
         break;
     }
