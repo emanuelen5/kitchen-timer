@@ -4,7 +4,6 @@
 #include "config.h"
 
 // These are provided by the program that includes the state machine
-void set_counter(uint8_t v);
 uint16_t millis(void);
 
 void set_state(state_machine_t *sm, state_t new_state)
@@ -36,19 +35,6 @@ void service_state_machine(state_machine_t *sm)
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
             reset_state_machine(sm);
-            set_counter(0b000);
-        }
-        else
-        {
-            bool is_in_odd_128ms_period = time_in_ringing_state & bit(7);
-            if (is_in_odd_128ms_period)
-            {
-                set_counter(0b111);
-            }
-            else // is in even 128 ms period
-            {
-                set_counter(0b000);
-            }
         }
     }
     break;

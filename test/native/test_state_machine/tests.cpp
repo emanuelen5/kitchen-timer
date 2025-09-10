@@ -11,11 +11,6 @@ uint16_t millis(void)
     return current_millis;
 }
 
-void set_counter(uint8_t count)
-{
-    (void)count;
-}
-
 state_machine_t sm;
 
 void setUp(void)
