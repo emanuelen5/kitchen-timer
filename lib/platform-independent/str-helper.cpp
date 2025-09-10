@@ -41,3 +41,20 @@ uint8_t write_int_into_string(int16_t num, char *str)
 
     return written_chars;
 }
+
+bool str_equals(const char* a, const char* b)
+{
+    if (a == 0 || b == 0) {
+        return false;
+    }
+
+    while (*a && *b) {
+        if (*a != *b) {
+            return false;
+        }
+        a++;
+        b++;
+    }
+
+    return (*a == '\0' && *b == '\0'); //// Check to make sure there are no more chars in any of them.
+}
