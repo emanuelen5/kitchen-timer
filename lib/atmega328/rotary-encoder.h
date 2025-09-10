@@ -15,8 +15,14 @@ typedef enum
     none,
 } rotation_dir_t;
 
+typedef enum
+{
+    slow,
+    fast,
+} rotation_speed_t;
+
 //Funtion pointer declaration
-typedef void (*rotation_cb_t)(rotation_dir_t dir, bool is_fast_step, bool held_down);
+typedef void (*rotation_cb_t)(rotation_dir_t dir, rotation_speed_t speed, bool held_down);
 
 void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_);
 void service_button_press();

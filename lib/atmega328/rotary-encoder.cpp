@@ -48,7 +48,7 @@ static const uint8_t encoder_rotation_interval_buffer_size = 4;
 static uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
 static uint8_t timestamp_index = 0;
 static const uint8_t fast_encoder_step_threshold = 30;
-static bool is_fast_step()
+static rotation_speed_t get_rotation_speed()
 {
     timestamp_buffer[timestamp_index] = millis();
     timestamp_index = (timestamp_index + 1 ) % encoder_rotation_interval_buffer_size;
@@ -58,7 +58,14 @@ static bool is_fast_step()
     uint32_t total_time = timestamp_buffer[newest_index] - timestamp_buffer[oldest_index];
     uint32_t average_interval = total_time >> 2;
 
-    return (average_interval < fast_encoder_step_threshold) ? true : false;
+    if (average_interval < fast_encoder_step_threshold)
+    {
+        return fast;
+    }
+    else
+    {
+        return slow;
+    }
 }
 
 
@@ -71,7 +78,7 @@ ISR(INT1_vect)
         bool ch_a = bit_is_set(bank, CH_A_PIN);
         const rotation_dir_t dir = ch_a ? cw : ccw;
 
-        rotation(dir, is_fast_step(), button->get_is_pressed());
+        rotation(dir, get_rotation_speed(), button->get_is_pressed());
         button->cancel_pending_event();
     }
 }
