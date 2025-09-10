@@ -44,11 +44,6 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-bool is_fast_event(event_t event)
-{
-    return event == CW_ROTATION_FAST || event == CCW_ROTATION_FAST;
-}
-
 typedef enum
 {
     ccw,
@@ -56,7 +51,22 @@ typedef enum
     none,
 } rotation_dir_t;
 
-rotation_dir_t event_to_rot_dir(event_t event)
+typedef enum
+{
+    slow,
+    fast,
+} rotation_speed_t;
+
+static rotation_speed_t event_speed(event_t event)
+{
+    if (event == CW_ROTATION_FAST || event == CCW_ROTATION_FAST)
+    {
+        return fast;
+    }
+    return slow;
+}
+
+static rotation_dir_t event_to_rot_dir(event_t event)
 {
     if (event == CW_ROTATION || event == CW_ROTATION_FAST)
     {
@@ -72,7 +82,7 @@ rotation_dir_t event_to_rot_dir(event_t event)
     }
 }
 
-static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, bool is_fast)
+static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
 {
     const int16_t base_step = (original_time >= 3600) ? 60 : 1;
 
@@ -90,7 +100,7 @@ static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, bool is
     }
 
     const uint16_t fast_multiplier = 5;
-    if (is_fast)
+    if (speed == fast)
     {
         step_size *= fast_multiplier;
     }
@@ -130,7 +140,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), is_fast_event(event));
+            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
             change_original_time(&sm->timer, step_size);
         }
         break;
