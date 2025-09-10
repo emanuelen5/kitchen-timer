@@ -11,19 +11,6 @@ uint16_t millis(void)
     return current_millis;
 }
 
-void set_counter(uint8_t count)
-{
-    (void)count;
-}
-
-void UART_printf(char const *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    vprintf(fmt, args);
-    va_end(args);
-}
-
 state_machine_t sm;
 
 void setUp(void)
@@ -55,6 +42,35 @@ void test_when_in_set_time_decrement_timer_on_ccw_rotation(void)
     sm.timer.original_time = 1;
     state_machine_handle_event(&sm, CCW_ROTATION);
     TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+}
+
+void test_when_in_set_time_change_timer_more_on_fast_rotation(void)
+{
+    set_state(&sm, SET_TIME);
+    state_machine_handle_event(&sm, CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 5);
+    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+}
+
+void test_when_in_set_time_and_above_an_hour_change_timer_in_minutes(void)
+{
+    set_state(&sm, SET_TIME);
+    sm.timer.original_time = 3600;
+    state_machine_handle_event(&sm, CW_ROTATION);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 3660);
+    state_machine_handle_event(&sm, CCW_ROTATION);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 3600);
+}
+
+void test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_rotation(void)
+{
+    set_state(&sm, SET_TIME);
+    sm.timer.original_time = 3600;
+    state_machine_handle_event(&sm, CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 3900);
+    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 3600);
 }
 
 void test_when_in_set_time_timer_doesnt_overflow(void)
@@ -118,6 +134,9 @@ int main()
     RUN_TEST(test_initialize_as_idle);
     RUN_TEST(test_when_in_set_time_increment_timer_on_cw_rotation);
     RUN_TEST(test_when_in_set_time_decrement_timer_on_ccw_rotation);
+    RUN_TEST(test_when_in_set_time_change_timer_more_on_fast_rotation);
+    RUN_TEST(test_when_in_set_time_and_above_an_hour_change_timer_in_minutes);
+    RUN_TEST(test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_rotation);
     RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);

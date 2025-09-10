@@ -19,7 +19,7 @@ uint8_t event_queue_buffer[queue_buffer_size];
 
 application_t app;
 
-void rotation_cb(rotation_dir_t dir, bool held_down)
+void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     if (held_down)
     {
@@ -34,13 +34,26 @@ void rotation_cb(rotation_dir_t dir, bool held_down)
     }
     else
     {
-        if (dir == cw)
+        if (speed == fast)
         {
-            add_to_queue(&eventQueue, CW_ROTATION);
-        }
-        else if (dir == ccw)
+            if (dir == cw)
+            {
+                add_to_queue(&eventQueue, CW_ROTATION_FAST);
+            }
+            else if (dir == ccw)
+            {
+                add_to_queue(&eventQueue, CCW_ROTATION_FAST);
+            }
+        } else
         {
-            add_to_queue(&eventQueue, CCW_ROTATION);
+            if (dir == cw)
+            {
+                add_to_queue(&eventQueue, CW_ROTATION);
+            }
+            else if (dir == ccw)
+            {
+                add_to_queue(&eventQueue, CCW_ROTATION);
+            }
         }
     }
 }
@@ -78,7 +91,7 @@ int main()
     init_application(&app);
     init_render();
     sei();
-    
+
     while (true)
     {
         service_receive_UART();

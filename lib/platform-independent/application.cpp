@@ -27,10 +27,10 @@ void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
 
-    if(event == CW_ROTATION && active_sm->state != SET_TIME)
+    if((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
     {
         change_to_next_view(app);
-    } else if (event == CCW_ROTATION && active_sm->state != SET_TIME)
+    } else if ((event == CCW_ROTATION || event == CCW_ROTATION_FAST) && active_sm->state != SET_TIME)
     {
         change_to_previous_view(app);
     } else if (event == DOUBLE_PRESS)
@@ -174,6 +174,12 @@ static void try_to_open_new_timer(application_t* app)
             break;
         case CCW_ROTATION:
             UART_printf("CCW_ROTATION");
+            break;
+        case CW_ROTATION_FAST:
+            UART_printf("CW_ROTATION_FAST");
+            break;
+        case CCW_ROTATION_FAST:
+            UART_printf("CCW_ROTATION_FAST");
             break;
         case DOUBLE_PRESS:
             UART_printf("DOUBLE_PRESS");

@@ -6,6 +6,7 @@
 hardware/kitchen_timer-hardware-backups/
 hardware/*.bak
 hardware/fp-info-cache
+*.pyc
 
 
 # Some local good-to-have files

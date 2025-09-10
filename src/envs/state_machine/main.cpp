@@ -19,9 +19,10 @@ uint8_t event_queue_buffer[queue_buffer_size];
 
 application_t app;
 
-void rotation_cb(rotation_dir_t dir, bool held_down)
+void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     UNUSED held_down;
+    UNUSED speed;
     if (dir == cw)
         add_to_queue(&eventQueue, CW_ROTATION);
     else if (dir == ccw)
