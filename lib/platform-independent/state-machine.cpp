@@ -89,7 +89,7 @@ rotation_dir_t event_to_rot_dir(event_t event)
 
 static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, bool is_fast)
 {
-    const int16_t base_step = (original_time > 3600) ? 60 : 1;
+    const int16_t base_step = (original_time >= 3600) ? 60 : 1;
 
     int16_t step_size = 0;
     switch (dir)
