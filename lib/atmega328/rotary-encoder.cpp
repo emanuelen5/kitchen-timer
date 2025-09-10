@@ -44,10 +44,10 @@ static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
 }
 
 
-const uint8_t encoder_rotation_interval_buffer_size = 4; 
-uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
-uint8_t timestamp_index = 0;
-const uint8_t fast_encoder_step_threshold = 30;
+static const uint8_t encoder_rotation_interval_buffer_size = 4;
+static uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
+static uint8_t timestamp_index = 0;
+static const uint8_t fast_encoder_step_threshold = 30;
 static bool is_fast_step()
 {
     timestamp_buffer[timestamp_index] = millis();
