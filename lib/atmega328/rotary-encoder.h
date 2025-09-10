@@ -12,6 +12,7 @@ typedef enum
 {
     ccw,
     cw,
+    none,
 } rotation_dir_t;
 
 //Funtion pointer declaration

@@ -59,35 +59,58 @@ void service_state_machine(state_machine_t *sm)
     }
 }
 
-const uint16_t fast_step_size = 5;
-static void handle_encoder_rotation(state_machine_t *sm, event_t event)
+bool is_fast_event(event_t event)
 {
-    int16_t step_size = 0;
-    int16_t base_step = (sm->timer.original_time > 3600) ? 60 : 1;
+    return event == CW_ROTATION_FAST || event == CCW_ROTATION_FAST;
+}
 
-    switch (event)
+typedef enum
+{
+    ccw,
+    cw,
+    none,
+} rotation_dir_t;
+
+rotation_dir_t event_to_rot_dir(event_t event)
+{
+    if (event == CW_ROTATION || event == CW_ROTATION_FAST)
     {
-        case CW_ROTATION:
+        return cw;
+    }
+    else if (event == CCW_ROTATION || event == CCW_ROTATION_FAST)
+    {
+        return ccw;
+    }
+    else
+    {
+        return none;
+    }
+}
+
+static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, bool is_fast)
+{
+    const int16_t base_step = (original_time > 3600) ? 60 : 1;
+
+    int16_t step_size = 0;
+    switch (dir)
+    {
+        case cw:
             step_size = base_step;
             break;
-
-        case CCW_ROTATION:
+        case ccw:
             step_size = -base_step;
             break;
-
-        case CW_ROTATION_FAST:
-            step_size = base_step * fast_step_size;
-            break;
-
-        case CCW_ROTATION_FAST:
-            step_size = -base_step * fast_step_size;
-            break;
-
         default:
-            return;
+            return 0;
     }
 
-    change_original_time(&sm->timer, step_size);
+    const uint16_t fast_multiplier = 5;
+    if (is_fast)
+    {
+        step_size *= fast_multiplier;
+    }
+
+    return step_size;
 }
 
 void state_machine_handle_event(state_machine_t *sm, event_t event)
@@ -118,19 +141,12 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
                 break;
 
             case CW_ROTATION:
-                handle_encoder_rotation(sm, event);
-                break;
-
             case CCW_ROTATION:
-                handle_encoder_rotation(sm, event);
-                break;
-
             case CW_ROTATION_FAST:
-                handle_encoder_rotation(sm, event);
-                break;
-
-            case CCW_ROTATION_FAST:
-                handle_encoder_rotation(sm, event);
+            case CCW_ROTATION_FAST: {
+                const uint16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), is_fast_event(event));
+                change_original_time( &sm->timer, step_size);
+            }
                 break;
 
             case LONG_PRESS:
