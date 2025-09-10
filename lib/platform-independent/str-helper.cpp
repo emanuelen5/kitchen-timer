@@ -59,14 +59,15 @@ bool strings_are_equal(const char* a, const char* b)
     return (*a == '\0' && *b == '\0'); //// Check to make sure there are no more chars in any of them.
 }
 
-void str_trim(char* str) {
-    // Remove trailing \r or \n
-    char* p = str;
-    while (*p) {
-        if (*p == '\r' || *p == '\n') {
-            *p = '\0';
+void trim_string(char* str)
+{
+    while (*str)
+    {
+        if (*str == '\r' || *str == '\n')
+        {
+            *str = '\0';
             break;
         }
-        p++;
+        str++;
     }
 }
