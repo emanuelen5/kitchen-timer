@@ -52,7 +52,7 @@ void service_state_machine(state_machine_t *sm)
             }
         }
     }
-        break;
+    break;
 
     default:
         break;
@@ -94,14 +94,14 @@ static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, bool is
     int16_t step_size = 0;
     switch (dir)
     {
-        case cw:
-            step_size = base_step;
-            break;
-        case ccw:
-            step_size = -base_step;
-            break;
-        default:
-            return 0;
+    case cw:
+        step_size = base_step;
+        break;
+    case ccw:
+        step_size = -base_step;
+        break;
+    default:
+        return 0;
     }
 
     const uint16_t fast_multiplier = 5;
@@ -120,64 +120,65 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     case IDLE:
         switch (event)
         {
-            case SINGLE_PRESS:
-                set_state(sm, SET_TIME);
-                break;
+        case SINGLE_PRESS:
+            set_state(sm, SET_TIME);
+            break;
 
-            case LONG_PRESS:
-                //Does nothing
-                break;
+        case LONG_PRESS:
+            // Does nothing
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
         break;
     case SET_TIME:
         switch (event)
         {
-            case SINGLE_PRESS:
-                copy_original_to_current_time(&sm->timer);
-                set_state(sm, RUNNING);
-                break;
+        case SINGLE_PRESS:
+            copy_original_to_current_time(&sm->timer);
+            set_state(sm, RUNNING);
+            break;
 
-            case CW_ROTATION:
-            case CCW_ROTATION:
-            case CW_ROTATION_FAST:
-            case CCW_ROTATION_FAST: {
-                const uint16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), is_fast_event(event));
-                change_original_time( &sm->timer, step_size);
-            }
-                break;
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const uint16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), is_fast_event(event));
+            change_original_time(&sm->timer, step_size);
+        }
+        break;
 
-            case LONG_PRESS:
-                reset_timer(&sm->timer);
-                break;
+        case LONG_PRESS:
+            reset_timer(&sm->timer);
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
         break;
     case RUNNING:
         switch (event)
         {
-            case SINGLE_PRESS:
-                set_state(sm, PAUSED);
-                break;
+        case SINGLE_PRESS:
+            set_state(sm, PAUSED);
+            break;
 
-            case LONG_PRESS:
-                reset_state_machine(sm);
-                break;
+        case LONG_PRESS:
+            reset_state_machine(sm);
+            break;
 
-            case SECOND_TICK:
-                decrement_current_time(&sm->timer);
-                if (timer_is_finished(&sm->timer))
-                {
-                    set_state(sm, RINGING);
-                }
-                break;
+        case SECOND_TICK:
+            decrement_current_time(&sm->timer);
+            if (timer_is_finished(&sm->timer))
+            {
+                set_state(sm, RINGING);
+            }
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
         break;
     case PAUSED:
@@ -193,7 +194,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 
         default:
             break;
-
         }
         break;
     case RINGING:
