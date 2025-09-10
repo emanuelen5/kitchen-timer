@@ -16,14 +16,6 @@ void set_counter(uint8_t count)
     (void)count;
 }
 
-void UART_printf(char const *fmt, ...)
-{
-    va_list args;
-    va_start(args, fmt);
-    vprintf(fmt, args);
-    va_end(args);
-}
-
 state_machine_t sm;
 
 void setUp(void)

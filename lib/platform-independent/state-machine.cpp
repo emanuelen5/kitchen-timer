@@ -4,7 +4,6 @@
 #include "config.h"
 
 // These are provided by the program that includes the state machine
-void UART_printf(const char *f, ...);
 void set_counter(uint8_t v);
 uint16_t millis(void);
 
