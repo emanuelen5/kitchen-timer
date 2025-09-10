@@ -11,13 +11,30 @@
 #include "led-counter.h"
 #include "avr_button.h"
 #include "rotary-encoder.h"
+#include "serial_commands.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
 uint8_t event_queue_buffer[queue_buffer_size];
 
-
 application_t app;
+
+void led_on()
+{
+    UART_printf("led on");
+    set_counter(1);
+}
+void led_off()
+{
+    UART_printf("led off");
+    set_counter(0);
+}
+
+const command_callbacks_t command_callbacks
+{
+    .led_on = led_on,
+    .led_off = led_off
+};
 
 void rotation_cb(rotation_dir_t dir, bool held_down)
 {
@@ -69,7 +86,7 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_UART();
+    init_UART(command_callbacks);
     init_timer2_to_1s_interrupt(&second_tick_cb);
     init_millis();
     init_led_counter();
