@@ -4,11 +4,11 @@
 
 void handle_command(const char* cmd, command_callbacks_t* callbacks)
 {
-    if (str_equals(cmd, "led on\n"))
+    if (strings_are_equal(cmd, "led on\n"))
     {
         callbacks->led_on();
     }
-    else if (str_equals(cmd, "led off\n"))
+    else if (strings_are_equal(cmd, "led off\n"))
     {
         callbacks->led_off();
     }

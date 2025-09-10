@@ -42,7 +42,7 @@ uint8_t write_int_into_string(int16_t num, char *str)
     return written_chars;
 }
 
-bool str_equals(const char* a, const char* b)
+bool strings_are_equal(const char* a, const char* b)
 {
     if (a == 0 || b == 0) {
         return false;
@@ -57,4 +57,16 @@ bool str_equals(const char* a, const char* b)
     }
 
     return (*a == '\0' && *b == '\0'); //// Check to make sure there are no more chars in any of them.
+}
+
+void str_trim(char* str) {
+    // Remove trailing \r or \n
+    char* p = str;
+    while (*p) {
+        if (*p == '\r' || *p == '\n') {
+            *p = '\0';
+            break;
+        }
+        p++;
+    }
 }
