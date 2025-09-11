@@ -1,6 +1,5 @@
 #include "serial_commands.h"
 #include "str-helper.h"
-#include "UART.h"
 
 void handle_command(const char* cmd, command_callbacks_t* callbacks)
 {
