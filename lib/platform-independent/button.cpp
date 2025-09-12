@@ -72,13 +72,18 @@ void Button::service()
 
 void Button::switch_to_rotation()
 {
-    uint16_t now = millis();
-    uint16_t ms_since_press = now - last_press_time;
-    if (press_count == 1 && ms_since_press > press_to_rotation_timeout_ms)
+    if (press_count == 1 && !is_pressed)
     {
         invoke_single_press();
     }
-    press_count = 0;
+    // Double-press doesn't need to be handled here, since it is invoked
+    // immediately on the second press
+    else
+    {
+        // If the button is still held down, we don't want to trigger any
+        // further press event
+        press_count = 0;
+    }
 }
 
 void Button::invoke_single_press()
