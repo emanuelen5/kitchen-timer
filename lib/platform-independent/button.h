@@ -23,7 +23,6 @@ public:
 
     static constexpr uint16_t long_press_threshold_ms = 2000;
     static constexpr uint16_t double_press_timeout_ms = 500;
-    static constexpr uint16_t press_to_rotation_timeout_ms = 100;
 
 private:
     uint16_t last_press_time;
