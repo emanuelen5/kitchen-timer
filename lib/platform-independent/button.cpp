@@ -70,6 +70,17 @@ void Button::service()
     }
 }
 
+void Button::switch_to_rotation()
+{
+    uint16_t now = millis();
+    uint16_t ms_since_press = now - last_press_time;
+    if (press_count == 1 && ms_since_press > press_to_rotation_timeout_ms)
+    {
+        invoke_single_press();
+    }
+    press_count = 0;
+}
+
 void Button::invoke_single_press()
 {
     press_count = 0;
