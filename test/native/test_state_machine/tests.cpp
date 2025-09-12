@@ -127,6 +127,16 @@ void test_ringing_exits_after_10000ms(void)
     TEST_ASSERT_EQUAL(10000, current_millis);
 }
 
+void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
+{
+    set_state(&sm, SET_TIME);
+    sm.timer.original_time = 0;
+    state_machine_handle_event(&sm, CCW_ROTATION);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(get_original_time(&sm), 0);
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -141,6 +151,7 @@ int main()
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_10000ms);
+    RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
 
     UNITY_END();
 }
