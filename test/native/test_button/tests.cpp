@@ -114,14 +114,43 @@ void test_long_press_is_registered_on_release(void)
     TEST_ASSERT_BUTTON_STATE(false, false, 1);
 }
 
-void test_long_press_isnt_triggered_after_clearing_events(void)
+void test_long_press_isnt_triggered_when_switching_to_rotation(void)
 {
     btn->press();
-    btn->cancel_pending_event();
+    btn->switch_to_rotation();
     state->increment_time(Button::long_press_threshold_ms + 1);
-
     btn->release();
 
+    TEST_ASSERT_BUTTON_STATE(false, false, false);
+}
+
+void test_press_is_triggered_when_switching_to_rotation_before_double_press_timeout(void)
+{
+    btn->press();
+    state->increment_time(Button::double_press_timeout_ms - 1);
+    btn->release();
+
+    btn->switch_to_rotation();
+    TEST_ASSERT_BUTTON_STATE(1, false, false);
+}
+
+void test_press_is_triggered_when_switching_to_rotation_slowly(void)
+{
+    btn->press();
+    state->increment_time(Button::press_to_rotation_timeout_ms + 1);
+    btn->release();
+
+    btn->switch_to_rotation();
+    TEST_ASSERT_BUTTON_STATE(1, false, false);
+}
+
+void test_press_isnt_triggered_when_switching_to_rotation_quickly(void)
+{
+    btn->press();
+    state->increment_time(Button::press_to_rotation_timeout_ms - 1);
+    btn->release();
+
+    btn->switch_to_rotation();
     TEST_ASSERT_BUTTON_STATE(false, false, false);
 }
 
@@ -168,7 +197,10 @@ int main()
     RUN_TEST(test_double_press);
     RUN_TEST(test_long_press_is_registered_before_release);
     RUN_TEST(test_long_press_is_registered_on_release);
-    RUN_TEST(test_long_press_isnt_triggered_after_clearing_events);
+    RUN_TEST(test_long_press_isnt_triggered_when_switching_to_rotation);
+    RUN_TEST(test_press_is_triggered_when_switching_to_rotation_before_double_press_timeout);
+    RUN_TEST(test_press_is_triggered_when_switching_to_rotation_slowly);
+    RUN_TEST(test_press_isnt_triggered_when_switching_to_rotation_quickly);
     RUN_TEST(test_single_press_too_slow_for_double);
     RUN_TEST(test_press_twice);
 
