@@ -19,8 +19,7 @@ public:
         return is_pressed;
     }
 
-    // Used to cancel long-press
-    inline void cancel_pending_event()
+    inline void clear_pending_long_press()
     {
         press_count = 0;
     };

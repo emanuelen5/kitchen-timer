@@ -117,7 +117,7 @@ void test_long_press_is_registered_on_release(void)
 void test_long_press_isnt_triggered_after_clearing_events(void)
 {
     btn->press();
-    btn->cancel_pending_event();
+    btn->clear_pending_long_press();
     state->increment_time(Button::long_press_threshold_ms + 1);
 
     btn->release();

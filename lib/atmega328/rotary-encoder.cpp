@@ -79,7 +79,7 @@ ISR(INT1_vect)
     const rotation_dir_t dir = ch_a ? cw : ccw;
 
     rotation(dir, get_rotation_speed(), button->get_is_pressed());
-    button->cancel_pending_event();
+    button->clear_pending_long_press();
 }
 
 static const uint16_t long_press_duration_ms = 2000;
