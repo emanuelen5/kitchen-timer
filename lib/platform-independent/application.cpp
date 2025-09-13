@@ -1,4 +1,5 @@
 #include "application.h"
+#include "melody.h"
 
  // These are provided by the program that includes the state machine 
  void UART_printf(const char *f, ...); 
@@ -19,6 +20,7 @@ void init_application(application_t *app)
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
         init_state_machine(&app->state_machines[i]);
+        app->previous_sm_states[i] = app->state_machines[i].state;
     }
     app->current_active_sm = 0;
 }
@@ -54,19 +56,40 @@ void application_handle_event(application_t *app, event_t event)
     }
 }
 
+bool sm_transitioned_info_state(application_t *app, uint8_t sm_index, state_t into)
+{
+    state_t current_state = app->state_machines[sm_index].state;
+    state_t previous_state = app->previous_sm_states[sm_index];
+    return current_state == into && previous_state != into;
+}
+
+bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from) {
+    state_t current_state = app->state_machines[sm_index].state;
+    state_t previous_state = app->previous_sm_states[sm_index];
+    return current_state != from && previous_state == from;
+}
+
 void service_application(application_t *app)
 {
-    bool existing_ringing_timer = false;
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+        service_state_machine(&app->state_machines[i]);
+
+    app->buzzer.service();
+
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool is_ringing = app->state_machines[i].state == RINGING;
-        if(is_ringing && !existing_ringing_timer)
+        if (sm_transitioned_info_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            existing_ringing_timer = true;
+            app->buzzer.start_melody(beeps, 10);
+            break;
+        } else if (sm_transitioned_from_state(app, i, RINGING)) {
+            app->buzzer.stop();
         }
-        service_state_machine(&app->state_machines[i]);
     }
+
+    for (uint8_t i = 0; i < MAX_TIMERS; i++)
+        app->previous_sm_states[i] = app->state_machines[i].state;
 }
 
 static void select_previous_state_machine(application_t *app)
