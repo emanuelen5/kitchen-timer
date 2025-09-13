@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include "config.h"
 #include "state-machine.h"
+#include "ringer.h"
 
 typedef enum {
     ACTIVE_TIMER_VIEW,
@@ -15,7 +16,9 @@ typedef struct
 {
     application_view_t current_view;
     state_machine_t state_machines[MAX_TIMERS];
+    state_t previous_sm_states[MAX_TIMERS];
     uint8_t current_active_sm;
+    Ringer ringer;
 } application_t;
 
 void init_application(application_t* app);
