@@ -63,6 +63,12 @@ bool sm_transitioned_info_state(application_t *app, uint8_t sm_index, state_t in
     return current_state == into && previous_state != into;
 }
 
+bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from) {
+    state_t current_state = app->state_machines[sm_index].state;
+    state_t previous_state = app->previous_sm_states[sm_index];
+    return current_state != from && previous_state == from;
+}
+
 void service_application(application_t *app)
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
@@ -75,8 +81,10 @@ void service_application(application_t *app)
         if (sm_transitioned_info_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            app->ringer.start_melody(beeps);
+            app->ringer.start_melody(beeps, 10);
             break;
+        } else if (sm_transitioned_from_state(app, i, RINGING)) {
+            app->ringer.stop();
         }
     }
 

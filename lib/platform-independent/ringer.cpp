@@ -12,14 +12,15 @@ Ringer::Ringer() : tone_start_time(0),
 {
 }
 
-void Ringer::start_melody(MelodyType melody)
+void Ringer::start_melody(MelodyType melody, uint8_t repeats)
 {
     this->tone_start_time = millis();
     this->note_index = 0;
     this->melody = get_melody(melody);
+    this->repeats = repeats;
 }
 
-void Ringer::service()
+void Ringer::service(void)
 {
     if (melody == nullptr)
         return;
@@ -39,10 +40,15 @@ void Ringer::service()
     }
 }
 
-void Ringer::play_current_note()
+void Ringer::play_current_note(void)
 {
     Note note = melody[this->note_index];
-    if (note.pitch == NotePause)
+    if (is_end_of_melody(&note) && repeats > 0)
+    {
+        repeats--;
+        this->note_index = 0;
+    }
+    else if (note.pitch == NotePause)
     {
         noToneAC();
     }
@@ -50,6 +56,11 @@ void Ringer::play_current_note()
     {
         toneAC(note.pitch, this->volume, PLAY_FOREVER, true);
     }
+}
+
+void Ringer::stop(void)
+{
+    this->melody = nullptr;
 }
 
 void Ringer::set_volume(uint8_t volume)
