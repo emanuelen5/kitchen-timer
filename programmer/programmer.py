@@ -292,7 +292,11 @@ def main():
 
     progress_cb = pbar.update
     serial = attempt_serial_connection(args.port, args.baudrate)
-    time.sleep(0.1)  # Allow some time for the device to reset
+
+    t_start = time.time()
+    while time.time() < t_start + 0.1:
+        not_start_byte = b"\x00"
+        serial.write(not_start_byte)  # Just to stop the device from exiting bootloader
 
     check_signature(serial, expected_signature=b"\x1e\x95\x0f")
 

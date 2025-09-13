@@ -105,7 +105,7 @@ uint8_t UART_receive(void)
 int UART_receive_with_timeout(uint8_t *data)
 {
     const uint8_t timeout = 1;
-    uint32_t retries = 0x1ffffUL; // approximately 2 seconds
+    uint32_t retries = 0x00fffUL; // approximately 2^-4 seconds
     while (true)
     {
         if (UCSR0A & (1 << RXC0))
