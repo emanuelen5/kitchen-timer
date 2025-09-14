@@ -13,6 +13,7 @@ public:
     void start_melody(const Note *melody, uint8_t repeats);
     void set_volume(uint8_t volume); // 10 is max, as defined in ToneAC
     void stop(void);
+    bool is_finished(void);
 
     static constexpr uint16_t beat_ms = 80;
     static constexpr uint8_t default_volume = 10;

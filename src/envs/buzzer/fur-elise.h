@@ -20,5 +20,6 @@ constexpr Note fur_elise[] = {
     {NoteGS4, 4},
     {NoteB4, 4},
     {NoteC5, 8},
+    {NotePause, 16},
     end_of_melody,
 };

@@ -78,3 +78,14 @@ void Buzzer::set_volume(uint8_t volume)
     }
     this->volume = volume;
 }
+
+bool Buzzer::is_finished(void)
+{
+    if (this->melody == nullptr)
+        return true;
+
+    if (this->repeats != 0)
+        return false;
+
+    return is_end_of_melody(&this->melody[this->note_index]);
+}
