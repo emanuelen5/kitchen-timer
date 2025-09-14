@@ -44,16 +44,17 @@ struct Note
     int beats; // Duration in beats
 };
 
-// Function to play a tone with specified duration
-void playTone(int pitch, int beats)
-{
-    toneAC(pitch, 10, beats * SIXTEENTH_DURATION);
-}
-
 static void delay(unsigned long ms)
 {
     for (uint16_t i = 0; i < ms; i++)
         _delay_ms(1);
+}
+
+// Function to play a tone with specified duration
+void playTone(int pitch, int beats)
+{
+    toneAC(pitch, 10);
+    delay(beats * SIXTEENTH_DURATION);
 }
 
 // Function to add a pause with specified duration
