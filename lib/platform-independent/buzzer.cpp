@@ -52,8 +52,7 @@ void Buzzer::play_current_note(void)
     Note note = melody[this->note_index];
     if (is_end_of_melody(&note) && repeats > 0)
     {
-        repeats--;
-        this->note_index = 0;
+        this->start_melody(this->melody, this->repeats - 1);
     }
     else if (note.pitch == NotePause)
     {
