@@ -7,7 +7,7 @@ Buzzer buzzer;
 
 int main()
 {
-    init_millis();
+    init_hw_millis();
     sei();
     int volume = 1;
     while (true)

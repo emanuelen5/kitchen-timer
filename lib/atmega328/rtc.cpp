@@ -11,7 +11,7 @@ ISR(TIMER2_OVF_vect)
     a_second_has_passed();
 }
 
-void init_timer2_to_1s_interrupt(callback *on_second_cb)
+void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
 {
     a_second_has_passed = on_second_cb;
     // Timer2 clocked from TOSC1 / external crystal

@@ -23,7 +23,7 @@ typedef enum
 
 typedef void (*rotation_cb_t)(rotation_dir_t dir, rotation_speed_t speed, bool held_down);
 
-void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_);
+void init_hw_rotary_encoder(rotation_cb_t rotation_cb, Button &button_);
 void service_button_press();
 
 #endif // ROTARY_ENCODER_H

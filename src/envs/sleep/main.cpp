@@ -17,8 +17,8 @@ void on_second_tick(void)
 
 int main()
 {
-    init_led_counter();
-    init_timer2_to_1s_interrupt(&on_second_tick);
+    init_hw_led_counter();
+    init_hw_timer2_to_1s_interrupt(&on_second_tick);
     set_sleep_mode(power_save);
     sei();
 

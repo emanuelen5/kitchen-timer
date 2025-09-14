@@ -9,12 +9,6 @@
 #define FONT_WIDTH 6
 #define FONT_HEIGHT 7
 
-void init_render()
-{
-    matrix_init();
-    init_millis();
-}
-
 static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
 {
     uint16_t ms = millis();

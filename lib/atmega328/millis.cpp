@@ -27,7 +27,7 @@ uint16_t millis(void)
     return m;
 }
 
-void init_millis(void)
+void init_hw_millis(void)
 {
     const uint8_t timer0_ticks_in_a_ms = 125;
 

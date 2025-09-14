@@ -21,7 +21,7 @@ void debug_queue(void)
 
 int main(void)
 {
-    init_led_counter();
+    init_hw_led_counter();
     init_queue(&test_queue, buffer, sizeof(buffer));
     debug_queue();
     while (1);

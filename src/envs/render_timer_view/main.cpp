@@ -9,6 +9,7 @@
 #include "render.h"
 #include "application.h"
 #include "led-counter.h"
+#include "max72xx.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -25,14 +26,14 @@ void second_tick_cb(void)
 
 int main()
 {
-    init_UART();
+    init_hw_UART();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_timer2_to_1s_interrupt(&second_tick_cb);
-    init_led_counter();
+    init_hw_timer2_to_1s_interrupt(&second_tick_cb);
+    init_hw_led_counter();
+    init_hw_max72xx();
     init_application(&app);
-    init_render();
     sei();
-    
+
     app.state_machines[0].timer.original_time = 10; //Test with 1 minute and 10 secs
     application_handle_event(&app, SINGLE_PRESS); //To move into RUNNING state
 

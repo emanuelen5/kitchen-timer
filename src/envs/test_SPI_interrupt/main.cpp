@@ -11,8 +11,8 @@ void increment_counter_cb(void)
 
 int main()
 {
-    init_led_counter();
-    init_SPI(9);
+    init_hw_led_counter();
+    init_hw_SPI(9);
     while (1)
     {
         add_to_SPI_queue(0xAA);
