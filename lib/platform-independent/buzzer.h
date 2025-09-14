@@ -15,7 +15,7 @@ public:
     void stop(void);
     bool is_finished(void);
 
-    static constexpr uint16_t beat_ms = 60;
+    static constexpr uint16_t beat_ms = 50;
     static constexpr uint8_t default_volume = 10;
 
 private:
