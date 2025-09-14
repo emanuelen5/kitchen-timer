@@ -98,20 +98,22 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
 
     char top_digits[2], bottom_digits[2];
-    top_digits[0] = '0' + (top_value / 10);
-    top_digits[1] = '0' + (top_value % 10);
+    if (show_as_hh_mm)
+    {
+        top_digits[0] = '0' + (top_value % 10);
+        top_digits[1] = 'h';
+    }
+    else
+    {
+        top_digits[0] = '0' + (top_value / 10);
+        top_digits[1] = '0' + (top_value % 10);
+    }
 
     bottom_digits[0] = '0' + (bottom_value / 10);
     bottom_digits[1] = '0' + (bottom_value % 10);
 
-    if (show_as_hh_mm)
-    {
-        draw_char(top_digits[1], x_offset, y_offset, clear_active_timer);
-    } else
-    {
-        draw_char(top_digits[0], x_offset, y_offset, clear_active_timer);
-        draw_char(top_digits[1], x_offset + 7, y_offset, clear_active_timer);
-    }
+    draw_char(top_digits[0], x_offset, y_offset, clear_active_timer);
+    draw_char(top_digits[1], x_offset + 7, y_offset, clear_active_timer);
 
     draw_char(bottom_digits[0], x_offset, y_offset + 8, clear_active_timer);
     draw_char(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
