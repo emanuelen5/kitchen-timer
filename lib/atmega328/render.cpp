@@ -49,7 +49,7 @@ static void draw_ringing_indicator(state_machine_t sm[])
     {
         bool is_ringing = sm[i].state == RINGING;
         matrix_set_pixel(RINGING_INDICATOR_COLUMN, i, is_ringing);
-    } 
+    }
 }
 
 static blink_state_t active_timer_blink = {0, true};
@@ -66,10 +66,10 @@ void draw_active_timer_indicator(uint8_t active_timer_index)
     }
 }
 
-static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
+static void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
 {
-    const uint8_t* ptr_digit = get_char(digit);
-    
+    const uint8_t* bitmap = get_bitmap(c);
+
     for (uint8_t row = 0; row < FONT_HEIGHT; row++)
     {
         for (uint8_t col = 0; col < FONT_WIDTH; col++)
@@ -77,7 +77,7 @@ static void draw_digit(char digit, uint8_t x_offset, uint8_t y_offset, bool clea
             bool is_on = false;
             if(!clear_digit)
             {
-                is_on = ptr_digit[row] & bit(FONT_WIDTH - 1 - col);  // 6-bit wide
+                is_on = bitmap[row] & bit(FONT_WIDTH - 1 - col);  // 6-bit wide
             }
             matrix_set_pixel(x_offset + col, y_offset + row, is_on);
         }
@@ -104,12 +104,17 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
     bottom_digits[0] = '0' + (bottom_value / 10);
     bottom_digits[1] = '0' + (bottom_value % 10);
 
-    
-    draw_digit(top_digits[0], x_offset, y_offset, clear_active_timer);
-    draw_digit(top_digits[1], x_offset + 7, y_offset, clear_active_timer);
+    if (show_as_hh_mm)
+    {
+        draw_char(top_digits[1], x_offset, y_offset, clear_active_timer);
+    } else
+    {
+        draw_char(top_digits[0], x_offset, y_offset, clear_active_timer);
+        draw_char(top_digits[1], x_offset + 7, y_offset, clear_active_timer);
+    }
 
-    draw_digit(bottom_digits[0], x_offset, y_offset + 8, clear_active_timer);
-    draw_digit(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
+    draw_char(bottom_digits[0], x_offset, y_offset + 8, clear_active_timer);
+    draw_char(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
 
 }
 
