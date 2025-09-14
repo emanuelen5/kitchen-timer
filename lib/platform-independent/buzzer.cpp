@@ -24,6 +24,7 @@ void Buzzer::start_melody(const Note *melody, uint8_t repeats)
     this->note_index = 0;
     this->melody = melody;
     this->repeats = repeats;
+    play_current_note();
 }
 
 void Buzzer::service(void)
