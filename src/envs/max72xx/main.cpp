@@ -1,9 +1,10 @@
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include <util/delay.h>
 
 int main()
 {
-    matrix_init();
+    init_hw_max72xx();
 
     while (true)
     {

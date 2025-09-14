@@ -4,7 +4,7 @@
 
 int main()
 {
-    init_millis();
+    init_hw_millis();
     sei();
     play_fur_elise();
     return 0;
