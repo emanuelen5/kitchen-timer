@@ -67,6 +67,7 @@ void Buzzer::play_current_note(void)
 void Buzzer::stop(void)
 {
     this->melody = nullptr;
+    noToneAC();
 }
 
 void Buzzer::set_volume(uint8_t volume)
