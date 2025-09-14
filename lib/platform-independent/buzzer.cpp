@@ -1,4 +1,4 @@
-#include "ringer.h"
+#include "buzzer.h"
 #include "melody.h"
 
 // Included here to avoid linker issues on desktop builds
@@ -6,14 +6,14 @@ void noToneAC();
 void toneAC(unsigned long, uint8_t, unsigned long, uint8_t);
 uint16_t millis(void);
 
-Ringer::Ringer() : tone_start_time(0),
+Buzzer::Buzzer() : tone_start_time(0),
                    melody(nullptr),
                    note_index(0),
                    volume(10)
 {
 }
 
-void Ringer::start_melody(MelodyType melody, uint8_t repeats)
+void Buzzer::start_melody(MelodyType melody, uint8_t repeats)
 {
     this->tone_start_time = millis();
     this->note_index = 0;
@@ -21,7 +21,7 @@ void Ringer::start_melody(MelodyType melody, uint8_t repeats)
     this->repeats = repeats;
 }
 
-void Ringer::service(void)
+void Buzzer::service(void)
 {
     if (melody == nullptr)
         return;
@@ -41,7 +41,7 @@ void Ringer::service(void)
     }
 }
 
-void Ringer::play_current_note(void)
+void Buzzer::play_current_note(void)
 {
     Note note = melody[this->note_index];
     if (is_end_of_melody(&note) && repeats > 0)
@@ -60,12 +60,12 @@ void Ringer::play_current_note(void)
     }
 }
 
-void Ringer::stop(void)
+void Buzzer::stop(void)
 {
     this->melody = nullptr;
 }
 
-void Ringer::set_volume(uint8_t volume)
+void Buzzer::set_volume(uint8_t volume)
 {
     if (volume > 10)
     {

@@ -74,17 +74,17 @@ void service_application(application_t *app)
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
         service_state_machine(&app->state_machines[i]);
 
-    app->ringer.service();
+    app->buzzer.service();
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
         if (sm_transitioned_info_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            app->ringer.start_melody(beeps, 10);
+            app->buzzer.start_melody(beeps, 10);
             break;
         } else if (sm_transitioned_from_state(app, i, RINGING)) {
-            app->ringer.stop();
+            app->buzzer.stop();
         }
     }
 

@@ -4,10 +4,10 @@
 #include "stdint.h"
 #include "melody.h"
 
-class Ringer
+class Buzzer
 {
 public:
-    Ringer(void);
+    Buzzer(void);
     void service(void);
     void start_melody(MelodyType melody, uint8_t repeats);
     void set_volume(uint8_t volume); // 10 is max, as defined in ToneAC
