@@ -8,6 +8,7 @@
 #include "uint8-queue.h"
 #include "str-helper.h"
 
+
 uint8_queue_t rx_queue = {};
 static const uint8_t rx_queue_size = 64;
 static uint8_t rx_queue_buffer[rx_queue_size];
@@ -16,7 +17,9 @@ uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
 static uint8_t tx_queue_buffer[tx_queue_size];
 
-void init_UART(void)
+static command_callbacks_t command_callbacks;
+
+void init_UART(command_callbacks_t command_cbs)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -37,6 +40,8 @@ void init_UART(void)
     init_queue(&rx_queue, rx_queue_buffer, rx_queue_size);
 
     SREG = sreg;
+
+    command_callbacks = command_cbs;
 }
 
 static void inline enable_and_trigger_tx_interrupt(void)
@@ -127,7 +132,7 @@ ISR(USART_RX_vect)
 static char rx_buffer[RX_BUFFER_SIZE] = {0};
 static uint8_t rx_index = 0;
 
-void service_receive_UART(void)
+void service_receive_UART()
 {
     if (queue_is_empty(&rx_queue))
         return;
@@ -146,7 +151,7 @@ void service_receive_UART(void)
     {
         rx_buffer[rx_index] = '\0';
         rx_index = 0;
-        UART_printf(rx_buffer);
+        handle_command(rx_buffer, &command_callbacks);
     }
 }
 
