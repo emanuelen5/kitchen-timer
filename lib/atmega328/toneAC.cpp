@@ -7,22 +7,13 @@ See "toneAC.h" for purpose, syntax, version history, links, and more.
 
 #include "toneAC.h"
 #include <avr/io.h>
-#include <util/delay.h>
 #include <avr/interrupt.h>
 
-#include "millis.h"
 #include "util.h"
 
-unsigned long _tAC_time;                                           // Used to track end note with timer when playing note in the background.
 uint8_t _tAC_volume[] = {200, 100, 67, 50, 40, 33, 29, 22, 11, 2}; // Duty for linear volume control.
 
-static void delay(unsigned long ms)
-{
-    for (uint16_t i = 0; i < ms; i++)
-        _delay_ms(1);
-}
-
-void toneAC(unsigned long frequency, uint8_t volume, unsigned long length, uint8_t background)
+void toneAC(unsigned long frequency, uint8_t volume)
 {
     if (frequency == NOTONEAC || volume == 0)
     {
@@ -33,25 +24,11 @@ void toneAC(unsigned long frequency, uint8_t volume, unsigned long length, uint8
         volume = 10; // Make sure volume is in range (1 to 10).
 
     toneAC_playNote(frequency, volume); // Routine that plays the note using timers.
-
-    if (length == PLAY_FOREVER)
-        return; // If length is zero, play note forever.
-
-    if (background)
-    {                                  // Background tone playing, returns control to your sketch.
-        _tAC_time = millis() + length; // Set when the note should end.
-        TIMSK1 |= bit(OCIE1A);         // Activate the timer interrupt.
-    }
-    else
-    {
-        delay(length); // Just a simple delay, doesn't return control till finished.
-        noToneAC();
-    }
 }
 
 void toneAC_playNote(unsigned long frequency, uint8_t volume)
 {
-    PWMT1DREG |= bit(PWMT1AMASK) | bit(PWMT1BMASK); // Set timer 1 PWM pins to OUTPUT (because analogWrite does it too).
+    DDRB |= bit(DDB1) | bit(DDB2); // Set timer 1 PWM pins to OUTPUT (because analogWrite does it too).
 
     uint8_t prescaler = bit(CS10);                 // Try using prescaler 1 first.
     unsigned long top = F_CPU / frequency / 2 - 1; // Calculate the top.
@@ -71,15 +48,9 @@ void toneAC_playNote(unsigned long frequency, uint8_t volume)
 
 void noToneAC()
 {
-    TIMSK1 &= ~bit(OCIE1A);        // Remove the timer interrupt.
-    TCCR1B = bit(CS11);            // Default clock prescaler of 8.
-    TCCR1A = bit(WGM10);           // Set to defaults so PWM can work like normal (PWM, phase corrected, 8bit).
-    PWMT1PORT &= ~bit(PWMT1AMASK); // Set timer 1 PWM pins to LOW.
-    PWMT1PORT &= ~bit(PWMT1BMASK); // Other timer 1 PWM pin also to LOW.
-}
-
-ISR(TIMER1_COMPA_vect)
-{ // Timer interrupt vector.
-    if (millis() >= _tAC_time)
-        noToneAC(); // Check to see if it's time for the note to end.
+    TIMSK1 &= ~bit(OCIE1A); // Remove the timer interrupt.
+    TCCR1B = bit(CS11);     // Default clock prescaler of 8.
+    TCCR1A = bit(WGM10);    // Set to defaults so PWM can work like normal (PWM, phase corrected, 8bit).
+    PORTB &= ~bit(DDB1);    // Set timer 1 PWM pins to LOW.
+    PORTB &= ~bit(DDB2);    // Other timer 1 PWM pin also to LOW.
 }

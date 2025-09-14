@@ -3,7 +3,7 @@
 
 // Included here to avoid linker issues on desktop builds
 void noToneAC();
-void toneAC(unsigned long, uint8_t, unsigned long, uint8_t);
+void toneAC(unsigned long, uint8_t);
 uint16_t millis(void);
 
 Buzzer::Buzzer() : tone_start_time(0),
@@ -55,8 +55,7 @@ void Buzzer::play_current_note(void)
     }
     else
     {
-        const unsigned long play_forever = 0;
-        toneAC(note.pitch, this->volume, play_forever, true);
+        toneAC(note.pitch, this->volume);
     }
 }
 
