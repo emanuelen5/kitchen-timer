@@ -15,9 +15,14 @@ Buzzer::Buzzer() : tone_start_time(0),
 
 void Buzzer::start_melody(MelodyType melody, uint8_t repeats)
 {
+    this->start_melody(get_melody(melody), repeats);
+}
+
+void Buzzer::start_melody(const Note *melody, uint8_t repeats)
+{
     this->tone_start_time = millis();
     this->note_index = 0;
-    this->melody = get_melody(melody);
+    this->melody = melody;
     this->repeats = repeats;
 }
 

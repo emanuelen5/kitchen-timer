@@ -47,6 +47,8 @@ struct Note
     uint8_t beats;
 };
 
+constexpr struct Note end_of_melody = {NotePause, 0};
+
 const Note* get_melody(MelodyType melody);
 bool is_end_of_melody(const Note* note);
 

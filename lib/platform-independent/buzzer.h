@@ -10,6 +10,7 @@ public:
     Buzzer(void);
     void service(void);
     void start_melody(MelodyType melody, uint8_t repeats);
+    void start_melody(const Note *melody, uint8_t repeats);
     void set_volume(uint8_t volume); // 10 is max, as defined in ToneAC
     void stop(void);
 

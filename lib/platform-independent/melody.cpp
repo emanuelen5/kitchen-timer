@@ -1,7 +1,5 @@
 #include "melody.h"
 
-constexpr struct Note end_of_melody = {NotePause, 0};
-
 const Note beeps_melody[] = {
     {NoteC5, 1},
     {NotePause, 1},
