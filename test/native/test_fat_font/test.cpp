@@ -6,20 +6,20 @@ void tearDown(void) {}
 
 void test_valid_digits(void) {
     for (char c = '0'; c <= '9'; c++) {
-        const uint8_t* glyph = get_char(c);
+        const uint8_t* glyph = get_bitmap(c);
         TEST_ASSERT_NOT_NULL_MESSAGE(glyph, "Expected non-null pointer for digit.");
     }
 }
 
 void test_invalid_characters(void) {
-    TEST_ASSERT_NULL(get_char('a'));
-    TEST_ASSERT_NULL(get_char(' '));
-    TEST_ASSERT_NULL(get_char('/'));
-    TEST_ASSERT_NULL(get_char(':'));
+    TEST_ASSERT_NULL(get_bitmap('a'));
+    TEST_ASSERT_NULL(get_bitmap(' '));
+    TEST_ASSERT_NULL(get_bitmap('/'));
+    TEST_ASSERT_NULL(get_bitmap(':'));
 }
 
 void test_get_bitmap_for_zero(void) {
-    const uint8_t* ptr_char_bitmap = get_char('0');
+    const uint8_t* ptr_char_bitmap = get_bitmap('0');
     const uint8_t expected[] = {
         0b011110,
         0b110011,
