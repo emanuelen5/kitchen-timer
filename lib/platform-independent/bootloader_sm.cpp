@@ -68,7 +68,7 @@ void step_state_machine(state_machine_t &sm)
 
     case STATE_WAIT_FOR_START_BYTE:
         received_byte = UART_receive();
-        sm.state = STATE_COMMAND;
+        sm.state = (received_byte == START_BYTE) ? STATE_COMMAND : STATE_WAIT_FOR_START_BYTE;
         break;
 
     case STATE_COMMAND:

@@ -9,9 +9,10 @@
 
 volatile unsigned long last_trigger = 0;
 
-void rotation_cb(rotation_dir_t dir, bool held_down)
+void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     UNUSED held_down;
+    UNUSED speed;
     if (dir == cw)
         increment_counter();
     else if (dir == ccw)

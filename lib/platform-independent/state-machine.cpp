@@ -4,8 +4,6 @@
 #include "config.h"
 
 // These are provided by the program that includes the state machine
-void UART_printf(const char *f, ...);
-void set_counter(uint8_t v);
 uint16_t millis(void);
 
 void set_state(state_machine_t *sm, state_t new_state)
@@ -37,26 +35,77 @@ void service_state_machine(state_machine_t *sm)
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
             reset_state_machine(sm);
-            set_counter(0b000);
-        }
-        else
-        {
-            bool is_in_odd_128ms_period = time_in_ringing_state & bit(7);
-            if (is_in_odd_128ms_period)
-            {
-                set_counter(0b111);
-            }
-            else // is in even 128 ms period
-            {
-                set_counter(0b000);
-            }
         }
     }
-        break;
+    break;
 
     default:
         break;
     }
+}
+
+typedef enum
+{
+    ccw,
+    cw,
+    none,
+} rotation_dir_t;
+
+typedef enum
+{
+    slow,
+    fast,
+} rotation_speed_t;
+
+static rotation_speed_t event_speed(event_t event)
+{
+    if (event == CW_ROTATION_FAST || event == CCW_ROTATION_FAST)
+    {
+        return fast;
+    }
+    return slow;
+}
+
+static rotation_dir_t event_to_rot_dir(event_t event)
+{
+    if (event == CW_ROTATION || event == CW_ROTATION_FAST)
+    {
+        return cw;
+    }
+    else if (event == CCW_ROTATION || event == CCW_ROTATION_FAST)
+    {
+        return ccw;
+    }
+    else
+    {
+        return none;
+    }
+}
+
+static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
+{
+    const int16_t base_step = (original_time >= 3600) ? 60 : 1;
+
+    int16_t step_size = 0;
+    switch (dir)
+    {
+    case cw:
+        step_size = base_step;
+        break;
+    case ccw:
+        step_size = -base_step;
+        break;
+    default:
+        return 0;
+    }
+
+    const uint16_t fast_multiplier = 5;
+    if (speed == fast)
+    {
+        step_size *= fast_multiplier;
+    }
+
+    return step_size;
 }
 
 void state_machine_handle_event(state_machine_t *sm, event_t event)
@@ -66,44 +115,44 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     case IDLE:
         switch (event)
         {
-            case SINGLE_PRESS:
-                set_state(sm, SET_TIME);
-                break;
+        case SINGLE_PRESS:
+            set_state(sm, SET_TIME);
+            break;
 
-            case LONG_PRESS:
-                //Does nothing
-                break;
+        case LONG_PRESS:
+            // Does nothing
+            break;
 
-            default:
-                break;
+        default:
+            break;
         }
         break;
-    
     case SET_TIME:
         switch (event)
         {
-            case SINGLE_PRESS:
-                copy_original_to_current_time(&sm->timer);
-                set_state(sm, RUNNING);
-                break;
+        case SINGLE_PRESS:
+            copy_original_to_current_time(&sm->timer);
+            set_state(sm, RUNNING);
+            break;
 
-            case CW_ROTATION:
-                change_original_time(&sm->timer, 1);
-                break;
-
-            case CCW_ROTATION:
-                change_original_time(&sm->timer, -1);
-                break;
-
-            case LONG_PRESS:
-                reset_timer(&sm->timer);
-                break;
-
-            default:
-                break;
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            change_original_time(&sm->timer, step_size);
         }
         break;
-        
+
+        case LONG_PRESS:
+            reset_timer(&sm->timer);
+            break;
+
+        default:
+            break;
+        }
+        break;
     case RUNNING:
         switch (event)
         {
@@ -125,7 +174,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 
         default:
             break;
-
         }
         break;
     case PAUSED:
@@ -141,7 +189,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 
         default:
             break;
-
         }
         break;
     case RINGING:
@@ -157,7 +204,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 
         default:
             break;
-            
         }
         break;
     }
