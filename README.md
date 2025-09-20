@@ -59,7 +59,7 @@ To be able to program the microcontroller, you need `avrdude` and `pio` (the Pla
 Then run
 
 ```bash
-./program.sh <programmer> <environment>
+./flash.sh <programmer> <environment>
 ```
 
 to build and program your board with the selected environment.
