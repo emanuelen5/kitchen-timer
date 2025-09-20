@@ -20,11 +20,6 @@ Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](ht
 * Programmable.
 * It needs to be possible to stick to the kitchen fridge.
 
-### Engineering Requirements
-* Software Engineering requirements [TODO]
-* Mechanical Engineering requirements [TODO]
-* PCB Engineering Requirements [TODO]
-
 ## Hardware
 
 * Atmega328P as microcontroller
@@ -63,6 +58,3 @@ Then run
 ```
 
 to build and program your board with the selected environment.
-
-## Mechanics:
-[TODO]
