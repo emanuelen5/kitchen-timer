@@ -26,17 +26,7 @@ Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](ht
 * Rotary encoder for setting the time
 * 16x16 LED matrix as display
 * 32 kHz crystal for accurate timekeeping
-* (Passive?) buzzer for beeping
-
-### Schematic
-
-Prototyping setup on the breadboard:
-
-![Breadboard setup](./fritzing/schema_bb.svg)
-
-The the schematic:
-
-![Schematic](hardware\kitchen_timer-hardware.kicad_pro)
+* Passive buzzer for beeping
 
 ## Software
 
