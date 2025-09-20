@@ -43,6 +43,10 @@ The the schematic:
 
 ![Schematic](hardware\kitchen_timer-hardware.kicad_pro)
 
+### Manufacturing / gerber files
+
+If you want to build the PCB yourself, you can download the latest release of Gerber files from Github: https://github.com/emanuelen5/kitchen-timer/releases/latest
+
 ## Software
 
 The software is divided into several "environments", similar to "sketches" in Arduino. They are used to test different aspects of the hardware individually, to make sure that the assembled hardware works as intended.
