@@ -30,10 +30,6 @@ Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](ht
 
 ## Software
 
-The software is divided into several "environments", similar to "sketches" in Arduino. They are used to test different aspects of the hardware individually, to make sure that the assembled hardware works as intended.
-
-The environments are located in the [`src/envs`](./src/envs/) folder.
-
 ### Bootloader
 
 You need a bootloader on the microcontroller to be able to program it through the USB connector.
