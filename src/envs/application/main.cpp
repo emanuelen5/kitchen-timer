@@ -12,6 +12,7 @@
 #include "avr_button.h"
 #include "rotary-encoder.h"
 #include "serial_commands.h"
+#include "max72xx.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -36,7 +37,7 @@ const command_callbacks_t command_callbacks
     .led_off = led_off
 };
 
-void rotation_cb(rotation_dir_t dir, bool held_down)
+void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     if (held_down)
     {
@@ -51,13 +52,26 @@ void rotation_cb(rotation_dir_t dir, bool held_down)
     }
     else
     {
-        if (dir == cw)
+        if (speed == fast)
         {
-            add_to_queue(&eventQueue, CW_ROTATION);
-        }
-        else if (dir == ccw)
+            if (dir == cw)
+            {
+                add_to_queue(&eventQueue, CW_ROTATION_FAST);
+            }
+            else if (dir == ccw)
+            {
+                add_to_queue(&eventQueue, CCW_ROTATION_FAST);
+            }
+        } else
         {
-            add_to_queue(&eventQueue, CCW_ROTATION);
+            if (dir == cw)
+            {
+                add_to_queue(&eventQueue, CW_ROTATION);
+            }
+            else if (dir == ccw)
+            {
+                add_to_queue(&eventQueue, CCW_ROTATION);
+            }
         }
     }
 }
@@ -86,16 +100,16 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_UART(command_callbacks);
-    init_timer2_to_1s_interrupt(&second_tick_cb);
-    init_millis();
-    init_led_counter();
+    init_hw_UART(command_callbacks);
+    init_hw_timer2_to_1s_interrupt(&second_tick_cb);
+    init_hw_millis();
+    init_hw_led_counter();
+    init_hw_max72xx();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(rotation_cb, button);
+    init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
-    init_render();
     sei();
-    
+
     while (true)
     {
         service_receive_UART();

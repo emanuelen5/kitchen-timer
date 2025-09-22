@@ -9,9 +9,9 @@ static rotation_cb_t rotation;
 
 static Button *button = nullptr;
 
-void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
+// init_hw_millis must be called before this
+void init_hw_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
 {
-    init_millis();
     DDRD &= 0;
     PORTD |= bit(SW_PIN) | bit(CH_A_PIN) | bit(CH_B_PIN);
 
@@ -43,18 +43,43 @@ static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
     return false;
 }
 
+
+static const uint8_t encoder_rotation_interval_buffer_size = 4;
+static uint32_t timestamp_buffer[encoder_rotation_interval_buffer_size];
+static uint8_t timestamp_index = 0;
+static const uint8_t fast_encoder_step_threshold = 30;
+static rotation_speed_t get_rotation_speed()
+{
+    timestamp_buffer[timestamp_index] = millis();
+    timestamp_index = (timestamp_index + 1 ) % encoder_rotation_interval_buffer_size;
+
+    uint8_t oldest_index = timestamp_index;
+    uint8_t newest_index = (timestamp_index + encoder_rotation_interval_buffer_size - 1) % encoder_rotation_interval_buffer_size;
+    uint32_t total_time = timestamp_buffer[newest_index] - timestamp_buffer[oldest_index];
+    uint32_t average_interval = total_time >> 2;
+
+    if (average_interval < fast_encoder_step_threshold)
+    {
+        return fast;
+    }
+    else
+    {
+        return slow;
+    }
+}
+
 static uint16_t last_trigger_INT1 = 0;
 ISR(INT1_vect)
 {
-    if (should_retrigger_after_sw_debounce(&last_trigger_INT1))
-    {
-        uint8_t bank = PIND; // Read all values in the same time instant
-        bool ch_a = bit_is_set(bank, CH_A_PIN);
-        const rotation_dir_t dir = ch_a ? cw : ccw;
+    uint8_t bank = PIND; // Read as early as possible after interrupt
+    if (!should_retrigger_after_sw_debounce(&last_trigger_INT1))
+        return;
 
-        rotation(dir, button->get_is_pressed());
-        button->cancel_pending_event();
-    }
+    bool ch_a = bit_is_set(bank, CH_A_PIN);
+    const rotation_dir_t dir = ch_a ? cw : ccw;
+
+    rotation(dir, get_rotation_speed(), button->get_is_pressed());
+    button->switch_to_rotation();
 }
 
 static const uint16_t long_press_duration_ms = 2000;
@@ -62,15 +87,12 @@ static const uint16_t double_press_duration_ms = 500;
 static uint16_t last_trigger_PCINT1 = 0;
 ISR(PCINT2_vect)
 {
-    if (should_retrigger_after_sw_debounce(&last_trigger_PCINT1))
-    {
-        if (bit_is_clear(PIND, SW_PIN))
-        {
-            button->press();
-        }
-        else
-        {
-            button->release();
-        }
-    }
+    const bool is_pressed = bit_is_clear(PIND, SW_PIN); // Read as early as possible after interrupt
+    if (!should_retrigger_after_sw_debounce(&last_trigger_PCINT1))
+        return;
+
+    if (is_pressed)
+        button->press();
+    else
+        button->release();
 }

@@ -70,6 +70,22 @@ void Button::service()
     }
 }
 
+void Button::switch_to_rotation()
+{
+    if (press_count == 1 && !is_pressed)
+    {
+        invoke_single_press();
+    }
+    // Double-press doesn't need to be handled here, since it is invoked
+    // immediately on the second press
+    else
+    {
+        // If the button is still held down, we don't want to trigger any
+        // further press event
+        press_count = 0;
+    }
+}
+
 void Button::invoke_single_press()
 {
     press_count = 0;

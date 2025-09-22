@@ -1,18 +1,19 @@
 #include <util/delay.h>
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include "fat_font.h"
 
-void draw_digit(uint8_t digit, uint8_t x_offset, uint8_t y_offset);
+void draw_char(uint8_t digit, uint8_t x_offset, uint8_t y_offset);
 
 int main()
 {
-    matrix_init();
+    init_hw_max72xx();
 
     while(true)
     {
         for(uint8_t number = 0; number < 10; number++)
         {
-            draw_digit(number, 2, 8);
+            draw_char(number, 2, 8);
             matrix_update();
             _delay_ms(1000);
         }
@@ -21,10 +22,10 @@ int main()
     return 0;
 }
 
-void draw_digit(uint8_t digit, uint8_t x_offset, uint8_t y_offset)
+void draw_char(uint8_t digit, uint8_t x_offset, uint8_t y_offset)
 {
-    const uint8_t* ptr_digit = get_char('0' + digit);
-    
+    const uint8_t* ptr_digit = get_bitmap('0' + digit);
+
     for (uint8_t row = 0; row < 7; row++)
     {
         for (uint8_t col = 0; col < 6; col++)

@@ -5,13 +5,14 @@
 
 namespace state_machine
 {
+    constexpr uint16_t max_time = 9 * 3600UL + 59 * 60UL + 59;
 
     typedef struct
     {
         uint16_t original_time, current_time;
     } timer_t;
 
-    void change_original_time(timer_t *timer, int step);
+    void change_original_time(timer_t *timer, int16_t step);
     void reset_timer(timer_t *timer);
     void copy_original_to_current_time(timer_t *timer);
     void decrement_current_time(timer_t *timer);

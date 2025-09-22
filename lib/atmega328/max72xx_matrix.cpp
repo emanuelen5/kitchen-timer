@@ -4,11 +4,6 @@
 
 static uint8_t matrix_buffer[MAX72XX_NUM_DEVICES][ROW_COUNT];
 
-void matrix_init(void)
-{
-    init_max72xx();
-}
-
 static inline uint8_t pixel_to_device_index(uint8_t x, uint8_t y)
 {
     return 3 - ((y / 8) * 2 + (x / 8));

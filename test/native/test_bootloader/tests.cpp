@@ -213,6 +213,8 @@ void test_wait_for_programmer_keeps_waiting_if_data_wasnt_start_byte(void)
     sm.state = STATE_WAIT_FOR_PROGRAMMER;
     send_to_microcontroller_and_update_its_state_machine(NOT_START_BYTE);
     TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_WAIT_FOR_START_BYTE);
+    send_to_microcontroller_and_update_its_state_machine(NOT_START_BYTE);
+    TEST_ASSERT_BOOTLOADER_IN_STATE(STATE_WAIT_FOR_START_BYTE);
 }
 
 void test_wait_for_programmer_wants_command_if_there_was_start_byte(void)

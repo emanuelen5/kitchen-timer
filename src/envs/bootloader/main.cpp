@@ -72,7 +72,7 @@ jump_to_start_of_program_and_exit_bootloader(void)
     asm("jmp 0");
 }
 
-static void init_UART(void)
+static void init_hw_UART(void)
 {
     // Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -105,7 +105,7 @@ uint8_t UART_receive(void)
 int UART_receive_with_timeout(uint8_t *data)
 {
     const uint8_t timeout = 1;
-    uint32_t retries = 0x1ffffUL; // approximately 2 seconds
+    uint32_t retries = 0x00fffUL; // approximately 2^-4 seconds
     while (true)
     {
         if (UCSR0A & (1 << RXC0))
@@ -144,7 +144,7 @@ void run_state_machine(void)
 
 int main(void)
 {
-    init_UART();
+    init_hw_UART();
 
     run_state_machine();
 

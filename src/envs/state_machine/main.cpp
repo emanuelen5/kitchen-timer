@@ -19,9 +19,10 @@ uint8_t event_queue_buffer[queue_buffer_size];
 
 application_t app;
 
-void rotation_cb(rotation_dir_t dir, bool held_down)
+void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     UNUSED held_down;
+    UNUSED speed;
     if (dir == cw)
         add_to_queue(&eventQueue, CW_ROTATION);
     else if (dir == ccw)
@@ -52,12 +53,12 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_UART();
-    init_timer2_to_1s_interrupt(second_tick_cb);
-    init_millis();
-    init_led_counter();
+    init_hw_UART();
+    init_hw_timer2_to_1s_interrupt(second_tick_cb);
+    init_hw_millis();
+    init_hw_led_counter();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(rotation_cb, button);
+    init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
     sei();
 

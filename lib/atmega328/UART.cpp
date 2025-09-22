@@ -19,7 +19,7 @@ static uint8_t tx_queue_buffer[tx_queue_size];
 
 static command_callbacks_t command_callbacks;
 
-void init_UART(command_callbacks_t command_cbs)
+void init_hw_UART(command_callbacks_t command_cbs)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;

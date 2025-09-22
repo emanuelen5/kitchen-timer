@@ -5,7 +5,7 @@
 volatile static uint8_t count;
 #define LED_MASK 0b111
 
-void init_led_counter(void)
+void init_hw_led_counter(void)
 {
     DDRC |= LED_MASK;
     PORTC &= ~LED_MASK;
