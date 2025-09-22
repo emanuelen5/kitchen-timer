@@ -1,12 +1,13 @@
 #include <util/delay.h>
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include "fat_font.h"
 
 void draw_digit(uint8_t digit, uint8_t x_offset, uint8_t y_offset);
 
 int main()
 {
-    matrix_init();
+    init_hw_max72xx();
 
     while(true)
     {

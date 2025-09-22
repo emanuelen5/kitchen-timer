@@ -7,7 +7,6 @@
 #define MATRIX_ROW_HEIGHT 16
 #define ROW_COUNT 8
 
-void matrix_init(void);
 void matrix_set_pixel(uint8_t x, uint8_t y, bool is_on);
 void matrix_update(void);
 void matrix_buffer_clear(void);

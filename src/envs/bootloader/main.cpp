@@ -72,7 +72,7 @@ jump_to_start_of_program_and_exit_bootloader(void)
     asm("jmp 0");
 }
 
-static void init_UART(void)
+static void init_hw_UART(void)
 {
     // Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -144,7 +144,7 @@ void run_state_machine(void)
 
 int main(void)
 {
-    init_UART();
+    init_hw_UART();
 
     run_state_machine();
 

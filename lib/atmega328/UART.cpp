@@ -16,7 +16,7 @@ uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
 static uint8_t tx_queue_buffer[tx_queue_size];
 
-void init_UART(void)
+void init_hw_UART(void)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;

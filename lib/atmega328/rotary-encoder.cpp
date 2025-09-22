@@ -9,9 +9,9 @@ static rotation_cb_t rotation;
 
 static Button *button = nullptr;
 
-void init_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
+// init_hw_millis must be called before this
+void init_hw_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
 {
-    init_millis();
     DDRD &= 0;
     PORTD |= bit(SW_PIN) | bit(CH_A_PIN) | bit(CH_B_PIN);
 

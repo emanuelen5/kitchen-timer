@@ -11,6 +11,7 @@
 #include "led-counter.h"
 #include "avr_button.h"
 #include "rotary-encoder.h"
+#include "max72xx.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -82,14 +83,14 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_UART();
-    init_timer2_to_1s_interrupt(&second_tick_cb);
-    init_millis();
-    init_led_counter();
+    init_hw_UART();
+    init_hw_timer2_to_1s_interrupt(&second_tick_cb);
+    init_hw_millis();
+    init_hw_led_counter();
+    init_hw_max72xx();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_rotary_encoder(rotation_cb, button);
+    init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
-    init_render();
     sei();
 
     while (true)
