@@ -76,9 +76,9 @@ void test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_r
 void test_when_in_set_time_timer_doesnt_overflow(void)
 {
     set_state(&sm,SET_TIME);
-    sm.timer.original_time = 0xffff;
+    sm.timer.original_time = state_machine::max_time;
     state_machine_handle_event(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(0xffff, get_original_time(&sm));
+    TEST_ASSERT_EQUAL(state_machine::max_time, get_original_time(&sm));
 }
 
 void test_when_in_set_time_timer_doesnt_underflow(void)

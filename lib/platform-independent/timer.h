@@ -5,6 +5,7 @@
 
 namespace state_machine
 {
+    constexpr uint16_t max_time = 9 * 3600UL + 59 * 60UL + 59;
 
     typedef struct
     {

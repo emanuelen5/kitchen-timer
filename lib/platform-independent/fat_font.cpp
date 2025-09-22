@@ -96,11 +96,26 @@ static const uint8_t font_table[10][FATFONT_HEIGHT] = {
     }
 };
 
-const uint8_t* get_char(char c)
+static const uint8_t char_h[FATFONT_HEIGHT] = {
+    0b000000,
+    0b110000,
+    0b110000,
+    0b111110,
+    0b110011,
+    0b110011,
+    0b110011
+};
+
+const uint8_t* get_bitmap(char c)
 {
     if (c >= '0' && c <= '9')
     {
         return font_table[c - '0'];
-    };
+    }
+    switch (c)
+    {
+        case 'h':
+            return char_h;
+    }
     return nullptr;
 }
