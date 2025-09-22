@@ -28,6 +28,10 @@ Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](ht
 * 32 kHz crystal for accurate timekeeping
 * Passive buzzer for beeping
 
+### Manufacturing / gerber files
+
+If you want to build the PCB yourself, you can download the latest release of Gerber files from Github: https://github.com/emanuelen5/kitchen-timer/releases/latest
+
 ## Software
 
 ### Bootloader
