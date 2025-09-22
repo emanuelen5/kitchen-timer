@@ -132,25 +132,33 @@ void test_press_is_triggered_when_switching_to_rotation_before_double_press_time
 
     btn->switch_to_rotation();
     TEST_ASSERT_BUTTON_STATE(1, false, false);
-}
-
-void test_press_is_triggered_when_switching_to_rotation_slowly(void)
-{
-    btn->press();
-    state->increment_time(Button::press_to_rotation_timeout_ms + 1);
-    btn->release();
-
-    btn->switch_to_rotation();
+    state->set_time(Button::long_press_threshold_ms + 1);
     TEST_ASSERT_BUTTON_STATE(1, false, false);
 }
 
-void test_press_isnt_triggered_when_switching_to_rotation_quickly(void)
+void test_press_is_triggered_when_pressing_and_then_rotating(void)
 {
     btn->press();
-    state->increment_time(Button::press_to_rotation_timeout_ms - 1);
+    state->increment_time(Button::double_press_timeout_ms - 1);
     btn->release();
+    TEST_ASSERT_BUTTON_STATE(false, false, false);
 
     btn->switch_to_rotation();
+    TEST_ASSERT_BUTTON_STATE(1, false, false);
+    state->set_time(Button::long_press_threshold_ms + 1);
+    TEST_ASSERT_BUTTON_STATE(1, false, false);
+}
+
+void test_press_isnt_triggered_when_holding_down_and_rotating(void)
+{
+    btn->press();
+    state->increment_time(Button::double_press_timeout_ms - 1);
+    TEST_ASSERT_BUTTON_STATE(false, false, false);
+
+    btn->switch_to_rotation();
+    btn->release();
+    TEST_ASSERT_BUTTON_STATE(false, false, false);
+    state->set_time(Button::long_press_threshold_ms + 1);
     TEST_ASSERT_BUTTON_STATE(false, false, false);
 }
 
@@ -199,8 +207,8 @@ int main()
     RUN_TEST(test_long_press_is_registered_on_release);
     RUN_TEST(test_long_press_isnt_triggered_when_switching_to_rotation);
     RUN_TEST(test_press_is_triggered_when_switching_to_rotation_before_double_press_timeout);
-    RUN_TEST(test_press_is_triggered_when_switching_to_rotation_slowly);
-    RUN_TEST(test_press_isnt_triggered_when_switching_to_rotation_quickly);
+    RUN_TEST(test_press_is_triggered_when_pressing_and_then_rotating);
+    RUN_TEST(test_press_isnt_triggered_when_holding_down_and_rotating);
     RUN_TEST(test_single_press_too_slow_for_double);
     RUN_TEST(test_press_twice);
 

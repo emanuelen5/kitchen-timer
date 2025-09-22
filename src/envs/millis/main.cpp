@@ -7,8 +7,8 @@
 
 int main()
 {
-    init_led_counter();
-    init_millis();
+    init_hw_led_counter();
+    init_hw_millis();
     uint16_t t = millis();
 
     sei();
