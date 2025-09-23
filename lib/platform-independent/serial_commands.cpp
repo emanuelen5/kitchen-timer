@@ -21,17 +21,27 @@ static void normalize_string_ending(char *str)
     }
 }
 
-void handle_command(char* cmd, const command_callbacks_t* callbacks)
+void handle_command(char* str, const command_callbacks_t* callbacks)
 {
 
-    normalize_string_ending(cmd);
+    normalize_string_ending(str);
 
-    if (strncmp(cmd, "led on\n", RX_BUFFER_SIZE) == 0)
+    char *command = strtok(str, " \n");
+    char *arg1    = strtok(NULL, " \n");
+
+    if (command == NULL) return;
+
+    if (strcmp(command, "led") == 0)
     {
-        callbacks->led_on();
+        if (arg1 && strcmp(arg1, "on") == 0) {
+            callbacks->led_on();
+        }
+        else if (arg1 && strcmp(arg1, "off") == 0) {
+            callbacks->led_off();
+        }
     }
-    else if (strncmp(cmd, "led off\n", RX_BUFFER_SIZE) == 0)
+    else if (strcmp(command, "version") == 0)
     {
-        callbacks->led_off();
+        callbacks->version();
     }
 }

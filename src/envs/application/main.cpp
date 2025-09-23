@@ -30,11 +30,17 @@ void led_off()
     UART_printf("led off");
     set_counter(0);
 }
+void version()
+{
+    UART_printf("Kitchen Timer, version 1.0.0\n");
+    UART_printf("Authors: Erasmus Cedernaes, Nicolas Perozzi\n");
+}
 
 const command_callbacks_t command_callbacks
 {
     .led_on = led_on,
-    .led_off = led_off
+    .led_off = led_off,
+    .version = version
 };
 
 void on_line_received(char *line) {
