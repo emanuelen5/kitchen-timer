@@ -37,6 +37,10 @@ const command_callbacks_t command_callbacks
     .led_off = led_off
 };
 
+void on_line_received(char *line) {
+    handle_command(line, &command_callbacks);
+}
+
 void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
     if (held_down)
@@ -100,7 +104,7 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_hw_UART(command_callbacks);
+    init_hw_UART(on_line_received);
     init_hw_timer2_to_1s_interrupt(&second_tick_cb);
     init_hw_millis();
     init_hw_led_counter();

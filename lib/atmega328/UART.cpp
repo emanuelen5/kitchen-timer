@@ -18,9 +18,9 @@ uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
 static uint8_t tx_queue_buffer[tx_queue_size];
 
-static command_callbacks_t command_callbacks;
+static callback_t on_line_received;
 
-void init_hw_UART(command_callbacks_t command_cbs)
+void init_hw_UART(callback_t cb)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -42,7 +42,7 @@ void init_hw_UART(command_callbacks_t command_cbs)
 
     SREG = sreg;
 
-    command_callbacks = command_cbs;
+    on_line_received = cb;
 }
 
 static void inline enable_and_trigger_tx_interrupt(void)
@@ -152,7 +152,7 @@ void service_receive_UART()
     {
         rx_buffer[rx_index] = '\0';
         rx_index = 0;
-        handle_command(rx_buffer, &command_callbacks);
+        on_line_received(rx_buffer);
     }
 }
 

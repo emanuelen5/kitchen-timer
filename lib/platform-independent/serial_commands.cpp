@@ -2,7 +2,7 @@
 #include <string.h>
 #include "config.h"
 
-void handle_command(const char* cmd, command_callbacks_t* callbacks)
+void handle_command(const char* cmd, const command_callbacks_t* callbacks)
 {
     if (strncmp(cmd, "led on\n", RX_BUFFER_SIZE) == 0)
     {
