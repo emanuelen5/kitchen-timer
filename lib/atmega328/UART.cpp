@@ -7,6 +7,7 @@
 #include <util.h>
 #include "uint8-queue.h"
 #include "str-helper.h"
+#include "config.h"
 
 
 uint8_queue_t rx_queue = {};
@@ -128,7 +129,7 @@ ISR(USART_RX_vect)
     add_to_queue(&rx_queue, (uint8_t)receivedChar);
 }
 
-#define RX_BUFFER_SIZE 64
+
 static char rx_buffer[RX_BUFFER_SIZE] = {0};
 static uint8_t rx_index = 0;
 

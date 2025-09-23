@@ -1,13 +1,14 @@
 #include "serial_commands.h"
-#include "str-helper.h"
+#include <string.h>
+#include "config.h"
 
 void handle_command(const char* cmd, command_callbacks_t* callbacks)
 {
-    if (strings_are_equal(cmd, "led on\n"))
+    if (strncmp(cmd, "led on\n", RX_BUFFER_SIZE) == 0)
     {
         callbacks->led_on();
     }
-    else if (strings_are_equal(cmd, "led off\n"))
+    else if (strncmp(cmd, "led off\n", RX_BUFFER_SIZE) == 0)
     {
         callbacks->led_off();
     }
