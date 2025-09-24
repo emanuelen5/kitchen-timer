@@ -87,5 +87,17 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
                 }
             }
         }
+        else if(arg1 && strcmp(arg1, "play") == 0)
+        {
+            callbacks->play_active_timer();
+        }
+        else if(arg1 && strcmp(arg1, "pause") == 0)
+        {
+            callbacks->pause_active_timer();
+        }
+        else if(arg1 && strcmp(arg1, "reset") == 0)
+        {
+            callbacks->reset_active_timer();
+        }
     }
 }
