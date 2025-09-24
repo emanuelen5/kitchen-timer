@@ -140,8 +140,8 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            change_original_time(&sm->timer, step_size);
+            int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            change_original_time(&sm->timer, &step_size);
         }
         break;
 
