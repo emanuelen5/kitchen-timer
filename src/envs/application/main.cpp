@@ -20,17 +20,17 @@ uint8_t event_queue_buffer[queue_buffer_size];
 
 application_t app;
 
-void led_on()
+void led_on(void)
 {
     UART_printf("led on");
     set_counter(1);
 }
-void led_off()
+void led_off(void)
 {
     UART_printf("led off");
     set_counter(0);
 }
-void version()
+void version(void)
 {
     UART_printf("Kitchen Timer, version 1.0.0\n");
     UART_printf("Authors: Erasmus Cedernaes, Nicolas Perozzi\n");
