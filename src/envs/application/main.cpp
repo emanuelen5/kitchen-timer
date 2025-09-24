@@ -36,11 +36,20 @@ void version(void)
     UART_printf("Authors: Erasmus Cedernaes, Nicolas Perozzi\n");
 }
 
+void set_active_timer(uint32_t *steps)
+{
+    state_machine_t* active_sm = &app.state_machines[app.current_active_sm];
+    reset_timer(&active_sm->timer);
+    set_state(active_sm, SET_TIME);
+    change_original_time(&active_sm->timer, (int32_t*)steps);
+}
+
 const command_callbacks_t command_callbacks
 {
     .led_on = led_on,
     .led_off = led_off,
-    .version = version
+    .version = version,
+    .set_active_timer = set_active_timer
 };
 
 void on_line_received(char *line) {

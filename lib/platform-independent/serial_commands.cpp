@@ -70,4 +70,22 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
     {
         callbacks->version();
     }
+    else if(strcmp(command, "timer") == 0)
+    {
+        if(arg1 && strcmp(arg1, "set") == 0)
+        {
+            if(arg2)
+            {
+                uint32_t steps = 0;
+                if(parse_time_string(arg2, &steps))
+                {
+                    callbacks->set_active_timer(&steps);
+                }
+                else
+                {
+                    
+                }
+            }
+        }
+    }
 }
