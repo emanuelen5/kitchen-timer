@@ -1,5 +1,6 @@
 #include "serial_commands.h"
 #include <string.h>
+#include <stdio.h>
 #include "config.h"
 
 static void normalize_string_ending(char *str)
@@ -21,13 +22,36 @@ static void normalize_string_ending(char *str)
     }
 }
 
+static bool parse_time_string(char* arg, uint32_t *steps)
+{
+    int hrs, mins, secs;
+    uint8_t parsed_segments = sscanf(arg, "%d:%d:%d", &hrs, &mins, &secs);
+    if(parsed_segments == 3)
+    {
+        *steps = hrs * 60 * 60 + mins * 60 + secs;
+        return true;
+    }
+    else if (parsed_segments == 2)
+    {
+        secs = mins;
+        mins = hrs;
+        hrs = 0;
+        *steps = mins * 60 + secs;
+        return true;
+    }
+
+    return false;
+}
+
+
 void handle_command(char* str, const command_callbacks_t* callbacks)
 {
 
     normalize_string_ending(str);
 
     char *command = strtok(str, " \n");
-    char *arg1    = strtok(NULL, " \n");
+    char *arg1 = strtok(NULL, " \n");
+    char *arg2 = strtok(NULL, " \n");
 
     if(command == NULL) return;
 
