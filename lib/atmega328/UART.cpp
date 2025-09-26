@@ -7,6 +7,9 @@
 #include <util.h>
 #include "uint8-queue.h"
 #include "str-helper.h"
+#include "config.h"
+#include <string.h>
+
 
 uint8_queue_t rx_queue = {};
 static const uint8_t rx_queue_size = 64;
@@ -16,7 +19,9 @@ uint8_queue_t tx_queue = {};
 static const uint8_t tx_queue_size = 64;
 static uint8_t tx_queue_buffer[tx_queue_size];
 
-void init_hw_UART(void)
+static callback_t on_line_received;
+
+void init_hw_UART(callback_t cb)
 {
     //Set baud rate
     UBRR0H = UBRRH_VALUE;
@@ -37,6 +42,8 @@ void init_hw_UART(void)
     init_queue(&rx_queue, rx_queue_buffer, rx_queue_size);
 
     SREG = sreg;
+
+    on_line_received = cb;
 }
 
 static void inline enable_and_trigger_tx_interrupt(void)
@@ -89,12 +96,34 @@ void UART_printf(const char* format, ...)
         if (*format == '%')
         {
             format++;
+            uint8_t pad_zero = 0;
+            uint8_t width = 0;
+
+            if (*format == '0')
+            {
+                pad_zero = 1;
+                format++;
+            }
+
+            while (*format >= '0' && *format <= '9')
+            {
+                width = width * 10 + (*format - '0');
+                format++;
+            }
+
             switch (*format)
             {
                 case 'd': {
                     uint16_t num = va_arg(args, uint16_t);
                     char num_str[12];
                     write_int_into_string(num, num_str);
+
+                    uint16_t len = strlen(num_str);
+                    while (len < width) {
+                        UART_print_char(pad_zero ? '0' : ' ');
+                        len++;
+                    }
+
                     UART_print_string(num_str);
                     break;
                 }
@@ -123,11 +152,11 @@ ISR(USART_RX_vect)
     add_to_queue(&rx_queue, (uint8_t)receivedChar);
 }
 
-#define RX_BUFFER_SIZE 64
+
 static char rx_buffer[RX_BUFFER_SIZE] = {0};
 static uint8_t rx_index = 0;
 
-void service_receive_UART(void)
+void service_receive_UART()
 {
     if (queue_is_empty(&rx_queue))
         return;
@@ -146,7 +175,7 @@ void service_receive_UART(void)
     {
         rx_buffer[rx_index] = '\0';
         rx_index = 0;
-        UART_printf(rx_buffer);
+        on_line_received(rx_buffer);
     }
 }
 

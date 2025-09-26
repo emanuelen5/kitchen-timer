@@ -12,7 +12,7 @@ namespace state_machine
         uint16_t original_time, current_time;
     } timer_t;
 
-    void change_original_time(timer_t *timer, int16_t step);
+    void change_original_time(timer_t *timer, int32_t *step);
     void reset_timer(timer_t *timer);
     void copy_original_to_current_time(timer_t *timer);
     void decrement_current_time(timer_t *timer);
