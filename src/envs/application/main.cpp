@@ -78,6 +78,49 @@ void reset_active_timer(void)
     }
 }
 
+void convert_seconds_to_hhmmss(uint16_t seconds, uint8_t time[3])
+{
+    time[0] = seconds / 3600;
+    time[1] = (seconds % 3600) / 60;
+    time[2] = seconds % 60;
+}
+
+void get_status_active_timer(void)
+{
+    state_t current_state = get_state(active_sm);
+    const char* current_state_string = state_to_string(&current_state);
+
+    uint16_t current_seconds = get_current_time(active_sm);
+    uint8_t current_time[3];
+    convert_seconds_to_hhmmss(current_seconds, current_time);
+
+    uint8_t current_hrs = current_time[0];
+    uint8_t current_mins = current_time[1];
+    uint8_t current_secs = current_time[2];
+
+    uint16_t original_seconds = get_original_time(active_sm);
+    uint8_t original_time[3];
+    convert_seconds_to_hhmmss(original_seconds, original_time);
+
+    uint8_t original_hrs = original_time[0];
+    uint8_t original_mins = original_time[1];
+    uint8_t original_secs = original_time[2];
+
+
+
+    UART_printf("Current State: %s\n", current_state_string);
+    if(current_state != IDLE && current_state != SET_TIME)
+    {
+        UART_printf("Timer set to: %02d:%02d:%02d\n", original_hrs, original_mins, original_secs);
+        UART_printf("Current time: %02d:%02d:%02d\n", current_hrs, current_mins, current_secs);
+    }
+    else if(current_state == SET_TIME)
+    {
+        UART_printf("Timer set to: %02d:%02d:%02d\n", original_hrs, original_mins, original_secs);
+    }
+}
+
+
 const command_callbacks_t command_callbacks
 {
     .led_on = led_on,
@@ -86,7 +129,8 @@ const command_callbacks_t command_callbacks
     .set_active_timer = set_active_timer,
     .play_active_timer = play_active_timer,
     .pause_active_timer = pause_active_timer,
-    .reset_active_timer = reset_active_timer
+    .reset_active_timer = reset_active_timer,
+    .status_active_timer = get_status_active_timer
 };
 
 void on_line_received(char *line) {

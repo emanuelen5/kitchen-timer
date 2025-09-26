@@ -81,10 +81,6 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
                 {
                     callbacks->set_active_timer(&steps);
                 }
-                else
-                {
-                    
-                }
             }
         }
         else if(arg1 && strcmp(arg1, "play") == 0)
@@ -98,6 +94,10 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
         else if(arg1 && strcmp(arg1, "reset") == 0)
         {
             callbacks->reset_active_timer();
+        }
+        else if(arg1 && strcmp(arg1, "status") == 0)
+        {
+            callbacks->status_active_timer();
         }
     }
 }

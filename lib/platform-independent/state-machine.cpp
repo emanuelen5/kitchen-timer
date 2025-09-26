@@ -223,3 +223,16 @@ state_t get_state(state_machine_t *sm)
 {
     return sm->state;
 }
+
+const char* state_to_string(state_t *state)
+{
+    switch (*state)
+    {
+        case IDLE:      return "IDLE";
+        case SET_TIME:  return "SET_TIME";
+        case RUNNING:   return "RUNNING";
+        case PAUSED:    return "PAUSED";
+        case RINGING:   return "RINGING";
+        default:        return "UNKNOWN_STATE";
+    }
+}

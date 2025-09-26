@@ -42,5 +42,6 @@ void service_state_machine(state_machine_t *sm);
 uint16_t get_original_time(state_machine_t *sm);
 uint16_t get_current_time(state_machine_t *sm);
 state_t get_state(state_machine_t *sm);
+const char* state_to_string(state_t *state);
 
 #endif // LIB_STATE_MACHINE_H
