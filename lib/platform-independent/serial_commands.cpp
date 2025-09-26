@@ -39,7 +39,14 @@ static bool parse_time_string(char* arg, uint32_t *steps)
         *steps = mins * 60 + secs;
         return true;
     }
-
+    else if (parsed_segments == 1)
+    {
+        secs = hrs;
+        mins = 0;
+        hrs = 0;
+        *steps = secs;
+        return true;
+    }
     return false;
 }
 
