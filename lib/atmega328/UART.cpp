@@ -8,6 +8,7 @@
 #include "uint8-queue.h"
 #include "str-helper.h"
 #include "config.h"
+#include <string.h>
 
 
 uint8_queue_t rx_queue = {};
@@ -95,12 +96,34 @@ void UART_printf(const char* format, ...)
         if (*format == '%')
         {
             format++;
+            uint8_t pad_zero = 0;
+            uint8_t width = 0;
+
+            if (*format == '0')
+            {
+                pad_zero = 1;
+                format++;
+            }
+
+            while (*format >= '0' && *format <= '9')
+            {
+                width = width * 10 + (*format - '0');
+                format++;
+            }
+
             switch (*format)
             {
                 case 'd': {
                     uint16_t num = va_arg(args, uint16_t);
                     char num_str[12];
                     write_int_into_string(num, num_str);
+
+                    uint16_t len = strlen(num_str);
+                    while (len < width) {
+                        UART_print_char(pad_zero ? '0' : ' ');
+                        len++;
+                    }
+
                     UART_print_string(num_str);
                     break;
                 }
