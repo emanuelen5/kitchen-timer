@@ -23,6 +23,7 @@ void init_application(application_t *app)
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
     app->current_active_sm = 0;
+    set_state(&app->state_machines[0], SET_TIME);
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -151,6 +152,7 @@ static void try_to_open_new_timer(application_t* app)
         {
             app->current_active_sm = i;
             new_timer_found = true;
+            set_state(&app->state_machines[i], SET_TIME);
             return;
         }
     }
