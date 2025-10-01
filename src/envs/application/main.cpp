@@ -146,6 +146,17 @@ void setup_status(void)
     UART_printf("Brightness: %d\n", get_intensity());
 }
 
+void setup_buzzer(bool is_on)
+{
+    if(is_on)
+    {
+        app.buzzer.set_volume(app.buzzer.default_volume);
+    }
+    else
+    {
+        app.buzzer.set_volume(0);
+    }
+}
 
 const command_callbacks_t command_callbacks
 {
@@ -159,7 +170,8 @@ const command_callbacks_t command_callbacks
     .status_active_timer = get_status_active_timer,
     .setup_brightness = setup_brightness,
     .setup_volume = setup_volume,
-    .setup_status = setup_status
+    .setup_status = setup_status,
+    .setup_buzzer = setup_buzzer
 };
 
 void on_line_received(char *line) {

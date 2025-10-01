@@ -109,6 +109,20 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
             {
                 callbacks->setup_status();
             }
+            else if (strcmp(arg1, "buzzer") == 0)
+            {
+                if(arg2)
+                {
+                    if (strcmp(arg2, "on") == 0)
+                    {
+                        callbacks->setup_buzzer(true);
+                    }
+                    if (strcmp(arg2, "off") == 0)
+                    {
+                        callbacks->setup_buzzer(false);
+                    }
+                }
+            }
         }
     }
     else if(strcmp(command, "timer") == 0)
