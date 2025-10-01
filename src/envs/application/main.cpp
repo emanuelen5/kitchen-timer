@@ -137,6 +137,7 @@ void setup_volume(uint8_t *volume)
     {
         UART_printf("The volume must be a value between 0 and 10.\n");
     }
+    app.buzzer.set_volume(*volume);
 }
 
 void setup_status(void)
