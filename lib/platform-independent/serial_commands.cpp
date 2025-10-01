@@ -105,6 +105,10 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
                     }
                 }
             }
+            else if (strcmp(arg1, "status") == 0)
+            {
+                callbacks->setup_status();
+            }
         }
     }
     else if(strcmp(command, "timer") == 0)

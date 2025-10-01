@@ -139,6 +139,11 @@ void setup_volume(uint8_t *volume)
     }
 }
 
+void setup_status(void)
+{
+    UART_printf("Volume: %d\n", app.buzzer.get_volume());
+}
+
 
 const command_callbacks_t command_callbacks
 {
@@ -151,7 +156,8 @@ const command_callbacks_t command_callbacks
     .reset_active_timer = reset_active_timer,
     .status_active_timer = get_status_active_timer,
     .setup_brightness = setup_brightness,
-    .setup_volume = setup_volume
+    .setup_volume = setup_volume,
+    .setup_status = setup_status
 };
 
 void on_line_received(char *line) {
