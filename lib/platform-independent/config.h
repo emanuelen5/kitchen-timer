@@ -7,6 +7,9 @@
 //UART configs
 #define RX_BUFFER_SIZE 64
 
+//DISPLAY configs
+#define DISPLAY_DEFAULT_BRIGHTNESS 0x0a
+
 
 //Active_Timer_View configs
 #define TIMERS_INDICATOR_COLUMN 0

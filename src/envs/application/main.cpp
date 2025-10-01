@@ -143,6 +143,7 @@ void setup_volume(uint8_t *volume)
 void setup_status(void)
 {
     UART_printf("Volume: %d\n", app.buzzer.get_volume());
+    UART_printf("Brightness: %d\n", get_intensity());
 }
 
 
