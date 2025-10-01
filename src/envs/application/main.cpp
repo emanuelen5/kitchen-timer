@@ -124,11 +124,19 @@ void setup_brightness(uint8_t *intensity)
 {
     if(*intensity > 16)
     {
-        UART_printf("The display brightness must be a value from 0 to 15.\n");
+        UART_printf("The display brightness must be a value between 0 to 15.\n");
         return;
     }
 
     max72xx_set_intensity(*intensity);
+}
+
+void setup_volume(uint8_t *volume)
+{
+    if(*volume > 11)
+    {
+        UART_printf("The volume must be a value between 0 and 10.\n");
+    }
 }
 
 
@@ -142,7 +150,8 @@ const command_callbacks_t command_callbacks
     .pause_active_timer = pause_active_timer,
     .reset_active_timer = reset_active_timer,
     .status_active_timer = get_status_active_timer,
-    .setup_brightness = setup_brightness
+    .setup_brightness = setup_brightness,
+    .setup_volume = setup_volume
 };
 
 void on_line_received(char *line) {

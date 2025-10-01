@@ -14,6 +14,7 @@ typedef struct
     void (*reset_active_timer)(void);
     void (*status_active_timer)(void);
     void (*setup_brightness)(uint8_t *intensity);
+    void (*setup_volume)(uint8_t * volume);
 } command_callbacks_t;
 
 void handle_command(char* str, const command_callbacks_t* callbacks);

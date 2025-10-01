@@ -79,15 +79,30 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
     }
     else if(strcmp(command, "setup") == 0)
     {
-        if(arg1 && strcmp(arg1, "brightness") == 0)
+        if(arg1)
         {
-            if (arg2)
+            if(strcmp(arg1, "brightness") == 0)
             {
-                int temp = 0;
-                if (sscanf(arg2, "%d", &temp) == 1)
+                if (arg2)
                 {
-                    uint8_t value = (uint8_t)temp;
-                    callbacks->setup_brightness(&value);
+                    int temp = 0;
+                    if (sscanf(arg2, "%d", &temp) == 1)
+                    {
+                        uint8_t value = (uint8_t)temp;
+                        callbacks->setup_brightness(&value);
+                    }
+                }
+            }
+            else if (strcmp(arg1, "volume") == 0)
+            {
+                if (arg2)
+                {
+                    int temp = 0;
+                    if (sscanf(arg2, "%d", &temp) == 1)
+                    {
+                        uint8_t value = (uint8_t)temp;
+                        callbacks->setup_volume(&value);
+                    }
                 }
             }
         }
