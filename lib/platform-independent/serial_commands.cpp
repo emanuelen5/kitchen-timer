@@ -77,6 +77,21 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
     {
         callbacks->version();
     }
+    else if(strcmp(command, "setup") == 0)
+    {
+        if(arg1 && strcmp(arg1, "brightness") == 0)
+        {
+            if (arg2)
+            {
+                int temp = 0;
+                if (sscanf(arg2, "%d", &temp) == 1)
+                {
+                    uint8_t value = (uint8_t)temp;
+                    callbacks->setup_brightness(&value);
+                }
+            }
+        }
+    }
     else if(strcmp(command, "timer") == 0)
     {
         if(arg1 && strcmp(arg1, "set") == 0)

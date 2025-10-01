@@ -120,6 +120,17 @@ void get_status_active_timer(void)
     }
 }
 
+void setup_brightness(uint8_t *intensity)
+{
+    if(*intensity > 16)
+    {
+        UART_printf("The display brightness must be a value from 0 to 15.\n");
+        return;
+    }
+
+    max72xx_set_intensity(*intensity);
+}
+
 
 const command_callbacks_t command_callbacks
 {
@@ -130,7 +141,8 @@ const command_callbacks_t command_callbacks
     .play_active_timer = play_active_timer,
     .pause_active_timer = pause_active_timer,
     .reset_active_timer = reset_active_timer,
-    .status_active_timer = get_status_active_timer
+    .status_active_timer = get_status_active_timer,
+    .setup_brightness = setup_brightness
 };
 
 void on_line_received(char *line) {
