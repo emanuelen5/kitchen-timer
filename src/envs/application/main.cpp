@@ -158,6 +158,12 @@ void setup_buzzer(bool is_on)
     }
 }
 
+void test_buzzer(void)
+{
+    app.buzzer.set_volume(5);
+    app.buzzer.start_melody(beeps, 2);
+}
+
 const command_callbacks_t command_callbacks
 {
     .led_on = led_on,
@@ -171,7 +177,8 @@ const command_callbacks_t command_callbacks
     .setup_brightness = setup_brightness,
     .setup_volume = setup_volume,
     .setup_status = setup_status,
-    .setup_buzzer = setup_buzzer
+    .setup_buzzer = setup_buzzer,
+    .test_buzzer = test_buzzer
 };
 
 void on_line_received(char *line) {

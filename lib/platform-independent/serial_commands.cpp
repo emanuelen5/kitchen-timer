@@ -125,6 +125,17 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
             }
         }
     }
+    else if(strcmp(command, "test") == 0)
+    {
+        if(arg1)
+        {
+            if(strcmp(arg1, "buzzer") == 0)
+            {
+                callbacks->test_buzzer();
+            }
+        }
+    }
+
     else if(strcmp(command, "timer") == 0)
     {
         if(arg1 && strcmp(arg1, "set") == 0)

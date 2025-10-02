@@ -17,6 +17,7 @@ typedef struct
     void (*setup_volume)(uint8_t * volume);
     void (*setup_status)(void);
     void (*setup_buzzer)(bool is_on);
+    void (*test_buzzer)(void);
 } command_callbacks_t;
 
 void handle_command(char* str, const command_callbacks_t* callbacks);
