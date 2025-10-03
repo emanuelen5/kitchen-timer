@@ -21,16 +21,20 @@ uint8_t event_queue_buffer[queue_buffer_size];
 application_t app;
 state_machine_t* active_sm = &app.state_machines[app.current_active_sm];
 
-void led_on(void)
+void led_toggle(bool is_on)
 {
-    UART_printf("led on");
-    set_counter(1);
+    if(is_on)
+    {
+        UART_printf("led on");
+        set_counter(1);
+    }
+    else
+    {
+        UART_printf("led off");
+        set_counter(0);
+    }
 }
-void led_off(void)
-{
-    UART_printf("led off");
-    set_counter(0);
-}
+
 void version(void)
 {
     UART_printf("Kitchen Timer, version 1.0.0\n");
@@ -166,8 +170,7 @@ void test_buzzer(void)
 
 const command_callbacks_t command_callbacks
 {
-    .led_on = led_on,
-    .led_off = led_off,
+    .led_toggle = led_toggle,
     .version = version,
     .set_active_timer = set_active_timer,
     .play_active_timer = play_active_timer,
@@ -178,7 +181,7 @@ const command_callbacks_t command_callbacks
     .setup_volume = setup_volume,
     .setup_status = setup_status,
     .setup_buzzer = setup_buzzer,
-    .test_buzzer = test_buzzer
+    .test_buzzer = test_buzzer,
 };
 
 void on_line_received(char *line) {

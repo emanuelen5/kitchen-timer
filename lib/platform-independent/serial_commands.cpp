@@ -64,13 +64,16 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
 
     if(strcmp(command, "led") == 0)
     {
-        if(arg1 && strcmp(arg1, "on") == 0)
+        if(arg1)
         {
-            callbacks->led_on();
-        }
-        else if(arg1 && strcmp(arg1, "off") == 0)
-        {
-            callbacks->led_off();
+            if(strcmp(arg1, "on") == 0)
+            {
+                callbacks->led_toggle(true);
+            }
+            else if(strcmp(arg1, "off") == 0)
+            {
+                callbacks->led_toggle(false);
+            }
         }
     }
     else if(strcmp(command, "version") == 0)

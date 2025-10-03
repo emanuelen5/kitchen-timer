@@ -5,8 +5,7 @@
 
 typedef struct
 {
-    void (*led_on)(void);
-    void (*led_off)(void);
+    void (*led_toggle)(bool is_on);
     void (*version)(void);
     void (*set_active_timer)(uint32_t *steps);
     void (*play_active_timer)(void);
