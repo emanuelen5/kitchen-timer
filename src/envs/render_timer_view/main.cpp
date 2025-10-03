@@ -4,7 +4,6 @@
 #include "util.h"
 #include "rtc.h"
 #include "uint8-queue.h"
-#include "UART.h"
 #include "millis.h"
 #include "render.h"
 #include "application.h"
@@ -26,7 +25,6 @@ void second_tick_cb(void)
 
 int main()
 {
-    init_hw_UART();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_hw_timer2_to_1s_interrupt(&second_tick_cb);
     init_hw_led_counter();

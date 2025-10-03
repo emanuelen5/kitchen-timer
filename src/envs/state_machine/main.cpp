@@ -49,11 +49,13 @@ void second_tick_cb(void)
     add_to_queue(&eventQueue, SECOND_TICK);
 }
 
+
+
 int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
-    init_hw_UART();
+    //init_hw_UART(on_line_received);
     init_hw_timer2_to_1s_interrupt(second_tick_cb);
     init_hw_millis();
     init_hw_led_counter();
