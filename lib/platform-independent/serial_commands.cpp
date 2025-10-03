@@ -62,20 +62,6 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
 
     if(command == NULL) return;
 
-    if(strcmp(command, "led") == 0)
-    {
-        if(arg1)
-        {
-            if(strcmp(arg1, "on") == 0)
-            {
-                callbacks->led_toggle(true);
-            }
-            else if(strcmp(arg1, "off") == 0)
-            {
-                callbacks->led_toggle(false);
-            }
-        }
-    }
     else if(strcmp(command, "version") == 0)
     {
         callbacks->version();
@@ -136,9 +122,22 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
             {
                 callbacks->test_buzzer();
             }
+            else if(strcmp(arg1, "led") == 0)
+            {
+                if(arg2)
+                {
+                    if(strcmp(arg2, "on") == 0)
+                    {
+                        callbacks->test_led(true);
+                    }
+                    else if(strcmp(arg2, "off") == 0)
+                    {
+                        callbacks->test_led(false);
+                    }
+                }
+            } 
         }
     }
-
     else if(strcmp(command, "timer") == 0)
     {
         if(arg1 && strcmp(arg1, "set") == 0)
@@ -168,5 +167,9 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
         {
             callbacks->status_active_timer();
         }
+    }
+    else if (strcmp(command, "help") == 0)
+    {
+        callbacks->help_cmd();
     }
 }

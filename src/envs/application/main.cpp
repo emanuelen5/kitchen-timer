@@ -21,16 +21,15 @@ uint8_t event_queue_buffer[queue_buffer_size];
 application_t app;
 state_machine_t* active_sm = &app.state_machines[app.current_active_sm];
 
-void led_toggle(bool is_on)
+void test_led(bool is_on)
 {
     if(is_on)
     {
-        UART_printf("led on");
         set_counter(1);
     }
     else
     {
-        UART_printf("led off");
+
         set_counter(0);
     }
 }
@@ -170,7 +169,7 @@ void test_buzzer(void)
 
 const command_callbacks_t command_callbacks
 {
-    .led_toggle = led_toggle,
+    .test_led = test_led,
     .version = version,
     .set_active_timer = set_active_timer,
     .play_active_timer = play_active_timer,
