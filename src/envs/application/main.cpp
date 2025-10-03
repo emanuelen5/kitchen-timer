@@ -167,6 +167,37 @@ void test_buzzer(void)
     app.buzzer.start_melody(beeps, 2);
 }
 
+void help_cmd(void)
+{
+    UART_printf("KITCHEN_TIMER SERIAL COMMANDS:\n\n");
+
+    UART_printf("Usage:[command]... [argument]... [argument]...\n\n");
+
+    UART_printf("help\t\t\t\tDisplays descriptions of the available serial commands.\n");
+    UART_printf("version\t\t\t\tDisplayes information about the SW version and authors.\n");
+    
+    UART_printf("setup\t\t\t\tCommand to setup kitchen_timer configurations.\n");
+    UART_printf("\tbrightness\t\tSetup display brightness from 0 to 15\n");
+    UART_printf("\tvolume\t\t\tSetup buzzer volume from 0 to 10.\n");
+    UART_printf("\tbuzzer on/off\t\tSetup the buzzer to volume 0.\n");
+    UART_printf("\tstatus\t\t\tDisplays information about the current device setup.\n");
+
+    UART_printf("test\t\t\t\tCommand to test kitchen_timer hardware.\n");
+    UART_printf("\tbuzzer\t\t\tTests the buzzer.\n");
+    UART_printf("\tled on/off\t\tTests the debugging led.\n");
+
+//    UART_printf("timer\tCommand to operate the active_timer from the serial command line.\n");
+//    UART_printf("\tset\tCommand to set the time for the active timer.\n");
+//    UART_printf("\t\thh:mm:ss\tSets hh:hours, mm:minutes, ss:seconds.\n");
+//    UART_printf("\t\tmm:ss\tSets mm:minutes, ss:seconds.\n");
+//    UART_printf("\t\tss\tSets ss:seconds.\n");
+//    UART_printf("\tplay\tStarts the active_timer.\n");
+//    UART_printf("\tpause\tPauses the active_timer.\n");
+//    UART_printf("\treset\tResets the active_timer.\n");
+//    UART_printf("\tstatus\tDisplay the status of the active_timer.");
+
+}
+
 const command_callbacks_t command_callbacks
 {
     .test_led = test_led,
@@ -181,6 +212,7 @@ const command_callbacks_t command_callbacks
     .setup_status = setup_status,
     .setup_buzzer = setup_buzzer,
     .test_buzzer = test_buzzer,
+    .help_cmd = help_cmd
 };
 
 void on_line_received(char *line) {
