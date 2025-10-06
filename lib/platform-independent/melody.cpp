@@ -1,26 +1,26 @@
 #include "melody.h"
 
 const Note beeps_melody[] = {
-    {NoteC5, 8},
+    {NoteC8, 8},
     {NotePause, 8},
     end_of_melody,
 };
 
 const Note saw_melody[] = {
-    {NoteC4, 1},
-    {NoteD4, 1},
-    {NoteE4, 1},
-    {NoteF4, 1},
-    {NoteG4, 1},
-    {NoteA4, 1},
-    {NoteB4, 1},
-    {NoteC5, 1},
-    {NoteB4, 1},
-    {NoteA4, 1},
-    {NoteG4, 1},
-    {NoteF4, 1},
-    {NoteE4, 1},
-    {NoteD4, 1},
+    {NoteC7, 1},
+    {NoteD7, 1},
+    {NoteE7, 1},
+    {NoteF7, 1},
+    {NoteG7, 1},
+    {NoteA7, 1},
+    {NoteB7, 1},
+    {NoteC8, 1},
+    {NoteB7, 1},
+    {NoteA7, 1},
+    {NoteG7, 1},
+    {NoteF7, 1},
+    {NoteE7, 1},
+    {NoteD7, 1},
     end_of_melody,
 };
 
