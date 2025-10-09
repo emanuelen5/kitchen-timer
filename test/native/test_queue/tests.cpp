@@ -95,6 +95,23 @@ void test_when_overflow_flag_has_been_read_it_shall_be_cleared()
     TEST_ASSERT_FALSE(has_queue_overflowed(&q));
 }
 
+void test_queue_count_before_rollover()
+{
+    TEST_ASSERT_EQUAL(0, queue_count(&q));
+    add_to_queue(&q, 1);
+    TEST_ASSERT_EQUAL(1, queue_count(&q));
+}
+
+void test_queue_count_after_rollover()
+{
+    make_queue_full(&q);
+    TEST_ASSERT_EQUAL(buffer_size - 1, queue_count(&q));
+    dequeue(&q);
+    TEST_ASSERT_EQUAL(buffer_size - 2, queue_count(&q));
+    add_to_queue(&q, 0xff);
+    TEST_ASSERT_EQUAL(buffer_size - 1, queue_count(&q));
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -108,6 +125,8 @@ int main()
     RUN_TEST(test_values_are_returned_in_fifo_order);
     RUN_TEST(test_when_adding_to_a_full_queue_the_overflow_flag_shall_be_set);
     RUN_TEST(test_when_overflow_flag_has_been_read_it_shall_be_cleared);
+    RUN_TEST(test_queue_count_before_rollover);
+    RUN_TEST(test_queue_count_after_rollover);
 
     UNITY_END();
 }

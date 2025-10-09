@@ -95,7 +95,10 @@ int main()
 
     while (true)
     {
-        service_receive_UART();
+        for (uint8_t count = UART_received_char_count(); count != 0; count--)
+        {
+            service_receive_UART();
+        }
         button.service();
         dequeue_return_t event;
         while ((event = dequeue(&eventQueue)).is_valid)

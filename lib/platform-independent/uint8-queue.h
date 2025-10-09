@@ -24,5 +24,6 @@ bool has_queue_overflowed(uint8_queue_t *queue);
 
 bool queue_is_empty(uint8_queue_t *queue);
 bool queue_is_full(uint8_queue_t *queue);
+uint8_t queue_count(uint8_queue_t *queue);
 
 #endif //UINT8_QUEUE
