@@ -9,6 +9,7 @@
 #include "str-helper.h"
 #include "config.h"
 #include <string.h>
+#include <avr/pgmspace.h>
 
 
 uint8_queue_t rx_queue = {};
@@ -179,3 +180,12 @@ void service_receive_UART()
     }
 }
 
+void UART_print_P(const char *str)
+{
+    char c;
+    while ((c = pgm_read_byte(str)) != 0)
+    {
+        UART_print_char(c);
+        str++;
+    }
+}
