@@ -150,3 +150,7 @@ void service_receive_UART(void)
     }
 }
 
+uint8_t UART_received_char_count(void)
+{
+    return queue_count(&rx_queue);
+}
