@@ -11,8 +11,6 @@ static void select_next_state_machine(application_t *app);
 static void change_to_previous_view(application_t *app);
 static void change_to_next_view(application_t *app);
 static void try_to_open_new_timer(application_t* app);
-static void print_state(state_t state);
-static void print_event(event_t event);
 
 void init_application(application_t *app)
 {
@@ -159,67 +157,5 @@ static void try_to_open_new_timer(application_t* app)
     if (new_timer_found)
     {
         //blink all timers indicators three times.
-    }
-}
-
-[[maybe_unused]] static void print_state(state_t state)
-{
-    switch (state)
-    {
-        case IDLE:
-            UART_printf("IDLE");
-            break;
-        case SET_TIME:
-            UART_printf("SET_TIME");
-            break;
-        case RUNNING:
-            UART_printf("RUNNING");
-            break;
-        case PAUSED:
-            UART_printf("PAUSED");
-            break;
-        case RINGING:
-            UART_printf("RINGING");
-            break;
-        default:
-            UART_printf("UNKNOWN STATE");
-            break;
-    }
-}
-
-[[maybe_unused]] static void print_event(event_t event)
-{
-    switch(event)
-    {
-        case SINGLE_PRESS:
-            UART_printf("SINGLE_PRESS");
-            break;
-        case CW_ROTATION:
-            UART_printf("CW_ROTATION");
-            break;
-        case CCW_ROTATION:
-            UART_printf("CCW_ROTATION");
-            break;
-        case CW_ROTATION_FAST:
-            UART_printf("CW_ROTATION_FAST");
-            break;
-        case CCW_ROTATION_FAST:
-            UART_printf("CCW_ROTATION_FAST");
-            break;
-        case DOUBLE_PRESS:
-            UART_printf("DOUBLE_PRESS");
-            break;
-        case LONG_PRESS:
-            UART_printf("LONG_PRESS");
-            break;
-        case CW_PRESSED_ROTATION:
-            UART_printf("CW_PRESSED_ROTATION");
-            break;
-        case CCW_PRESSED_ROTATION:
-            UART_printf("CCW_PRESSED_ROTATION");
-            break;
-        case SECOND_TICK:
-            UART_printf("SECOND_TICK");
-            break;
     }
 }
