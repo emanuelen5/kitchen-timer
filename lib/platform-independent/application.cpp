@@ -1,10 +1,6 @@
 #include "application.h"
 #include "melody.h"
 
- // These are provided by the program that includes the state machine 
- void UART_printf(const char *f, ...); 
- void set_counter(uint8_t v); 
-
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
