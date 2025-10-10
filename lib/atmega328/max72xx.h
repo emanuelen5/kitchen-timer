@@ -5,6 +5,8 @@
 
 #define MAX72XX_NUM_DEVICES 4
 
+const uint8_t max72xx_max_brightness = 0xf;
+
 typedef enum
 {
     Max72XX_Command_Nop = 0x00,
