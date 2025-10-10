@@ -91,6 +91,7 @@ int main()
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
+    max72xx_set_intensity(app.brightness);
     sei();
 
     while (true)
