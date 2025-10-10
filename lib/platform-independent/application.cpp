@@ -5,13 +5,6 @@
  void UART_printf(const char *f, ...); 
  void set_counter(uint8_t v); 
 
-static void pass_event_to_all_state_machines(application_t *app, event_t event);
-static void select_previous_state_machine(application_t *app);
-static void select_next_state_machine(application_t *app);
-static void change_to_previous_view(application_t *app);
-static void change_to_next_view(application_t *app);
-static void try_to_open_new_timer(application_t* app);
-
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
@@ -22,37 +15,6 @@ void init_application(application_t *app)
     }
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
-}
-
-void application_handle_event(application_t *app, event_t event)
-{
-    state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
-
-    if((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_next_view(app);
-    } else if ((event == CCW_ROTATION || event == CCW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_previous_view(app);
-    } else if (event == DOUBLE_PRESS)
-    {
-        try_to_open_new_timer(app);
-    } else if (event == CW_PRESSED_ROTATION)
-    {
-        select_next_state_machine(app);
-
-    } else if (event == CCW_PRESSED_ROTATION)
-    {
-        select_previous_state_machine(app);
-
-    } else if (event == SECOND_TICK) 
-    {
-        pass_event_to_all_state_machines(app, event);
-    }
-    else
-    {
-        state_machine_handle_event(active_sm, event);
-    }
 }
 
 bool sm_transitioned_info_state(application_t *app, uint8_t sm_index, state_t into)
@@ -157,5 +119,36 @@ static void try_to_open_new_timer(application_t* app)
     if (new_timer_found)
     {
         //blink all timers indicators three times.
+    }
+}
+
+void application_handle_event(application_t *app, event_t event)
+{
+    state_machine_t* active_sm = &app->state_machines[app->current_active_sm];
+
+    if((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
+    {
+        change_to_next_view(app);
+    } else if ((event == CCW_ROTATION || event == CCW_ROTATION_FAST) && active_sm->state != SET_TIME)
+    {
+        change_to_previous_view(app);
+    } else if (event == DOUBLE_PRESS)
+    {
+        try_to_open_new_timer(app);
+    } else if (event == CW_PRESSED_ROTATION)
+    {
+        select_next_state_machine(app);
+
+    } else if (event == CCW_PRESSED_ROTATION)
+    {
+        select_previous_state_machine(app);
+
+    } else if (event == SECOND_TICK) 
+    {
+        pass_event_to_all_state_machines(app, event);
+    }
+    else
+    {
+        state_machine_handle_event(active_sm, event);
     }
 }
