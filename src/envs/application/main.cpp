@@ -1,5 +1,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <avr/pgmspace.h>
 
 #include "util.h"
 #include "rtc.h"
@@ -21,6 +22,30 @@ uint8_t event_queue_buffer[queue_buffer_size];
 application_t app;
 state_machine_t* active_sm = &app.state_machines[app.current_active_sm];
 
+const PROGMEM char help[] = (
+    "KITCHEN_TIMER SERIAL COMMANDS:\n\n"
+    "Usage:[command]... [argument]... [argument]...\n\n"
+    "help\t\t\t\tDisplays descriptions of the available serial commands.\n"
+    "version\t\t\t\tDisplayes information about the SW version and authors.\n"
+    "setup\t\t\t\tCommand to setup kitchen_timer configurations.\n"
+    "\tbrightness\t\tSetup display brightness from 0 to 15\n"
+    "\tvolume\t\t\tSetup buzzer volume from 0 to 10.\n"
+    "\tbuzzer on/off\t\tSetup the buzzer to volume 0.\n"
+    "\tstatus\t\t\tDisplays information about the current device setup.\n"
+    "test\t\t\t\tCommand to test kitchen_timer hardware.\n"
+    "\tbuzzer\t\t\tTests the buzzer.\n"
+    "\tled on/off\t\tTests the debugging led.\n"
+    "timer\tCommand to operate the active_timer from the serial command line.\n"
+    "\tset\tCommand to set the time for the active timer.\n"
+    "\t\thh:mm:ss\tSets hh:hours, mm:minutes, ss:seconds.\n"
+    "\t\tmm:ss\tSets mm:minutes, ss:seconds.\n"
+    "\t\tss\tSets ss:seconds.\n"
+    "\tplay\tStarts the active_timer.\n"
+    "\tpause\tPauses the active_timer.\n"
+    "\treset\tResets the active_timer.\n"
+    "\tstatus\tDisplay the status of the active_timer."
+);
+
 void test_led(bool is_on)
 {
     if(is_on)
@@ -36,8 +61,8 @@ void test_led(bool is_on)
 
 void version(void)
 {
-    UART_printf("Kitchen Timer, version 1.0.0\n");
-    UART_printf("Authors: Erasmus Cedernaes, Nicolas Perozzi\n");
+    UART_print_P(PSTR("Kitchen Timer, version 1.0.0\n"));
+    UART_print_P(PSTR("Authors: Erasmus Cedernaes, Nicolas Perozzi\n"));
 }
 
 void set_active_timer(uint32_t *steps)
@@ -55,7 +80,7 @@ void play_active_timer(void)
     }
     else
     {
-        UART_printf("Timer has not SET_TIME mode.\n");
+        UART_print_P(PSTR("Timer has not SET_TIME mode.\n"));
     }
 }
 void pause_active_timer(void)
@@ -66,7 +91,7 @@ void pause_active_timer(void)
     }
     else
     {
-        UART_printf("Timer has not in RUNNING mode.\n");
+        UART_print_P(PSTR("Timer has not in RUNNING mode.\n"));
     }
 }
 void reset_active_timer(void)
@@ -77,7 +102,7 @@ void reset_active_timer(void)
     }
     else
     {
-        UART_printf("Timer is in IDLE mode.\n");
+        UART_print_P(PSTR("Timer is in IDLE mode.\n"));
     }
 }
 
@@ -127,7 +152,7 @@ void setup_brightness(uint8_t *intensity)
 {
     if(*intensity > 16)
     {
-        UART_printf("The display brightness must be a value between 0 to 15.\n");
+        UART_print_P(PSTR("The display brightness must be a value between 0 to 15.\n"));
         return;
     }
 
@@ -138,7 +163,7 @@ void setup_volume(uint8_t *volume)
 {
     if(*volume > 11)
     {
-        UART_printf("The volume must be a value between 0 and 10.\n");
+        UART_print_P(PSTR("The volume must be a value between 0 and 10.\n"));
     }
     app.buzzer.set_volume(*volume);
 }
@@ -169,33 +194,7 @@ void test_buzzer(void)
 
 void help_cmd(void)
 {
-    UART_printf("KITCHEN_TIMER SERIAL COMMANDS:\n\n");
-
-    UART_printf("Usage:[command]... [argument]... [argument]...\n\n");
-
-    UART_printf("help\t\t\t\tDisplays descriptions of the available serial commands.\n");
-    UART_printf("version\t\t\t\tDisplayes information about the SW version and authors.\n");
-    
-    UART_printf("setup\t\t\t\tCommand to setup kitchen_timer configurations.\n");
-    UART_printf("\tbrightness\t\tSetup display brightness from 0 to 15\n");
-    UART_printf("\tvolume\t\t\tSetup buzzer volume from 0 to 10.\n");
-    UART_printf("\tbuzzer on/off\t\tSetup the buzzer to volume 0.\n");
-    UART_printf("\tstatus\t\t\tDisplays information about the current device setup.\n");
-
-    UART_printf("test\t\t\t\tCommand to test kitchen_timer hardware.\n");
-    UART_printf("\tbuzzer\t\t\tTests the buzzer.\n");
-    UART_printf("\tled on/off\t\tTests the debugging led.\n");
-
-//    UART_printf("timer\tCommand to operate the active_timer from the serial command line.\n");
-//    UART_printf("\tset\tCommand to set the time for the active timer.\n");
-//    UART_printf("\t\thh:mm:ss\tSets hh:hours, mm:minutes, ss:seconds.\n");
-//    UART_printf("\t\tmm:ss\tSets mm:minutes, ss:seconds.\n");
-//    UART_printf("\t\tss\tSets ss:seconds.\n");
-//    UART_printf("\tplay\tStarts the active_timer.\n");
-//    UART_printf("\tpause\tPauses the active_timer.\n");
-//    UART_printf("\treset\tResets the active_timer.\n");
-//    UART_printf("\tstatus\tDisplay the status of the active_timer.");
-
+    UART_print_P(help);
 }
 
 const command_callbacks_t command_callbacks
