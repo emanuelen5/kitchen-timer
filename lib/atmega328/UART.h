@@ -3,7 +3,9 @@
 
 #include <stdint.h>
 
-void init_hw_UART(void);
+typedef void (*callback_t)(char *line);
+
+void init_hw_UART(callback_t cb);
 void service_receive_UART(void);
 uint8_t UART_received_char_count(void);
 

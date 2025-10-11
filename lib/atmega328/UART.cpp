@@ -156,7 +156,7 @@ ISR(USART_RX_vect)
 static char rx_buffer[RX_BUFFER_SIZE] = {0};
 static uint8_t rx_index = 0;
 
-void service_receive_UART()
+void service_receive_UART(void)
 {
     if (queue_is_empty(&rx_queue))
         return;
