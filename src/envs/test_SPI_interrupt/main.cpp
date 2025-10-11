@@ -4,11 +4,6 @@
 #include "led-counter.h"
 
 
-void increment_counter_cb(void)
-{
-    increment_counter();
-}
-
 int main()
 {
     init_hw_led_counter();
