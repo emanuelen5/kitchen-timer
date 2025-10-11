@@ -35,15 +35,15 @@ const PROGMEM char help[] = (
     "test\t\t\t\tCommand to test kitchen_timer hardware.\n"
     "\tbuzzer\t\t\tTests the buzzer.\n"
     "\tled on/off\t\tTests the debugging led.\n"
-    "timer\tCommand to operate the active_timer from the serial command line.\n"
-    "\tset\tCommand to set the time for the active timer.\n"
+    "timer\t\t\t\tCommand to operate the active_timer from the serial command line.\n"
+    "\tset\t\t\tCommand to set the time for the active timer.\n"
     "\t\thh:mm:ss\tSets hh:hours, mm:minutes, ss:seconds.\n"
-    "\t\tmm:ss\tSets mm:minutes, ss:seconds.\n"
-    "\t\tss\tSets ss:seconds.\n"
-    "\tplay\tStarts the active_timer.\n"
-    "\tpause\tPauses the active_timer.\n"
-    "\treset\tResets the active_timer.\n"
-    "\tstatus\tDisplay the status of the active_timer."
+    "\t\tmm:ss\t\tSets mm:minutes, ss:seconds.\n"
+    "\t\tss\t\tSets ss:seconds.\n"
+    "\tplay\t\t\tStarts the active_timer.\n"
+    "\tpause\t\t\tPauses the active_timer.\n"
+    "\treset\t\t\tResets the active_timer.\n"
+    "\tstatus\t\t\tDisplay the status of the active_timer."
 );
 
 void test_led(bool is_on)
