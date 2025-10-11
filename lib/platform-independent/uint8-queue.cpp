@@ -49,6 +49,18 @@ bool queue_is_empty(uint8_queue_t *queue)
     return queue->front == queue->rear;
 }
 
+uint8_t queue_count(uint8_queue_t *queue)
+{
+    if (queue->rear >= queue->front)
+    {
+        return queue->rear - queue->front;
+    }
+    else
+    {
+        return queue->size - (queue->front - queue->rear);
+    }
+}
+
 bool queue_is_full(uint8_queue_t *queue)
 {
     return queue->front == (queue->rear + 1) % queue->size;
