@@ -4,7 +4,7 @@
 void max72xx_set_intensity(uint8_t intensity);
 void max72xx_display_on(void);
 void max72xx_display_off(void);
-static void enter_deep_sleep(void) {} // TODO: implement
+void enter_deep_sleep(void);
 
 void PowerSave::handle_event(PowerSaveEvent event)
 {
