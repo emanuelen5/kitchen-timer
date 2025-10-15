@@ -94,6 +94,8 @@ int main()
     max72xx_set_intensity(app.brightness);
     sei();
 
+    init_max72xx();
+
     while (true)
     {
         for (uint8_t count = UART_received_char_count(); count != 0; count--)
