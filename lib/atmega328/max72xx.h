@@ -5,6 +5,8 @@
 
 #define MAX72XX_NUM_DEVICES 4
 
+const uint8_t max72xx_max_brightness = 0xf;
+
 typedef enum
 {
     Max72XX_Command_Nop = 0x00,
@@ -33,7 +35,8 @@ void init_hw_max72xx(void);
 void max72xx_send_commands(max72xx_cmd_t *cmds, uint8_t length);
 void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 void max72xx_set_intensity(uint8_t intensity);
-void max72xx_shutdown(bool shutdown);
+void max72xx_display_on(void);
+void max72xx_display_off(void);
 void max72xx_display_test(bool test_mode);
 
 #endif // LIB_MAX72XX_H

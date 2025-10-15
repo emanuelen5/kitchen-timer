@@ -223,3 +223,22 @@ state_t get_state(state_machine_t *sm)
 {
     return sm->state;
 }
+
+bool is_interactive_event(event_t event)
+{
+    switch (event)
+    {
+    case SINGLE_PRESS:
+    case CW_ROTATION:
+    case CCW_ROTATION:
+    case CW_ROTATION_FAST:
+    case CCW_ROTATION_FAST:
+    case DOUBLE_PRESS:
+    case LONG_PRESS:
+    case CW_PRESSED_ROTATION:
+    case CCW_PRESSED_ROTATION:
+        return true;
+    default:
+        return false;
+    }
+}
