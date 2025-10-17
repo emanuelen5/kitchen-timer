@@ -1,7 +1,26 @@
 #include "serial_commands.h"
+#include "serial_commands_cbs.h"
 #include <string.h>
 #include <stdio.h>
 #include "config.h"
+
+const command_callbacks_t command_callbacks
+{
+    .test_led = test_led,
+    .version = version,
+    .set_active_timer = set_active_timer,
+    .play_active_timer = play_active_timer,
+    .pause_active_timer = pause_active_timer,
+    .reset_active_timer = reset_active_timer,
+    .status_active_timer = get_status_active_timer,
+    .setup_brightness = setup_brightness,
+    .setup_volume = setup_volume,
+    .setup_status = setup_status,
+    .setup_buzzer = setup_buzzer,
+    .test_buzzer = test_buzzer,
+    .help_cmd = help_cmd
+};
+
 
 static void normalize_string_ending(char *str)
 {
@@ -51,17 +70,20 @@ static bool parse_time_string(char* arg, uint32_t *steps)
 }
 
 
-void handle_command(char* str, const command_callbacks_t* callbacks, state_machine_t *active_sm)
+void handle_command(char* str, const command_callbacks_t* callbacks, application_t *app)
 {
 
     normalize_string_ending(str);
-
     char *command = strtok(str, " \n");
     char *arg1 = strtok(NULL, " \n");
     char *arg2 = strtok(NULL, " \n");
 
-    if(command == NULL) return;
+    state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
 
+    if(command == NULL)
+    {
+        return;
+    }
     else if(strcmp(command, "version") == 0)
     {
         callbacks->version();
@@ -90,13 +112,13 @@ void handle_command(char* str, const command_callbacks_t* callbacks, state_machi
                     if (sscanf(arg2, "%d", &temp) == 1)
                     {
                         uint8_t value = (uint8_t)temp;
-                        callbacks->setup_volume(&value);
+                        callbacks->setup_volume(&app->buzzer, &value);
                     }
                 }
             }
             else if (strcmp(arg1, "status") == 0)
             {
-                callbacks->setup_status();
+                callbacks->setup_status(app);
             }
             else if (strcmp(arg1, "buzzer") == 0)
             {
@@ -104,11 +126,11 @@ void handle_command(char* str, const command_callbacks_t* callbacks, state_machi
                 {
                     if (strcmp(arg2, "on") == 0)
                     {
-                        callbacks->setup_buzzer(true);
+                        callbacks->setup_buzzer(&app->buzzer, true);
                     }
                     if (strcmp(arg2, "off") == 0)
                     {
-                        callbacks->setup_buzzer(false);
+                        callbacks->setup_buzzer(&app->buzzer, false);
                     }
                 }
             }
@@ -120,7 +142,7 @@ void handle_command(char* str, const command_callbacks_t* callbacks, state_machi
         {
             if(strcmp(arg1, "buzzer") == 0)
             {
-                callbacks->test_buzzer();
+                callbacks->test_buzzer(&app->buzzer);
             }
             else if(strcmp(arg1, "led") == 0)
             {
@@ -153,19 +175,19 @@ void handle_command(char* str, const command_callbacks_t* callbacks, state_machi
         }
         else if(arg1 && strcmp(arg1, "play") == 0)
         {
-            callbacks->play_active_timer();
+            callbacks->play_active_timer(active_sm);
         }
         else if(arg1 && strcmp(arg1, "pause") == 0)
         {
-            callbacks->pause_active_timer();
+            callbacks->pause_active_timer(active_sm);
         }
         else if(arg1 && strcmp(arg1, "reset") == 0)
         {
-            callbacks->reset_active_timer();
+            callbacks->reset_active_timer(active_sm);
         }
         else if(arg1 && strcmp(arg1, "status") == 0)
         {
-            callbacks->status_active_timer();
+            callbacks->status_active_timer(active_sm);
         }
     }
     else if (strcmp(command, "help") == 0)
