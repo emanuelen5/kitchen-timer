@@ -51,7 +51,7 @@ static bool parse_time_string(char* arg, uint32_t *steps)
 }
 
 
-void handle_command(char* str, const command_callbacks_t* callbacks)
+void handle_command(char* str, const command_callbacks_t* callbacks, state_machine_t *active_sm)
 {
 
     normalize_string_ending(str);
@@ -147,7 +147,7 @@ void handle_command(char* str, const command_callbacks_t* callbacks)
                 uint32_t steps = 0;
                 if(parse_time_string(arg2, &steps))
                 {
-                    callbacks->set_active_timer(&steps);
+                    callbacks->set_active_timer(active_sm, &steps);
                 }
             }
         }

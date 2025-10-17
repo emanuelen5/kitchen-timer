@@ -2,12 +2,13 @@
 #define COMMANDS_H
 
 #include <stdint.h>
+#include <state-machine.h>
 
 typedef struct
 {
     void (*test_led)(bool is_on);
     void (*version)(void);
-    void (*set_active_timer)(uint32_t *steps);
+    void (*set_active_timer)(state_machine_t *active_sm, uint32_t *steps);
     void (*play_active_timer)(void);
     void (*pause_active_timer)(void);
     void (*reset_active_timer)(void);
@@ -20,6 +21,6 @@ typedef struct
     void (*help_cmd)(void);
 } command_callbacks_t;
 
-void handle_command(char* str, const command_callbacks_t* callbacks);
+void handle_command(char* str, const command_callbacks_t* callbacks, state_machine_t *active_sm);
 
 #endif

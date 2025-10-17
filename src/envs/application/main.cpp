@@ -13,6 +13,7 @@
 #include "avr_button.h"
 #include "rotary-encoder.h"
 #include "serial_commands.h"
+#include "serial_commands_cbs.h"
 #include "max72xx.h"
 
 uint8_queue_t eventQueue;
@@ -46,31 +47,9 @@ const PROGMEM char help[] = (
     "\tstatus\t\t\tDisplay the status of the active_timer."
 );
 
-void test_led(bool is_on)
-{
-    if(is_on)
-    {
-        set_counter(1);
-    }
-    else
-    {
 
-        set_counter(0);
-    }
-}
 
-void version(void)
-{
-    UART_print_P(PSTR("Kitchen Timer, version 1.0.0\n"));
-    UART_print_P(PSTR("Authors: Erasmus Cedernaes, Nicolas Perozzi\n"));
-}
 
-void set_active_timer(uint32_t *steps)
-{
-    reset_timer(&active_sm->timer);
-    set_state(active_sm, SET_TIME);
-    change_original_time(&active_sm->timer, (int32_t*)steps);
-}
 
 void play_active_timer(void)
 {
@@ -215,7 +194,7 @@ const command_callbacks_t command_callbacks
 };
 
 void on_line_received(char *line) {
-    handle_command(line, &command_callbacks);
+    handle_command(line, &command_callbacks, active_sm);
 }
 
 void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
