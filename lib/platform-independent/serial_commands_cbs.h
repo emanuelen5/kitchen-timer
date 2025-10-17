@@ -2,8 +2,6 @@
 #define SERIAL_COMMANS_CBS_H
 
 #include "serial_commands.h"
-#include "application.h"
-
 
 void version(void);
 void test_led(bool is_on);

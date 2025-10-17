@@ -2,7 +2,6 @@
 #include "serial_commands_cbs.h"
 #include <string.h>
 #include <stdio.h>
-#include "config.h"
 
 const command_callbacks_t command_callbacks
 {

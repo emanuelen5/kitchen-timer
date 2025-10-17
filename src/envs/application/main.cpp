@@ -13,7 +13,6 @@
 #include "avr_button.h"
 #include "rotary-encoder.h"
 #include "serial_commands.h"
-#include "serial_commands_cbs.h"
 #include "max72xx.h"
 
 uint8_queue_t eventQueue;

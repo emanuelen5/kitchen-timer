@@ -1,7 +1,6 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-#include <stdint.h>
 #include "application.h"
 
 typedef struct
