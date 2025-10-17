@@ -9,6 +9,9 @@ void init_application(application_t *app)
         init_state_machine(&app->state_machines[i]);
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
+    const uint8_t last_brightness_setting = 0xa; // TODO: load from persistent storage
+    app->brightness = last_brightness_setting;
+    app->power_save.init(&app->brightness);
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
 }
@@ -40,6 +43,7 @@ void service_application(application_t *app)
         {
             app->current_active_sm = i;
             app->buzzer.start_melody(beeps, 10);
+            app->power_save.handle_event(activity);
             break;
         }
         else if (sm_transitioned_from_state(app, i, RINGING))
@@ -121,9 +125,22 @@ static void try_to_open_new_timer(application_t *app)
     }
 }
 
+static bool any_timer_has_state(application_t *app, state_t state)
+{
+    for (int i = 0; i < MAX_TIMERS; i++)
+    {
+        if (app->state_machines[i].state == state)
+            return true;
+    }
+    return false;
+}
+
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
+
+    if (is_interactive_event(event))
+        app->power_save.handle_event(PowerSaveEvent::activity);
 
     if ((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
     {
@@ -148,6 +165,14 @@ void application_handle_event(application_t *app, event_t event)
     else if (event == SECOND_TICK)
     {
         pass_event_to_all_state_machines(app, event);
+        bool any_ringing = any_timer_has_state(app, RINGING);
+        bool any_running = any_timer_has_state(app, RUNNING);
+        if (any_ringing)
+            app->power_save.handle_event(PowerSaveEvent::activity);
+        else if (!any_running)
+            app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
+        else
+            app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
     }
     else
     {

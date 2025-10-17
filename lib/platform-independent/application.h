@@ -5,6 +5,7 @@
 #include "config.h"
 #include "state-machine.h"
 #include "buzzer.h"
+#include "power-save.h"
 
 typedef enum {
     ACTIVE_TIMER_VIEW,
@@ -19,6 +20,8 @@ typedef struct
     state_t previous_sm_states[MAX_TIMERS];
     uint8_t current_active_sm;
     Buzzer buzzer;
+    PowerSave power_save;
+    uint8_t brightness; // [0, 0xf]
 } application_t;
 
 void init_application(application_t* app);

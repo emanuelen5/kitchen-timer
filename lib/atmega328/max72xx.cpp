@@ -12,7 +12,10 @@ void max72xx_send_commands_to_all(max72xx_reg_t reg, uint8_t data);
 void init_hw_max72xx(void)
 {
     init_hw_SPI(MAX72XX_NUM_DEVICES * 2);
+}
 
+void init_max72xx(void)
+{
     max72xx_send_commands_to_all(Max72XX_Shutdown, 0x01);     // normal operation (exit shutdown mode)
     max72xx_send_commands_to_all(Max72XX_Scan_Limit, 0x07);   // 8 digits scan limit
     max72xx_send_commands_to_all(Max72XX_Decode_Mode, 0x00);  // disable decode mode
@@ -50,9 +53,14 @@ void max72xx_set_intensity(uint8_t intensity_level)
     max72xx_send_commands_to_all(Max72XX_Intensity, intensity);
 }
 
-void max72xx_shutdown(bool shutdown_mode)
+void max72xx_display_on()
 {
-    max72xx_send_commands_to_all(Max72XX_Shutdown, shutdown_mode ? 0x00 : 0x01);
+    max72xx_send_commands_to_all(Max72XX_Shutdown, 0x01);     // normal operation (exit shutdown mode)
+}
+
+void max72xx_display_off()
+{
+    max72xx_send_commands_to_all(Max72XX_Shutdown, 0x00);
 }
 
 void max72xx_display_test(bool test_mode)
