@@ -75,7 +75,7 @@ void test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_r
 
 void test_when_in_set_time_timer_doesnt_overflow(void)
 {
-    set_state(&sm,SET_TIME);
+    set_state(&sm, SET_TIME);
     sm.timer.original_time = state_machine::max_time;
     state_machine_handle_event(&sm, CW_ROTATION);
     TEST_ASSERT_EQUAL(state_machine::max_time, get_original_time(&sm));
@@ -111,7 +111,6 @@ void test_ringing_exits_after_10000ms(void)
     set_state(&sm, RINGING);
     service_state_machine(&sm);
 
-    current_millis = 0;
     while (true)
     {
         current_millis++;
@@ -121,10 +120,10 @@ void test_ringing_exits_after_10000ms(void)
             break;
         bool panic = current_millis == 0;
         if (panic)
-            TEST_FAIL_MESSAGE("The state RINGING was never left");
+            TEST_FAIL_MESSAGE("The state was never left");
     }
 
-    TEST_ASSERT_EQUAL(current_millis, 10000);
+    TEST_ASSERT_EQUAL(10000, current_millis);
 }
 
 void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
@@ -135,6 +134,26 @@ void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
     TEST_ASSERT_EQUAL(0, get_original_time(&sm));
     state_machine_handle_event(&sm, CCW_ROTATION_FAST);
     TEST_ASSERT_EQUAL(0, get_original_time(&sm));
+}
+
+void test_remembers_target_time_when_timer_ends(void)
+{
+    sm.timer.original_time = 3;
+    set_state(&sm, RINGING);
+
+    while (true)
+    {
+        current_millis++;
+        service_state_machine(&sm);
+
+        if (get_state(&sm) != RINGING)
+            break;
+        bool panic = current_millis == 0;
+        if (panic)
+            TEST_FAIL_MESSAGE("The state was never left");
+    }
+
+    TEST_ASSERT_EQUAL(3, get_original_time(&sm));
 }
 
 int main()
@@ -152,6 +171,7 @@ int main()
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_10000ms);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
+    RUN_TEST(test_remembers_target_time_when_timer_ends);
 
     UNITY_END();
 }
