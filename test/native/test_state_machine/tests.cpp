@@ -106,22 +106,27 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     TEST_ASSERT_EQUAL(RINGING, get_state(&sm));
 }
 
-void test_ringing_exits_after_10000ms(void)
+void run_until_state_times_out(state_machine_t *sm, state_t initial_state)
 {
-    set_state(&sm, RINGING);
-    service_state_machine(&sm);
-
     while (true)
     {
         current_millis++;
-        service_state_machine(&sm);
+        service_state_machine(sm);
 
-        if (get_state(&sm) != RINGING)
+        if (get_state(sm) != initial_state)
             break;
         bool panic = current_millis == 0;
         if (panic)
             TEST_FAIL_MESSAGE("The state was never left");
     }
+}
+
+void test_ringing_exits_after_10000ms(void)
+{
+    set_state(&sm, RINGING);
+    service_state_machine(&sm);
+
+    run_until_state_times_out(&sm, RINGING);
 
     TEST_ASSERT_EQUAL(10000, current_millis);
 }
@@ -141,18 +146,7 @@ void test_remembers_target_time_when_timer_ends(void)
     sm.timer.original_time = 3;
     set_state(&sm, RINGING);
 
-    while (true)
-    {
-        current_millis++;
-        service_state_machine(&sm);
-
-        if (get_state(&sm) != RINGING)
-            break;
-        bool panic = current_millis == 0;
-        if (panic)
-            TEST_FAIL_MESSAGE("The state was never left");
-    }
-
+    run_until_state_times_out(&sm, RINGING);
     TEST_ASSERT_EQUAL(3, get_original_time(&sm));
 }
 
