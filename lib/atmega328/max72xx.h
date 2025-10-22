@@ -39,5 +39,6 @@ void max72xx_set_intensity(uint8_t intensity);
 void max72xx_display_on(void);
 void max72xx_display_off(void);
 void max72xx_display_test(bool test_mode);
+uint8_t get_intensity(void);
 
 #endif // LIB_MAX72XX_H
