@@ -147,7 +147,7 @@ void test_remembers_target_time_when_timer_ends(void)
     set_state(&sm, RINGING);
 
     run_until_state_times_out(&sm, RINGING);
-    TEST_ASSERT_EQUAL(3, get_original_time(&sm));
+    TEST_ASSERT_EQUAL(3, get_target_time(&sm));
 }
 
 int main()
