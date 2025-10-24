@@ -34,7 +34,7 @@ void service_state_machine(state_machine_t *sm)
         uint16_t time_in_ringing_state = millis() - sm->millis_of_last_transition;
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
-            reset_state_machine(sm);
+            set_state(sm, IDLE);
         }
     }
     break;
@@ -195,7 +195,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            reset_state_machine(sm);
+            set_state(sm, IDLE);
             break;
 
         case LONG_PRESS:
