@@ -144,6 +144,10 @@ void application_handle_event(application_t *app, event_t event)
     {
         change_to_previous_view(app);
     }
+    else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && get_target_time(active_sm) == 0)
+    {
+        app->current_view = MENU_VIEW;
+    }
     else if (event == DOUBLE_PRESS)
     {
         try_to_open_new_timer(app);
