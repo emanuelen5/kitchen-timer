@@ -1,5 +1,6 @@
 #include "application.h"
 #include "melody.h"
+#include "settings.h"
 
 void init_application(application_t *app)
 {
@@ -9,9 +10,15 @@ void init_application(application_t *app)
         init_state_machine(&app->state_machines[i]);
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
-    const uint8_t last_brightness_setting = 0xa; // TODO: load from persistent storage
+    uint8_t last_brightness_setting;
+    load_int_setting(&last_brightness_setting, (uint8_t *)EEPROM_BRIGHTNESS_ADDR);
     app->brightness = last_brightness_setting;
     app->power_save.init(&app->brightness);
+
+    uint8_t last_volume_setting;
+    load_int_setting(&last_volume_setting, (uint8_t *)EEPROM_VOLUME_ADDR);
+    app->buzzer.set_volume(last_volume_setting);
+
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
 }
