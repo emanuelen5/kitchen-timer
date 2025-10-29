@@ -97,12 +97,12 @@ void UART_printf(const char* format, ...)
         if (*format == '%')
         {
             format++;
-            uint8_t pad_zero = 0;
+            uint8_t pad_zero = false;
             uint8_t width = 0;
 
             if (*format == '0')
             {
-                pad_zero = 1;
+                pad_zero = true;
                 format++;
             }
 
