@@ -16,7 +16,7 @@ void init_application(application_t *app)
     set_state(&app->state_machines[0], SET_TIME);
 }
 
-bool sm_transitioned_info_state(application_t *app, uint8_t sm_index, state_t into)
+bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
 {
     state_t current_state = app->state_machines[sm_index].state;
     state_t previous_state = app->previous_sm_states[sm_index];
@@ -39,7 +39,7 @@ void service_application(application_t *app)
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        if (sm_transitioned_info_state(app, i, RINGING))
+        if (sm_transitioned_into_state(app, i, RINGING))
         {
             app->current_active_sm = i;
             app->buzzer.start_melody(beeps, 10);
