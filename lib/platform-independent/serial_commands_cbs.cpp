@@ -3,6 +3,7 @@
 #include "led-counter.h"
 #include "UART.h"
 #include "max72xx.h"
+#include <string.h>
 
 
 void test_led(bool is_on)
@@ -171,4 +172,17 @@ const PROGMEM char help[] = (
 void help_cmd(void)
 {
     UART_print_P(help);
+}
+
+void unrecognized_command(char *string)
+{
+    if(string == NULL)
+    {
+        UART_printf("Error: Missing command.\n");
+    }
+    else
+    {
+        UART_printf("Error: Unknown command \"%s\".\n", string);
+    }
+
 }
