@@ -14,6 +14,7 @@
 #include "rotary-encoder.h"
 #include "serial_commands.h"
 #include "max72xx.h"
+#include "reboot.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -22,6 +23,7 @@ uint8_t event_queue_buffer[queue_buffer_size];
 application_t app;
 state_machine_t* active_sm = &app.state_machines[app.current_active_sm];
 
+void init_watchdog(void) __attribute__((naked)) __attribute__((section(".init3"))); //desables watchdog before main().
 
 void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
@@ -104,7 +106,6 @@ int main()
     sei();
 
     init_max72xx();
-
     while (true)
     {
         for (uint8_t count = UART_received_char_count(); count != 0; count--)

@@ -17,5 +17,6 @@ void setup_buzzer(Buzzer* buzzer, bool is_on);
 void test_buzzer(Buzzer *buzzer);
 void help_cmd(void);
 void unrecognized_command(char *string);
+void reboot(void);
 
 #endif //SERIAL_COMMANDS_CBS_H

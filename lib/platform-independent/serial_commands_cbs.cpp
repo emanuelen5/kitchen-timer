@@ -4,6 +4,7 @@
 #include "UART.h"
 #include "max72xx.h"
 #include <string.h>
+#include "reboot.h"
 
 
 void test_led(bool is_on)
@@ -150,6 +151,7 @@ const PROGMEM char help[] = (
     "Usage:[command]... [argument]... [argument]...\n\n"
     "help\t\t\t\tDisplays descriptions of the available serial commands.\n"
     "version\t\t\t\tDisplayes information about the SW version and authors.\n"
+    "reboot\t\t\t\tReboots the system."
     "setup\t\t\t\tCommand to setup kitchen_timer configurations.\n"
     "\tbrightness\t\tSetup display brightness from 0 to 15\n"
     "\tvolume\t\t\tSetup buzzer volume from 0 to 10.\n"
@@ -185,4 +187,9 @@ void unrecognized_command(char *string)
         UART_printf("Error: Unknown command \"%s\".\n", string);
     }
 
+}
+
+void reboot(void)
+{
+    reboot_system();
 }

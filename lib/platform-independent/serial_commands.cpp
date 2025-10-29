@@ -18,8 +18,8 @@ const command_callbacks_t command_callbacks
     .setup_buzzer = setup_buzzer,
     .test_buzzer = test_buzzer,
     .help_cmd = help_cmd,
-    .unrecognized_command = unrecognized_command
-    
+    .unrecognized_command = unrecognized_command,
+    .reboot = reboot
 };
 
 
@@ -70,7 +70,6 @@ static bool parse_time_string(char* arg, uint32_t *steps)
     return false;
 }
 
-
 void handle_command(char* str, const command_callbacks_t* callbacks, application_t *app)
 {
 
@@ -90,6 +89,10 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
     else if(strcmp(command, "version") == 0)
     {
         callbacks->version();
+    }
+    else if(strcmp(command, "reboot") == 0)
+    {
+        callbacks->reboot();
     }
     else if(strcmp(command, "setup") == 0)
     {

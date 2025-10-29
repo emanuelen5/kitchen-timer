@@ -19,6 +19,7 @@ typedef struct
     void (*test_buzzer)(Buzzer *buzzer);
     void (*help_cmd)(void);
     void (*unrecognized_command)(char *string);
+    void (*reboot)(void);
 } command_callbacks_t;
 
 extern const command_callbacks_t command_callbacks;
