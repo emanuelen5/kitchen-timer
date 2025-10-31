@@ -115,20 +115,14 @@ static void change_to_next_view(application_t *app)
 
 static void try_to_open_new_timer(application_t *app)
 {
-    bool new_timer_found = false;
     for (int i = 0; i < MAX_TIMERS; i++)
     {
         if (app->state_machines[i].state == IDLE)
         {
             app->current_active_sm = i;
-            new_timer_found = true;
             set_state(&app->state_machines[i], SET_TIME);
             return;
         }
-    }
-    if (new_timer_found)
-    {
-        // blink all timers indicators three times.
     }
 }
 
