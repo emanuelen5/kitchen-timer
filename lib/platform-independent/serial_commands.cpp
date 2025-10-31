@@ -110,17 +110,17 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
                 goto error;
             }
 
-            int temp = 0;
-            if (sscanf(arg2, "%d", &temp) == 1)
+            int brightness_level = 0;
+            if (sscanf(arg2, "%d", &brightness_level) == 1)
             {
-                if(temp < 0 || temp > 15)
+                if(brightness_level < 0 || brightness_level > 15)
                 {
                     wrong_command = arg2;
                     goto error;
                 }
 
-                uint8_t value = (uint8_t)temp;
-                callbacks->setup_brightness(&value);
+                uint8_t brightness_value = (uint8_t)brightness_level;
+                callbacks->setup_brightness(&brightness_value);
             }
         }
         else if (strcmp(arg1, "volume") == 0)
@@ -131,17 +131,17 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
                 goto error;
             }
 
-            int temp = 0;
-            if (sscanf(arg2, "%d", &temp) == 1)
+            int volume_level = 0;
+            if (sscanf(arg2, "%d", &volume_level) == 1)
             {
-                if(temp < 0 || temp > 10)
+                if(volume_level < 0 || volume_level > 10)
                 {
                     wrong_command = arg2;
                     goto error;
                 }
 
-                uint8_t value = (uint8_t)temp;
-                callbacks->setup_volume(&app->buzzer, &value);
+                uint8_t volume_value = (uint8_t)volume_level;
+                callbacks->setup_volume(&app->buzzer, &volume_value);
             }
         }
         else if (strcmp(arg1, "status") == 0)
