@@ -16,10 +16,8 @@
 
 static void wdt_bootloader_disable(void)
 {
-//    uint8_t mcusr_copy = MCUSR;  // Store reset reason if you ever need it
     MCUSR = 0;                   // Clear reset flags
-    wdt_disable();               // Turn off watchdog timer
-//    (void)mcusr_copy;            // Avoid unused variable warning
+    wdt_disable();
 }
 
 void prepare_self_program(void)
