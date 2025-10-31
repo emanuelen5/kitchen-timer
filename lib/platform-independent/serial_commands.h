@@ -17,7 +17,7 @@ typedef struct
     void (*setup_status)(application_t *app);
     void (*setup_buzzer)(Buzzer *buzzer, bool is_on);
     void (*test_buzzer)(Buzzer *buzzer);
-    void (*help_cmd)(void);
+    void (*help)(void);
     void (*unrecognized_command)(char *string);
     void (*reboot)(void);
 } command_callbacks_t;

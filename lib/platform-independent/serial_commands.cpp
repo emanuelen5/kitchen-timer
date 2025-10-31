@@ -17,7 +17,7 @@ const command_callbacks_t command_callbacks
     .setup_status = setup_status,
     .setup_buzzer = setup_buzzer,
     .test_buzzer = test_buzzer,
-    .help_cmd = help_cmd,
+    .help = help_cmd,
     .unrecognized_command = unrecognized_command,
     .reboot = reboot
 };
@@ -257,7 +257,7 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
     }
     else if (strcmp(command, "help") == 0)
     {
-        callbacks->help_cmd();
+        callbacks->help();
     }
     else
     {
