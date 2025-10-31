@@ -186,7 +186,7 @@ void unrecognized_command(char *string)
     }
     else
     {
-        UART_printf("Error: Unknown command \"%s\".\n", string);
+        UART_printf("Error: All good up until this \"%s\" :(\n", string);
     }
 
 }
