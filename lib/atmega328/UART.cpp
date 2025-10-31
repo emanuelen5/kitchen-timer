@@ -97,7 +97,7 @@ void UART_printf(const char* format, ...)
         if (*format == '%')
         {
             format++;
-            uint8_t pad_zero = false;
+            bool pad_zero = false;
             uint8_t width = 0;
 
             if (*format == '0')
