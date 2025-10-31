@@ -6,6 +6,7 @@
 #include <string.h>
 #include "reboot.h"
 #include "settings.h"
+#include <ctype.h>
 
 
 void test_led(bool is_on)
@@ -178,17 +179,35 @@ void help_cmd(void)
     UART_print_P(help);
 }
 
+static bool is_number(const char *str)
+{
+    if (str == NULL || *str == '\0')
+        return false;
+
+    while (*str) {
+        if (!isdigit((unsigned char)*str))
+            return false;
+        str++;
+    }
+    return true;
+}
+
 void unrecognized_command(char *string)
 {
     if(string == NULL)
     {
         UART_printf("Error: Missing command.\n");
+        return;
+    }
+
+    if(is_number(string))
+    {
+        UART_printf("Error: \"%s\" is out of range. :(\n", string);
     }
     else
     {
         UART_printf("Error: All good up until this \"%s\" :(\n", string);
     }
-
 }
 
 void reboot(void)
