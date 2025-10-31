@@ -4,7 +4,7 @@
 
 void save_int_setting(uint8_t *setting, uint8_t *address)
 {
-    eeprom_write_byte(address, *setting);
+    eeprom_update_byte(address, *setting);
 }
 
 void load_int_setting(uint8_t *setting, uint8_t *address)
