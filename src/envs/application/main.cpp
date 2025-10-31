@@ -27,41 +27,21 @@ void init_watchdog(void) __attribute__((naked)) __attribute__((section(".init3")
 
 void rotation_cb(rotation_dir_t dir, rotation_speed_t speed, bool held_down)
 {
-    if (held_down)
-    {
-        if(dir == cw)
-        {
-            add_to_queue(&eventQueue, CW_PRESSED_ROTATION);
-        }
-        else if (dir == ccw)
-        {
-            add_to_queue(&eventQueue, CCW_PRESSED_ROTATION);
-        }
-    }
-    else
-    {
-        if (speed == fast)
-        {
-            if (dir == cw)
-            {
-                add_to_queue(&eventQueue, CW_ROTATION_FAST);
-            }
-            else if (dir == ccw)
-            {
-                add_to_queue(&eventQueue, CCW_ROTATION_FAST);
-            }
-        } else
-        {
-            if (dir == cw)
-            {
-                add_to_queue(&eventQueue, CW_ROTATION);
-            }
-            else if (dir == ccw)
-            {
-                add_to_queue(&eventQueue, CCW_ROTATION);
-            }
-        }
-    }
+    event_t event;
+    if (held_down && dir == cw)
+        event = CW_PRESSED_ROTATION;
+    else if (held_down && dir == ccw)
+        event = CCW_PRESSED_ROTATION;
+    else if (!held_down && dir == cw && speed == fast)
+        event = CW_ROTATION_FAST;
+    else if (!held_down && dir == cw)
+        event = CW_ROTATION;
+    else if (!held_down && dir == ccw && speed == fast)
+        event = CCW_ROTATION_FAST;
+    else if (!held_down && dir == ccw)
+        event = CCW_ROTATION;
+
+    add_to_queue(&eventQueue, event);
 }
 
 void on_single_press(void)

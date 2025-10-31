@@ -34,7 +34,7 @@ void service_state_machine(state_machine_t *sm)
         uint16_t time_in_ringing_state = millis() - sm->millis_of_last_transition;
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
-            reset_state_machine(sm);
+            set_state(sm, IDLE);
         }
     }
     break;
@@ -131,7 +131,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            copy_original_to_current_time(&sm->timer);
+            set_time_left_to_target_time(&sm->timer);
             set_state(sm, RUNNING);
             break;
 
@@ -140,8 +140,8 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            change_original_time(&sm->timer, &step_size);
+            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&sm->timer, step_size);
         }
         break;
 
@@ -165,7 +165,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
 
         case SECOND_TICK:
-            decrement_current_time(&sm->timer);
+            decrement_time_left(&sm->timer);
             if (timer_is_finished(&sm->timer))
             {
                 set_state(sm, RINGING);
@@ -195,7 +195,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            reset_state_machine(sm);
+            set_state(sm, IDLE);
             break;
 
         case LONG_PRESS:
@@ -209,14 +209,14 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     }
 }
 
-uint16_t get_original_time(state_machine_t *sm)
+uint16_t get_target_time(state_machine_t *sm)
 {
     return sm->timer.original_time;
 }
 
-uint16_t get_current_time(state_machine_t *sm)
+uint16_t get_time_left(state_machine_t *sm)
 {
-    return timer_get_current_time(&sm->timer);
+    return timer_get_time_left(&sm->timer);
 }
 
 state_t get_state(state_machine_t *sm)

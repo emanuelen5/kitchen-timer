@@ -2,7 +2,7 @@
 
 namespace state_machine
 {
-    void change_original_time(timer_t *timer, int32_t *step)
+    void add_to_target_time(timer_t *timer, int16_t step)
     {
         int32_t new_time = timer->original_time + *step;
         new_time = new_time < 0 ? 0 : new_time;
@@ -16,12 +16,12 @@ namespace state_machine
         timer->original_time = 0;
     }
 
-    void copy_original_to_current_time(timer_t *timer)
+    void set_time_left_to_target_time(timer_t *timer)
     {
         timer->current_time = timer->original_time;
     }
 
-    void decrement_current_time(timer_t *timer)
+    void decrement_time_left(timer_t *timer)
     {
         if (timer->current_time > 0)
         {
@@ -34,12 +34,12 @@ namespace state_machine
         return timer->current_time == 0;
     }
 
-    uint16_t timer_get_current_time(timer_t *timer)
+    uint16_t timer_get_time_left(timer_t *timer)
     {
         return timer->current_time;
     }
 
-    uint16_t get_original_time(timer_t * timer)
+    uint16_t get_target_time(timer_t * timer)
     {
         return timer->original_time;
     }
