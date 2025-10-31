@@ -11,12 +11,12 @@ void init_application(application_t *app)
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
     uint8_t last_brightness_setting;
-    load_int_setting(&last_brightness_setting, (uint8_t *)EEPROM_BRIGHTNESS_ADDR);
+    load_byte_setting(&last_brightness_setting, EEPROM_BRIGHTNESS_ADDR);
     app->brightness = last_brightness_setting;
     app->power_save.init(&app->brightness);
 
     uint8_t last_volume_setting;
-    load_int_setting(&last_volume_setting, (uint8_t *)EEPROM_VOLUME_ADDR);
+    load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
     app->buzzer.set_volume(last_volume_setting);
 
     app->current_active_sm = 0;

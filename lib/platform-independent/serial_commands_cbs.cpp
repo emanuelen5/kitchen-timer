@@ -110,7 +110,7 @@ void setup_brightness(uint8_t *intensity)
         UART_print_P(PSTR("The display brightness must be a value between 0 to 15.\n"));
         return;
     }
-    save_int_setting(intensity, (uint8_t *)EEPROM_BRIGHTNESS_ADDR);
+    save_byte_setting(intensity, EEPROM_BRIGHTNESS_ADDR);
     max72xx_set_intensity(*intensity);
 }
 
@@ -120,7 +120,7 @@ void setup_volume(Buzzer* buzzer, uint8_t *volume)
     {
         UART_print_P(PSTR("The volume must be a value between 0 and 10.\n"));
     }
-    save_int_setting(volume, (uint8_t *)EEPROM_VOLUME_ADDR);
+    save_byte_setting(volume, EEPROM_VOLUME_ADDR);
     buzzer->set_volume(*volume);
 }
 
