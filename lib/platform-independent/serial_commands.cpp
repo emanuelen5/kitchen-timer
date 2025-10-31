@@ -77,7 +77,7 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
     char *command = strtok(str, " \n");
     char *arg1 = strtok(NULL, " \n");
     char *arg2 = strtok(NULL, " \n");
-    char *wrong_command;
+    char *wrong_command = NULL;
 
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
 
