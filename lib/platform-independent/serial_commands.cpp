@@ -1,0 +1,274 @@
+#include "serial_commands.h"
+#include "serial_commands_cbs.h"
+#include <string.h>
+#include <stdio.h>
+
+const command_callbacks_t command_callbacks
+{
+    .test_led = test_led,
+    .version = version,
+    .set_active_timer = set_active_timer,
+    .play_active_timer = play_active_timer,
+    .pause_active_timer = pause_active_timer,
+    .reset_active_timer = reset_active_timer,
+    .status_active_timer = get_status_active_timer,
+    .setup_brightness = setup_brightness,
+    .setup_volume = setup_volume,
+    .setup_status = setup_status,
+    .setup_buzzer = setup_buzzer,
+    .test_buzzer = test_buzzer,
+    .help = help_cmd,
+    .unrecognized_command = unrecognized_command,
+    .reboot = reboot
+};
+
+
+static void normalize_string_ending(char *str)
+{
+    size_t len = strlen(str);
+
+    if(len == 0) return;
+
+    if(str[len - 1] == '\n')
+    {
+        if(len >= 2 && str[len - 2] == '\r')
+        {
+            str[len - 2] = '\n';
+            str[len - 1] = '\0';
+        }
+    } else if(str[len - 1] == '\r')
+    {
+        str[len - 1] = '\n';
+    }
+}
+
+static bool parse_time_string(char* arg, uint32_t *steps)
+{
+    int hrs, mins, secs;
+    uint8_t parsed_segments = sscanf(arg, "%d:%d:%d", &hrs, &mins, &secs);
+    if(parsed_segments == 3)
+    {
+        *steps = hrs * 60 * 60 + mins * 60 + secs;
+        return true;
+    }
+    else if (parsed_segments == 2)
+    {
+        secs = mins;
+        mins = hrs;
+        hrs = 0;
+        *steps = mins * 60 + secs;
+        return true;
+    }
+    else if (parsed_segments == 1)
+    {
+        secs = hrs;
+        mins = 0;
+        hrs = 0;
+        *steps = secs;
+        return true;
+    }
+    return false;
+}
+
+void handle_command(char* str, const command_callbacks_t* callbacks, application_t *app)
+{
+
+    normalize_string_ending(str);
+    char *command = strtok(str, " \n");
+    char *arg1 = strtok(NULL, " \n");
+    char *arg2 = strtok(NULL, " \n");
+    char *wrong_command = NULL;
+
+    state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
+
+    if(command == NULL)
+    {
+        wrong_command = command;
+        goto error;
+    }
+    else if(strcmp(command, "version") == 0)
+    {
+        callbacks->version();
+    }
+    else if(strcmp(command, "reboot") == 0)
+    {
+        callbacks->reboot();
+    }
+    else if(strcmp(command, "setup") == 0)
+    {
+        if(arg1 == NULL)
+        {
+            wrong_command = arg1;
+            goto error;
+        }
+
+        if(strcmp(arg1, "brightness") == 0)
+        {
+            if (arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            int brightness_level = 0;
+            if (sscanf(arg2, "%d", &brightness_level) == 1)
+            {
+                if(brightness_level < 0 || brightness_level > 15)
+                {
+                    wrong_command = arg2;
+                    goto error;
+                }
+
+                uint8_t brightness_value = (uint8_t)brightness_level;
+                callbacks->setup_brightness(&brightness_value);
+            }
+        }
+        else if (strcmp(arg1, "volume") == 0)
+        {
+            if (arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            int volume_level = 0;
+            if (sscanf(arg2, "%d", &volume_level) == 1)
+            {
+                if(volume_level < 0 || volume_level > 10)
+                {
+                    wrong_command = arg2;
+                    goto error;
+                }
+
+                uint8_t volume_value = (uint8_t)volume_level;
+                callbacks->setup_volume(&app->buzzer, &volume_value);
+            }
+        }
+        else if (strcmp(arg1, "status") == 0)
+        {
+            callbacks->setup_status(app);
+        }
+        else if (strcmp(arg1, "buzzer") == 0)
+        {
+            if (arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            if (strcmp(arg2, "on") == 0)
+            {
+                callbacks->setup_buzzer(&app->buzzer, true);
+            }
+            if (strcmp(arg2, "off") == 0)
+            {
+                callbacks->setup_buzzer(&app->buzzer, false);
+            }
+        }
+        else
+        {
+            wrong_command = arg1;
+            goto error;
+        }  
+    }
+    else if(strcmp(command, "test") == 0)
+    {
+        if(arg1 == NULL)
+        {
+            wrong_command = arg1;
+            goto error;
+        }
+
+        if(strcmp(arg1, "buzzer") == 0)
+        {
+            callbacks->test_buzzer(&app->buzzer);
+        }
+        else if(strcmp(arg1, "led") == 0)
+        {
+            if (arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            if(strcmp(arg2, "on") == 0)
+            {
+                callbacks->test_led(true);
+            }
+            else if(strcmp(arg2, "off") == 0)
+            {
+                callbacks->test_led(false);
+            }
+            else
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+        }
+        else
+        {
+            wrong_command = arg1;
+            goto error;
+        }
+    }
+    else if(strcmp(command, "timer") == 0)
+    {
+        if(arg1 == NULL)
+        {
+            wrong_command = arg1;
+            goto error;
+        }
+
+        if(strcmp(arg1, "set") == 0)
+        {
+            if(arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            uint32_t steps = 0;
+            if(parse_time_string(arg2, &steps))
+            {
+                callbacks->set_active_timer(active_sm, &steps);
+            }
+        }
+        else if(strcmp(arg1, "play") == 0)
+        {
+            callbacks->play_active_timer(active_sm);
+        }
+        else if(strcmp(arg1, "pause") == 0)
+        {
+            callbacks->pause_active_timer(active_sm);
+        }
+        else if(strcmp(arg1, "reset") == 0)
+        {
+            callbacks->reset_active_timer(active_sm);
+        }
+        else if(strcmp(arg1, "status") == 0)
+        {
+            callbacks->status_active_timer(active_sm);
+        }
+        else
+        {
+            wrong_command = arg1;
+            goto error;
+        }
+    }
+    else if (strcmp(command, "help") == 0)
+    {
+        callbacks->help();
+    }
+    else
+    {
+        wrong_command = command;
+        goto error;
+    }
+
+    return;
+
+error:
+    callbacks->unrecognized_command(wrong_command);
+    return;
+}
+

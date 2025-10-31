@@ -89,3 +89,8 @@ bool Buzzer::is_finished(void)
 
     return is_end_of_melody(&this->melody[this->note_index]);
 }
+
+uint8_t Buzzer::get_volume(void)
+{
+    return this->volume;
+}

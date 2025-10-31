@@ -41,3 +41,16 @@ uint8_t write_int_into_string(int16_t num, char *str)
 
     return written_chars;
 }
+
+void trim_string(char* str)
+{
+    while (*str)
+    {
+        if (*str == '\r' || *str == '\n')
+        {
+            *str = '\0';
+            break;
+        }
+        str++;
+    }
+}

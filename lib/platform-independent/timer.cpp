@@ -4,7 +4,7 @@ namespace state_machine
 {
     void add_to_target_time(timer_t *timer, int16_t step)
     {
-        int32_t new_time = (int32_t) timer->original_time + step;
+        int32_t new_time = timer->original_time + step;
         new_time = new_time < 0 ? 0 : new_time;
         new_time = new_time > max_time ? max_time : new_time;
         timer->original_time = new_time;
