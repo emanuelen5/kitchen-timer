@@ -59,6 +59,23 @@ void second_tick_cb(void)
     add_to_queue(&eventQueue, SECOND_TICK);
 }
 
+void init_hw_adc(void)
+{
+    ADMUX = bit(REFS1) | bit(REFS0) | bit(MUX2) | bit(MUX1) | bit(MUX0); // Vref=1.1V, ADC7
+    ADCSRA = bit(ADEN) | bit(ADPS2) | bit(ADPS1) | bit(ADPS0);                        // Enable ADC, prescaler=128
+}
+
+// Voltage is scaled 1024 * 4.3 / 1.1
+uint16_t battery_millivolts(void)
+{
+    ADCSRA |= bit(ADSC); // Start conversion
+    while (ADCSRA & bit(ADSC))
+        ;                     // Wait for conversion to complete
+    uint16_t adc_value = ADC; // Read ADC value
+    uint32_t voltage = (uint32_t)adc_value * 430 / 1024; // Scale to centivolts
+    return (uint16_t)voltage;
+}
+
 int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
@@ -68,6 +85,7 @@ int main()
     init_hw_millis();
     init_hw_led_counter();
     init_hw_max72xx();
+    init_hw_adc();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
@@ -90,6 +108,8 @@ int main()
         }
         service_application(&app);
         render_active_timer_view(app.state_machines, app.current_active_sm);
+
+        UART_printf("Battery: %d mV\n", battery_millivolts());
     }
 
     return 0;
