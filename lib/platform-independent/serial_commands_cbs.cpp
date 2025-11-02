@@ -24,7 +24,7 @@ void set_active_timer(state_machine_t *active_sm, uint32_t *steps)
 {
     reset_timer(&active_sm->timer);
     set_state(active_sm, SET_TIME);
-    change_original_time(&active_sm->timer, (int32_t*)steps);
+    add_to_target_time(&active_sm->timer, (int32_t)(*steps));
 }
 
 void play_active_timer(state_machine_t *active_sm)
@@ -74,7 +74,7 @@ void get_status_active_timer(state_machine_t *active_sm)
     state_t current_state = get_state(active_sm);
     const char* current_state_string = state_to_string(&current_state);
 
-    uint16_t current_seconds = get_current_time(active_sm);
+    uint16_t current_seconds = get_target_time(active_sm);
     uint8_t current_time[3];
     convert_seconds_to_hhmmss(current_seconds, current_time);
 
@@ -82,7 +82,7 @@ void get_status_active_timer(state_machine_t *active_sm)
     uint8_t current_mins = current_time[1];
     uint8_t current_secs = current_time[2];
 
-    uint16_t original_seconds = get_original_time(active_sm);
+    uint16_t original_seconds = get_target_time(active_sm);
     uint8_t original_time[3];
     convert_seconds_to_hhmmss(original_seconds, original_time);
 
