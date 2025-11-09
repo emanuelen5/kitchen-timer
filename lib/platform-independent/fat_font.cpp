@@ -122,6 +122,16 @@ static const uint8_t char_M[FATFONT_HEIGHT] = {
     0b110011
 };
 
+static const uint8_t char_v[FATFONT_HEIGHT] = {
+    0b110110,
+    0b110110,
+    0b110110,
+    0b110110,
+    0b110110,
+    0b011100,
+    0b001000
+};
+
 const uint8_t _icon_brightness[] PROGMEM = {
     0b00000000,0b00000000,
     0b00000001,0b00000000,
@@ -265,9 +275,13 @@ const uint8_t* get_bitmap(char c)
     switch (c)
     {
         case 'h':
+        case 'H':
             return char_h;
         case 'M':
             return char_M;
+        case 'v':
+        case 'V':
+            return char_v;
     }
     return nullptr;
 }
