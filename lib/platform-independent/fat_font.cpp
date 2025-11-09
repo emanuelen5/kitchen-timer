@@ -106,6 +106,16 @@ static const uint8_t char_h[FATFONT_HEIGHT] = {
     0b110011
 };
 
+static const uint8_t char_v[FATFONT_HEIGHT] = {
+    0b110110,
+    0b110110,
+    0b110110,
+    0b110110,
+    0b110110,
+    0b011100,
+    0b001000
+};
+
 const uint8_t* get_bitmap(char c)
 {
     if (c >= '0' && c <= '9')
@@ -115,7 +125,11 @@ const uint8_t* get_bitmap(char c)
     switch (c)
     {
         case 'h':
+        case 'H':
             return char_h;
+        case 'v':
+        case 'V':
+            return char_v;
     }
     return nullptr;
 }

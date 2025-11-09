@@ -60,7 +60,7 @@ void draw_active_timer_indicator(uint8_t active_timer_index)
     }
 }
 
-static void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
+void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
 {
     const uint8_t* bitmap = get_bitmap(c);
 
