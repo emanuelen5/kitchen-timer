@@ -77,11 +77,9 @@ void PowerSave::handle_event(PowerSaveEvent event)
         }
         else
         {
-            // This should not happen. We should have turned off the timer
-            // interrupt when in deep sleep. Otherwise we get unnecessary
-            // interrupts
-
-            // TODO: log this somehow
+            // It means that we for some reason woke up by an interrupt. But
+            // there was no user activity, so we go back to deep sleep.
+            enter_deep_sleep();
         }
     }
 }
