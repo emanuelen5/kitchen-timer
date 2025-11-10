@@ -138,6 +138,7 @@ void setup_volume(Buzzer* buzzer, uint8_t *volume)
     if(*volume > 11)
     {
         UART_print_P(PSTR("The volume must be a value between 0 and 10.\n"));
+        return;
     }
     save_byte_setting(volume, EEPROM_VOLUME_ADDR);
     buzzer->set_volume(*volume);
