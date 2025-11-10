@@ -8,6 +8,24 @@
 #include "settings.h"
 #include <ctype.h>
 
+const command_callbacks_t command_callbacks
+{
+    .test_led = test_led,
+    .version = version,
+    .set_active_timer = set_active_timer,
+    .play_active_timer = play_active_timer,
+    .pause_active_timer = pause_active_timer,
+    .reset_active_timer = reset_active_timer,
+    .status_active_timer = get_status_active_timer,
+    .setup_brightness = setup_brightness,
+    .setup_volume = setup_volume,
+    .setup_status = setup_status,
+    .setup_buzzer = setup_buzzer,
+    .test_buzzer = test_buzzer,
+    .help = help_cmd,
+    .unrecognized_command = unrecognized_command,
+    .reboot = reboot
+};
 
 void test_led(bool is_on)
 {

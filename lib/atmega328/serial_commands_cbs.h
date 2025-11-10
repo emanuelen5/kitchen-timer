@@ -1,5 +1,5 @@
 #ifndef SERIAL_COMMANDS_CBS_H
-#define SERIAL_COMMANS_CBS_H
+#define SERIAL_COMMANDS_CBS_H
 
 #include "serial_commands.h"
 

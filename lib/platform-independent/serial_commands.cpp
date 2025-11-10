@@ -1,26 +1,6 @@
 #include "serial_commands.h"
-#include "serial_commands_cbs.h"
 #include <string.h>
 #include <stdio.h>
-
-const command_callbacks_t command_callbacks
-{
-    .test_led = test_led,
-    .version = version,
-    .set_active_timer = set_active_timer,
-    .play_active_timer = play_active_timer,
-    .pause_active_timer = pause_active_timer,
-    .reset_active_timer = reset_active_timer,
-    .status_active_timer = get_status_active_timer,
-    .setup_brightness = setup_brightness,
-    .setup_volume = setup_volume,
-    .setup_status = setup_status,
-    .setup_buzzer = setup_buzzer,
-    .test_buzzer = test_buzzer,
-    .help = help_cmd,
-    .unrecognized_command = unrecognized_command,
-    .reboot = reboot
-};
 
 
 static void normalize_string_ending(char *str)
