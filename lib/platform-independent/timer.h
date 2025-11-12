@@ -12,7 +12,7 @@ namespace state_machine
         uint16_t original_time, current_time;
     } timer_t;
 
-    void add_to_target_time(timer_t *timer, int16_t step);
+    void add_to_target_time(timer_t *timer, int32_t step);
     void reset_timer(timer_t *timer);
     void set_time_left_to_target_time(timer_t *timer);
     void decrement_time_left(timer_t *timer);

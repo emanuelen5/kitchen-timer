@@ -140,7 +140,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int16_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
             add_to_target_time(&sm->timer, step_size);
         }
         break;
@@ -240,5 +240,18 @@ bool is_interactive_event(event_t event)
         return true;
     default:
         return false;
+    }
+}
+
+const char* state_to_string(state_t *state)
+{
+    switch (*state)
+    {
+        case IDLE:      return "IDLE";
+        case SET_TIME:  return "SET_TIME";
+        case RUNNING:   return "RUNNING";
+        case PAUSED:    return "PAUSED";
+        case RINGING:   return "RINGING";
+        default:        return "UNKNOWN_STATE";
     }
 }

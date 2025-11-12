@@ -43,5 +43,6 @@ uint16_t get_target_time(state_machine_t *sm);
 uint16_t get_time_left(state_machine_t *sm);
 state_t get_state(state_machine_t *sm);
 bool is_interactive_event(event_t event);
+const char* state_to_string(state_t *state);
 
 #endif // LIB_STATE_MACHINE_H

@@ -1,6 +1,7 @@
 #include "bootloader_sm.h"
 
 #include <avr/boot.h>
+#include <avr/wdt.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
 #include <util/crc16.h>
@@ -12,6 +13,12 @@
 #endif
 
 #define bit(x) (1 << (x))
+
+static void wdt_bootloader_disable(void)
+{
+    MCUSR = 0;                   // Clear reset flags
+    wdt_disable();
+}
 
 void prepare_self_program(void)
 {
@@ -144,6 +151,8 @@ void run_state_machine(void)
 
 int main(void)
 {
+    wdt_bootloader_disable();
+
     init_hw_UART();
 
     run_state_machine();
