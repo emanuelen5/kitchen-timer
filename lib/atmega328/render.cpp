@@ -123,21 +123,19 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
 
     switch(active_sm->state)
     {
-        case IDLE:
-            time_to_display = 0;
-            break;
-
         case SET_TIME:
             time_to_display = active_sm->timer.original_time;
             break;
 
-        case RINGING:
-
-            time_to_display = get_target_time(&active_sm->timer);
-            break;
-
-        default:
+        case RUNNING:
             time_to_display = active_sm->timer.current_time;
+            break;
+        
+        case PAUSED:
+            time_to_display = active_sm->timer.current_time;
+
+        case RINGING:
+            time_to_display = get_target_time(&active_sm->timer);
             break;
     }
 
