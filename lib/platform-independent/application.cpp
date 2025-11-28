@@ -95,23 +95,23 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
         state_machine_handle_event(&app->state_machines[i], event);
 }
 
-static void change_to_previous_view(application_t *app)
-{
-    const uint8_t first_view = 0;
-    if (app->current_view > first_view)
-    {
-        app->current_view = (application_view_t)(app->current_view - 1);
-    }
-}
-
-static void change_to_next_view(application_t *app)
-{
-    const uint8_t last_view = VIEW_COUNT - 1;
-    if (app->current_view < last_view)
-    {
-        app->current_view = (application_view_t)(app->current_view + 1);
-    }
-}
+// static void change_to_previous_view(application_t *app)
+// {
+//     const uint8_t first_view = 0;
+//     if (app->current_view > first_view)
+//     {
+//         app->current_view = (application_view_t)(app->current_view - 1);
+//     }
+// }
+// 
+// static void change_to_next_view(application_t *app)
+// {
+//     const uint8_t last_view = VIEW_COUNT - 1;
+//     if (app->current_view < last_view)
+//     {
+//         app->current_view = (application_view_t)(app->current_view + 1);
+//     }
+// }
 
 static void try_to_open_new_timer(application_t *app)
 {
@@ -139,27 +139,23 @@ static bool any_timer_has_state(application_t *app, state_t state)
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
+    uint16_t *original_time = &active_sm->timer.original_time;
 
     if (is_interactive_event(event))
+    {
         app->power_save.handle_event(PowerSaveEvent::activity);
+    }
 
-    if ((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_next_view(app);
-    }
-    else if ((event == CCW_ROTATION || event == CCW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_previous_view(app);
-    }
-    else if (event == DOUBLE_PRESS)
+
+    if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
     {
         try_to_open_new_timer(app);
     }
-    else if (event == CW_PRESSED_ROTATION)
+    else if (event == CW_PRESSED_ROTATION && *original_time != 0)
     {
         select_next_state_machine(app);
     }
-    else if (event == CCW_PRESSED_ROTATION)
+    else if (event == CCW_PRESSED_ROTATION && *original_time != 0)
     {
         select_previous_state_machine(app);
     }
