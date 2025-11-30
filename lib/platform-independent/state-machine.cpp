@@ -13,7 +13,13 @@ void set_state(state_machine_t *sm, state_t new_state)
     sm->state = new_state;
 }
 
-static void reset_state_machine(state_machine_t *sm)
+static void reset_active_state_machine(state_machine_t *sm)
+{
+    reset_timer(&sm->timer);
+    set_state(sm, SET_TIME);
+}
+
+static void reset_inactive_state_machine(state_machine_t *sm)
 {
     reset_timer(&sm->timer);
     set_state(sm, IDLE);
@@ -22,7 +28,7 @@ static void reset_state_machine(state_machine_t *sm)
 void init_state_machine(state_machine_t *sm)
 {
     sm->prev_state = IDLE;
-    reset_state_machine(sm);
+    reset_inactive_state_machine(sm);
 }
 
 void service_state_machine(state_machine_t *sm)
@@ -146,7 +152,10 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         break;
 
         case LONG_PRESS:
-            reset_timer(&sm->timer);
+            if(sm->timer.original_time == 0)
+            {
+                reset_active_state_machine(sm);
+            }
             break;
 
         default:
@@ -161,7 +170,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
 
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         case SECOND_TICK:
@@ -184,7 +193,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
 
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         default:
@@ -199,7 +208,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
 
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         default:
