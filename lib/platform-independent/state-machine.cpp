@@ -119,20 +119,9 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     switch (sm->state)
     {
     case IDLE:
-        switch (event)
-        {
-        case SINGLE_PRESS:
-            set_state(sm, SET_TIME);
-            break;
-
-        case LONG_PRESS:
-            // Does nothing
-            break;
-
-        default:
-            break;
-        }
+        //Do nothing
         break;
+
     case SET_TIME:
         switch (event)
         {
@@ -159,9 +148,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
 
         default:
+            // Do nothing
             break;
         }
         break;
+
     case RUNNING:
         switch (event)
         {
@@ -185,6 +176,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
         }
         break;
+
     case PAUSED:
         switch (event)
         {
@@ -200,13 +192,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
         }
         break;
+
     case RINGING:
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, IDLE);
-            break;
-
         case LONG_PRESS:
             reset_active_state_machine(sm);
             break;
