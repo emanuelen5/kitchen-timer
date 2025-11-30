@@ -151,11 +151,15 @@ void application_handle_event(application_t *app, event_t event)
     {
         try_to_open_new_timer(app);
     }
-    else if (event == CW_PRESSED_ROTATION && *original_time != 0)
+    else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+    {
+        //setting_menu_handle_event()
+    }
+    else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
     {
         select_next_state_machine(app);
     }
-    else if (event == CCW_PRESSED_ROTATION && *original_time != 0)
+    else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
     {
         select_previous_state_machine(app);
     }
