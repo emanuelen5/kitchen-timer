@@ -126,8 +126,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_time_left_to_target_time(&sm->timer);
-            set_state(sm, RUNNING);
+            if(sm->timer.original_time != 0)
+            {
+                set_current_time_to_target_time(&sm->timer);
+                set_state(sm, RUNNING);
+            }
             break;
 
         case CW_ROTATION:
@@ -160,6 +163,17 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             set_state(sm, PAUSED);
             break;
 
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&sm->timer, step_size);
+            add_to_current_time(&sm->timer, step_size);
+        }
+        break;
+
         case LONG_PRESS:
             reset_active_state_machine(sm);
             break;
@@ -183,6 +197,17 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case SINGLE_PRESS:
             set_state(sm, RUNNING);
             break;
+
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&sm->timer, step_size);
+            add_to_current_time(&sm->timer, step_size);
+        }
+        break;
 
         case LONG_PRESS:
             reset_active_state_machine(sm);
