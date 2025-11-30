@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "config.h"
+#include "events.h"
 #include "state-machine.h"
 #include "buzzer.h"
 #include "power-save.h"

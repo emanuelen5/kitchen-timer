@@ -1,6 +1,7 @@
 #include "application.h"
 #include "melody.h"
 #include "settings.h"
+#include "settings_menu.h"
 
 void init_application(application_t *app)
 {
