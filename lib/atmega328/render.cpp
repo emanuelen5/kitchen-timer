@@ -5,9 +5,8 @@
 #include "fat_font.h"
 #include "max72xx_matrix.h"
 #include "millis.h"
-
-#define FONT_WIDTH 6
-#define FONT_HEIGHT 7
+#include "UART.h"
+#include <avr/pgmspace.h>
 
 static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
 {
@@ -64,14 +63,36 @@ static void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_dig
 {
     const uint8_t* bitmap = get_bitmap(c);
 
-    for (uint8_t row = 0; row < FONT_HEIGHT; row++)
+    for (uint8_t row = 0; row < FATFONT_HEIGHT; row++)
     {
-        for (uint8_t col = 0; col < FONT_WIDTH; col++)
+        for (uint8_t col = 0; col < FATFONT_WIDTH; col++)
         {
             bool is_on = false;
             if(!clear_digit)
             {
-                is_on = bitmap[row] & bit(FONT_WIDTH - 1 - col);  // 6-bit wide
+                is_on = bitmap[row] & bit(FATFONT_WIDTH - 1 - col);  // 6-bit wide
+            }
+            matrix_set_pixel(x_offset + col, y_offset + row, is_on);
+        }
+    }
+}
+
+static void draw_bitmap(const uint8_t *bitmap, uint8_t width, uint8_t height, uint8_t bytes_per_row, uint8_t x_offset, uint8_t y_offset, bool clear_bitmap)
+{
+    for (uint8_t row = 0; row < height; row++) {
+        for (uint8_t col = 0; col < width; col++) {
+            bool is_on = false;
+            if (!clear_bitmap) {
+                uint16_t byte_index = col / 8;
+                if (byte_index < bytes_per_row) {
+                    uint8_t bit_in_byte = col % 8;        // 0..7 with LSB=0
+                    uint8_t bit_mask = (1 << (7 - bit_in_byte));
+
+                    uint8_t raw_byte = pgm_read_byte(bitmap + (row * bytes_per_row + byte_index));
+                    is_on = (raw_byte & bit_mask) != 0;
+                } else {
+                    is_on = false;
+                }
             }
             matrix_set_pixel(x_offset + col, y_offset + row, is_on);
         }
@@ -164,19 +185,29 @@ static void render_settings_menu_view(application_t *app)
     switch (app->settings_menu.menu_position)
     {
         case BRIGHTNESS:
-            draw_bitmap(get_bitmap('B'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 0, 2, 0, 0, false);
+            draw_bitmap(get_bitmap('B'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
-        case VOLUME:    
+        case VOLUME:
+            draw_bitmap(get_bitmap('V'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);    
             break;
+
         case BATTERY_V:
+            draw_bitmap(get_bitmap('A'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
+
         case MELODY:
+            draw_bitmap(get_bitmap('M'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
+
         case SNAKE:
+            draw_bitmap(get_bitmap('S'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
+
         case BACK:
+            draw_bitmap(get_bitmap('R'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
+
         default:
             break;
     }
