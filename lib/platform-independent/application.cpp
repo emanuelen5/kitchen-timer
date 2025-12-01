@@ -6,22 +6,27 @@
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
+
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
         init_state_machine(&app->state_machines[i]);
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
+
     uint8_t last_brightness_setting;
     load_byte_setting(&last_brightness_setting, EEPROM_BRIGHTNESS_ADDR);
     app->brightness = last_brightness_setting;
-    app->power_save.init(&app->brightness);
 
     uint8_t last_volume_setting;
     load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
     app->buzzer.set_volume(last_volume_setting);
 
+    app->power_save.init(&app->brightness);
+
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
+
+    init_settings_menu(&app->settings_menu);
 }
 
 bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
@@ -147,37 +152,49 @@ void application_handle_event(application_t *app, event_t event)
         app->power_save.handle_event(PowerSaveEvent::activity);
     }
 
+    switch (app->current_view)
+    {
+        case ACTIVE_TIMER_VIEW:
+            if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
+            {
+                try_to_open_new_timer(app);
+            }
+            else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+            {
+                app->current_view = SETTINGS_MENU_VIEW;
+            }
+            else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
+            {
+                select_next_state_machine(app);
+            }
+            else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
+            {
+                select_previous_state_machine(app);
+            }
+            else if (event == SECOND_TICK)
+            {
+                pass_event_to_all_state_machines(app, event);
+                bool any_ringing = any_timer_has_state(app, RINGING);
+                bool any_running = any_timer_has_state(app, RUNNING);
+                if (any_ringing)
+                    app->power_save.handle_event(PowerSaveEvent::activity);
+                else if (!any_running)
+                    app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
+                else
+                    app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
+            }
+            else
+            {
+                state_machine_handle_event(active_sm, event);
+            }
+            break;
 
-    if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
-    {
-        try_to_open_new_timer(app);
-    }
-    else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
-    {
-        //setting_menu_handle_event()
-    }
-    else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
-    {
-        select_next_state_machine(app);
-    }
-    else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
-    {
-        select_previous_state_machine(app);
-    }
-    else if (event == SECOND_TICK)
-    {
-        pass_event_to_all_state_machines(app, event);
-        bool any_ringing = any_timer_has_state(app, RINGING);
-        bool any_running = any_timer_has_state(app, RUNNING);
-        if (any_ringing)
-            app->power_save.handle_event(PowerSaveEvent::activity);
-        else if (!any_running)
-            app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
-        else
-            app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
-    }
-    else
-    {
-        state_machine_handle_event(active_sm, event);
+        case SETTINGS_MENU_VIEW:
+            settings_menu_event_handling(&app->settings_menu, event);
+            break;
+        
+        default:
+            //Do nothing
+            break;
     }
 }

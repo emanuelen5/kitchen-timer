@@ -143,7 +143,6 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
             break;
     }
 
-    matrix_buffer_clear();
     draw_timers_indicator(state_machines);
     draw_ringing_indicator(state_machines);
     bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
@@ -158,5 +157,46 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
     draw_active_timer_indicator(active_timer_index);
+}
+
+static void render_settings_menu_view(application_t *app)
+{
+    switch (app->settings_menu.menu_position)
+    {
+        case BRIGHTNESS:
+            draw_bitmap(get_bitmap('B'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 0, 2, 0, 0, false);
+            break;
+
+        case VOLUME:    
+            break;
+        case BATTERY_V:
+            break;
+        case MELODY:
+            break;
+        case SNAKE:
+            break;
+        case BACK:
+            break;
+        default:
+            break;
+    }
+}
+
+void render(application_t *app)
+{
+    matrix_buffer_clear();
+    switch (app->current_view)
+    {
+        case ACTIVE_TIMER_VIEW:
+            render_active_timer_view(app->state_machines, app->current_active_sm);
+            break;
+        
+        case SETTINGS_MENU_VIEW:
+            render_settings_menu_view(app);
+            break;
+        default:
+            break;
+    }
     matrix_update();
 }
+
