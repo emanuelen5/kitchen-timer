@@ -29,14 +29,14 @@ void init_application(application_t *app)
     init_settings_menu(&app->settings_menu);
 }
 
-bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
+static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
 {
     state_t current_state = app->state_machines[sm_index].state;
     state_t previous_state = app->previous_sm_states[sm_index];
     return current_state == into && previous_state != into;
 }
 
-bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from)
+static bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from)
 {
     state_t current_state = app->state_machines[sm_index].state;
     state_t previous_state = app->previous_sm_states[sm_index];
