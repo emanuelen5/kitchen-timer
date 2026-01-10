@@ -14,11 +14,6 @@ typedef enum
     SETTINGS_COUNT
 } settings_t;
 
-typedef enum
-{
-    SETTINGS_BRIGHTNESS_VIEW,
-} settings_views_t;
-
 typedef struct
 {
     settings_t menu_position;

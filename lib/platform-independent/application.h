@@ -12,6 +12,7 @@
 typedef enum {
     ACTIVE_TIMER_VIEW,
     SETTINGS_MENU_VIEW,
+    SETTINGS_BRIGHTNESS_VIEW,
     VIEW_COUNT
 } application_view_t;
 
