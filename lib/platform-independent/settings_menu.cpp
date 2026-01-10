@@ -15,7 +15,7 @@ void init_settings_menu(settings_menu_t *settings_menu, exit_settings_menu_cb_t 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
     settings_menu->menu_position = (settings_t)(settings_menu->menu_position + 1);
-    if(settings_menu->menu_position > SETTINGS_COUNT)
+    if(settings_menu->menu_position > SETTINGS_COUNT - 1)
     {
         settings_menu->menu_position = BRIGHTNESS;
     }   
