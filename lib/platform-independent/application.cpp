@@ -204,7 +204,7 @@ void application_handle_event(application_t *app, event_t event)
                 settings_menu_event_handling(&app->settings_menu, &change_settings_views_callbacks, app, event);
                 break;
 
-            case SETTINGS_BRIGHTNESS_VIEW:
+            case BRIGHTNESS_SETTING_VIEW:
                 break;
             
             default:
