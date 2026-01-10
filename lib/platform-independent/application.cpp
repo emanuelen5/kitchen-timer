@@ -142,16 +142,44 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
-static void exit_settings_menu_cb(void *app_argument)
+static application_t *convert_void_ptr_to_application_ptr(void *app_argument)
 {
-    application_t *app = (application_t *)app_argument;
-    app->current_view = ACTIVE_TIMER_VIEW;
+    return (application_t *)app_argument;
 }
 
-const change_settings_views_callbacks_t change_settings_views_callbacks
+static void change_settings_view_cb(void *app_argument, settings_t menu_position)
 {
-    .exit_settings_menu = exit_settings_menu_cb
-};
+    application_t *app = convert_void_ptr_to_application_ptr(app_argument);
+    switch(menu_position)
+    {
+    case BACK:
+        app->current_view = ACTIVE_TIMER_VIEW;
+        break;
+    
+    case BRIGHTNESS:
+        app->current_view = BRIGHTNESS_SETTING_VIEW;
+        break;
+    
+    case VOLUME:
+        app->current_view = VOLUME_SETTING_VIEW;
+        break;
+    
+    case BATTERY_V:
+        app->current_view = BATTERY_CHARGE_VIEW;
+        break;
+    
+    case MELODY:
+        app->current_view = MELODY_SELECT_VIEW;
+        break;
+    
+    case SNAKE:
+        app->current_view = SNAKE_VIEW;
+
+    default:
+        break;
+    }
+
+}
 
 void application_handle_event(application_t *app, event_t event)
 {
@@ -201,7 +229,7 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case SETTINGS_MENU_VIEW:
-                settings_menu_event_handling(&app->settings_menu, &change_settings_views_callbacks, app, event);
+                settings_menu_event_handling(&app->settings_menu, change_settings_view_cb, app, event);
                 break;
 
             case BRIGHTNESS_SETTING_VIEW:

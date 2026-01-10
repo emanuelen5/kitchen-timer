@@ -24,7 +24,7 @@ static void previous_setting_menu_option(settings_menu_t *settings_menu)
     }
 }
 
-void settings_menu_event_handling(settings_menu_t *settings_menu, const change_settings_views_callbacks_t *change_settings_views_callbacks, void *app_argument, event_t event)
+void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_settings_view_cb, void *app_argument, event_t event)
 {
     switch (event)
     {
@@ -39,27 +39,8 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, const change_s
             break;
 
         case SINGLE_PRESS:
-                switch(settings_menu->menu_position)
-                {
-                case BRIGHTNESS:
-                    break;
-                case VOLUME: 
-                    break;
-                case BATTERY_V: 
-                    break;
-                case MELODY: 
-                    break;
-                case SNAKE:
-                    //TODO
-                    break;
-                case BACK:
-                    change_settings_views_callbacks->exit_settings_menu(app_argument);
-                    break;
-                default:
-                    break;
-                }
-
-                settings_menu->menu_position = settings_menu->settings_sellection;
+            change_settings_view_cb(app_argument, settings_menu->menu_position);
+            settings_menu->menu_position = settings_menu->settings_sellection;
             break;
         
         default:
