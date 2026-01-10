@@ -3,6 +3,12 @@
 #include "settings.h"
 #include "settings_menu.h"
 
+static void exit_settings_menu_cb(void *app_argument)
+{
+    application_t *app = (application_t *)app_argument;
+    app->current_view = ACTIVE_TIMER_VIEW;
+}
+
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
@@ -26,7 +32,7 @@ void init_application(application_t *app)
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
 
-    init_settings_menu(&app->settings_menu);
+    init_settings_menu(&app->settings_menu, exit_settings_menu_cb, app);
 }
 
 static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)

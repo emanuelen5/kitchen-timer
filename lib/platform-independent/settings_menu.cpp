@@ -1,9 +1,15 @@
 #include <stdio.h>
 #include "settings_menu.h"
 
-void init_settings_menu(settings_menu_t *settings_menu)
+static exit_settings_menu_cb_t exit_settings_menu;
+static void *app;
+
+void init_settings_menu(settings_menu_t *settings_menu, exit_settings_menu_cb_t settings_menu_exit_cb, void *app_argument)
 {
     settings_menu->menu_position = BRIGHTNESS;
+
+    exit_settings_menu = settings_menu_exit_cb;
+    app = app_argument;
 }
 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
@@ -26,6 +32,25 @@ static void previous_setting_menu_option(settings_menu_t *settings_menu)
 
 static void sellect_settings_option(settings_menu_t *settings_menu)
 {
+    switch(settings_menu->menu_position)
+    {
+    case BRIGHTNESS: 
+        break;
+    case VOLUME: 
+        break;
+    case BATTERY_V: 
+        break;
+    case MELODY: 
+        break;
+    case SNAKE: 
+        break;
+    case BACK:
+        exit_settings_menu(app);
+        break;
+    default:
+        break;
+    }
+
     settings_menu->menu_position = settings_menu->settings_sellection;
 }
 
