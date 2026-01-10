@@ -20,9 +20,12 @@ typedef struct
     settings_t settings_sellection;
 } settings_menu_t;
 
-typedef void (*exit_settings_menu_cb_t)(void *app_argument);
+typedef struct
+{
+    void (*exit_settings_menu)(void *app_argument);
+} change_settings_views_callbacks_t;
 
-void init_settings_menu(settings_menu_t *settings_menu, exit_settings_menu_cb_t exit_settings_menu_cb, void *app_argument);
-void settings_menu_event_handling(settings_menu_t *settings_menu, event_t event);
+void init_settings_menu(settings_menu_t *settings_menu);
+void settings_menu_event_handling(settings_menu_t *settings_menu, const change_settings_views_callbacks_t *change_settings_views_callbacks, void *app_argument, event_t event);
 
 #endif //SETTINGS_MENU_H

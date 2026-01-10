@@ -3,12 +3,6 @@
 #include "settings.h"
 #include "settings_menu.h"
 
-static void exit_settings_menu_cb(void *app_argument)
-{
-    application_t *app = (application_t *)app_argument;
-    app->current_view = ACTIVE_TIMER_VIEW;
-}
-
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
@@ -32,7 +26,7 @@ void init_application(application_t *app)
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
 
-    init_settings_menu(&app->settings_menu, exit_settings_menu_cb, app);
+    init_settings_menu(&app->settings_menu);
 }
 
 static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
@@ -148,6 +142,17 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
+static void exit_settings_menu_cb(void *app_argument)
+{
+    application_t *app = (application_t *)app_argument;
+    app->current_view = ACTIVE_TIMER_VIEW;
+}
+
+const change_settings_views_callbacks_t change_settings_views_callbacks
+{
+    .exit_settings_menu = exit_settings_menu_cb
+};
+
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
@@ -168,38 +173,43 @@ void application_handle_event(application_t *app, event_t event)
         else
             app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
     }
-
-    switch (app->current_view)
+    else
     {
-        case ACTIVE_TIMER_VIEW:
-            if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
-            {
-                try_to_open_new_timer(app);
-            }
-            else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
-            {
-                app->current_view = SETTINGS_MENU_VIEW;
-            }
-            else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
-            {
-                select_next_state_machine(app);
-            }
-            else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
-            {
-                select_previous_state_machine(app);
-            }
-            else
-            {
-                state_machine_handle_event(active_sm, event);
-            }
-            break;
+        switch (app->current_view)
+        {
+            case ACTIVE_TIMER_VIEW:
+                if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
+                {
+                    try_to_open_new_timer(app);
+                }
+                else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+                {
+                    app->current_view = SETTINGS_MENU_VIEW;
+                }
+                else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
+                {
+                    select_next_state_machine(app);
+                }
+                else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
+                {
+                    select_previous_state_machine(app);
+                }
+                else
+                {
+                    state_machine_handle_event(active_sm, event);
+                }
+                break;
 
-        case SETTINGS_MENU_VIEW:
-            settings_menu_event_handling(&app->settings_menu, event);
-            break;
-        
-        default:
-            //Do nothing
-            break;
+            case SETTINGS_MENU_VIEW:
+                settings_menu_event_handling(&app->settings_menu, &change_settings_views_callbacks, app, event);
+                break;
+
+            case SETTINGS_BRIGHTNESS_VIEW:
+                break;
+            
+            default:
+                //Do nothing
+                break;
+        }
     }
 }
