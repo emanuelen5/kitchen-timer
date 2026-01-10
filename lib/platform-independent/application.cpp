@@ -158,6 +158,17 @@ void application_handle_event(application_t *app, event_t event)
         app->power_save.handle_event(PowerSaveEvent::activity);
     }
 
+    if (event == SECOND_TICK)
+    {
+        pass_event_to_all_state_machines(app, event);
+        if (any_timer_has_state(app, RINGING))
+            app->power_save.handle_event(PowerSaveEvent::activity);
+        else if (!any_timer_has_state(app, RUNNING))
+            app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
+        else
+            app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
+    }
+
     switch (app->current_view)
     {
         case ACTIVE_TIMER_VIEW:
@@ -176,18 +187,6 @@ void application_handle_event(application_t *app, event_t event)
             else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
             {
                 select_previous_state_machine(app);
-            }
-            else if (event == SECOND_TICK)
-            {
-                pass_event_to_all_state_machines(app, event);
-                bool any_ringing = any_timer_has_state(app, RINGING);
-                bool any_running = any_timer_has_state(app, RUNNING);
-                if (any_ringing)
-                    app->power_save.handle_event(PowerSaveEvent::activity);
-                else if (!any_running)
-                    app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
-                else
-                    app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
             }
             else
             {
