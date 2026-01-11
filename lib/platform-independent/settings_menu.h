@@ -17,7 +17,7 @@ typedef enum
 typedef struct
 {
     settings_t menu_position;
-    settings_t settings_sellection;
+    settings_t selected_setting;
 } settings_menu_t;
 
 typedef void (*change_settings_views_cb_t)(void *app_argument, settings_t menu_position);

@@ -40,7 +40,13 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
 
         case SINGLE_PRESS:
             change_settings_view_cb(app_argument, settings_menu->menu_position);
-            settings_menu->menu_position = settings_menu->settings_sellection;
+            settings_menu->menu_position = settings_menu->selected_setting;
+            break;
+        
+        default:
+            break;
+    }
+}
             break;
         
         default:
