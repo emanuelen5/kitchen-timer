@@ -142,10 +142,10 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
-static void change_settings_view_cb(void *app_argument, settings_t menu_position)
+static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_setting)
 {
     application_t *app = (application_t *)app_argument;
-    switch(menu_position)
+    switch(selected_setting)
     {
     case BACK:
         app->current_view = ACTIVE_TIMER_VIEW;
@@ -225,7 +225,7 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case SETTINGS_MENU_VIEW:
-                settings_menu_event_handling(&app->settings_menu, change_settings_view_cb, app, event);
+                settings_menu_event_handling(&app->settings_menu, change_to_a_setting_view_cb, app, event);
                 break;
 
             case BRIGHTNESS_SETTING_VIEW:
