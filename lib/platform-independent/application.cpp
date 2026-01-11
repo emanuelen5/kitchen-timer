@@ -142,14 +142,9 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
-static application_t *convert_void_ptr_to_application_ptr(void *app_argument)
-{
-    return (application_t *)app_argument;
-}
-
 static void change_settings_view_cb(void *app_argument, settings_t menu_position)
 {
-    application_t *app = convert_void_ptr_to_application_ptr(app_argument);
+    application_t *app = (application_t *)app_argument;
     switch(menu_position)
     {
     case BACK:
@@ -174,6 +169,7 @@ static void change_settings_view_cb(void *app_argument, settings_t menu_position
     
     case SNAKE:
         app->current_view = SNAKE_VIEW;
+        break;
 
     default:
         break;
@@ -233,6 +229,7 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case BRIGHTNESS_SETTING_VIEW:
+                
                 break;
             
             default:
