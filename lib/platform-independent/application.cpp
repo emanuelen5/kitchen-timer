@@ -240,6 +240,9 @@ void application_handle_event(application_t *app, event_t event)
             case BRIGHTNESS_SETTING_VIEW:
                 brightness_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
                 break;
+
+            case VOLUME_SETTING_VIEW:
+                volume_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
             
             default:
                 //Do nothing

@@ -72,3 +72,27 @@ void brightness_setting_event_handling(settings_menu_t *settings_menu, change_ba
             break;
     }
 }
+
+void volume_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            //Increase volume
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            //Decrease volume
+            break;
+
+        case SINGLE_PRESS:
+            //Apply changes
+            change_back_to_settings_menu_view_cb(app_argument, settings_menu);
+            break;
+        
+        default:
+            break;
+    }
+}
