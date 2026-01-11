@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "settings_menu.h"
+#include "UART.h"
 
 void init_settings_menu(settings_menu_t *settings_menu)
 {
@@ -47,6 +48,24 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
             break;
     }
 }
+
+void brightness_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            //Increase brightness
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            //Decrease brightness
+            break;
+
+        case SINGLE_PRESS:
+            //Apply changes
+            change_back_to_settings_menu_view_cb(app_argument, settings_menu);
             break;
         
         default:

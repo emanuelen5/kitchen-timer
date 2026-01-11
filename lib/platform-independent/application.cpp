@@ -2,6 +2,7 @@
 #include "melody.h"
 #include "settings.h"
 #include "settings_menu.h"
+#include "UART.h"
 
 void init_application(application_t *app)
 {
@@ -174,7 +175,15 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
     default:
         break;
     }
+}
 
+static void change_back_to_settings_menu_view_cb(void *app_argument, settings_menu_t *settings_menu)
+{
+    application_t *app = (application_t *)app_argument;
+    settings_menu->menu_position = BRIGHTNESS;
+    UART_printf("%d, %d\n",settings_menu->menu_position, settings_menu->selected_setting);
+    app->current_view = SETTINGS_MENU_VIEW;
+    UART_printf("%d\n",app->current_view);
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -229,7 +238,7 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case BRIGHTNESS_SETTING_VIEW:
-                
+                brightness_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
                 break;
             
             default:
