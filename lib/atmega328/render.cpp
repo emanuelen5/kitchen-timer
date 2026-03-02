@@ -185,27 +185,27 @@ static void render_settings_menu_view(application_t *app)
     switch (app->settings_menu.menu_position)
     {
         case BRIGHTNESS:
-            draw_bitmap(get_bitmap('B'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+            draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         case VOLUME:
-            draw_bitmap(get_bitmap('V'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);    
+            draw_bitmap(get_icon_bitmap(icon_volume), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         case BATTERY_V:
-            draw_bitmap(get_bitmap('A'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+            draw_bitmap(get_icon_bitmap(icon_battery), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         case MELODY:
-            draw_bitmap(get_bitmap('M'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+            draw_bitmap(get_icon_bitmap(icon_melody), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         case SNAKE:
-            draw_bitmap(get_bitmap('S'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+            draw_bitmap(get_icon_bitmap(icon_snake), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         case BACK:
-            draw_bitmap(get_bitmap('R'), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+            draw_bitmap(get_icon_bitmap(icon_return), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
             break;
 
         default:
