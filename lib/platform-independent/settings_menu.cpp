@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "settings_menu.h"
 #include "UART.h"
+#include "settings.h"
+
+void save_byte_setting(uint8_t setting, eeprom_address address);
+void max72xx_set_intensity(uint8_t intensity_level);
 
 void init_settings_menu(settings_menu_t *settings_menu)
 {
@@ -42,30 +46,6 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
         case SINGLE_PRESS:
             settings_menu->selected_setting = settings_menu->menu_position;
             change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
-            break;
-        
-        default:
-            break;
-    }
-}
-
-void brightness_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event)
-{
-    switch (event)
-    {
-        case CW_ROTATION:
-        case CW_ROTATION_FAST:
-            //Increase brightness
-            break;
-
-        case CCW_ROTATION:
-        case CCW_ROTATION_FAST:
-            //Decrease brightness
-            break;
-
-        case SINGLE_PRESS:
-            //Apply changes
-            change_back_to_settings_menu_view_cb(app_argument, settings_menu);
             break;
         
         default:

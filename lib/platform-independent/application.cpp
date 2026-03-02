@@ -3,6 +3,9 @@
 #include "settings.h"
 #include "settings_menu.h"
 #include "UART.h"
+#include <stdio.h>
+
+static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
 
 void init_application(application_t *app)
 {
@@ -110,7 +113,7 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
 //         app->current_view = (application_view_t)(app->current_view - 1);
 //     }
 // }
-// 
+//
 // static void change_to_next_view(application_t *app)
 // {
 //     const uint8_t last_view = VIEW_COUNT - 1;
@@ -151,23 +154,23 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
     case BACK:
         app->current_view = ACTIVE_TIMER_VIEW;
         break;
-    
+
     case BRIGHTNESS:
         app->current_view = BRIGHTNESS_SETTING_VIEW;
         break;
-    
+
     case VOLUME:
         app->current_view = VOLUME_SETTING_VIEW;
         break;
-    
+
     case BATTERY_V:
         app->current_view = BATTERY_CHARGE_VIEW;
         break;
-    
+
     case MELODY:
         app->current_view = MELODY_SELECT_VIEW;
         break;
-    
+
     case SNAKE:
         app->current_view = SNAKE_VIEW;
         break;
@@ -175,6 +178,113 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
     default:
         break;
     }
+}
+
+void save_byte_setting(uint8_t setting, eeprom_address address);
+void max72xx_set_intensity(uint8_t intensity_level);
+
+void init_settings_menu(settings_menu_t *settings_menu)
+{
+    settings_menu->menu_position = BRIGHTNESS;
+}
+
+static void next_settings_menu_option(settings_menu_t *settings_menu)
+{
+    settings_menu->menu_position = (settings_t)(settings_menu->menu_position + 1);
+    if(settings_menu->menu_position > SETTINGS_COUNT - 1)
+    {
+        settings_menu->menu_position = BRIGHTNESS;
+    }
+}
+
+static void previous_setting_menu_option(settings_menu_t *settings_menu)
+{
+    settings_menu->menu_position = (settings_t)(settings_menu->menu_position - 1);
+    if(settings_menu->menu_position < 0)
+    {
+        settings_menu->menu_position = (settings_t)(SETTINGS_COUNT - 1);
+    }
+}
+
+void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            next_settings_menu_option(settings_menu);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            previous_setting_menu_option(settings_menu);
+            break;
+
+        case SINGLE_PRESS:
+            settings_menu->selected_setting = settings_menu->menu_position;
+            change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
+            break;
+
+        default:
+            break;
+    }
+}
+
+void brightness_setting_event_handling(application_t *app,  event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            app->brightness++;
+            max72xx_set_intensity(app->brightness);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            app->brightness--;
+            max72xx_set_intensity(app->brightness);
+            break;
+
+        case SINGLE_PRESS:
+            save_byte_setting(app->brightness, EEPROM_BRIGHTNESS_ADDR);
+            max72xx_set_intensity(app->brightness);
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
+void volume_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            //Increase volume
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            //Decrease volume
+            break;
+
+        case SINGLE_PRESS:
+            //Apply changes
+            change_back_to_settings_menu_view_cb(app_argument, settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
+static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
+{
+    settings_menu->menu_position = BRIGHTNESS;
+    app->current_view = SETTINGS_MENU_VIEW;
 }
 
 static void change_back_to_settings_menu_view_cb(void *app_argument, settings_menu_t *settings_menu)
@@ -238,12 +348,12 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case BRIGHTNESS_SETTING_VIEW:
-                brightness_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
+                brightness_setting_event_handling(app, event);
                 break;
 
             case VOLUME_SETTING_VIEW:
                 volume_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
-            
+
             default:
                 //Do nothing
                 break;

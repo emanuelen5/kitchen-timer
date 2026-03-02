@@ -25,7 +25,6 @@ typedef void (*change_back_to_settings_menu_view_cb_t)(void *app_argument, setti
 
 void init_settings_menu(settings_menu_t *settings_menu);
 void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event);
-void brightness_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event);
 void volume_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event);
 
 #endif //SETTINGS_MENU_H
