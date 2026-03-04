@@ -248,7 +248,6 @@ void brightness_setting_event_handling(application_t *app,  event_t event)
 
         case SINGLE_PRESS:
             save_byte_setting(app->brightness, EEPROM_BRIGHTNESS_ADDR);
-            max72xx_set_intensity(app->brightness);
             going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
             break;
 
