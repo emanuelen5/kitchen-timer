@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include "settings_menu.h"
-#include "UART.h"
+#include <stdio.h>
 #include "settings.h"
 
 void save_byte_setting(uint8_t setting, eeprom_address address);

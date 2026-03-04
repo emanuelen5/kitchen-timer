@@ -1,6 +1,11 @@
 #include <stdint.h>
 #include "fat_font.h"
+
+#if defined(__AVR__)
 #include <avr/pgmspace.h>
+#else
+#define PROGMEM
+#endif
 
 // Each byte in the characters uses the 6 least significant bits.
 

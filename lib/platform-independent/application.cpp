@@ -2,8 +2,6 @@
 #include "melody.h"
 #include "settings.h"
 #include "settings_menu.h"
-#include "UART.h"
-#include "max72xx.h"
 #include <stdio.h>
 
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
@@ -181,8 +179,10 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
     }
 }
 
+// Prototypes for functions defined in platform-specific files
 void save_byte_setting(uint8_t setting, eeprom_address address);
 void max72xx_set_intensity(uint8_t intensity_level);
+constexpr uint8_t max72xx_max_brightness = 10;
 
 void init_settings_menu(settings_menu_t *settings_menu)
 {
