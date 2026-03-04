@@ -182,7 +182,7 @@ void render_active_timer_view(state_machine_t* state_machines, uint8_t active_ti
 
 static void render_settings_menu_view(application_t *app)
 {
-    switch (app->settings_menu.menu_position)
+    switch (app->settings_menu.current_menu_position)
     {
         case BRIGHTNESS:
             draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);

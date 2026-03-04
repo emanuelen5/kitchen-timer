@@ -16,7 +16,7 @@ typedef enum
 
 typedef struct
 {
-    settings_t menu_position;
+    settings_t current_menu_position;
     settings_t selected_setting;
 } settings_menu_t;
 

@@ -8,24 +8,24 @@ void max72xx_set_intensity(uint8_t intensity_level);
 
 void init_settings_menu(settings_menu_t *settings_menu)
 {
-    settings_menu->menu_position = BRIGHTNESS;
+    settings_menu->current_menu_position = BRIGHTNESS;
 }
 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->menu_position = (settings_t)(settings_menu->menu_position + 1);
-    if(settings_menu->menu_position > SETTINGS_COUNT - 1)
+    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
+    if(settings_menu->current_menu_position > SETTINGS_COUNT - 1)
     {
-        settings_menu->menu_position = BRIGHTNESS;
+        settings_menu->current_menu_position = BRIGHTNESS;
     }   
 }
 
 static void previous_setting_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->menu_position = (settings_t)(settings_menu->menu_position - 1);
-    if(settings_menu->menu_position < 0)
+    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
+    if(settings_menu->current_menu_position < 0)
     {
-        settings_menu->menu_position = (settings_t)(SETTINGS_COUNT - 1);
+        settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
     }
 }
 
@@ -44,7 +44,7 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
             break;
 
         case SINGLE_PRESS:
-            settings_menu->selected_setting = settings_menu->menu_position;
+            settings_menu->selected_setting = settings_menu->current_menu_position;
             change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
             break;
         
