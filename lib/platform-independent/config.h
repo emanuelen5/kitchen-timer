@@ -10,8 +10,6 @@
 //DISPLAY configs
 #define DISPLAY_DEFAULT_BRIGHTNESS 0x0a
 
-#define BRIGHTNESS_INDICATOR_ROW 0
-
 
 //Active_Timer_View configs
 #define TIMERS_INDICATOR_COLUMN 0

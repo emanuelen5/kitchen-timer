@@ -230,7 +230,7 @@ void render_brightness_setting_view(application_t *app)
     for(int i = 0; i <= max72xx_max_brightness; i++)
     {
         const bool is_on = (app->brightness) >= i;
-        matrix_set_pixel(i, BRIGHTNESS_INDICATOR_ROW, is_on);
+        matrix_set_pixel(i, 0, is_on);
     }
 }
 
