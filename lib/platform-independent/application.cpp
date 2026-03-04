@@ -1,36 +1,45 @@
 #include "application.h"
 #include "melody.h"
 #include "settings.h"
+#include "settings_menu.h"
+#include <stdio.h>
+
+static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
 
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
+
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
         init_state_machine(&app->state_machines[i]);
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
+
     uint8_t last_brightness_setting;
     load_byte_setting(&last_brightness_setting, EEPROM_BRIGHTNESS_ADDR);
     app->brightness = last_brightness_setting;
-    app->power_save.init(&app->brightness);
 
     uint8_t last_volume_setting;
     load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
     app->buzzer.set_volume(last_volume_setting);
 
+    app->power_save.init(&app->brightness);
+
     app->current_active_sm = 0;
     set_state(&app->state_machines[0], SET_TIME);
+
+    init_settings_menu(&app->settings_menu);
 }
 
-bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
+static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
 {
     state_t current_state = app->state_machines[sm_index].state;
     state_t previous_state = app->previous_sm_states[sm_index];
     return current_state == into && previous_state != into;
 }
 
-bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from)
+static bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, state_t from)
 {
     state_t current_state = app->state_machines[sm_index].state;
     state_t previous_state = app->previous_sm_states[sm_index];
@@ -95,23 +104,23 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
         state_machine_handle_event(&app->state_machines[i], event);
 }
 
-static void change_to_previous_view(application_t *app)
-{
-    const uint8_t first_view = 0;
-    if (app->current_view > first_view)
-    {
-        app->current_view = (application_view_t)(app->current_view - 1);
-    }
-}
-
-static void change_to_next_view(application_t *app)
-{
-    const uint8_t last_view = VIEW_COUNT - 1;
-    if (app->current_view < last_view)
-    {
-        app->current_view = (application_view_t)(app->current_view + 1);
-    }
-}
+// static void change_to_previous_view(application_t *app)
+// {
+//     const uint8_t first_view = 0;
+//     if (app->current_view > first_view)
+//     {
+//         app->current_view = (application_view_t)(app->current_view - 1);
+//     }
+// }
+//
+// static void change_to_next_view(application_t *app)
+// {
+//     const uint8_t last_view = VIEW_COUNT - 1;
+//     if (app->current_view < last_view)
+//     {
+//         app->current_view = (application_view_t)(app->current_view + 1);
+//     }
+// }
 
 static void try_to_open_new_timer(application_t *app)
 {
@@ -136,47 +145,219 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
+static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_setting)
+{
+    application_t *app = (application_t *)app_argument;
+    switch(selected_setting)
+    {
+    case BACK:
+        app->current_view = ACTIVE_TIMER_VIEW;
+        break;
+
+    case BRIGHTNESS:
+        app->current_view = BRIGHTNESS_SETTING_VIEW;
+        break;
+
+    case VOLUME:
+        app->current_view = VOLUME_SETTING_VIEW;
+        break;
+
+    case BATTERY_V:
+        app->current_view = BATTERY_CHARGE_VIEW;
+        break;
+
+    case MELODY:
+        app->current_view = MELODY_SELECT_VIEW;
+        break;
+
+    case SNAKE:
+        app->current_view = SNAKE_VIEW;
+        break;
+
+    default:
+        break;
+    }
+}
+
+// Prototypes for functions defined in platform-specific files
+void save_byte_setting(uint8_t setting, eeprom_address address);
+void max72xx_set_intensity(uint8_t intensity_level);
+constexpr uint8_t max72xx_max_brightness = 10;
+
+void init_settings_menu(settings_menu_t *settings_menu)
+{
+    settings_menu->current_menu_position = BRIGHTNESS;
+}
+
+static void next_settings_menu_option(settings_menu_t *settings_menu)
+{
+    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
+    if(settings_menu->current_menu_position > SETTINGS_COUNT - 1)
+    {
+        settings_menu->current_menu_position = BRIGHTNESS;
+    }
+}
+
+static void previous_setting_menu_option(settings_menu_t *settings_menu)
+{
+    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
+    if(settings_menu->current_menu_position < 0)
+    {
+        settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
+    }
+}
+
+void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            next_settings_menu_option(settings_menu);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            previous_setting_menu_option(settings_menu);
+            break;
+
+        case SINGLE_PRESS:
+            settings_menu->selected_setting = settings_menu->current_menu_position;
+            change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
+            break;
+
+        default:
+            break;
+    }
+}
+
+void brightness_setting_event_handling(application_t *app,  event_t event)
+{
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            if(app->brightness < max72xx_max_brightness)
+                app->brightness++;
+            max72xx_set_intensity(app->brightness);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            if(app->brightness > 0)
+                app->brightness--;
+            max72xx_set_intensity(app->brightness);
+            break;
+
+        case SINGLE_PRESS:
+            save_byte_setting(app->brightness, EEPROM_BRIGHTNESS_ADDR);
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
+void volume_setting_event_handling(application_t *app,  event_t event)
+{
+    uint8_t volume = app->buzzer.get_volume();
+
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            volume += 1;
+            app->buzzer.set_volume(volume);
+            app->buzzer.start_melody(volume_setting, 0);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            if (volume > 0) {
+                volume -= 1;
+                app->buzzer.set_volume(volume);
+                app->buzzer.start_melody(volume_setting, 0);
+            }
+            break;
+
+        case SINGLE_PRESS:
+            save_byte_setting(app->brightness, EEPROM_VOLUME_ADDR);
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
+static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
+{
+    settings_menu->current_menu_position = BRIGHTNESS;
+    app->current_view = SETTINGS_MENU_VIEW;
+}
+
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
+    uint16_t *original_time = &active_sm->timer.original_time;
 
     if (is_interactive_event(event))
+    {
         app->power_save.handle_event(PowerSaveEvent::activity);
+    }
 
-    if ((event == CW_ROTATION || event == CW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_next_view(app);
-    }
-    else if ((event == CCW_ROTATION || event == CCW_ROTATION_FAST) && active_sm->state != SET_TIME)
-    {
-        change_to_previous_view(app);
-    }
-    else if (event == DOUBLE_PRESS)
-    {
-        try_to_open_new_timer(app);
-    }
-    else if (event == CW_PRESSED_ROTATION)
-    {
-        select_next_state_machine(app);
-    }
-    else if (event == CCW_PRESSED_ROTATION)
-    {
-        select_previous_state_machine(app);
-    }
-    else if (event == SECOND_TICK)
+    if (event == SECOND_TICK)
     {
         pass_event_to_all_state_machines(app, event);
-        bool any_ringing = any_timer_has_state(app, RINGING);
-        bool any_running = any_timer_has_state(app, RUNNING);
-        if (any_ringing)
+        if (any_timer_has_state(app, RINGING))
             app->power_save.handle_event(PowerSaveEvent::activity);
-        else if (!any_running)
+        else if (!any_timer_has_state(app, RUNNING))
             app->power_save.handle_event(PowerSaveEvent::nothing_running_last_second);
         else
             app->power_save.handle_event(PowerSaveEvent::no_activity_last_second);
     }
     else
     {
-        state_machine_handle_event(active_sm, event);
+        switch (app->current_view)
+        {
+            case ACTIVE_TIMER_VIEW:
+                if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
+                {
+                    try_to_open_new_timer(app);
+                }
+                else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+                {
+                    app->current_view = SETTINGS_MENU_VIEW;
+                }
+                else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
+                {
+                    select_next_state_machine(app);
+                }
+                else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
+                {
+                    select_previous_state_machine(app);
+                }
+                else
+                {
+                    state_machine_handle_event(active_sm, event);
+                }
+                break;
+
+            case SETTINGS_MENU_VIEW:
+                settings_menu_event_handling(&app->settings_menu, change_to_a_setting_view_cb, app, event);
+                break;
+
+            case BRIGHTNESS_SETTING_VIEW:
+                brightness_setting_event_handling(app, event);
+                break;
+
+            case VOLUME_SETTING_VIEW:
+                volume_setting_event_handling(app, event);
+
+            default:
+                //Do nothing
+                break;
+        }
     }
 }

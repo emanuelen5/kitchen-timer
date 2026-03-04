@@ -13,7 +13,13 @@ void set_state(state_machine_t *sm, state_t new_state)
     sm->state = new_state;
 }
 
-static void reset_state_machine(state_machine_t *sm)
+static void reset_active_state_machine(state_machine_t *sm)
+{
+    reset_timer(&sm->timer);
+    set_state(sm, SET_TIME);
+}
+
+static void reset_inactive_state_machine(state_machine_t *sm)
 {
     reset_timer(&sm->timer);
     set_state(sm, IDLE);
@@ -22,7 +28,7 @@ static void reset_state_machine(state_machine_t *sm)
 void init_state_machine(state_machine_t *sm)
 {
     sm->prev_state = IDLE;
-    reset_state_machine(sm);
+    reset_inactive_state_machine(sm);
 }
 
 void service_state_machine(state_machine_t *sm)
@@ -113,26 +119,18 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     switch (sm->state)
     {
     case IDLE:
-        switch (event)
-        {
-        case SINGLE_PRESS:
-            set_state(sm, SET_TIME);
-            break;
-
-        case LONG_PRESS:
-            // Does nothing
-            break;
-
-        default:
-            break;
-        }
+        //Do nothing
         break;
+
     case SET_TIME:
         switch (event)
         {
         case SINGLE_PRESS:
-            set_time_left_to_target_time(&sm->timer);
-            set_state(sm, RUNNING);
+            if(sm->timer.original_time != 0)
+            {
+                set_current_time_to_target_time(&sm->timer);
+                set_state(sm, RUNNING);
+            }
             break;
 
         case CW_ROTATION:
@@ -146,13 +144,18 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         break;
 
         case LONG_PRESS:
-            reset_timer(&sm->timer);
+            if(sm->timer.original_time == 0)
+            {
+                reset_active_state_machine(sm);
+            }
             break;
 
         default:
+            // Do nothing
             break;
         }
         break;
+
     case RUNNING:
         switch (event)
         {
@@ -160,8 +163,19 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             set_state(sm, PAUSED);
             break;
 
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&sm->timer, step_size);
+            add_to_current_time(&sm->timer, step_size);
+        }
+        break;
+
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         case SECOND_TICK:
@@ -176,6 +190,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             break;
         }
         break;
+
     case PAUSED:
         switch (event)
         {
@@ -183,23 +198,32 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
             set_state(sm, RUNNING);
             break;
 
+        case CW_ROTATION:
+        case CCW_ROTATION:
+        case CW_ROTATION_FAST:
+        case CCW_ROTATION_FAST:
+        {
+            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&sm->timer, step_size);
+            add_to_current_time(&sm->timer, step_size);
+        }
+        break;
+
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         default:
             break;
         }
         break;
+
     case RINGING:
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, IDLE);
-            break;
-
         case LONG_PRESS:
-            reset_state_machine(sm);
+            reset_active_state_machine(sm);
             break;
 
         default:

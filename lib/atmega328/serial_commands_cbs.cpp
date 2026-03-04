@@ -129,7 +129,7 @@ void setup_brightness(uint8_t *intensity)
         UART_print_P(PSTR("The display brightness must be a value between 0 to 15.\n"));
         return;
     }
-    save_byte_setting(intensity, EEPROM_BRIGHTNESS_ADDR);
+    save_byte_setting(*intensity, EEPROM_BRIGHTNESS_ADDR);
     max72xx_set_intensity(*intensity);
 }
 
@@ -140,7 +140,7 @@ void setup_volume(Buzzer* buzzer, uint8_t *volume)
         UART_print_P(PSTR("The volume must be a value between 0 and 10.\n"));
         return;
     }
-    save_byte_setting(volume, EEPROM_VOLUME_ADDR);
+    save_byte_setting(*volume, EEPROM_VOLUME_ADDR);
     buzzer->set_volume(*volume);
 }
 
@@ -165,7 +165,7 @@ void setup_buzzer(Buzzer* buzzer, bool is_on)
 void test_buzzer(Buzzer *buzzer)
 {
     buzzer->set_volume(5);
-    buzzer->start_melody(beeps, 2);
+    buzzer->start_melody(volume_setting, 2);
 }
 
 const PROGMEM char help[] = (

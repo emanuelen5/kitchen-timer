@@ -4,10 +4,10 @@
 #include "config.h"
 #include "fat_font.h"
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include "millis.h"
-
-#define FONT_WIDTH 6
-#define FONT_HEIGHT 7
+#include "UART.h"
+#include <avr/pgmspace.h>
 
 static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
 {
@@ -22,7 +22,7 @@ static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
     return state->blink_is_on;
 }
 
-static void draw_timers_indicator(state_machine_t sm[])
+static void draw_timer_indicators(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
@@ -62,16 +62,46 @@ void draw_active_timer_indicator(uint8_t active_timer_index)
 
 static void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_digit)
 {
-    const uint8_t* bitmap = get_bitmap(c);
+    const uint8_t *bitmap = get_bitmap(c);
 
-    for (uint8_t row = 0; row < FONT_HEIGHT; row++)
+    for (uint8_t row = 0; row < FATFONT_HEIGHT; row++)
     {
-        for (uint8_t col = 0; col < FONT_WIDTH; col++)
+        for (uint8_t col = 0; col < FATFONT_WIDTH; col++)
         {
             bool is_on = false;
-            if(!clear_digit)
+            if (!clear_digit)
             {
-                is_on = bitmap[row] & bit(FONT_WIDTH - 1 - col);  // 6-bit wide
+                is_on = bitmap[row] & bit(FATFONT_WIDTH - 1 - col); // 6-bit wide
+            }
+            matrix_set_pixel(x_offset + col, y_offset + row, is_on);
+        }
+    }
+}
+
+static void draw_bitmap(const uint8_t *bitmap, uint8_t width, uint8_t height,
+                        uint8_t bytes_per_row, uint8_t x_offset, 
+                        uint8_t y_offset, bool clear_bitmap)
+{
+    for (uint8_t row = 0; row < height; row++)
+    {
+        for (uint8_t col = 0; col < width; col++)
+        {
+            bool is_on = false;
+            if (!clear_bitmap)
+            {
+                uint16_t byte_index = col / 8;
+                if (byte_index < bytes_per_row)
+                {
+                    uint8_t bit_in_byte = col % 8; // 0..7 with LSB=0
+                    uint8_t bit_mask = (1 << (7 - bit_in_byte));
+
+                    uint8_t raw_byte = pgm_read_byte(bitmap + (row * bytes_per_row + byte_index));
+                    is_on = (raw_byte & bit_mask) != 0;
+                }
+                else
+                {
+                    is_on = false;
+                }
             }
             matrix_set_pixel(x_offset + col, y_offset + row, is_on);
         }
@@ -82,14 +112,16 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 {
     const bool show_as_hh_mm = current_time >= 3600;
     uint8_t top_value, bottom_value;
-    if (show_as_hh_mm) {
+    if (show_as_hh_mm)
+    {
         top_value = current_time / 3600;
         bottom_value = (current_time / 60) % 60;
-    } else { // mm_ss
+    }
+    else
+    { // mm_ss
         top_value = current_time / 60;
         bottom_value = current_time % 60;
     }
-
 
     char top_digits[2], bottom_digits[2];
     if (show_as_hh_mm)
@@ -111,50 +143,131 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 
     draw_char(bottom_digits[0], x_offset, y_offset + 8, clear_active_timer);
     draw_char(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
-
 }
 
 static blink_state_t timer_digits_blink = {0, true};
-void render_active_timer_view(state_machine_t* state_machines, uint8_t active_timer_index)
+void render_active_timer_view(state_machine_t *state_machines, uint8_t active_timer_index)
 {
     uint16_t time_to_display;
-    state_machine_t* active_sm = &state_machines[active_timer_index];
+    state_machine_t *active_sm = &state_machines[active_timer_index];
     bool blink = get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
 
-    switch(active_sm->state)
+    switch (active_sm->state)
     {
-        case IDLE:
-            time_to_display = 0;
-            break;
+    case SET_TIME:
+        time_to_display = active_sm->timer.original_time;
+        break;
 
-        case SET_TIME:
-            time_to_display = active_sm->timer.original_time;
-            break;
+    case RUNNING:
+        time_to_display = active_sm->timer.current_time;
+        break;
 
-        case RINGING:
+    case PAUSED:
+        time_to_display = active_sm->timer.current_time;
+        break;
 
-            time_to_display = get_target_time(&active_sm->timer);
-            break;
-
-        default:
-            time_to_display = active_sm->timer.current_time;
-            break;
+    case RINGING:
+        time_to_display = get_target_time(&active_sm->timer);
+        break;
+    default:
+        // Do nothing
+        break;
     }
 
-    matrix_buffer_clear();
-    draw_timers_indicator(state_machines);
+    draw_timer_indicators(state_machines);
     draw_ringing_indicator(state_machines);
     bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
     if (should_blink_timer_numbers)
     {
-        if(blink)
+        if (blink)
         {
             draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
         }
-    } else
+    }
+    else
     {
         draw_active_timer(time_to_display, DIGITS_X_OFFSET, DIGITS_Y_OFFSET, false);
     }
     draw_active_timer_indicator(active_timer_index);
+}
+
+static void render_settings_menu_view(application_t *app)
+{
+    switch (app->settings_menu.current_menu_position)
+    {
+    case BRIGHTNESS:
+        draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
+        break;
+
+    case VOLUME:
+        draw_bitmap(get_icon_bitmap(icon_volume), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        break;
+
+    case BATTERY_V:
+        draw_bitmap(get_icon_bitmap(icon_battery), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        break;
+
+    case MELODY:
+        draw_bitmap(get_icon_bitmap(icon_melody), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        break;
+
+    case SNAKE:
+        draw_bitmap(get_icon_bitmap(icon_snake), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        break;
+
+    case BACK:
+        draw_bitmap(get_icon_bitmap(icon_return), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        break;
+
+    default:
+        break;
+    }
+}
+
+static void render_brightness_setting_view(application_t *app)
+{
+    draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
+    for(int i = 0; i <= max72xx_max_brightness; i++)
+    {
+        const bool is_on = (app->brightness) >= i;
+        matrix_set_pixel(i, 0, is_on);
+    }
+}
+
+static void render_volume_setting_view(application_t *app)
+{
+    uint8_t volume = app->buzzer.get_volume();
+    draw_bitmap(get_icon_bitmap(icon_volume), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+    for(int i = 0; i <= app->buzzer.max_volume; i++)
+    {
+        const bool is_on = volume > i;
+        matrix_set_pixel(i, 0, is_on);
+    }
+}
+
+void render(application_t *app)
+{
+    matrix_buffer_clear();
+    switch (app->current_view)
+    {
+    case ACTIVE_TIMER_VIEW:
+        render_active_timer_view(app->state_machines, app->current_active_sm);
+        break;
+
+    case SETTINGS_MENU_VIEW:
+        render_settings_menu_view(app);
+        break;
+
+    case BRIGHTNESS_SETTING_VIEW:
+        render_brightness_setting_view(app);
+        break;
+        
+    case VOLUME_SETTING_VIEW:
+        render_volume_setting_view(app);
+        break;
+
+    default:
+        break;
+    }
     matrix_update();
 }

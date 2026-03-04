@@ -6,6 +6,11 @@ const Note beeps_melody[] = {
     end_of_melody,
 };
 
+const Note volume_setting_melody[] = {
+    {NoteA6, 1},
+    end_of_melody,
+};
+
 const Note saw_melody[] = {
     {NoteC7, 1},
     {NoteD7, 1},
@@ -30,6 +35,8 @@ const Note *get_melody(MelodyType melody)
     {
     case beeps:
         return beeps_melody;
+    case volume_setting:
+        return volume_setting_melody;
     case saw:
         return saw_melody;
     default:

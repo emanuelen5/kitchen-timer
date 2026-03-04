@@ -1,0 +1,18 @@
+#ifndef EVENTS_H
+#define EVENTS_H
+
+typedef enum
+{
+    SINGLE_PRESS,
+    CW_ROTATION,
+    CCW_ROTATION,
+    CW_ROTATION_FAST,
+    CCW_ROTATION_FAST,
+    DOUBLE_PRESS,
+    LONG_PRESS,
+    CW_PRESSED_ROTATION,
+    CCW_PRESSED_ROTATION,
+    SECOND_TICK,
+} event_t;
+
+#endif //EVENTS_H

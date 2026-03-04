@@ -2,6 +2,11 @@
 
 namespace state_machine
 {
+    void set_current_time_to_target_time(timer_t *timer)
+    {
+        timer->current_time = timer->original_time;
+    }
+
     void add_to_target_time(timer_t *timer, int32_t step)
     {
         int32_t new_time = timer->original_time + step;
@@ -10,15 +15,18 @@ namespace state_machine
         timer->original_time = new_time;
     }
 
+    void add_to_current_time(timer_t *timer, int32_t step)
+    {
+        int32_t new_time = timer->current_time + step;
+        new_time = new_time < 0 ? 0 : new_time;
+        new_time = new_time > max_time ? max_time : new_time;
+        timer->current_time = new_time;
+    }
+
     void reset_timer(timer_t *timer)
     {
         timer->current_time = 0;
         timer->original_time = 0;
-    }
-
-    void set_time_left_to_target_time(timer_t *timer)
-    {
-        timer->current_time = timer->original_time;
     }
 
     void decrement_time_left(timer_t *timer)

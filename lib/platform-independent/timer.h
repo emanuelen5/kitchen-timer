@@ -12,9 +12,10 @@ namespace state_machine
         uint16_t original_time, current_time;
     } timer_t;
 
+    void set_current_time_to_target_time(timer_t *timer);
     void add_to_target_time(timer_t *timer, int32_t step);
+    void add_to_current_time(timer_t *timer, int32_t step);
     void reset_timer(timer_t *timer);
-    void set_time_left_to_target_time(timer_t *timer);
     void decrement_time_left(timer_t *timer);
     bool timer_is_finished(timer_t *timer);
     uint16_t timer_get_time_left(timer_t *timer);

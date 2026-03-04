@@ -4,17 +4,18 @@
 
 #include "util.h"
 #include "rtc.h"
+#include "millis.h"
 #include "uint8-queue.h"
 #include "UART.h"
-#include "millis.h"
-#include "render.h"
-#include "application.h"
+#include "serial_commands.h"
+#include "reboot.h"
 #include "led-counter.h"
+
+#include "max72xx.h"
 #include "avr_button.h"
 #include "rotary-encoder.h"
-#include "serial_commands.h"
-#include "max72xx.h"
-#include "reboot.h"
+#include "application.h"
+#include "render.h"
 
 uint8_queue_t eventQueue;
 static const uint8_t queue_buffer_size = 8;
@@ -92,14 +93,17 @@ int main()
         {
             service_receive_UART();
         }
+
         button.service();
+
         dequeue_return_t event;
         while ((event = dequeue(&eventQueue)).is_valid)
         {
             application_handle_event(&app, (event_t)event.value);
         }
         service_application(&app);
-        render_active_timer_view(app.state_machines, app.current_active_sm);
+
+        render(&app);
     }
 
     return 0;

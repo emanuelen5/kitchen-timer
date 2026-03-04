@@ -3,13 +3,20 @@
 
 #include <stdint.h>
 #include "config.h"
+#include "events.h"
 #include "state-machine.h"
+#include "settings_menu.h"
 #include "buzzer.h"
 #include "power-save.h"
 
 typedef enum {
     ACTIVE_TIMER_VIEW,
-    BARS_VIEW,
+    SETTINGS_MENU_VIEW,
+    BRIGHTNESS_SETTING_VIEW,
+    VOLUME_SETTING_VIEW,
+    BATTERY_CHARGE_VIEW,
+    MELODY_SELECT_VIEW,
+    SNAKE_VIEW,
     VIEW_COUNT
 } application_view_t;
 
@@ -19,6 +26,7 @@ typedef struct
     state_machine_t state_machines[MAX_TIMERS];
     state_t previous_sm_states[MAX_TIMERS];
     uint8_t current_active_sm;
+    settings_menu_t settings_menu;
     Buzzer buzzer;
     PowerSave power_save;
     uint8_t brightness; // [0, 0xf]
