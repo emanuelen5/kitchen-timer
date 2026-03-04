@@ -6,6 +6,7 @@
 enum MelodyType
 {
     beeps,
+    volume_setting,
     saw,
 };
 
