@@ -17,7 +17,8 @@ public:
     uint8_t get_volume(void);
 
     static constexpr uint16_t beat_ms = 50;
-    static constexpr uint8_t default_volume = 10;
+    static constexpr uint8_t max_volume = 10;
+    static constexpr uint8_t default_volume = max_volume;
 
 private:
     uint16_t tone_start_time;

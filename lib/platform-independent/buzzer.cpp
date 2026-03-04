@@ -72,9 +72,9 @@ void Buzzer::stop(void)
 
 void Buzzer::set_volume(uint8_t volume)
 {
-    if (volume > 10)
+    if (volume > max_volume)
     {
-        volume = 10;
+        volume = max_volume;
     }
     this->volume = volume;
 }
