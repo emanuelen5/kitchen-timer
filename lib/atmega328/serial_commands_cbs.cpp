@@ -165,7 +165,7 @@ void setup_buzzer(Buzzer* buzzer, bool is_on)
 void test_buzzer(Buzzer *buzzer)
 {
     buzzer->set_volume(5);
-    buzzer->start_melody(beeps, 2);
+    buzzer->start_melody(volume_setting, 2);
 }
 
 const PROGMEM char help[] = (
