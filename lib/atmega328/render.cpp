@@ -4,6 +4,7 @@
 #include "config.h"
 #include "fat_font.h"
 #include "max72xx_matrix.h"
+#include "max72xx.h"
 #include "millis.h"
 #include "UART.h"
 #include <avr/pgmspace.h>
@@ -195,7 +196,7 @@ static void render_settings_menu_view(application_t *app)
     switch (app->settings_menu.current_menu_position)
     {
     case BRIGHTNESS:
-        draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+        draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
         break;
 
     case VOLUME:
@@ -223,6 +224,16 @@ static void render_settings_menu_view(application_t *app)
     }
 }
 
+void render_brightness_setting_view(application_t *app)
+{
+    draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
+    for(int i = 0; i <= max72xx_max_brightness; i++)
+    {
+        const bool is_on = (app->brightness) >= i;
+        matrix_set_pixel(i, BRIGHTNESS_INDICATOR_ROW, is_on);
+    }
+}
+
 void render(application_t *app)
 {
     matrix_buffer_clear();
@@ -235,6 +246,11 @@ void render(application_t *app)
     case SETTINGS_MENU_VIEW:
         render_settings_menu_view(app);
         break;
+
+    case BRIGHTNESS_SETTING_VIEW:
+        render_brightness_setting_view(app);
+        break;
+        
     default:
         break;
     }
