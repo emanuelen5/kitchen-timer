@@ -3,6 +3,7 @@
 #include "settings.h"
 #include "settings_menu.h"
 #include "UART.h"
+#include "max72xx.h"
 #include <stdio.h>
 
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
@@ -236,13 +237,15 @@ void brightness_setting_event_handling(application_t *app,  event_t event)
     {
         case CW_ROTATION:
         case CW_ROTATION_FAST:
-            app->brightness++;
+            if(app->brightness < max72xx_max_brightness)
+                app->brightness++;
             max72xx_set_intensity(app->brightness);
             break;
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
-            app->brightness--;
+            if(app->brightness > 0)
+                app->brightness--;
             max72xx_set_intensity(app->brightness);
             break;
 
