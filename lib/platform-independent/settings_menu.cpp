@@ -13,24 +13,31 @@ void init_settings_menu(settings_menu_t *settings_menu)
 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
-    if(settings_menu->current_menu_position > SETTINGS_COUNT - 1)
+    settings_t position = settings_menu->current_menu_position;
+    
+    position = (settings_t)(position + 1);
+    if(position > SETTINGS_COUNT - 1)
     {
-        settings_menu->current_menu_position = BRIGHTNESS;
+        position = BRIGHTNESS;
     }   
 }
 
 static void previous_setting_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
-    if(settings_menu->current_menu_position < 0)
+    settings_t position = settings_menu->current_menu_position;
+
+    position = (settings_t)(position - 1);
+    if(position < 0)
     {
-        settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
+        position = (settings_t)(SETTINGS_COUNT - 1);
     }
 }
 
 void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event)
 {
+    settings_t position = settings_menu->current_menu_position;
+    settings_t selected_setting = settings_menu->selected_setting;
+
     switch (event)
     {
         case CW_ROTATION:
@@ -44,8 +51,8 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
             break;
 
         case SINGLE_PRESS:
-            settings_menu->selected_setting = settings_menu->current_menu_position;
-            change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
+            selected_setting = position;
+            change_to_a_setting_view_cb(app_argument, selected_setting);
             break;
         
         default:
