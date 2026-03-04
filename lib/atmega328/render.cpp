@@ -224,12 +224,23 @@ static void render_settings_menu_view(application_t *app)
     }
 }
 
-void render_brightness_setting_view(application_t *app)
+static void render_brightness_setting_view(application_t *app)
 {
     draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
     for(int i = 0; i <= max72xx_max_brightness; i++)
     {
         const bool is_on = (app->brightness) >= i;
+        matrix_set_pixel(i, 0, is_on);
+    }
+}
+
+static void render_volume_setting_view(application_t *app)
+{
+    uint8_t volume = app->buzzer.get_volume();
+    draw_bitmap(get_icon_bitmap(icon_volume), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+    for(int i = 0; i <= app->buzzer.max_volume; i++)
+    {
+        const bool is_on = volume > i;
         matrix_set_pixel(i, 0, is_on);
     }
 }
@@ -251,6 +262,10 @@ void render(application_t *app)
         render_brightness_setting_view(app);
         break;
         
+    case VOLUME_SETTING_VIEW:
+        render_volume_setting_view(app);
+        break;
+
     default:
         break;
     }

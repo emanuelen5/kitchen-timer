@@ -259,23 +259,31 @@ void brightness_setting_event_handling(application_t *app,  event_t event)
     }
 }
 
-void volume_setting_event_handling(settings_menu_t *settings_menu, change_back_to_settings_menu_view_cb_t change_back_to_settings_menu_view_cb, void *app_argument, event_t event)
+void volume_setting_event_handling(application_t *app,  event_t event)
 {
+    uint8_t volume = app->buzzer.get_volume();
+
     switch (event)
     {
         case CW_ROTATION:
         case CW_ROTATION_FAST:
-            //Increase volume
+            volume += 1;
+            app->buzzer.set_volume(volume);
+            app->buzzer.start_melody(volume_setting, 0);
             break;
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
-            //Decrease volume
+            if (volume > 0) {
+                volume -= 1;
+                app->buzzer.set_volume(volume);
+                app->buzzer.start_melody(volume_setting, 0);
+            }
             break;
 
         case SINGLE_PRESS:
-            //Apply changes
-            change_back_to_settings_menu_view_cb(app_argument, settings_menu);
+            save_byte_setting(app->brightness, EEPROM_VOLUME_ADDR);
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
             break;
 
         default:
@@ -287,15 +295,6 @@ static void going_back_to_setting_menu_from_submenu(application_t *app, settings
 {
     settings_menu->current_menu_position = BRIGHTNESS;
     app->current_view = SETTINGS_MENU_VIEW;
-}
-
-static void change_back_to_settings_menu_view_cb(void *app_argument, settings_menu_t *settings_menu)
-{
-    application_t *app = (application_t *)app_argument;
-    settings_menu->current_menu_position = BRIGHTNESS;
-    UART_printf("%d, %d\n",settings_menu->current_menu_position, settings_menu->selected_setting);
-    app->current_view = SETTINGS_MENU_VIEW;
-    UART_printf("%d\n",app->current_view);
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -354,7 +353,7 @@ void application_handle_event(application_t *app, event_t event)
                 break;
 
             case VOLUME_SETTING_VIEW:
-                volume_setting_event_handling(&app->settings_menu, change_back_to_settings_menu_view_cb, app, event);
+                volume_setting_event_handling(app, event);
 
             default:
                 //Do nothing
