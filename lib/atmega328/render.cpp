@@ -245,6 +245,17 @@ static void render_volume_setting_view(application_t *app)
     }
 }
 
+static void render_melody_setting_view(application_t *app)
+{
+    uint8_t selected_index = (uint8_t)app->selected_melody;
+    draw_bitmap(get_icon_bitmap(icon_melody), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
+    for(int i = 0; i <= (uint8_t)MELODY_COUNT; i++)
+    {
+        const bool is_on = selected_index >= i;
+        matrix_set_pixel(i, 0, is_on);
+    }
+}
+
 void render(application_t *app)
 {
     matrix_buffer_clear();
@@ -264,6 +275,10 @@ void render(application_t *app)
         
     case VOLUME_SETTING_VIEW:
         render_volume_setting_view(app);
+        break;
+
+    case MELODY_SELECT_VIEW:
+        render_melody_setting_view(app);
         break;
 
     default:
