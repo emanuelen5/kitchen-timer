@@ -293,6 +293,7 @@ void melody_setting_event_handling(application_t *app, event_t event)
     {
         case CW_ROTATION:
         case CW_ROTATION_FAST:
+            app->buzzer.stop();
             selected_index = (selected_index + 1) % melody_count;
             app->selected_melody = (MelodyType)selected_index;
             app->buzzer.start_melody(app->selected_melody, 0);
@@ -300,12 +301,14 @@ void melody_setting_event_handling(application_t *app, event_t event)
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
+            app->buzzer.stop();
             selected_index = (selected_index + melody_count - 1) % melody_count;
             app->selected_melody = (MelodyType)selected_index;
             app->buzzer.start_melody(app->selected_melody, 0);
             break;
 
         case SINGLE_PRESS:
+            app->buzzer.stop();
             save_byte_setting((uint8_t)app->selected_melody, EEPROM_MELODY_ADDR);
             going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
             break;
