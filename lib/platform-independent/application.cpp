@@ -29,7 +29,7 @@ void init_application(application_t *app)
     bool melody_in_eeprom_is_invalid = last_melody_setting >= (uint8_t)melody_count;
     if (melody_in_eeprom_is_invalid)
     {
-        app->selected_melody = beeps;
+        app->selected_melody = ten_beeps;
     }
     else
     {
@@ -287,7 +287,7 @@ void volume_setting_event_handling(application_t *app,  event_t event)
 
 void melody_setting_event_handling(application_t *app, event_t event)
 {
-    uint8_t melody_count = (uint8_t)MELODY_COUNT;
+    uint8_t melody_count = (uint8_t)melody_count;
     uint8_t selected_index = (uint8_t)app->selected_melody;
 
     switch (event)

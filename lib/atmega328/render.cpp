@@ -249,7 +249,7 @@ static void render_melody_setting_view(application_t *app)
 {
     uint8_t selected_index = (uint8_t)app->selected_melody;
     draw_bitmap(get_icon_bitmap(icon_melody), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
-    for(int i = 0; i <= (uint8_t)MELODY_COUNT; i++)
+    for(int i = 0; i <= (uint8_t)melody_count; i++)
     {
         const bool is_on = selected_index >= i;
         matrix_set_pixel(i, 0, is_on);
