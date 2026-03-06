@@ -26,13 +26,14 @@ void init_application(application_t *app)
     
     uint8_t last_melody_setting;
     load_byte_setting(&last_melody_setting, EEPROM_MELODY_ADDR);
-    if (last_melody_setting < (uint8_t)MELODY_COUNT)
+    bool melody_in_eeprom_is_invalid = last_melody_setting >= (uint8_t)melody_count;
+    if (melody_in_eeprom_is_invalid)
     {
-        app->selected_melody = (MelodyType)last_melody_setting;
+        app->selected_melody = beeps;
     }
     else
     {
-        app->selected_melody = ten_beeps;
+        app->selected_melody = (MelodyType)last_melody_setting;
     }
 
     app->power_save.init(&app->brightness);
