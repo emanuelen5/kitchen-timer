@@ -32,7 +32,7 @@ void init_application(application_t *app)
     }
     else
     {
-        app->selected_melody = beeps;
+        app->selected_melody = ten_beeps;
     }
 
     app->power_save.init(&app->brightness);
@@ -69,7 +69,7 @@ void service_application(application_t *app)
         if (sm_transitioned_into_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            app->buzzer.start_melody(app->selected_melody, 10);
+            app->buzzer.start_melody(app->selected_melody, 0);
             app->power_save.handle_event(activity);
             break;
         }

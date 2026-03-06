@@ -1,6 +1,30 @@
 #include "melody.h"
 
-const Note beeps_melody[] = {
+const Note beep_melody[] = {
+    {NoteC8, 8},
+    {NotePause, 8},
+    end_of_melody,
+};
+
+const Note ten_beeps_melody[] = {
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
+    {NoteC8, 8},
+    {NotePause, 8},
     {NoteC8, 8},
     {NotePause, 8},
     end_of_melody,
@@ -33,14 +57,16 @@ const Note *get_melody(MelodyType melody)
 {
     switch (melody)
     {
-    case beeps:
-        return beeps_melody;
-    case volume_setting:
-        return volume_setting_melody;
-    case saw:
-        return saw_melody;
-    default:
-        return nullptr;
+        case beep:
+            return beep_melody;
+        case ten_beeps:
+            return ten_beeps_melody;
+        case volume_setting:
+            return volume_setting_melody;
+        case saw:
+            return saw_melody;
+        default:
+            return nullptr;
     }
 }
 

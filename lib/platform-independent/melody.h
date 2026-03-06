@@ -5,7 +5,8 @@
 
 enum MelodyType
 {
-    beeps,
+    beep,
+    ten_beeps,
     volume_setting,
     saw,
     MELODY_COUNT,
