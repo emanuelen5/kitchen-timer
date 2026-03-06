@@ -8,6 +8,7 @@ enum MelodyType
     beeps,
     volume_setting,
     saw,
+    MELODY_COUNT,
 };
 
 enum Tone

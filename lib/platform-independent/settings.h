@@ -7,7 +7,8 @@
 enum eeprom_address
 {
     EEPROM_BRIGHTNESS_ADDR = 0,
-    EEPROM_VOLUME_ADDR = 1
+    EEPROM_VOLUME_ADDR = 1,
+    EEPROM_MELODY_ADDR = 2
 };
 
 void save_byte_setting(uint8_t setting, enum eeprom_address address);

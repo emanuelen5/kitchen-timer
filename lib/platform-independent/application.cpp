@@ -23,6 +23,17 @@ void init_application(application_t *app)
     uint8_t last_volume_setting;
     load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
     app->buzzer.set_volume(last_volume_setting);
+    
+    uint8_t last_melody_setting;
+    load_byte_setting(&last_melody_setting, EEPROM_MELODY_ADDR);
+    if (last_melody_setting < (uint8_t)MELODY_COUNT)
+    {
+        app->selected_melody = (MelodyType)last_melody_setting;
+    }
+    else
+    {
+        app->selected_melody = beeps;
+    }
 
     app->power_save.init(&app->brightness);
 
@@ -58,7 +69,7 @@ void service_application(application_t *app)
         if (sm_transitioned_into_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            app->buzzer.start_melody(beeps, 10);
+            app->buzzer.start_melody(app->selected_melody, 10);
             app->power_save.handle_event(activity);
             break;
         }
@@ -103,24 +114,6 @@ static void pass_event_to_all_state_machines(application_t *app, event_t event)
     for (int8_t i = 0; i < MAX_TIMERS; i++)
         state_machine_handle_event(&app->state_machines[i], event);
 }
-
-// static void change_to_previous_view(application_t *app)
-// {
-//     const uint8_t first_view = 0;
-//     if (app->current_view > first_view)
-//     {
-//         app->current_view = (application_view_t)(app->current_view - 1);
-//     }
-// }
-//
-// static void change_to_next_view(application_t *app)
-// {
-//     const uint8_t last_view = VIEW_COUNT - 1;
-//     if (app->current_view < last_view)
-//     {
-//         app->current_view = (application_view_t)(app->current_view + 1);
-//     }
-// }
 
 static void try_to_open_new_timer(application_t *app)
 {
@@ -291,6 +284,37 @@ void volume_setting_event_handling(application_t *app,  event_t event)
     }
 }
 
+void melody_setting_event_handling(application_t *app, event_t event)
+{
+    uint8_t melody_count = (uint8_t)MELODY_COUNT;
+    uint8_t selected_index = (uint8_t)app->selected_melody;
+
+    switch (event)
+    {
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            selected_index = (selected_index + 1) % melody_count;
+            app->selected_melody = (MelodyType)selected_index;
+            app->buzzer.start_melody(app->selected_melody, 0);
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            selected_index = (selected_index + melody_count - 1) % melody_count;
+            app->selected_melody = (MelodyType)selected_index;
+            app->buzzer.start_melody(app->selected_melody, 0);
+            break;
+
+        case SINGLE_PRESS:
+            save_byte_setting((uint8_t)app->selected_melody, EEPROM_MELODY_ADDR);
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
 {
     settings_menu->current_menu_position = BRIGHTNESS;
@@ -354,6 +378,11 @@ void application_handle_event(application_t *app, event_t event)
 
             case VOLUME_SETTING_VIEW:
                 volume_setting_event_handling(app, event);
+                break;
+
+            case MELODY_SELECT_VIEW:
+                melody_setting_event_handling(app, event);
+                break;
 
             default:
                 //Do nothing
