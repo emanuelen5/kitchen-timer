@@ -287,21 +287,21 @@ void volume_setting_event_handling(application_t *app,  event_t event)
 
 void melody_setting_event_handling(application_t *app, event_t event)
 {
-    uint8_t melody_count = (uint8_t)melody_count;
+    uint8_t max_melody_count = (uint8_t)melody_count;
     uint8_t selected_index = (uint8_t)app->selected_melody;
 
     switch (event)
     {
         case CW_ROTATION:
         case CW_ROTATION_FAST:
-            selected_index = (selected_index + 1) % melody_count;
+            selected_index = (selected_index + 1) % max_melody_count;
             app->selected_melody = (MelodyType)selected_index;
             app->buzzer.start_melody(app->selected_melody, 0);
             break;
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
-            selected_index = (selected_index - 1) % melody_count;
+            selected_index = (selected_index + max_melody_count - 1) % max_melody_count;
             app->selected_melody = (MelodyType)selected_index;
             app->buzzer.start_melody(app->selected_melody, 0);
             break;
