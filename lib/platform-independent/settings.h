@@ -4,6 +4,10 @@
 #include <stdio.h>
 #include <stdint.h>
 
+/* 
+IMPORTANT: eeprom addresses should not be moved to avoid
+backward-compatibility issues
+*/
 enum eeprom_address
 {
     EEPROM_BRIGHTNESS_ADDR = 0,
