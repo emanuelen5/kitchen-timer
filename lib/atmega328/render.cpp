@@ -247,13 +247,11 @@ static void render_volume_setting_view(application_t *app)
 
 static void render_melody_setting_view(application_t *app)
 {
-    uint8_t selected_index = (uint8_t)app->selected_melody;
-    draw_bitmap(get_icon_bitmap(icon_melody), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
-    for(int i = 0; i <= (uint8_t)melody_count; i++)
-    {
-        const bool is_on = selected_index >= i;
-        matrix_set_pixel(i, 0, is_on);
-    }
+    const uint8_t selected_melody_number = (uint8_t)app->selected_melody + 1;
+    const char melody_number_char = (char)('0' + selected_melody_number);
+
+    draw_char('M', 0, 4, false);
+    draw_char(melody_number_char, 7, 4, false);
 }
 
 void render(application_t *app)
