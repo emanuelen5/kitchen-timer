@@ -287,14 +287,19 @@ void render(application_t *app)
     case BRIGHTNESS_SETTING_VIEW:
         render_brightness_setting_view(app);
         break;
-        
+
     case VOLUME_SETTING_VIEW:
         render_volume_setting_view(app);
         break;
 
     case BATTERY_CHARGE_VIEW:
-        draw_voltage(battery_centivolts(app->brightness));
+    {
+        uint8_t brightness = app->brightness;
+        minimize_battery_voltage_jitter();
+        draw_voltage(battery_centivolts());
+        max72xx_set_intensity(brightness);
         break;
+    }
 
     case MELODY_SELECT_VIEW:
         render_melody_setting_view(app);

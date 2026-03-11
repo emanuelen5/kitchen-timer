@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 
-uint16_t battery_centivolts(uint8_t brightness);
+void minimize_battery_voltage_jitter(void);
+uint16_t battery_centivolts(void);
 
 #endif // BATTERY_H
