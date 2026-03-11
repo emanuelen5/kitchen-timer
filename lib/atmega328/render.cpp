@@ -8,6 +8,7 @@
 #include "millis.h"
 #include "UART.h"
 #include <avr/pgmspace.h>
+#include "battery_measure.h"
 
 static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
 {
@@ -145,6 +146,22 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
     draw_char(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
 }
 
+static void draw_voltage(uint16_t centivolts)
+{
+    const uint8_t x_offset = 0, y_offset = 0;
+    uint8_t digits[3];
+    digits[0] = '0' + (centivolts / 100);        // Volts
+    digits[1] = '0' + ((centivolts % 100) / 10); // First decimal
+    digits[2] = '0' + (centivolts % 10);         // Second decimal
+
+    draw_char('V', x_offset, y_offset, false);
+    draw_char(digits[0], x_offset + 7, y_offset, false);
+    matrix_set_pixel(x_offset + 14, y_offset + 6, true); // Decimal point
+
+    draw_char(digits[1], x_offset, y_offset + 8, false);
+    draw_char(digits[2], x_offset + 7, y_offset + 8, false);
+}
+
 static blink_state_t timer_digits_blink = {0, true};
 void render_active_timer_view(state_machine_t *state_machines, uint8_t active_timer_index)
 {
@@ -245,6 +262,16 @@ static void render_volume_setting_view(application_t *app)
     }
 }
 
+static void render_battery_setting_view(application_t *app)
+{
+    draw_voltage(get_average_battery_voltage(&app->battery_measurement));
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        bool is_on = i < app->battery_measurement.measurements_taken && !battery_measurement_is_complete(&app->battery_measurement);
+        matrix_set_pixel(i, 15, is_on);
+    }
+}
+
 static void render_melody_setting_view(application_t *app)
 {
     const uint8_t selected_melody_number = (uint8_t)app->selected_melody + 1;
@@ -270,10 +297,16 @@ void render(application_t *app)
     case BRIGHTNESS_SETTING_VIEW:
         render_brightness_setting_view(app);
         break;
-        
+
     case VOLUME_SETTING_VIEW:
         render_volume_setting_view(app);
         break;
+
+    case BATTERY_CHARGE_VIEW:
+    {
+        render_battery_setting_view(app);
+        break;
+    }
 
     case MELODY_SELECT_VIEW:
         render_melody_setting_view(app);
