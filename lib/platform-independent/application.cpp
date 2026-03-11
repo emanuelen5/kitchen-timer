@@ -276,7 +276,7 @@ void volume_setting_event_handling(application_t *app,  event_t event)
             break;
 
         case SINGLE_PRESS:
-            save_byte_setting(app->brightness, EEPROM_VOLUME_ADDR);
+            save_byte_setting(app->buzzer.get_volume(), EEPROM_VOLUME_ADDR);
             going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
             break;
 
