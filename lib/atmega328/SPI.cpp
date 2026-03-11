@@ -25,8 +25,8 @@ void init_hw_SPI(uint8_t bytes)
     // switch from Master to slave mode whenever SS is driven low. Source: SS
     // Pin Functionality, ch. 19.3, megaAVR data sheet, Micro Chip, 2020.
     const uint8_t ss_pin = PB2;
-    DDRB |= bit(DATA_PIN) | bit(CLK_PIN) | bit(ss_pin) | bit(CS_PIN);
     deactivate_cs();
+    DDRB |= bit(DATA_PIN) | bit(CLK_PIN) | bit(ss_pin) | bit(CS_PIN);
 
     // Enable SPI, Master, set clock rate (fosc/16)
     SPCR |= (1 << SPE) | (1 << MSTR) | (1 << SPR1);
