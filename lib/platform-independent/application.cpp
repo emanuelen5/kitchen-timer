@@ -285,6 +285,19 @@ void volume_setting_event_handling(application_t *app,  event_t event)
     }
 }
 
+void handle_battery_event(application_t *app, event_t event)
+{
+    switch (event)
+    {
+        case SINGLE_PRESS:
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+    }
+}
+
 void melody_setting_event_handling(application_t *app, event_t event)
 {
     uint8_t max_melody_count = (uint8_t)melody_count;
@@ -380,6 +393,10 @@ void application_handle_event(application_t *app, event_t event)
 
             case VOLUME_SETTING_VIEW:
                 volume_setting_event_handling(app, event);
+                break;
+
+            case BATTERY_CHARGE_VIEW:
+                handle_battery_event(app, event);
                 break;
 
             case MELODY_SELECT_VIEW:
