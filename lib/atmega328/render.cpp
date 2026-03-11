@@ -149,8 +149,6 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
 static void draw_voltage(uint16_t centivolts)
 {
     const uint8_t x_offset = 0, y_offset = 0;
-    matrix_buffer_clear();
-
     uint8_t digits[3];
     digits[0] = '0' + (centivolts / 100);        // Volts
     digits[1] = '0' + ((centivolts % 100) / 10); // First decimal
@@ -162,8 +160,6 @@ static void draw_voltage(uint16_t centivolts)
 
     draw_char(digits[1], x_offset, y_offset + 8, false);
     draw_char(digits[2], x_offset + 7, y_offset + 8, false);
-
-    matrix_update();
 }
 
 static blink_state_t timer_digits_blink = {0, true};
