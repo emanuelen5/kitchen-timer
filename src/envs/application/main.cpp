@@ -14,6 +14,7 @@
 #include "max72xx.h"
 #include "render.h"
 #include "max72xx_matrix.h"
+#include "boost_converter.h"
 #include <util/delay.h>
 
 uint8_queue_t eventQueue;
@@ -106,6 +107,7 @@ int main()
 {
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
+    init_hw_boost_converter();
     init_hw_UART();
     init_hw_timer2_to_1s_interrupt(&second_tick_cb);
     init_hw_millis();
@@ -115,7 +117,6 @@ int main()
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
-    max72xx_set_intensity(app.brightness);
     sei();
 
     init_max72xx();
