@@ -13,13 +13,16 @@
 #include "pthread.h"
 
 #include "graphics.h"
+#include "peripherals.h"
 
 extern "C"
 {
 #include "avr_ioport.h"
+#include "avr_spi.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
+#include "rotenc.h"
 }
 
 #define UNUSED (void)
@@ -31,6 +34,7 @@ struct avr_flash
 };
 
 uint8_t port_c_state = 0b00000000;
+peripherals_t g_sim_peripherals;
 
 void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
 {
@@ -120,7 +124,7 @@ public:
 
 void print_usage(std::string program_name)
 {
-    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] hex_file";
+    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] [-i|--interactive] hex_file\n";
 }
 
 args_t
@@ -203,8 +207,24 @@ const char *exit_reason(avr_t *avr)
     if (avr->state == cpu_Crashed)
         return "CPU crashed";
 
-    if (avr->pc == 0)
+    return nullptr;
+}
+
+/*
+ * For bootloader-only runs: also consider PC==0 (after running at least
+ * one instruction) as an exit condition, since that means the bootloader
+ * jumped to the application reset vector.
+ */
+const char *exit_reason_bootloader(avr_t *avr)
+{
+    const char *reason = exit_reason(avr);
+    if (reason)
+        return reason;
+
+    static bool has_run = false;
+    if (has_run && avr->pc == 0)
         return "Bootloader finished";
+    has_run = true;
 
     return nullptr;
 }
@@ -213,15 +233,102 @@ void run_instructions_until_exited_bootloader(avr_t *avr)
 {
     while (true)
     {
-        if (exit_reason(avr))
+        if (exit_reason_bootloader(avr))
         {
-            printf("Exiting: %s\n", exit_reason(avr));
+            printf("Exiting: %s\n", exit_reason_bootloader(avr));
             break;
         }
 
         avr_run(avr);
     };
     avr_terminate(avr);
+}
+
+/*
+ * Connect the virtual MAX7219 display to the AVR's SPI and CS pin.
+ *
+ * Pin mapping from SPI.h:
+ *   CS_PIN  = PB0
+ *   CLK_PIN = PB5 (SPI SCK)
+ *   DATA_PIN = PB3 (SPI MOSI)
+ */
+static void connect_display(avr_t *avr, max7219_virt_t *display)
+{
+    max7219_virt_init(avr, display);
+
+    /* Connect SPI output (MOSI data bytes) to MAX7219 SPI input */
+    avr_irq_t *spi_irq = avr_io_getirq(avr, AVR_IOCTL_SPI_GETIRQ(0), SPI_IRQ_OUTPUT);
+    if (!spi_irq) {
+        fprintf(stderr, "ERROR: Could not get SPI output IRQ (name=0)\n");
+    } else {
+        avr_connect_irq(spi_irq, display->irq + IRQ_MAX7219_SPI_BYTE_IN);
+    }
+
+    /* Connect CS pin (PB0) to MAX7219 CS input */
+    avr_irq_t *cs_irq = avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('B'), 0);
+    if (!cs_irq) {
+        fprintf(stderr, "ERROR: Could not get PB0 (CS) IRQ\n");
+    } else {
+        avr_connect_irq(cs_irq, display->irq + IRQ_MAX7219_CS_IN);
+    }
+
+    printf("Display: MAX7219 4-device chain connected (SPI + PB0/CS)\n");
+}
+
+/*
+ * Connect the virtual buzzer to PB1 (OC1A output from Timer1).
+ *
+ * Pin mapping from toneAC.cpp:
+ *   OC1A = PB1
+ *   OC1B = PB2
+ */
+static void connect_buzzer(avr_t *avr, buzzer_virt_t *buzzer)
+{
+    buzzer_virt_init(avr, buzzer);
+
+    /* Connect PB1 (OC1A) to buzzer input */
+    avr_connect_irq(
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('B'), 1),
+        buzzer->irq + IRQ_BUZZER_PIN_IN);
+
+    printf("Buzzer: monitoring PB1 (OC1A) for tone output\n");
+}
+
+/*
+ * Connect the virtual rotary encoder to the AVR GPIO pins.
+ *
+ * Pin mapping from rotary-encoder.h:
+ *   CH_A_PIN = PD2 (INT0)
+ *   CH_B_PIN = PD3 (INT1)
+ *   SW_PIN   = PD4 (PCINT20)
+ */
+static void connect_rotary_encoder(avr_t *avr, rotenc_t *rotenc)
+{
+    rotenc_init(avr, rotenc);
+
+    /* Channel A -> PD2 (INT0) */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_A_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 2));
+
+    /* Channel B -> PD3 (INT1) */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_B_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 3));
+
+    /* Button -> PD4 (PCINT20) - active low with pull-up */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_BUTTON_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 4));
+
+    /* Set initial states: encoder at phase 2 (A=1, B=1) to match the
+     * firmware's pull-ups on PD2/PD3, button released (high) */
+    rotenc->phase = 2;
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_A_PIN, 1);
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_B_PIN, 1);
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_BUTTON_PIN, 1);
+
+    printf("Rotary encoder: CH_A=PD2, CH_B=PD3, SW=PD4\n");
 }
 
 int main(int argc, char *argv[])
@@ -268,10 +375,16 @@ int main(int argc, char *argv[])
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
 
+    /* Monitor PORTC changes (LED counter pins) */
     avr_irq_register_notify(
         avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), IOPORT_IRQ_PIN_ALL),
         port_c_changed_hook,
         NULL);
+
+    /* Connect virtual peripherals */
+    connect_display(avr, &g_sim_peripherals.display);
+    connect_buzzer(avr, &g_sim_peripherals.buzzer);
+    connect_rotary_encoder(avr, &g_sim_peripherals.rotary_encoder);
 
     avr->gdb_port = 1234;
     if (args.debug)
@@ -286,7 +399,7 @@ int main(int argc, char *argv[])
 
     if (args.interactive)
     {
-        simulate_with_graphics(avr);
+        simulate_with_graphics(avr, &g_sim_peripherals);
     }
     else
     {
