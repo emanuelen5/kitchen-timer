@@ -70,7 +70,7 @@ void service_application(application_t *app)
         if (sm_transitioned_into_state(app, i, RINGING))
         {
             app->current_active_sm = i;
-            app->buzzer.start_melody(app->selected_melody, 0);
+            app->buzzer.start_melody(app->selected_melody);
             app->power_save.handle_event(activity);
             break;
         }
