@@ -4,10 +4,6 @@
 #include "max72xx.h"
 #include <util/delay.h>
 
-void init_hw_adc(void)
-{
-}
-
 // Voltage is scaled 1024 * 4.3 / 1.1
 uint16_t battery_centivolts(uint8_t brightness)
 {
@@ -20,7 +16,7 @@ uint16_t battery_centivolts(uint8_t brightness)
         ;                                                    // Wait for conversion to complete
     uint16_t adc_value = ADC;                                // Read ADC value
     uint32_t voltage = (uint32_t)adc_value * 11 * 43 / 1024; // Scale to centivolts
-    max72xx_set_intensity(brightness);                   // Restore brightness
+    max72xx_set_intensity(brightness);                       // Restore brightness
     ADCSRA = 0;
     return (uint16_t)voltage;
 }

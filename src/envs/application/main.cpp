@@ -10,7 +10,6 @@
 #include "serial_commands.h"
 #include "reboot.h"
 #include "led-counter.h"
-#include "battery.h"
 
 #include "max72xx.h"
 #include "avr_button.h"
@@ -81,7 +80,6 @@ int main()
     init_hw_millis();
     init_hw_led_counter();
     init_hw_max72xx();
-    init_hw_adc();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
     init_hw_rotary_encoder(rotation_cb, button);
     init_application(&app);
