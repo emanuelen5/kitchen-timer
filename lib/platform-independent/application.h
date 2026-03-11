@@ -8,6 +8,7 @@
 #include "settings_menu.h"
 #include "buzzer.h"
 #include "power-save.h"
+#include "battery_measure.h"
 
 typedef enum {
     ACTIVE_TIMER_VIEW,
@@ -31,6 +32,7 @@ typedef struct
     PowerSave power_save;
     uint8_t brightness; // [0, 0xf]
     MelodyType selected_melody;
+    battery_measurement_t battery_measurement;
 } application_t;
 
 void init_application(application_t* app);

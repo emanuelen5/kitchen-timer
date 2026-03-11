@@ -3,6 +3,14 @@
 #include "settings.h"
 #include "settings_menu.h"
 #include <stdio.h>
+#include "battery_measure.h"
+
+// Prototypes for functions defined in platform-specific files
+void minimize_battery_voltage_jitter(void);
+uint16_t battery_centivolts(void);
+void save_byte_setting(uint8_t setting, eeprom_address address);
+void max72xx_set_intensity(uint8_t intensity_level);
+constexpr uint8_t max72xx_max_brightness = 10;
 
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
 
@@ -42,6 +50,7 @@ void init_application(application_t *app)
     set_state(&app->state_machines[0], SET_TIME);
 
     init_settings_menu(&app->settings_menu);
+    init_battery_measurement(&app->battery_measurement);
 }
 
 static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
@@ -64,6 +73,13 @@ void service_application(application_t *app)
         service_state_machine(&app->state_machines[i]);
 
     app->buzzer.service();
+
+    if (app->current_view == BATTERY_CHARGE_VIEW && !battery_measurement_is_complete(&app->battery_measurement)) {
+        uint8_t brightness = app->brightness;
+        minimize_battery_voltage_jitter();
+        add_battery_measurement(&app->battery_measurement, battery_centivolts());
+        max72xx_set_intensity(brightness);
+    }
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
@@ -172,11 +188,6 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
         break;
     }
 }
-
-// Prototypes for functions defined in platform-specific files
-void save_byte_setting(uint8_t setting, eeprom_address address);
-void max72xx_set_intensity(uint8_t intensity_level);
-constexpr uint8_t max72xx_max_brightness = 10;
 
 void init_settings_menu(settings_menu_t *settings_menu)
 {

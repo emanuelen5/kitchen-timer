@@ -8,7 +8,7 @@
 #include "millis.h"
 #include "UART.h"
 #include <avr/pgmspace.h>
-#include "battery.h"
+#include "battery_measure.h"
 
 static bool get_blink_state(blink_state_t *state, uint16_t blink_rate)
 {
@@ -262,6 +262,16 @@ static void render_volume_setting_view(application_t *app)
     }
 }
 
+static void render_battery_setting_view(application_t *app)
+{
+    draw_voltage(get_average_battery_voltage(&app->battery_measurement));
+    for (uint8_t i = 0; i < 16; i++)
+    {
+        bool is_on = i < app->battery_measurement.measurements_taken && !battery_measurement_is_complete(&app->battery_measurement);
+        matrix_set_pixel(i, 15, is_on);
+    }
+}
+
 static void render_melody_setting_view(application_t *app)
 {
     const uint8_t selected_melody_number = (uint8_t)app->selected_melody + 1;
@@ -294,10 +304,7 @@ void render(application_t *app)
 
     case BATTERY_CHARGE_VIEW:
     {
-        uint8_t brightness = app->brightness;
-        minimize_battery_voltage_jitter();
-        draw_voltage(battery_centivolts());
-        max72xx_set_intensity(brightness);
+        render_battery_setting_view(app);
         break;
     }
 
