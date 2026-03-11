@@ -141,13 +141,13 @@ void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
     TEST_ASSERT_EQUAL(0, get_target_time(&sm));
 }
 
-void test_remembers_target_time_when_timer_ends(void)
+void test_resets_target_time_when_timer_ends(void)
 {
     sm.timer.original_time = 3;
     set_state(&sm, RINGING);
 
     run_until_state_times_out(&sm, RINGING);
-    TEST_ASSERT_EQUAL(3, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
 }
 
 int main()
@@ -165,7 +165,7 @@ int main()
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_10000ms);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
-    RUN_TEST(test_remembers_target_time_when_timer_ends);
+    RUN_TEST(test_resets_target_time_when_timer_ends);
 
     UNITY_END();
 }

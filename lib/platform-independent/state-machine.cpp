@@ -40,7 +40,7 @@ void service_state_machine(state_machine_t *sm)
         uint16_t time_in_ringing_state = millis() - sm->millis_of_last_transition;
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
-            set_state(sm, IDLE);
+            reset_active_state_machine(sm);
         }
     }
     break;

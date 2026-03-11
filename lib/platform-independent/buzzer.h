@@ -9,7 +9,7 @@ class Buzzer
 public:
     Buzzer(void);
     void service(void);
-    void start_melody(MelodyType melody, uint8_t repeats);
+    void start_melody(MelodyType melody, uint8_t repeats = REPEAT_FOREVER);
     void start_melody(const Note *melody, uint8_t repeats);
     void set_volume(uint8_t volume); // 10 is max, as defined in ToneAC
     void stop(void);
@@ -21,6 +21,7 @@ public:
     static constexpr uint8_t default_volume = max_volume;
 
 private:
+    static constexpr uint8_t REPEAT_FOREVER = 255;
     uint16_t tone_start_time;
     const Note *melody;
     uint8_t note_index;

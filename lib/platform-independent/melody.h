@@ -5,9 +5,11 @@
 
 enum MelodyType
 {
-    beeps,
+    beep,
+    ten_beeps,
     volume_setting,
     saw,
+    melody_count,
 };
 
 enum Tone

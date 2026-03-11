@@ -245,6 +245,15 @@ static void render_volume_setting_view(application_t *app)
     }
 }
 
+static void render_melody_setting_view(application_t *app)
+{
+    const uint8_t selected_melody_number = (uint8_t)app->selected_melody + 1;
+    const char melody_number_char = (char)('0' + selected_melody_number);
+
+    draw_char('M', 0, 4, false);
+    draw_char(melody_number_char, 7, 4, false);
+}
+
 void render(application_t *app)
 {
     matrix_buffer_clear();
@@ -264,6 +273,10 @@ void render(application_t *app)
         
     case VOLUME_SETTING_VIEW:
         render_volume_setting_view(app);
+        break;
+
+    case MELODY_SELECT_VIEW:
+        render_melody_setting_view(app);
         break;
 
     default:
