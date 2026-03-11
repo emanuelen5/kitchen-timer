@@ -301,7 +301,7 @@ void melody_setting_event_handling(application_t *app, event_t event)
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
-            selected_index = (selected_index + max_melody_count - 1) % max_melody_count;
+            selected_index = (selected_index + max_melody_count - 1) % max_melody_count;  //negative modulo 1 does not seem to work.
             app->selected_melody = (MelodyType)selected_index;
             app->buzzer.start_melody(app->selected_melody, 0);
             break;
