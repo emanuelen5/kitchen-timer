@@ -1848,7 +1848,7 @@
 	)
 	(rectangle
 		(start 80.01 43.815)
-		(end 141.605 96.52)
+		(end 135.636 96.52)
 		(stroke
 			(width 0)
 			(type dash)
@@ -1860,7 +1860,7 @@
 	)
 	(rectangle
 		(start 16.51 43.815)
-		(end 78.105 97.79)
+		(end 78.105 96.266)
 		(stroke
 			(width 0)
 			(type dash)
@@ -1955,7 +1955,7 @@
 		)
 		(uuid "1b181fb8-371c-43fc-a2dd-2a40398afbd9")
 	)
-	(text "We are not adding a pull-up resistor because the RESET\npin on the ATmega328p alrady has one."
+	(text "We are not adding a pull-up resistor because\nthe RESET pin on the ATmega328p alrady has one."
 		(exclude_from_sim no)
 		(at 81.534 88.9 0)
 		(effects
@@ -2143,10 +2143,6 @@
 	(no_connect
 		(at 184.15 71.12)
 		(uuid "2d12b369-059d-4877-b87e-e3f8603a89d3")
-	)
-	(no_connect
-		(at 153.67 76.2)
-		(uuid "4145292d-f748-4766-8604-fdc16cdcf646")
 	)
 	(no_connect
 		(at 184.15 127)
@@ -2391,6 +2387,16 @@
 			(type default)
 		)
 		(uuid "410ec67e-e955-4b6e-be0a-9de794f2daed")
+	)
+	(wire
+		(pts
+			(xy 149.86 76.2) (xy 153.67 76.2)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4c143903-d855-4656-9285-608e637d7a80")
 	)
 	(wire
 		(pts
@@ -3466,6 +3472,17 @@
 			(justify left)
 		)
 		(uuid "8351b47b-19b3-44bc-9c50-c7e1e4047ef6")
+	)
+	(hierarchical_label "BAT_VOLT"
+		(shape input)
+		(at 149.86 76.2 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bb144d88-61ab-4d8a-aefb-e2441f96b583")
 	)
 	(hierarchical_label "ENCODER_CH_A"
 		(shape output)

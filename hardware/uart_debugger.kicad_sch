@@ -13,6 +13,133 @@
 		(comment 4 "Author: Nicolas Perozzi")
 	)
 	(lib_symbols
+		(symbol "Device:R_Small"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "R"
+				(at 0.762 0.508 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "R_Small"
+				(at 0.762 -1.016 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "Resistor, small symbol"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "R resistor"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "R_*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "R_Small_0_1"
+				(rectangle
+					(start -0.762 1.778)
+					(end 0.762 -1.778)
+					(stroke
+						(width 0.2032)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "R_Small_1_1"
+				(pin passive line
+					(at 0 2.54 270)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -2.54 90)
+					(length 0.762)
+					(name "~"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "kitchen_timer-symbols_lib:BAS40_diode"
 			(pin_names
 				(offset 0)
@@ -1061,9 +1188,25 @@
 		)
 		(uuid "726fa7bf-7f48-4472-bd2f-ffe9d9598212")
 	)
+	(junction
+		(at 165.1 95.25)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7d834c7e-c468-49a1-a21f-49787c79e8f6")
+	)
 	(no_connect
 		(at 135.89 107.95)
 		(uuid "20328826-45ee-4fb0-ab1d-e2b9c266b7fc")
+	)
+	(wire
+		(pts
+			(xy 154.94 100.33) (xy 135.89 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "151f31d2-d1eb-4f42-a2fe-158b707284a6")
 	)
 	(wire
 		(pts
@@ -1077,13 +1220,23 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 110.49) (xy 167.64 110.49)
+			(xy 135.89 110.49) (xy 173.99 110.49)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "44fc5d88-f817-4db8-91e8-73c34e1f3c0c")
+	)
+	(wire
+		(pts
+			(xy 165.1 95.25) (xy 173.99 95.25)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5191794f-36c2-4120-975b-30eb5736715f")
 	)
 	(wire
 		(pts
@@ -1097,7 +1250,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 90.17) (xy 167.64 90.17)
+			(xy 149.86 90.17) (xy 173.99 90.17)
 		)
 		(stroke
 			(width 0)
@@ -1107,7 +1260,7 @@
 	)
 	(wire
 		(pts
-			(xy 162.56 100.33) (xy 167.64 100.33)
+			(xy 162.56 95.25) (xy 165.1 95.25)
 		)
 		(stroke
 			(width 0)
@@ -1127,7 +1280,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 100.33) (xy 157.48 100.33)
+			(xy 154.94 95.25) (xy 157.48 95.25)
 		)
 		(stroke
 			(width 0)
@@ -1137,13 +1290,33 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 105.41) (xy 167.64 105.41)
+			(xy 170.18 99.06) (xy 173.99 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "92cf955b-fe8b-42d9-9cf4-75f919517ad0")
+	)
+	(wire
+		(pts
+			(xy 135.89 105.41) (xy 173.99 105.41)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "9406257f-289c-4e48-8c51-fbd06ae8b0ad")
+	)
+	(wire
+		(pts
+			(xy 154.94 95.25) (xy 154.94 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "aa9e6865-381f-4ec9-a287-5d6e54a633f6")
 	)
 	(wire
 		(pts
@@ -1157,7 +1330,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 102.87) (xy 167.64 102.87)
+			(xy 135.89 102.87) (xy 173.99 102.87)
 		)
 		(stroke
 			(width 0)
@@ -1165,9 +1338,19 @@
 		)
 		(uuid "dfd35635-9519-43d9-aac2-0d299191ed93")
 	)
+	(wire
+		(pts
+			(xy 165.1 95.25) (xy 165.1 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f3482408-9326-44b7-af09-fe42669c9d75")
+	)
 	(hierarchical_label "CH340_RXD"
 		(shape input)
-		(at 167.64 90.17 0)
+		(at 173.99 90.17 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1175,6 +1358,17 @@
 			(justify left)
 		)
 		(uuid "0eaf6cc6-7f74-45bb-bd82-c741aced4dfc")
+	)
+	(hierarchical_label "GND"
+		(shape output)
+		(at 173.99 99.06 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0f2c5792-03a1-4bcb-9298-06638df7afd1")
 	)
 	(hierarchical_label "+5V-USB"
 		(shape output)
@@ -1189,7 +1383,7 @@
 	)
 	(hierarchical_label "DTR"
 		(shape output)
-		(at 167.64 102.87 0)
+		(at 173.99 102.87 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1200,7 +1394,7 @@
 	)
 	(hierarchical_label "+5V-USB"
 		(shape output)
-		(at 167.64 105.41 0)
+		(at 173.99 105.41 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1211,7 +1405,7 @@
 	)
 	(hierarchical_label "GND"
 		(shape output)
-		(at 167.64 110.49 0)
+		(at 173.99 110.49 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1222,7 +1416,7 @@
 	)
 	(hierarchical_label "­CH340_TXD"
 		(shape output)
-		(at 167.64 100.33 0)
+		(at 173.99 95.25 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1421,16 +1615,15 @@
 	)
 	(symbol
 		(lib_id "kitchen_timer-symbols_lib:BAS40_diode")
-		(at 160.02 100.33 180)
+		(at 160.02 95.25 180)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "9f2fa061-e912-4e30-8dfe-93f3dc1b1f2d")
 		(property "Reference" "D1"
-			(at 160.02 93.98 0)
+			(at 159.766 91.948 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1438,7 +1631,7 @@
 			)
 		)
 		(property "Value" "BAS40"
-			(at 160.02 96.52 0)
+			(at 159.766 97.79 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1446,7 +1639,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 138.938 100.076 90)
+			(at 138.938 94.996 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1455,7 +1648,7 @@
 			)
 		)
 		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8590224761860497408"
-			(at 142.748 101.092 90)
+			(at 142.748 96.012 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1464,7 +1657,7 @@
 			)
 		)
 		(property "Description" "40V Independent Type 200mA 1V@40mA SOT-23 Schottky Diodes ROHS"
-			(at 158.75 118.872 0)
+			(at 158.75 113.792 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1473,7 +1666,7 @@
 			)
 		)
 		(property "Sim.Pins" "1=K 2=A"
-			(at 148.844 110.998 0)
+			(at 148.844 105.918 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1482,7 +1675,7 @@
 			)
 		)
 		(property "Supplier Link" "https://jlcpcb.com/partdetail/78417-BAS40/C77289"
-			(at 156.21 121.412 0)
+			(at 156.21 116.332 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1491,7 +1684,7 @@
 			)
 		)
 		(property "Package" "SOT-23"
-			(at 158.496 115.316 0)
+			(at 158.496 110.236 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1500,7 +1693,7 @@
 			)
 		)
 		(property "Supplier Name" "JLCPCB"
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1509,7 +1702,7 @@
 			)
 		)
 		(property "Manuf. Part #" "BAS40"
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1518,7 +1711,7 @@
 			)
 		)
 		(property "Supplier Unit Price" "$0.0257"
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1527,7 +1720,7 @@
 			)
 		)
 		(property "Part Num" "NA"
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1536,7 +1729,7 @@
 			)
 		)
 		(property "Manuf. Name" "Jiangsu Changjing Electronics Technology Co., Ltd."
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1545,7 +1738,7 @@
 			)
 		)
 		(property "Supplier Part #" " C77289"
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1554,7 +1747,7 @@
 			)
 		)
 		(property "Manufacturer_Name" ""
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1563,7 +1756,7 @@
 			)
 		)
 		(property "Manufacturer_Part_Number" ""
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1572,7 +1765,7 @@
 			)
 		)
 		(property "Mouser Part Number" ""
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1581,7 +1774,7 @@
 			)
 		)
 		(property "Mouser Price/Stock" ""
-			(at 160.02 100.33 0)
+			(at 160.02 95.25 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1795,6 +1988,181 @@
 			(project ""
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/f7e640d9-c0d9-4c44-8592-f18e152ed7d5"
 					(reference "Q1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 167.64 99.06 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "edd5932d-96e1-4aaa-88da-a37c6b767a89")
+		(property "Reference" "R22"
+			(at 167.386 96.774 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 167.64 101.6 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "https://jlcpcb.com/api/file/downloadByFileSystemAccessId/8562006748401074176"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "10k, 0805"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Link" "https://jlcpcb.com/partdetail/18102-0805W8F1002T5E/C17414"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Package" "0805"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Name" "JLCPCB"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Part #" "0805W8F1002T5E"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Unit Price" "$0.0017"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Part Num" ""
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manuf. Name" "UNI-ROYAL(Uniroyal Elec)"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Supplier Part #" "C17414"
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Name" ""
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Manufacturer_Part_Number" ""
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Part Number" ""
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Mouser Price/Stock" ""
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "4dd3bf54-74d0-4b27-a2cc-007e4beedfbc")
+		)
+		(pin "1"
+			(uuid "1fe0ffd0-4ac6-4e75-89b7-abbeab5d3c1a")
+		)
+		(instances
+			(project "kitchen_timer-hardware"
+				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a/f7e640d9-c0d9-4c44-8592-f18e152ed7d5"
+					(reference "R22")
 					(unit 1)
 				)
 			)

@@ -387,7 +387,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 68.58) (xy 138.43 68.58)
+			(xy 130.81 66.04) (xy 138.43 66.04)
 		)
 		(stroke
 			(width 0)
@@ -397,7 +397,7 @@
 	)
 	(wire
 		(pts
-			(xy 133.35 88.9) (xy 133.35 68.58)
+			(xy 130.81 88.9) (xy 130.81 66.04)
 		)
 		(stroke
 			(width 0)
@@ -427,7 +427,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 88.9) (xy 133.35 88.9)
+			(xy 123.19 88.9) (xy 130.81 88.9)
 		)
 		(stroke
 			(width 0)
@@ -457,7 +457,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 93.98) (xy 135.89 93.98)
+			(xy 123.19 93.98) (xy 133.35 93.98)
 		)
 		(stroke
 			(width 0)
@@ -507,7 +507,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 93.98) (xy 135.89 71.12)
+			(xy 133.35 93.98) (xy 133.35 68.58)
 		)
 		(stroke
 			(width 0)
@@ -587,6 +587,16 @@
 	)
 	(wire
 		(pts
+			(xy 138.43 72.39) (xy 135.89 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f749ebc-5a6b-42be-bf89-5dea45ff4d30")
+	)
+	(wire
+		(pts
 			(xy 52.07 55.88) (xy 62.23 55.88)
 		)
 		(stroke
@@ -597,7 +607,7 @@
 	)
 	(wire
 		(pts
-			(xy 135.89 71.12) (xy 138.43 71.12)
+			(xy 133.35 68.58) (xy 138.43 68.58)
 		)
 		(stroke
 			(width 0)
@@ -627,7 +637,7 @@
 	)
 	(wire
 		(pts
-			(xy 123.19 86.36) (xy 130.81 86.36)
+			(xy 123.19 86.36) (xy 128.27 86.36)
 		)
 		(stroke
 			(width 0)
@@ -654,6 +664,16 @@
 			(type default)
 		)
 		(uuid "560d648a-6a80-4727-a377-b7b67929cbd5")
+	)
+	(wire
+		(pts
+			(xy 135.89 72.39) (xy 135.89 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c3c22f1-f24b-4213-995c-310ea1e5aedd")
 	)
 	(wire
 		(pts
@@ -857,7 +877,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 86.36) (xy 130.81 66.04)
+			(xy 128.27 86.36) (xy 128.27 63.5)
 		)
 		(stroke
 			(width 0)
@@ -897,6 +917,16 @@
 	)
 	(wire
 		(pts
+			(xy 135.89 114.3) (xy 175.26 114.3)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b0d5f95b-8e9c-49ca-a33b-56cb742dec3a")
+	)
+	(wire
+		(pts
 			(xy 171.45 57.15) (xy 173.99 57.15)
 		)
 		(stroke
@@ -904,6 +934,16 @@
 			(type default)
 		)
 		(uuid "c10e1481-810c-4386-8350-825d22c8309d")
+	)
+	(wire
+		(pts
+			(xy 175.26 125.73) (xy 171.45 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c46a9eac-da69-4648-bb98-589d90751965")
 	)
 	(wire
 		(pts
@@ -967,6 +1007,16 @@
 	)
 	(wire
 		(pts
+			(xy 175.26 114.3) (xy 175.26 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e805ba90-0f60-4351-a502-7d39bfb09f06")
+	)
+	(wire
+		(pts
 			(xy 52.07 58.42) (xy 62.23 58.42)
 		)
 		(stroke
@@ -1007,7 +1057,7 @@
 	)
 	(wire
 		(pts
-			(xy 130.81 66.04) (xy 138.43 66.04)
+			(xy 128.27 63.5) (xy 138.43 63.5)
 		)
 		(stroke
 			(width 0)
@@ -5088,6 +5138,16 @@
 				(justify right)
 			)
 		)
+		(pin "BAT_VOLT" output
+			(at 171.45 125.73 0)
+			(uuid "3f570834-3d44-4d98-b77f-6687ed8f11c0")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "kitchen_timer-hardware"
 				(path "/8963deea-96bc-4401-b671-98fbe9ed9c6a"
@@ -5181,7 +5241,7 @@
 			)
 		)
 		(pin "ENCODER_CH_A" output
-			(at 138.43 66.04 180)
+			(at 138.43 63.5 180)
 			(uuid "e44f4ac1-fd10-43e1-a523-aac0ff9ae4a1")
 			(effects
 				(font
@@ -5191,7 +5251,7 @@
 			)
 		)
 		(pin "SW" output
-			(at 138.43 71.12 180)
+			(at 138.43 68.58 180)
 			(uuid "f361dd18-00df-426a-8c5d-440e24df5d16")
 			(effects
 				(font
@@ -5201,7 +5261,7 @@
 			)
 		)
 		(pin "ENCODER_CH_B" output
-			(at 138.43 68.58 180)
+			(at 138.43 66.04 180)
 			(uuid "799c6e4d-b7b9-4632-9c1b-325bb8234e86")
 			(effects
 				(font
@@ -5223,6 +5283,16 @@
 		(pin "MCU_TXD" output
 			(at 138.43 55.88 180)
 			(uuid "ffc1e236-9489-40ed-9cb6-6fc0650e8b8d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BAT_VOLT" input
+			(at 138.43 72.39 180)
+			(uuid "c783612a-25c0-453b-bcf3-679f10b3f380")
 			(effects
 				(font
 					(size 1.27 1.27)
