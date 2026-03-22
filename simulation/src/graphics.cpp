@@ -80,7 +80,10 @@ static const float MARGIN        = 20.0f;   /* margin around the matrix */
 /* Status panel below the matrix */
 static const float STATUS_HEIGHT = 60.0f;
 
-static const float WINDOW_W = MARGIN * 2 + MATRIX_SIZE * GRID_SIZE;
+/* PORTC LED indicator panel to the right of the matrix */
+static const float LED_PANEL_W   = 60.0f;
+
+static const float WINDOW_W = MARGIN * 2 + MATRIX_SIZE * GRID_SIZE + LED_PANEL_W;
 static const float WINDOW_H = MARGIN * 2 + MATRIX_SIZE * GRID_SIZE + STATUS_HEIGHT;
 
 /* ─── Global state for GLUT callbacks ────────────────────────────── */
@@ -171,10 +174,33 @@ void display_callback(void)
         glEnd();
     }
 
-    /* Draw key legend */
-    /* We can't easily render text with basic GLUT without bitmap fonts,
-     * but we can draw simple indicators. The key legend will be printed
-     * to the terminal instead. */
+    /* Draw PORTC LED indicators (debug LEDs on PC0, PC1, PC2) */
+    {
+        float led_x = MARGIN + MATRIX_SIZE * GRID_SIZE + LED_PANEL_W / 2;
+        float led_r = 8.0f;
+        float led_spacing = 28.0f;
+        /* Center the 3 LEDs vertically in the matrix area */
+        float led_start_y = MARGIN + (MATRIX_SIZE * GRID_SIZE) / 2 - led_spacing;
+
+        for (int i = 0; i < 3; i++) {
+            bool on = (port_c_state >> i) & 1;
+            if (on) {
+                glColor3f(1.0f, 0.0f, 0.0f);       /* bright red */
+            } else {
+                glColor3f(0.15f, 0.05f, 0.05f);     /* dim red (off) */
+            }
+
+            float cy = led_start_y + i * led_spacing;
+            glBegin(GL_TRIANGLE_FAN);
+            glVertex2f(led_x, cy);
+            for (int j = 0; j <= 20; j++) {
+                float angle = 2.0f * M_PI * j / 20.0f;
+                glVertex2f(led_x + led_r * cosf(angle),
+                           cy + led_r * sinf(angle));
+            }
+            glEnd();
+        }
+    }
 
     glutSwapBuffers();
 }
