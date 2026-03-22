@@ -19,6 +19,7 @@ extern "C"
 {
 #include "avr_ioport.h"
 #include "avr_spi.h"
+#include "avr_uart.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
@@ -41,6 +42,14 @@ void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
     UNUSED irq;
     UNUSED param;
     port_c_state = value;
+}
+
+void uart_stdout_hook(struct avr_irq_t *irq, uint32_t value, void *param)
+{
+    UNUSED irq;
+    UNUSED param;
+    fputc((char)value, stdout);
+    fflush(stdout);
 }
 
 void avr_special_init(avr_t *avr, void *data)
@@ -396,6 +405,12 @@ int main(int argc, char *argv[])
     uart_pty_t uart_pty;
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
+
+    /* Also echo UART output to stdout */
+    avr_irq_register_notify(
+        avr_io_getirq(avr, AVR_IOCTL_UART_GETIRQ('0'), UART_IRQ_OUTPUT),
+        uart_stdout_hook,
+        NULL);
 
     if (args.interactive)
     {
