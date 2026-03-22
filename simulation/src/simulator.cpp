@@ -36,6 +36,7 @@ struct avr_flash
 
 uint8_t port_c_state = 0b00000000;
 peripherals_t g_sim_peripherals;
+static bool started_in_bootloader = false;
 
 void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
 {
@@ -208,6 +209,11 @@ void fill_avr_flash_or_exit(avr_t *avr, std::string hex_file)
     avr->pc = boot_base;
 }
 
+/*
+ * For bootloader-only runs: also consider PC==0 (after running at least
+ * one instruction) as an exit condition, since that means the bootloader
+ * jumped to the application reset vector.
+ */
 const char *exit_reason(avr_t *avr)
 {
     if (avr->state == cpu_Done)
@@ -216,24 +222,9 @@ const char *exit_reason(avr_t *avr)
     if (avr->state == cpu_Crashed)
         return "CPU crashed";
 
-    return nullptr;
-}
-
-/*
- * For bootloader-only runs: also consider PC==0 (after running at least
- * one instruction) as an exit condition, since that means the bootloader
- * jumped to the application reset vector.
- */
-const char *exit_reason_bootloader(avr_t *avr)
-{
-    const char *reason = exit_reason(avr);
-    if (reason)
-        return reason;
-
-    static bool has_run = false;
-    if (has_run && avr->pc == 0)
+    // If we started with a bootloader, then exit when it finishes
+    if (started_in_bootloader && avr->pc == 0)
         return "Bootloader finished";
-    has_run = true;
 
     return nullptr;
 }
@@ -242,9 +233,10 @@ void run_instructions_until_exited_bootloader(avr_t *avr)
 {
     while (true)
     {
-        if (exit_reason_bootloader(avr))
+        const char *reason = exit_reason(avr);
+        if (reason)
         {
-            printf("Exiting: %s\n", exit_reason_bootloader(avr));
+            printf("Exiting: %s\n", reason);
             break;
         }
 
@@ -380,6 +372,7 @@ int main(int argc, char *argv[])
     avr->frequency = freq;
 
     fill_avr_flash_or_exit(avr, args.hex_file);
+    started_in_bootloader = avr->pc != 0;
 
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
