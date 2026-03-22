@@ -121,7 +121,7 @@ typedef struct args
 {
     bool debug;
     bool verbose;
-    bool interactive;
+    bool headless;
     std::string hex_file;
 } args_t;
 
@@ -134,7 +134,7 @@ public:
 
 void print_usage(std::string program_name)
 {
-    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] [-i|--interactive] hex_file\n";
+    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] [--headless] hex_file\n";
 }
 
 args_t
@@ -143,22 +143,22 @@ parse_arguments(int argc, char *argv[])
     const struct option long_options[] = {
         {"help", no_argument, nullptr, 'h'},
         {"debug", no_argument, nullptr, 'd'},
-        {"interactive", no_argument, nullptr, 'i'},
+        {"headless", no_argument, nullptr, 'H'},
         {"verbose", no_argument, nullptr, 'v'},
         {nullptr, 0, nullptr, 0}};
 
-    args_t args = {.debug = false, .verbose = false, .interactive = false, .hex_file = ""};
+    args_t args = {.debug = false, .verbose = false, .headless = false, .hex_file = ""};
 
     int opt;
-    while ((opt = getopt_long(argc, argv, "ihdvp:", long_options, nullptr)) != -1)
+    while ((opt = getopt_long(argc, argv, "Hhdvp:", long_options, nullptr)) != -1)
     {
         switch (opt)
         {
         case 'd':
             args.debug = true;
             break;
-        case 'i':
-            args.interactive = true;
+        case 'H':
+            args.headless = true;
             break;
         case 'v':
             args.verbose = true;
@@ -405,13 +405,13 @@ int main(int argc, char *argv[])
         uart_stdout_hook,
         NULL);
 
-    if (args.interactive)
+    if (args.headless)
     {
-        simulate_with_graphics(avr, &g_sim_peripherals);
+        run_instructions_until_exited_bootloader(avr);
     }
     else
     {
-        run_instructions_until_exited_bootloader(avr);
+        simulate_with_graphics(avr, &g_sim_peripherals);
     }
 
     uart_pty_stop(&uart_pty);
