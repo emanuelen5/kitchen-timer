@@ -26,7 +26,7 @@ void init_application(application_t *app)
 
     uint8_t last_brightness_setting;
     load_byte_setting(&last_brightness_setting, EEPROM_BRIGHTNESS_ADDR);
-    app->brightness = last_brightness_setting;
+    app->brightness = last_brightness_setting > max72xx_max_brightness ? max72xx_max_brightness : last_brightness_setting;
 
     uint8_t last_volume_setting;
     load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
