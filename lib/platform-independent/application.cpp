@@ -12,7 +12,6 @@ void save_byte_setting(uint8_t setting, eeprom_address address);
 void max72xx_set_intensity(uint8_t intensity_level);
 constexpr uint8_t max72xx_max_brightness = 10;
 
-static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu);
 
 void init_application(application_t *app)
 {
@@ -210,6 +209,12 @@ static void previous_setting_menu_option(settings_menu_t *settings_menu)
     {
         settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
     }
+}
+
+static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
+{
+    settings_menu->current_menu_position = BRIGHTNESS;
+    app->current_view = SETTINGS_MENU_VIEW;
 }
 
 void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event)
