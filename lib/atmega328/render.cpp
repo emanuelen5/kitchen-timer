@@ -281,6 +281,45 @@ static void render_melody_setting_view(application_t *app)
     draw_char(melody_number_char, 7, 4, false);
 }
 
+static void render_snake_view(application_t *app)
+{
+    snake_game_t *game = &app->snake_game;
+
+    for (uint16_t i = 1; i < game->length; i++)
+    {
+        matrix_set_pixel(game->body[i].x, game->body[i].y, true);
+    }
+
+    const bool head_is_visible = game->status != SNAKE_PAUSED;
+    matrix_set_pixel(game->body[0].x, game->body[0].y, head_is_visible);
+
+    if (game->food_visible)
+    {
+        const bool show_food = game->status != SNAKE_PAUSED
+            || get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
+        matrix_set_pixel(game->food.x, game->food.y, show_food);
+    }
+
+    if (game->status == SNAKE_GAME_OVER)
+    {
+        for (uint8_t i = 0; i < MATRIX_COL_WIDTH; i++)
+        {
+            matrix_set_pixel(i, i, true);
+            matrix_set_pixel(MATRIX_COL_WIDTH - 1 - i, i, true);
+        }
+    }
+    else if (game->status == SNAKE_WON)
+    {
+        for (uint8_t i = 0; i < MATRIX_COL_WIDTH; i++)
+        {
+            matrix_set_pixel(i, 0, true);
+            matrix_set_pixel(i, MATRIX_ROW_HEIGHT - 1, true);
+            matrix_set_pixel(0, i, true);
+            matrix_set_pixel(MATRIX_COL_WIDTH - 1, i, true);
+        }
+    }
+}
+
 void render(application_t *app)
 {
     matrix_buffer_clear();
@@ -310,6 +349,10 @@ void render(application_t *app)
 
     case MELODY_SELECT_VIEW:
         render_melody_setting_view(app);
+        break;
+
+    case SNAKE_VIEW:
+        render_snake_view(app);
         break;
 
     default:

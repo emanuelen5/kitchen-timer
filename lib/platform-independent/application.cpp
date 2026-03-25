@@ -8,10 +8,10 @@
 // Prototypes for functions defined in platform-specific files
 void minimize_battery_voltage_jitter(void);
 uint16_t battery_centivolts(void);
+uint16_t millis(void);
 void save_byte_setting(uint8_t setting, eeprom_address address);
 void max72xx_set_intensity(uint8_t intensity_level);
 constexpr uint8_t max72xx_max_brightness = 10;
-
 
 void init_application(application_t *app)
 {
@@ -30,7 +30,7 @@ void init_application(application_t *app)
     uint8_t last_volume_setting;
     load_byte_setting(&last_volume_setting, EEPROM_VOLUME_ADDR);
     app->buzzer.set_volume(last_volume_setting);
-    
+
     uint8_t last_melody_setting;
     load_byte_setting(&last_melody_setting, EEPROM_MELODY_ADDR);
     bool melody_in_eeprom_is_invalid = last_melody_setting >= (uint8_t)melody_count;
@@ -72,8 +72,13 @@ void service_application(application_t *app)
         service_state_machine(&app->state_machines[i]);
 
     app->buzzer.service();
+    if (app->current_view == SNAKE_VIEW)
+    {
+        service_snake_game(&app->snake_game, millis());
+    }
 
-    if (app->current_view == BATTERY_CHARGE_VIEW && !battery_measurement_is_complete(&app->battery_measurement)) {
+    if (app->current_view == BATTERY_CHARGE_VIEW && !battery_measurement_is_complete(&app->battery_measurement))
+    {
         uint8_t brightness = app->brightness;
         minimize_battery_voltage_jitter();
         add_battery_measurement(&app->battery_measurement, battery_centivolts());
@@ -157,7 +162,7 @@ static bool any_timer_has_state(application_t *app, state_t state)
 static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_setting)
 {
     application_t *app = (application_t *)app_argument;
-    switch(selected_setting)
+    switch (selected_setting)
     {
     case BACK:
         app->current_view = ACTIVE_TIMER_VIEW;
@@ -180,6 +185,7 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
         break;
 
     case SNAKE:
+        snake_restart(&app->snake_game, millis());
         app->current_view = SNAKE_VIEW;
         break;
 
@@ -196,7 +202,7 @@ void init_settings_menu(settings_menu_t *settings_menu)
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
     settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
-    if(settings_menu->current_menu_position > SETTINGS_COUNT - 1)
+    if (settings_menu->current_menu_position > SETTINGS_COUNT - 1)
     {
         settings_menu->current_menu_position = BRIGHTNESS;
     }
@@ -205,7 +211,7 @@ static void next_settings_menu_option(settings_menu_t *settings_menu)
 static void previous_setting_menu_option(settings_menu_t *settings_menu)
 {
     settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
-    if(settings_menu->current_menu_position < 0)
+    if (settings_menu->current_menu_position < 0)
     {
         settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
     }
@@ -221,83 +227,84 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
 {
     switch (event)
     {
-        case CW_ROTATION:
-        case CW_ROTATION_FAST:
-            next_settings_menu_option(settings_menu);
-            break;
+    case CW_ROTATION:
+    case CW_ROTATION_FAST:
+        next_settings_menu_option(settings_menu);
+        break;
 
-        case CCW_ROTATION:
-        case CCW_ROTATION_FAST:
-            previous_setting_menu_option(settings_menu);
-            break;
+    case CCW_ROTATION:
+    case CCW_ROTATION_FAST:
+        previous_setting_menu_option(settings_menu);
+        break;
 
-        case SINGLE_PRESS:
-            settings_menu->selected_setting = settings_menu->current_menu_position;
-            change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
-            break;
+    case SINGLE_PRESS:
+        settings_menu->selected_setting = settings_menu->current_menu_position;
+        change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }
 
-void brightness_setting_event_handling(application_t *app,  event_t event)
+void brightness_setting_event_handling(application_t *app, event_t event)
 {
     switch (event)
     {
-        case CW_ROTATION:
-        case CW_ROTATION_FAST:
-            if(app->brightness < max72xx_max_brightness)
-                app->brightness++;
-            max72xx_set_intensity(app->brightness);
-            break;
+    case CW_ROTATION:
+    case CW_ROTATION_FAST:
+        if (app->brightness < max72xx_max_brightness)
+            app->brightness++;
+        max72xx_set_intensity(app->brightness);
+        break;
 
-        case CCW_ROTATION:
-        case CCW_ROTATION_FAST:
-            if(app->brightness > 0)
-                app->brightness--;
-            max72xx_set_intensity(app->brightness);
-            break;
+    case CCW_ROTATION:
+    case CCW_ROTATION_FAST:
+        if (app->brightness > 0)
+            app->brightness--;
+        max72xx_set_intensity(app->brightness);
+        break;
 
-        case SINGLE_PRESS:
-            save_byte_setting(app->brightness, EEPROM_BRIGHTNESS_ADDR);
-            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
-            break;
+    case SINGLE_PRESS:
+        save_byte_setting(app->brightness, EEPROM_BRIGHTNESS_ADDR);
+        going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }
 
-void volume_setting_event_handling(application_t *app,  event_t event)
+void volume_setting_event_handling(application_t *app, event_t event)
 {
     uint8_t volume = app->buzzer.get_volume();
 
     switch (event)
     {
-        case CW_ROTATION:
-        case CW_ROTATION_FAST:
-            volume += 1;
+    case CW_ROTATION:
+    case CW_ROTATION_FAST:
+        volume += 1;
+        app->buzzer.set_volume(volume);
+        app->buzzer.start_melody(volume_setting, 0);
+        break;
+
+    case CCW_ROTATION:
+    case CCW_ROTATION_FAST:
+        if (volume > 0)
+        {
+            volume -= 1;
             app->buzzer.set_volume(volume);
             app->buzzer.start_melody(volume_setting, 0);
-            break;
+        }
+        break;
 
-        case CCW_ROTATION:
-        case CCW_ROTATION_FAST:
-            if (volume > 0) {
-                volume -= 1;
-                app->buzzer.set_volume(volume);
-                app->buzzer.start_melody(volume_setting, 0);
-            }
-            break;
+    case SINGLE_PRESS:
+        save_byte_setting(app->buzzer.get_volume(), EEPROM_VOLUME_ADDR);
+        going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+        break;
 
-        case SINGLE_PRESS:
-            save_byte_setting(app->buzzer.get_volume(), EEPROM_VOLUME_ADDR);
-            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
-            break;
-
-        default:
-            break;
+    default:
+        break;
     }
 }
 
@@ -305,12 +312,12 @@ void handle_battery_event(application_t *app, event_t event)
 {
     switch (event)
     {
-        case SINGLE_PRESS:
-            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
-            break;
+    case SINGLE_PRESS:
+        going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+        break;
 
-        default:
-            break;
+    default:
+        break;
     }
 }
 
@@ -321,35 +328,100 @@ void melody_setting_event_handling(application_t *app, event_t event)
 
     switch (event)
     {
+    case CW_ROTATION:
+    case CW_ROTATION_FAST:
+        selected_index = (selected_index + 1) % max_melody_count;
+        app->selected_melody = (MelodyType)selected_index;
+        app->buzzer.start_melody(app->selected_melody, 0);
+        break;
+
+    case CCW_ROTATION:
+    case CCW_ROTATION_FAST:
+        selected_index = (selected_index + max_melody_count - 1) % max_melody_count; // negative modulo 1 does not seem to work.
+        app->selected_melody = (MelodyType)selected_index;
+        app->buzzer.start_melody(app->selected_melody, 0);
+        break;
+
+    case SINGLE_PRESS:
+        app->buzzer.stop();
+        save_byte_setting((uint8_t)app->selected_melody, EEPROM_MELODY_ADDR);
+        going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+        break;
+
+    default:
+        break;
+    }
+}
+
+static void snake_view_event_handling(application_t *app, event_t event)
+{
+    switch (app->snake_game.status)
+    {
+    case SNAKE_RUNNING:
+        switch (event)
+        {
         case CW_ROTATION:
         case CW_ROTATION_FAST:
-            selected_index = (selected_index + 1) % max_melody_count;
-            app->selected_melody = (MelodyType)selected_index;
-            app->buzzer.start_melody(app->selected_melody, 0);
+            snake_turn_right(&app->snake_game);
             break;
 
         case CCW_ROTATION:
         case CCW_ROTATION_FAST:
-            selected_index = (selected_index + max_melody_count - 1) % max_melody_count;  //negative modulo 1 does not seem to work.
-            app->selected_melody = (MelodyType)selected_index;
-            app->buzzer.start_melody(app->selected_melody, 0);
+            snake_turn_left(&app->snake_game);
             break;
 
         case SINGLE_PRESS:
-            app->buzzer.stop();
-            save_byte_setting((uint8_t)app->selected_melody, EEPROM_MELODY_ADDR);
+            app->snake_game.status = SNAKE_PAUSED;
+            break;
+
+        case LONG_PRESS:
             going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
             break;
 
         default:
             break;
-    }
-}
+        }
+    break;
 
-static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
-{
-    settings_menu->current_menu_position = BRIGHTNESS;
-    app->current_view = SETTINGS_MENU_VIEW;
+    case SNAKE_PAUSED:
+    {
+        switch (event)
+        {
+        case SINGLE_PRESS:
+            app->snake_game.status = SNAKE_RUNNING;
+            break;
+
+        case LONG_PRESS:
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+        }
+    }
+    break;
+
+    case SNAKE_GAME_OVER:
+    case SNAKE_WON:
+        switch (event)
+        {
+        case SINGLE_PRESS:
+            snake_restart(&app->snake_game, millis());
+            break;
+
+        case LONG_PRESS:
+            going_back_to_setting_menu_from_submenu(app, &app->settings_menu);
+            break;
+
+        default:
+            break;
+        }
+
+        break;
+
+    default:
+        break;
+    }
 }
 
 void application_handle_event(application_t *app, event_t event)
@@ -376,52 +448,56 @@ void application_handle_event(application_t *app, event_t event)
     {
         switch (app->current_view)
         {
-            case ACTIVE_TIMER_VIEW:
-                if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
-                {
-                    try_to_open_new_timer(app);
-                }
-                else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
-                {
-                    app->current_view = SETTINGS_MENU_VIEW;
-                }
-                else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
-                {
-                    select_next_state_machine(app);
-                }
-                else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
-                {
-                    select_previous_state_machine(app);
-                }
-                else
-                {
-                    state_machine_handle_event(active_sm, event);
-                }
-                break;
+        case ACTIVE_TIMER_VIEW:
+            if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
+            {
+                try_to_open_new_timer(app);
+            }
+            else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+            {
+                app->current_view = SETTINGS_MENU_VIEW;
+            }
+            else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
+            {
+                select_next_state_machine(app);
+            }
+            else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
+            {
+                select_previous_state_machine(app);
+            }
+            else
+            {
+                state_machine_handle_event(active_sm, event);
+            }
+            break;
 
-            case SETTINGS_MENU_VIEW:
-                settings_menu_event_handling(&app->settings_menu, change_to_a_setting_view_cb, app, event);
-                break;
+        case SETTINGS_MENU_VIEW:
+            settings_menu_event_handling(&app->settings_menu, change_to_a_setting_view_cb, app, event);
+            break;
 
-            case BRIGHTNESS_SETTING_VIEW:
-                brightness_setting_event_handling(app, event);
-                break;
+        case BRIGHTNESS_SETTING_VIEW:
+            brightness_setting_event_handling(app, event);
+            break;
 
-            case VOLUME_SETTING_VIEW:
-                volume_setting_event_handling(app, event);
-                break;
+        case VOLUME_SETTING_VIEW:
+            volume_setting_event_handling(app, event);
+            break;
 
-            case BATTERY_CHARGE_VIEW:
-                handle_battery_event(app, event);
-                break;
+        case BATTERY_CHARGE_VIEW:
+            handle_battery_event(app, event);
+            break;
 
-            case MELODY_SELECT_VIEW:
-                melody_setting_event_handling(app, event);
-                break;
+        case MELODY_SELECT_VIEW:
+            melody_setting_event_handling(app, event);
+            break;
 
-            default:
-                //Do nothing
-                break;
+        case SNAKE_VIEW:
+            snake_view_event_handling(app, event);
+            break;
+
+        default:
+            // Do nothing
+            break;
         }
     }
 }
