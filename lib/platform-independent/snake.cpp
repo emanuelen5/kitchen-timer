@@ -65,7 +65,6 @@ namespace
             if (!is_occupied_by_body(game, candidate, game->length, true))
             {
                 game->food = candidate;
-                game->food_visible = true;
                 return;
             }
         }
@@ -104,7 +103,6 @@ void snake_restart(snake_game_t *game, uint16_t seed)
     game->length = snake_initial_length;
     game->direction = SNAKE_RIGHT;
     game->status = SNAKE_RUNNING;
-    game->food_visible = false;
     game->turn_locked_until_step = false;
 
     game->body[0] = {8, 8};
@@ -176,7 +174,7 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
     game->last_step_ms = now_ms;
     snake_point_t next = next_head_position(game);
 
-    const bool ate_food = game->food_visible && points_equal(next, game->food);
+    const bool ate_food = points_equal(next, game->food);
 
     const uint16_t cell_count = snake_board_width * snake_board_height;
 
@@ -186,7 +184,6 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
 
         if (game->length >= cell_count)
         {
-            game->food_visible = false;
             game->status = SNAKE_WON;
             return;
         }

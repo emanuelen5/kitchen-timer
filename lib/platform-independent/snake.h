@@ -38,7 +38,6 @@ typedef struct
     uint16_t length;
     snake_direction_t direction;
     snake_status_t status;
-    bool food_visible;
     bool turn_locked_until_step;
 } snake_game_t;
 

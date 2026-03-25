@@ -17,7 +17,6 @@ void test_initializes_running_snake_with_food_not_on_body(void)
 {
     TEST_ASSERT_EQUAL(SNAKE_RUNNING, game.status);
     TEST_ASSERT_EQUAL(3, game.length);
-    TEST_ASSERT_TRUE(game.food_visible);
     TEST_ASSERT_FALSE(snake_contains_point(&game, game.food.x, game.food.y));
 }
 
@@ -64,14 +63,12 @@ void test_hitting_wall_continues_game(void)
 void test_eating_food_grows_snake(void)
 {
     game.food = {9, 8};
-    game.food_visible = true;
 
     service_snake_game(&game, 325);
 
     TEST_ASSERT_EQUAL(4, game.length);
     TEST_ASSERT_EQUAL(9, game.body[0].x);
     TEST_ASSERT_EQUAL(8, game.body[0].y);
-    TEST_ASSERT_TRUE(game.food_visible);
 }
 
 int main()

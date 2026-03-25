@@ -80,7 +80,7 @@ static void draw_char(char c, uint8_t x_offset, uint8_t y_offset, bool clear_dig
 }
 
 static void draw_bitmap(const uint8_t *bitmap, uint8_t width, uint8_t height,
-                        uint8_t bytes_per_row, uint8_t x_offset, 
+                        uint8_t bytes_per_row, uint8_t x_offset,
                         uint8_t y_offset, bool clear_bitmap)
 {
     for (uint8_t row = 0; row < height; row++)
@@ -244,7 +244,7 @@ static void render_settings_menu_view(application_t *app)
 static void render_brightness_setting_view(application_t *app)
 {
     draw_bitmap(get_icon_bitmap(icon_brightness), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 1, false);
-    for(int i = 0; i <= max72xx_max_brightness; i++)
+    for (int i = 0; i <= max72xx_max_brightness; i++)
     {
         const bool is_on = (app->brightness) >= i;
         matrix_set_pixel(i, 0, is_on);
@@ -255,7 +255,7 @@ static void render_volume_setting_view(application_t *app)
 {
     uint8_t volume = app->buzzer.get_volume();
     draw_bitmap(get_icon_bitmap(icon_volume), MATRIX_COL_WIDTH, MATRIX_ROW_HEIGHT, 2, 0, 0, false);
-    for(int i = 0; i <= app->buzzer.max_volume; i++)
+    for (int i = 0; i <= app->buzzer.max_volume; i++)
     {
         const bool is_on = volume > i;
         matrix_set_pixel(i, 0, is_on);
@@ -293,12 +293,8 @@ static void render_snake_view(application_t *app)
     const bool head_is_visible = game->status != SNAKE_PAUSED;
     matrix_set_pixel(game->body[0].x, game->body[0].y, head_is_visible);
 
-    if (game->food_visible)
-    {
-        const bool show_food = game->status != SNAKE_PAUSED
-            || get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
-        matrix_set_pixel(game->food.x, game->food.y, show_food);
-    }
+    const bool show_food = game->status != SNAKE_PAUSED || get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
+    matrix_set_pixel(game->food.x, game->food.y, show_food);
 
     if (game->status == SNAKE_GAME_OVER)
     {
