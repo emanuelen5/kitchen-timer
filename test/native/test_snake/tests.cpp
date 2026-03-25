@@ -6,7 +6,7 @@ snake_game_t game;
 
 void setUp(void)
 {
-    init_snake_game(&game, 1);
+    snake_restart(&game, 1);
 }
 
 void tearDown(void)
@@ -51,14 +51,14 @@ void test_ignores_second_turn_before_next_step(void)
     TEST_ASSERT_EQUAL(7, game.body[0].y);
 }
 
-void test_hitting_wall_ends_game(void)
+void test_hitting_wall_continues_game(void)
 {
     for (uint16_t now = 325; now <= 2600; now += 325)
     {
         service_snake_game(&game, now);
     }
 
-    TEST_ASSERT_EQUAL(SNAKE_GAME_OVER, game.status);
+    TEST_ASSERT_EQUAL(SNAKE_RUNNING, game.status);
 }
 
 void test_eating_food_grows_snake(void)
@@ -82,7 +82,7 @@ int main()
     RUN_TEST(test_moves_once_after_interval_has_elapsed);
     RUN_TEST(test_turns_relative_to_current_direction);
     RUN_TEST(test_ignores_second_turn_before_next_step);
-    RUN_TEST(test_hitting_wall_ends_game);
+    RUN_TEST(test_hitting_wall_continues_game);
     RUN_TEST(test_eating_food_grows_snake);
 
     return UNITY_END();

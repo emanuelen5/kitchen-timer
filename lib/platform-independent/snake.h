@@ -47,6 +47,6 @@ void snake_turn_right(snake_game_t *game);
 void snake_toggle_pause(snake_game_t *game);
 void snake_restart(snake_game_t *game, uint16_t seed);
 void service_snake_game(snake_game_t *game, uint16_t now_ms);
-bool snake_contains_point(const snake_game_t *game, uint8_t x, uint8_t y);
+bool snake_contains_point(const snake_game_t *game, int8_t x, int8_t y);
 
 #endif // SNAKE_H
