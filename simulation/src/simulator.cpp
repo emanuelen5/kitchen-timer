@@ -13,13 +13,17 @@
 #include "pthread.h"
 
 #include "graphics.h"
+#include "peripherals.h"
 
 extern "C"
 {
 #include "avr_ioport.h"
+#include "avr_spi.h"
+#include "avr_uart.h"
 #include "sim_hex.h"
 #include "sim_gdb.h"
 #include "uart_pty.h"
+#include "rotenc.h"
 }
 
 #define UNUSED (void)
@@ -31,12 +35,22 @@ struct avr_flash
 };
 
 uint8_t port_c_state = 0b00000000;
+peripherals_t g_sim_peripherals;
+static bool started_in_bootloader = false;
 
 void port_c_changed_hook(struct avr_irq_t *irq, uint32_t value, void *param)
 {
     UNUSED irq;
     UNUSED param;
     port_c_state = value;
+}
+
+void uart_stdout_hook(struct avr_irq_t *irq, uint32_t value, void *param)
+{
+    UNUSED irq;
+    UNUSED param;
+    fputc((char)value, stdout);
+    fflush(stdout);
 }
 
 void avr_special_init(avr_t *avr, void *data)
@@ -107,7 +121,7 @@ typedef struct args
 {
     bool debug;
     bool verbose;
-    bool interactive;
+    bool headless;
     std::string hex_file;
 } args_t;
 
@@ -120,7 +134,7 @@ public:
 
 void print_usage(std::string program_name)
 {
-    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] hex_file";
+    std::cerr << "Usage: " + program_name + " [-d|--debug] [-v|--verbose] [--headless] hex_file\n";
 }
 
 args_t
@@ -129,22 +143,22 @@ parse_arguments(int argc, char *argv[])
     const struct option long_options[] = {
         {"help", no_argument, nullptr, 'h'},
         {"debug", no_argument, nullptr, 'd'},
-        {"interactive", no_argument, nullptr, 'i'},
+        {"headless", no_argument, nullptr, 'H'},
         {"verbose", no_argument, nullptr, 'v'},
         {nullptr, 0, nullptr, 0}};
 
-    args_t args = {.debug = false, .verbose = false, .interactive = false, .hex_file = ""};
+    args_t args = {.debug = false, .verbose = false, .headless = false, .hex_file = ""};
 
     int opt;
-    while ((opt = getopt_long(argc, argv, "ihdvp:", long_options, nullptr)) != -1)
+    while ((opt = getopt_long(argc, argv, "Hhdvp:", long_options, nullptr)) != -1)
     {
         switch (opt)
         {
         case 'd':
             args.debug = true;
             break;
-        case 'i':
-            args.interactive = true;
+        case 'H':
+            args.headless = true;
             break;
         case 'v':
             args.verbose = true;
@@ -195,6 +209,11 @@ void fill_avr_flash_or_exit(avr_t *avr, std::string hex_file)
     avr->pc = boot_base;
 }
 
+/*
+ * For bootloader-only runs: also consider PC==0 (after running at least
+ * one instruction) as an exit condition, since that means the bootloader
+ * jumped to the application reset vector.
+ */
 const char *exit_reason(avr_t *avr)
 {
     if (avr->state == cpu_Done)
@@ -203,7 +222,8 @@ const char *exit_reason(avr_t *avr)
     if (avr->state == cpu_Crashed)
         return "CPU crashed";
 
-    if (avr->pc == 0)
+    // If we started with a bootloader, then exit when it finishes
+    if (started_in_bootloader && avr->pc == 0)
         return "Bootloader finished";
 
     return nullptr;
@@ -213,15 +233,103 @@ void run_instructions_until_exited_bootloader(avr_t *avr)
 {
     while (true)
     {
-        if (exit_reason(avr))
+        const char *reason = exit_reason(avr);
+        if (reason)
         {
-            printf("Exiting: %s\n", exit_reason(avr));
+            printf("Exiting: %s\n", reason);
             break;
         }
 
         avr_run(avr);
     };
     avr_terminate(avr);
+}
+
+/*
+ * Connect the virtual MAX7219 display to the AVR's SPI and CS pin.
+ *
+ * Pin mapping from SPI.h:
+ *   CS_PIN  = PB0
+ *   CLK_PIN = PB5 (SPI SCK)
+ *   DATA_PIN = PB3 (SPI MOSI)
+ */
+static void connect_display(avr_t *avr, max7219_virt_t *display)
+{
+    max7219_virt_init(avr, display);
+
+    /* Connect SPI output (MOSI data bytes) to MAX7219 SPI input */
+    avr_irq_t *spi_irq = avr_io_getirq(avr, AVR_IOCTL_SPI_GETIRQ(0), SPI_IRQ_OUTPUT);
+    if (!spi_irq) {
+        fprintf(stderr, "ERROR: Could not get SPI output IRQ (name=0)\n");
+    } else {
+        avr_connect_irq(spi_irq, display->irq + IRQ_MAX7219_SPI_BYTE_IN);
+    }
+
+    /* Connect CS pin (PB0) to MAX7219 CS input */
+    avr_irq_t *cs_irq = avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('B'), 0);
+    if (!cs_irq) {
+        fprintf(stderr, "ERROR: Could not get PB0 (CS) IRQ\n");
+    } else {
+        avr_connect_irq(cs_irq, display->irq + IRQ_MAX7219_CS_IN);
+    }
+
+    printf("Display: MAX7219 4-device chain connected (SPI + PB0/CS)\n");
+}
+
+/*
+ * Connect the virtual buzzer to PB1 (OC1A output from Timer1).
+ *
+ * Pin mapping from toneAC.cpp:
+ *   OC1A = PB1
+ *   OC1B = PB2
+ */
+static void connect_buzzer(avr_t *avr, buzzer_virt_t *buzzer)
+{
+    buzzer_virt_init(avr, buzzer);
+
+    /* Connect PB1 (OC1A) to buzzer input */
+    avr_connect_irq(
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('B'), 1),
+        buzzer->irq + IRQ_BUZZER_PIN_IN);
+
+    printf("Buzzer: monitoring PB1 (OC1A) for tone output\n");
+}
+
+/*
+ * Connect the virtual rotary encoder to the AVR GPIO pins.
+ *
+ * Pin mapping from rotary-encoder.h:
+ *   CH_A_PIN = PD2 (INT0)
+ *   CH_B_PIN = PD3 (INT1)
+ *   SW_PIN   = PD4 (PCINT20)
+ */
+static void connect_rotary_encoder(avr_t *avr, rotenc_t *rotenc)
+{
+    rotenc_init(avr, rotenc);
+
+    /* Channel A -> PD2 (INT0) */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_A_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 2));
+
+    /* Channel B -> PD3 (INT1) */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_B_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 3));
+
+    /* Button -> PD4 (PCINT20) - active low with pull-up */
+    avr_connect_irq(
+        rotenc->irq + IRQ_ROTENC_OUT_BUTTON_PIN,
+        avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('D'), 4));
+
+    /* Set initial states: encoder at phase 2 (A=1, B=1) to match the
+     * firmware's pull-ups on PD2/PD3, button released (high) */
+    rotenc->phase = 2;
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_A_PIN, 1);
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_B_PIN, 1);
+    avr_raise_irq(rotenc->irq + IRQ_ROTENC_OUT_BUTTON_PIN, 1);
+
+    printf("Rotary encoder: CH_A=PD2, CH_B=PD3, SW=PD4\n");
 }
 
 int main(int argc, char *argv[])
@@ -264,14 +372,21 @@ int main(int argc, char *argv[])
     avr->frequency = freq;
 
     fill_avr_flash_or_exit(avr, args.hex_file);
+    started_in_bootloader = avr->pc != 0;
 
     avr->codeend = avr->flashend;
     avr->log = 1 + args.verbose;
 
+    /* Monitor PORTC changes (LED counter pins) */
     avr_irq_register_notify(
         avr_io_getirq(avr, AVR_IOCTL_IOPORT_GETIRQ('C'), IOPORT_IRQ_PIN_ALL),
         port_c_changed_hook,
         NULL);
+
+    /* Connect virtual peripherals */
+    connect_display(avr, &g_sim_peripherals.display);
+    connect_buzzer(avr, &g_sim_peripherals.buzzer);
+    connect_rotary_encoder(avr, &g_sim_peripherals.rotary_encoder);
 
     avr->gdb_port = 1234;
     if (args.debug)
@@ -284,13 +399,19 @@ int main(int argc, char *argv[])
     uart_pty_init(avr, &uart_pty);
     uart_pty_connect(&uart_pty, '0');
 
-    if (args.interactive)
+    /* Also echo UART output to stdout */
+    avr_irq_register_notify(
+        avr_io_getirq(avr, AVR_IOCTL_UART_GETIRQ('0'), UART_IRQ_OUTPUT),
+        uart_stdout_hook,
+        NULL);
+
+    if (args.headless)
     {
-        simulate_with_graphics(avr);
+        run_instructions_until_exited_bootloader(avr);
     }
     else
     {
-        run_instructions_until_exited_bootloader(avr);
+        simulate_with_graphics(avr, &g_sim_peripherals);
     }
 
     uart_pty_stop(&uart_pty);

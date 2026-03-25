@@ -13,6 +13,9 @@ add_executable(
 
     ${CMAKE_SOURCE_DIR}/src/simulator.cpp
     ${CMAKE_SOURCE_DIR}/src/graphics.cpp
+    ${CMAKE_SOURCE_DIR}/src/max7219_virt.c
+    ${CMAKE_SOURCE_DIR}/src/buzzer_virt.c
+    ${SIMAVR_DIR}/examples/parts/rotenc.c
 
     ${SIMAVR_DIR}/simavr/sim/avr_acomp.c
     ${SIMAVR_DIR}/simavr/sim/avr_adc.c
@@ -52,6 +55,7 @@ add_executable(
 target_include_directories(
     simulator PUBLIC
     PUBLIC ${CMAKE_SOURCE_DIR}/include
+    PUBLIC ${CMAKE_SOURCE_DIR}/src
     PUBLIC ${SIMAVR_DIR}/simavr
     PUBLIC ${SIMAVR_DIR}/simavr/sim
     PUBLIC ${SIMAVR_DIR}/simavr/cores
