@@ -109,7 +109,7 @@ static void select_previous_state_machine(application_t *app)
     const uint8_t first_sm = 0;
     for (int8_t i = app->current_active_sm - 1; i >= first_sm; i--)
     {
-        if (app->state_machines[i].state != IDLE)
+        if (!state_machine_is_idle(&app->state_machines[i]))
         {
             app->current_active_sm = i;
             break;
@@ -122,7 +122,7 @@ static void select_next_state_machine(application_t *app)
     const uint8_t last_sm = MAX_TIMERS - 1;
     for (uint8_t i = app->current_active_sm + 1; i <= last_sm; i++)
     {
-        if (app->state_machines[i].state != IDLE)
+        if (!state_machine_is_idle(&app->state_machines[i]))
         {
             app->current_active_sm = i;
             break;
@@ -140,7 +140,7 @@ static void try_to_open_new_timer(application_t *app)
 {
     for (int i = 0; i < MAX_TIMERS; i++)
     {
-        if (app->state_machines[i].state == IDLE)
+        if (state_machine_is_idle(&app->state_machines[i]))
         {
             app->current_active_sm = i;
             set_state(&app->state_machines[i], SET_TIME);
@@ -457,11 +457,11 @@ void application_handle_event(application_t *app, event_t event)
             {
                 app->current_view = SETTINGS_MENU_VIEW;
             }
-            else if (event == CW_PRESSED_ROTATION && active_sm->state != IDLE)
+            else if (event == CW_PRESSED_ROTATION)
             {
                 select_next_state_machine(app);
             }
-            else if (event == CCW_PRESSED_ROTATION && active_sm->state != IDLE)
+            else if (event == CCW_PRESSED_ROTATION)
             {
                 select_previous_state_machine(app);
             }
