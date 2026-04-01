@@ -9,7 +9,6 @@ uint16_t millis(void);
 void set_state(state_machine_t *sm, state_t new_state)
 {
     sm->millis_of_last_transition = millis();
-    sm->prev_state = sm->state;
     sm->state = new_state;
 }
 
@@ -26,8 +25,9 @@ bool state_machine_is_idle(state_machine_t *sm)
 
 void init_state_machine(state_machine_t *sm)
 {
-    sm->prev_state = SET_TIME;
-    reset_active_state_machine(sm);
+    sm->state = SET_TIME;
+    sm->millis_of_last_transition = 0;
+    reset_timer(&sm->timer);
 }
 
 void service_state_machine(state_machine_t *sm)
