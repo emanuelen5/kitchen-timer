@@ -178,6 +178,7 @@ static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_
 
     case BATTERY_V:
         app->current_view = BATTERY_CHARGE_VIEW;
+        init_battery_measurement(&app->battery_measurement);
         break;
 
     case MELODY:
