@@ -70,14 +70,7 @@ void pause_active_timer(state_machine_t *active_sm)
 
 void reset_active_timer(state_machine_t *active_sm)
 {
-    if(get_state(active_sm) != IDLE)
-    {
-        state_machine_handle_event(active_sm, LONG_PRESS);
-    }
-    else
-    {
-        UART_print_P(PSTR("Timer is in IDLE mode.\n"));
-    }
+    state_machine_handle_event(active_sm, LONG_PRESS);
 }
 
 static void convert_seconds_to_hhmmss(uint16_t seconds, uint8_t time[3])
@@ -111,12 +104,12 @@ void get_status_active_timer(state_machine_t *active_sm)
 
 
     UART_printf("Current State: %s\n", current_state_string);
-    if(current_state != IDLE && current_state != SET_TIME)
+    if(current_state != SET_TIME)
     {
         UART_printf("Timer set to: %02d:%02d:%02d\n", original_hrs, original_mins, original_secs);
         UART_printf("Current time: %02d:%02d:%02d\n", current_hrs, current_mins, current_secs);
     }
-    else if(current_state == SET_TIME)
+    else
     {
         UART_printf("Timer set to: %02d:%02d:%02d\n", original_hrs, original_mins, original_secs);
     }

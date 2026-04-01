@@ -19,16 +19,15 @@ static void reset_active_state_machine(state_machine_t *sm)
     set_state(sm, SET_TIME);
 }
 
-static void reset_inactive_state_machine(state_machine_t *sm)
+bool state_machine_is_idle(state_machine_t *sm)
 {
-    reset_timer(&sm->timer);
-    set_state(sm, IDLE);
+    return sm->state == SET_TIME && sm->timer.original_time == 0;
 }
 
 void init_state_machine(state_machine_t *sm)
 {
-    sm->prev_state = IDLE;
-    reset_inactive_state_machine(sm);
+    sm->prev_state = SET_TIME;
+    reset_active_state_machine(sm);
 }
 
 void service_state_machine(state_machine_t *sm)
@@ -118,10 +117,6 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
 {
     switch (sm->state)
     {
-    case IDLE:
-        //Do nothing
-        break;
-
     case SET_TIME:
         switch (event)
         {
@@ -271,7 +266,6 @@ const char* state_to_string(state_t *state)
 {
     switch (*state)
     {
-        case IDLE:      return "IDLE";
         case SET_TIME:  return "SET_TIME";
         case RUNNING:   return "RUNNING";
         case PAUSED:    return "PAUSED";

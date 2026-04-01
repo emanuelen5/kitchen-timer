@@ -25,8 +25,7 @@ void tearDown(void)
 
 void test_initialize_as_idle(void)
 {
-    TEST_ASSERT_EQUAL(IDLE, get_state(&sm));
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    TEST_ASSERT_TRUE(state_machine_is_idle(&sm));
 }
 
 void test_when_in_set_time_increment_timer_on_cw_rotation(void)
