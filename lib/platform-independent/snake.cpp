@@ -1,8 +1,8 @@
 #include "snake.h"
 
-uint8_t snake_get_body_dir(const snake_game_t *game, uint16_t idx)
+uint8_t snake_get_tail_dir(const snake_game_t *game, uint16_t idx)
 {
-    return (game->body_dirs[idx / 4] >> ((idx % 4) * 2)) & 0x03;
+    return (game->tail_dirs[idx / 4] >> ((idx % 4) * 2)) & 0x03;
 }
 
 namespace
@@ -63,11 +63,11 @@ namespace
         }
     }
 
-    static inline void snake_set_body_dir(snake_game_t *game, uint16_t idx, uint8_t dir)
+    static inline void snake_set_tail_dir(snake_game_t *game, uint16_t idx, uint8_t dir)
     {
         uint16_t byte_idx = idx / 4;
         uint8_t bit_offset = (idx % 4) * 2;
-        game->body_dirs[byte_idx] = (game->body_dirs[byte_idx] & ~(0x03 << bit_offset)) | (dir << bit_offset);
+        game->tail_dirs[byte_idx] = (game->tail_dirs[byte_idx] & ~(0x03 << bit_offset)) | (dir << bit_offset);
     }
 }
 
@@ -120,8 +120,8 @@ void snake_restart(snake_game_t *game, uint16_t seed)
 
     game->head = {8, 8};
     game->length = 3;
-    snake_set_body_dir(game, 0, SNAKE_RIGHT);
-    snake_set_body_dir(game, 1, SNAKE_RIGHT);
+    snake_set_tail_dir(game, 0, SNAKE_RIGHT);
+    snake_set_tail_dir(game, 1, SNAKE_RIGHT);
 
     spawn_food(game);
 }
@@ -153,11 +153,11 @@ static void move_snake(snake_game_t *game)
     snake_point_t next = next_head_position(game->head, game->direction);
     uint8_t new_dir = game->direction;
 
-    // Shift all body directions toward the tail by one 2-bit slot
+    // Shift all tail directions toward the end by one 2-bit slot
     uint8_t num_bytes = ((game->length - 1) + 3) / 4;
     for (int8_t i = num_bytes - 1; i > 0; i--)
-        game->body_dirs[i] = (game->body_dirs[i] << 2) | (game->body_dirs[i - 1] >> 6);
-    game->body_dirs[0] = (game->body_dirs[0] << 2) | new_dir;
+        game->tail_dirs[i] = (game->tail_dirs[i] << 2) | (game->tail_dirs[i - 1] >> 6);
+    game->tail_dirs[0] = (game->tail_dirs[0] << 2) | new_dir;
 
     game->head = next;
 }

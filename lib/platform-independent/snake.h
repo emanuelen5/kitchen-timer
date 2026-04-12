@@ -37,7 +37,7 @@ typedef struct
 {
 
     snake_point_t head;
-    uint8_t body_dirs[snake_body_dirs_bytes];
+    uint8_t tail_dirs[snake_body_dirs_bytes];
     snake_point_t food;
     uint16_t last_step_ms;
     uint16_t move_interval_ms;
@@ -48,7 +48,7 @@ typedef struct
     bool turn_locked_until_step;
 } snake_game_t;
 
-uint8_t snake_get_body_dir(const snake_game_t *game, uint16_t idx);
+uint8_t snake_get_tail_dir(const snake_game_t *game, uint16_t idx);
 snake_point_t next_head_position(snake_point_t &head, snake_direction_t direction);
 
 /*
@@ -70,7 +70,7 @@ snake_point_t next_head_position(snake_point_t &head, snake_direction_t directio
              pos_var = (idx_var < (game_ptr)->length - 1u)                           \
                            ? next_head_position(                                     \
                                  pos_var,                                            \
-                                 REVERSE_DIR(snake_get_body_dir(game_ptr, idx_var))) \
+                                 REVERSE_DIR(snake_get_tail_dir(game_ptr, idx_var))) \
                            : pos_var,                                                \
                            idx_var++)
 
