@@ -90,7 +90,7 @@ void test_when_in_set_time_timer_doesnt_underflow(void)
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
     sm.timer.original_time = 10;
-    set_current_time_to_target_time(&sm.timer);
+    sm.timer.set_current_time_to_target_time();
     sm.set_state(RUNNING);
 
     int actual_seconds = 0;

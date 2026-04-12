@@ -14,7 +14,7 @@ void state_machine_t::set_state(state_t new_state)
 
 void state_machine_t::reset()
 {
-    reset_timer(&this->timer);
+    this->timer.reset();
     this->set_state(SET_TIME);
 }
 
@@ -27,7 +27,7 @@ void state_machine_t::init()
 {
     this->state = SET_TIME;
     this->millis_of_last_transition = 0;
-    reset_timer(&this->timer);
+    this->timer.reset();
 }
 
 void state_machine_t::service()
@@ -123,7 +123,7 @@ void state_machine_t::handle_event(event_t event)
         case SINGLE_PRESS:
             if(this->timer.original_time != 0)
             {
-                set_current_time_to_target_time(&this->timer);
+                this->timer.set_current_time_to_target_time();
                 this->set_state(RUNNING);
             }
             break;
@@ -134,7 +134,7 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION_FAST:
         {
             const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&this->timer, step_size);
+            this->timer.add_to_target_time(step_size);
         }
         break;
 
@@ -164,8 +164,8 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION_FAST:
         {
             const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&this->timer, step_size);
-            add_to_current_time(&this->timer, step_size);
+            this->timer.add_to_target_time(step_size);
+            this->timer.add_to_current_time(step_size);
         }
         break;
 
@@ -174,8 +174,8 @@ void state_machine_t::handle_event(event_t event)
             break;
 
         case SECOND_TICK:
-            decrement_time_left(&this->timer);
-            if (timer_is_finished(&this->timer))
+            this->timer.decrement_time_left();
+            if (this->timer.is_finished())
             {
                 this->set_state(RINGING);
             }
@@ -199,8 +199,8 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION_FAST:
         {
             const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&this->timer, step_size);
-            add_to_current_time(&this->timer, step_size);
+            this->timer.add_to_target_time(step_size);
+            this->timer.add_to_current_time(step_size);
         }
         break;
 
@@ -235,7 +235,7 @@ uint16_t state_machine_t::get_target_time()
 
 uint16_t state_machine_t::get_time_left()
 {
-    return timer_get_time_left(&this->timer);
+    return this->timer.get_time_left();
 }
 
 state_t state_machine_t::get_state()

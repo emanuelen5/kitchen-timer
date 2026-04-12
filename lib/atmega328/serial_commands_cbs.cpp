@@ -40,9 +40,9 @@ void version(void)
 
 void set_active_timer(state_machine_t *active_sm, uint32_t *steps)
 {
-    reset_timer(&active_sm->timer);
+    active_sm->timer.reset();
     active_sm->set_state(SET_TIME);
-    add_to_target_time(&active_sm->timer, (int32_t)(*steps));
+    active_sm->timer.add_to_target_time((int32_t)(*steps));
 }
 
 void play_active_timer(state_machine_t *active_sm)
