@@ -148,8 +148,9 @@ void snake_turn_right(snake_game_t *game)
     game->turn_locked_until_step = true;
 }
 
-static void move_snake(snake_game_t *game, snake_point_t *next)
+static void move_snake(snake_game_t *game)
 {
+    snake_point_t next = next_head_position(game->head, game->direction);
     uint8_t new_dir = game->direction;
 
     // Shift all body directions toward the tail by one 2-bit slot
@@ -158,7 +159,7 @@ static void move_snake(snake_game_t *game, snake_point_t *next)
         game->body_dirs[i] = (game->body_dirs[i] << 2) | (game->body_dirs[i - 1] >> 6);
     game->body_dirs[0] = (game->body_dirs[0] << 2) | new_dir;
 
-    game->head = *next;
+    game->head = next;
 }
 
 void service_snake_game(snake_game_t *game, uint16_t now_ms)
@@ -197,7 +198,7 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
         return;
     }
 
-    move_snake(game, &next);
+    move_snake(game);
     game->turn_locked_until_step = false;
 
     if (ate_food)
