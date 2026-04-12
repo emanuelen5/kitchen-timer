@@ -30,15 +30,9 @@ namespace
         return a.x == b.x && a.y == b.y;
     }
 
-    static bool is_occupied_by_body(const snake_game_t *game, snake_point_t point, bool head_included)
+    static bool is_occupied_by_body(const snake_game_t *game, snake_point_t point)
     {
-        uint16_t i = 0;
-        if (!head_included)
-        {
-            i = 1;
-        }
-
-        for (; i < game->length; i++)
+        for (uint16_t i = 0; i < game->length; i++)
         {
             if (points_equal(game->body[i], point))
             {
@@ -62,7 +56,7 @@ namespace
                 (int8_t)(index / snake_board_width),
             };
 
-            if (!is_occupied_by_body(game, candidate, true))
+            if (!is_occupied_by_body(game, candidate))
             {
                 game->food = candidate;
                 return;
@@ -189,7 +183,7 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
         }
     }
 
-    if (is_occupied_by_body(game, next, true))
+    if (is_occupied_by_body(game, next))
     {
         game->status = SNAKE_GAME_OVER;
         return;
@@ -213,5 +207,5 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
 bool snake_contains_point(const snake_game_t *game, int8_t x, int8_t y)
 {
     snake_point_t point = {x, y};
-    return is_occupied_by_body(game, point, true);
+    return is_occupied_by_body(game, point);
 }
