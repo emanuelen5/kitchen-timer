@@ -71,6 +71,23 @@ void test_eating_food_grows_snake(void)
     TEST_ASSERT_EQUAL(8, game.body[0].y);
 }
 
+void test_eating_food_after_wrapping_through_wall(void)
+{
+    // Place food just beyond the right wall, so it can only be eaten by
+    // wrapping through the wall
+    game.food = {0, 0};
+    game.body[0] = {16, 0};
+    game.length = 1;
+    game.direction = SNAKE_RIGHT;
+
+    service_snake_game(&game, 325);
+
+    // One more step wraps through the wall and eats the food
+    TEST_ASSERT_EQUAL(0, game.body[0].x);
+    TEST_ASSERT_EQUAL(0, game.body[0].y);
+    TEST_ASSERT_EQUAL(2, game.length);
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -81,6 +98,7 @@ int main()
     RUN_TEST(test_ignores_second_turn_before_next_step);
     RUN_TEST(test_hitting_wall_continues_game);
     RUN_TEST(test_eating_food_grows_snake);
+    RUN_TEST(test_eating_food_after_wrapping_through_wall);
 
     return UNITY_END();
 }
