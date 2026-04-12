@@ -14,22 +14,24 @@ typedef enum
 } state_t;
 
 
-typedef struct
+struct state_machine_t
 {
     state_t state;
     state_machine::timer_t timer;
     uint16_t millis_of_last_transition;
-} state_machine_t;
 
-void set_state(state_machine_t *sm, state_t new_state);
-void state_machine_handle_event(state_machine_t *sm, event_t event);
-void init_state_machine(state_machine_t *sm);
-void service_state_machine(state_machine_t *sm);
-uint16_t get_target_time(state_machine_t *sm);
-uint16_t get_time_left(state_machine_t *sm);
-state_t get_state(state_machine_t *sm);
+    void init();
+    void reset();
+    void set_state(state_t new_state);
+    void handle_event(event_t event);
+    void service();
+    uint16_t get_target_time();
+    uint16_t get_time_left();
+    state_t get_state();
+    bool is_idle();
+};
+
 bool is_interactive_event(event_t event);
 const char* state_to_string(state_t *state);
-bool state_machine_is_idle(state_machine_t *sm);
 
 #endif // LIB_STATE_MACHINE_H

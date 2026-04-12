@@ -6,40 +6,40 @@
 // These are provided by the program that includes the state machine
 uint16_t millis(void);
 
-void set_state(state_machine_t *sm, state_t new_state)
+void state_machine_t::set_state(state_t new_state)
 {
-    sm->millis_of_last_transition = millis();
-    sm->state = new_state;
+    this->millis_of_last_transition = millis();
+    this->state = new_state;
 }
 
-static void reset_active_state_machine(state_machine_t *sm)
+void state_machine_t::reset()
 {
-    reset_timer(&sm->timer);
-    set_state(sm, SET_TIME);
+    reset_timer(&this->timer);
+    this->set_state(SET_TIME);
 }
 
-bool state_machine_is_idle(state_machine_t *sm)
+bool state_machine_t::is_idle()
 {
-    return sm->state == SET_TIME && sm->timer.original_time == 0;
+    return this->state == SET_TIME && this->timer.original_time == 0;
 }
 
-void init_state_machine(state_machine_t *sm)
+void state_machine_t::init()
 {
-    sm->state = SET_TIME;
-    sm->millis_of_last_transition = 0;
-    reset_timer(&sm->timer);
+    this->state = SET_TIME;
+    this->millis_of_last_transition = 0;
+    reset_timer(&this->timer);
 }
 
-void service_state_machine(state_machine_t *sm)
+void state_machine_t::service()
 {
-    switch (sm->state)
+    switch (state)
     {
     case RINGING:
     {
-        uint16_t time_in_ringing_state = millis() - sm->millis_of_last_transition;
+        uint16_t time_in_ringing_state = millis() - this->millis_of_last_transition;
         if (time_in_ringing_state >= RINGING_TIMEOUT)
         {
-            reset_active_state_machine(sm);
+            this->reset();
         }
     }
     break;
@@ -113,18 +113,18 @@ static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotatio
     return step_size;
 }
 
-void state_machine_handle_event(state_machine_t *sm, event_t event)
+void state_machine_t::handle_event(event_t event)
 {
-    switch (sm->state)
+    switch (state)
     {
     case SET_TIME:
         switch (event)
         {
         case SINGLE_PRESS:
-            if(sm->timer.original_time != 0)
+            if(this->timer.original_time != 0)
             {
-                set_current_time_to_target_time(&sm->timer);
-                set_state(sm, RUNNING);
+                set_current_time_to_target_time(&this->timer);
+                this->set_state(RUNNING);
             }
             break;
 
@@ -133,15 +133,15 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&sm->timer, step_size);
+            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&this->timer, step_size);
         }
         break;
 
         case LONG_PRESS:
-            if(sm->timer.original_time == 0)
+            if(this->timer.original_time == 0)
             {
-                reset_active_state_machine(sm);
+                this->reset();
             }
             break;
 
@@ -155,7 +155,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, PAUSED);
+            this->set_state(PAUSED);
             break;
 
         case CW_ROTATION:
@@ -163,21 +163,21 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&sm->timer, step_size);
-            add_to_current_time(&sm->timer, step_size);
+            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&this->timer, step_size);
+            add_to_current_time(&this->timer, step_size);
         }
         break;
 
         case LONG_PRESS:
-            reset_active_state_machine(sm);
+            this->reset();
             break;
 
         case SECOND_TICK:
-            decrement_time_left(&sm->timer);
-            if (timer_is_finished(&sm->timer))
+            decrement_time_left(&this->timer);
+            if (timer_is_finished(&this->timer))
             {
-                set_state(sm, RINGING);
+                this->set_state(RINGING);
             }
             break;
 
@@ -190,7 +190,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            set_state(sm, RUNNING);
+            this->set_state(RUNNING);
             break;
 
         case CW_ROTATION:
@@ -198,14 +198,14 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            add_to_target_time(&sm->timer, step_size);
-            add_to_current_time(&sm->timer, step_size);
+            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            add_to_target_time(&this->timer, step_size);
+            add_to_current_time(&this->timer, step_size);
         }
         break;
 
         case LONG_PRESS:
-            reset_active_state_machine(sm);
+            this->reset();
             break;
 
         default:
@@ -218,7 +218,7 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         {
         case SINGLE_PRESS:
         case LONG_PRESS:
-            reset_active_state_machine(sm);
+            this->reset();
             break;
 
         default:
@@ -228,19 +228,19 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
     }
 }
 
-uint16_t get_target_time(state_machine_t *sm)
+uint16_t state_machine_t::get_target_time()
 {
-    return sm->timer.original_time;
+    return this->timer.original_time;
 }
 
-uint16_t get_time_left(state_machine_t *sm)
+uint16_t state_machine_t::get_time_left()
 {
-    return timer_get_time_left(&sm->timer);
+    return timer_get_time_left(&this->timer);
 }
 
-state_t get_state(state_machine_t *sm)
+state_t state_machine_t::get_state()
 {
-    return sm->state;
+    return this->state;
 }
 
 bool is_interactive_event(event_t event)

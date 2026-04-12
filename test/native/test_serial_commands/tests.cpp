@@ -47,7 +47,7 @@ void init_application(application_t *app)
     app->brightness = 10;
     app->buzzer.set_volume(10);
     app->current_active_sm = 0;
-    set_state(&app->state_machines[0], SET_TIME);
+    app->state_machines[0].set_state(SET_TIME);
 }
 
 void test_led(bool is_on)
@@ -69,7 +69,7 @@ void version(void)
 
 void set_active_timer(state_machine_t *active_sm, uint32_t *steps)
 { 
-    set_state(active_sm, SET_TIME);
+    active_sm->set_state(SET_TIME);
     test_state.set_active_timer_called = true;
     test_state.last_timer_value = *steps;
 }

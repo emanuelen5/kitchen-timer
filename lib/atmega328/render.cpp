@@ -27,7 +27,7 @@ static void draw_timer_indicators(state_machine_t sm[])
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
     {
-        bool show_led = !state_machine_is_idle(&sm[i]);
+        bool show_led = !sm[i].is_idle();
 
         matrix_set_pixel(TIMERS_INDICATOR_COLUMN, i, show_led);
     }
@@ -179,7 +179,7 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
         break;
 
     case RINGING:
-        time_to_display = get_target_time(&active_sm->timer);
+        time_to_display = active_sm->get_target_time();
         break;
     default:
         // Do nothing

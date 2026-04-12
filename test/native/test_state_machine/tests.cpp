@@ -16,7 +16,7 @@ state_machine_t sm;
 void setUp(void)
 {
     current_millis = 0;
-    init_state_machine(&sm);
+    sm.init();
 }
 
 void tearDown(void)
@@ -25,84 +25,84 @@ void tearDown(void)
 
 void test_initialize_as_idle(void)
 {
-    TEST_ASSERT_TRUE(state_machine_is_idle(&sm));
+    TEST_ASSERT_TRUE(sm.is_idle());
 }
 
 void test_when_in_set_time_increment_timer_on_cw_rotation(void)
 {
-    set_state(&sm, SET_TIME);
-    state_machine_handle_event(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(1, get_target_time(&sm));
+    sm.set_state(SET_TIME);
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(1, sm.get_target_time());
 }
 
 void test_when_in_set_time_decrement_timer_on_ccw_rotation(void)
 {
-    set_state(&sm, SET_TIME);
+    sm.set_state(SET_TIME);
     sm.timer.original_time = 1;
-    state_machine_handle_event(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
 void test_when_in_set_time_change_timer_more_on_fast_rotation(void)
 {
-    set_state(&sm, SET_TIME);
-    state_machine_handle_event(&sm, CW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(5, get_target_time(&sm));
-    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    sm.set_state(SET_TIME);
+    sm.handle_event(CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(5, sm.get_target_time());
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
 void test_when_in_set_time_and_above_an_hour_change_timer_in_minutes(void)
 {
-    set_state(&sm, SET_TIME);
+    sm.set_state(SET_TIME);
     sm.timer.original_time = 3600;
-    state_machine_handle_event(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(3660, get_target_time(&sm));
-    state_machine_handle_event(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(3600, get_target_time(&sm));
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(3660, sm.get_target_time());
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(3600, sm.get_target_time());
 }
 
 void test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_rotation(void)
 {
-    set_state(&sm, SET_TIME);
+    sm.set_state(SET_TIME);
     sm.timer.original_time = 3600;
-    state_machine_handle_event(&sm, CW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(3900, get_target_time(&sm));
-    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(3600, get_target_time(&sm));
+    sm.handle_event(CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(3900, sm.get_target_time());
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(3600, sm.get_target_time());
 }
 
 void test_when_in_set_time_timer_doesnt_overflow(void)
 {
-    set_state(&sm, SET_TIME);
+    sm.set_state(SET_TIME);
     sm.timer.original_time = state_machine::max_time;
-    state_machine_handle_event(&sm, CW_ROTATION);
-    TEST_ASSERT_EQUAL(state_machine::max_time, get_target_time(&sm));
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(state_machine::max_time, sm.get_target_time());
 }
 
 void test_when_in_set_time_timer_doesnt_underflow(void)
 {
-    set_state(&sm, SET_TIME);
-    state_machine_handle_event(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    sm.set_state(SET_TIME);
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
     sm.timer.original_time = 10;
     set_current_time_to_target_time(&sm.timer);
-    set_state(&sm, RUNNING);
+    sm.set_state(RUNNING);
 
     int actual_seconds = 0;
     while (true)
     {
-        state_machine_handle_event(&sm, SECOND_TICK);
+        sm.handle_event(SECOND_TICK);
         actual_seconds++;
-        if (get_state(&sm) != RUNNING)
+        if (sm.get_state() != RUNNING)
             break;
     }
     TEST_ASSERT_EQUAL(actual_seconds, 10);
-    TEST_ASSERT_EQUAL(RINGING, get_state(&sm));
+    TEST_ASSERT_EQUAL(RINGING, sm.get_state());
 }
 
 void run_until_state_times_out(state_machine_t *sm, state_t initial_state)
@@ -110,9 +110,9 @@ void run_until_state_times_out(state_machine_t *sm, state_t initial_state)
     while (true)
     {
         current_millis++;
-        service_state_machine(sm);
+        sm->service();
 
-        if (get_state(sm) != initial_state)
+        if (sm->get_state() != initial_state)
             break;
         bool panic = current_millis == 0;
         if (panic)
@@ -122,8 +122,8 @@ void run_until_state_times_out(state_machine_t *sm, state_t initial_state)
 
 void test_ringing_exits_after_10000ms(void)
 {
-    set_state(&sm, RINGING);
-    service_state_machine(&sm);
+    sm.set_state(RINGING);
+    sm.service();
 
     run_until_state_times_out(&sm, RINGING);
 
@@ -132,21 +132,21 @@ void test_ringing_exits_after_10000ms(void)
 
 void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
 {
-    set_state(&sm, SET_TIME);
+    sm.set_state(SET_TIME);
     sm.timer.original_time = 0;
-    state_machine_handle_event(&sm, CCW_ROTATION);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
-    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
 void test_resets_target_time_when_timer_ends(void)
 {
     sm.timer.original_time = 3;
-    set_state(&sm, RINGING);
+    sm.set_state(RINGING);
 
     run_until_state_times_out(&sm, RINGING);
-    TEST_ASSERT_EQUAL(0, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
 int main()
