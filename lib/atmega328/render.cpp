@@ -280,15 +280,16 @@ static void render_snake_view(application_t *app)
 {
     snake_game_t *game = &app->snake_game;
 
-    for (uint16_t i = 1; i < game->length; i++)
+    FOR_BODY_POSITION(game, i, pos)
     {
-        matrix_set_pixel(game->body[i].x, game->body[i].y, true);
+        if (i > 0)
+            matrix_set_pixel(pos.x, pos.y, true);
     }
 
     const bool show_food_and_head = game->status != SNAKE_PAUSED || get_blink_state(&timer_digits_blink, TIMER_DIGITS_BLINK_RATE);
-    matrix_set_pixel(game->body[0].x, game->body[0].y, show_food_and_head);
+    matrix_set_pixel(game->head.x, game->head.y, show_food_and_head);
 
-    
+
     matrix_set_pixel(game->food.x, game->food.y, show_food_and_head);
 
     if (game->status == SNAKE_GAME_OVER)

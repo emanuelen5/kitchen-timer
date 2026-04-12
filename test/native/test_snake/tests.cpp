@@ -23,12 +23,12 @@ void test_initializes_running_snake_with_food_not_on_body(void)
 void test_moves_once_after_interval_has_elapsed(void)
 {
     service_snake_game(&game, 324);
-    TEST_ASSERT_EQUAL(8, game.body[0].x);
-    TEST_ASSERT_EQUAL(8, game.body[0].y);
+    TEST_ASSERT_EQUAL(8, game.head.x);
+    TEST_ASSERT_EQUAL(8, game.head.y);
 
     service_snake_game(&game, 325);
-    TEST_ASSERT_EQUAL(9, game.body[0].x);
-    TEST_ASSERT_EQUAL(8, game.body[0].y);
+    TEST_ASSERT_EQUAL(9, game.head.x);
+    TEST_ASSERT_EQUAL(8, game.head.y);
 }
 
 void test_turns_relative_to_current_direction(void)
@@ -36,8 +36,8 @@ void test_turns_relative_to_current_direction(void)
     snake_turn_left(&game);
     service_snake_game(&game, 325);
 
-    TEST_ASSERT_EQUAL(8, game.body[0].x);
-    TEST_ASSERT_EQUAL(7, game.body[0].y);
+    TEST_ASSERT_EQUAL(8, game.head.x);
+    TEST_ASSERT_EQUAL(7, game.head.y);
 }
 
 void test_ignores_second_turn_before_next_step(void)
@@ -46,8 +46,8 @@ void test_ignores_second_turn_before_next_step(void)
     snake_turn_left(&game);
     service_snake_game(&game, 325);
 
-    TEST_ASSERT_EQUAL(8, game.body[0].x);
-    TEST_ASSERT_EQUAL(7, game.body[0].y);
+    TEST_ASSERT_EQUAL(8, game.head.x);
+    TEST_ASSERT_EQUAL(7, game.head.y);
 }
 
 void test_hitting_wall_continues_game(void)
@@ -67,24 +67,21 @@ void test_eating_food_grows_snake(void)
     service_snake_game(&game, 325);
 
     TEST_ASSERT_EQUAL(4, game.length);
-    TEST_ASSERT_EQUAL(9, game.body[0].x);
-    TEST_ASSERT_EQUAL(8, game.body[0].y);
+    TEST_ASSERT_EQUAL(9, game.head.x);
+    TEST_ASSERT_EQUAL(8, game.head.y);
 }
 
 void test_eating_food_after_wrapping_through_wall(void)
 {
-    // Place food just beyond the right wall, so it can only be eaten by
-    // wrapping through the wall
-    game.food = {0, 0};
-    game.body[0] = {16, 0};
+    game.food = {0, 8};
+    game.head = {15, 8};
     game.length = 1;
     game.direction = SNAKE_RIGHT;
 
     service_snake_game(&game, 325);
 
-    // One more step wraps through the wall and eats the food
-    TEST_ASSERT_EQUAL(0, game.body[0].x);
-    TEST_ASSERT_EQUAL(0, game.body[0].y);
+    TEST_ASSERT_EQUAL(0, game.head.x);
+    TEST_ASSERT_EQUAL(8, game.head.y);
     TEST_ASSERT_EQUAL(2, game.length);
 }
 

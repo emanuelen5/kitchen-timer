@@ -1,10 +1,12 @@
 #include "snake.h"
 
+uint8_t snake_get_body_dir(const snake_game_t *game, uint16_t idx)
+{
+    return (game->body_dirs[idx / 4] >> ((idx % 4) * 2)) & 0x03;
+}
+
 namespace
 {
-    constexpr int8_t snake_board_width = 16;
-    constexpr int8_t snake_board_height = 16;
-    constexpr uint8_t snake_initial_length = 3;
     constexpr uint16_t snake_initial_interval_ms = 325;
     constexpr uint16_t snake_min_interval_ms = 90;
     constexpr uint16_t snake_speedup_ms = 12;
@@ -32,14 +34,11 @@ namespace
 
     static bool is_occupied_by_body(const snake_game_t *game, snake_point_t point)
     {
-        for (uint16_t i = 0; i < game->length; i++)
+        FOR_BODY_POSITION(game, i, pos)
         {
-            if (points_equal(game->body[i], point))
-            {
+            if (points_equal(pos, point))
                 return true;
-            }
         }
-
         return false;
     }
 
@@ -64,43 +63,50 @@ namespace
         }
     }
 
-    static snake_point_t next_head_position(snake_point_t &head, snake_direction_t direction)
+    static inline void snake_set_body_dir(snake_game_t *game, uint16_t idx, uint8_t dir)
     {
-        snake_point_t next = {head.x, head.y};
-        switch (direction)
-        {
-        case SNAKE_UP:
-            next.y--;
-            break;
-        case SNAKE_RIGHT:
-            next.x++;
-            break;
-        case SNAKE_DOWN:
-            next.y++;
-            break;
-        case SNAKE_LEFT:
-            next.x--;
-            break;
-        default:
-            break;
-        }
-
-        const int8_t playable_top_limit = 0;
-        const int8_t playable_bottom_limit = snake_board_height - 1;
-        const int8_t playable_left_limit = 0;
-        const int8_t playable_right_limit = snake_board_width - 1;
-
-        if (next.x < playable_left_limit)
-            next.x = playable_right_limit;
-        if (next.x > playable_right_limit)
-            next.x = playable_left_limit;
-        if (next.y < playable_top_limit)
-            next.y = playable_bottom_limit;
-        if (next.y > playable_bottom_limit)
-            next.y = playable_top_limit;
-
-        return next;
+        uint16_t byte_idx = idx / 4;
+        uint8_t bit_offset = (idx % 4) * 2;
+        game->body_dirs[byte_idx] = (game->body_dirs[byte_idx] & ~(0x03 << bit_offset)) | (dir << bit_offset);
     }
+}
+
+snake_point_t next_head_position(snake_point_t &head, snake_direction_t direction)
+{
+    snake_point_t next = {head.x, head.y};
+    switch (direction)
+    {
+    case SNAKE_UP:
+        next.y--;
+        break;
+    case SNAKE_RIGHT:
+        next.x++;
+        break;
+    case SNAKE_DOWN:
+        next.y++;
+        break;
+    case SNAKE_LEFT:
+        next.x--;
+        break;
+    default:
+        break;
+    }
+
+    const int8_t playable_top_limit = 0;
+    const int8_t playable_bottom_limit = snake_board_height - 1;
+    const int8_t playable_left_limit = 0;
+    const int8_t playable_right_limit = snake_board_width - 1;
+
+    if (next.x < playable_left_limit)
+        next.x = playable_right_limit;
+    if (next.x > playable_right_limit)
+        next.x = playable_left_limit;
+    if (next.y < playable_top_limit)
+        next.y = playable_bottom_limit;
+    if (next.y > playable_bottom_limit)
+        next.y = playable_top_limit;
+
+    return next;
 }
 
 void snake_restart(snake_game_t *game, uint16_t seed)
@@ -108,14 +114,14 @@ void snake_restart(snake_game_t *game, uint16_t seed)
     game->random_num_generator_state = seed == 0 ? 0xBEEF : seed;
     game->last_step_ms = 0;
     game->move_interval_ms = snake_initial_interval_ms;
-    game->length = snake_initial_length;
     game->direction = SNAKE_RIGHT;
     game->status = SNAKE_RUNNING;
     game->turn_locked_until_step = false;
 
-    game->body[0] = {8, 8};
-    game->body[1] = {7, 8};
-    game->body[2] = {6, 8};
+    game->head = {8, 8};
+    game->length = 3;
+    snake_set_body_dir(game, 0, SNAKE_RIGHT);
+    snake_set_body_dir(game, 1, SNAKE_RIGHT);
 
     spawn_food(game);
 }
@@ -144,12 +150,15 @@ void snake_turn_right(snake_game_t *game)
 
 static void move_snake(snake_game_t *game, snake_point_t *next)
 {
-    for (int16_t i = game->length - 1; i > 0; i--)
-    {
-        game->body[i] = game->body[i - 1];
-    }
+    uint8_t new_dir = game->direction;
 
-    game->body[0] = *next;
+    // Shift all body directions toward the tail by one 2-bit slot
+    uint8_t num_bytes = ((game->length - 1) + 3) / 4;
+    for (int8_t i = num_bytes - 1; i > 0; i--)
+        game->body_dirs[i] = (game->body_dirs[i] << 2) | (game->body_dirs[i - 1] >> 6);
+    game->body_dirs[0] = (game->body_dirs[0] << 2) | new_dir;
+
+    game->head = *next;
 }
 
 void service_snake_game(snake_game_t *game, uint16_t now_ms)
@@ -165,7 +174,7 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
     }
 
     game->last_step_ms = now_ms;
-    snake_point_t next = next_head_position(game->body[0], game->direction);
+    snake_point_t next = next_head_position(game->head, game->direction);
 
     const bool ate_food = points_equal(next, game->food);
 
