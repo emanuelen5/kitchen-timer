@@ -189,15 +189,14 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
         }
     }
 
-    move_snake(game, &next);
-
-    game->turn_locked_until_step = false;
-
-    if (is_occupied_by_body(game, next, false))
+    if (is_occupied_by_body(game, next, true))
     {
         game->status = SNAKE_GAME_OVER;
         return;
     }
+
+    move_snake(game, &next);
+    game->turn_locked_until_step = false;
 
     if (ate_food)
     {
