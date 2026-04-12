@@ -64,10 +64,10 @@ namespace
         }
     }
 
-    static snake_point_t next_head_position(const snake_game_t *game)
+    static snake_point_t next_head_position(snake_point_t &head, snake_direction_t direction)
     {
-        snake_point_t next = game->body[0];
-        switch (game->direction)
+        snake_point_t next = {head.x, head.y};
+        switch (direction)
         {
         case SNAKE_UP:
             next.y--;
@@ -84,6 +84,20 @@ namespace
         default:
             break;
         }
+
+        const int8_t playable_top_limit = 0;
+        const int8_t playable_bottom_limit = snake_board_height - 1;
+        const int8_t playable_left_limit = 0;
+        const int8_t playable_right_limit = snake_board_width - 1;
+
+        if (next.x < playable_left_limit)
+            next.x = playable_right_limit;
+        if (next.x > playable_right_limit)
+            next.x = playable_left_limit;
+        if (next.y < playable_top_limit)
+            next.y = playable_bottom_limit;
+        if (next.y > playable_bottom_limit)
+            next.y = playable_top_limit;
 
         return next;
     }
@@ -128,7 +142,6 @@ void snake_turn_right(snake_game_t *game)
     game->turn_locked_until_step = true;
 }
 
-
 static void move_snake(snake_game_t *game, snake_point_t *next)
 {
     for (int16_t i = game->length - 1; i > 0; i--)
@@ -137,20 +150,6 @@ static void move_snake(snake_game_t *game, snake_point_t *next)
     }
 
     game->body[0] = *next;
-
-    const int8_t playable_top_limit = 0;
-    const int8_t playable_bottom_limit = snake_board_height - 1;
-    const int8_t playable_left_limit = 0;
-    const int8_t playable_right_limit = snake_board_width - 1;
-
-    if (game->body[0].x < playable_left_limit)
-        game->body[0].x = playable_right_limit;
-    if (game->body[0].x > playable_right_limit)
-        game->body[0].x = playable_left_limit;
-    if (game->body[0].y < playable_top_limit)
-        game->body[0].y = playable_bottom_limit;
-    if (game->body[0].y > playable_bottom_limit)
-        game->body[0].y = playable_top_limit;
 }
 
 void service_snake_game(snake_game_t *game, uint16_t now_ms)
@@ -166,7 +165,7 @@ void service_snake_game(snake_game_t *game, uint16_t now_ms)
     }
 
     game->last_step_ms = now_ms;
-    snake_point_t next = next_head_position(game);
+    snake_point_t next = next_head_position(game->body[0], game->direction);
 
     const bool ate_food = points_equal(next, game->food);
 
