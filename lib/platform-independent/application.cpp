@@ -218,7 +218,7 @@ static void previous_setting_menu_option(settings_menu_t *settings_menu)
 
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = BRIGHTNESS;
+    settings_menu->current_menu_position = settings_menu->selected_setting;
     app->current_view = SETTINGS_MENU_VIEW;
 }
 
