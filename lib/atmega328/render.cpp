@@ -203,6 +203,15 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
     draw_active_timer_indicator(active_timer_index);
 }
 
+static void draw_menu_position_indicator(settings_t position)
+{
+    const uint8_t x_start = (MATRIX_COL_WIDTH - SETTINGS_COUNT) / 2;
+    for (uint8_t i = 0; i < SETTINGS_COUNT; i++)
+    {
+        matrix_set_pixel(x_start + i, 0, i == (uint8_t)position);
+    }
+}
+
 static void render_settings_menu_view(application_t *app)
 {
     switch (app->settings_menu.current_menu_position)
@@ -234,6 +243,8 @@ static void render_settings_menu_view(application_t *app)
     default:
         break;
     }
+
+    draw_menu_position_indicator(app->settings_menu.current_menu_position);
 }
 
 static void render_brightness_setting_view(application_t *app)
