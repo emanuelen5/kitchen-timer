@@ -11,9 +11,8 @@ ISR(TIMER2_OVF_vect)
     a_second_has_passed();
 }
 
-void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
+void start_hw_timer2_crystal(void)
 {
-    a_second_has_passed = on_second_cb;
     // Timer2 clocked from TOSC1 / external crystal
     ASSR |= bit(AS2);
 
@@ -21,8 +20,13 @@ void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
 
     TCCR2A = 0;
     TCCR2B = bit(CS22) | bit(CS20); // 32kHz / 128 prescaler = 1 second
+}
 
-    // Wait for the registers to update
+void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
+{
+    a_second_has_passed = on_second_cb;
+
+    // Wait for the registers to update (requires the external crystal to be running)
     while (ASSR & 0x1F)
     {
     }

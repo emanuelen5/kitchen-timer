@@ -73,10 +73,11 @@ void on_line_received(char *line)
 
 int main()
 {
+    start_hw_timer2_crystal();
+
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
     init_hw_UART(on_line_received);
-    init_hw_timer2_to_1s_interrupt(&second_tick_cb);
     init_hw_millis();
     init_hw_led_counter();
     init_hw_max72xx();
@@ -87,6 +88,7 @@ int main()
     sei();
 
     init_max72xx();
+    init_hw_timer2_to_1s_interrupt(&second_tick_cb);
     while (true)
     {
         for (uint8_t count = UART_received_char_count(); count != 0; count--)
