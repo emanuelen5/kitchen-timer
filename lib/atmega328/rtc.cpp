@@ -11,7 +11,7 @@ ISR(TIMER2_OVF_vect)
     a_second_has_passed();
 }
 
-void start_hw_timer2_crystal(void)
+void warm_up_oscillator_circuit(void)
 {
     // Timer2 clocked from TOSC1 / external crystal
     ASSR |= bit(AS2);
@@ -24,6 +24,9 @@ void start_hw_timer2_crystal(void)
 
 void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
 {
+    // Start the oscillator circuit in case it hasn't been done already
+    warm_up_oscillator_circuit();
+
     a_second_has_passed = on_second_cb;
 
     // Wait for the registers to update (requires the external crystal to be running)

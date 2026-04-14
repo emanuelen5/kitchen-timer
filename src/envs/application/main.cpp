@@ -73,7 +73,7 @@ void on_line_received(char *line)
 
 int main()
 {
-    start_hw_timer2_crystal();
+    warm_up_oscillator_circuit();
 
     AvrButton button(&on_single_press, &on_double_press, &on_long_press);
 
