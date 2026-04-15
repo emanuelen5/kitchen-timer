@@ -205,10 +205,10 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
 
 static void draw_menu_position_indicator(settings_t position)
 {
-    const uint8_t x_start = (MATRIX_COL_WIDTH - SETTINGS_COUNT) / 2;
-    for (uint8_t i = 0; i < SETTINGS_COUNT; i++)
+    const uint8_t x_start = (MATRIX_COL_WIDTH - 2 * SETTINGS_COUNT) / 2;
+    for (uint8_t i = 0; i < SETTINGS_COUNT * 2; i++)
     {
-        matrix_set_pixel(x_start + i, 0, i == (uint8_t)position);
+        matrix_set_pixel(x_start + i, 0, (i / 2) == (uint8_t)position);
     }
 }
 
