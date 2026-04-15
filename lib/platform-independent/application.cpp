@@ -19,7 +19,7 @@ void init_application(application_t *app)
 
     for (int8_t i = 0; i < MAX_TIMERS; i++)
     {
-        init_state_machine(&app->state_machines[i]);
+        app->state_machines[i].init();
         app->previous_sm_states[i] = app->state_machines[i].state;
     }
 
@@ -46,7 +46,7 @@ void init_application(application_t *app)
     app->power_save.init(&app->brightness);
 
     app->current_active_sm = 0;
-    set_state(&app->state_machines[0], SET_TIME);
+    app->state_machines[0].set_state(SET_TIME);
 
     init_settings_menu(&app->settings_menu);
     init_battery_measurement(&app->battery_measurement);
@@ -69,7 +69,7 @@ static bool sm_transitioned_from_state(application_t *app, uint8_t sm_index, sta
 void service_application(application_t *app)
 {
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
-        service_state_machine(&app->state_machines[i]);
+        app->state_machines[i].service();
 
     app->buzzer.service();
     if (app->current_view == SNAKE_VIEW)
@@ -109,7 +109,7 @@ static void select_previous_state_machine(application_t *app)
     const uint8_t first_sm = 0;
     for (int8_t i = app->current_active_sm - 1; i >= first_sm; i--)
     {
-        if (!state_machine_is_idle(&app->state_machines[i]))
+        if (!app->state_machines[i].is_idle())
         {
             app->current_active_sm = i;
             break;
@@ -122,7 +122,7 @@ static void select_next_state_machine(application_t *app)
     const uint8_t last_sm = MAX_TIMERS - 1;
     for (uint8_t i = app->current_active_sm + 1; i <= last_sm; i++)
     {
-        if (!state_machine_is_idle(&app->state_machines[i]))
+        if (!app->state_machines[i].is_idle())
         {
             app->current_active_sm = i;
             break;
@@ -133,17 +133,17 @@ static void select_next_state_machine(application_t *app)
 static void pass_event_to_all_state_machines(application_t *app, event_t event)
 {
     for (int8_t i = 0; i < MAX_TIMERS; i++)
-        state_machine_handle_event(&app->state_machines[i], event);
+        app->state_machines[i].handle_event(event);
 }
 
 static void try_to_open_new_timer(application_t *app)
 {
     for (int i = 0; i < MAX_TIMERS; i++)
     {
-        if (state_machine_is_idle(&app->state_machines[i]))
+        if (app->state_machines[i].is_idle())
         {
             app->current_active_sm = i;
-            set_state(&app->state_machines[i], SET_TIME);
+            app->state_machines[i].set_state(SET_TIME);
             return;
         }
     }
@@ -467,7 +467,7 @@ void application_handle_event(application_t *app, event_t event)
             }
             else
             {
-                state_machine_handle_event(active_sm, event);
+                active_sm->handle_event(event);
             }
             break;
 

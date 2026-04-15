@@ -40,16 +40,16 @@ void version(void)
 
 void set_active_timer(state_machine_t *active_sm, uint32_t *steps)
 {
-    reset_timer(&active_sm->timer);
-    set_state(active_sm, SET_TIME);
-    add_to_target_time(&active_sm->timer, (int32_t)(*steps));
+    active_sm->timer.reset();
+    active_sm->set_state(SET_TIME);
+    active_sm->timer.add_to_target_time((int32_t)(*steps));
 }
 
 void play_active_timer(state_machine_t *active_sm)
 {
-    if(get_state(active_sm) == SET_TIME)
+    if(active_sm->get_state() == SET_TIME)
     {
-        state_machine_handle_event(active_sm, SINGLE_PRESS);
+        active_sm->handle_event(SINGLE_PRESS);
     }
     else
     {
@@ -58,9 +58,9 @@ void play_active_timer(state_machine_t *active_sm)
 }
 void pause_active_timer(state_machine_t *active_sm)
 {
-    if(get_state(active_sm) == RUNNING)
+    if(active_sm->get_state() == RUNNING)
     {
-        state_machine_handle_event(active_sm, SINGLE_PRESS);
+        active_sm->handle_event(SINGLE_PRESS);
     }
     else
     {
@@ -70,7 +70,7 @@ void pause_active_timer(state_machine_t *active_sm)
 
 void reset_active_timer(state_machine_t *active_sm)
 {
-    state_machine_handle_event(active_sm, LONG_PRESS);
+    active_sm->handle_event(LONG_PRESS);
 }
 
 static void convert_seconds_to_hhmmss(uint16_t seconds, uint8_t time[3])
@@ -82,10 +82,10 @@ static void convert_seconds_to_hhmmss(uint16_t seconds, uint8_t time[3])
 
 void get_status_active_timer(state_machine_t *active_sm)
 {
-    state_t current_state = get_state(active_sm);
+    state_t current_state = active_sm->get_state();
     const char* current_state_string = state_to_string(&current_state);
 
-    uint16_t current_seconds = get_target_time(active_sm);
+    uint16_t current_seconds = active_sm->get_target_time();
     uint8_t current_time[3];
     convert_seconds_to_hhmmss(current_seconds, current_time);
 
@@ -93,7 +93,7 @@ void get_status_active_timer(state_machine_t *active_sm)
     uint8_t current_mins = current_time[1];
     uint8_t current_secs = current_time[2];
 
-    uint16_t original_seconds = get_target_time(active_sm);
+    uint16_t original_seconds = active_sm->get_target_time();
     uint8_t original_time[3];
     convert_seconds_to_hhmmss(original_seconds, original_time);
 
