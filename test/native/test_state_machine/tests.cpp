@@ -106,14 +106,43 @@ static void test_given_in_set_time_when_fast_ccw_on_multiple_then_snaps_to_prev_
 
 static void test_given_in_running_and_timer_has_ticked_when_fast_cw_then_snaps_to_next_multiple(void)
 {
-    // Timer was set to 5, ticked down to 4; fast CW should add a full 5-second snap
-    // (based on original_time=5, snapping gives new_original=10, new_current=9)
+    // On an exact multiple (10), fast CW snaps to next multiple (20)
     sm.timer.original_time = 10;
     sm.timer.current_time = 9;
     set_state(&sm, RUNNING);
     state_machine_handle_event(&sm, CW_ROTATION_FAST);
-    TEST_ASSERT_EQUAL(20, get_target_time(&sm));
-    TEST_ASSERT_EQUAL(19, get_time_left(&sm));
+    TEST_ASSERT_EQUAL(21, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(20, get_time_left(&sm));
+}
+
+static void test_given_in_running_when_fast_cw_one_over_multiple_then_snaps_to_next(void)
+{
+    sm.timer.original_time = 11;
+    sm.timer.current_time = 8;
+    set_state(&sm, RUNNING);
+    state_machine_handle_event(&sm, CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(13, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(10, get_time_left(&sm));
+}
+
+static void test_given_in_running_when_fast_cw_below_multiple_then_snaps_up(void)
+{
+    sm.timer.original_time = 8;
+    sm.timer.current_time = 5;
+    set_state(&sm, RUNNING);
+    state_machine_handle_event(&sm, CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(13, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(10, get_time_left(&sm));
+}
+
+static void test_given_in_running_when_fast_ccw_then_snaps_to_prev_multiple(void)
+{
+    sm.timer.original_time = 12;
+    sm.timer.current_time = 9;
+    set_state(&sm, RUNNING);
+    state_machine_handle_event(&sm, CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(23, get_target_time(&sm));
+    TEST_ASSERT_EQUAL(20, get_time_left(&sm));
 }
 
 void test_when_in_set_time_timer_doesnt_overflow(void)
@@ -208,6 +237,9 @@ int main()
     RUN_TEST(test_given_in_set_time_when_fast_cw_on_multiple_then_snaps_to_next_multiple);
     RUN_TEST(test_given_in_set_time_when_fast_ccw_on_multiple_then_snaps_to_prev_multiple);
     RUN_TEST(test_given_in_running_and_timer_has_ticked_when_fast_cw_then_snaps_to_next_multiple);
+    RUN_TEST(test_given_in_running_when_fast_cw_one_over_multiple_then_snaps_to_next);
+    RUN_TEST(test_given_in_running_when_fast_cw_below_multiple_then_snaps_up);
+    RUN_TEST(test_given_in_running_when_fast_ccw_then_snaps_to_prev_multiple);
     RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
