@@ -22,10 +22,12 @@ void init_hw_timer2_to_1s_interrupt(callback *on_second_cb)
     TCCR2A = 0;
     TCCR2B = bit(CS22) | bit(CS20); // 32kHz / 128 prescaler = 1 second
 
-    // Wait for the registers to update
-    while (ASSR & 0x1F)
-    {
-    }
+    // Note: We don't synchronize with the ASSR register here on purpose since
+    // that delays the boot by up to 3 seconds.
+    //
+    // It's only necessary to sync with ASSR if you want to write to any of the
+    // timer2 registers. We are only interested in "reading" (rather the
+    // triggering of the overflow interrupt), so it's fine for us to skip that.
 
     // TIMER2_OVF_vect enable
     TIMSK2 = bit(TOIE2);
