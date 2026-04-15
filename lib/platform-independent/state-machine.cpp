@@ -89,7 +89,39 @@ static rotation_dir_t event_to_rot_dir(event_t event)
 
 static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
 {
-    const int16_t base_step = (original_time >= 3600) ? 60 : 1;
+    const uint16_t base_step = (original_time >= 3600) ? 60 : 1;
+    uint16_t snap_size;
+    if (original_time >= 3600)
+    {
+        snap_size = 5;
+    }
+    else if (original_time >= 15 * 60)
+    {
+        snap_size = 30;
+    }
+    else
+    {
+        snap_size = 10;
+    }
+    snap_size *= base_step;
+
+    if (speed == fast)
+    {
+        uint16_t snapped;
+        if (dir == cw)
+        {
+            // Snap to the strictly next multiple of snap_size above original_time
+            snapped = (original_time / snap_size + 1) * snap_size;
+        }
+        else
+        {
+            if (original_time == 0)
+                return 0;
+            // Snap to the strictly previous multiple of snap_size below original_time
+            snapped = ((original_time - 1) / snap_size) * snap_size;
+        }
+        return (int16_t)((int32_t)snapped - (int32_t)original_time);
+    }
 
     int16_t step_size = 0;
     switch (dir)
@@ -102,12 +134,6 @@ static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotatio
         break;
     default:
         return 0;
-    }
-
-    const uint16_t fast_multiplier = 5;
-    if (speed == fast)
-    {
-        step_size *= fast_multiplier;
     }
 
     return step_size;
