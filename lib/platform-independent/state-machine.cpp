@@ -90,7 +90,20 @@ static rotation_dir_t event_to_rot_dir(event_t event)
 static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
 {
     const uint16_t base_step = (original_time >= 3600) ? 60 : 1;
-    const uint16_t snap_size = base_step * 5;
+    uint16_t snap_size;
+    if (original_time >= 3600)
+    {
+        snap_size = 5;
+    }
+    else if (original_time >= 15 * 60)
+    {
+        snap_size = 30;
+    }
+    else
+    {
+        snap_size = 10;
+    }
+    snap_size *= base_step;
 
     if (speed == fast)
     {
