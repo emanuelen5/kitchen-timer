@@ -202,25 +202,23 @@ void init_settings_menu(settings_menu_t *settings_menu)
 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
-    if (settings_menu->current_menu_position > SETTINGS_COUNT - 1)
+    if (settings_menu->current_menu_position < (settings_t)(SETTINGS_COUNT - 1))
     {
-        settings_menu->current_menu_position = BRIGHTNESS;
+        settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
     }
 }
 
 static void previous_setting_menu_option(settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
-    if (settings_menu->current_menu_position < 0)
+    if (settings_menu->current_menu_position > BRIGHTNESS)
     {
-        settings_menu->current_menu_position = (settings_t)(SETTINGS_COUNT - 1);
+        settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
     }
 }
 
 static void going_back_to_setting_menu_from_submenu(application_t *app, settings_menu_t *settings_menu)
 {
-    settings_menu->current_menu_position = BRIGHTNESS;
+    settings_menu->current_menu_position = settings_menu->selected_setting;
     app->current_view = SETTINGS_MENU_VIEW;
 }
 
@@ -456,6 +454,7 @@ void application_handle_event(application_t *app, event_t event)
             }
             else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
             {
+                app->settings_menu.current_menu_position = BRIGHTNESS;
                 app->current_view = SETTINGS_MENU_VIEW;
             }
             else if (event == CW_PRESSED_ROTATION)

@@ -12,23 +12,17 @@ void init_settings_menu(settings_menu_t *settings_menu)
 
 static void next_settings_menu_option(settings_menu_t *settings_menu)
 {
-    settings_t position = settings_menu->current_menu_position;
-    
-    position = (settings_t)(position + 1);
-    if(position > SETTINGS_COUNT - 1)
+    if (settings_menu->current_menu_position < (settings_t)(SETTINGS_COUNT - 1))
     {
-        position = BRIGHTNESS;
-    }   
+        settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position + 1);
+    }
 }
 
 static void previous_setting_menu_option(settings_menu_t *settings_menu)
 {
-    settings_t position = settings_menu->current_menu_position;
-
-    position = (settings_t)(position - 1);
-    if(position < 0)
+    if (settings_menu->current_menu_position > BRIGHTNESS)
     {
-        position = (settings_t)(SETTINGS_COUNT - 1);
+        settings_menu->current_menu_position = (settings_t)(settings_menu->current_menu_position - 1);
     }
 }
 
