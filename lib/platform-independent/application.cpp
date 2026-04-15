@@ -454,6 +454,7 @@ void application_handle_event(application_t *app, event_t event)
             }
             else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
             {
+                app->settings_menu.current_menu_position = BRIGHTNESS;
                 app->current_view = SETTINGS_MENU_VIEW;
             }
             else if (event == CW_PRESSED_ROTATION)
