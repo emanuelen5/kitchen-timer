@@ -87,6 +87,23 @@ static rotation_dir_t event_to_rot_dir(event_t event)
     }
 }
 
+static int32_t get_fast_step_from_current(uint16_t current_time)
+{
+    const uint16_t base_step = (current_time >= 3600) ? 60 : 1;
+    uint16_t snap_size;
+    if (current_time >= 3600)
+        snap_size = 5;
+    else if (current_time >= 15 * 60)
+        snap_size = 30;
+    else
+        snap_size = 10;
+    snap_size *= base_step;
+
+    // Always snap upward: strictly next multiple above (current_time + 1)
+    uint32_t snapped = ((uint32_t)(current_time + 1) / snap_size + 1) * snap_size;
+    return (int32_t)snapped - (int32_t)current_time;
+}
+
 static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
 {
     const uint16_t base_step = (original_time >= 3600) ? 60 : 1;
@@ -189,7 +206,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            int32_t step_size;
+            if (event_speed(event) == fast)
+                step_size = get_fast_step_from_current(sm->timer.current_time);
+            else
+                step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), slow);
             add_to_target_time(&sm->timer, step_size);
             add_to_current_time(&sm->timer, step_size);
         }
@@ -224,7 +245,11 @@ void state_machine_handle_event(state_machine_t *sm, event_t event)
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
         {
-            const int32_t step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), event_speed(event));
+            int32_t step_size;
+            if (event_speed(event) == fast)
+                step_size = get_fast_step_from_current(sm->timer.current_time);
+            else
+                step_size = get_step_size(sm->timer.original_time, event_to_rot_dir(event), slow);
             add_to_target_time(&sm->timer, step_size);
             add_to_current_time(&sm->timer, step_size);
         }
