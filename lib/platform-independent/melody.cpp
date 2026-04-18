@@ -53,21 +53,45 @@ const Note saw_melody[] = {
     end_of_melody,
 };
 
+const Note fur_elise_melody[] = {
+    {NoteE4, 4},
+    {NoteDS4, 4},
+    {NoteE4, 4},
+    {NoteDS4, 4},
+    {NoteE4, 4},
+    {NoteB3, 4},
+    {NoteD4, 4},
+    {NoteC4, 4},
+    {NoteA3, 8},
+    {NotePause, 4},
+    {NoteC4, 4},
+    {NoteE4, 4},
+    {NoteA4, 4},
+    {NoteB4, 8},
+    {NotePause, 4},
+    {NoteE4, 4},
+    {NoteGS4, 4},
+    {NoteB4, 4},
+    {NoteC5, 8},
+    {NotePause, 16},
+    end_of_melody,
+};
+
+const Note *melodies[] = {
+    beep_melody,
+    ten_beeps_melody,
+    volume_setting_melody,
+    saw_melody,
+    fur_elise_melody,
+};
+
 const Note *get_melody(MelodyType melody)
 {
-    switch (melody)
+    if (melody >= melody_count)
     {
-        case beep:
-            return beep_melody;
-        case ten_beeps:
-            return ten_beeps_melody;
-        case volume_setting:
-            return volume_setting_melody;
-        case saw:
-            return saw_melody;
-        default:
-            return nullptr;
+        return melodies[0]; // default to beep melody if invalid melody type
     }
+    return melodies[melody];
 }
 
 bool is_end_of_melody(const Note *note)

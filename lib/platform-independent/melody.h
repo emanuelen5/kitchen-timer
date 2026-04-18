@@ -9,6 +9,7 @@ enum MelodyType
     ten_beeps,
     volume_setting,
     saw,
+    fur_elise,
     melody_count,
 };
 
