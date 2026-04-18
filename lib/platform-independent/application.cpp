@@ -186,7 +186,7 @@ static void going_back_to_setting_menu_from_submenu(application_t *app, settings
     app->current_view = SETTINGS_MENU_VIEW;
 }
 
-void settings_menu_event_handling(application_t *app, event_t event)
+static void settings_menu_event_handling(application_t *app, event_t event)
 {
     settings_menu_t *settings_menu = &app->settings_menu;
     switch (event)
