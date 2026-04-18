@@ -10,6 +10,7 @@ enum MelodyType
     volume_setting,
     saw,
     fur_elise,
+    super_mario,
     melody_count,
 };
 
