@@ -159,41 +159,6 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
-static void change_to_a_setting_view_cb(application_t *app, settings_t selected_setting)
-{
-    switch (selected_setting)
-    {
-    case BACK:
-        app->current_view = ACTIVE_TIMER_VIEW;
-        break;
-
-    case BRIGHTNESS:
-        app->current_view = BRIGHTNESS_SETTING_VIEW;
-        break;
-
-    case VOLUME:
-        app->current_view = VOLUME_SETTING_VIEW;
-        break;
-
-    case BATTERY_V:
-        app->current_view = BATTERY_CHARGE_VIEW;
-        init_battery_measurement(&app->battery_measurement);
-        break;
-
-    case MELODY:
-        app->current_view = MELODY_SELECT_VIEW;
-        break;
-
-    case SNAKE:
-        snake_restart(&app->snake_game, millis());
-        app->current_view = SNAKE_VIEW;
-        break;
-
-    default:
-        break;
-    }
-}
-
 void init_settings_menu(settings_menu_t *settings_menu)
 {
     settings_menu->current_menu_position = BRIGHTNESS;
@@ -238,7 +203,37 @@ void settings_menu_event_handling(application_t *app, event_t event)
 
     case SINGLE_PRESS:
         settings_menu->selected_setting = settings_menu->current_menu_position;
-        change_to_a_setting_view_cb(app, settings_menu->selected_setting);
+        switch (settings_menu->selected_setting)
+        {
+        case BACK:
+            app->current_view = ACTIVE_TIMER_VIEW;
+            break;
+
+        case BRIGHTNESS:
+            app->current_view = BRIGHTNESS_SETTING_VIEW;
+            break;
+
+        case VOLUME:
+            app->current_view = VOLUME_SETTING_VIEW;
+            break;
+
+        case BATTERY_V:
+            app->current_view = BATTERY_CHARGE_VIEW;
+            init_battery_measurement(&app->battery_measurement);
+            break;
+
+        case MELODY:
+            app->current_view = MELODY_SELECT_VIEW;
+            break;
+
+        case SNAKE:
+            snake_restart(&app->snake_game, millis());
+            app->current_view = SNAKE_VIEW;
+            break;
+
+        default:
+            break;
+        }
         break;
 
     default:
@@ -380,7 +375,7 @@ static void snake_view_event_handling(application_t *app, event_t event)
         default:
             break;
         }
-    break;
+        break;
 
     case SNAKE_PAUSED:
     {
