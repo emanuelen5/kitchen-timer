@@ -236,6 +236,9 @@ static void settings_menu_event_handling(application_t *app, event_t event)
         }
         break;
 
+    case LONG_PRESS:
+        app->current_view = ACTIVE_TIMER_VIEW;
+
     default:
         break;
     }
