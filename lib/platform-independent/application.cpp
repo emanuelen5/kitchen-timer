@@ -159,9 +159,8 @@ static bool any_timer_has_state(application_t *app, state_t state)
     return false;
 }
 
-static void change_to_a_setting_view_cb(void *app_argument, settings_t selected_setting)
+static void change_to_a_setting_view_cb(application_t *app, settings_t selected_setting)
 {
-    application_t *app = (application_t *)app_argument;
     switch (selected_setting)
     {
     case BACK:
@@ -222,8 +221,9 @@ static void going_back_to_setting_menu_from_submenu(application_t *app, settings
     app->current_view = SETTINGS_MENU_VIEW;
 }
 
-void settings_menu_event_handling(settings_menu_t *settings_menu, change_settings_views_cb_t change_to_a_setting_view_cb, void *app_argument, event_t event)
+void settings_menu_event_handling(application_t *app, event_t event)
 {
+    settings_menu_t *settings_menu = &app->settings_menu;
     switch (event)
     {
     case CW_ROTATION:
@@ -238,7 +238,7 @@ void settings_menu_event_handling(settings_menu_t *settings_menu, change_setting
 
     case SINGLE_PRESS:
         settings_menu->selected_setting = settings_menu->current_menu_position;
-        change_to_a_setting_view_cb(app_argument, settings_menu->selected_setting);
+        change_to_a_setting_view_cb(app, settings_menu->selected_setting);
         break;
 
     default:
@@ -472,7 +472,7 @@ void application_handle_event(application_t *app, event_t event)
             break;
 
         case SETTINGS_MENU_VIEW:
-            settings_menu_event_handling(&app->settings_menu, change_to_a_setting_view_cb, app, event);
+            settings_menu_event_handling(app, event);
             break;
 
         case BRIGHTNESS_SETTING_VIEW:
