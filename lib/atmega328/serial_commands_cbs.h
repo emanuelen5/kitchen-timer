@@ -14,7 +14,7 @@ void setup_brightness(uint8_t *intensity);
 void setup_volume(Buzzer* buzzer, uint8_t *volume);
 void setup_status(application_t *app);
 void setup_buzzer(Buzzer* buzzer, bool is_on);
-void test_buzzer(Buzzer *buzzer);
+void test_buzzer(Buzzer *buzzer, uint8_t melody);
 void help_cmd(void);
 void unrecognized_command(char *string);
 void reboot(void);

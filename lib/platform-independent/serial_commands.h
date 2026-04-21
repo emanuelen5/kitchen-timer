@@ -16,7 +16,7 @@ typedef struct
     void (*setup_volume)(Buzzer *buzzer, uint8_t *volume);
     void (*setup_status)(application_t *app);
     void (*setup_buzzer)(Buzzer *buzzer, bool is_on);
-    void (*test_buzzer)(Buzzer *buzzer);
+    void (*test_buzzer)(Buzzer *buzzer, uint8_t melody);
     void (*help)(void);
     void (*unrecognized_command)(char *string);
     void (*reboot)(void);

@@ -9,7 +9,7 @@ uint16_t millis(void);
 Buzzer::Buzzer() : tone_start_time(0),
                    melody(nullptr),
                    note_index(0),
-                   volume(10)
+                   volume(max_volume)
 {
 }
 
