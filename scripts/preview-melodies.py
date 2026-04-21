@@ -58,10 +58,21 @@ def main():
         choices=melody_names,
         help="Name of the melody to play",
     )
+    parser.add_argument(
+        "--bpm",
+        type=int,
+        default=100,
+        help="Tempo in beats per minute (default: 100)",
+    )
     args = parser.parse_args()
 
-    print(f"Playing {args.melody}...")
-    play_melody(all_melodies[args.melody])
+    # 4/4 th time signature
+    beat_ms = 60_000 / 4 // args.bpm
+    print(f"Playing {args.melody} at {args.bpm} BPM...")
+    try:
+        play_melody(all_melodies[args.melody], beat_ms=beat_ms)
+    except KeyboardInterrupt:
+        print("\nPlayback stopped.")
 
 
 if __name__ == "__main__":
