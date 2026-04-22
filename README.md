@@ -23,16 +23,20 @@ The project is heavily inspired by [REST: Kitchen timer by mkdxdx [Hackaday.io]]
 
 If you want to build the PCB yourself, you can download the latest release of Gerber files from Github: <https://github.com/emanuelen5/kitchen-timer/releases/latest>
 
+### Enclosure
+
+The .stl files are available in [./enclosure](./enclosure/) so you can 3D-print the enclosure yourself.
+
 ## Software
+
+You can flash the program directly using the ISP header on the board if you want (the same procedure as flashing the bootloader, below). But it's more convenient to add the bootloader so you don't have to open up the enclosure for each software update. Then you can instead program it over the USB-C connector.
+
+For that, you need the bootloader firmware and programmer software which you can download from <https://github.com/emanuelen5/kitchen-timer/releases/tag/bootloader-v1.2.0>.
 
 ### Bootloader
 
-You need a bootloader on the microcontroller to be able to program it through the USB connector.
-
-To flash the microcontroller with the bootloader, you need `avrdude` and `pio` (the PlatformIO command line tool).
-
-* Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>. Make sure to add it to your `PATH`.
-* `pio` can be downloaded from <https://pypi.org/project/platformio/> or installed using `pip` (the official Package Installer for Python)
+To flash the microcontroller with the bootloader, you need `avrdude`.
+Avrdude 7.3 can be downloaded from <https://github.com/avrdudes/avrdude/releases/tag/v7.3>. Make sure to add it to your `PATH`.
 
 Connect your programmer of choice to the 6-pin in-system programmer (ISP) connector: \
 ![6-pin ISP header, as viewed from the top](./docs/isp.svg)
@@ -44,30 +48,60 @@ Adaptations: removed 10-pin header and some text; improved the contrast for dark
              mode.
 -->
 
-Then run
+Then run the following command (replace `<programmer>` with your programmer of choice, like `usbtiny`):
 
 ```bash
-./flash.sh <programmer> bootloader
+# the bootloader.hex file needs to be in the current directory
+avrdude -p atmega328p -c <programmer> -U flash:w:bootloader.hex:i \
+  -U lfuse:w:0x62:m -U hfuse:w:0xD0:m -U efuse:w:0xFF:m
 ```
 
-to flash the bootloader and set the fuses (to `lfuse=0x62 hfuse=0xD0 efuse=0xFF`).
+> [!TIP]
+> Use `avrdude -c ?` to see which programmers are available
 
-### Application
 
-First you will need to install some packages that the programmer needs, and build the application.
+This flashes the bootloader and sets the required fuses for the bootloader.
+
+After that you can disconnect the programmer and assemble the device.
+
+### Programmer
+
+Now that you have the bootloader on the device, you can use the USB-C cable for programming it by using the programmer application.
+
+#### Dependencies
+
+First you will need to install some packages that the programmer needs (files from <https://github.com/emanuelen5/kitchen-timer/releases/tag/bootloader-v1.2.0>).
 
 ```bash
 pip install -r ./programmer/requirements.txt
-pio run -e application
 ```
 
-You can now program the application onto the device using the bootloader!
+You can now program the application onto the device through the bootloader!
+
+### Upload firmware
+
+Download the latest revision of the firmware (if you want to build it yourself, see [#Development](#development) below) from the releases <https://github.com/emanuelen5/kitchen-timer/releases>.
 
 Connect the USB cable to the device, and then run
 
 ```bash
-python3 ./programmer/programmer.py --hexfile .pio/build/application/firmware.hex
+python3 ./programmer/programmer.py --hexfile firmware.hex
 ```
+
+## Development
+
+### Firmware
+
+To build the firmware, you need `pio` which can be downloaded from <https://pypi.org/project/platformio/> or installed using `pip` (the official Package Installer for Python)
+
+To build any of the environments, use the `pio` command, like
+
+```bash
+# builds the main application and puts it in .pio/builds/application/firmware.hex
+pio run -e application
+```
+
+Then use the programmer to upload the firmware to the device.
 
 ## Background
 
