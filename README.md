@@ -16,13 +16,14 @@ Among other features that we would like to add are:
 
 Both [Erasmus Cedernaes](https://github.com/emanuelen5) and [Nicolas Perozzi](https://github.com/nperozzi) belong to [Stockholm Makerspace](https://www.makerspace.se/). On the same day, we messaged each other a link to mkdxdx​ project. We were very excited about building something that would be "practical" so we decided to team up and work on this together. Additionally, we share an interest in working with the AVR MCUs. This project is a nice blend of programming, electrical, mechanical, 3d printing, and design but, without feeling overwhelming.
 
-## Product Requirements
 
-* It needs to allow for several timers to run in parallel.
-* Powered by battery
-* Charged by USB-C.
-* Programmable.
-* It needs to be possible to stick to the kitchen fridge.
+## Features
+
+* ⏱️ Allows several timers to run in parallel
+* ⚡ Is battery powered
+* 🔌 Charged by USB-C
+* 💻 Programmable through the same USB port
+* 🐍 Easter eggs
 
 ## Hardware
 
