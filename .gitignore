@@ -3,9 +3,9 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
-hardware/kitchen_timer-hardware-backups/
-hardware/*.bak
-hardware/fp-info-cache
+pcb/kitchen_timer-hardware-backups/
+pcb/*.bak
+pcb/fp-info-cache
 *.pyc
 *.code-workspace
 
