@@ -64,13 +64,30 @@ def main():
         default=100,
         help="Tempo in beats per minute (default: 100)",
     )
+    parser.add_argument(
+        "--start",
+        type=int,
+        default=0,
+        help="Note index to start playback from (default: 0)",
+    )
+    parser.add_argument(
+        "--beats",
+        type=int,
+        default=None,
+        help="Number of notes to play from the start position",
+    )
     args = parser.parse_args()
+
+    notes = all_melodies[args.melody]
+    end = args.start + args.beats if args.beats is not None else None
+    notes = notes[args.start:end]
 
     # 4/4 th time signature
     beat_ms = 60_000 / 4 // args.bpm
-    print(f"Playing {args.melody} at {args.bpm} BPM...")
+    range_str = f" (notes {args.start}:{end})" if args.start > 0 or args.beats is not None else ""
+    print(f"Playing {args.melody} at {args.bpm} BPM{range_str}...")
     try:
-        play_melody(all_melodies[args.melody], beat_ms=beat_ms)
+        play_melody(notes, beat_ms=beat_ms)
     except KeyboardInterrupt:
         print("\nPlayback stopped.")
 
