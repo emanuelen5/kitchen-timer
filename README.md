@@ -77,3 +77,16 @@ Connect the USB cable to the device, and then run
 ```bash
 python3 ./programmer/programmer.py --hexfile .pio/build/application/firmware.hex
 ```
+
+# Other Components
+Here you will find the list of components that are outside of the scope of the
+PCB BOM.
+
+| Nr | Description                                               | Qty 	|
+|----|---------------------------------------------------------- |-----	|
+| 1  | Hexagon Socket Button Head Screw ISO 7380-1 - M3 x 16     | 4   	|
+| 2  | Hexagon Socket Button Head Screw ISO 7380-1 - M2 x        | 3   	|
+| 3  | Brass Threaded Insert M3                                  | 4   	|
+| 3  | Brass Threaded Insert M2                                  | 3   	|
+| 4  | Hexagon Socket Button Head Screw ISO 7380-1 - M2 x        | 3   	|
+| 5  | 3.7V Lipo battery 1000mAh, 10x20x50mm, JST XH2.54 2 pin   | 1   	|
