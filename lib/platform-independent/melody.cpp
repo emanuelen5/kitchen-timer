@@ -1,12 +1,18 @@
 #include "melody.h"
 
-const Note beep_melody[] = {
+#ifdef __AVR__
+#include <avr/pgmspace.h>
+#else
+#define PROGMEM
+#endif
+
+PROGMEM const Note beep_melody[] = {
     {NoteC8, 8},
     {NotePause, 8},
     end_of_melody,
 };
 
-const Note ten_beeps_melody[] = {
+PROGMEM const Note ten_beeps_melody[] = {
     {NoteC8, 8},
     {NotePause, 8},
     {NoteC8, 8},
@@ -30,12 +36,12 @@ const Note ten_beeps_melody[] = {
     end_of_melody,
 };
 
-const Note volume_setting_melody[] = {
+PROGMEM const Note volume_setting_melody[] = {
     {NoteA6, 1},
     end_of_melody,
 };
 
-const Note saw_melody[] = {
+PROGMEM const Note saw_melody[] = {
     {NoteC7, 1},
     {NoteD7, 1},
     {NoteE7, 1},
@@ -53,7 +59,7 @@ const Note saw_melody[] = {
     end_of_melody,
 };
 
-const Note fur_elise_melody[] = {
+PROGMEM const Note fur_elise_melody[] = {
     {NoteE6, 4},
     {NoteDS6, 4},
     {NoteE6, 4},
@@ -80,7 +86,7 @@ const Note fur_elise_melody[] = {
 // Stacatto
 #define STACATTO(N, D) {N, D/2}, {NotePause, D/2}
 
-const Note super_mario_melody[] = {
+PROGMEM const Note super_mario_melody[] = {
     // Bar 1-2
     STACATTO(NoteE6, 2),
     STACATTO(NoteE6, 2),
