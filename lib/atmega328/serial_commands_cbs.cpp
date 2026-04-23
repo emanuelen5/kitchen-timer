@@ -163,7 +163,7 @@ void test_buzzer(Buzzer *buzzer, uint8_t melody)
         return;
     }
     buzzer->set_volume(buzzer->default_volume);
-    buzzer->start_melody(get_melody((MelodyType)melody), 1);
+    buzzer->start_melody(get_melody((MelodyType)melody), 0);
 }
 
 const PROGMEM char help[] = (
