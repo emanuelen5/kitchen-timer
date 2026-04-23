@@ -83,15 +83,14 @@ PROGMEM const Note fur_elise_melody[] = {
     end_of_melody,
 };
 
-// Stacatto
-#define STACATTO(N, D) {N, D/2}, {NotePause, D/2}
+#define STACCATO(N, D) {N, D/2}, {NotePause, D/2}
 
 PROGMEM const Note super_mario_melody[] = {
     // Bar 1-2
-    STACATTO(NoteE6, 2),
-    STACATTO(NoteE6, 2),
+    STACCATO(NoteE6, 2),
+    STACCATO(NoteE6, 2),
     {NotePause, 2},
-    STACATTO(NoteE6, 2),
+    STACCATO(NoteE6, 2),
     {NotePause, 2},
     {NoteC6, 2},
     {NoteE6, 4},
@@ -129,14 +128,14 @@ PROGMEM const Note super_mario_melody[] = {
     {/*left*/NoteF4, 2}, {NoteGS5, 2}, {NoteA5, 2}, {NoteC6, 2}, {/*left*/NoteC5, 2}, {NoteA5, 2}, {/*left*/NoteF4, 2}, {NoteD6, 2},
     // Bar 13-14
     {/*left*/NoteC4, 4}, {NoteG6, 2}, {NoteFS6, 2}, {NoteF6, 2}, {NoteDS6, 2}, {/*left*/NoteG4, 2},
-    {NoteE6, 4}, 
-    {NoteC7, 2}, {NotePause, 2}, STACATTO(NoteC7, 2), {NoteC7, 4}, {NoteG4, 4}, 
+    {NoteE6, 4},
+    {NoteC7, 2}, {NotePause, 2}, STACCATO(NoteC7, 2), {NoteC7, 4}, {NoteG4, 4},
     // Measure 15-16: Part B repeat
     {/*left*/NoteC4, 4}, {NoteG6, 2}, {NoteFS6, 2}, {NoteF6, 2}, {NoteDS6, 2}, {/*left*/NoteC5, 2}, {NoteE6, 2},
     {/*left*/NoteF4, 2}, {NoteGS5, 2}, {NoteA5, 2}, {NoteC6, 2}, {/*left*/NoteF4, 2}, {NoteA5, 2}, {/*left*/NoteC5, 2}, {NoteD6, 2},
     // Measure 17-18
     {NoteC4, 4}, {NoteDS5, 2}, {NoteGS4, 2}, {NotePause, 2}, {NoteD5, 2}, {NoteAS4, 2},
-    {NotePause, 2}, {NoteC5, 6}, STACATTO(NoteG4, 2), {NoteG4, 4}, {NoteC4, 4},
+    {NotePause, 2}, {NoteC5, 6}, STACCATO(NoteG4, 2), {NoteG4, 4}, {NoteC4, 4},
     end_of_melody,
 };
 
