@@ -41,7 +41,7 @@ void Buzzer::service(void)
     uint16_t current_time = millis();
     if (current_time - this->tone_start_time >= (beat_ms * note.beats))
     {
-        this->tone_start_time = current_time;
+        this->tone_start_time += beat_ms * note.beats;
         this->note_index++;
         play_current_note();
     }
