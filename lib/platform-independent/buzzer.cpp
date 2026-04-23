@@ -32,7 +32,7 @@ void Buzzer::service(void)
     if (melody == nullptr)
         return;
 
-    Note note = melody[this->note_index];
+    Note note = read_note(this->melody, this->note_index);
     if (is_end_of_melody(&note))
     {
         return;
@@ -49,7 +49,7 @@ void Buzzer::service(void)
 
 void Buzzer::play_current_note(void)
 {
-    Note note = melody[this->note_index];
+    Note note = read_note(this->melody, this->note_index);
     if (is_end_of_melody(&note) && repeats > 0)
     {
         if (repeats == REPEAT_FOREVER) {
@@ -91,7 +91,8 @@ bool Buzzer::is_finished(void)
     if (this->repeats != 0)
         return false;
 
-    return is_end_of_melody(&this->melody[this->note_index]);
+    const Note note = read_note(this->melody, this->note_index);
+    return is_end_of_melody(&note);
 }
 
 uint8_t Buzzer::get_volume(void)

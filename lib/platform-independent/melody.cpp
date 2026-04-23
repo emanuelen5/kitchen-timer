@@ -4,6 +4,8 @@
 #include <avr/pgmspace.h>
 #else
 #define PROGMEM
+#define pgm_read_word_near(x) (*(x))
+#define pgm_read_byte_near(x) (*(x))
 #endif
 
 PROGMEM const Note beep_melody[] = {
@@ -147,6 +149,15 @@ const Note *melodies[] = {
     fur_elise_melody,
     super_mario_melody,
 };
+
+const Note read_note(const Note *melody, uint8_t index)
+{
+    Note note = {
+        (Tone)pgm_read_word_near(&melody[index].pitch),
+        pgm_read_byte_near(&melody[index].beats),
+    };
+    return note;
+}
 
 const Note *get_melody(MelodyType melody)
 {
