@@ -19,6 +19,21 @@ The project is heavily inspired by [REST: Kitchen timer by mkdxdx [Hackaday.io]]
 * 32 kHz crystal for accurate timekeeping
 * Passive buzzer for beeping
 
+See the bill of material in the KiCAD project for the full details.
+
+### Mechanical components
+
+Additionally, you will need the following mechanical components for the assembly:
+
+Description                                               | Qty
+--------------------------------------------------------- |-----
+Hexagon Socket Button Head Screw ISO 7380-1 - M3 x 16     | 4
+Hexagon Socket Button Head Screw ISO 7380-1 - M2 x        | 3
+Brass Threaded Insert M3                                  | 4
+Brass Threaded Insert M2                                  | 3
+Hexagon Socket Button Head Screw ISO 7380-1 - M2 x        | 3
+3.7V Lipo battery 1000mAh, 10x20x50mm, JST XH2.54 2 pin   | 1
+
 ### Manufacturing / gerber files
 
 If you want to build the PCB yourself, you can download the latest release of Gerber files from Github: <https://github.com/emanuelen5/kitchen-timer/releases/latest>
