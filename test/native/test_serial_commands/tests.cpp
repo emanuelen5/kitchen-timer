@@ -129,9 +129,9 @@ void setup_buzzer(Buzzer* buzzer, bool is_on)
     }
 }
 
-void test_buzzer(Buzzer *buzzer)
+void test_buzzer(Buzzer *buzzer, uint8_t melody)
 {
-    buzzer->set_volume(5);
+    buzzer->start_melody((MelodyType)melody);
 }
 
 void help_cmd(void)
@@ -263,9 +263,9 @@ void test_setup_buzzer_command(void)
 
 void test_test_buzzer_command(void)
 {
-    char cmd[] = "test buzzer";
+    char cmd[] = "test buzzer 2";
     handle_command(cmd, &callbacks, &app);
-    TEST_ASSERT_EQUAL_UINT8(5, app.buzzer.get_volume());
+    TEST_ASSERT_FALSE(app.buzzer.is_finished());
 }
 
 void test_help_command(void)

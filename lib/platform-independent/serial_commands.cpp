@@ -161,7 +161,20 @@ void handle_command(char* str, const command_callbacks_t* callbacks, application
 
         if(strcmp(arg1, "buzzer") == 0)
         {
-            callbacks->test_buzzer(&app->buzzer);
+            if (arg2 == NULL)
+            {
+                wrong_command = arg2;
+                goto error;
+            }
+
+            int melody = 0;
+            if (sscanf(arg2, "%d", &melody) == 1)
+            {
+                callbacks->test_buzzer(&app->buzzer, (uint8_t)melody);
+            } else {
+                wrong_command = arg2;
+                goto error;
+            }
         }
         else if(strcmp(arg1, "led") == 0)
         {

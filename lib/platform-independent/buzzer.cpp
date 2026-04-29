@@ -9,7 +9,7 @@ uint16_t millis(void);
 Buzzer::Buzzer() : tone_start_time(0),
                    melody(nullptr),
                    note_index(0),
-                   volume(10)
+                   volume(max_volume)
 {
 }
 
@@ -32,7 +32,7 @@ void Buzzer::service(void)
     if (melody == nullptr)
         return;
 
-    Note note = melody[this->note_index];
+    Note note = read_note(this->melody, this->note_index);
     if (is_end_of_melody(&note))
     {
         return;
@@ -41,7 +41,7 @@ void Buzzer::service(void)
     uint16_t current_time = millis();
     if (current_time - this->tone_start_time >= (beat_ms * note.beats))
     {
-        this->tone_start_time = current_time;
+        this->tone_start_time += beat_ms * note.beats;
         this->note_index++;
         play_current_note();
     }
@@ -49,7 +49,7 @@ void Buzzer::service(void)
 
 void Buzzer::play_current_note(void)
 {
-    Note note = melody[this->note_index];
+    Note note = read_note(this->melody, this->note_index);
     if (is_end_of_melody(&note) && repeats > 0)
     {
         if (repeats == REPEAT_FOREVER) {
@@ -91,7 +91,8 @@ bool Buzzer::is_finished(void)
     if (this->repeats != 0)
         return false;
 
-    return is_end_of_melody(&this->melody[this->note_index]);
+    const Note note = read_note(this->melody, this->note_index);
+    return is_end_of_melody(&note);
 }
 
 uint8_t Buzzer::get_volume(void)

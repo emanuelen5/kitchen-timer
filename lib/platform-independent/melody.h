@@ -9,6 +9,8 @@ enum MelodyType
     ten_beeps,
     volume_setting,
     saw,
+    fur_elise,
+    super_mario,
     melody_count,
 };
 
@@ -89,6 +91,7 @@ struct Note
 
 constexpr struct Note end_of_melody = {NotePause, 0};
 
+const Note read_note(const Note *melody, uint8_t index);
 const Note* get_melody(MelodyType melody);
 bool is_end_of_melody(const Note* note);
 

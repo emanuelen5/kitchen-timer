@@ -155,10 +155,15 @@ void setup_buzzer(Buzzer* buzzer, bool is_on)
     }
 }
 
-void test_buzzer(Buzzer *buzzer)
+void test_buzzer(Buzzer *buzzer, uint8_t melody)
 {
-    buzzer->set_volume(5);
-    buzzer->start_melody(volume_setting, 2);
+    if (melody >= melody_count)
+    {
+        UART_print_P(PSTR("Invalid melody index. Please provide a value between 0 and 5.\n"));
+        return;
+    }
+    buzzer->set_volume(buzzer->default_volume);
+    buzzer->start_melody(get_melody((MelodyType)melody), 0);
 }
 
 const PROGMEM char help[] = (
