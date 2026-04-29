@@ -79,7 +79,7 @@ PROGMEM const Note fur_elise_melody[] = {
     {NotePause, 4},
     {NoteE6, 4},
     {NoteGS6, 4},
-    {NoteB6, 5},
+    {NoteB6, 4},
     {NoteC7, 8},
     {NotePause, 16},
     end_of_melody,
