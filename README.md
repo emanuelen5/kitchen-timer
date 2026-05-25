@@ -6,7 +6,7 @@ The project is heavily inspired by [REST: Kitchen timer by mkdxdx [Hackaday.io]]
 ## Features
 
 * ⏱️ Allows several timers to run in parallel
-* ⚡ Is battery powered
+* ⚡ Is battery powered and power efficient
 * 🔌 Charged by USB-C
 * 💻 Programmable through the same USB port
 * 🐍 Easter eggs
