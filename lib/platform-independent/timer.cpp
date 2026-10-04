@@ -39,6 +39,11 @@ namespace state_machine
         return this->elapsed_time;
     }
 
+    uint16_t timer_t::get_overdue_time()
+    {
+        return this->is_finished() ? this->elapsed_time - this->original_time : 0;
+    }
+
     uint16_t timer_t::get_target_time()
     {
         return this->original_time;

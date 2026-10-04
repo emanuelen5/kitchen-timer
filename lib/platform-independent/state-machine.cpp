@@ -3,10 +3,19 @@
 #include "util.h"
 #include "config.h"
 
+uint16_t millis(void);
+
 void state_machine_t::set_state(state_t new_state)
 {
     this->seconds_in_state = 0;
     this->state = new_state;
+}
+
+void state_machine_t::set_ringing_display(ringing_display_t new_ringing_display)
+{
+    this->ringing_display = new_ringing_display;
+    this->showing_ringing_display_label = true;
+    this->millis_of_ringing_display_change = millis();
 }
 
 void state_machine_t::reset()
@@ -31,6 +40,16 @@ void state_machine_t::service()
 {
     switch (state)
     {
+    case RINGING:
+    {
+        uint16_t time_since_ringing_display_change = millis() - this->millis_of_ringing_display_change;
+        if (time_since_ringing_display_change >= RINGING_DISPLAY_LABEL_DURATION)
+        {
+            this->showing_ringing_display_label = false;
+        }
+    }
+    break;
+
     default:
         break;
     }
@@ -167,6 +186,8 @@ void state_machine_t::handle_event(event_t event)
             this->timer.increment_elapsed_time();
             if (this->timer.is_finished())
             {
+                this->ringing_display = SHOW_TOTAL_TIME;
+                this->showing_ringing_display_label = false;
                 this->set_state(RINGING);
             }
             break;
@@ -209,6 +230,16 @@ void state_machine_t::handle_event(event_t event)
         case LONG_PRESS:
             this->reset();
             break;
+        case CW_ROTATION:
+        case CW_ROTATION_FAST:
+            this->set_ringing_display((ringing_display_t)((this->ringing_display + 1) % RINGING_DISPLAY_COUNT));
+            break;
+
+        case CCW_ROTATION:
+        case CCW_ROTATION_FAST:
+            this->set_ringing_display((ringing_display_t)((this->ringing_display + RINGING_DISPLAY_COUNT - 1) % RINGING_DISPLAY_COUNT));
+            break;
+
         case SECOND_TICK:
             if (this->seconds_in_state >= RINGING_TIMEOUT)
             {
@@ -238,6 +269,20 @@ uint16_t state_machine_t::get_time_left()
 uint16_t state_machine_t::get_elapsed_time()
 {
     return this->timer.get_elapsed_time();
+}
+
+uint16_t state_machine_t::get_ringing_display_time()
+{
+    switch (this->ringing_display)
+    {
+    case SHOW_TARGET_TIME:
+        return this->timer.get_target_time();
+    case SHOW_OVERDUE_TIME:
+        return this->timer.get_overdue_time();
+    case SHOW_TOTAL_TIME:
+    default:
+        return this->timer.get_elapsed_time();
+    }
 }
 
 state_t state_machine_t::get_state()

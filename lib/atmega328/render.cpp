@@ -141,6 +141,32 @@ static void draw_active_timer(uint16_t current_time, uint8_t x_offset, uint8_t y
     draw_char(bottom_digits[1], x_offset + 7, y_offset + 8, clear_active_timer);
 }
 
+// Drawn in the same 2x2 grid as the timer digits, with spaces left blank
+static void draw_label(const char label[4], uint8_t x_offset, uint8_t y_offset)
+{
+    for (uint8_t i = 0; i < 4; i++)
+    {
+        if (label[i] != ' ')
+        {
+            draw_char(label[i], x_offset + (i % 2) * 7, y_offset + (i / 2) * 8, false);
+        }
+    }
+}
+
+static const char *get_ringing_display_label(ringing_display_t ringing_display)
+{
+    switch (ringing_display)
+    {
+    case SHOW_TARGET_TIME:
+        return "SET ";
+    case SHOW_OVERDUE_TIME:
+        return "OVER";
+    case SHOW_TOTAL_TIME:
+    default:
+        return "SUM ";
+    }
+}
+
 static void draw_voltage(uint16_t centivolts)
 {
     const uint8_t x_offset = 0, y_offset = 0;
@@ -176,7 +202,7 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
         break;
 
     case RINGING:
-        time_to_display = active_sm->get_elapsed_time();
+        time_to_display = active_sm->get_ringing_display_time();
         break;
     default:
         // Do nothing
@@ -186,7 +212,12 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
     draw_timer_indicators(state_machines);
     draw_ringing_indicator(state_machines);
     bool should_blink_timer_numbers = active_sm->state == PAUSED || active_sm->state == RINGING;
-    if (should_blink_timer_numbers)
+    bool should_show_ringing_display_label = active_sm->state == RINGING && active_sm->showing_ringing_display_label;
+    if (should_show_ringing_display_label)
+    {
+        draw_label(get_ringing_display_label(active_sm->ringing_display), DIGITS_X_OFFSET, DIGITS_Y_OFFSET);
+    }
+    else if (should_blink_timer_numbers)
     {
         if (blink)
         {

@@ -17,6 +17,7 @@ namespace state_machine
         bool is_finished();
         uint16_t get_time_left();
         uint16_t get_elapsed_time();
+        uint16_t get_overdue_time();
         uint16_t get_target_time();
     };
 

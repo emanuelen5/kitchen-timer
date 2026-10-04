@@ -11,6 +11,12 @@ void test_valid_digits(void) {
     }
 }
 
+void test_valid_letters(void) {
+    for (const char *c = "EHMORSTUV"; *c != '\0'; c++) {
+        TEST_ASSERT_NOT_NULL_MESSAGE(get_bitmap(*c), "Expected non-null pointer for letter.");
+    }
+}
+
 void test_invalid_characters(void) {
     TEST_ASSERT_NULL(get_bitmap('a'));
     TEST_ASSERT_NULL(get_bitmap(' '));
@@ -40,6 +46,7 @@ int main()
     UNITY_BEGIN();
 
     RUN_TEST(test_valid_digits);
+    RUN_TEST(test_valid_letters);
     RUN_TEST(test_invalid_characters);
     RUN_TEST(test_get_bitmap_for_zero);
 

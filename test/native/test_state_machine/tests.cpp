@@ -3,12 +3,21 @@
 #include <stdarg.h>
 
 #include "state-machine.h"
+#include "config.h"
 
 state_machine_t sm;
+
+uint16_t current_millis;
+
+uint16_t millis(void)
+{
+    return current_millis;
+}
 
 void setUp(void)
 {
     sm.init();
+    current_millis = 0;
 }
 
 void tearDown(void)
@@ -146,6 +155,96 @@ void test_elapsed_time_doesnt_overflow(void)
     TEST_ASSERT_EQUAL(state_machine::max_time, sm.get_elapsed_time());
 }
 
+void test_when_ringing_it_shows_the_total_time(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(4, sm.get_ringing_display_time());
+}
+
+void test_when_ringing_cw_rotation_cycles_through_target_overdue_and_total_time(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(SECOND_TICK);
+
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(3, sm.get_ringing_display_time());
+    sm.handle_event(CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(1, sm.get_ringing_display_time());
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(4, sm.get_ringing_display_time());
+}
+
+void test_when_ringing_ccw_rotation_cycles_through_overdue_target_and_total_time(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(SECOND_TICK);
+
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(1, sm.get_ringing_display_time());
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(3, sm.get_ringing_display_time());
+    sm.handle_event(CCW_ROTATION);
+    TEST_ASSERT_EQUAL(4, sm.get_ringing_display_time());
+}
+
+void test_when_ringing_rotation_doesnt_change_the_timer(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(CW_ROTATION);
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(3, sm.get_target_time());
+    TEST_ASSERT_EQUAL(3, sm.get_elapsed_time());
+}
+
+void test_it_shows_the_total_time_again_the_next_time_it_rings(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(CW_ROTATION);
+    sm.handle_event(SINGLE_PRESS);
+
+    run_until_ringing(&sm, 3);
+    TEST_ASSERT_EQUAL(SHOW_TOTAL_TIME, sm.ringing_display);
+}
+
+void test_when_ringing_starts_it_doesnt_show_the_label(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.service();
+    TEST_ASSERT_FALSE(sm.showing_ringing_display_label);
+}
+
+void test_when_ringing_rotation_shows_the_label_for_a_while(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_TRUE(sm.showing_ringing_display_label);
+
+    current_millis += RINGING_DISPLAY_LABEL_DURATION - 1;
+    sm.service();
+    TEST_ASSERT_TRUE(sm.showing_ringing_display_label);
+
+    current_millis++;
+    sm.service();
+    TEST_ASSERT_FALSE(sm.showing_ringing_display_label);
+}
+
+void test_when_ringing_another_rotation_keeps_showing_the_label(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(CW_ROTATION);
+    current_millis += RINGING_DISPLAY_LABEL_DURATION / 2;
+    sm.handle_event(CCW_ROTATION);
+
+    current_millis += RINGING_DISPLAY_LABEL_DURATION - 1;
+    sm.service();
+    TEST_ASSERT_TRUE(sm.showing_ringing_display_label);
+
+    current_millis++;
+    sm.service();
+    TEST_ASSERT_FALSE(sm.showing_ringing_display_label);
+}
+
 uint16_t run_until_state_times_out(state_machine_t *sm, state_t initial_state)
 {
     uint16_t seconds = 0;
@@ -220,6 +319,14 @@ int main()
     RUN_TEST(test_when_ringing_the_elapsed_time_keeps_counting_up);
     RUN_TEST(test_elapsed_time_starts_over_the_next_time_it_runs);
     RUN_TEST(test_elapsed_time_doesnt_overflow);
+    RUN_TEST(test_when_ringing_it_shows_the_total_time);
+    RUN_TEST(test_when_ringing_cw_rotation_cycles_through_target_overdue_and_total_time);
+    RUN_TEST(test_when_ringing_ccw_rotation_cycles_through_overdue_target_and_total_time);
+    RUN_TEST(test_when_ringing_rotation_doesnt_change_the_timer);
+    RUN_TEST(test_it_shows_the_total_time_again_the_next_time_it_rings);
+    RUN_TEST(test_when_ringing_starts_it_doesnt_show_the_label);
+    RUN_TEST(test_when_ringing_rotation_shows_the_label_for_a_while);
+    RUN_TEST(test_when_ringing_another_rotation_keeps_showing_the_label);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
     RUN_TEST(test_resets_target_time_when_timer_ends);
 

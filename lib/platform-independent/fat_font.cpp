@@ -132,6 +132,66 @@ static const uint8_t char_v[FATFONT_HEIGHT] = {
     0b001000
 };
 
+static const uint8_t char_E[FATFONT_HEIGHT] = {
+    0b111111,
+    0b110000,
+    0b110000,
+    0b111110,
+    0b110000,
+    0b110000,
+    0b111111
+};
+
+static const uint8_t char_O[FATFONT_HEIGHT] = {
+    0b011110,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b011110
+};
+
+static const uint8_t char_R[FATFONT_HEIGHT] = {
+    0b111110,
+    0b110011,
+    0b110011,
+    0b111110,
+    0b110110,
+    0b110011,
+    0b110011
+};
+
+static const uint8_t char_S[FATFONT_HEIGHT] = {
+    0b011110,
+    0b110011,
+    0b110000,
+    0b011110,
+    0b000011,
+    0b110011,
+    0b011110
+};
+
+static const uint8_t char_T[FATFONT_HEIGHT] = {
+    0b111111,
+    0b001100,
+    0b001100,
+    0b001100,
+    0b001100,
+    0b001100,
+    0b001100
+};
+
+static const uint8_t char_U[FATFONT_HEIGHT] = {
+    0b110011,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b110011,
+    0b011110
+};
+
 const uint8_t _icon_brightness[] PROGMEM = {
     0b00000000,0b00000000,
     0b00000000,0b10000000,
@@ -282,6 +342,18 @@ const uint8_t* get_bitmap(char c)
         case 'v':
         case 'V':
             return char_v;
+        case 'E':
+            return char_E;
+        case 'O':
+            return char_O;
+        case 'R':
+            return char_R;
+        case 'S':
+            return char_S;
+        case 'T':
+            return char_T;
+        case 'U':
+            return char_U;
     }
     return nullptr;
 }
