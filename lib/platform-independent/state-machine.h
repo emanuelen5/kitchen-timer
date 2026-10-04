@@ -27,6 +27,7 @@ struct state_machine_t
     void service();
     uint16_t get_target_time();
     uint16_t get_time_left();
+    uint16_t get_elapsed_time();
     state_t get_state();
     bool is_idle();
 };

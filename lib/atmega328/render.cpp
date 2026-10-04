@@ -171,15 +171,12 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
         break;
 
     case RUNNING:
-        time_to_display = active_sm->timer.current_time;
-        break;
-
     case PAUSED:
-        time_to_display = active_sm->timer.current_time;
+        time_to_display = active_sm->get_time_left();
         break;
 
     case RINGING:
-        time_to_display = active_sm->get_target_time();
+        time_to_display = active_sm->get_elapsed_time();
         break;
     default:
         // Do nothing

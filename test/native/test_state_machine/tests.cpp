@@ -82,7 +82,6 @@ void test_when_in_set_time_timer_doesnt_underflow(void)
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
     sm.timer.original_time = 10;
-    sm.timer.set_current_time_to_target_time();
     sm.set_state(RUNNING);
 
     int actual_seconds = 0;
@@ -95,6 +94,56 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     }
     TEST_ASSERT_EQUAL(actual_seconds, 10);
     TEST_ASSERT_EQUAL(RINGING, sm.get_state());
+}
+
+void test_when_running_rotation_changes_the_time_left(void)
+{
+    sm.timer.original_time = 10;
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(9, sm.get_time_left());
+
+    sm.handle_event(CW_ROTATION);
+    TEST_ASSERT_EQUAL(10, sm.get_time_left());
+    sm.handle_event(CCW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(5, sm.get_time_left());
+}
+
+void run_until_ringing(state_machine_t *sm, uint16_t seconds)
+{
+    sm->timer.original_time = seconds;
+    sm->handle_event(SINGLE_PRESS);
+    for (uint16_t i = 0; i < seconds; i++)
+        sm->handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(RINGING, sm->get_state());
+}
+
+void test_when_ringing_the_elapsed_time_keeps_counting_up(void)
+{
+    run_until_ringing(&sm, 3);
+    TEST_ASSERT_EQUAL(3, sm.get_elapsed_time());
+
+    sm.handle_event(SECOND_TICK);
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(5, sm.get_elapsed_time());
+}
+
+void test_elapsed_time_starts_over_the_next_time_it_runs(void)
+{
+    run_until_ringing(&sm, 3);
+    sm.handle_event(SECOND_TICK);
+    sm.handle_event(SINGLE_PRESS);
+
+    run_until_ringing(&sm, 3);
+    TEST_ASSERT_EQUAL(3, sm.get_elapsed_time());
+}
+
+void test_elapsed_time_doesnt_overflow(void)
+{
+    run_until_ringing(&sm, state_machine::max_time - 1);
+    sm.handle_event(SECOND_TICK);
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(state_machine::max_time, sm.get_elapsed_time());
 }
 
 uint16_t run_until_state_times_out(state_machine_t *sm, state_t initial_state)
@@ -125,7 +174,6 @@ void test_ringing_exits_after_5_minutes(void)
 void test_ringing_timeout_counts_from_when_ringing_started(void)
 {
     sm.timer.original_time = 10;
-    sm.timer.set_current_time_to_target_time();
     sm.set_state(RUNNING);
     run_until_state_times_out(&sm, RUNNING);
 
@@ -168,6 +216,10 @@ int main()
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_5_minutes);
     RUN_TEST(test_ringing_timeout_counts_from_when_ringing_started);
+    RUN_TEST(test_when_running_rotation_changes_the_time_left);
+    RUN_TEST(test_when_ringing_the_elapsed_time_keeps_counting_up);
+    RUN_TEST(test_elapsed_time_starts_over_the_next_time_it_runs);
+    RUN_TEST(test_elapsed_time_doesnt_overflow);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
     RUN_TEST(test_resets_target_time_when_timer_ends);
 

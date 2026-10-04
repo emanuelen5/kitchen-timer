@@ -9,15 +9,14 @@ namespace state_machine
 
     struct timer_t
     {
-        uint16_t original_time, current_time;
+        uint16_t original_time, elapsed_time;
 
-        void set_current_time_to_target_time();
         void add_to_target_time(int32_t step);
-        void add_to_current_time(int32_t step);
         void reset();
-        void decrement_time_left();
+        void increment_elapsed_time();
         bool is_finished();
         uint16_t get_time_left();
+        uint16_t get_elapsed_time();
         uint16_t get_target_time();
     };
 
