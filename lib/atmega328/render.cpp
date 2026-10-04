@@ -351,9 +351,8 @@ static void render_snake_view(application_t *app)
     }
 }
 
-void render(application_t *app)
+static void render_current_view(application_t *app)
 {
-    matrix_buffer_clear();
     switch (app->current_view)
     {
     case ACTIVE_TIMER_VIEW:
@@ -388,6 +387,19 @@ void render(application_t *app)
 
     default:
         break;
+    }
+}
+
+void render(application_t *app)
+{
+    matrix_buffer_clear();
+    if (app->showing_low_battery_warning)
+    {
+        draw_label("LOW ", DIGITS_X_OFFSET, DIGITS_Y_OFFSET);
+    }
+    else
+    {
+        render_current_view(app);
     }
     matrix_update();
 }

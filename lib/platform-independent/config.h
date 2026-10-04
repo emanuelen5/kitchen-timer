@@ -25,4 +25,9 @@
 // continuous rotation (i.e. keeps accelerating)
 #define ROTATION_ACCELERATION_TIMEOUT 150
 
+//Battery configs
+// Resting voltage below which the LiPo cell is due to be charged (~5-10% left)
+#define LOW_BATTERY_CENTIVOLTS 360
+#define LOW_BATTERY_WARNING_DURATION 2000
+
 #endif // CONFIG_H

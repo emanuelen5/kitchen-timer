@@ -13,6 +13,19 @@ void save_byte_setting(uint8_t setting, eeprom_address address);
 void max72xx_set_intensity(uint8_t intensity_level);
 constexpr uint8_t max72xx_max_brightness = 10;
 
+// Should be called while the display is off, so that the battery is close to
+// its resting voltage
+static void check_battery_voltage(application_t *app)
+{
+    battery_measurement_t measurement;
+    init_battery_measurement(&measurement);
+    while (!battery_measurement_is_complete(&measurement))
+        add_battery_measurement(&measurement, battery_centivolts());
+
+    app->showing_low_battery_warning = get_average_battery_voltage(&measurement) < LOW_BATTERY_CENTIVOLTS;
+    app->millis_of_low_battery_warning = millis();
+}
+
 void init_application(application_t *app)
 {
     app->current_view = ACTIVE_TIMER_VIEW;
@@ -50,6 +63,7 @@ void init_application(application_t *app)
 
     init_settings_menu(&app->settings_menu);
     init_battery_measurement(&app->battery_measurement);
+    check_battery_voltage(app);
 }
 
 static bool sm_transitioned_into_state(application_t *app, uint8_t sm_index, state_t into)
@@ -83,6 +97,15 @@ void service_application(application_t *app)
         minimize_battery_voltage_jitter();
         add_battery_measurement(&app->battery_measurement, battery_centivolts());
         max72xx_set_intensity(brightness);
+    }
+
+    if (app->showing_low_battery_warning)
+    {
+        uint16_t time_since_low_battery_warning = millis() - app->millis_of_low_battery_warning;
+        if (time_since_low_battery_warning >= LOW_BATTERY_WARNING_DURATION)
+        {
+            app->showing_low_battery_warning = false;
+        }
     }
 
     for (uint8_t i = 0; i < MAX_TIMERS; i++)
@@ -430,9 +453,16 @@ void application_handle_event(application_t *app, event_t event)
         // The first event after sleeping only wakes the device up, so that e.g.
         // the press that wakes it doesn't also start the timer
         const bool is_waking_up = app->power_save.is_asleep();
-        app->power_save.handle_event(PowerSaveEvent::activity);
         if (is_waking_up)
+        {
+            // Measure before the display is turned on and loads the battery
+            check_battery_voltage(app);
+            app->power_save.handle_event(PowerSaveEvent::activity);
             return;
+        }
+
+        app->showing_low_battery_warning = false;
+        app->power_save.handle_event(PowerSaveEvent::activity);
     }
 
     if (event == SECOND_TICK)

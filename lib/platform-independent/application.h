@@ -34,6 +34,8 @@ typedef struct
     uint8_t brightness; // [0, 0xf]
     MelodyType selected_melody;
     battery_measurement_t battery_measurement;
+    bool showing_low_battery_warning;
+    uint16_t millis_of_low_battery_warning;
     snake_game_t snake_game;
 } application_t;
 

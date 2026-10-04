@@ -12,7 +12,7 @@ void test_valid_digits(void) {
 }
 
 void test_valid_letters(void) {
-    for (const char *c = "EHMORSTUV"; *c != '\0'; c++) {
+    for (const char *c = "EHLMORSTUVW"; *c != '\0'; c++) {
         TEST_ASSERT_NOT_NULL_MESSAGE(get_bitmap(*c), "Expected non-null pointer for letter.");
     }
 }

@@ -20,7 +20,10 @@ void noToneAC() {}
 void save_byte_setting(uint8_t, eeprom_address) {}
 void load_byte_setting(uint8_t *setting, eeprom_address) { *setting = 0; }
 void minimize_battery_voltage_jitter(void) {}
-uint16_t battery_centivolts(void) { return 0; }
+const uint16_t charged_battery_centivolts = 400;
+const uint16_t low_battery_centivolts = 340;
+uint16_t battery_voltage = charged_battery_centivolts;
+uint16_t battery_centivolts(void) { return battery_voltage; }
 
 application_t app;
 
@@ -28,6 +31,7 @@ void setUp(void)
 {
     current_millis = 0;
     display_is_on = true;
+    battery_voltage = charged_battery_centivolts;
     init_application(&app);
 }
 
@@ -110,6 +114,57 @@ void test_double_press_on_a_stopwatch_opens_a_new_timer(void)
     TEST_ASSERT_TRUE(app.state_machines[0].is_stopwatch);
 }
 
+void test_charged_battery_shows_no_warning_at_boot(void)
+{
+    TEST_ASSERT_FALSE(app.showing_low_battery_warning);
+}
+
+void test_low_battery_shows_a_warning_at_boot(void)
+{
+    battery_voltage = low_battery_centivolts;
+    init_application(&app);
+    TEST_ASSERT_TRUE(app.showing_low_battery_warning);
+}
+
+void test_low_battery_shows_a_warning_when_waking_up(void)
+{
+    fall_asleep();
+    battery_voltage = low_battery_centivolts;
+    application_handle_event(&app, SINGLE_PRESS);
+    TEST_ASSERT_TRUE(app.showing_low_battery_warning);
+}
+
+void test_charged_battery_shows_no_warning_when_waking_up(void)
+{
+    fall_asleep();
+    application_handle_event(&app, SINGLE_PRESS);
+    TEST_ASSERT_FALSE(app.showing_low_battery_warning);
+}
+
+void test_low_battery_warning_disappears_after_a_while(void)
+{
+    battery_voltage = low_battery_centivolts;
+    init_application(&app);
+
+    current_millis += LOW_BATTERY_WARNING_DURATION - 1;
+    service_application(&app);
+    TEST_ASSERT_TRUE(app.showing_low_battery_warning);
+
+    current_millis += 1;
+    service_application(&app);
+    TEST_ASSERT_FALSE(app.showing_low_battery_warning);
+}
+
+void test_interaction_dismisses_the_low_battery_warning_and_is_handled(void)
+{
+    fall_asleep();
+    battery_voltage = low_battery_centivolts;
+    application_handle_event(&app, SINGLE_PRESS);
+    application_handle_event(&app, CW_ROTATION);
+    TEST_ASSERT_FALSE(app.showing_low_battery_warning);
+    TEST_ASSERT_EQUAL(1, active_sm()->get_target_time());
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -121,6 +176,12 @@ int main()
     RUN_TEST(test_when_awake_single_press_starts_a_stopwatch);
     RUN_TEST(test_when_asleep_single_press_doesnt_start_a_stopwatch);
     RUN_TEST(test_double_press_on_a_stopwatch_opens_a_new_timer);
+    RUN_TEST(test_charged_battery_shows_no_warning_at_boot);
+    RUN_TEST(test_low_battery_shows_a_warning_at_boot);
+    RUN_TEST(test_low_battery_shows_a_warning_when_waking_up);
+    RUN_TEST(test_charged_battery_shows_no_warning_when_waking_up);
+    RUN_TEST(test_low_battery_warning_disappears_after_a_while);
+    RUN_TEST(test_interaction_dismisses_the_low_battery_warning_and_is_handled);
 
     UNITY_END();
 }
