@@ -33,6 +33,7 @@ void state_machine_t::init()
 {
     this->state = SET_TIME;
     this->seconds_in_state = 0;
+    this->consecutive_rotations = 0;
     this->timer.reset();
 }
 
@@ -93,30 +94,74 @@ static rotation_dir_t event_to_rot_dir(event_t event)
     }
 }
 
-static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed)
+// Like the iPod click wheel: the longer the knob is turned in the same
+// direction without pausing, the bigger the steps get. The first half turn
+// (12 steps) is kept at full precision.
+static uint8_t acceleration_multiplier(uint8_t consecutive_rotations)
+{
+    if (consecutive_rotations > 30)
+        return 60;
+    if (consecutive_rotations > 24)
+        return 30;
+    if (consecutive_rotations > 18)
+        return 10;
+    if (consecutive_rotations > 12)
+        return 5;
+    return 1;
+}
+
+static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotation_speed_t speed, uint8_t consecutive_rotations)
 {
     const int16_t base_step = (original_time >= 3600) ? 60 : 1;
 
-    int16_t step_size = 0;
+    const uint8_t fast_multiplier = 5;
+    uint8_t multiplier = acceleration_multiplier(consecutive_rotations);
+    if (speed == fast && multiplier < fast_multiplier)
+    {
+        multiplier = fast_multiplier;
+    }
+
+    const int16_t max_step = 10 * 60;
+    int16_t step_size = base_step * multiplier;
+    if (step_size > max_step)
+    {
+        step_size = max_step;
+    }
+
     switch (dir)
     {
     case cw:
-        step_size = base_step;
-        break;
+        return step_size;
     case ccw:
-        step_size = -base_step;
-        break;
+        return -step_size;
     default:
         return 0;
     }
+}
 
-    const uint16_t fast_multiplier = 5;
-    if (speed == fast)
+void state_machine_t::adjust_target_time(event_t rotation_event)
+{
+    const rotation_dir_t dir = event_to_rot_dir(rotation_event);
+    const bool is_cw = dir == cw;
+    const uint16_t now = millis();
+
+    const bool is_continued_rotation = this->consecutive_rotations > 0 &&
+                                       is_cw == this->last_rotation_was_cw &&
+                                       (uint16_t)(now - this->millis_of_last_rotation) <= ROTATION_ACCELERATION_TIMEOUT;
+    if (!is_continued_rotation)
     {
-        step_size *= fast_multiplier;
+        this->consecutive_rotations = 0;
     }
+    // Saturate instead of wrapping around to no acceleration
+    if (this->consecutive_rotations < 255)
+    {
+        this->consecutive_rotations++;
+    }
+    this->last_rotation_was_cw = is_cw;
+    this->millis_of_last_rotation = now;
 
-    return step_size;
+    const int32_t step_size = get_step_size(this->timer.original_time, dir, event_speed(rotation_event), this->consecutive_rotations);
+    this->timer.add_to_target_time(step_size);
 }
 
 void state_machine_t::handle_event(event_t event)
@@ -142,11 +187,8 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION:
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
-        {
-            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            this->timer.add_to_target_time(step_size);
-        }
-        break;
+            this->adjust_target_time(event);
+            break;
 
         case LONG_PRESS:
             if(this->timer.original_time == 0)
@@ -172,11 +214,8 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION:
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
-        {
-            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            this->timer.add_to_target_time(step_size);
-        }
-        break;
+            this->adjust_target_time(event);
+            break;
 
         case LONG_PRESS:
             this->reset();
@@ -208,11 +247,8 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION:
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
-        {
-            const int32_t step_size = get_step_size(this->timer.original_time, event_to_rot_dir(event), event_speed(event));
-            this->timer.add_to_target_time(step_size);
-        }
-        break;
+            this->adjust_target_time(event);
+            break;
 
         case LONG_PRESS:
             this->reset();

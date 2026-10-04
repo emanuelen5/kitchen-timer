@@ -20,4 +20,9 @@
 #define TIMER_DIGITS_BLINK_RATE 500
 #define RINGING_DISPLAY_LABEL_DURATION 1000
 
+//Rotation configs
+// The longest pause between two rotation steps that still counts as the same
+// continuous rotation (i.e. keeps accelerating)
+#define ROTATION_ACCELERATION_TIMEOUT 150
+
 #endif // CONFIG_H

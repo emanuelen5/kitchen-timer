@@ -30,11 +30,15 @@ struct state_machine_t
     ringing_display_t ringing_display;
     bool showing_ringing_display_label;
     uint16_t millis_of_ringing_display_change;
+    uint16_t millis_of_last_rotation;
+    uint8_t consecutive_rotations;
+    bool last_rotation_was_cw;
 
     void init();
     void reset();
     void set_state(state_t new_state);
     void set_ringing_display(ringing_display_t new_ringing_display);
+    void adjust_target_time(event_t rotation_event);
     void handle_event(event_t event);
     void service();
     uint16_t get_target_time();

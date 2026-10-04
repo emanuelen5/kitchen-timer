@@ -88,6 +88,89 @@ void test_when_in_set_time_timer_doesnt_underflow(void)
     TEST_ASSERT_EQUAL(0, sm.get_target_time());
 }
 
+void rotate(event_t event, uint8_t steps, uint16_t ms_between_steps = 10)
+{
+    for (uint8_t i = 0; i < steps; i++)
+    {
+        current_millis += ms_between_steps;
+        sm.handle_event(event);
+    }
+}
+
+void test_when_rotating_continuously_the_steps_accelerate(void)
+{
+    sm.set_state(SET_TIME);
+    rotate(CW_ROTATION, 12);
+    TEST_ASSERT_EQUAL(12, sm.get_target_time());
+    rotate(CW_ROTATION, 6);
+    TEST_ASSERT_EQUAL(12 + 6 * 5, sm.get_target_time());
+    rotate(CW_ROTATION, 6);
+    TEST_ASSERT_EQUAL(42 + 6 * 10, sm.get_target_time());
+    rotate(CW_ROTATION, 6);
+    TEST_ASSERT_EQUAL(102 + 6 * 30, sm.get_target_time());
+    rotate(CW_ROTATION, 1);
+    TEST_ASSERT_EQUAL(282 + 60, sm.get_target_time());
+}
+
+void test_when_rotating_ccw_continuously_the_steps_accelerate(void)
+{
+    sm.set_state(SET_TIME);
+    sm.timer.original_time = 1000;
+    rotate(CCW_ROTATION, 13);
+    TEST_ASSERT_EQUAL(1000 - 12 - 5, sm.get_target_time());
+}
+
+void test_rotation_keeps_accelerating_when_pausing_up_to_the_timeout(void)
+{
+    sm.set_state(SET_TIME);
+    rotate(CW_ROTATION, 13, ROTATION_ACCELERATION_TIMEOUT);
+    TEST_ASSERT_EQUAL(12 + 5, sm.get_target_time());
+}
+
+void test_pausing_the_rotation_resets_the_acceleration(void)
+{
+    sm.set_state(SET_TIME);
+    rotate(CW_ROTATION, 12);
+    rotate(CW_ROTATION, 1, ROTATION_ACCELERATION_TIMEOUT + 1);
+    TEST_ASSERT_EQUAL(13, sm.get_target_time());
+}
+
+void test_changing_direction_resets_the_acceleration(void)
+{
+    sm.set_state(SET_TIME);
+    rotate(CW_ROTATION, 24);
+    TEST_ASSERT_EQUAL(102, sm.get_target_time());
+    rotate(CCW_ROTATION, 1);
+    TEST_ASSERT_EQUAL(101, sm.get_target_time());
+}
+
+void test_fast_rotation_accelerates_once_the_acceleration_is_faster(void)
+{
+    sm.set_state(SET_TIME);
+    rotate(CW_ROTATION_FAST, 18);
+    TEST_ASSERT_EQUAL(18 * 5, sm.get_target_time());
+    rotate(CW_ROTATION_FAST, 1);
+    TEST_ASSERT_EQUAL(90 + 10, sm.get_target_time());
+}
+
+void test_when_above_an_hour_accelerated_steps_are_at_most_10_minutes(void)
+{
+    sm.set_state(SET_TIME);
+    sm.timer.original_time = 3600;
+    rotate(CW_ROTATION, 18);
+    TEST_ASSERT_EQUAL(3600 + 12 * 60 + 6 * 300, sm.get_target_time());
+    rotate(CW_ROTATION, 13);
+    TEST_ASSERT_EQUAL(6120 + 13 * 600, sm.get_target_time());
+}
+
+void test_when_running_rotating_continuously_accelerates(void)
+{
+    sm.timer.original_time = 10;
+    sm.handle_event(SINGLE_PRESS);
+    rotate(CW_ROTATION, 13);
+    TEST_ASSERT_EQUAL(10 + 12 + 5, sm.get_time_left());
+}
+
 void test_when_running_it_counts_down_until_time_has_passed(void)
 {
     sm.timer.original_time = 10;
@@ -312,6 +395,14 @@ int main()
     RUN_TEST(test_when_in_set_time_and_above_an_hour_change_timer_in_5_minutes_on_fast_rotation);
     RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
+    RUN_TEST(test_when_rotating_continuously_the_steps_accelerate);
+    RUN_TEST(test_when_rotating_ccw_continuously_the_steps_accelerate);
+    RUN_TEST(test_rotation_keeps_accelerating_when_pausing_up_to_the_timeout);
+    RUN_TEST(test_pausing_the_rotation_resets_the_acceleration);
+    RUN_TEST(test_changing_direction_resets_the_acceleration);
+    RUN_TEST(test_fast_rotation_accelerates_once_the_acceleration_is_faster);
+    RUN_TEST(test_when_above_an_hour_accelerated_steps_are_at_most_10_minutes);
+    RUN_TEST(test_when_running_rotating_continuously_accelerates);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
     RUN_TEST(test_ringing_exits_after_5_minutes);
     RUN_TEST(test_ringing_timeout_counts_from_when_ringing_started);
