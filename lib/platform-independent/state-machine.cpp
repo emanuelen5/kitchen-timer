@@ -3,12 +3,9 @@
 #include "util.h"
 #include "config.h"
 
-// These are provided by the program that includes the state machine
-uint16_t millis(void);
-
 void state_machine_t::set_state(state_t new_state)
 {
-    this->millis_of_last_transition = millis();
+    this->seconds_in_state = 0;
     this->state = new_state;
 }
 
@@ -26,7 +23,7 @@ bool state_machine_t::is_idle()
 void state_machine_t::init()
 {
     this->state = SET_TIME;
-    this->millis_of_last_transition = 0;
+    this->seconds_in_state = 0;
     this->timer.reset();
 }
 
@@ -34,16 +31,6 @@ void state_machine_t::service()
 {
     switch (state)
     {
-    case RINGING:
-    {
-        uint16_t time_in_ringing_state = millis() - this->millis_of_last_transition;
-        if (time_in_ringing_state >= RINGING_TIMEOUT)
-        {
-            this->reset();
-        }
-    }
-    break;
-
     default:
         break;
     }
@@ -115,6 +102,11 @@ static int16_t get_step_size(uint16_t original_time, rotation_dir_t dir, rotatio
 
 void state_machine_t::handle_event(event_t event)
 {
+    if (event == SECOND_TICK && this->seconds_in_state < UINT16_MAX)
+    {
+        this->seconds_in_state++;
+    }
+
     switch (state)
     {
     case SET_TIME:
@@ -219,6 +211,12 @@ void state_machine_t::handle_event(event_t event)
         case SINGLE_PRESS:
         case LONG_PRESS:
             this->reset();
+            break;
+        case SECOND_TICK:
+            if (this->seconds_in_state >= RINGING_TIMEOUT)
+            {
+                this->reset();
+            }
             break;
 
         default:

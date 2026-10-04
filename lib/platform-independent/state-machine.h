@@ -18,7 +18,7 @@ struct state_machine_t
 {
     state_t state;
     state_machine::timer_t timer;
-    uint16_t millis_of_last_transition;
+    uint16_t seconds_in_state;
 
     void init();
     void reset();

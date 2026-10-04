@@ -4,18 +4,10 @@
 
 #include "state-machine.h"
 
-// Test doubles
-uint16_t current_millis = 0;
-uint16_t millis(void)
-{
-    return current_millis;
-}
-
 state_machine_t sm;
 
 void setUp(void)
 {
-    current_millis = 0;
     sm.init();
 }
 
@@ -105,29 +97,41 @@ void test_when_running_it_counts_down_until_time_has_passed(void)
     TEST_ASSERT_EQUAL(RINGING, sm.get_state());
 }
 
-void run_until_state_times_out(state_machine_t *sm, state_t initial_state)
+uint16_t run_until_state_times_out(state_machine_t *sm, state_t initial_state)
 {
+    uint16_t seconds = 0;
     while (true)
     {
-        current_millis++;
-        sm->service();
+        sm->handle_event(SECOND_TICK);
+        seconds++;
 
         if (sm->get_state() != initial_state)
-            break;
-        bool panic = current_millis == 0;
+            return seconds;
+        bool panic = seconds == 0;
         if (panic)
             TEST_FAIL_MESSAGE("The state was never left");
     }
 }
 
-void test_ringing_exits_after_10000ms(void)
+void test_ringing_exits_after_5_minutes(void)
 {
     sm.set_state(RINGING);
-    sm.service();
 
-    run_until_state_times_out(&sm, RINGING);
+    uint16_t seconds = run_until_state_times_out(&sm, RINGING);
 
-    TEST_ASSERT_EQUAL(10000, current_millis);
+    TEST_ASSERT_EQUAL(5 * 60, seconds);
+}
+
+void test_ringing_timeout_counts_from_when_ringing_started(void)
+{
+    sm.timer.original_time = 10;
+    sm.timer.set_current_time_to_target_time();
+    sm.set_state(RUNNING);
+    run_until_state_times_out(&sm, RUNNING);
+
+    uint16_t seconds = run_until_state_times_out(&sm, RINGING);
+
+    TEST_ASSERT_EQUAL(5 * 60, seconds);
 }
 
 void test_gh_issue_94_decrementing_below_zero_makes_it_wrap(void)
@@ -162,7 +166,8 @@ int main()
     RUN_TEST(test_when_in_set_time_timer_doesnt_overflow);
     RUN_TEST(test_when_in_set_time_timer_doesnt_underflow);
     RUN_TEST(test_when_running_it_counts_down_until_time_has_passed);
-    RUN_TEST(test_ringing_exits_after_10000ms);
+    RUN_TEST(test_ringing_exits_after_5_minutes);
+    RUN_TEST(test_ringing_timeout_counts_from_when_ringing_started);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
     RUN_TEST(test_resets_target_time_when_timer_ends);
 

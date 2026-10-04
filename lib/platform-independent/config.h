@@ -2,7 +2,7 @@
 #define CONFIG_H
 
 #define MAX_TIMERS 16
-#define RINGING_TIMEOUT 10000
+#define RINGING_TIMEOUT (5 * 60)
 
 //UART configs
 #define RX_BUFFER_SIZE 64
