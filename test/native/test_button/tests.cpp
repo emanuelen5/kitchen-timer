@@ -39,7 +39,7 @@ TestState *state;
 void setUp(void)
 {
     state = new TestState();
-    btn = new Button(&on_single_press, &on_double_press, &on_long_press);
+    btn = new Button(&on_single_press, &on_double_press, &on_long_press, nullptr);
 }
 
 uint16_t millis(void)
@@ -117,7 +117,7 @@ void test_long_press_is_registered_on_release(void)
 void test_long_press_isnt_triggered_when_switching_to_rotation(void)
 {
     btn->press();
-    btn->switch_to_rotation();
+    btn->rotate(cw, slow);
     state->increment_time(Button::long_press_threshold_ms + 1);
     btn->release();
 
@@ -130,7 +130,7 @@ void test_press_is_triggered_when_switching_to_rotation_before_double_press_time
     state->increment_time(Button::double_press_timeout_ms - 1);
     btn->release();
 
-    btn->switch_to_rotation();
+    btn->rotate(cw, slow);
     TEST_ASSERT_BUTTON_STATE(1, false, false);
     state->set_time(Button::long_press_threshold_ms + 1);
     TEST_ASSERT_BUTTON_STATE(1, false, false);
@@ -143,7 +143,7 @@ void test_press_is_triggered_when_pressing_and_then_rotating(void)
     btn->release();
     TEST_ASSERT_BUTTON_STATE(false, false, false);
 
-    btn->switch_to_rotation();
+    btn->rotate(cw, slow);
     TEST_ASSERT_BUTTON_STATE(1, false, false);
     state->set_time(Button::long_press_threshold_ms + 1);
     TEST_ASSERT_BUTTON_STATE(1, false, false);
@@ -155,7 +155,7 @@ void test_press_isnt_triggered_when_holding_down_and_rotating(void)
     state->increment_time(Button::double_press_timeout_ms - 1);
     TEST_ASSERT_BUTTON_STATE(false, false, false);
 
-    btn->switch_to_rotation();
+    btn->rotate(cw, slow);
     btn->release();
     TEST_ASSERT_BUTTON_STATE(false, false, false);
     state->set_time(Button::long_press_threshold_ms + 1);

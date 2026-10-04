@@ -7,13 +7,15 @@ extern uint16_t millis(void);
 
 Button::Button(void (*single_press_handler)() = nullptr,
                void (*double_press_handler)() = nullptr,
-               void (*long_press_handler)() = nullptr)
+               void (*long_press_handler)() = nullptr,
+               rotation_cb_t rotation_handler = nullptr)
     : last_press_time(0),
       press_count(0),
       is_pressed(false),
       on_single_press(single_press_handler),
       on_double_press(double_press_handler),
-      on_long_press(long_press_handler) {}
+      on_long_press(long_press_handler),
+      on_rotation(rotation_handler) {}
 
 void Button::press()
 {
@@ -51,6 +53,14 @@ void Button::release()
         else if (press_duration > double_press_timeout_ms)
             invoke_single_press();
     }
+}
+
+void Button::rotate(rotation_dir_t dir, rotation_speed_t speed)
+{
+    if (on_rotation)
+        on_rotation(dir, speed, is_pressed);
+
+    switch_to_rotation();
 }
 
 void Button::service()

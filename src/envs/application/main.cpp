@@ -73,7 +73,7 @@ void on_line_received(char *line)
 
 int main()
 {
-    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
+    AvrButton button(&on_single_press, &on_double_press, &on_long_press, &rotation_cb);
 
     init_hw_UART(on_line_received);
     init_hw_timer2_to_1s_interrupt(&second_tick_cb);
@@ -81,7 +81,7 @@ int main()
     init_hw_led_counter();
     init_hw_max72xx();
     init_queue(&eventQueue, event_queue_buffer, queue_buffer_size);
-    init_hw_rotary_encoder(rotation_cb, button);
+    init_hw_rotary_encoder(button);
     init_application(&app);
     max72xx_set_intensity(app.brightness);
     sei();

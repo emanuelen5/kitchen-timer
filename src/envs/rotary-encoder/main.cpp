@@ -38,10 +38,10 @@ void on_long_press(void)
 
 int main()
 {
-    AvrButton button(&on_single_press, &on_double_press, &on_long_press);
+    AvrButton button(&on_single_press, &on_double_press, &on_long_press, &rotation_cb);
     init_hw_led_counter();
     init_hw_millis();
-    init_hw_rotary_encoder(rotation_cb, button);
+    init_hw_rotary_encoder(button);
     increment_counter();
     sei();
 

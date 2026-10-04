@@ -5,14 +5,12 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-static rotation_cb_t rotation;
-
 static Button *button = nullptr;
 // State is stored as two bits (old A and old B)
 static uint8_t encoder_state = 0;
 
 // init_hw_millis must be called before this
-void init_hw_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
+void init_hw_rotary_encoder(Button &button_)
 {
     DDRD &= 0;
     PORTD |= bit(SW_PIN) | bit(CH_A_PIN) | bit(CH_B_PIN);
@@ -39,8 +37,6 @@ void init_hw_rotary_encoder(rotation_cb_t rotation_cb, Button &button_)
     SREG = sreg;
 
     button = &button_;
-
-    rotation = rotation_cb;
 }
 
 static bool should_retrigger_after_sw_debounce(uint16_t *last_trigger)
@@ -124,14 +120,12 @@ static void handle_encoder_interrupt()
     if (subincrement >= 4)
     {
         subincrement -= 4;
-        rotation(cw, get_rotation_speed(), button->get_is_pressed());
-        button->switch_to_rotation();
+        button->rotate(cw, get_rotation_speed());
     }
     else if (subincrement <= -4)
     {
         subincrement += 4;
-        rotation(ccw, get_rotation_speed(), button->get_is_pressed());
-        button->switch_to_rotation();
+        button->rotate(ccw, get_rotation_speed());
     }
 
     encoder_state = (new_state >> 2);
