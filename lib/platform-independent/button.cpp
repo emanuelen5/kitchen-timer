@@ -57,10 +57,12 @@ void Button::release()
 
 void Button::rotate(rotation_dir_t dir, rotation_speed_t speed)
 {
+    // Must be done before reporting the rotation, since it may flush a
+    // pending single press that happened before the rotation
+    switch_to_rotation();
+
     if (on_rotation)
         on_rotation(dir, speed, is_pressed);
-
-    switch_to_rotation();
 }
 
 void Button::service()

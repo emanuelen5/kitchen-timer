@@ -168,7 +168,7 @@ void test_long_press_isnt_triggered_when_rotating(void)
     TEST_ASSERT_EVENTS(CW_PRESSED_ROTATION);
 }
 
-void test_press_is_triggered_when_pressing_and_then_rotating(void)
+void test_press_is_triggered_before_rotation_when_pressing_and_then_rotating(void)
 {
     btn->press();
     state->increment_time(Button::double_press_timeout_ms - 1);
@@ -247,7 +247,7 @@ int main()
     RUN_TEST(test_long_press_is_registered_before_release);
     RUN_TEST(test_long_press_is_registered_on_release);
     RUN_TEST(test_long_press_isnt_triggered_when_rotating);
-    RUN_TEST(test_press_is_triggered_when_pressing_and_then_rotating);
+    RUN_TEST(test_press_is_triggered_before_rotation_when_pressing_and_then_rotating);
     RUN_TEST(test_press_isnt_triggered_when_holding_down_and_rotating);
     RUN_TEST(test_rotation_speed_is_forwarded);
     RUN_TEST(test_single_press_too_slow_for_double);
