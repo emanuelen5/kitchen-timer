@@ -328,6 +328,65 @@ void test_when_ringing_another_rotation_keeps_showing_the_label(void)
     TEST_ASSERT_FALSE(sm.showing_ringing_display_label);
 }
 
+void test_when_time_is_zero_single_press_starts_a_stopwatch(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    TEST_ASSERT_EQUAL(RUNNING, sm.get_state());
+    TEST_ASSERT_TRUE(sm.is_stopwatch);
+    TEST_ASSERT_FALSE(sm.is_idle());
+}
+
+void test_stopwatch_counts_up_without_ringing(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    for (uint8_t i = 0; i < 100; i++)
+        sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(RUNNING, sm.get_state());
+    TEST_ASSERT_EQUAL(100, sm.get_elapsed_time());
+}
+
+void test_stopwatch_can_be_paused_and_resumed(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(SECOND_TICK);
+    sm.handle_event(SINGLE_PRESS);
+    TEST_ASSERT_EQUAL(PAUSED, sm.get_state());
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(1, sm.get_elapsed_time());
+
+    sm.handle_event(SINGLE_PRESS);
+    TEST_ASSERT_EQUAL(RUNNING, sm.get_state());
+    sm.handle_event(SECOND_TICK);
+    TEST_ASSERT_EQUAL(2, sm.get_elapsed_time());
+}
+
+void test_stopwatch_ignores_rotation(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(CW_ROTATION);
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(CW_ROTATION_FAST);
+    TEST_ASSERT_EQUAL(0, sm.get_target_time());
+    TEST_ASSERT_TRUE(sm.is_stopwatch);
+}
+
+void test_long_press_resets_the_stopwatch(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(SECOND_TICK);
+    sm.handle_event(LONG_PRESS);
+    TEST_ASSERT_TRUE(sm.is_idle());
+    TEST_ASSERT_FALSE(sm.is_stopwatch);
+    TEST_ASSERT_EQUAL(0, sm.get_elapsed_time());
+}
+
+void test_after_resetting_a_stopwatch_a_timer_rings_again(void)
+{
+    sm.handle_event(SINGLE_PRESS);
+    sm.handle_event(LONG_PRESS);
+    run_until_ringing(&sm, 3);
+}
+
 uint16_t run_until_state_times_out(state_machine_t *sm, state_t initial_state)
 {
     uint16_t seconds = 0;
@@ -418,6 +477,12 @@ int main()
     RUN_TEST(test_when_ringing_starts_it_doesnt_show_the_label);
     RUN_TEST(test_when_ringing_rotation_shows_the_label_for_a_while);
     RUN_TEST(test_when_ringing_another_rotation_keeps_showing_the_label);
+    RUN_TEST(test_when_time_is_zero_single_press_starts_a_stopwatch);
+    RUN_TEST(test_stopwatch_counts_up_without_ringing);
+    RUN_TEST(test_stopwatch_can_be_paused_and_resumed);
+    RUN_TEST(test_stopwatch_ignores_rotation);
+    RUN_TEST(test_long_press_resets_the_stopwatch);
+    RUN_TEST(test_after_resetting_a_stopwatch_a_timer_rings_again);
     RUN_TEST(test_gh_issue_94_decrementing_below_zero_makes_it_wrap);
     RUN_TEST(test_resets_target_time_when_timer_ends);
 

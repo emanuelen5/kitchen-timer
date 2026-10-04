@@ -424,7 +424,6 @@ static void snake_view_event_handling(application_t *app, event_t event)
 void application_handle_event(application_t *app, event_t event)
 {
     state_machine_t *active_sm = &app->state_machines[app->current_active_sm];
-    uint16_t *original_time = &active_sm->timer.original_time;
 
     if (is_interactive_event(event))
     {
@@ -451,11 +450,11 @@ void application_handle_event(application_t *app, event_t event)
         switch (app->current_view)
         {
         case ACTIVE_TIMER_VIEW:
-            if (event == DOUBLE_PRESS && *original_time != 0 && active_sm->state != RINGING)
+            if (event == DOUBLE_PRESS && !active_sm->is_idle() && active_sm->state != RINGING)
             {
                 try_to_open_new_timer(app);
             }
-            else if (event == DOUBLE_PRESS && active_sm->state == SET_TIME && *original_time == 0)
+            else if (event == DOUBLE_PRESS && active_sm->is_idle())
             {
                 app->settings_menu.current_menu_position = BRIGHTNESS;
                 app->current_view = SETTINGS_MENU_VIEW;

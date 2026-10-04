@@ -198,7 +198,7 @@ void render_active_timer_view(state_machine_t *state_machines, uint8_t active_ti
 
     case RUNNING:
     case PAUSED:
-        time_to_display = active_sm->get_time_left();
+        time_to_display = active_sm->is_stopwatch ? active_sm->get_elapsed_time() : active_sm->get_time_left();
         break;
 
     case RINGING:

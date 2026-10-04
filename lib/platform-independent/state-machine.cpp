@@ -21,6 +21,7 @@ void state_machine_t::set_ringing_display(ringing_display_t new_ringing_display)
 void state_machine_t::reset()
 {
     this->timer.reset();
+    this->is_stopwatch = false;
     this->set_state(SET_TIME);
 }
 
@@ -35,6 +36,7 @@ void state_machine_t::init()
     this->seconds_in_state = 0;
     this->consecutive_rotations = 0;
     this->timer.reset();
+    this->is_stopwatch = false;
 }
 
 void state_machine_t::service()
@@ -177,10 +179,8 @@ void state_machine_t::handle_event(event_t event)
         switch (event)
         {
         case SINGLE_PRESS:
-            if(this->timer.original_time != 0)
-            {
-                this->set_state(RUNNING);
-            }
+            this->is_stopwatch = this->timer.original_time == 0;
+            this->set_state(RUNNING);
             break;
 
         case CW_ROTATION:
@@ -214,7 +214,10 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION:
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
-            this->adjust_target_time(event);
+            if (!this->is_stopwatch)
+            {
+                this->adjust_target_time(event);
+            }
             break;
 
         case LONG_PRESS:
@@ -223,7 +226,7 @@ void state_machine_t::handle_event(event_t event)
 
         case SECOND_TICK:
             this->timer.increment_elapsed_time();
-            if (this->timer.is_finished())
+            if (!this->is_stopwatch && this->timer.is_finished())
             {
                 this->ringing_display = SHOW_TOTAL_TIME;
                 this->showing_ringing_display_label = false;
@@ -247,7 +250,10 @@ void state_machine_t::handle_event(event_t event)
         case CCW_ROTATION:
         case CW_ROTATION_FAST:
         case CCW_ROTATION_FAST:
-            this->adjust_target_time(event);
+            if (!this->is_stopwatch)
+            {
+                this->adjust_target_time(event);
+            }
             break;
 
         case LONG_PRESS:

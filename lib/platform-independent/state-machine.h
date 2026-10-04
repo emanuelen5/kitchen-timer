@@ -28,6 +28,8 @@ struct state_machine_t
     state_machine::timer_t timer;
     uint16_t seconds_in_state;
     ringing_display_t ringing_display;
+    // Started without a target time, so it counts up instead of down
+    bool is_stopwatch;
     bool showing_ringing_display_label;
     uint16_t millis_of_ringing_display_change;
     uint16_t millis_of_last_rotation;

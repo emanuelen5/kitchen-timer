@@ -83,6 +83,33 @@ void test_when_asleep_double_press_only_wakes_it_up(void)
     TEST_ASSERT_EQUAL(ACTIVE_TIMER_VIEW, app.current_view);
 }
 
+void test_when_awake_single_press_starts_a_stopwatch(void)
+{
+    application_handle_event(&app, SINGLE_PRESS);
+    TEST_ASSERT_EQUAL(RUNNING, active_sm()->get_state());
+    TEST_ASSERT_TRUE(active_sm()->is_stopwatch);
+}
+
+void test_when_asleep_single_press_doesnt_start_a_stopwatch(void)
+{
+    fall_asleep();
+    application_handle_event(&app, SINGLE_PRESS);
+    TEST_ASSERT_TRUE(active_sm()->is_idle());
+
+    application_handle_event(&app, SINGLE_PRESS);
+    TEST_ASSERT_EQUAL(RUNNING, active_sm()->get_state());
+    TEST_ASSERT_TRUE(active_sm()->is_stopwatch);
+}
+
+void test_double_press_on_a_stopwatch_opens_a_new_timer(void)
+{
+    application_handle_event(&app, SINGLE_PRESS);
+    application_handle_event(&app, DOUBLE_PRESS);
+    TEST_ASSERT_EQUAL(ACTIVE_TIMER_VIEW, app.current_view);
+    TEST_ASSERT_EQUAL(1, app.current_active_sm);
+    TEST_ASSERT_TRUE(app.state_machines[0].is_stopwatch);
+}
+
 int main()
 {
     UNITY_BEGIN();
@@ -91,6 +118,9 @@ int main()
     RUN_TEST(test_after_waking_up_single_press_starts_the_timer);
     RUN_TEST(test_when_asleep_rotation_only_wakes_it_up);
     RUN_TEST(test_when_asleep_double_press_only_wakes_it_up);
+    RUN_TEST(test_when_awake_single_press_starts_a_stopwatch);
+    RUN_TEST(test_when_asleep_single_press_doesnt_start_a_stopwatch);
+    RUN_TEST(test_double_press_on_a_stopwatch_opens_a_new_timer);
 
     UNITY_END();
 }
