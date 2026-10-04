@@ -102,94 +102,112 @@ static const uint8_t font_table[10][FATFONT_HEIGHT] = {
     }
 };
 
-static const uint8_t char_h[FATFONT_HEIGHT] = {
-    0b000000,
-    0b110000,
-    0b110000,
-    0b111110,
-    0b110011,
-    0b110011,
-    0b110011
+struct letter_t
+{
+    char character;
+    uint8_t bitmap[FATFONT_HEIGHT];
 };
 
-static const uint8_t char_M[FATFONT_HEIGHT] = {
-    0b110011,
-    0b111011,
-    0b111111, 
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011
+static constexpr letter_t letter_table[] = {
+    {'E', {
+        0b111111,
+        0b110000,
+        0b110000,
+        0b111110,
+        0b110000,
+        0b110000,
+        0b111111
+    }},
+    {'H', {
+        0b000000,
+        0b110000,
+        0b110000,
+        0b111110,
+        0b110011,
+        0b110011,
+        0b110011
+    }},
+    {'M', {
+        0b110011,
+        0b111011,
+        0b111111,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011
+    }},
+    {'O', {
+        0b011110,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b011110
+    }},
+    {'R', {
+        0b111110,
+        0b110011,
+        0b110011,
+        0b111110,
+        0b110110,
+        0b110011,
+        0b110011
+    }},
+    {'S', {
+        0b011110,
+        0b110011,
+        0b110000,
+        0b011110,
+        0b000011,
+        0b110011,
+        0b011110
+    }},
+    {'T', {
+        0b111111,
+        0b001100,
+        0b001100,
+        0b001100,
+        0b001100,
+        0b001100,
+        0b001100
+    }},
+    {'U', {
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b110011,
+        0b011110
+    }},
+    {'V', {
+        0b110110,
+        0b110110,
+        0b110110,
+        0b110110,
+        0b110110,
+        0b011100,
+        0b001000
+    }}
 };
 
-static const uint8_t char_v[FATFONT_HEIGHT] = {
-    0b110110,
-    0b110110,
-    0b110110,
-    0b110110,
-    0b110110,
-    0b011100,
-    0b001000
-};
+static constexpr uint8_t letter_count = sizeof(letter_table) / sizeof(letter_table[0]);
 
-static const uint8_t char_E[FATFONT_HEIGHT] = {
-    0b111111,
-    0b110000,
-    0b110000,
-    0b111110,
-    0b110000,
-    0b110000,
-    0b111111
-};
+// Position of the letter in letter_table, or letter_count if there is no glyph for it
+static constexpr uint8_t find_letter(char c, uint8_t position = 0)
+{
+    return position == letter_count               ? letter_count
+           : letter_table[position].character == c ? position
+                                                   : find_letter(c, position + 1);
+}
 
-static const uint8_t char_O[FATFONT_HEIGHT] = {
-    0b011110,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b011110
-};
-
-static const uint8_t char_R[FATFONT_HEIGHT] = {
-    0b111110,
-    0b110011,
-    0b110011,
-    0b111110,
-    0b110110,
-    0b110011,
-    0b110011
-};
-
-static const uint8_t char_S[FATFONT_HEIGHT] = {
-    0b011110,
-    0b110011,
-    0b110000,
-    0b011110,
-    0b000011,
-    0b110011,
-    0b011110
-};
-
-static const uint8_t char_T[FATFONT_HEIGHT] = {
-    0b111111,
-    0b001100,
-    0b001100,
-    0b001100,
-    0b001100,
-    0b001100,
-    0b001100
-};
-
-static const uint8_t char_U[FATFONT_HEIGHT] = {
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b110011,
-    0b011110
+static constexpr uint8_t letter_positions['Z' - 'A' + 1] = {
+    find_letter('A'), find_letter('B'), find_letter('C'), find_letter('D'), find_letter('E'), find_letter('F'),
+    find_letter('G'), find_letter('H'), find_letter('I'), find_letter('J'), find_letter('K'), find_letter('L'),
+    find_letter('M'), find_letter('N'), find_letter('O'), find_letter('P'), find_letter('Q'), find_letter('R'),
+    find_letter('S'), find_letter('T'), find_letter('U'), find_letter('V'), find_letter('W'), find_letter('X'),
+    find_letter('Y'), find_letter('Z')
 };
 
 const uint8_t _icon_brightness[] PROGMEM = {
@@ -332,28 +350,17 @@ const uint8_t* get_bitmap(char c)
     {
         return font_table[c - '0'];
     }
-    switch (c)
+    if (c >= 'a' && c <= 'z')
     {
-        case 'h':
-        case 'H':
-            return char_h;
-        case 'M':
-            return char_M;
-        case 'v':
-        case 'V':
-            return char_v;
-        case 'E':
-            return char_E;
-        case 'O':
-            return char_O;
-        case 'R':
-            return char_R;
-        case 'S':
-            return char_S;
-        case 'T':
-            return char_T;
-        case 'U':
-            return char_U;
+        c = c - 'a' + 'A';
+    }
+    if (c >= 'A' && c <= 'Z')
+    {
+        uint8_t position = letter_positions[c - 'A'];
+        if (position < letter_count)
+        {
+            return letter_table[position].bitmap;
+        }
     }
     return nullptr;
 }
