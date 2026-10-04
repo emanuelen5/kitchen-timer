@@ -33,6 +33,12 @@ public:
 
     void handle_event(PowerSaveEvent event);
 
+    // The display is dark, so the user can't see what they are interacting with
+    bool is_asleep()
+    {
+        return state == PowerState::display_off || state == PowerState::deep_sleep;
+    }
+
 private:
     // n-1 seconds
     static constexpr uint16_t dim_timeout = 29;

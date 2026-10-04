@@ -428,7 +428,12 @@ void application_handle_event(application_t *app, event_t event)
 
     if (is_interactive_event(event))
     {
+        // The first event after sleeping only wakes the device up, so that e.g.
+        // the press that wakes it doesn't also start the timer
+        const bool is_waking_up = app->power_save.is_asleep();
         app->power_save.handle_event(PowerSaveEvent::activity);
+        if (is_waking_up)
+            return;
     }
 
     if (event == SECOND_TICK)
